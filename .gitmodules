@@ -1,0 +1,3 @@
+[submodule "libft"]
+	path = lib/libft
+	url = https://github.com/u413-284-si/libft.git
