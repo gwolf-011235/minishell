@@ -13,7 +13,7 @@ OBJ_DIR := obj
 LIB_DIR := lib
 LIB_DIR_FT := $(LIB_DIR)/libft
 INC_DIR := inc
-DEP_DIR := dep
+DEP_DIR := $(OBJ_DIR)/dep
 
 # include
 INC := -I $(INC_DIR) -I lib/libft/include
@@ -40,19 +40,15 @@ OBJ := $(SRC:.c=.o)
 OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))
 
 # dependencies
-DEPFILES :=$(SRCS:%.c=$(DEP_DIR)/%.d)
+DEPFILES :=$(SRC:%.c=$(DEP_DIR)/%.d)
 
-# headers
-HEADER := 	minishell.h
-HEADERS := $(addprefix $(INC_DIR)/, $(HEADER))
-
-.PHONY: all, clean, fclean, re, debug
+.PHONY: all, clean, fclean, re, debug, obj, dep
 .SILENT:
 
 all: $(NAME)
 	echo "$(GREEN)ALL DONE!$(RESET)"
 
-$(NAME): $(LIBFT) $(OBJS) $(HEADERS)
+$(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(OBJS) $(LIB_FT) -o $@
 	echo "$(GREEN)$(NAME) created!$(RESET)"
 
@@ -60,10 +56,8 @@ debug: CFLAGS = -g
 debug: $(NAME)
 	echo "$(GREEN)DEBUG ready!$(RESET)"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c #$(DEP_DIR)/%.d
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(DEP_DIR)/%.d | $(DEP_DIR)
 	$(COMPILE) $< -o $@
-
-$(OBJ_DIR): ; mkdir -p $@
 
 $(DEP_DIR): ; mkdir -p $@
 
@@ -81,8 +75,6 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 	printf "$(RED)removed bin $(NAME)$(RESET)\n"
-	rm -rf $(DEP_DIR)
-	printf "$(RED)removed subdir $(DEP_DIR)$(RESET)\n"
 	printf "$(YELLOW)$(BOLD)clean$(RESET) [$(BLUE)libft$(RESET)]\n"
 	$(MAKE) --no-print-directory -C $(LIB_DIR_FT) fclean
 
