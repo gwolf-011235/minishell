@@ -18,4 +18,6 @@
 # include <readline/history.h>
 # include <stdlib.h>
 
+# include "libft.h"
+
 #endif
