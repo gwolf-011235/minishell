@@ -16,7 +16,7 @@ INC_DIR := inc
 DEP_DIR := $(OBJ_DIR)/dep
 
 # include
-INC := -I $(INC_DIR) -I lib/libft/include
+INC := -I $(INC_DIR) -I lib/libft/
 
 # libraries
 LIB_FT := -L $(LIB_DIR_FT) -l ft
@@ -43,7 +43,7 @@ OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))
 DEPFILES :=$(SRC:%.c=$(DEP_DIR)/%.d)
 
 .PHONY: all, clean, fclean, re, debug, obj, dep
-.SILENT:
+#.SILENT:
 
 all: $(NAME)
 	echo "$(GREEN)ALL DONE!$(RESET)"
