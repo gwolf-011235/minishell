@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 07:45:40 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 16:56:12 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,8 @@ t_error	ft_prompt_replace_u(char **replacement, t_hashtable sym_tab);
 
 //prompt_replace_w.c
 t_error	ft_prompt_replace_w(char **replacement, t_hashtable sym_tab);
+# include "hashtable.h"
+
+extern char	**environ;
 
 #endif
