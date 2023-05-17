@@ -32,7 +32,8 @@ NAME := minishell
 LIBFT := $(LIB_DIR_FT)/libft.a
 
 # source files
-SRC :=	main.c
+SRC :=	main.c \
+		hashtable.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # objects
@@ -43,7 +44,7 @@ OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))
 DEPFILES :=$(SRC:%.c=$(DEP_DIR)/%.d)
 
 .PHONY: all, clean, fclean, re, debug, obj, dep
-#.SILENT:
+.SILENT:
 
 all: $(NAME)
 	echo "$(GREEN)ALL DONE!$(RESET)"
