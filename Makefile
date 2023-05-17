@@ -36,7 +36,8 @@ LIBFT := $(LIB_DIR_FT)/libft.a
 SRC :=	main.c \
 		ft_memory.c \
 		ft_string.c \
-		replace_token.c
+		replace_token.c \
+		hashtable.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # prompt_replace_h.c \
