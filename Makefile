@@ -37,7 +37,8 @@ SRC :=	main.c \
 		ft_memory.c \
 		ft_string.c \
 		replace_token.c \
-		hashtable.c
+		hashtable_generate.c \
+		hashtable_utils.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # prompt_replace_h.c \
