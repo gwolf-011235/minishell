@@ -33,7 +33,8 @@ LIBFT := $(LIB_DIR_FT)/libft.a
 
 # source files
 SRC :=	main.c \
-		hashtable.c
+		hashtable_generate.c \
+		hashtable_utils.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # objects
