@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 16:58:34 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:00:15 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ typedef enum e_error {
 	ERR_NO_SHLVL, ///< ft_increment_shlvl didn't find SHLVL.
 	ERR_MAX_SHLVL, ///< maximum shell level was reached.
 	ERR_OUT_OF_BOUNDS, ///< A parameter has exceeded the allowed range.
-	ERR_WRONG_TOKEN ///< A prompt substitution was not recognized
+	ERR_WRONG_TOKEN ///< A prompt substitution was not recognized,
+	ERR_CWD_FAIL
 }	t_error;
 
 
