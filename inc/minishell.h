@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/24 12:20:12 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/24 14:02:20 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ extern char	**environ;
 void	ft_exit_failure(t_data *data, t_error exit_code);
 
 //init.c
-bool	ft_import_env(t_data *data);
+t_error	ft_setup_env(t_data *data);
+t_error	ft_import_env(t_data *data);
+
+//pwd.c
+t_error	ft_create_pwd_value(char *pwd_value);
+t_error	ft_create_pwd_str(char *pwd);
 
 #endif
