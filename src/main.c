@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/17 17:58:42 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/24 14:10:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	main(void)
 {
-	int			i;
-	char		*env_ptr;
-	t_hashtable	*ht;
+	t_data *data;
 
-	i = 0;
-	env_ptr = environ[i];
-	ht = ft_hashtable_create(128, ft_hash_fnv1);
-	size_t keylen = ft_strchr(env_ptr, '=') - env_ptr;
-	ft_hashtable_insert(ht, env_ptr, keylen);
-	ft_hashtable_print(ht);
+	data = malloc(sizeof(*data));
+	if (!data)
+		ft_exit_failure(data, ERR_MALLOC);
+	data->env_table = ft_hashtable_create(HASHTABLE_SIZE, ft_hash_fnv1);
+	if (ft_import_env(data) != SUCCESS)
+		printf("NO");
+	ft_hashtable_destroy(data->env_table);
+	free(data);
 }
