@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:17:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/24 12:42:35 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/24 14:13:53 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ t_env_var	*ft_hashtable_lookup(
  * Loop through the list and update tmp and prev pointers.
  * If tmp == NULL no element was found.
  * If prev == NULL element is at start of list.
- * If element is found free string and element. Also update next pointer.
+ * If element is found free void casted string, since it is const.
+ * Then free element and update next pointer.
  * @param ht Hashtable in which to delete one element
  * @param string env_string which should be deleted
  * @param keylen length of env_var (everthing before =)
@@ -110,7 +111,6 @@ t_error	ft_hashtable_delete(
 	size_t		index;
 	t_env_var	*tmp;
 	t_env_var	*prev;
-	const char	*env_string;
 
 	if (ht == NULL || string == NULL || keylen == 0)
 		return (ERR_EMPTY);
@@ -129,7 +129,7 @@ t_error	ft_hashtable_delete(
 		ht->elements[index] = tmp->next;
 	else
 		prev->next = tmp->next;
-	free(tmp->env_string);
+	free((void *)tmp->env_string);
 	free(tmp);
 	return (SUCCESS);
 }
@@ -151,14 +151,14 @@ void	ft_hashtable_print(t_hashtable *ht)
 	while (i < ht->size)
 	{
 		if (ht->elements[i] == NULL)
-			printf("\t%i\t---\n", i);
+			printf("\t%i\n---\n", i);
 		else
 		{
-			printf("\t%i\t\n", i);
+			printf("\t%i\n", i);
 			tmp = ht->elements[i];
 			while (tmp != NULL)
 			{
-				printf("%s\n", tmp->env_string);
+				printf("-> %s\n", tmp->env_string);
 				tmp = tmp->next;
 			}
 			printf("\n");
