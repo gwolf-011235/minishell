@@ -40,7 +40,8 @@ SRC :=	main.c \
 		hashtable_generate.c \
 		hashtable_utils.c \
 		exit_failure.c \
-		init.c
+		init.c \
+		pwd.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # prompt_replace_h.c \
