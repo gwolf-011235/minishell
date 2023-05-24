@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 16:57:26 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 16:59:30 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 int	main(int argc, char **argv)
 {
+	t_data *data;
 	(void)argc;
 	(void)argv;
 	/*
