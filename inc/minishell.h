@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/17 17:46:05 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/24 12:20:12 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,31 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdlib.h>
+# include <errno.h>
 
 # include "libft.h"
 # include "hashtable.h"
+# include "minishell_error.h"
+
+# define HASHTABLE_SIZE 256
+
+typedef struct s_checks {
+	bool	no_env;
+	bool	no_pwd;
+}	t_checks;
+
+typedef struct s_data {
+	t_hashtable	*env_table;
+	t_checks	checks;
+	t_error		err;
+}	t_data;
 
 extern char	**environ;
+
+//exit_failure.c
+void	ft_exit_failure(t_data *data, t_error exit_code);
+
+//init.c
+bool	ft_import_env(t_data *data);
 
 #endif
