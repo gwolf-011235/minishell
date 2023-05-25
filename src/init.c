@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/25 08:11:17 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/25 08:17:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_error	ft_setup_env(t_data *data)
 	if (data->checks.no_env || data->checks.no_pwd)
 	{
 		pwd = NULL;
-		data->err = ft_create_pwd_str(&pwd);
+		data->err = ft_create_pwd_env_str(&pwd);
 		if (data->err != SUCCESS)
 			ft_exit_failure(data, data->err);
 		data->err = ft_hashtable_insert(data->env_table, pwd, 3);
