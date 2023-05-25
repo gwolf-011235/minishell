@@ -6,14 +6,20 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/25 08:17:22 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/25 12:49:15 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * @file init.c
+ * @brief Copy env and generate missing envs.
+ */
 
 #include "minishell.h"
 
 /**
- * @brief Creates a env_table and imports env. If no PWD it creates one
+ * @brief Creates a env_table and imports env. If no PWD it creates one.
+ *
  * Create hashtable env_table with HASHTABLE_SIZE.
  * Call ft_import_env to fill env_table.
  * Check if env was imported, if not set flag no_env to true.
@@ -47,7 +53,8 @@ t_error	ft_setup_env(t_data *data)
 }
 
 /**
- * @brief Import env_vars from global environ
+ * @brief Import env_vars from global environ.
+ *
  * Check if environ is not null, else return.
  * Loop trhough the environ array. Environ is NULL-terminated.
  * Strdup the strings and save them in env_table
