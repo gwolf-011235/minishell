@@ -6,9 +6,14 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 17:00:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:02:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * @file main.c
+ * @brief Main entry point.
+ */
 
 #include "minishell.h"
 

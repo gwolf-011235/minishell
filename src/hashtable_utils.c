@@ -6,14 +6,20 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:17:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/24 14:13:53 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/25 12:28:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * @file hashtable_utils.c
+ * @brief Utils functions to use with env hashtable
+ */
 
 #include "minishell.h"
 
 /**
- * @brief Generate index in hashtable of given string via hashfunction
+ * @brief Generate index in hashtable of given string via hashfunction.
+ *
  * It uses the hashfunction of the passed hashtable to create the hash.
  * With % size the hash is made to fit the hashtable as index.
  * Static since no where else planned to use.
@@ -32,7 +38,8 @@ static size_t	ft_hashtable_index(
 }
 
 /**
- * @brief Insert an env-string into hashtable
+ * @brief Insert an env-string into hashtable.
+ *
  * Check if any param is empty and if key is already inserted.
  * Generate index and malloc new element.
  * Set new element as head of the list pointed to by index.

@@ -6,9 +6,14 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:57:29 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/24 12:16:45 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/25 12:45:43 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * @file exit_failure.c
+ * @brief Contains failure function to cleanup
+ */
 
 #include "minishell.h"
 
