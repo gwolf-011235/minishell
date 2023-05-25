@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:36 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/25 12:48:22 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/25 22:02:47 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 #include "libft.h"
 
 /**
- * @brief Implements the FNV (Fowler-Noll-Vo)-1 hash function
+ * @brief Implements the FNV (Fowler-Noll-Vo)-1 hash function.
+ *
  * FNV_OFFSET and FNV_PRIME are defined in hashtable.h
  * @param string The string to generate a hash from
  * @param len Length of the string
@@ -42,10 +43,11 @@ uint64_t	ft_hash_fnv1(const char *string, size_t len)
 }
 
 /**
- * @brief Creates and initializes a new t_hashtable
+ * @brief Creates and initializes a new t_hashtable.
+ *
  * Mallocs the struct, then sets size to param size and hashfunction to
- * param hf. Then enough pointers get calloc'd to fit size. If malloc of hashtable
- * or calloc of elements fail NULL gets returned.
+ * param hf. Then enough pointers get calloc'd to fit size. If malloc of
+ * hashtable or calloc of elements fail NULL gets returned.
  * @param size Size of hashtable - that many elements pointer get alloc'd
  * @param hf Pointer to hashfunction which should be used
  * @return t_hashtable* pointer to malloc'd hashtable; NULL if malloc fail
@@ -69,7 +71,8 @@ t_hashtable	*ft_hashtable_create(uint32_t size, t_hashfunction *hf)
 }
 
 /**
- * @brief Deallocate given hashtable
+ * @brief Deallocate given hashtable.
+ *
  * Loop through all elements in elements pointer.
  * Free the string and the element.
  * At the end free elements pointer and hashtable.

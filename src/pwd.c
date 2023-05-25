@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:15:11 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/25 12:49:56 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/25 22:03:28 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include "minishell.h"
 
 /**
- * @brief Create string with the present working directory
+ * @brief Create string with the present working directory.
+ *
  * Receives pointer to pointer to change value outside of function.
  * Return is t_error, so it can't return pointer itself.
  * Malloc string with 4096 and call getcwd for pwd.
@@ -55,7 +56,8 @@ t_error	ft_create_pwd_value(char **pwd_value)
 }
 
 /**
- * @brief Creates a new env_var PWD=path/to/pwd
+ * @brief Creates a new env_var PWD=path/to/pwd.
+ *
  * Receives pointer to pointer to change value outside of function.
  * Return is t_error, so it can't return pointer itself.
  * Call ft_create_pwd_value to get right side of env_var.
