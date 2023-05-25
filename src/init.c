@@ -6,12 +6,22 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/24 14:03:36 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/25 08:11:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Creates a env_table and imports env. If no PWD it creates one
+ * Create hashtable env_table with HASHTABLE_SIZE.
+ * Call ft_import_env to fill env_table.
+ * Check if env was imported, if not set flag no_env to true.
+ * Else check if PWD is available, if not set flag no_pwd to true.
+ * If either of the flags is true create a env_var PWD.
+ * @param data Pointer to data struct.
+ * @return t_error SUCCESS if everything went right, else it ft_exit_failures.
+ */
 t_error	ft_setup_env(t_data *data)
 {
 	char	*pwd;
@@ -26,7 +36,7 @@ t_error	ft_setup_env(t_data *data)
 	if (data->checks.no_env || data->checks.no_pwd)
 	{
 		pwd = NULL;
-		data->err = ft_create_pwd_str(pwd);
+		data->err = ft_create_pwd_str(&pwd);
 		if (data->err != SUCCESS)
 			ft_exit_failure(data, data->err);
 		data->err = ft_hashtable_insert(data->env_table, pwd, 3);
@@ -36,6 +46,14 @@ t_error	ft_setup_env(t_data *data)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Import env_vars from global environ
+ * Check if environ is not null, else return.
+ * Loop trhough the environ array. Environ is NULL-terminated.
+ * Strdup the strings and save them in env_table
+ * @param data Pointer to data struct
+ * @return t_error SUCCESS if environ not empty and mallocs ok.
+ */
 t_error	ft_import_env(t_data *data)
 {
 	int		i;
@@ -57,6 +75,5 @@ t_error	ft_import_env(t_data *data)
 			ft_exit_failure(data, data->err);
 		i++;
 	}
-	ft_hashtable_print(data->env_table);
 	return (SUCCESS);
 }
