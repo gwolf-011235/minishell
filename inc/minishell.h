@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 16:59:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:00:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_error	ft_setup_env(t_data *data);
 t_error	ft_import_env(t_data *data);
 
 //pwd.c
-t_error	ft_create_pwd_value(char *pwd_value);
-t_error	ft_create_pwd_str(char *pwd);
+t_error	ft_create_pwd_value(char **pwd_value);
+t_error	ft_create_pwd_env_str(char **pwd);
 
 #endif
