@@ -6,9 +6,14 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:15:11 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/25 08:20:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/25 12:49:56 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * @file pwd.c
+ * @brief Create env_var PWD or retrieve value of current pwd.
+ */
 
 #include "minishell.h"
 

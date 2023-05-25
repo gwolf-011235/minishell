@@ -6,9 +6,14 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:07:23 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/24 12:44:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/25 12:43:50 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * @file
+ * @brief Header for hashtable stuff.
+ */
 
 #ifndef HASHTABLE_H
 # define HASHTABLE_H
@@ -21,11 +26,30 @@
 # include "libft.h"
 # include "minishell_error.h"
 
-# define FNV_PRIME 0x100000001B3
+/**
+ * @brief 64-bit FNV1 offset basis
+ *
+ * Initial hash value for the FNV1 hash function
+ */
 # define FNV_OFFSET 0xCBF29CE48422325UL
+/**
+ * @brief 64-bit FNV1 prime value
+ *
+ * Number with which to multiply in FNV1 hash function
+ */
+# define FNV_PRIME 0x100000001b3
 
-typedef uint64_t	t_hashfunction (const char *, size_t);
+typedef uint64_t			t_hashfunction (const char *, size_t);
 
+/**
+ * @brief Node to store env_strings.
+ *
+ * This node saves one env variable.
+ * @param env_string The whole env string (e.g. PWD=path/to/pwd).
+ * @param keylen The length of the env variable name.
+ * @param value Pointer to the start of the env value.
+ * @param next Pointer to the next node in this hashtable bucket.
+ */
 typedef struct s_env_var {
 	const char			*env_string;
 	size_t				keylen;
@@ -33,11 +57,26 @@ typedef struct s_env_var {
 	struct s_env_var	*next;
 }	t_env_var;
 
+/**
+ * @brief Hashtable with external chaining.
+ *
+ * This hashtable is used to store the env_vars.
+ * It has <size> * buckets in which to save elements.
+ * Hash function is used to generate index from the env_var name (e.g. PWD).
+ * The env_var string is then saved in a node at the index.
+ * If the index is already used external chaining is used.
+ * The new node is inserted at the front of this linked list.
+ *
+ * @param size How many buckets hashtable has.
+ * @param hash The used hash function.
+ * @param elements Pointer to the individual buckets.
+ */
 typedef struct s_hashtable {
 	uint32_t		size;
 	t_hashfunction	*hash;
 	t_env_var		**elements;
 }	t_hashtable;
+
 
 //hashtable_generate.c
 uint64_t	ft_hash_fnv1(const char *string, size_t len);

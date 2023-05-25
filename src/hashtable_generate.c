@@ -6,9 +6,14 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:36 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/24 11:49:22 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/25 12:48:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * @file hashtable_generate.c
+ * @brief Contains functions to create and destroy hashtable.
+ */
 
 #include "hashtable.h"
 #include "libft.h"
