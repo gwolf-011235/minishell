@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/25 12:49:15 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/25 14:49:25 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,27 @@
  * @brief Creates a env_table and imports env. If no PWD it creates one.
  *
  * Create hashtable env_table with HASHTABLE_SIZE.
- * Call ft_import_env to fill env_table.
- * Check if env was imported, if not set flag no_env to true.
- * Else check if PWD is available, if not set flag no_pwd to true.
- * If either of the flags is true create a env_var PWD.
+ * Call ft_env_import to fill env_table.
+ * If env was empty set PWD and SHLVL.
+ * If PWD is not available set PWD.
+ * Increment SHLVL. If not found set it.
  * @param data Pointer to data struct.
  * @return t_error SUCCESS if everything went right, else it ft_exit_failures.
  */
-t_error	ft_setup_env(t_data *data)
+t_error	ft_env_setup(t_data *data)
 {
-	char	*pwd;
-
 	data->env_table = ft_hashtable_create(HASHTABLE_SIZE, ft_hash_fnv1);
 	if (!data->env_table)
 		ft_exit_failure(data, ERR_MALLOC);
-	if (ft_import_env(data) == ERR_EMPTY)
-		data->checks.no_env = true;
-	else if (ft_hashtable_lookup(data->env_table, "PWD", 3) == NULL)
-		data->checks.no_pwd = true;
-	if (data->checks.no_env || data->checks.no_pwd)
+	if (ft_env_import(data) == ERR_EMPTY)
 	{
-		pwd = NULL;
-		data->err = ft_create_pwd_env_str(&pwd);
-		if (data->err != SUCCESS)
-			ft_exit_failure(data, data->err);
-		data->err = ft_hashtable_insert(data->env_table, pwd, 3);
-		if (data->err != SUCCESS)
-			ft_exit_failure(data, data->err);
+		ft_env_insert_pwd(data);
+		ft_env_insert_shlvl(data);
 	}
+	if (ft_hashtable_lookup(data->env_table, "PWD", 3) == NULL)
+		ft_env_insert_pwd(data);
+	if (ft_increment_shlvl(data) == ERR_NO_SHLVL)
+		ft_env_insert_shlvl(data);
 	return (SUCCESS);
 }
 
@@ -60,8 +53,9 @@ t_error	ft_setup_env(t_data *data)
  * Strdup the strings and save them in env_table
  * @param data Pointer to data struct
  * @return t_error SUCCESS if environ not empty and mallocs ok.
+ * @todo Check if valid env_str
  */
-t_error	ft_import_env(t_data *data)
+t_error	ft_env_import(t_data *data)
 {
 	int		i;
 	char	*env_ptr;
@@ -75,12 +69,53 @@ t_error	ft_import_env(t_data *data)
 		env_ptr = ft_strdup(environ[i]);
 		if (!env_ptr)
 			ft_exit_failure(data, ERR_MALLOC);
-		//TODO: check if valid string?
 		keylen = ft_strchr(env_ptr, '=') - env_ptr;
 		data->err = ft_hashtable_insert(data->env_table, env_ptr, keylen);
 		if (data->err != SUCCESS)
 			ft_exit_failure(data, data->err);
 		i++;
 	}
+	return (SUCCESS);
+}
+
+/**
+ * @brief Creates and inserts the env_var PWD.
+ *
+ * If no PWD is present in env_table, this function inserts.
+ * @param data
+ * @return t_error If SUCCESS it exits
+ */
+t_error	ft_env_insert_pwd(t_data *data)
+{
+	char	*pwd;
+
+	pwd = NULL;
+	data->err = ft_create_pwd_env_str(&pwd);
+	if (data->err != SUCCESS)
+		ft_exit_failure(data, data->err);
+	data->err = ft_hashtable_insert(data->env_table, pwd, 3);
+	if (data->err != SUCCESS)
+		ft_exit_failure(data, data->err);
+	return (SUCCESS);
+}
+
+/**
+ * @brief Creates and inserts the env_var SHLVL.
+ *
+ * If no SHLVL is present in env_table, this function inserts.
+ * @param data
+ * @return t_error If SUCCESS it exits
+ */
+t_error	ft_env_insert_shlvl(t_data *data)
+{
+	char	*shlvl;
+
+	shlvl = NULL;
+	data->err = ft_create_shlvl_env_str(&shlvl);
+	if (data->err != SUCCESS)
+		ft_exit_failure(data, data->err);
+	data->err = ft_hashtable_insert(data->env_table, shlvl, 5);
+	if (data->err != SUCCESS)
+		ft_exit_failure(data, data->err);
 	return (SUCCESS);
 }
