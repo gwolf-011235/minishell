@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 17:03:10 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:04:12 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ t_error	ft_prompt_replace_w(char **replacement, t_hashtable sym_tab);
 # include "hashtable.h"
 # include "minishell_error.h"
 
-# define HASHTABLE_SIZE 256
+# define HASHTABLE_SIZE 10
+# define MAX_SHLVL 10
 
 /**
  * @brief Flags which can be set to store some info.
@@ -122,11 +123,18 @@ extern char	**environ;
 void	ft_exit_failure(t_data *data, t_error exit_code);
 
 //init.c
-t_error	ft_setup_env(t_data *data);
-t_error	ft_import_env(t_data *data);
+t_error	ft_env_setup(t_data *data);
+t_error	ft_env_import(t_data *data);
+t_error	ft_env_insert_pwd(t_data *data);
+t_error	ft_env_insert_shlvl(t_data *data);
 
 //pwd.c
 t_error	ft_create_pwd_value(char **pwd_value);
 t_error	ft_create_pwd_env_str(char **pwd);
+
+//shlvl.c
+t_error	ft_create_shlvl_env_str(char **shlvl);
+t_error	ft_increment_shlvl(t_data *data);
+
 
 #endif
