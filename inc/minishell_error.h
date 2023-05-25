@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/25 12:44:15 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/25 14:16:41 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ typedef enum e_error {
 	ERR_HT_NO_INSERT, ///< ft_hashtable_insert() could not insert.
 	ERR_HT_NO_DELETE, ///< ft_hashtable_delete() could not delete.
 	ERR_EMPTY, ///< One or more passed params are empty.
-	ERR_CWD_FAIL ///< function getcwd failed.
+	ERR_CWD_FAIL, ///< function getcwd failed.
+	ERR_NO_SHLVL, ///< ft_increment_shlvl didn't find SHLVL.
+	ERR_MAX_SHLVL ///< maximum shell level was reached.
 }	t_error;
 
 
