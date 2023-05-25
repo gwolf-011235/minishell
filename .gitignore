@@ -10,8 +10,5 @@
 # Executables
 minishell
 
-# Docs
-docs
-
-# VSCode
-.vscode
+# Documentaion
+html/
