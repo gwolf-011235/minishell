@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:17:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/25 12:28:14 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/25 15:31:31 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ t_error	ft_hashtable_insert(t_hashtable *ht, const char *string, size_t keylen)
 }
 
 /**
- * @brief Search for env_var in hashtable
+ * @brief Search for env_var in hashtable.
+ *
  * Check if params are empty.
  * Generate index of given env_var and loop through list
  * If element is found return the element.
@@ -98,7 +99,8 @@ t_env_var	*ft_hashtable_lookup(
 }
 
 /**
- * @brief Delete one element of hashtable
+ * @brief Delete one element of hashtable.
+ *
  * Check if any param is NULL
  * Generate index and set tmp pointer to start of list.
  * Set prev pointer to NULL.
@@ -142,7 +144,8 @@ t_error	ft_hashtable_delete(
 }
 
 /**
- * @brief Print out all elements
+ * @brief Print out all elements.
+ *
  * Prints a start table. Then prints all elements it finds at the indexes.
  * If more then one element is at a given index they get separated by newline.
  * Can be adapted to just print env_vars.
@@ -158,17 +161,16 @@ void	ft_hashtable_print(t_hashtable *ht)
 	while (i < ht->size)
 	{
 		if (ht->elements[i] == NULL)
-			printf("\t%i\n---\n", i);
+			printf("%i\n---\n", i);
 		else
 		{
-			printf("\t%i\n", i);
+			printf("%i\n", i);
 			tmp = ht->elements[i];
 			while (tmp != NULL)
 			{
-				printf("-> %s\n", tmp->env_string);
+				printf("->\t%s\n", tmp->env_string);
 				tmp = tmp->next;
 			}
-			printf("\n");
 		}
 		i++;
 	}
