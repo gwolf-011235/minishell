@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 17:05:02 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:05:15 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,8 @@ t_error	ft_increment_shlvl(t_data *data);
 
 # define PS1_STD "$ "
 # define PS2_STD "> "
+
+typedef t_error	(*t_replace_ptr)(char **replacement);
 
 //memory.c
 void	*ft_realloc(void *ptr, size_t new_size, size_t curr_size);
