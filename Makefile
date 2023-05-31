@@ -42,7 +42,10 @@ SRC :=	main.c \
 		exit_failure.c \
 		init.c \
 		pwd.c \
-		shlvl.c
+		shlvl.c \
+		memory.c \
+		replace_token.c \
+		ft_string.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # prompt_replace_h.c \
