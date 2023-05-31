@@ -1,0 +1,33 @@
+Readline saves stuff in cmd_buffer -> this gets parsed
+Readline should get prompt from symbol PS1 and PS2
+Generate prompt and pass to readline.
+
+t_error ft_create_prompt(char **prompt)
+
+"hallo"
+
+Token replacer: Loop through string, check for special characters - calculate len of expanded string.
+
+If you enter '\t' in terminal it gets saved as '\\t' -> no need to check for escaping.
+Bash provides ANSI C-quoting (Bash manual 3.1.2.4) which replaces backslash-escaped characters with the ones specified in the C-Standard.
+The form is $'string'
+This means that the input '\t' which gets saved as '\\t' gets returned as '\t'
+
+expand prompt string
+search for escape sequences
+	> search for \\
+	> if found search for second part of the sequences recognized - same principle as printf
+
+sequences:
+\\e escape character
+\\h hostname up to the first .
+\\n newline
+\\n carriage return
+\\s basename of the shell -> $0 after the final slash
+\\u username
+\\w The value of the PWD shell variable ($PWD), with $HOME abbreviated with a tilde (uses the $PROMPT_DIRTRIM variable).
+\\W The basename of $PWD, with $HOME abbreviated with a tilde.
+\\\\ A backslash
+
+
+$0 stores the shell name or the last executed script. It seems to be using argv and just storing the zeroth argument.
