@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/31 14:39:28 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/05/31 18:40:34 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 # define PS1_STD "$ "
 # define PS2_STD "> "
+
+typedef t_error	(*t_replace_ptr)(char **replacement);
 
 //memory.c
 void	*ft_realloc(void *ptr, size_t new_size, size_t curr_size);
