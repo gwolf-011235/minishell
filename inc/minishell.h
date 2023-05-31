@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 17:04:12 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:05:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,5 +136,22 @@ t_error	ft_create_pwd_env_str(char **pwd);
 t_error	ft_create_shlvl_env_str(char **shlvl);
 t_error	ft_increment_shlvl(t_data *data);
 
+# include "minishell_error.h"
+
+# define PS1_STD "$ "
+# define PS2_STD "> "
+
+//memory.c
+void	*ft_realloc(void *ptr, size_t new_size, size_t curr_size);
+
+//replace_token.c
+t_error	ft_calc_replace_len(const char *str, const char *token,
+			const char *replacement, size_t *expanded_len);
+t_error	ft_replace_token(char **str, const char *token,
+			const char *replacement);
+
+//ft_string.c
+char	*ft_strcat(char *dst, const char *src);
+char	*ft_strncat(char *dst, const char *src, size_t n);
 
 #endif
