@@ -22,7 +22,7 @@ sequences:
 \\e escape character
 \\h hostname up to the first .
 \\n newline
-\\n carriage return
+\\r carriage return
 \\s basename of the shell -> $0 after the final slash
 \\u username
 \\w The value of the PWD shell variable ($PWD), with $HOME abbreviated with a tilde (uses the $PROMPT_DIRTRIM variable).
