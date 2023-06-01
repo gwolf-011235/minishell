@@ -6,29 +6,12 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/01 12:06:58 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/01 12:21:50 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * @brief Create a standard string if replacement wasn't found.
- *
- * Strdup the macro UNKNOWN defined in minishell.h and save it.
- *
- * @param replacement Pointer pointer where to save string.
- * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
- */
-t_error	ft_prompt_replace_not_found(char **replacement)
-{
-	if (!replacement)
-		return (ERR_EMPTY);
-	*replacement = strdup(UNKNOWN);
-	if (!*replacement)
-		return (ERR_MALLOC);
-	return (SUCCESS);
-}
 
 /**
  * @brief Create and save hostname string from provided string
@@ -64,7 +47,7 @@ t_error	ft_prompt_create_hostname(char **replacement, const char *str)
 /**
  * @brief Creates replacement string for prompt \h
  *
- * Search for env_var SESSION_MANAGER.
+ * Search for env_var $SESSION_MANAGER.
  * If found search for "local/" after where localhost name is saved.
  * Create string with sub function.
  * If any not found create UNKNOWN with sub function.
