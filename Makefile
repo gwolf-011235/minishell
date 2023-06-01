@@ -43,9 +43,9 @@ SRC :=	main.c \
 		init.c \
 		pwd.c \
 		shlvl.c \
-		memory.c \
-		replace_token.c \
-		ft_string.c
+		ft_memory.c \
+		ft_string.c \
+		replace_token.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # prompt_replace_h.c \
