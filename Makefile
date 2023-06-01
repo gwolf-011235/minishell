@@ -14,6 +14,7 @@ LIB_DIR := lib
 LIB_DIR_FT := $(LIB_DIR)/libft
 INC_DIR := inc
 DEP_DIR := $(OBJ_DIR)/dep
+TEST_DIR := test
 
 # include
 INC := -I $(INC_DIR) -I lib/libft/
@@ -33,10 +34,16 @@ LIBFT := $(LIB_DIR_FT)/libft.a
 
 # source files
 SRC :=	main.c \
-		memory.c \
-		replace_token.c \
-		ft_string.c
+		ft_memory.c \
+		ft_string.c \
+		replace_token.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
+
+# prompt_replace_h.c \
+		prompt_replace_small.c \
+		prompt_replace_u.c \
+		prompt_replace_w.c \
+		prompt.c
 
 # objects
 OBJ := $(SRC:.c=.o)
@@ -45,8 +52,13 @@ OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))
 # dependencies
 DEPFILES :=$(SRC:%.c=$(DEP_DIR)/%.d)
 
+# test
+TEST_SRC := test_main.c \
+			test_replace_token.c \
+TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
+
 .PHONY: all, clean, fclean, re, debug, obj, dep
-.SILENT:
+#.SILENT:
 
 all: $(NAME)
 	echo "$(GREEN)ALL DONE!$(RESET)"
@@ -58,6 +70,12 @@ $(NAME): $(LIBFT) $(OBJS)
 debug: CFLAGS = -g
 debug: $(NAME)
 	echo "$(GREEN)DEBUG ready!$(RESET)"
+
+test: CFLAGS = -g
+test: $(TEST_SRCS) $(OBJS)
+	$(CC) $(INC) $(CFLAGS) $(TEST_SRCS) $(LIB_FT) -o tester
+	echo "$(GREEN)$(NAME) created!$(RESET)"
+
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(DEP_DIR)/%.d | $(DEP_DIR)
 	$(COMPILE) $< -o $@
