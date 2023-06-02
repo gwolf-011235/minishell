@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 08:07:40 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 07:23:32 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 07:37:18 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,11 @@ t_error	ft_get_token(char **token, unsigned char target)
 /**
  * @brief Search string for occurence of token.
  *
- * First searches for backslash in prompt string.
- * If backslash is found the following char is inspected.
- * Get corresponding token string for char using ft_get_token().
- * If null character error msg is printed and empty string assigned.
- * If not recognised error msg is printed and empty string assigned.
- * Empty string helps to break out of loop.
+ * First searches for backslash in prompt string. If not found return.
+ * If backslash is found get token string for next char using ft_get_token().
+ * If char is '\0' error msg is printed and empty string assigned.
+ * If char is not recognised error msg is printed and empty string assigned.
+ * Empty string helps to break out of loop in ft_expand_prompt_str()
  *
  * @param ps_string The prompt string which gets searched.
  * @param token Here the token string is assigned to.
@@ -123,7 +122,7 @@ t_error	ft_search_token(const char *ps_string, char **token)
  * @brief Expands the provided prompt string.
  *
  * In infinite loop:
- * Search for a recognized token with ft_search_token().
+ * Search for token with ft_search_token().
  * Create replacement with ft_get_token_replacement().
  * Replace token with ft_replace_token().
  * If no token is found (anymore) break out.
@@ -161,11 +160,12 @@ t_error	ft_expand_prompt_str(char **prompt, t_hashtable sym_tab)
 }
 
 /**
- * @brief Create a prompt string which gets expanded
+ * @brief Create a prompt string which gets expanded.
  *
- * Search for provided var $PS1 or $PS2.
+ * Search for provided var $PS1 or $PS2 in sym_tab.
  * If not found create prompt with provided standard.
- * If found ft_strdup() value and expand it.
+ * If found ft_strdup() value of var.
+ * Expand the string with ft_expand_prompt_str().
  *
  * @param sym_tab Symbol table where to search.
  * @param prompt Where to save the prompt.
