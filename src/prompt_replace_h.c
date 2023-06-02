@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/01 12:21:50 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 07:21:29 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 /**
- * @brief Create and save hostname string from provided string
+ * @brief Create and save hostname string from provided string.
  *
  * This function expects a value of env_var SESSION_MANAGER.
  * Search for "local/" and add 6 to get start of hostname.
@@ -45,7 +45,7 @@ t_error	ft_prompt_create_hostname(char **replacement, const char *str)
 }
 
 /**
- * @brief Creates replacement string for prompt \h
+ * @brief Creates replacement string for token \h.
  *
  * Search for env_var $SESSION_MANAGER.
  * If found search for "local/" after where localhost name is saved.

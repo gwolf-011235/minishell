@@ -6,14 +6,14 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/01 12:45:48 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 07:21:40 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * @brief Creates replacement string for prompt \u
+ * @brief Creates replacement string for token \u.
  *
  * Search for env_var $USER.
  * If found ft_strdup value and save in replacement.

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/01 13:14:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 07:22:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_error	ft_prompt_replace_tilde(char **replacement, t_hashtable sym_tab)
 }
 
 /**
- * @brief Creates replacement string for prompt \w
+ * @brief Creates replacement string for token \w.
  *
  * Search for env_var $PWD.
  * If found ft_strdup value and save in replacement.
