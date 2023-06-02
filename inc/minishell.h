@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 17:54:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/03 00:36:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define UNKNOWN "UNKNOWN"
 
 # define PROMPT_EXPAND_SUPPORTED "hnurw"
-# define PROPMT_EXPAND_EMPTY "\\"
+# define PROMPT_EXPAND_EMPTY "\\"
 # define PROMPT_EXPAND_H "\\h"
 # define PROMPT_EXPAND_N "\\n"
 # define PROMPT_EXPAND_U "\\u"
