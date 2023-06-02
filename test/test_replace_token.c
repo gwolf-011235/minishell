@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:51:44 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/01 15:04:01 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 07:26:41 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,15 @@ void	ft_test_replace_token(void)
 		printf("This is after:\t%s\n", string);
 		free(string);
 	}
+	//empty replcament string
+	{
+		char *string = ft_strdup("If want to lose the backslash: \\END");
+		char *token = "\\";
+		char *replacement = "";
 
+		printf("This is before:\t%s\n", string);
+		ft_replace_token(&string, token, replacement);
+		printf("This is after:\t%s\n", string);
+		free(string);
+	}
 }
