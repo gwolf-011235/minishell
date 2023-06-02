@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/01 16:29:03 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 07:12:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define UNKNOWN "UNKNOWN"
 
 # define PROMPT_EXPAND_SUPPORTED "hnurw"
+# define PROPMT_EXPAND_EMPTY "\\"
 # define PROMPT_EXPAND_H "\\h"
 # define PROMPT_EXPAND_N "\\n"
 # define PROMPT_EXPAND_U "\\u"
@@ -56,6 +57,7 @@ char	*ft_strncat(char *dst, const char *src, size_t n);
 t_error	ft_prompt_replace_n(char **replacement, t_hashtable sym_tab);
 t_error	ft_prompt_replace_r(char **replacement, t_hashtable sym_tab);
 t_error	ft_prompt_replace_not_found(char **replacement);
+t_error	ft_prompt_replace_empty(char **replacement, t_hashtable sym_tab);
 
 //prompt_replace_h.c
 t_error	ft_prompt_replace_h(char **replacement, t_hashtable sym_tab);
