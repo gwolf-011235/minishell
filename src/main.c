@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 17:31:09 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:54:51 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,57 +23,33 @@
 
 int	main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
-	/*
-int	main(void)
-{
-	t_data *data;
-	(void)argc;
-	(void)argv;
-	/*
-	t_error	err;
+	t_data	*data;
 	char 	*input;
 
+	(void)argc;
+	(void)argv;
+	data = malloc(sizeof(*data));
+	if (!data)
+		ft_exit_failure(data, ERR_MALLOC);
+	if (ft_env_setup(data) != SUCCESS)
+		printf("NO\n");
 	while (1)
 	{
-		err = ft_create_prompt(sym_tab, &prompt1, "PS1", PS1_STD);
-		if (err != SUCCESS)
-			//handle error
-		err = ft_create_prompt(sym_tab, &prompt2, "PS2", PS2_STD);
-		if (err != SUCCESS)
-			//handle error
-		input = readline(prompt1);
+		data->err = ft_create_prompt(data->env_table, &data->prompt1, "PS1", PS1_STD);
+		if (data->err != SUCCESS)
+			ft_exit_failure(data, data->err);
+		data->err = ft_create_prompt(data->env_table, &data->prompt2, "PS2", PS2_STD);
+		if (data->err != SUCCESS)
+			ft_exit_failure(data, data->err);
+		input = readline(data->prompt1);
 		if (!input)
-			//handle no input e.g. break?
+			break ;
 		add_history(input);
 		//do stuff
 		free(input);
-		free(prompt1);
-		free(prompt2);
+		free(data->prompt1);
+		free(data->prompt2);
 	}
-	*/
-	return (0);
-	t_error	err;
-	char 	*input;
-
-	while (1)
-	{
-		err = ft_create_prompt(sym_tab, &prompt1, "PS1", PS1_STD);
-		if (err != SUCCESS)
-			//handle error
-		err = ft_create_prompt(sym_tab, &prompt2, "PS2", PS2_STD);
-		if (err != SUCCESS)
-			//handle error
-		input = readline(prompt1);
-		if (!input)
-			//handle no input e.g. break?
-		add_history(input);
-		//do stuff
-		free(input);
-		free(prompt1);
-		free(prompt2);
-	}
-	*/
 	return (0);
 }
+
