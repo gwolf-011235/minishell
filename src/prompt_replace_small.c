@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:05:43 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 07:22:34 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:54:30 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_error	ft_prompt_replace_not_found(char **replacement)
  * @param sym_tab symbol_table - not used.
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
-t_error	ft_prompt_replace_n(char **replacement, t_hashtable sym_tab)
+t_error	ft_prompt_replace_n(char **replacement, t_hashtable *sym_tab)
 {
 	t_error		err;
 
@@ -63,7 +63,7 @@ t_error	ft_prompt_replace_n(char **replacement, t_hashtable sym_tab)
  * @param sym_tab symbol_table - not used.
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
-t_error	ft_prompt_replace_r(char **replacement, t_hashtable sym_tab)
+t_error	ft_prompt_replace_r(char **replacement, t_hashtable *sym_tab)
 {
 	t_error		err;
 
@@ -86,7 +86,7 @@ t_error	ft_prompt_replace_r(char **replacement, t_hashtable sym_tab)
  * @param sym_tab symbol_table - not used.
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
-t_error	ft_prompt_replace_empty(char **replacement, t_hashtable sym_tab)
+t_error	ft_prompt_replace_empty(char **replacement, t_hashtable *sym_tab)
 {
 	t_error		err;
 

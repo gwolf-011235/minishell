@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 08:07:40 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 07:37:18 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:50:20 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
 t_error	ft_get_token_replacement(char **replacement, unsigned char target,
-		t_hashtable sym_tab)
+		t_hashtable *sym_tab)
 {
 	static const t_replace_ptr	look_up_tab[128] = {
 	['\0'] = ft_prompt_replace_empty,
@@ -131,7 +131,7 @@ t_error	ft_search_token(const char *ps_string, char **token)
  * @param sym_tab Symbols which can are used to expand.
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
-t_error	ft_expand_prompt_str(char **prompt, t_hashtable sym_tab)
+t_error	ft_expand_prompt_str(char **prompt, t_hashtable *sym_tab)
 {
 	t_error	err;
 	char	*token;
@@ -173,7 +173,7 @@ t_error	ft_expand_prompt_str(char **prompt, t_hashtable sym_tab)
  * @param std Standard string if ps is not found.
  * @return t_error SUCCESS, ERR_MALLOC, ERR_EMPTY
  */
-t_error	ft_create_prompt(t_hashtable sym_tab,
+t_error	ft_create_prompt(t_hashtable *sym_tab,
 			char **prompt, char *ps, char *std)
 {
 	t_env_var	*env_var;
