@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 17:07:06 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:07:53 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 #endif
 
 int	main(int argc, char **argv)
+{
+	(void)argc;
+	(void)argv;
+	/*
+int	main(void)
 {
 	t_data *data;
 	(void)argc;
@@ -69,4 +74,6 @@ int	main(int argc, char **argv)
 		free(prompt1);
 		free(prompt2);
 	}
+	*/
+	return (0);
 }
