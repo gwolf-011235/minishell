@@ -6,15 +6,31 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 08:07:40 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/01 16:44:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 07:23:32 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_error	ft_get_token_replacement(char **replacement, char target, t_hashtable sym_tab)
+/**
+ * @brief Malloc replacement string for provided token.
+ *
+ * Uses look up table of function pointers.
+ * Target is char after backslash of token. It is used as index.
+ * The pointed to functions malloc the replacement string.
+ * Since they are t_error functions they can be returned.
+ * The first function is for wrong tokens = empty string.
+ *
+ * @param replacement Where to save the string
+ * @param target Which function to use of look up table.
+ * @param sym_tab Symbols needed for some replacement functions.
+ * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
+ */
+t_error	ft_get_token_replacement(char **replacement, unsigned char target,
+		t_hashtable sym_tab)
 {
 	static const t_replace_ptr	look_up_tab[128] = {
+	['\0'] = ft_prompt_replace_empty,
 	['h'] = ft_prompt_replace_h,
 	['n'] = ft_prompt_replace_n,
 	['u'] = ft_prompt_replace_u,
@@ -24,13 +40,15 @@ t_error	ft_get_token_replacement(char **replacement, char target, t_hashtable sy
 
 	if (!replacement || !target || !sym_tab)
 		return (ERR_EMPTY);
-	return(look_up_tab[target](replacement, sym_tab));
+	return (look_up_tab[target](replacement, sym_tab));
 }
 
 /**
  * @brief Assign corresponding token string.
  *
+ * Uses a look up table, where target char correspondends to string.
  * Token strings are defined in minishell.h.
+ * The first string is for not recognised token.
  *
  * @param token Where to assign string.
  * @param target Which string shall be assigned.
@@ -40,6 +58,7 @@ t_error	ft_get_token_replacement(char **replacement, char target, t_hashtable sy
 t_error	ft_get_token(char **token, unsigned char target)
 {
 	static const char	*look_up_tab[128] = {
+	['\0'] = PROMPT_EXPAND_EMPTY,
 	['h'] = PROMPT_EXPAND_H,
 	['n'] = PROMPT_EXPAND_N,
 	['u'] = PROMPT_EXPAND_U,
@@ -61,12 +80,16 @@ t_error	ft_get_token(char **token, unsigned char target)
 /**
  * @brief Search string for occurence of token.
  *
- * First searches for backslash.
- * If backslash is found the following character is
+ * First searches for backslash in prompt string.
+ * If backslash is found the following char is inspected.
+ * Get corresponding token string for char using ft_get_token().
+ * If null character error msg is printed and empty string assigned.
+ * If not recognised error msg is printed and empty string assigned.
+ * Empty string helps to break out of loop.
  *
- * @param ps_string
- * @param token
- * @return t_error
+ * @param ps_string The prompt string which gets searched.
+ * @param token Here the token string is assigned to.
+ * @return t_error SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS, ERR_WRONG_TOKEN
  */
 t_error	ft_search_token(const char *ps_string, char **token)
 {
@@ -82,14 +105,15 @@ t_error	ft_search_token(const char *ps_string, char **token)
 	if (!*target)
 	{
 		printf("Empty backslash\n");
-		return (ERR_WRONG_TOKEN);
+		err = ft_get_token(token, 0);
 	}
-	if (!ft_strchr(PROMPT_EXPAND_SUPPORTED, *target))
+	else if (!ft_strchr(PROMPT_EXPAND_SUPPORTED, *target))
 	{
 		printf("Not recognised: \\%c\n", *target);
-		return (ERR_WRONG_TOKEN);
+		err = ft_get_token(token, 0);
 	}
-	err = ft_get_token(token, target);
+	else
+		err = ft_get_token(token, target);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);
@@ -99,7 +123,7 @@ t_error	ft_search_token(const char *ps_string, char **token)
  * @brief Expands the provided prompt string.
  *
  * In infinite loop:
- * Search for recognized token with ft_search_token().
+ * Search for a recognized token with ft_search_token().
  * Create replacement with ft_get_token_replacement().
  * Replace token with ft_replace_token().
  * If no token is found (anymore) break out.
@@ -141,7 +165,7 @@ t_error	ft_expand_prompt_str(char **prompt, t_hashtable sym_tab)
  *
  * Search for provided var $PS1 or $PS2.
  * If not found create prompt with provided standard.
- * If found strdup value and expand it.
+ * If found ft_strdup() value and expand it.
  *
  * @param sym_tab Symbol table where to search.
  * @param prompt Where to save the prompt.
