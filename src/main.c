@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/01 15:16:27 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 07:50:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,26 @@ void	ft_test_replace_token(void)
 
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	ft_test_replace_token();
+	t_error	err;
+	char 	*input;
+
+	while (1)
+	{
+		err = ft_create_prompt(sym_tab, &prompt1, "PS1", PS1_STD);
+		if (err != SUCCESS)
+			//handle error
+		err = ft_create_prompt(sym_tab, &prompt2, "PS2", PS2_STD);
+		if (err != SUCCESS)
+			//handle error
+		input = readline(prompt1);
+		if (!input)
+			//handle no input e.g. break?
+		add_history(input);
+		//do stuff
+		free(input);
+		free(prompt1);
+		free(prompt2);
+	}
 }
