@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 17:32:07 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:54:30 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define PROMPT_EXPAND_R "\\r"
 # define PROMPT_EXPAND_W "\\w"
 
-typedef t_error		(*t_replace_ptr)(char **replacement, t_hashtable sym_tab);
+typedef t_error		(*t_replace_ptr)(char **replacement, t_hashtable *sym_tab);
 
 /**
  * @brief Flags which can be set to store some info.
@@ -71,6 +71,8 @@ typedef struct s_data {
 	t_hashtable	*env_table;
 	t_checks	checks;
 	t_error		err;
+	char		*prompt1;
+	char		*prompt2;
 }	t_data;
 
 /**
@@ -111,24 +113,24 @@ char	*ft_strcat(char *dst, const char *src);
 char	*ft_strncat(char *dst, const char *src, size_t n);
 
 //prompt.c
-t_error	ft_create_prompt(t_hashtable sym_tab,
+t_error	ft_create_prompt(t_hashtable *sym_tab,
 			char **prompt, char *ps, char *std);
 
 //prompt_replace_small.c
-t_error	ft_prompt_replace_n(char **replacement, t_hashtable sym_tab);
-t_error	ft_prompt_replace_r(char **replacement, t_hashtable sym_tab);
+t_error	ft_prompt_replace_n(char **replacement, t_hashtable *sym_tab);
+t_error	ft_prompt_replace_r(char **replacement, t_hashtable *sym_tab);
 t_error	ft_prompt_replace_not_found(char **replacement);
-t_error	ft_prompt_replace_empty(char **replacement, t_hashtable sym_tab);
+t_error	ft_prompt_replace_empty(char **replacement, t_hashtable *sym_tab);
 
 //prompt_replace_h.c
-t_error	ft_prompt_replace_h(char **replacement, t_hashtable sym_tab);
+t_error	ft_prompt_replace_h(char **replacement, t_hashtable *sym_tab);
 t_error	ft_prompt_create_hostname(char **replacement, const char *str);
 
 //prompt_replace_u.c
-t_error	ft_prompt_replace_u(char **replacement, t_hashtable sym_tab);
+t_error	ft_prompt_replace_u(char **replacement, t_hashtable *sym_tab);
 
 //prompt_replace_w.c
-t_error	ft_prompt_replace_w(char **replacement, t_hashtable sym_tab);
+t_error	ft_prompt_replace_w(char **replacement, t_hashtable *sym_tab);
 
 
 #endif
