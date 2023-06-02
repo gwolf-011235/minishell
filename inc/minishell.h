@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 17:07:22 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:12:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 
 # include "libft.h"
 # include "minishell_error.h"
+# include "hashtable.h"
+
+# define HASHTABLE_SIZE 10
+# define MAX_SHLVL 10
 
 # define PS1_STD "$ "
 # define PS2_STD "> "
@@ -39,50 +43,7 @@
 # define PROMPT_EXPAND_R "\\r"
 # define PROMPT_EXPAND_W "\\w"
 
-typedef	int t_hashtable;
-typedef struct s_env_var {
-	char	*value;
-}	t_env_var;
-
-typedef t_error	(*t_replace_ptr)(char **replacement, t_hashtable sym_tab);
-
-//memory.c
-void	*ft_realloc(void *ptr, size_t new_size, size_t curr_size);
-
-//replace_token.c
-t_error	ft_calc_replace_len(const char *str, const char *token,
-			const char *replacement, size_t *expanded_len);
-t_error	ft_replace_token(char **str, const char *token,
-			const char *replacement);
-
-//ft_string.c
-char	*ft_strcat(char *dst, const char *src);
-char	*ft_strncat(char *dst, const char *src, size_t n);
-
-//prompt.c
-t_error	ft_create_prompt(t_hashtable sym_tab,
-			char **prompt, char *ps, char *std);
-
-//prompt_replace_small.c
-t_error	ft_prompt_replace_n(char **replacement, t_hashtable sym_tab);
-t_error	ft_prompt_replace_r(char **replacement, t_hashtable sym_tab);
-t_error	ft_prompt_replace_not_found(char **replacement);
-t_error	ft_prompt_replace_empty(char **replacement, t_hashtable sym_tab);
-
-//prompt_replace_h.c
-t_error	ft_prompt_replace_h(char **replacement, t_hashtable sym_tab);
-t_error	ft_prompt_create_hostname(char **replacement, const char *str);
-
-//prompt_replace_u.c
-t_error	ft_prompt_replace_u(char **replacement, t_hashtable sym_tab);
-
-//prompt_replace_w.c
-t_error	ft_prompt_replace_w(char **replacement, t_hashtable sym_tab);
-# include "hashtable.h"
-# include "minishell_error.h"
-
-# define HASHTABLE_SIZE 10
-# define MAX_SHLVL 10
+typedef t_error		(*t_replace_ptr)(char **replacement, t_hashtable sym_tab);
 
 /**
  * @brief Flags which can be set to store some info.
@@ -136,28 +97,7 @@ t_error	ft_create_pwd_env_str(char **pwd);
 t_error	ft_create_shlvl_env_str(char **shlvl);
 t_error	ft_increment_shlvl(t_data *data);
 
-# include "minishell_error.h"
-
-# define PS1_STD "$ "
-# define PS2_STD "> "
-# define UNKNOWN "UNKNOWN"
-
-# define PROMPT_EXPAND_SUPPORTED "hnurw"
-# define PROPMT_EXPAND_EMPTY "\\"
-# define PROMPT_EXPAND_H "\\h"
-# define PROMPT_EXPAND_N "\\n"
-# define PROMPT_EXPAND_U "\\u"
-# define PROMPT_EXPAND_R "\\r"
-# define PROMPT_EXPAND_W "\\w"
-
-typedef	int t_hashtable;
-typedef struct s_env_var {
-	char	*value;
-}	t_env_var;
-
-typedef t_error	(*t_replace_ptr)(char **replacement, t_hashtable sym_tab);
-
-//memory.c
+//ft_memory.c
 void	*ft_realloc(void *ptr, size_t new_size, size_t curr_size);
 
 //replace_token.c
@@ -189,5 +129,6 @@ t_error	ft_prompt_replace_u(char **replacement, t_hashtable sym_tab);
 
 //prompt_replace_w.c
 t_error	ft_prompt_replace_w(char **replacement, t_hashtable sym_tab);
+
 
 #endif
