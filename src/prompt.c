@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 08:07:40 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 17:50:20 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/03 00:38:21 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ t_error	ft_search_token(const char *ps_string, char **token)
 		err = ft_get_token(token, 0);
 	}
 	else
-		err = ft_get_token(token, target);
+		err = ft_get_token(token, *target);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);
@@ -148,7 +148,7 @@ t_error	ft_expand_prompt_str(char **prompt, t_hashtable *sym_tab)
 			return (err);
 		if (!token)
 			return (SUCCESS);
-		err = ft_get_token_replacement(&replacement, token + 1, sym_tab);
+		err = ft_get_token_replacement(&replacement, *(token + 1), sym_tab);
 		if (err != SUCCESS)
 			return (err);
 		err = ft_replace_token(prompt, token, replacement);
@@ -179,7 +179,7 @@ t_error	ft_create_prompt(t_hashtable *sym_tab,
 	t_env_var	*env_var;
 	t_error		err;
 
-	env_var = ft_hashtable_lookup(sym_tab, ps);
+	env_var = ft_hashtable_lookup(sym_tab, ps, 3);
 	if (!env_var)
 	{
 		*prompt = ft_strdup(std);

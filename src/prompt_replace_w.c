@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 17:54:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/03 00:41:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 t_error	ft_prompt_replace_tilde(char **replacement, t_hashtable *sym_tab)
 {
 	t_error		err;
-	t_env_var	env_var;
+	t_env_var	*env_var;
 
 	if (!replacement || !sym_tab)
 		return (ERR_EMPTY);
-	env_var = ft_hashtable_lookup(sym_tab, "HOME");
+	env_var = ft_hashtable_lookup(sym_tab, "HOME", 4);
 	if (!env_var || !env_var->value)
 		return (SUCCESS);
 	if (ft_strncmp(env_var->value, *replacement,
@@ -58,11 +58,11 @@ t_error	ft_prompt_replace_tilde(char **replacement, t_hashtable *sym_tab)
 t_error	ft_prompt_replace_w(char **replacement, t_hashtable *sym_tab)
 {
 	t_error		err;
-	t_env_var	env_var;
+	t_env_var	*env_var;
 
 	if (!replacement || !sym_tab)
 		return (ERR_EMPTY);
-	env_var = ft_hashtable_lookup(sym_tab, "PWD");
+	env_var = ft_hashtable_lookup(sym_tab, "PWD", 3);
 	if (!env_var || !env_var->value)
 	{
 		err = ft_prompt_replace_not_found(replacement);

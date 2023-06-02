@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 17:54:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/03 00:39:38 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ t_error	ft_prompt_create_hostname(char **replacement, const char *str)
 t_error	ft_prompt_replace_h(char **replacement, t_hashtable *sym_tab)
 {
 	t_error		err;
-	t_env_var	env_var;
+	t_env_var	*env_var;
 
 	if (!replacement || !sym_tab)
 		return (ERR_EMPTY);
-	env_var = ft_hashtable_lookup(sym_tab, "SESSION_MANAGER");
+	env_var = ft_hashtable_lookup(sym_tab, "SESSION_MANAGER", 15);
 	if (!env_var || !ft_strnstr(env_var->value, "local/",
 			ft_strlen(env_var->value)))
 		err = ft_prompt_replace_not_found(replacement);

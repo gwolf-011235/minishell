@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 17:54:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/03 00:40:01 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 t_error	ft_prompt_replace_u(char **replacement, t_hashtable *sym_tab)
 {
 	t_error		err;
-	t_env_var	env_var;
+	t_env_var	*env_var;
 
 	if (!replacement || !sym_tab)
 		return (ERR_EMPTY);
-	env_var = ft_hashtable_lookup(sym_tab, "USER");
+	env_var = ft_hashtable_lookup(sym_tab, "USER", 4);
 	if (!env_var || !env_var->value)
 	{
 		err = ft_prompt_replace_not_found(replacement);
