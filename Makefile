@@ -20,7 +20,7 @@ TEST_DIR := test
 INC := -I $(INC_DIR) -I lib/libft/
 
 # libraries
-LIB_FT := -L $(LIB_DIR_FT) -l ft
+LIB_FT := -L $(LIB_DIR_FT) -l ft -lreadline
 
 # compiling
 CC := cc
@@ -43,16 +43,13 @@ SRC :=	main.c \
 		init.c \
 		pwd.c \
 		shlvl.c \
-		ft_memory.c \
-		ft_string.c \
-		replace_token.c
+		prompt.c \
+		prompt_replace_h.c \
+		prompt_replace_u.c \
+		prompt_replace_small.c \
+		prompt_replace_w.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
-# prompt_replace_h.c \
-		prompt_replace_small.c \
-		prompt_replace_u.c \
-		prompt_replace_w.c \
-		prompt.c
 
 # objects
 OBJ := $(SRC:.c=.o)
