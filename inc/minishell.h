@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 17:06:43 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:07:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,10 @@ t_error	ft_replace_token(char **str, const char *token,
 //ft_string.c
 char	*ft_strcat(char *dst, const char *src);
 char	*ft_strncat(char *dst, const char *src, size_t n);
+
+//prompt.c
+t_error	ft_create_prompt(t_hashtable sym_tab,
+			char **prompt, char *ps, char *std);
 
 //prompt_replace_small.c
 t_error	ft_prompt_replace_n(char **replacement, t_hashtable sym_tab);
