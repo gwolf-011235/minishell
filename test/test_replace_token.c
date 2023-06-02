@@ -6,9 +6,11 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:51:44 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/02 07:26:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/02 10:58:24 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "test.h"
 
 void	ft_test_replace_token(void)
 {
