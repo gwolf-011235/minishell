@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 08:07:40 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/03 00:38:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/06 16:29:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_error	ft_get_token_replacement(char **replacement, unsigned char target,
 	['w'] = ft_prompt_replace_w
 	};
 
-	if (!replacement || !target || !sym_tab)
+	if (!replacement || !sym_tab)
 		return (ERR_EMPTY);
 	return (look_up_tab[target](replacement, sym_tab));
 }
@@ -66,7 +66,7 @@ t_error	ft_get_token(char **token, unsigned char target)
 	['w'] = PROMPT_EXPAND_W
 	};
 
-	if (!token || !target)
+	if (!token)
 		return (ERR_EMPTY);
 	if (target > 127)
 		return (ERR_OUT_OF_BOUNDS);
@@ -103,12 +103,12 @@ t_error	ft_search_token(const char *ps_string, char **token)
 	target++;
 	if (!*target)
 	{
-		printf("Empty backslash\n");
+		printf("Prompt: Empty backslash\n");
 		err = ft_get_token(token, 0);
 	}
 	else if (!ft_strchr(PROMPT_EXPAND_SUPPORTED, *target))
 	{
-		printf("Not recognised: \\%c\n", *target);
+		printf("Prompt: Not recognised: \\%c\n", *target);
 		err = ft_get_token(token, 0);
 	}
 	else
