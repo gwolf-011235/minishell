@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/03 00:56:58 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/06 16:32:53 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 		ft_exit_failure(data, ERR_MALLOC);
 	if (ft_env_setup(data) != SUCCESS)
 		printf("NO\n");
-	ft_hashtable_insert(data->env_table, "PS1=\\u:\\w", 3);
+	ft_hashtable_insert(data->env_table, "PS1=\\u@\\h:\\w$ ", 3);
 	while (1)
 	{
 		data->err = ft_create_prompt(data->env_table, &data->prompt1, "PS1", PS1_STD);
@@ -46,6 +46,7 @@ int	main(int argc, char **argv)
 		if (!input)
 			break ;
 		add_history(input);
+		printf("Input: %s\n", input);
 		//do stuff
 		free(input);
 		free(data->prompt1);
