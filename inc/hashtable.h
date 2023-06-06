@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:07:23 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/25 12:43:50 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/06 15:10:04 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,9 @@ t_env_var	*ft_hashtable_lookup(
 t_error		ft_hashtable_delete(
 				t_hashtable *ht, const char *string, size_t keylen);
 void		ft_hashtable_print(t_hashtable *ht);
+
+//hashtable_utils2.c
+t_error		ft_hashtable_swap(
+				t_hashtable *ht, const char *string, size_t keylen);
 
 #endif
