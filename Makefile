@@ -39,6 +39,7 @@ SRC :=	main.c \
 		replace_token.c \
 		hashtable_generate.c \
 		hashtable_utils.c \
+		hashtable_utils2.c \
 		exit_failure.c \
 		init.c \
 		pwd.c \
@@ -60,7 +61,9 @@ DEPFILES :=$(SRC:%.c=$(DEP_DIR)/%.d)
 
 # test
 TEST_SRC := test_main.c \
-			test_replace_token.c
+			test_replace_token.c \
+			test_prompt.c \
+			test_hashtable.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 
 .PHONY: all, clean, fclean, re, debug, obj, dep, test
@@ -78,10 +81,10 @@ debug: $(NAME)
 	echo "$(GREEN)DEBUG ready!$(RESET)"
 
 test: CFLAGS = -g -DTESTING
-test: clean $(TEST_SRCS) $(OBJS)
+test: $(TEST_SRCS) $(OBJS)
 	$(CC) $(INC) $(CFLAGS) $(TEST_SRCS) $(OBJS) $(LIB_FT) -o tester
-	echo "$(GREEN)tester created!$(RESET)"
-
+	echo "$(GREEN)Starting tester!$(RESET)"
+	./tester
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(DEP_DIR)/%.d | $(DEP_DIR)
 	$(COMPILE) $< -o $@
