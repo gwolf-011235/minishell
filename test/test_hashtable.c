@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:29:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/06 13:35:03 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/06 16:11:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	test_hashtable(void)
 	else
 		printf("TEST was found\n");
 	ft_hashtable_delete(sym_tab, "TEST", 4);
+	ft_hashtable_destroy(sym_tab);
 }
