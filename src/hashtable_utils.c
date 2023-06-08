@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:17:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/25 15:31:31 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/08 15:11:18 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static size_t	ft_hashtable_index(
  * @param ht Hashtable in which to insert
  * @param string env_string which should be inserted
  * @param keylen Length of env_var (everything before =)
- * @return t_error SUCCESS if element inserted
+ * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_HT_NO_INSERT
  */
 t_error	ft_hashtable_insert(t_hashtable *ht, const char *string, size_t keylen)
 {
@@ -73,7 +73,7 @@ t_error	ft_hashtable_insert(t_hashtable *ht, const char *string, size_t keylen)
  * @brief Search for env_var in hashtable.
  *
  * Check if params are empty.
- * Generate index of given env_var and loop through list
+ * Generate index of given env_var and loop through list.
  * If element is found return the element.
  * @param ht Hashtable in which to look
  * @param string env_string which should be looked up
@@ -101,7 +101,7 @@ t_env_var	*ft_hashtable_lookup(
 /**
  * @brief Delete one element of hashtable.
  *
- * Check if any param is NULL
+ * Check if params are empty.
  * Generate index and set tmp pointer to start of list.
  * Set prev pointer to NULL.
  * Loop through the list and update tmp and prev pointers.
@@ -112,7 +112,7 @@ t_env_var	*ft_hashtable_lookup(
  * @param ht Hashtable in which to delete one element
  * @param string env_string which should be deleted
  * @param keylen length of env_var (everthing before =)
- * @return t_error SUCCESS if deleted.
+ * @return t_error SUCCESS, ERR_EMPTY, ERR_HT_NO_DELETE
  */
 t_error	ft_hashtable_delete(
 	t_hashtable *ht, const char *string, size_t keylen)
@@ -146,8 +146,8 @@ t_error	ft_hashtable_delete(
 /**
  * @brief Print out all elements.
  *
- * Prints a start table. Then prints all elements it finds at the indexes.
- * If more then one element is at a given index they get separated by newline.
+ * Prints a starting string. Then prints all elements it finds at each index.
+ * If more than one element is at a given index they get separated by newline.
  * Can be adapted to just print env_vars.
  * @param ht Hashtable to print.
  */
