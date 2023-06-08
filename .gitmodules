@@ -1,6 +1,6 @@
 [submodule "libft"]
 	path = lib/libft
 	url = https://github.com/u413-284-si/libft.git
-[submodule "doxygen-awesome-css"]
+[submodule "docs/doxygen-awesome-css"]
 	path = docs/doxygen-awesome-css
 	url = https://github.com/jothepro/doxygen-awesome-css.git
