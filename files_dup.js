@@ -9,5 +9,6 @@ var files_dup =
     [ "minishell.h", "minishell_8h.html", "minishell_8h" ],
     [ "minishell_error.h", "minishell__error_8h.html", "minishell__error_8h" ],
     [ "pwd.c", "pwd_8c.html", "pwd_8c" ],
-    [ "shlvl.c", "shlvl_8c.html", "shlvl_8c" ]
+    [ "shlvl.c", "shlvl_8c.html", "shlvl_8c" ],
+    [ "test.h", "test_8h_source.html", null ]
 ];

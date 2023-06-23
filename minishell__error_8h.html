@@ -116,11 +116,14 @@ Enumerations</h2></td></tr>
 , <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8ab4ebe8e8dcc7871d3bda1dde1a607acb">ERR_HT_NO_INSERT</a>
 , <br />
 &#160;&#160;<a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8af8bf8c87ef1c70714aa7fba1cc453102">ERR_HT_NO_DELETE</a>
+, <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aea63d4a8cbb4265221254be5156d4db4">ERR_HT_NO_SWAP</a>
 , <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8acdc3171f597e4c1349717464b452dc1e">ERR_EMPTY</a>
 , <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a43f9e208f2ea10d501bd49791594abc7">ERR_CWD_FAIL</a>
-, <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aeeff5ceb398b3bd6b8ce179c47fb917f">ERR_NO_SHLVL</a>
 , <br />
-&#160;&#160;<a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aefe06b2c607d230b0b7e5f1d4ae56b0a">ERR_MAX_SHLVL</a>
+&#160;&#160;<a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aeeff5ceb398b3bd6b8ce179c47fb917f">ERR_NO_SHLVL</a>
+, <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aefe06b2c607d230b0b7e5f1d4ae56b0a">ERR_MAX_SHLVL</a>
+, <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a495247f86f2d33551142fd94a74eeae1">ERR_OUT_OF_BOUNDS</a>
+, <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aacdc7b9755d24bf9caf955c7a9ecab48">ERR_WRONG_TOKEN</a>
 <br />
  }</td></tr>
 <tr class="memdesc:ad8acf3cd529715d9fa841ce2b860bad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum, which contains all error codes.  <a href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8">More...</a><br /></td></tr>
@@ -172,6 +175,8 @@ Enumerations</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8af8bf8c87ef1c70714aa7fba1cc453102"></a>ERR_HT_NO_DELETE&#160;</td><td class="fielddoc"><p><a class="el" href="hashtable_8h.html#a14a6af3c78837e14fa2ac64fd4c24d28" title="Delete one element of hashtable.">ft_hashtable_delete()</a> could not delete. </p>
 </td></tr>
+<tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8aea63d4a8cbb4265221254be5156d4db4"></a>ERR_HT_NO_SWAP&#160;</td><td class="fielddoc"><p>ft_hashtable_swap() didn't find element. </p>
+</td></tr>
 <tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8acdc3171f597e4c1349717464b452dc1e"></a>ERR_EMPTY&#160;</td><td class="fielddoc"><p>One or more passed params are empty. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8a43f9e208f2ea10d501bd49791594abc7"></a>ERR_CWD_FAIL&#160;</td><td class="fielddoc"><p>function getcwd failed. </p>
@@ -179,6 +184,10 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8aeeff5ceb398b3bd6b8ce179c47fb917f"></a>ERR_NO_SHLVL&#160;</td><td class="fielddoc"><p>ft_increment_shlvl didn't find SHLVL. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8aefe06b2c607d230b0b7e5f1d4ae56b0a"></a>ERR_MAX_SHLVL&#160;</td><td class="fielddoc"><p>maximum shell level was reached. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8a495247f86f2d33551142fd94a74eeae1"></a>ERR_OUT_OF_BOUNDS&#160;</td><td class="fielddoc"><p>A parameter has exceeded the allowed range. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8aacdc7b9755d24bf9caf955c7a9ecab48"></a>ERR_WRONG_TOKEN&#160;</td><td class="fielddoc"><p>A prompt substitution was not recognized,. </p>
 </td></tr>
 </table>
 
