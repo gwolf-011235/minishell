@@ -14,12 +14,13 @@ LIB_DIR := lib
 LIB_DIR_FT := $(LIB_DIR)/libft
 INC_DIR := inc
 DEP_DIR := $(OBJ_DIR)/dep
+TEST_DIR := test
 
 # include
 INC := -I $(INC_DIR) -I lib/libft/
 
 # libraries
-LIB_FT := -L $(LIB_DIR_FT) -l ft
+LIB_FT := -L $(LIB_DIR_FT) -l ft -lreadline
 
 # compiling
 CC := cc
@@ -33,13 +34,23 @@ LIBFT := $(LIB_DIR_FT)/libft.a
 
 # source files
 SRC :=	main.c \
+		ft_memory.c \
+		ft_string.c \
+		replace_token.c \
 		hashtable_generate.c \
 		hashtable_utils.c \
+		hashtable_utils2.c \
 		exit_failure.c \
 		init.c \
 		pwd.c \
-		shlvl.c
+		shlvl.c \
+		prompt.c \
+		prompt_replace_h.c \
+		prompt_replace_u.c \
+		prompt_replace_small.c \
+		prompt_replace_w.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
+
 
 # objects
 OBJ := $(SRC:.c=.o)
@@ -48,7 +59,14 @@ OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))
 # dependencies
 DEPFILES :=$(SRC:%.c=$(DEP_DIR)/%.d)
 
-.PHONY: all, clean, fclean, re, debug, obj, dep
+# test
+TEST_SRC := test_main.c \
+			test_replace_token.c \
+			test_prompt.c \
+			test_hashtable.c
+TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
+
+.PHONY: all, clean, fclean, re, debug, obj, dep, test
 .SILENT:
 
 all: $(NAME)
@@ -61,6 +79,12 @@ $(NAME): $(LIBFT) $(OBJS)
 debug: CFLAGS = -g
 debug: $(NAME)
 	echo "$(GREEN)DEBUG ready!$(RESET)"
+
+test: CFLAGS = -g -DTESTING
+test: $(TEST_SRCS) $(OBJS)
+	$(CC) $(INC) $(CFLAGS) $(TEST_SRCS) $(OBJS) $(LIB_FT) -o tester
+	echo "$(GREEN)Starting tester!$(RESET)"
+	./tester
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(DEP_DIR)/%.d | $(DEP_DIR)
 	$(COMPILE) $< -o $@
@@ -80,7 +104,9 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
-	printf "$(RED)removed bin $(NAME)$(RESET)\n"
+	printf "$(RED)clean bin $(NAME)$(RESET)\n"
+	rm -rf tester
+	printf "$(RED)clean bin tester(RESET)\n"
 	printf "$(YELLOW)$(BOLD)clean$(RESET) [$(BLUE)libft$(RESET)]\n"
 	$(MAKE) --no-print-directory -C $(LIB_DIR_FT) fclean
 

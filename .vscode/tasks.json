@@ -15,6 +15,21 @@
 				"$gcc"
 			],
 			"group": "build",
+		},
+		{
+			"type": "cppbuild",
+			"label": "make test",
+			"command": "/usr/bin/make",
+			"args": [
+				"test",
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
 		}
 	]
 }
