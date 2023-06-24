@@ -48,7 +48,9 @@ SRC :=	main.c \
 		prompt_replace_h.c \
 		prompt_replace_u.c \
 		prompt_replace_small.c \
-		prompt_replace_w.c
+		prompt_replace_w.c \
+		lexer_check_syntax.c \
+		utils.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 
@@ -63,7 +65,8 @@ DEPFILES :=$(SRC:%.c=$(DEP_DIR)/%.d)
 TEST_SRC := test_main.c \
 			test_replace_token.c \
 			test_prompt.c \
-			test_hashtable.c
+			test_hashtable.c \
+			test_check_syntax.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 
 .PHONY: all, clean, fclean, re, debug, obj, dep, test
