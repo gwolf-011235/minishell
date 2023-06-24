@@ -4,6 +4,7 @@
 		"error.h": "c",
 		"mini_error.h": "c",
 		"minishell_error.h": "c",
-		"minishell.h": "c"
+		"minishell.h": "c",
+		"test.h": "c"
 	}
 }
