@@ -1,4 +1,4 @@
-# text effects
+# Text effects
 RESET := \033[0m
 BOLD := \033[1m
 BLACK := \033[30m
@@ -7,32 +7,33 @@ YELLOW := \033[33m
 RED := \033[31m
 BLUE := \033[34m
 
-# directories
+# Directories
 SRC_DIR := src
 OBJ_DIR := obj
 LIB_DIR := lib
 LIB_DIR_FT := $(LIB_DIR)/libft
 INC_DIR := inc
 DEP_DIR := $(OBJ_DIR)/dep
-TEST_DIR := test
+TEST_DIR := tests
 
-# include
-INC := -I $(INC_DIR) -I lib/libft/
+# Libraries
+LDFLAGS := -L $(LIB_DIR_FT)
+LDLIBS := -l ft -l readline
 
-# libraries
-LIB_FT := -L $(LIB_DIR_FT) -l ft -lreadline
-
-# compiling
+# Compiling
 CC := cc
-CFLAGS = -Wall -Werror -Wextra
-DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
-COMPILE = $(CC) $(DEPFLAGS) $(CFLAGS) $(INC) -c
+CPPFLAGS := -I $(INC_DIR) -I lib/libft
+CFLAGS = -Wall -Werror -Wextra -g
+DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.Td
+COMPILE = $(CC) $(DEPFLAGS) $(CPPFLAGS) $(CFLAGS) -c
+POSTCOMPILE = @mv -f $(DEP_DIR)/$*.Td $(DEP_DIR)/$*.d && touch $@
 
-# targets
+# Targets
 NAME := minishell
 LIBFT := $(LIB_DIR_FT)/libft.a
+TEST := test
 
-# source files
+# Source files
 SRC :=	main.c \
 		ft_memory.c \
 		ft_string.c \
@@ -51,65 +52,110 @@ SRC :=	main.c \
 		prompt_replace_w.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
-
-# objects
+# Objects
 OBJ := $(SRC:.c=.o)
 OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))
 
-# dependencies
+# Dependencies
 DEPFILES :=$(SRC:%.c=$(DEP_DIR)/%.d)
 
-# test
+# Test
 TEST_SRC := test_main.c \
 			test_replace_token.c \
 			test_prompt.c \
 			test_hashtable.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
+TEST_OBJ := $(TEST_SRC:.c=.o)
+TEST_OBJS := $(addprefix $(TEST_DIR)/, $(TEST_OBJ))
 
-.PHONY: all, clean, fclean, re, debug, obj, dep, test
-.SILENT:
-
+.PHONY: all
 all: $(NAME)
-	echo "$(GREEN)ALL DONE!$(RESET)"
 
+# Linking the NAME target
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(OBJS) $(LIB_FT) -o $@
-	echo "$(GREEN)$(NAME) created!$(RESET)"
+	@printf "\n$(YELLOW)$(BOLD)link binary$(RESET) [$(BLUE)minishell$(RESET)]\n"
+	$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $@
+	@printf "\n$(YELLOW)$(BOLD)compilation successful$(RESET) [$(BLUE)minishell$(RESET)]\n"
+	@printf "$(GREEN)$(NAME) created!$(RESET)\n"
 
-debug: CFLAGS = -g
-debug: $(NAME)
-	echo "$(GREEN)DEBUG ready!$(RESET)"
+# This target adds fsanitize leak checker to the flags. It needs to clean and recompile.
+.PHONY: leak
+leak: CFLAGS += -fsanitize=leak
+leak: LDFLAGS += -fsanitize=leak
+leak: clean $(NAME)
+	@printf "Compiled with $(YELLOW)$(BOLD)fsanitize=leak$(RESET)\n\n"
 
-test: CFLAGS = -g -DTESTING
-test: $(TEST_SRCS) $(OBJS)
-	$(CC) $(INC) $(CFLAGS) $(TEST_SRCS) $(OBJS) $(LIB_FT) -o tester
-	echo "$(GREEN)Starting tester!$(RESET)"
-	./tester
+# Create the binary tester, which has its own test_main. To avoid compile problems it sets the
+# TESTING variable which renames "normal" main, and removes the main if it exists.
+# After compiling it removes normal main again, making regular compilation of NAME target possible.
+$(TEST): CFLAGS = -g -DTESTING
+$(TEST): prep_test $(TEST_OBJS) $(OBJS)
+	$(CC) $(LDFLAGS) $(TEST_OBJS) $(OBJS) $(LDLIBS) -o $@
+	rm -f obj/main.o
+	@printf "$(GREEN)Starting test!$(RESET)\n"
+	./$(TEST)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(DEP_DIR)/%.d | $(DEP_DIR)
+# To ensure "normal" main is compiled with flag TESTING it gets removed.
+.PHONY: prep_test
+prep_test:
+	rm -f obj/main.o
+
+# Create object and dependency files
+# $(DEP_DIR)/%.d =	Declare the generated dependency file as a prerequisite of the target,
+# 					so that if it’s missing the target will be rebuilt.
+# | $(DEPDIR) = 	Declare the dependency directory as an order-only prerequisite of the target,
+# 					so that it will be created when needed.
+# $(POSTCOMPILE) =	Move temp dependency file and touch object to ensure right timestamps.
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(DEP_DIR)/%.d message | $(DEP_DIR)
 	$(COMPILE) $< -o $@
+	$(POSTCOMPILE)
 
-$(DEP_DIR): ; mkdir -p $@
+# Print message only if there are objects to compile
+.INTERMEDIATE: message
+message:
+	@printf "\n$(YELLOW)$(BOLD)compile objects$(RESET) [$(BLUE)minishell$(RESET)]\n"
 
+# Create objects from test source files
+$(TEST_DIR)/%.o: $(TEST_DIR)/%.c
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
+# Create directory obj/dep if it doesn't exist
+$(DEP_DIR):
+	@printf "\n$(YELLOW)$(BOLD)create subdir$(RESET) [$(BLUE)minishell$(RESET)]\n"
+	mkdir -p $@
+
+# Mention each dependency file as a target, so that make won’t fail if the file doesn’t exist.
 $(DEPFILES):
 
+# Use Makefile of libft to compile the library.
 $(LIBFT):
-	printf "$(YELLOW)$(BOLD)compilation$(RESET) [$(BLUE)libft$(RESET)]\n"
+	@printf "$(YELLOW)$(BOLD)compilation$(RESET) [$(BLUE)libft$(RESET)]\n"
 	$(MAKE) -s -C $(LIB_DIR)/libft
 
+.PHONY: clean
 clean:
-	printf "$(YELLOW)$(BOLD)clean$(RESET) [$(BLUE)minishell$(RESET)]\n"
-	rm -rf $(OBJ_DIR)
-	printf "$(RED)removed subdir $(OBJ_DIR)$(RESET)\n"
+	@printf "$(YELLOW)$(BOLD)clean$(RESET) [$(BLUE)minishell$(RESET)]\n"
+	@rm -rf $(OBJ_DIR)
+	@printf "$(RED)removed subdir $(OBJ_DIR)$(RESET)\n"
 
+.PHONY: fclean
 fclean: clean
-	rm -rf $(NAME)
-	printf "$(RED)clean bin $(NAME)$(RESET)\n"
-	rm -rf tester
-	printf "$(RED)clean bin tester(RESET)\n"
-	printf "$(YELLOW)$(BOLD)clean$(RESET) [$(BLUE)libft$(RESET)]\n"
-	$(MAKE) --no-print-directory -C $(LIB_DIR_FT) fclean
+	@rm -rf $(NAME)
+	@printf "$(RED)clean bin $(NAME)$(RESET)\n"
+	@printf "$(YELLOW)$(BOLD)clean$(RESET) [$(BLUE)libft$(RESET)]\n"
+	@$(MAKE) --no-print-directory -C $(LIB_DIR_FT) fclean
 
+# Clean test objects and tester
+.PHONY: tclean
+tclean:
+	@printf "$(YELLOW)$(BOLD)clean test files$(RESET) [$(BLUE)minishell$(RESET)]\n"
+	@rm -rf $(TEST_DIR)/*.o
+	@printf "$(RED)removed .o files in subdir $(TEST_DIR)$(RESET)\n"
+	@rm -rf $(TEST)
+	@printf "$(RED)clean bin $(TEST)$(RESET)\n"
+
+.PHONY: re
 re: fclean all
 
+# Include the dependency files that exist. Use wildcard to avoid failing on non-existent files.
 include $(wildcard $(DEPFILES))
