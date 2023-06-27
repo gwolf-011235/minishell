@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/03 00:36:14 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/24 11:26:10 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "libft.h"
 # include "minishell_error.h"
 # include "hashtable.h"
+# include "lexer_check_syntax.h"
 
 # define HASHTABLE_SIZE 10
 # define MAX_SHLVL 10

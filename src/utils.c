@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_main.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/24 10:28:03 by gwolf            ###   ########.fr       */
+/*   Created: 2023/06/24 11:28:50 by gwolf             #+#    #+#             */
+/*   Updated: 2023/06/24 11:33:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "utils.h"
 
-int	main(void)
+int	ft_is_space(char c)
 {
-	//test_hashtable();
-	//test_replace_token();
-	//test_prompt();
-	test_check_syntax();
-	return (0);
+	if (c == ' ')
+		return (1);
+	else
+		return (0);
 }
