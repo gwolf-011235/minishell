@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/03 00:36:14 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/06/27 14:44:28 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+/* ====== LIBRARIES ====== */
+
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -27,6 +29,9 @@
 # include "libft.h"
 # include "minishell_error.h"
 # include "hashtable.h"
+# include "lexer.h"
+
+/* ====== DEFINITIONS ====== */
 
 # define HASHTABLE_SIZE 10
 # define MAX_SHLVL 10
@@ -44,6 +49,52 @@
 # define PROMPT_EXPAND_W "\\w"
 
 typedef t_error		(*t_replace_ptr)(char **replacement, t_hashtable *sym_tab);
+
+/**
+ * @brief Enumeration containing all token types.
+ * 
+ */
+typedef enum e_tk
+{
+	EXECUTABLE,
+	OPTION,
+	INFILE,
+	OUTFILE,
+	DELIMITER,
+	APPEND
+}	t_tk;
+
+/* ====== STRUCTS ====== */
+
+/**
+ * @brief Linked list of simple commands existing of token extracted from input. 
+ * 
+ * Each node of the list contains information about the respective token. Not
+ * all variables necessarily need to be populated.
+ * @param exc Pointer to executable string.
+ * @param opt Pointer to options string.
+ * @param redir Pointer to redirection string.
+ * @param delim Pointer to delimiter string.
+ * @param index Index indicating position of token in the pipeline.
+ */
+typedef struct s_cmd
+{
+	char			*exe;
+	char			**opts;
+	char			*in;
+	char			*out;
+	char			*delim;
+	bool			append;
+	int				index;
+	struct s_cmd	*next;
+}	t_cmd;
+
+typedef struct s_tok
+{
+	void	*content;
+	int		type;
+
+}
 
 /**
  * @brief Flags which can be set to store some info.
@@ -71,6 +122,7 @@ typedef struct s_data {
 	t_hashtable	*env_table;
 	t_checks	checks;
 	t_error		err;
+	t_cmd		*cmds;
 	char		*prompt1;
 	char		*prompt2;
 }	t_data;
