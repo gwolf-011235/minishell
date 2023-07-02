@@ -51,7 +51,8 @@ SRC :=	main.c \
 		prompt_replace_w.c \
 		lexer.c \
 		lexer_utils.c \
-		lexer_list.c
+		lexer_list.c \
+		lexer_src.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 
