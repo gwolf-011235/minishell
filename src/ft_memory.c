@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory.c                                           :+:      :+:    :+:   */
+/*   ft_memory.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:22:36 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/30 18:41:02 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/04 10:48:02 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*ft_realloc(void *ptr, size_t new_size, size_t curr_size)
 	new_ptr = malloc(new_size);
 	if (new_ptr != NULL)
 	{
-		if (curr_size == 0)
+		if (curr_size != 0)
 			ft_memcpy(new_ptr, ptr, curr_size);
 		free(ptr);
 	}
