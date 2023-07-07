@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/07 17:02:02 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/07 20:48:28 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # include "minishell_error.h"
 # include "hashtable.h"
 # include "lexer.h"
-# include "lexer_list.h"
 
 /* ====== DEFINITIONS ====== */
 
@@ -64,6 +63,13 @@ typedef enum e_tk
 	DELIMITER,
 	APPEND
 }	t_tk;
+
+typedef struct s_tkn_list
+{
+	void				*content;
+	struct s_tkn_list	*prev;
+	struct s_tkn_list	*next;
+}	t_tkn_list;
 
 /* ====== STRUCTS ====== */
 

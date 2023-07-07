@@ -49,7 +49,6 @@ SRC :=	main.c \
 		prompt_replace_u.c \
 		prompt_replace_small.c \
 		prompt_replace_w.c \
-		lexer.c \
 		lexer_utils.c \
 		lexer_list.c \
 		lexer_src.c \

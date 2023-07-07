@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/25 15:51:32 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/07 20:31:12 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
  */
 
 #include "minishell.h"
+#include "lexer_list.h"
 
 #ifdef TESTING
 # define main not_main
@@ -46,7 +47,7 @@ int	main(int argc, char **argv)
 		if (!input)
 			break ;
 		add_history(input);
-		ft_lexer(data, input);
+		ft_list_token(data, input);
 		//do stuff
 		free(input);
 		free(data->prompt1);

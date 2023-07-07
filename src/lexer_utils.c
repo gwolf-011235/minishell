@@ -6,10 +6,11 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:40:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/07 14:11:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/07 21:08:49 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 #include "lexer_utils.h"
 
 t_error	ft_skip_space(t_src *src)
@@ -20,7 +21,7 @@ t_error	ft_skip_space(t_src *src)
 	if (!src || !src->buf || !src->buf_size)
 		return (ERR_EMPTY);
 	err = ft_peek_char(src, &c);
-	while (err != EOF && (c == ' ' || c == '\t'))
+	while (err != ERR_EOF && (c == ' ' || c == '\t'))
 	{
 		ft_next_char(src, &c);
 		err = ft_peek_char(src, &c);
@@ -28,7 +29,7 @@ t_error	ft_skip_space(t_src *src)
 	return (err);
 }
 
-t_error	ft_extract_str(char *src, char *dst)
+/* t_error	ft_extract_str(char *src, char *dst)
 {
 	int	i;
 	int	start;
@@ -46,4 +47,4 @@ t_error	ft_extract_str(char *src, char *dst)
 	ft_memmove(dst, src, i - start);
 	dst[i] = '\0';
 	return (SUCCESS);
-}
+} */

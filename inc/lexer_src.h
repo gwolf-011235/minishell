@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 15:27:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/02 18:59:19 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/07 21:08:09 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 /* ====== Includes ====== */
 
-# include "minishell.h"
+//# include "minishell.h"
 
 /* ====== Definitions ====== */
 
-# define EOF (-1)
+//# define EOF (-1)
 # define INIT_SRC_POS (-2)
 
 typedef struct s_src

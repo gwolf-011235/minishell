@@ -6,10 +6,11 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 15:27:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/07 14:03:21 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/07 21:08:20 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 #include "lexer_src.h"
 
 /**
@@ -30,7 +31,7 @@ t_error	ft_next_char(t_src *src, char *c)
 	else
 		*c = src->buf[src->cur_pos];
 	if (++src->cur_pos >= src->buf_size)
-		return (EOF);
+		return (ERR_EOF);
 	*c = src->buf[src->cur_pos];
 	return (SUCCESS);
 }
@@ -67,7 +68,7 @@ t_error	ft_peek_char(t_src *src, char *c)
 		peek++;
 	peek++;
 	if (peek >= src->buf_size)
-		return (EOF);
+		return (ERR_EOF);
 	*c = src->buf[peek];
 	return (SUCCESS);
 }

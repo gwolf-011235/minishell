@@ -6,10 +6,11 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/07 15:30:06 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/07 21:09:44 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 #include "lexer_tok.h"
 
 /**
@@ -89,7 +90,7 @@ void	ft_free_tok(t_tok *token)
  * @param token 	Token to be created.
  * @return t_error* ERR_EMPTY, ERR_MALLOC, SUCCESS
  */
-t_error	*ft_tokenise(t_src *src, t_tok *token)
+t_error	ft_tokenise(t_src *src, t_tok *token)
 {
 	char	*buf;
 	int		buf_size;
@@ -128,7 +129,7 @@ t_error	*ft_tokenise(t_src *src, t_tok *token)
  * @param buf 		Buffer string to be filled.
  * @param buf_pos 	Current position in buffer string.
  * @param buf_size 	Buffer malloced size. 
- * @return t_error 	ERR_EMPTY, EOF, SUCCESS
+ * @return t_error 	ERR_EMPTY, ERR_EOF, SUCCESS
  */
 t_error	ft_partition(t_src *src, char *buf, int *buf_pos, int *buf_size)
 {
@@ -139,7 +140,7 @@ t_error	ft_partition(t_src *src, char *buf, int *buf_pos, int *buf_size)
 	err = ft_next_char(src, &c);
 	if (err != SUCCESS)
 		return (err);
-	while (err != EOF)
+	while (err != ERR_EOF)
 	{
 		if ((c == ' ' || c == '\t') && *buf_pos > 0)
 			break ;
@@ -153,7 +154,7 @@ t_error	ft_partition(t_src *src, char *buf, int *buf_pos, int *buf_size)
 		}
 		err = ft_next_char(src, &c);
 	}
-	if (err == EOF)
+	if (err == ERR_EOF)
 		return (err);
 	return (SUCCESS);
 }
