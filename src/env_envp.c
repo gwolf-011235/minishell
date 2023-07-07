@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 18:09:38 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/07 11:43:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/07 12:01:31 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,15 @@ t_error	ft_envp_create(t_hashtable *ht, char ***envp)
 /**
  * @brief Destroy envp.
  *
- * Just free the envp. Does not free elements.
+ * Free the envp and set to NULL.
+ * Does not free elements.
  *
  * @param envp The pointer to free.
  * @return t_error SUCCESS
  */
-t_error	ft_envp_destroy(char **envp)
+t_error	ft_envp_destroy(char ***envp)
 {
-	free(envp);
+	free(*envp);
+	*envp = NULL;
 	return (SUCCESS);
 }
