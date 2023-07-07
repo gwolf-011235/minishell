@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/07 15:19:49 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/07 15:30:06 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ void	ft_free_tok(t_tok *token)
  * Divides input string into separate tokens. The token string
  * is extracted into a buffer string before being saved inside
  * a token.
- * @param src 		Struct containing the input string, its length and current position.
+ * @param src 		Struct containing the input string,
+ * 					its length and current position.
  * @param token 	Token to be created.
  * @return t_error* ERR_EMPTY, ERR_MALLOC, SUCCESS
  */
@@ -122,7 +123,8 @@ t_error	*ft_tokenise(t_src *src, t_tok *token)
  * 
  * Fills buffer string until delimiters are reached.
  * Delimiters: Space, tab, newline, pipe
- * @param src 		Struct containing the input string, its length and current position.
+ * @param src 		Struct containing the input string,
+ * 					its length and current position.
  * @param buf 		Buffer string to be filled.
  * @param buf_pos 	Current position in buffer string.
  * @param buf_size 	Buffer malloced size. 
@@ -151,6 +153,8 @@ t_error	ft_partition(t_src *src, char *buf, int *buf_pos, int *buf_size)
 		}
 		err = ft_next_char(src, &c);
 	}
+	if (err == EOF)
+		return (err);
 	return (SUCCESS);
 }
 
