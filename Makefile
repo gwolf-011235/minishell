@@ -51,7 +51,8 @@ SRC :=	main.c \
 		prompt_replace_small.c \
 		prompt_replace_w.c \
 		lexer_check_syntax.c \
-		utils.c
+		utils.c \
+		env_envp.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects
@@ -66,7 +67,8 @@ TEST_SRC := test_main.c \
 			test_replace_token.c \
 			test_prompt.c \
 			test_hashtable.c \
-			test_check_syntax.c
+			test_check_syntax.c \
+			test_env_envp.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 TEST_OBJ := $(TEST_SRC:.c=.o)
 TEST_OBJS := $(addprefix $(TEST_DIR)/, $(TEST_OBJ))

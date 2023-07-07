@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:17:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/08 15:11:18 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/07 11:22:30 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static size_t	ft_hashtable_index(
  * @param keylen Length of env_var (everything before =)
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_HT_NO_INSERT
  */
-t_error	ft_hashtable_insert(t_hashtable *ht, const char *string, size_t keylen)
+t_error	ft_hashtable_insert(t_hashtable *ht, char *string, size_t keylen)
 {
 	size_t		index;
 	t_env_var	*env_var;
@@ -66,6 +66,7 @@ t_error	ft_hashtable_insert(t_hashtable *ht, const char *string, size_t keylen)
 	env_var->value = string + keylen + 1;
 	env_var->next = ht->elements[index];
 	ht->elements[index] = env_var;
+	ht->num_elements++;
 	return (SUCCESS);
 }
 
@@ -107,7 +108,7 @@ t_env_var	*ft_hashtable_lookup(
  * Loop through the list and update tmp and prev pointers.
  * If tmp == NULL no element was found.
  * If prev == NULL element is at start of list.
- * If element is found free void casted string, since it is const.
+ * If element is found free.
  * Then free element and update next pointer.
  * @param ht Hashtable in which to delete one element
  * @param string env_string which should be deleted
@@ -115,7 +116,7 @@ t_env_var	*ft_hashtable_lookup(
  * @return t_error SUCCESS, ERR_EMPTY, ERR_HT_NO_DELETE
  */
 t_error	ft_hashtable_delete(
-	t_hashtable *ht, const char *string, size_t keylen)
+	t_hashtable *ht, char *string, size_t keylen)
 {
 	size_t		index;
 	t_env_var	*tmp;
@@ -138,8 +139,9 @@ t_error	ft_hashtable_delete(
 		ht->elements[index] = tmp->next;
 	else
 		prev->next = tmp->next;
-	free((void *)tmp->env_string);
+	free(tmp->env_string);
 	free(tmp);
+	ht->num_elements--;
 	return (SUCCESS);
 }
 
@@ -174,5 +176,6 @@ void	ft_hashtable_print(t_hashtable *ht)
 		}
 		i++;
 	}
+	printf("Number of elements: %d\n", ht->num_elements);
 	printf("End Table\n");
 }
