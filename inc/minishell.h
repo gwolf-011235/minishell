@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/24 11:26:10 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/07 11:30:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include "libft.h"
 # include "minishell_error.h"
 # include "hashtable.h"
-# include "lexer_check_syntax.h"
+
 
 # define HASHTABLE_SIZE 10
 # define MAX_SHLVL 10
@@ -132,6 +132,5 @@ t_error	ft_prompt_replace_u(char **replacement, t_hashtable *sym_tab);
 
 //prompt_replace_w.c
 t_error	ft_prompt_replace_w(char **replacement, t_hashtable *sym_tab);
-
 
 #endif
