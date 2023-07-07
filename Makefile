@@ -52,7 +52,8 @@ SRC :=	main.c \
 		lexer.c \
 		lexer_utils.c \
 		lexer_list.c \
-		lexer_src.c
+		lexer_src.c \
+		lexer_tok.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 

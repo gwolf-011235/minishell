@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/27 14:44:28 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/02 18:53:55 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,6 @@ typedef struct s_cmd
 	int				index;
 	struct s_cmd	*next;
 }	t_cmd;
-
-typedef struct s_tok
-{
-	void	*content;
-	int		type;
-
-}
 
 /**
  * @brief Flags which can be set to store some info.

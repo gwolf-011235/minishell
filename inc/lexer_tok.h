@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_utils.h                                      :+:      :+:    :+:   */
+/*   lexer_tok.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 16:40:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/07 13:56:38 by sqiu             ###   ########.fr       */
+/*   Created: 2023/07/02 18:52:14 by sqiu              #+#    #+#             */
+/*   Updated: 2023/07/07 14:38:22 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_UTILS_H
-# define LEXER_UTILS_H
+#ifndef LEXER_TOK_H
+# define LEXER_TOK_H
 
 /* ====== Includes ====== */
 
 # include "minishell.h"
 # include "lexer_src.h"
+# include "lexer_utils.h"
+# include "minishell_error.h"
+
+/* ====== Definitions ====== */
+
+typedef struct s_tok
+{
+	char	*tok;
+	int		tok_size;
+}	t_tok;
 
 /* ====== Functions ====== */
 
-int		ft_skip_space(t_src *src);
-t_error	ft_extract_str(char *src, char *dst);
+t_error	*ft_tokenise(t_src *src, t_tok *token);
+void	ft_free_tok(t_tok *tok);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 15:27:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/02 18:59:05 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/07 14:03:21 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_error	ft_peek_char(t_src *src, char *c)
 	if (peek >= src->buf_size)
 		return (EOF);
 	*c = src->buf[peek];
+	return (SUCCESS);
 }
 
 

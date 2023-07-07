@@ -6,22 +6,26 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:40:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/02 18:39:04 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/07 14:11:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer_utils.h"
 
-int	ft_skip_space(char *s)
+t_error	ft_skip_space(t_src *src)
 {
-	int	i;
+	char	c;
+	t_error	err;
 
-	if (!s)
-		return (-1);
-	i = 0;
-	while (s[i] == ' ' || (s[i] >= 9 && s[i] <= 13))
-		i++;
-	return (i);
+	if (!src || !src->buf || !src->buf_size)
+		return (ERR_EMPTY);
+	err = ft_peek_char(src, &c);
+	while (err != EOF && (c == ' ' || c == '\t'))
+	{
+		ft_next_char(src, &c);
+		err = ft_peek_char(src, &c);
+	}
+	return (err);
 }
 
 t_error	ft_extract_str(char *src, char *dst)
