@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 18:09:38 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/07 12:01:31 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/07 12:04:45 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_error	ft_envp_create(t_hashtable *ht, char ***envp)
 /**
  * @brief Destroy envp.
  *
+ * Check if envp exists. If yes:
  * Free the envp and set to NULL.
  * Does not free elements.
  *
@@ -74,7 +75,10 @@ t_error	ft_envp_create(t_hashtable *ht, char ***envp)
  */
 t_error	ft_envp_destroy(char ***envp)
 {
-	free(*envp);
-	*envp = NULL;
+	if (*envp)
+	{
+		free(*envp);
+		*envp = NULL;
+	}
 	return (SUCCESS);
 }
