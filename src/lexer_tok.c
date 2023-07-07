@@ -6,12 +6,22 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/07 14:25:13 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/07 15:19:49 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer_tok.h"
 
+/**
+ * @brief Add character to buffer string.
+ * 
+ * In case the buffer string is not long enough, its size is doubled.
+ * @param c 		Character to be added.
+ * @param buf 		Buffer string.
+ * @param buf_size 	Buffer string length.
+ * @param buf_pos 	Current position in buffer string.
+ * @return t_error 	ERR_MALLOC, SUCCESS
+ */
 t_error	ft_add_to_buf(char c, char *buf, int *buf_size, int *buf_pos)
 {
 	char	*tmp;
@@ -28,6 +38,14 @@ t_error	ft_add_to_buf(char c, char *buf, int *buf_size, int *buf_pos)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Create a token.
+ * 
+ * Token contains the token string and its length.
+ * @param token 	Created token.
+ * @param s 		Token string.
+ * @return t_error 	ERR_MALLOC, SUCCESS
+ */
 t_error	ft_create_tok(t_tok *token, char *s)
 {
 	char	*tmp;
@@ -48,6 +66,11 @@ t_error	ft_create_tok(t_tok *token, char *s)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Free token and its token string.
+ * 
+ * @param token Token to be freed.
+ */
 void	ft_free_tok(t_tok *token)
 {
 	if (token->tok)
@@ -55,6 +78,16 @@ void	ft_free_tok(t_tok *token)
 	free(token);
 }
 
+/**
+ * @brief Overarching function to create a token.
+ * 
+ * Divides input string into separate tokens. The token string
+ * is extracted into a buffer string before being saved inside
+ * a token.
+ * @param src 		Struct containing the input string, its length and current position.
+ * @param token 	Token to be created.
+ * @return t_error* ERR_EMPTY, ERR_MALLOC, SUCCESS
+ */
 t_error	*ft_tokenise(t_src *src, t_tok *token)
 {
 	char	*buf;
@@ -74,7 +107,7 @@ t_error	*ft_tokenise(t_src *src, t_tok *token)
 	}
 	buf_pos = 0;
 	buf[0] = '\0';
-	err = ft_get_char(src, buf, &buf_pos, &buf_size);
+	err = ft_partition(src, buf, &buf_pos, &buf_size);
 	if (err != SUCCESS)
 		return (err);
 	if (buf_pos >= buf_size)
@@ -84,7 +117,18 @@ t_error	*ft_tokenise(t_src *src, t_tok *token)
 	return (err);
 }
 
-t_error	ft_get_char(t_src *src, char *buf, int *buf_pos, int *buf_size)
+/**
+ * @brief Iterate through input string and step out at predefined delimiters.
+ * 
+ * Fills buffer string until delimiters are reached.
+ * Delimiters: Space, tab, newline, pipe
+ * @param src 		Struct containing the input string, its length and current position.
+ * @param buf 		Buffer string to be filled.
+ * @param buf_pos 	Current position in buffer string.
+ * @param buf_size 	Buffer malloced size. 
+ * @return t_error 	ERR_EMPTY, EOF, SUCCESS
+ */
+t_error	ft_partition(t_src *src, char *buf, int *buf_pos, int *buf_size)
 {
 	char	c;
 	t_error	err;
@@ -97,12 +141,12 @@ t_error	ft_get_char(t_src *src, char *buf, int *buf_pos, int *buf_size)
 	{
 		if ((c == ' ' || c == '\t') && *buf_pos > 0)
 			break ;
-		else if (c == '\n' && *buf_pos > 0)
+		else if ((c == '\n' || c == '|') && *buf_pos > 0)
 			ft_unget_char(src);
 		else
 		{
 			ft_add_to_buf(c, buf, buf_size, buf_pos);
-			if (c == '\n')
+			if (c == '\n' || c == '|')
 				break ;
 		}
 		err = ft_next_char(src, &c);
