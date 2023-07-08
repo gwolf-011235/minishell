@@ -50,16 +50,13 @@ SRC :=	main.c \
 		prompt_replace_u.c \
 		prompt_replace_small.c \
 		prompt_replace_w.c \
-<<<<<<< HEAD
 		lexer_utils.c \
 		lexer_list.c \
 		lexer_src.c \
-		lexer_tok.c
-=======
+		lexer_tok.c \
 		lexer_check_syntax.c \
 		utils.c \
 		env_envp.c
->>>>>>> 1244d56b96cba9995ebc2b0e4e62c6147c0aa272
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects
@@ -74,12 +71,9 @@ TEST_SRC := test_main.c \
 			test_replace_token.c \
 			test_prompt.c \
 			test_hashtable.c \
-<<<<<<< HEAD
-			test_lexer.c
-=======
+			test_lexer.c \
 			test_check_syntax.c \
 			test_env_envp.c
->>>>>>> 1244d56b96cba9995ebc2b0e4e62c6147c0aa272
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 TEST_OBJ := $(TEST_SRC:.c=.o)
 TEST_OBJS := $(addprefix $(TEST_DIR)/, $(TEST_OBJ))
@@ -175,3 +169,13 @@ re: fclean all
 
 # Include the dependency files that exist. Use wildcard to avoid failing on non-existent files.
 include $(wildcard $(DEPFILES))
+
+.PHONY: valgr
+valgr:			
+	@valgrind --leak-check=full\
+			--show-leak-kinds=all\
+			--trace-children=no\
+			--track-fds=no\
+			--log-file=valgrind-out.txt\
+			./test
+	@less ./valgrind-out.txt
