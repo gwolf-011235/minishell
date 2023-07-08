@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/08 13:40:05 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/08 18:33:41 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_error	ft_list_token(t_data *data, char *input)
 			ft_free_tok(&token);
 			return (err);
 		}
-		ft_add_list(&data->lst_head, new);
+		//ft_add_list(&data->lst_head, new);
 		prev = new;
 		ft_free_tok(&token);
 		free(new);
@@ -55,7 +55,10 @@ t_error	ft_new_node(t_tkn_list *new, t_tkn_list **prev, char *s)
 	if (*prev)
 		new->prev = *prev;
 	else
+	{
+		new->prev = NULL;
 		*prev = new;
+	}
 	return (SUCCESS);
 }
 

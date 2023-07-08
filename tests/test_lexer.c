@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 13:28:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/08 15:50:53 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/08 17:26:39 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,12 @@ void	test_lexer(void)
 
 	// Simple command: ls
 	printf("\nSimple command: ls\n");
-	str = "orintme";
-	printf("%s", str);
-	/* ft_list_token(&data, str);
+	str = "ls\n";
+	ft_list_token(&data, str);
 	tmp = data.lst_head;
 	while (tmp)
 	{
 		printf("%s", (char *)tmp->content);
 		tmp = tmp->next;
-	} */
+	}
 }
