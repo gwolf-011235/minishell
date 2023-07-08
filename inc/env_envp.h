@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_main.c                                        :+:      :+:    :+:   */
+/*   env_envp.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/08 13:29:43 by sqiu             ###   ########.fr       */
+/*   Created: 2023/06/28 08:11:46 by gwolf             #+#    #+#             */
+/*   Updated: 2023/07/07 12:10:03 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#ifndef ENV_ENVP_H
+# define ENV_ENVP_H
 
-int	main(void)
-{
-	//test_hashtable();
-	//test_replace_token();
-	//test_prompt();
-	test_lexer();
-	return (0);
-}
+# include <stdint.h>
+
+# include "minishell_error.h"
+# include "hashtable.h"
+
+t_error	ft_envp_create(t_hashtable *ht, char ***envp);
+t_error	ft_envp_destroy(char ***envp);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/07 20:48:28 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/08 16:02:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include "lexer.h"
 
 /* ====== DEFINITIONS ====== */
+
 
 # define HASHTABLE_SIZE 10
 # define MAX_SHLVL 10
@@ -184,6 +185,5 @@ t_error	ft_prompt_replace_u(char **replacement, t_hashtable *sym_tab);
 
 //prompt_replace_w.c
 t_error	ft_prompt_replace_w(char **replacement, t_hashtable *sym_tab);
-
 
 #endif

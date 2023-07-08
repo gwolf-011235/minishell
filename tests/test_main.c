@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   test_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/08 16:03:12 by sqiu             ###   ########.fr       */
+/*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
+/*   Updated: 2023/07/08 16:03:48 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
+#include "test.h"
 
-# include "minishell.h"
-
-void	test_hashtable(void);
-void	test_replace_token(void);
-void	test_prompt(void);
-void	test_lexer(void);
-void	test_check_syntax(void);
-void	test_env_envp(void);
-
-#endif
+int	main(void)
+{
+	//test_hashtable();
+	//test_replace_token();
+	//test_prompt();
+	test_lexer();
+	//test_check_syntax();
+	//test_env_envp();
+	return (0);
+}

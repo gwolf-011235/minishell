@@ -8,7 +8,7 @@
 			"name": "test",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/tester",
+			"program": "${workspaceFolder}/test",
 			"args": [],
 			"stopAtEntry": true,
 			"cwd": "${fileDirname}",

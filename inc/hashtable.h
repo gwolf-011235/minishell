@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:07:23 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/06 15:10:04 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/07 11:15:29 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ typedef uint64_t			t_hashfunction (const char *, size_t);
  * @param next Pointer to the next node in this hashtable bucket.
  */
 typedef struct s_env_var {
-	const char			*env_string;
+	char				*env_string;
 	size_t				keylen;
-	const char			*value;
+	char				*value;
 	struct s_env_var	*next;
 }	t_env_var;
 
@@ -74,6 +74,7 @@ typedef struct s_env_var {
 typedef struct s_hashtable {
 	uint32_t		size;
 	t_hashfunction	*hash;
+	uint32_t		num_elements;
 	t_env_var		**elements;
 }	t_hashtable;
 
@@ -85,15 +86,15 @@ void		ft_hashtable_destroy(t_hashtable *ht);
 
 //hashtable_utils.c
 t_error		ft_hashtable_insert(
-				t_hashtable *ht, const char *string, size_t keylen);
+				t_hashtable *ht, char *string, size_t keylen);
 t_env_var	*ft_hashtable_lookup(
 				t_hashtable *ht, const char *string, size_t keylen);
 t_error		ft_hashtable_delete(
-				t_hashtable *ht, const char *string, size_t keylen);
+				t_hashtable *ht, char *string, size_t keylen);
 void		ft_hashtable_print(t_hashtable *ht);
 
 //hashtable_utils2.c
 t_error		ft_hashtable_swap(
-				t_hashtable *ht, const char *string, size_t keylen);
+				t_hashtable *ht, char *string, size_t keylen);
 
 #endif
