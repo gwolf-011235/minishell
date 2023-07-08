@@ -67,7 +67,8 @@ DEPFILES :=$(SRC:%.c=$(DEP_DIR)/%.d)
 TEST_SRC := test_main.c \
 			test_replace_token.c \
 			test_prompt.c \
-			test_hashtable.c
+			test_hashtable.c \
+			test_lexer.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 
 .PHONY: all, clean, fclean, re, debug, obj, dep, test

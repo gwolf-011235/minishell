@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_main.c                                        :+:      :+:    :+:   */
+/*   test_lexer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/08 13:29:43 by sqiu             ###   ########.fr       */
+/*   Created: 2023/07/08 13:28:42 by sqiu              #+#    #+#             */
+/*   Updated: 2023/07/08 15:50:53 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "minishell.h"
+#include "lexer_list.h"
 
-int	main(void)
+void	test_lexer(void)
 {
-	//test_hashtable();
-	//test_replace_token();
-	//test_prompt();
-	test_lexer();
-	return (0);
+	t_data		data;
+	char		*str;
+	t_tkn_list	*tmp;
+
+	data.lst_head = NULL;
+
+	// Simple command: ls
+	printf("\nSimple command: ls\n");
+	str = "orintme";
+	printf("%s", str);
+	/* ft_list_token(&data, str);
+	tmp = data.lst_head;
+	while (tmp)
+	{
+		printf("%s", (char *)tmp->content);
+		tmp = tmp->next;
+	} */
 }
