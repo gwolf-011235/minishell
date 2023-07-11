@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/08 16:02:59 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/10 17:41:36 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include "libft.h"
 # include "minishell_error.h"
 # include "hashtable.h"
-# include "lexer.h"
+
 
 /* ====== DEFINITIONS ====== */
 
@@ -65,9 +65,15 @@ typedef enum e_tk
 	APPEND
 }	t_tk;
 
+typedef struct s_tok
+{
+	char	*tok;
+	int		tok_size;
+}	t_tok;
+
 typedef struct s_tkn_list
 {
-	void				*content;
+	char				*content;
 	struct s_tkn_list	*prev;
 	struct s_tkn_list	*next;
 }	t_tkn_list;
@@ -123,6 +129,7 @@ typedef struct s_data {
 	t_hashtable	*env_table;
 	t_checks	checks;
 	t_error		err;
+	t_tok		token;
 	t_tkn_list	*lst_head;
 	t_cmd		*cmds;
 	char		*prompt1;

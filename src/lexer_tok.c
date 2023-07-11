@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/07 21:09:44 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/11 11:16:05 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ t_error	ft_add_to_buf(char c, char *buf, int *buf_size, int *buf_pos)
 {
 	char	*tmp;
 
-	buf[*buf_pos++] = c;
+	buf[*buf_pos] = c;
+	(*buf_pos)++;
 	if (*buf_pos >= *buf_size)
 	{
 		tmp = ft_realloc(buf, (*buf_size * 2), *buf_size);
@@ -36,6 +37,19 @@ t_error	ft_add_to_buf(char c, char *buf, int *buf_size, int *buf_pos)
 		buf = tmp;
 		*buf_size *= 2;
 	}
+	return (SUCCESS);
+}
+
+t_error	ft_init_tok(t_data *data)
+{
+	t_error	err;
+
+/* 	data->token = malloc(sizeof(t_tok));
+	if (!&data->token)
+		return (ERR_MALLOC); */
+	data->token.tok = malloc(1);
+	if (!data->token.tok)
+		return (ERR_MALLOC);
 	return (SUCCESS);
 }
 
@@ -49,21 +63,17 @@ t_error	ft_add_to_buf(char c, char *buf, int *buf_size, int *buf_pos)
  */
 t_error	ft_create_tok(t_tok *token, char *s)
 {
-	char	*tmp;
-
-	token = ft_calloc (1, sizeof(t_tok));
-	if (!token)
-		return (ERR_MALLOC);
+	if (!token || !s)
+		return (ERR_EMPTY);
 	token->tok_size = ft_strlen(s);
-	tmp = malloc (token->tok_size + 1);
-	if (!tmp)
+	token->tok = ft_realloc (token->tok, token->tok_size + 1, 1);
+	if (!token->tok)
 	{
-		free(token);
+		free(token->tok);
 		return (ERR_MALLOC);
 	}
-	ft_memcpy(tmp, s, token->tok_size);
-	tmp[token->tok_size] = '\0';
-	token->tok = tmp;
+	ft_memcpy(token->tok, s, token->tok_size);
+	token->tok[token->tok_size] = '\0';
 	return (SUCCESS);
 }
 
@@ -76,7 +86,6 @@ void	ft_free_tok(t_tok *token)
 {
 	if (token->tok)
 		free(token->tok);
-	free(token);
 }
 
 /**
@@ -110,13 +119,21 @@ t_error	ft_tokenise(t_src *src, t_tok *token)
 	buf_pos = 0;
 	buf[0] = '\0';
 	err = ft_partition(src, buf, &buf_pos, &buf_size);
-	if (err != SUCCESS)
-		return (err);
 	if (buf_pos >= buf_size)
 		buf_pos--;
 	buf[buf_pos] = '\0';
-	err = ft_create_tok(token, buf);
-	return (err);
+	if (err == ERR_EOF)
+	{
+		ft_create_tok(token, buf);
+		free(buf);
+		return (err);
+	}
+	else
+	{
+		err = ft_create_tok(token, buf);
+		free(buf);
+		return (err);
+	}
 }
 
 /**
@@ -145,7 +162,10 @@ t_error	ft_partition(t_src *src, char *buf, int *buf_pos, int *buf_size)
 		if ((c == ' ' || c == '\t') && *buf_pos > 0)
 			break ;
 		else if ((c == '\n' || c == '|') && *buf_pos > 0)
+		{
 			ft_unget_char(src);
+			break ;
+		}
 		else
 		{
 			ft_add_to_buf(c, buf, buf_size, buf_pos);

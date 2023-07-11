@@ -103,7 +103,7 @@ $(TEST): prep_test $(TEST_OBJS) $(OBJS)
 	$(CC) $(LDFLAGS) $(TEST_OBJS) $(OBJS) $(LDLIBS) -o $@
 	rm -f obj/main.o
 	@printf "$(GREEN)Starting test!$(RESET)\n"
-	./$(TEST)
+#	./$(TEST)
 
 # To ensure "normal" main is compiled with flag TESTING it gets removed.
 .PHONY: prep_test

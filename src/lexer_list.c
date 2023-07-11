@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/08 18:33:41 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/11 11:08:03 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,49 +16,43 @@
 t_error	ft_list_token(t_data *data, char *input)
 {
 	t_src		src;
-	t_tok		token;
 	t_error		err;
-	t_tkn_list	*new;
-	t_tkn_list	*prev;
 
-	src.buf = input;
-	src.buf_size = ft_strlen(input);
-	src.cur_pos = INIT_SRC_POS;
-	new = NULL;
-	prev = data->lst_head;
-	err = ft_tokenise(&src, &token);
-	while (err != ERR_EOF)
+	ft_init_lexer(&src, input);
+	err = ft_tokenise(&src, &data->token);
+	while (err != ERR_EOF || !data->lst_head)
 	{
-		err = ft_new_node(new, &prev, token.tok);
+		err = ft_new_node(data, data->token.tok);
 		if (err != SUCCESS)
 		{
 			ft_free_lst(&data->lst_head, &ft_del_content);
-			ft_free_tok(&token);
+			ft_free_tok(&data->token);
 			return (err);
 		}
-		//ft_add_list(&data->lst_head, new);
-		prev = new;
-		ft_free_tok(&token);
-		free(new);
-		err = ft_tokenise(&src, &token);
+		ft_init_tok(data);
+		err = ft_tokenise(&src, &data->token);
 	}
 	return (SUCCESS);
 }
 
-t_error	ft_new_node(t_tkn_list *new, t_tkn_list **prev, char *s)
+void	ft_init_lexer(t_src *src, char *input)
 {
-	new = malloc (sizeof(t_tkn_list));
+	src->buf = input;
+	src->buf_size = ft_strlen(input);
+	src->cur_pos = INIT_SRC_POS;
+}
+
+t_error	ft_new_node(t_data *data, char *content)
+{
+	t_tkn_list	*new;
+	t_tkn_list	*prev;
+
+	new = (t_tkn_list *)malloc(sizeof(t_tkn_list));
 	if (!new)
 		return (ERR_MALLOC);
-	new->content = s;
+	new->content = content;
 	new->next = NULL;
-	if (*prev)
-		new->prev = *prev;
-	else
-	{
-		new->prev = NULL;
-		*prev = new;
-	}
+	ft_add_list(&data->lst_head, new);
 	return (SUCCESS);
 }
 
@@ -98,9 +92,15 @@ void	ft_add_list(t_tkn_list **lst, t_tkn_list *new)
 
 	tmp = ft_last(*lst);
 	if (tmp)
-		tmp -> next = new;
+	{
+		tmp->next = new;
+		new->prev = tmp;
+	}
 	else
+	{
 		*lst = new;
+		new->prev = NULL;
+	}
 }
 
 t_tkn_list	*ft_last(t_tkn_list *lst)

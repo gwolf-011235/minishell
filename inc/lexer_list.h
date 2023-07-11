@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/07 21:09:51 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/10 17:42:09 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 /* ====== Functions ====== */
 
 t_error	ft_list_token(t_data *data, char *input);
-t_error	ft_new_node(t_tkn_list *new, t_tkn_list **prev, char *s);
+void	ft_init_lexer(t_src *src, char *input);
+t_error	ft_new_node(t_data *data, char *content);
 void	ft_free_lst(t_tkn_list **lst, void (*del)(void*));
 void	ft_del_node(t_tkn_list *lst, void (*del)(void*));
 void	ft_del_content(void *s);

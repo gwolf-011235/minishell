@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/07 20:31:12 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/10 16:22:01 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #include "minishell.h"
 #include "lexer_list.h"
+#include "lexer_tok.h"
 
 #ifdef TESTING
 # define main not_main
@@ -47,6 +48,7 @@ int	main(int argc, char **argv)
 		if (!input)
 			break ;
 		add_history(input);
+		ft_init_tok(data);
 		ft_list_token(data, input);
 		//do stuff
 		free(input);
