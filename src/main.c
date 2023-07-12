@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/10 16:22:01 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/12 22:47:13 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "minishell.h"
 #include "lexer_list.h"
-#include "lexer_tok.h"
+#include "lexer_tok_utils.h"
 
 #ifdef TESTING
 # define main not_main

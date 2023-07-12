@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 15:27:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/08 19:17:33 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/12 22:48:54 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,3 @@ t_error	ft_peek_char(t_src *src, char *c)
 	*c = src->buf[peek];
 	return (SUCCESS);
 }
-
-

@@ -54,6 +54,7 @@ SRC :=	main.c \
 		lexer_list.c \
 		lexer_src.c \
 		lexer_tok.c \
+		lexer_tok_utils.c \
 		lexer_check_syntax.c \
 		utils.c \
 		env_envp.c
