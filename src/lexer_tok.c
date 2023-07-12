@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/11 11:16:05 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/12 21:25:19 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ t_error	ft_add_to_buf(char c, char *buf, int *buf_size, int *buf_pos)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Initiate token by reserving 1 Byte of memory space.
+ * 
+ * @param data 		Struct containing the token.
+ * @return t_error	ERR_MALLOC, SUCCESS
+ */
 t_error	ft_init_tok(t_data *data)
 {
-	t_error	err;
-
-/* 	data->token = malloc(sizeof(t_tok));
-	if (!&data->token)
-		return (ERR_MALLOC); */
 	data->token.tok = malloc(1);
 	if (!data->token.tok)
 		return (ERR_MALLOC);
@@ -78,7 +79,7 @@ t_error	ft_create_tok(t_tok *token, char *s)
 }
 
 /**
- * @brief Free token and its token string.
+ * @brief Free token string.
  * 
  * @param token Token to be freed.
  */

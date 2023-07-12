@@ -6,13 +6,19 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:40:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/08 19:17:28 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/12 21:44:20 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer_utils.h"
 
+/**
+ * @brief Skip all spaces and tabs in source string.
+ * 
+ * @param src 		Struct containing source string.
+ * @return t_error	ERR_EMPTY, ERR_EOF, SUCCESS
+ */
 t_error	ft_skip_space(t_src *src)
 {
 	char	c;
@@ -27,6 +33,53 @@ t_error	ft_skip_space(t_src *src)
 		err = ft_peek_char(src, &c);
 	}
 	return (err);
+}
+
+/**
+ * @brief Delete the content and the node itself.
+ * 
+ * @param lst List containing the nodes to be deleted.
+ * @param del Pointer to function to delete content of nodes.
+ */
+void	ft_del_node(t_tkn_list *lst, void (*del)(void*))
+{
+	if (!lst || !del)
+		return ;
+	(*del)(lst -> content);
+	free(lst);
+}
+
+/**
+ * @brief Delete the content of the node.
+ * 
+ * @param s Content of node.
+ */
+void	ft_del_content(void *s)
+{
+	if (!s)
+		return ;
+	s = "";
+}
+
+/**
+ * @brief Iterate to last node of given list.
+ * 
+ * Returns 0 if list is empty.
+ * @param lst 			List to be iterated through.
+ * @return t_tkn_list* 	Last node of list.
+ */
+t_tkn_list	*ft_last(t_tkn_list *lst)
+{
+	t_tkn_list	*last;
+
+	last = lst;
+	while (last)
+	{
+		if (last -> next == NULL)
+			return (last);
+		last = last -> next;
+	}
+	return (0);
 }
 
 /* t_error	ft_extract_str(char *src, char *dst)

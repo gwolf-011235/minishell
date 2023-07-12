@@ -6,13 +6,21 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/11 11:08:03 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/12 21:38:33 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer_list.h"
+#include "lexer_utils.h"
 
+/**
+ * @brief Create a list of token.
+ * 
+ * @param data 		Overarching struct containing all meta data.
+ * @param input 	Input string to be tokenised.
+ * @return t_error 	ERR_EMPTY, ERR_MALLOC, SUCCESS
+ */
 t_error	ft_list_token(t_data *data, char *input)
 {
 	t_src		src;
@@ -35,6 +43,13 @@ t_error	ft_list_token(t_data *data, char *input)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Initate the lexer.
+ * 
+ * Fills source struct with values from the input string.
+ * @param src 		Struct containing data on input/source string.
+ * @param input 	Input string.
+ */
 void	ft_init_lexer(t_src *src, char *input)
 {
 	src->buf = input;
@@ -42,6 +57,13 @@ void	ft_init_lexer(t_src *src, char *input)
 	src->cur_pos = INIT_SRC_POS;
 }
 
+/**
+ * @brief Create a new node and add it to the end of the token list.
+ * 
+ * @param data		Overarching struct containing all meta data.
+ * @param content	Content string to be written into new node.
+ * @return t_error 	ERR_MALLOC, SUCCESS
+ */
 t_error	ft_new_node(t_data *data, char *content)
 {
 	t_tkn_list	*new;
@@ -56,6 +78,12 @@ t_error	ft_new_node(t_data *data, char *content)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Iterate through token list and free all nodes.
+ * 
+ * @param lst Token list to be freed.
+ * @param del Pointer to function used for clean up.
+ */
 void	ft_free_lst(t_tkn_list **lst, void (*del)(void*))
 {
 	t_tkn_list	*tmp;
@@ -71,21 +99,14 @@ void	ft_free_lst(t_tkn_list **lst, void (*del)(void*))
 	(*lst) = NULL;
 }
 
-void	ft_del_node(t_tkn_list *lst, void (*del)(void*))
-{
-	if (!lst || !del)
-		return ;
-	(*del)(lst -> content);
-	free(lst);
-}
-
-void	ft_del_content(void *s)
-{
-	if (!s)
-		return ;
-	s = "";
-}
-
+/**
+ * @brief Go to end of token list and connect given token.
+ * 
+ * If there is a (last) node in the list, connect new token to the end.
+ * If the list is yet empty, set new token as head of the list.
+ * @param lst Token list.
+ * @param new Given token to be added to token list.
+ */
 void	ft_add_list(t_tkn_list **lst, t_tkn_list *new)
 {
 	t_tkn_list	*tmp;
@@ -101,18 +122,4 @@ void	ft_add_list(t_tkn_list **lst, t_tkn_list *new)
 		*lst = new;
 		new->prev = NULL;
 	}
-}
-
-t_tkn_list	*ft_last(t_tkn_list *lst)
-{
-	t_tkn_list	*last;
-
-	last = lst;
-	while (last)
-	{
-		if (last -> next == NULL)
-			return (last);
-		last = last -> next;
-	}
-	return (0);
 }
