@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/10 17:41:36 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/12 21:15:55 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,29 @@
 
 typedef t_error		(*t_replace_ptr)(char **replacement, t_hashtable *sym_tab);
 
-/**
- * @brief Enumeration containing all token types.
- * 
- */
-typedef enum e_tk
-{
-	EXECUTABLE,
-	OPTION,
-	INFILE,
-	OUTFILE,
-	DELIMITER,
-	APPEND
-}	t_tk;
+/* ====== STRUCTS ====== */
 
+/**
+ * @brief Token structure.
+ * 
+ * Includes token string and the token size.
+ * @param tok String containing token.
+ * @param tok_size Size of token string.
+ */
 typedef struct s_tok
 {
 	char	*tok;
 	int		tok_size;
 }	t_tok;
 
+/**
+ * @brief List of token.
+ * 
+ * Double-linked list of nodes that contain individual token strings. Each
+ * node is connected to the previous and next node. The first node refers to
+ * NUll as prev. The last node refers to NULL as next node.
+ * @param content String containing token.
+ */
 typedef struct s_tkn_list
 {
 	char				*content;
@@ -78,25 +81,25 @@ typedef struct s_tkn_list
 	struct s_tkn_list	*next;
 }	t_tkn_list;
 
-/* ====== STRUCTS ====== */
-
 /**
  * @brief Linked list of simple commands existing of token extracted from input. 
  * 
  * Each node of the list contains information about the respective token. Not
  * all variables necessarily need to be populated.
- * @param exc Pointer to executable string.
- * @param opt Pointer to options string.
- * @param redir Pointer to redirection string.
+ * @param exe Pointer to executable string.
+ * @param opts Pointer to options string.
+ * @param fd_in File descriptor of infile.
+ * @param fd_out File descriptor of outfile.
  * @param delim Pointer to delimiter string.
+ * @param append Boole value to indicate append mode.
  * @param index Index indicating position of token in the pipeline.
  */
 typedef struct s_cmd
 {
 	char			*exe;
 	char			**opts;
-	char			*in;
-	char			*out;
+	int				fd_in;
+	int				fd_out;
 	char			*delim;
 	bool			append;
 	int				index;
@@ -124,6 +127,9 @@ typedef struct s_checks {
  * @param env_table Pointer to the env hashtable.
  * @param checks Struct with some flags.
  * @param err Can hold an error code if data is available - maybe del.
+ * @param token Struct containing the current token and its size.
+ * @param lst_head Pointer to first node of token list.
+ * @param cmds List of structs containing simple commands.
  */
 typedef struct s_data {
 	t_hashtable	*env_table;
