@@ -6,6 +6,10 @@
 		"minishell_error.h": "c",
 		"minishell.h": "c",
 		"test.h": "c",
-		"env_envp.h": "c"
+		"env_envp.h": "c",
+		"lexer_src.h": "c",
+		"lexer_tok.h": "c",
+		"lexer_utils.h": "c",
+		"stdlib.h": "c"
 	}
 }
