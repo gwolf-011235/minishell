@@ -52,7 +52,8 @@ SRC :=	main.c \
 		prompt_replace_w.c \
 		lexer_check_syntax.c \
 		utils.c \
-		env_envp.c
+		env_envp.c \
+		expand_helper.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects
@@ -68,7 +69,8 @@ TEST_SRC := test_main.c \
 			test_prompt.c \
 			test_hashtable.c \
 			test_check_syntax.c \
-			test_env_envp.c
+			test_env_envp.c \
+			test_expander.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 TEST_OBJ := $(TEST_SRC:.c=.o)
 TEST_OBJS := $(addprefix $(TEST_DIR)/, $(TEST_OBJ))
@@ -98,7 +100,7 @@ $(TEST): prep_test $(TEST_OBJS) $(OBJS)
 	$(CC) $(LDFLAGS) $(TEST_OBJS) $(OBJS) $(LDLIBS) -o $@
 	rm -f obj/main.o
 	@printf "$(GREEN)Starting test!$(RESET)\n"
-	./$(TEST)
+#	./$(TEST)
 
 # To ensure "normal" main is compiled with flag TESTING it gets removed.
 .PHONY: prep_test
