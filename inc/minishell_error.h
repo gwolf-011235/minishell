@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/24 10:19:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/07 13:55:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef enum e_error {
 	ERR_OUT_OF_BOUNDS, ///< A parameter has exceeded the allowed range.
 	ERR_WRONG_TOKEN, ///< A prompt substitution was not recognized.
 	ERR_SYNTAX = 2, ///< Syntax error with quotes, pipes or redirect.
+	ERR_NOT_FOUND ///< If a search failed.
 }	t_error;
 
 
