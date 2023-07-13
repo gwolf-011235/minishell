@@ -53,7 +53,8 @@ SRC :=	main.c \
 		lexer_check_syntax.c \
 		utils.c \
 		env_envp.c \
-		expand_helper.c
+		expander.c \
+		expand_tilde.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects
