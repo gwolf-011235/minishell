@@ -6,14 +6,14 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 08:17:46 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/01 18:28:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 18:36:37 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-t_hashtable	*symtab;
-char		**envp;
+extern t_hashtable	*symtab;
+extern char			**envp;
 
 void	test_env_envp_two(void)
 {
@@ -31,7 +31,7 @@ void	test_env_envp_two(void)
 		printf("This is %lu. symbol: %s\n", i + 1, envp[i]);
 		i++;
 	}
-	ft_envp_destroy(envp);
+	ft_envp_destroy(&envp);
 
 }
 
@@ -39,7 +39,7 @@ void	test_env_envp_empty(void)
 {
 	ft_envp_create(symtab, &envp);
 	printf("This is envp[0]: %p\n", envp[0]);
-	ft_envp_destroy(envp);
+	ft_envp_destroy(&envp);
 }
 
 void	test_env_envp(void)
