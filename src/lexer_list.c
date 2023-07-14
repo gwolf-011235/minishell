@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 13:34:05 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 14:07:57 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ t_error	ft_list_token(t_data *data, char *input)
 			ft_free_tok(&data->token);
 			return (err);
 		}
-		//ft_init_tok(data);
 		err = ft_tokenise(&src, &data->token);
 	}
 	return (SUCCESS);
