@@ -6,11 +6,11 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 13:28:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/11 12:35:32 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 13:12:43 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "test.h"
 #include "../inc/lexer_list.h"
 #include "../inc/lexer_tok.h"
 
@@ -32,7 +32,7 @@ void	test_lexer(void)
 	tmp = data->lst_head;
 	while (tmp)
 	{
-		ft_printf("%s", (char *)tmp->content);
+		printf("%s", (char *)tmp->content);
 		tmp = tmp->next;
 	}
 	ft_free_lst(&data->lst_head, &ft_del_content);
@@ -99,7 +99,7 @@ void	test_lexer(void)
 
 	printf("\nSimple command: <infile grep huhu|wc -l >out with newline\n");
 	str = "<infile grep huhu|wc -l >out\n";
-	ft_init_tok(data);
+	//ft_init_tok(data);
 	ft_list_token(data, str);
 	tmp = data->lst_head;
 	while (tmp)
@@ -108,4 +108,5 @@ void	test_lexer(void)
 		tmp = tmp->next;
 	}
 	ft_free_lst(&data->lst_head, &ft_del_content);
+	free(data);
 }
