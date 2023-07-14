@@ -23,7 +23,7 @@ LDLIBS := -l ft -l readline
 # Compiling
 CC := cc
 CPPFLAGS := -I $(INC_DIR) -I lib/libft
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g -gdwarf-4
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.Td
 COMPILE = $(CC) $(DEPFLAGS) $(CPPFLAGS) $(CFLAGS) -c
 POSTCOMPILE = @mv -f $(DEP_DIR)/$*.Td $(DEP_DIR)/$*.d && touch $@
@@ -50,6 +50,11 @@ SRC :=	main.c \
 		prompt_replace_u.c \
 		prompt_replace_small.c \
 		prompt_replace_w.c \
+		lexer_utils.c \
+		lexer_list.c \
+		lexer_src.c \
+		lexer_tok.c \
+		lexer_tok_utils.c \
 		lexer_check_syntax.c \
 		utils.c \
 		env_envp.c
@@ -67,6 +72,7 @@ TEST_SRC := test_main.c \
 			test_replace_token.c \
 			test_prompt.c \
 			test_hashtable.c \
+			test_lexer.c \
 			test_check_syntax.c \
 			test_env_envp.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
@@ -93,12 +99,11 @@ leak: clean $(NAME)
 # Create the binary tester, which has its own test_main. To avoid compile problems it sets the
 # TESTING variable which renames "normal" main, and removes the main if it exists.
 # After compiling it removes normal main again, making regular compilation of NAME target possible.
-$(TEST): CFLAGS = -g -DTESTING
+$(TEST): CFLAGS = -g -DTESTING -gdwarf-4
 $(TEST): prep_test $(TEST_OBJS) $(OBJS)
 	$(CC) $(LDFLAGS) $(TEST_OBJS) $(OBJS) $(LDLIBS) -o $@
 	rm -f obj/main.o
 	@printf "$(GREEN)Starting test!$(RESET)\n"
-	./$(TEST)
 
 # To ensure "normal" main is compiled with flag TESTING it gets removed.
 .PHONY: prep_test
@@ -164,3 +169,15 @@ re: fclean all
 
 # Include the dependency files that exist. Use wildcard to avoid failing on non-existent files.
 include $(wildcard $(DEPFILES))
+
+# Perform memory check on leaks
+.PHONY: valgr
+valgr:			
+	@valgrind --leak-check=full\
+			--show-leak-kinds=all\
+			--trace-children=no\
+			--track-fds=no\
+			--log-file=valgrind-out.txt\
+			./test
+	@less ./valgrind-out.txt
+	

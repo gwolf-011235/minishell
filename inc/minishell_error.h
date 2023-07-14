@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_error.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/24 10:19:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/08 16:02:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
  *
  */
 typedef enum e_error {
+	ERR_EOF = -1,
 	SUCCESS, ///< All went well.
 	ERR_MALLOC, ///< Malloc failed.
 	ERR_UNDEFINED, ///< Something happened which shouldn't.

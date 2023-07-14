@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/08 16:03:12 by sqiu             ###   ########.fr       */
+/*   Created: 2023/06/23 13:13:38 by sqiu              #+#    #+#             */
+/*   Updated: 2023/06/23 16:46:31 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
+#ifndef LEXER_H
+# define LEXER_H
+
+/* ====== Includes ====== */
 
 # include "minishell.h"
+# include "lexer_utils.h"
 
-void	test_hashtable(void);
-void	test_replace_token(void);
-void	test_prompt(void);
-void	test_lexer(void);
-void	test_check_syntax(void);
-void	test_env_envp(void);
+/* ====== Functions ====== */
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/06 16:32:53 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 13:50:48 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
  */
 
 #include "minishell.h"
+#include "lexer_list.h"
+#include "lexer_tok_utils.h"
 
 #ifdef TESTING
 # define main not_main
@@ -46,7 +48,7 @@ int	main(int argc, char **argv)
 		if (!input)
 			break ;
 		add_history(input);
-		printf("Input: %s\n", input);
+		ft_list_token(data, input);
 		//do stuff
 		free(input);
 		free(data->prompt1);

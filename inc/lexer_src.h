@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   lexer_src.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/08 16:03:12 by sqiu             ###   ########.fr       */
+/*   Created: 2023/07/02 15:27:37 by sqiu              #+#    #+#             */
+/*   Updated: 2023/07/07 21:08:09 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
+#ifndef LEXER_SRC_H
+# define LEXER_SRC_H
 
-# include "minishell.h"
+/* ====== Includes ====== */
 
-void	test_hashtable(void);
-void	test_replace_token(void);
-void	test_prompt(void);
-void	test_lexer(void);
-void	test_check_syntax(void);
-void	test_env_envp(void);
+//# include "minishell.h"
+
+/* ====== Definitions ====== */
+
+//# define EOF (-1)
+# define INIT_SRC_POS (-2)
+
+typedef struct s_src
+{
+	char	*buf;
+	int		buf_size;
+	int		cur_pos;	
+}	t_src;
+
+/* ====== Functions ====== */
+
+t_error	ft_next_char(t_src *src, char *c);
+void	ft_unget_char(t_src *src);
+t_error	ft_peek_char(t_src *src, char *c);
 
 #endif
