@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 11:13:56 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 12:16:29 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ t_error	ft_expand_words(char **word, t_hashtable *symtab);
 t_error	ft_insert_replace(char **input, size_t pos, t_tok token, t_tok replace);
 
 t_error	ft_expand_tilde(char **input, t_hashtable *symtab, size_t *pos);
+
+t_error	ft_expand_var(char **input, t_hashtable *symtab, size_t *pos);
 
 #endif
