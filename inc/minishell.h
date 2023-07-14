@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/13 19:58:27 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 13:47:30 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ typedef struct s_checks {
 	bool	no_pwd;
 }	t_checks;
 
+typedef struct s_info {
+	size_t	ret_code;
+	char	*shell_name;
+}	t_info;
+
 /**
  * @brief Overarching struct to hold all necessarry data.
  *
@@ -74,6 +79,7 @@ typedef struct s_data {
 	t_error		err;
 	char		*prompt1;
 	char		*prompt2;
+	t_info		info;
 }	t_data;
 
 /**
