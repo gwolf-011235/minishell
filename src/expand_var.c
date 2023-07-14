@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 12:32:28 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 14:13:18 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,34 @@ t_error	ft_get_var_token(char *input, size_t pos, t_tok *token)
 	return (SUCCESS);
 }
 
-t_error	ft_expand_var(char **input, t_hashtable *symtab, size_t *pos)
+t_error	ft_special_var(char c, t_tok *replace, t_tok *token, t_info *info)
+{
+	token->len = 1;
+	if (c == '0')
+		replace->str = ft_strdup(info->shell_name);
+	else if (c == '?')
+		replace->str = ft_itoa(info->ret_code);
+	if (!replace->str)
+		return (ERR_MALLOC);
+	replace->len = ft_strlen(replace->str);
+	return (SUCCESS);
+}
+
+t_error	ft_expand_var(char **input, t_hashtable *symtab, size_t *pos, t_info *info)
 {
 	t_tok	token;
 	t_tok	replace;
 	t_error	err;
 
-	//special tokens $? and §0
-	err = ft_get_var_token(*input, *pos, &token);
-	if (token.len == 0)
-		return (SUCCESS);
-	err = ft_get_var_replace(token, symtab, &replace);
+	if ((*input)[*pos + 1] == '0' || (*input)[*pos + 1] == '?')
+		err = ft_special_var((*input)[*pos + 1], &replace, &token, info);
+	else
+	{
+		err = ft_get_var_token(*input, *pos, &token);
+		if (token.len == 0)
+			return (SUCCESS);
+		err = ft_get_var_replace(token, symtab, &replace);
+	}
 	if (err != SUCCESS)
 		return (err);
 	token.len++;
@@ -56,5 +73,5 @@ t_error	ft_expand_var(char **input, t_hashtable *symtab, size_t *pos)
 	if (replace.len > 0)
 		free (replace.str);
 	*pos += replace.len;
-	return (SUCCESS);
+	return (err);
 }
