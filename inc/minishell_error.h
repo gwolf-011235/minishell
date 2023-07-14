@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/07 13:55:02 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 19:43:38 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
  *
  */
 typedef enum e_error {
+	ERR_EOF = -1,
 	SUCCESS, ///< All went well.
 	ERR_MALLOC, ///< Malloc failed.
 	ERR_UNDEFINED, ///< Something happened which shouldn't.

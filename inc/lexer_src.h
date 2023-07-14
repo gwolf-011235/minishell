@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_failure.c                                     :+:      :+:    :+:   */
+/*   lexer_src.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 16:57:29 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 19:17:42 by sqiu             ###   ########.fr       */
+/*   Created: 2023/07/02 15:27:37 by sqiu              #+#    #+#             */
+/*   Updated: 2023/07/14 19:15:34 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @file exit_failure.c
- * @brief Contains failure function to cleanup
- */
+#ifndef LEXER_SRC_H
+# define LEXER_SRC_H
 
-#include "minishell.h"
+/* ====== Includes ====== */
 
-void	ft_exit_failure(t_data *data, t_error exit_code)
+//# include "minishell.h"
+
+/* ====== Definitions ====== */
+
+# define INIT_SRC_POS -2
+
+typedef struct s_src
 {
-	(void)exit_code;
-	ft_hashtable_destroy(data->env_table);
-	exit(errno);
-}
+	char	*buf;
+	int		buf_size;
+	int		cur_pos;	
+}	t_src;
+
+/* ====== Functions ====== */
+
+t_error	ft_next_char(t_src *src, char *c);
+void	ft_unget_char(t_src *src);
+t_error	ft_peek_char(t_src *src, char *c);
+
+#endif

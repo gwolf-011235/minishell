@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_check_syntax.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:43:24 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/24 11:33:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 19:19:05 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_error	ft_check_pipe(const char *input, size_t pos)
 
 	i = 0;
 	while (ft_is_space(input[i]))
-			i++;
+		i++;
 	if (i == pos)
 	{
 		printf(SYNTAX_TOKEN, input[pos]);

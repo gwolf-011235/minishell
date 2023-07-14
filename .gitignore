@@ -13,3 +13,6 @@ test
 
 # Documentaion
 html/
+
+# Text files
+*.txt

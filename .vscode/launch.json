@@ -27,7 +27,7 @@
 					"ignoreFailures": true
 				}
 			],
-			"preLaunchTask": make test
+			"preLaunchTask": "make test"
 		},
 		{
 			"name": "minishell",

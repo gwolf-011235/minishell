@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:22:18 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/13 22:07:39 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 19:45:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,3 +91,4 @@ int	ft_strcmp(const char *str1, const char *str2)
 	}
 	return ((int)(unsigned char)(*str1) - (int)(unsigned char)(*str2));
 }
+
