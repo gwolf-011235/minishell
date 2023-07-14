@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hashtable.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:07:23 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/07 11:15:29 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 19:14:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ typedef struct s_hashtable {
 	uint32_t		num_elements;
 	t_env_var		**elements;
 }	t_hashtable;
-
 
 //hashtable_generate.c
 uint64_t	ft_hash_fnv1(const char *string, size_t len);

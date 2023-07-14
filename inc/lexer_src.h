@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 15:27:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/07 21:08:09 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 19:15:34 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 
 /* ====== Definitions ====== */
 
-//# define EOF (-1)
-# define INIT_SRC_POS (-2)
+# define INIT_SRC_POS -2
 
 typedef struct s_src
 {

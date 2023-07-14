@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 14:34:06 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 19:16:58 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@
 # include "minishell_error.h"
 # include "hashtable.h"
 
-
 /* ====== DEFINITIONS ====== */
-
 
 # define HASHTABLE_SIZE 10
 # define MAX_SHLVL 10
