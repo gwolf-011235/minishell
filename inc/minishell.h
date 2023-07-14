@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/12 21:15:55 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 14:34:06 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ typedef t_error		(*t_replace_ptr)(char **replacement, t_hashtable *sym_tab);
  * 
  * Includes token string and the token size.
  * @param tok String containing token.
- * @param tok_size Size of token string.
+ * @param size Size of token string.
  */
 typedef struct s_tok
 {
 	char	*tok;
-	int		tok_size;
+	int		size;
 }	t_tok;
 
 /**

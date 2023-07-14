@@ -6,11 +6,13 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:46:44 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/12 22:04:51 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 15:52:12 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "lexer_src.h"
+#include "lexer_tok.h"
 #include "lexer_tok_utils.h"
 
 /**
@@ -48,19 +50,19 @@ void	ft_free_tok(t_tok *token)
  * @param buf_pos 	Current position in buffer string.
  * @return t_error 	ERR_MALLOC, SUCCESS
  */
-t_error	ft_add_to_buf(char c, char *buf, int *buf_size, int *buf_pos)
+t_error	ft_add_to_buf(char c, t_buf *tmp)
 {
-	char	*tmp;
+	char	*temp;
 
-	buf[*buf_pos] = c;
-	(*buf_pos)++;
-	if (*buf_pos >= *buf_size)
+	tmp->str[tmp->cur_pos] = c;
+	tmp->cur_pos++;
+	if (tmp->cur_pos >= tmp->size)
 	{
-		tmp = ft_realloc(buf, (*buf_size * 2), *buf_size);
-		if (!tmp)
+		temp = ft_realloc(tmp->str, (tmp->size * 2), tmp->size);
+		if (!temp)
 			return (ERR_MALLOC);
-		buf = tmp;
-		*buf_size *= 2;
+		tmp->str = temp;
+		tmp->size *= 2;
 	}
 	return (SUCCESS);
 }

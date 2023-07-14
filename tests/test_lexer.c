@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 13:28:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 13:48:59 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 15:57:26 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,17 @@ void	test_lexer(void)
 		tmp = tmp->next;
 	}
 	ft_free_lst(&data->lst_head);
+
+	printf("\nSimple command: export string=\"hello world\" with newline\n");
+	str = "export string=\"hello world\"\n";
+	ft_list_token(data, str);
+	tmp = data->lst_head;
+	while (tmp)
+	{
+		ft_printf("%s", (char *)tmp->content);
+		tmp = tmp->next;
+	}
+	ft_free_lst(&data->lst_head);
+
 	free(data);
 }
