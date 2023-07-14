@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 13:28:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 13:35:24 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 13:48:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	test_lexer(void)
 
 	printf("\nSimple command: ls\n");
 	str = "ls";
-	ft_init_tok(data);
 	ft_list_token(data, str);
 	tmp = data->lst_head;
 	while (tmp)
@@ -39,7 +38,6 @@ void	test_lexer(void)
 
 	printf("\nSimple command: ls with newline\n");
 	str = "ls\n";
-	ft_init_tok(data);
 	ft_list_token(data, str);
 	tmp = data->lst_head;
 	while (tmp)
@@ -51,7 +49,6 @@ void	test_lexer(void)
 
 	printf("\nSimple command: ls -la with newline\n");
 	str = "ls -la\n";
-	ft_init_tok(data);
 	ft_list_token(data, str);
 	tmp = data->lst_head;
 	while (tmp)
@@ -63,7 +60,6 @@ void	test_lexer(void)
 
 	printf("\nSimple command: ls                     -la with newline\n");
 	str = "ls                     -la\n";
-	ft_init_tok(data);
 	ft_list_token(data, str);
 	tmp = data->lst_head;
 	while (tmp)
@@ -75,7 +71,6 @@ void	test_lexer(void)
 
 	printf("\nSimple command: <infile grep huhu >out with newline\n");
 	str = "<infile grep huhu >out\n";
-	ft_init_tok(data);
 	ft_list_token(data, str);
 	tmp = data->lst_head;
 	while (tmp)
@@ -87,7 +82,6 @@ void	test_lexer(void)
 
 	printf("\nSimple command: <infile grep huhu | wc -l >out with newline\n");
 	str = "<infile grep huhu | wc -l >out\n";
-	ft_init_tok(data);
 	ft_list_token(data, str);
 	tmp = data->lst_head;
 	while (tmp)
@@ -99,7 +93,6 @@ void	test_lexer(void)
 
 	printf("\nSimple command: <infile grep huhu|wc -l >out with newline\n");
 	str = "<infile grep huhu|wc -l >out\n";
-	//ft_init_tok(data);
 	ft_list_token(data, str);
 	tmp = data->lst_head;
 	while (tmp)

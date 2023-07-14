@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/12 22:47:13 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 13:50:48 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	main(int argc, char **argv)
 		if (!input)
 			break ;
 		add_history(input);
-		ft_init_tok(data);
 		ft_list_token(data, input);
 		//do stuff
 		free(input);
