@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 12:17:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 12:39:43 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ t_error	ft_expand_words(char **word, t_hashtable *symtab)
 		else if ((*word)[i] == '~' && !in_double_quotes)
 			ft_expand_tilde(word, symtab, &i);
 		else if ((*word)[i] == '$')
-			ft_expand_var();
-		i++;
+			ft_expand_var(word, symtab, &i);
+		else
+			i++;
 	}
 	return (SUCCESS);
 }
