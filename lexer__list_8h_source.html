@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('lexer__list_8h_source.html',''); initR
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*   By: sqiu &lt;sqiu@student.42vienna.com&gt;           +#+  +:+       +#+        */</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">/*                                                +#+#+#+#+#+   +#+           */</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">/*   Created: 2023/06/26 16:57:49 by sqiu              #+#    #+#             */</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/07/14 13:32:18 by sqiu             ###   ########.fr       */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/07/14 19:14:10 by sqiu             ###   ########.fr       */</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/*                                                                            */</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* ************************************************************************** */</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
@@ -115,21 +115,19 @@ $(document).ready(function(){initNavTree('lexer__list_8h_source.html',''); initR
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">/* ====== Definitions ====== */</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">/* ====== Functions ====== */</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">/* ====== Functions ====== */</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<a class="code" href="minishell__error_8h.html#a3afa13b5cd1d40f4f5a9a96bf55368a2">t_error</a> ft_list_token(<a class="code" href="structs__data.html">t_data</a> *data, <span class="keywordtype">char</span> *input);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">void</span>    ft_init_lexer(<a class="code" href="structs__src.html">t_src</a> *src, <span class="keywordtype">char</span> *input);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<a class="code" href="minishell__error_8h.html#a3afa13b5cd1d40f4f5a9a96bf55368a2">t_error</a> ft_new_node(<a class="code" href="structs__data.html">t_data</a> *data, <span class="keywordtype">char</span> *content);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">void</span>    ft_free_lst(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> **lst);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">void</span>    ft_add_list(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> **lst, <a class="code" href="structs__tkn__list.html">t_tkn_list</a> *<span class="keyword">new</span>);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<a class="code" href="minishell__error_8h.html#a3afa13b5cd1d40f4f5a9a96bf55368a2">t_error</a> ft_list_token(<a class="code" href="structs__data.html">t_data</a> *data, <span class="keywordtype">char</span> *input);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span>    ft_init_lexer(<a class="code" href="structs__src.html">t_src</a> *src, <span class="keywordtype">char</span> *input);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<a class="code" href="minishell__error_8h.html#a3afa13b5cd1d40f4f5a9a96bf55368a2">t_error</a> ft_new_node(<a class="code" href="structs__data.html">t_data</a> *data, <span class="keywordtype">char</span> *content);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">void</span>    ft_free_lst(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> **lst);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">void</span>    ft_add_list(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> **lst, <a class="code" href="structs__tkn__list.html">t_tkn_list</a> *<span class="keyword">new</span>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aminishell__error_8h_html_a3afa13b5cd1d40f4f5a9a96bf55368a2"><div class="ttname"><a href="minishell__error_8h.html#a3afa13b5cd1d40f4f5a9a96bf55368a2">t_error</a></div><div class="ttdeci">enum e_error t_error</div><div class="ttdoc">Enum, which contains all error codes.</div></div>
-<div class="ttc" id="astructs__data_html"><div class="ttname"><a href="structs__data.html">s_data</a></div><div class="ttdoc">Overarching struct to hold all necessarry data.</div><div class="ttdef"><b>Definition:</b> minishell.h:134</div></div>
-<div class="ttc" id="astructs__src_html"><div class="ttname"><a href="structs__src.html">s_src</a></div><div class="ttdef"><b>Definition:</b> lexer_src.h:26</div></div>
-<div class="ttc" id="astructs__tkn__list_html"><div class="ttname"><a href="structs__tkn__list.html">s_tkn_list</a></div><div class="ttdoc">List of token.</div><div class="ttdef"><b>Definition:</b> minishell.h:78</div></div>
+<div class="ttc" id="astructs__data_html"><div class="ttname"><a href="structs__data.html">s_data</a></div><div class="ttdoc">Overarching struct to hold all necessarry data.</div><div class="ttdef"><b>Definition:</b> minishell.h:132</div></div>
+<div class="ttc" id="astructs__src_html"><div class="ttname"><a href="structs__src.html">s_src</a></div><div class="ttdef"><b>Definition:</b> lexer_src.h:25</div></div>
+<div class="ttc" id="astructs__tkn__list_html"><div class="ttname"><a href="structs__tkn__list.html">s_tkn_list</a></div><div class="ttdoc">List of token.</div><div class="ttdef"><b>Definition:</b> minishell.h:76</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
