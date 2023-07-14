@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 13:08:31 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 13:57:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_error	ft_create_tok(t_tok *token, char *s)
 	if (!token || !s)
 		return (ERR_EMPTY);
 	token->tok_size = ft_strlen(s);
+	if (!token->tok_size)
+		return (ERR_EOF);
 	token->tok = malloc(token->tok_size + 1);
 	if (!token->tok)
 		return (ERR_MALLOC);
