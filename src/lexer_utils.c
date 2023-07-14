@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:40:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/12 21:44:20 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 13:30:35 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,12 @@ t_error	ft_skip_space(t_src *src)
  * @param lst List containing the nodes to be deleted.
  * @param del Pointer to function to delete content of nodes.
  */
-void	ft_del_node(t_tkn_list *lst, void (*del)(void*))
+void	ft_del_node(t_tkn_list *lst)
 {
-	if (!lst || !del)
+	if (!lst)
 		return ;
-	(*del)(lst -> content);
+	free(lst -> content);
 	free(lst);
-}
-
-/**
- * @brief Delete the content of the node.
- * 
- * @param s Content of node.
- */
-void	ft_del_content(void *s)
-{
-	if (!s)
-		return ;
-	s = "";
 }
 
 /**

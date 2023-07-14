@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 13:28:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 13:12:43 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 13:35:24 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	test_lexer(void)
 		printf("%s", (char *)tmp->content);
 		tmp = tmp->next;
 	}
-	ft_free_lst(&data->lst_head, &ft_del_content);
+	ft_free_lst(&data->lst_head);
 
 	printf("\nSimple command: ls with newline\n");
 	str = "ls\n";
@@ -47,7 +47,7 @@ void	test_lexer(void)
 		ft_printf("%s", (char *)tmp->content);
 		tmp = tmp->next;
 	}
-	ft_free_lst(&data->lst_head, &ft_del_content);
+	ft_free_lst(&data->lst_head);
 
 	printf("\nSimple command: ls -la with newline\n");
 	str = "ls -la\n";
@@ -59,7 +59,7 @@ void	test_lexer(void)
 		ft_printf("%s", (char *)tmp->content);
 		tmp = tmp->next;
 	}
-	ft_free_lst(&data->lst_head, &ft_del_content);
+	ft_free_lst(&data->lst_head);
 
 	printf("\nSimple command: ls                     -la with newline\n");
 	str = "ls                     -la\n";
@@ -71,7 +71,7 @@ void	test_lexer(void)
 		ft_printf("%s", (char *)tmp->content);
 		tmp = tmp->next;
 	}
-	ft_free_lst(&data->lst_head, &ft_del_content);
+	ft_free_lst(&data->lst_head);
 
 	printf("\nSimple command: <infile grep huhu >out with newline\n");
 	str = "<infile grep huhu >out\n";
@@ -83,7 +83,7 @@ void	test_lexer(void)
 		ft_printf("%s", (char *)tmp->content);
 		tmp = tmp->next;
 	}
-	ft_free_lst(&data->lst_head, &ft_del_content);
+	ft_free_lst(&data->lst_head);
 
 	printf("\nSimple command: <infile grep huhu | wc -l >out with newline\n");
 	str = "<infile grep huhu | wc -l >out\n";
@@ -95,7 +95,7 @@ void	test_lexer(void)
 		ft_printf("%s", (char *)tmp->content);
 		tmp = tmp->next;
 	}
-	ft_free_lst(&data->lst_head, &ft_del_content);
+	ft_free_lst(&data->lst_head);
 
 	printf("\nSimple command: <infile grep huhu|wc -l >out with newline\n");
 	str = "<infile grep huhu|wc -l >out\n";
@@ -107,6 +107,6 @@ void	test_lexer(void)
 		ft_printf("%s", (char *)tmp->content);
 		tmp = tmp->next;
 	}
-	ft_free_lst(&data->lst_head, &ft_del_content);
+	ft_free_lst(&data->lst_head);
 	free(data);
 }
