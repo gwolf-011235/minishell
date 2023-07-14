@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 11:14:40 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 12:48:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ t_error	ft_expand_tilde(char **input, t_hashtable *symtab, size_t *pos)
 	replace.str = NULL;
 	err = ft_get_tilde_replace(token, symtab, &replace);
 	if (err == ERR_NOT_FOUND)
+	{
+		(*pos)++;
 		return (SUCCESS);
+	}
 	if (err != SUCCESS)
 		return (err);
 	err = ft_insert_replace(input, *pos, token, replace);
