@@ -6,10 +6,14 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 14:07:57 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 19:38:13 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file lexer_list.c
+ * @brief Contains functions to create a double-linked list of tokens.
+ */
 #include "minishell.h"
 #include "lexer_list.h"
 #include "lexer_utils.h"

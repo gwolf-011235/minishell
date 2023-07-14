@@ -6,10 +6,14 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:40:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 13:30:35 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 19:47:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file lexer_utils.c
+ * @brief Contains helper functions to create the token list.
+ */
 #include "minishell.h"
 #include "lexer_utils.h"
 

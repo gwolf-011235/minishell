@@ -6,10 +6,14 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 15:27:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/12 22:48:54 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 19:43:39 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file lexer_src.c
+ * @brief Contains functions to handle source string.
+ */
 #include "minishell.h"
 #include "lexer_src.h"
 

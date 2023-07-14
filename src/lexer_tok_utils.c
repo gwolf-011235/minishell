@@ -6,28 +6,18 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:46:44 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 15:52:12 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 19:45:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file lexer_tok_utils.c
+ * @brief Contains helper functions for tokenising.
+ */
 #include "minishell.h"
 #include "lexer_src.h"
 #include "lexer_tok.h"
 #include "lexer_tok_utils.h"
-
-/**
- * @brief Initiate token by reserving 1 Byte of memory space.
- * 
- * @param data 		Struct containing the token.
- * @return t_error	ERR_MALLOC, SUCCESS
- */
-t_error	ft_init_tok(t_data *data)
-{
-	data->token.tok = malloc(1);
-	if (!data->token.tok)
-		return (ERR_MALLOC);
-	return (SUCCESS);
-}
 
 /**
  * @brief Free token string.
