@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 12:15:29 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 12:32:28 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ t_error	ft_expand_var(char **input, t_hashtable *symtab, size_t *pos)
 	err = ft_get_var_replace(token, symtab, &replace);
 	if (err != SUCCESS)
 		return (err);
-	err = ft_insert_replace(*input, *pos, token, replace);
+	token.len++;
+	err = ft_insert_replace(input, *pos, token, replace);
 	if (replace.len > 0)
 		free (replace.str);
 	*pos += replace.len;
