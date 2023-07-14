@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 12:48:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 13:20:10 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_error	ft_get_tilde_token(char *input, size_t pos, t_tok *token)
 		token->str = "~-";
 		pos++;
 	}
-	if (input[pos] != '\\' && input[pos] != '\0')
+	if (input[pos] != '/' && input[pos] != '\0')
 		token->str = NULL;
 	if (token->str)
 		token->len = ft_strlen(token->str);
