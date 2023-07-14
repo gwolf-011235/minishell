@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 13:48:01 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 18:22:46 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ t_error	ft_handle_single_quote(char *word, size_t *pos)
 	return (SUCCESS);
 }
 
+t_error	ft_handle_double_quote(char *word, size_t pos, bool *in_double_quotes)
+{
+	ft_eat_char(word, pos);
+	*in_double_quotes = !(*in_double_quotes);
+	return (SUCCESS);
+}
+
 t_error	ft_expand_expr(char **word, t_hashtable *symtab, t_info *info)
 {
 	size_t	i;
@@ -64,15 +71,13 @@ t_error	ft_expand_expr(char **word, t_hashtable *symtab, t_info *info)
 
 	i = 0;
 	in_double_quotes = false;
+	err = SUCCESS;
 	while ((*word)[i])
 	{
 		if ((*word)[i] == '\'' && !in_double_quotes)
 			ft_handle_single_quote(*word, &i);
 		else if ((*word)[i] == '"')
-		{
-			ft_eat_char(*word, i);
-			in_double_quotes = !in_double_quotes;
-		}
+			ft_handle_double_quote(*word, i, &in_double_quotes);
 		else if ((*word)[i] == '~' && !in_double_quotes)
 			err = ft_expand_tilde(word, symtab, &i);
 		else if ((*word)[i] == '$')
