@@ -111,6 +111,15 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a30f762062988814a7d09f7326df10831"><td class="memItemLeft" align="right" valign="top"><a id="a30f762062988814a7d09f7326df10831"></a>
 <a class="el" href="minishell__error_8h.html#a3afa13b5cd1d40f4f5a9a96bf55368a2">t_error</a>&#160;</td><td class="memItemRight" valign="bottom"><b>err</b></td></tr>
 <tr class="separator:a30f762062988814a7d09f7326df10831"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a026be852d88a409faa4affbab34698dc"><td class="memItemLeft" align="right" valign="top"><a id="a026be852d88a409faa4affbab34698dc"></a>
+<a class="el" href="minishell_8h.html#a645b2343c2e39e81f91aef14bb100d63">t_tok</a>&#160;</td><td class="memItemRight" valign="bottom"><b>token</b></td></tr>
+<tr class="separator:a026be852d88a409faa4affbab34698dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab391df5a937ff52513a3d93bf6d48ef1"><td class="memItemLeft" align="right" valign="top"><a id="ab391df5a937ff52513a3d93bf6d48ef1"></a>
+<a class="el" href="minishell_8h.html#a1501ea25e9d50f7c9372c07c6df68109">t_tkn_list</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>lst_head</b></td></tr>
+<tr class="separator:ab391df5a937ff52513a3d93bf6d48ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb9052dc36768974890642d415395580"><td class="memItemLeft" align="right" valign="top"><a id="abb9052dc36768974890642d415395580"></a>
+<a class="el" href="minishell_8h.html#a4fac5b0c1334043d22fc2631fd6277c7">t_cmd</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>cmds</b></td></tr>
+<tr class="separator:abb9052dc36768974890642d415395580"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac347c0c2870bc29e171377983ad23cc"><td class="memItemLeft" align="right" valign="top"><a id="aac347c0c2870bc29e171377983ad23cc"></a>
 char *&#160;</td><td class="memItemRight" valign="bottom"><b>prompt1</b></td></tr>
 <tr class="separator:aac347c0c2870bc29e171377983ad23cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,6 +134,9 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><b>prompt2</b></td></t
     <tr><td class="paramname">env_table</td><td>Pointer to the env hashtable. </td></tr>
     <tr><td class="paramname">checks</td><td>Struct with some flags. </td></tr>
     <tr><td class="paramname">err</td><td>Can hold an error code if data is available - maybe del. </td></tr>
+    <tr><td class="paramname">token</td><td>Struct containing the current token and its size. </td></tr>
+    <tr><td class="paramname">lst_head</td><td>Pointer to first node of token list. </td></tr>
+    <tr><td class="paramname">cmds</td><td>List of structs containing simple commands. </td></tr>
   </table>
   </dd>
 </dl>

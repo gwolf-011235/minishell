@@ -2,6 +2,7 @@ var minishell__error_8h =
 [
     [ "t_error", "minishell__error_8h.html#a3afa13b5cd1d40f4f5a9a96bf55368a2", null ],
     [ "e_error", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8", [
+      [ "ERR_EOF", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a01136a83e3a8d5ba40e3f12d7e03ced4", null ],
       [ "SUCCESS", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8ac7f69f7c9e5aea9b8f54cf02870e2bf8", null ],
       [ "ERR_MALLOC", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8ae3b87db92437e1daf0e1013442b79b56", null ],
       [ "ERR_UNDEFINED", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a5bb280b3fe12d695d5a7c158f93eb603", null ],
