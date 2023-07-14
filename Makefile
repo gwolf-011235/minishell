@@ -23,7 +23,7 @@ LDLIBS := -l ft -l readline
 # Compiling
 CC := cc
 CPPFLAGS := -I $(INC_DIR) -I lib/libft
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g -gdwarf-4
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.Td
 COMPILE = $(CC) $(DEPFLAGS) $(CPPFLAGS) $(CFLAGS) -c
 POSTCOMPILE = @mv -f $(DEP_DIR)/$*.Td $(DEP_DIR)/$*.d && touch $@
@@ -99,7 +99,7 @@ leak: clean $(NAME)
 # Create the binary tester, which has its own test_main. To avoid compile problems it sets the
 # TESTING variable which renames "normal" main, and removes the main if it exists.
 # After compiling it removes normal main again, making regular compilation of NAME target possible.
-$(TEST): CFLAGS = -g -DTESTING
+$(TEST): CFLAGS = -g -DTESTING -gdwarf-4
 $(TEST): prep_test $(TEST_OBJS) $(OBJS)
 	$(CC) $(LDFLAGS) $(TEST_OBJS) $(OBJS) $(LDLIBS) -o $@
 	rm -f obj/main.o
