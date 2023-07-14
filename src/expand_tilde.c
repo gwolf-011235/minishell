@@ -6,13 +6,13 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 13:20:10 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 18:33:49 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"expander.h"
 
-t_error	ft_get_tilde_replace(t_tok token, t_hashtable *symtab, t_tok *replace)
+t_error	ft_get_tilde_replace(t_tok token, t_hashtable *symtab, t_tok *replace, size_t *pos)
 {
 	char		*target;
 	t_env_var	*env_var;
@@ -25,7 +25,10 @@ t_error	ft_get_tilde_replace(t_tok token, t_hashtable *symtab, t_tok *replace)
 		target = "OLDPWD";
 	env_var = ft_hashtable_lookup(symtab, target, ft_strlen(target));
 	if (!env_var)
+	{
+		(*pos)++;
 		return (ERR_NOT_FOUND);
+	}
 	replace->str = ft_strdup(env_var->value);
 	if (!replace->str)
 		return (ERR_MALLOC);
@@ -33,23 +36,29 @@ t_error	ft_get_tilde_replace(t_tok token, t_hashtable *symtab, t_tok *replace)
 	return (SUCCESS);
 }
 
-t_error	ft_get_tilde_token(char *input, size_t pos, t_tok *token)
+t_error	ft_get_tilde_token(char *input, size_t *pos, t_tok *token)
 {
+	size_t	i;
+
+	i = *pos;
 	token->str = "~";
-	pos++;
-	if (input[pos] == '+')
+	i++;
+	if (input[i] == '+')
 	{
 		token->str = "~+";
-		pos++;
+		i++;
 	}
-	else if (input[pos] == '-')
+	else if (input[i] == '-')
 	{
 		token->str = "~-";
-		pos++;
+		i++;
 	}
-	if (input[pos] != '/' && input[pos] != '\0')
+	if (input[i] != '/' && input[i] != '\0')
+	{
+		(*pos)++;
 		token->str = NULL;
-	if (token->str)
+	}
+	else
 		token->len = ft_strlen(token->str);
 	return (SUCCESS);
 }
@@ -63,16 +72,13 @@ t_error	ft_expand_tilde(char **input, t_hashtable *symtab, size_t *pos)
 	if (*pos != 0 && (*input)[*pos - 1] != '=')
 		return (SUCCESS);
 	token.str = NULL;
-	ft_get_tilde_token(*input, *pos, &token);
+	ft_get_tilde_token(*input, pos, &token);
 	if (!token.str)
 		return (SUCCESS);
 	replace.str = NULL;
-	err = ft_get_tilde_replace(token, symtab, &replace);
+	err = ft_get_tilde_replace(token, symtab, &replace, pos);
 	if (err == ERR_NOT_FOUND)
-	{
-		(*pos)++;
 		return (SUCCESS);
-	}
 	if (err != SUCCESS)
 		return (err);
 	err = ft_insert_replace(input, *pos, token, replace);
