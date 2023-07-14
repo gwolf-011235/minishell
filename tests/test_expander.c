@@ -6,15 +6,14 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/13 21:40:05 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 12:37:34 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
+#include "expander.h"
 
-t_error	ft_expand_words(char **word, t_hashtable *symtab);
-
-void	test_expand_empty(t_hashtable *symtab)
+void	tilde_empty(t_hashtable *symtab)
 {
 	char	*string;
 
@@ -26,7 +25,7 @@ void	test_expand_empty(t_hashtable *symtab)
 	free(string);
 }
 
-void	test_expand_normal(t_hashtable *symtab)
+void	tilde_normal(t_hashtable *symtab)
 {
 	char	*string;
 
@@ -48,7 +47,7 @@ void	test_expand_normal(t_hashtable *symtab)
 	free(string);
 }
 
-void	test_expand_assign(t_hashtable *symtab)
+void	tilde_assign(t_hashtable *symtab)
 {
 	char	*string;
 
@@ -60,6 +59,43 @@ void	test_expand_assign(t_hashtable *symtab)
 	free(string);
 }
 
+void	var_normal(t_hashtable *symtab)
+{
+	char	*string;
+
+	printf("\tTEST: var normal\n");
+	string = ft_strdup("$TEST");
+	printf("String = '%s'\n", string);
+	ft_expand_words(&string, symtab);
+	printf("Result: '%s'\n", string);
+	free(string);
+}
+
+void	var_empty(t_hashtable *symtab)
+{
+	char	*string;
+
+	printf("\tTEST: var empty\n");
+	string = ft_strdup("$NO");
+	printf("String = '%s'\n", string);
+	ft_expand_words(&string, symtab);
+	printf("Result: '%s'\n", string);
+	free(string);
+}
+
+void	var_double(t_hashtable *symtab)
+{
+	char	*string;
+
+	printf("\tTEST: var double\n");
+	string = ft_strdup("$TEST$TEST");
+	printf("String = '%s'\n", string);
+	ft_expand_words(&string, symtab);
+	printf("Result: '%s'\n", string);
+	free(string);
+
+}
+
 void	test_expand(void)
 {
 	t_hashtable	*symtab;
@@ -67,11 +103,15 @@ void	test_expand(void)
 
 	printf("**\tTEST_EXPAND\t**\n");
 	symtab = ft_hashtable_create(1, ft_hash_fnv1);
-	test_expand_empty(symtab);
+	tilde_empty(symtab);
 	ft_hashtable_insert(symtab, ft_strdup("HOME=/this/is/home"), 4);
 	ft_hashtable_insert(symtab, ft_strdup("PWD=/this/is/PWD"), 3);
 	ft_hashtable_insert(symtab, ft_strdup("OLDPWD=/this/is/OLDPWD"), 6);
-	test_expand_normal(symtab);
-	test_expand_assign(symtab);
+	tilde_normal(symtab);
+	tilde_assign(symtab);
+	ft_hashtable_insert(symtab, ft_strdup("TEST=I am test"), 4);
+	var_normal(symtab);
+	var_empty(symtab);
+	var_double(symtab);
 	ft_hashtable_destroy(symtab);
 }
