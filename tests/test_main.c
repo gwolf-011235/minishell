@@ -6,11 +6,17 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/13 20:50:10 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 18:03:33 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
+
+char		*string;
+t_info		info;
+t_hashtable	*symtab;
+char		**envp;
+
 
 int	main(void)
 {
