@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 12:39:43 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 13:48:01 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,6 @@ t_error	ft_eat_char(char *input, size_t pos)
 	return (SUCCESS);
 }
 
-//get string.
-//loop through string
-//expand if condition is met.
-
 t_error	ft_handle_single_quote(char *word, size_t *pos)
 {
 	ft_eat_char(word, *pos);
@@ -60,10 +56,11 @@ t_error	ft_handle_single_quote(char *word, size_t *pos)
 	return (SUCCESS);
 }
 
-t_error	ft_expand_words(char **word, t_hashtable *symtab)
+t_error	ft_expand_expr(char **word, t_hashtable *symtab, t_info *info)
 {
 	size_t	i;
 	bool	in_double_quotes;
+	t_error	err;
 
 	i = 0;
 	in_double_quotes = false;
@@ -77,11 +74,13 @@ t_error	ft_expand_words(char **word, t_hashtable *symtab)
 			in_double_quotes = !in_double_quotes;
 		}
 		else if ((*word)[i] == '~' && !in_double_quotes)
-			ft_expand_tilde(word, symtab, &i);
+			err = ft_expand_tilde(word, symtab, &i);
 		else if ((*word)[i] == '$')
-			ft_expand_var(word, symtab, &i);
+			err = ft_expand_var(word, symtab, &i, info);
 		else
 			i++;
+		if (err != SUCCESS)
+			return (err);
 	}
 	return (SUCCESS);
 }
