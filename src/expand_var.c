@@ -6,12 +6,28 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 14:13:18 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 19:38:05 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file expand_var.c
+ * @brief Functions to handle expansion of variables.
+ */
 #include "expander.h"
 
+/**
+ * @brief Get replacement for variable.
+ *
+ * Look for the variable in environment.
+ * If not found empty string is assigned, else var is ft_strdup().
+ * Calc the replace.len
+ *
+ * @param token Info about the variable.
+ * @param symtab Environment.
+ * @param replace Pointer to struct where to save string.
+ * @return t_error SUCCESS, ERR_MALLOC.
+ */
 t_error	ft_get_var_replace(t_tok token, t_hashtable *symtab, t_tok *replace)
 {
 	t_env_var	*env_var;
@@ -27,6 +43,19 @@ t_error	ft_get_var_replace(t_tok token, t_hashtable *symtab, t_tok *replace)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Get variable name token.
+ *
+ * Sets token.str to position after $ and token.len to 0
+ * Calc the token.len:
+ * As first char after $ only underscore and ascii are allowed.
+ * After that underscore and alphanumeric are allowed.
+ *
+ * @param input String.
+ * @param pos Current position.
+ * @param token Pointer to struct.
+ * @return t_error SUCCESS.
+ */
 t_error	ft_get_var_token(char *input, size_t pos, t_tok *token)
 {
 	token->str = input + pos + 1;
@@ -38,6 +67,15 @@ t_error	ft_get_var_token(char *input, size_t pos, t_tok *token)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Handle the special variables $? and $0
+ *
+ * @param c Char representing ? or 0.
+ * @param replace Where to save replace string.
+ * @param token Used for token.len
+ * @param info Struct containing ret_code and shell_name
+ * @return t_error SUCCESS, ERR_MALLOC
+ */
 t_error	ft_special_var(char c, t_tok *replace, t_tok *token, t_info *info)
 {
 	token->len = 1;
@@ -51,6 +89,21 @@ t_error	ft_special_var(char c, t_tok *replace, t_tok *token, t_info *info)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Expand an environment variable in string.
+ *
+ * Check if special variable - handle with ft_special_var().
+ * Else search for variable name and get the variable value.
+ * Increase token.len to include $.
+ * Insert the replacement in the string.
+ * Update the position to be after the inserted replacement.
+ *
+ * @param input Input string.
+ * @param symtab Environment.
+ * @param pos Current position.
+ * @param info Struct containing ret_code and shell_name.
+ * @return t_error SUCCESS, ERR_MALLOC.
+ */
 t_error	ft_expand_var(char **input, t_hashtable *symtab, size_t *pos, t_info *info)
 {
 	t_tok	token;

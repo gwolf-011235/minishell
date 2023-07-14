@@ -6,12 +6,34 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 18:33:49 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 19:38:20 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file expand_tilde.c
+ * @brief Functions to handle expansion of tilde.
+ */
 #include	"expander.h"
 
+/**
+ * @brief Find the corresponding replacement for token.
+ *
+ * Depending on the token find env var.
+ * ~: $HOME.
+ * ~+: $PWD.
+ * ~-: $OLDPWD.
+ * If not found increase update position to account for '~' and
+ * return ERR_NOT_FOUND.
+ * If found ft_strdup() the value.
+ * Calc replace.len.
+ *
+ * @param token Contains searched for token.
+ * @param symtab Environment.
+ * @param replace Where to save replace string.
+ * @param pos Current position.
+ * @return t_error SUCCESS, ERR_NOT_FOUND, ERR_MALLOC
+ */
 t_error	ft_get_tilde_replace(t_tok token, t_hashtable *symtab, t_tok *replace, size_t *pos)
 {
 	char		*target;
@@ -36,6 +58,20 @@ t_error	ft_get_tilde_replace(t_tok token, t_hashtable *symtab, t_tok *replace, s
 	return (SUCCESS);
 }
 
+/**
+ * @brief Check for a recognised token.
+ *
+ * At first the string "~" is assigned.
+ * If '+' or '-' is found increase position and reassign
+ * Then a '/' or a '\0' has to be found, else the string is set to NULL.
+ * Also if not found increase the position to jump over the '~'.
+ * Calc the token.len.
+ *
+ * @param input String.
+ * @param pos Current position.
+ * @param token Where to save the token.
+ * @return t_error SUCCESS.
+ */
 t_error	ft_get_tilde_token(char *input, size_t *pos, t_tok *token)
 {
 	size_t	i;
@@ -63,6 +99,20 @@ t_error	ft_get_tilde_token(char *input, size_t *pos, t_tok *token)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Expand a tilde char to corresponding environment var.
+ *
+ * If position is not 0 or the char before is not '=' return.
+ * Check if recognised token (~, ~+, ~-).
+ * Get the replacement for the found token.
+ * Insert the replacement in the string.
+ * Update the position to be after the inserted string.
+ *
+ * @param input String.
+ * @param symtab Environment.
+ * @param pos Current position.
+ * @return t_error SUCCESS, ERR_MALLOC.
+ */
 t_error	ft_expand_tilde(char **input, t_hashtable *symtab, size_t *pos)
 {
 	t_tok	token;

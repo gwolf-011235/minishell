@@ -6,12 +6,25 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 18:22:46 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 19:37:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file expander.c
+ * @brief Contains driver function to handle expansion and quote removal.
+ */
 #include "expander.h"
 
+/**
+ * @brief Search for token in input string and replace with replace.
+ *
+ * @param input String.
+ * @param pos Current position.
+ * @param token Struct containing the searched for token.
+ * @param replace Struct containing the replacement.
+ * @return t_error SUCCESS, ERR_MALLOC
+ */
 t_error	ft_insert_replace(char **input, size_t pos, t_tok token, t_tok replace)
 {
 	size_t	new_len;
@@ -33,6 +46,13 @@ t_error	ft_insert_replace(char **input, size_t pos, t_tok token, t_tok replace)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Remove single char from string. Doesn't realloc.
+ *
+ * @param input String.
+ * @param pos Current position.
+ * @return t_error SUCCESS
+ */
 t_error	ft_eat_char(char *input, size_t pos)
 {
 	char	*str1;
@@ -47,23 +67,52 @@ t_error	ft_eat_char(char *input, size_t pos)
 	return (SUCCESS);
 }
 
-t_error	ft_handle_single_quote(char *word, size_t *pos)
+/**
+ * @brief Handle single quotes.
+ *
+ * @param expr String
+ * @param pos Current position
+ * @return t_error SUCCESS
+ */
+t_error	ft_handle_single_quote(char *expr, size_t *pos)
 {
-	ft_eat_char(word, *pos);
-	while (word[*pos] != '\'')
+	ft_eat_char(expr, *pos);
+	while (expr[*pos] != '\'')
 		(*pos)++;
-	ft_eat_char(word, *pos);
+	ft_eat_char(expr, *pos);
 	return (SUCCESS);
 }
 
-t_error	ft_handle_double_quote(char *word, size_t pos, bool *in_double_quotes)
+/**
+ * @brief Handle double quotes.
+ *
+ * @param expr String.
+ * @param pos Current position
+ * @param in_double_quotes Pointer to change switch
+ * @return t_error SUCCESS
+ */
+t_error	ft_handle_double_quote(char *expr, size_t pos, bool *in_double_quotes)
 {
-	ft_eat_char(word, pos);
+	ft_eat_char(expr, pos);
 	*in_double_quotes = !(*in_double_quotes);
 	return (SUCCESS);
 }
 
-t_error	ft_expand_expr(char **word, t_hashtable *symtab, t_info *info)
+/**
+ * @brief Expand expressions received from token list.
+ *
+ * Go through the string and check for special chars.
+ * Tilde: ft_expand_tilde().
+ * $: ft_expand_var().
+ * Single quote: jump over quoted part and remove quotes.
+ * Double quote: switch in_quotes on/off and remove quote.
+ *
+ * @param expr The expression to be expanded.
+ * @param symtab The environment table
+ * @param info Data for return code and shell name.
+ * @return t_error SUCCESS, ERR_MALLOC
+ */
+t_error	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info)
 {
 	size_t	i;
 	bool	in_double_quotes;
@@ -72,16 +121,16 @@ t_error	ft_expand_expr(char **word, t_hashtable *symtab, t_info *info)
 	i = 0;
 	in_double_quotes = false;
 	err = SUCCESS;
-	while ((*word)[i])
+	while ((*expr)[i])
 	{
-		if ((*word)[i] == '\'' && !in_double_quotes)
-			ft_handle_single_quote(*word, &i);
-		else if ((*word)[i] == '"')
-			ft_handle_double_quote(*word, i, &in_double_quotes);
-		else if ((*word)[i] == '~' && !in_double_quotes)
-			err = ft_expand_tilde(word, symtab, &i);
-		else if ((*word)[i] == '$')
-			err = ft_expand_var(word, symtab, &i, info);
+		if ((*expr)[i] == '\'' && !in_double_quotes)
+			ft_handle_single_quote(*expr, &i);
+		else if ((*expr)[i] == '"')
+			ft_handle_double_quote(*expr, i, &in_double_quotes);
+		else if ((*expr)[i] == '~' && !in_double_quotes)
+			err = ft_expand_tilde(expr, symtab, &i);
+		else if ((*expr)[i] == '$')
+			err = ft_expand_var(expr, symtab, &i, info);
 		else
 			i++;
 		if (err != SUCCESS)
