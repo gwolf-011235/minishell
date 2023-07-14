@@ -6,6 +6,7 @@
 		"minishell_error.h": "c",
 		"minishell.h": "c",
 		"test.h": "c",
-		"env_envp.h": "c"
+		"env_envp.h": "c",
+		"expander.h": "c"
 	}
 }
