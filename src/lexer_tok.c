@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/12 22:46:04 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 13:08:31 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,16 @@
  * Token contains the token string and its length.
  * @param token 	Created token.
  * @param s 		Token string.
- * @return t_error 	ERR_MALLOC, SUCCESS
+ * @return t_error 	ERR_MALLOC, ERR_EMPTY, SUCCESS
  */
 t_error	ft_create_tok(t_tok *token, char *s)
 {
 	if (!token || !s)
 		return (ERR_EMPTY);
 	token->tok_size = ft_strlen(s);
-	token->tok = ft_realloc (token->tok, token->tok_size + 1, 1);
+	token->tok = malloc(token->tok_size + 1);
 	if (!token->tok)
-	{
-		free(token->tok);
 		return (ERR_MALLOC);
-	}
 	ft_memcpy(token->tok, s, token->tok_size);
 	token->tok[token->tok_size] = '\0';
 	return (SUCCESS);

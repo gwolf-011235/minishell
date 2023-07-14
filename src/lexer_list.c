@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/12 21:38:33 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 13:34:05 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ t_error	ft_list_token(t_data *data, char *input)
 		err = ft_new_node(data, data->token.tok);
 		if (err != SUCCESS)
 		{
-			ft_free_lst(&data->lst_head, &ft_del_content);
+			ft_free_lst(&data->lst_head);
 			ft_free_tok(&data->token);
 			return (err);
 		}
-		ft_init_tok(data);
+		//ft_init_tok(data);
 		err = ft_tokenise(&src, &data->token);
 	}
 	return (SUCCESS);
@@ -67,7 +67,6 @@ void	ft_init_lexer(t_src *src, char *input)
 t_error	ft_new_node(t_data *data, char *content)
 {
 	t_tkn_list	*new;
-	t_tkn_list	*prev;
 
 	new = (t_tkn_list *)malloc(sizeof(t_tkn_list));
 	if (!new)
@@ -84,16 +83,16 @@ t_error	ft_new_node(t_data *data, char *content)
  * @param lst Token list to be freed.
  * @param del Pointer to function used for clean up.
  */
-void	ft_free_lst(t_tkn_list **lst, void (*del)(void*))
+void	ft_free_lst(t_tkn_list **lst)
 {
 	t_tkn_list	*tmp;
 
-	if (!lst || !del)
+	if (!lst)
 		return ;
 	while (*lst)
 	{
 		tmp = (*lst)-> next;
-		ft_del_node((*lst), del);
+		ft_del_node((*lst));
 		*lst = tmp;
 	}
 	(*lst) = NULL;
