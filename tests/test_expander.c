@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 12:37:34 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 13:18:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,36 @@ void	var_double(t_hashtable *symtab)
 	ft_expand_words(&string, symtab);
 	printf("Result: '%s'\n", string);
 	free(string);
+}
+
+void	quoted_str(t_hashtable *symtab)
+{
+	char	*string;
+
+	printf("\n\tTEST: single quoted string\n");
+	string = ft_strdup("'Hallo'");
+	printf("String = |%s|\n", string);
+	ft_expand_words(&string, symtab);
+	printf("Result: |%s|\n", string);
+	free(string);
+	printf("\n\tTEST: double quoted string\n");
+	string = ft_strdup("This:\"Hallo\"");
+	printf("String = |%s|\n", string);
+	ft_expand_words(&string, symtab);
+	printf("Result: |%s|\n", string);
+	free(string);
+}
+
+void	combined(t_hashtable *symtab)
+{
+	char	*string;
+
+	printf("\n\tTEST: combine everything\n");
+	string = ft_strdup("~/\"$TEST\"'betram'");
+	printf("String = |%s|\n", string);
+	ft_expand_words(&string, symtab);
+	printf("Result: |%s|\n", string);
+	free(string);
 
 }
 
@@ -113,5 +143,7 @@ void	test_expand(void)
 	var_normal(symtab);
 	var_empty(symtab);
 	var_double(symtab);
+	quoted_str(symtab);
+	combined(symtab);
 	ft_hashtable_destroy(symtab);
 }
