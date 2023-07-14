@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 19:38:05 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/14 19:59:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_error	ft_get_var_replace(t_tok token, t_hashtable *symtab, t_tok *replace)
  *
  * Sets token.str to position after $ and token.len to 0
  * Calc the token.len:
- * As first char after $ only underscore and ascii are allowed.
+ * As first char after $ only underscore and alphabetic are allowed.
  * After that underscore and alphanumeric are allowed.
  *
  * @param input String.
@@ -60,7 +60,7 @@ t_error	ft_get_var_token(char *input, size_t pos, t_tok *token)
 {
 	token->str = input + pos + 1;
 	token->len = 0;
-	if (token->str[token->len] == '_' || ft_isascii(token->str[token->len]))
+	if (token->str[token->len] == '_' || ft_isalpha(token->str[token->len]))
 		token->len++;
 	while (token->str[token->len] == '_' || ft_isalnum(token->str[token->len]))
 		token->len++;
