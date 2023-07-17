@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/17 22:19:22 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/17 22:21:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,7 @@ t_error	ft_eat_char(char *input, size_t pos)
 	str1 = input + pos;
 	str2 = str1 + 1;
 	while (*str1)
-	{
 		*str1++ = *str2++;
-	}
 	return (SUCCESS);
 }
 
