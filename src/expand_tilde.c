@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/17 20:10:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/18 00:18:46 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@
  * @param pos Current position.
  * @return t_error SUCCESS, ERR_NOT_FOUND, ERR_MALLOC
  */
-t_error	ft_get_tilde_replace(t_str_info token, t_hashtable *symtab, t_str_info *replace, size_t *pos)
+t_error	ft_get_tilde_replace(t_str token, t_hashtable *symtab, t_str *replace, size_t *pos)
 {
 	char		*target;
 	t_env_var	*env_var;
 
-	if (!ft_strcmp(token.str, "~"))
+	if (!ft_strcmp(token.ptr, "~"))
 		target = "HOME";
-	else if (!ft_strcmp(token.str, "~+"))
+	else if (!ft_strcmp(token.ptr, "~+"))
 		target = "PWD";
-	else if (!ft_strcmp(token.str, "~-"))
+	else if (!ft_strcmp(token.ptr, "~-"))
 		target = "OLDPWD";
 	env_var = ft_hashtable_lookup(symtab, target, ft_strlen(target));
 	if (!env_var)
@@ -51,10 +51,10 @@ t_error	ft_get_tilde_replace(t_str_info token, t_hashtable *symtab, t_str_info *
 		(*pos)++;
 		return (ERR_NOT_FOUND);
 	}
-	replace->str = ft_strdup(env_var->value);
-	if (!replace->str)
+	replace->ptr = ft_strdup(env_var->value);
+	if (!replace->ptr)
 		return (ERR_MALLOC);
-	replace->len = ft_strlen(replace->str);
+	replace->len = ft_strlen(replace->ptr);
 	return (SUCCESS);
 }
 
@@ -72,26 +72,26 @@ t_error	ft_get_tilde_replace(t_str_info token, t_hashtable *symtab, t_str_info *
  * @param token Where to save the token.
  * @return t_error SUCCESS, ERR_NOEXPAND.
  */
-t_error	ft_get_tilde_token(char *input, size_t *pos, t_str_info *token)
+t_error	ft_get_tilde_token(t_track *input, t_str *token)
 {
 	size_t	i;
 
-	i = *pos;
-	token->str = "~";
+	i = input->pos;
+	token->ptr = "~";
 	i++;
-	if (input[i] == '+')
-		token->str = "~+";
-	else if (input[i] == '-')
-		token->str = "~-";
-	if (input[i] == '+' || input[i] == '-')
+	if (input->str[i] == '+')
+		token->ptr = "~+";
+	else if (input->str[i] == '-')
+		token->ptr = "~-";
+	if (input->str[i] == '+' || input->str[i] == '-')
 		i++;
-	if (input[i] != '/' && input[i] != '\0')
+	if (input->str[i] != '/' && input->str[i] != '\0')
 	{
-		(*pos)++;
+		input->pos++;
 		return (ERR_NOEXPAND);
 	}
 	else
-		token->len = ft_strlen(token->str);
+		token->len = ft_strlen(token->ptr);
 	return (SUCCESS);
 }
 
@@ -109,28 +109,28 @@ t_error	ft_get_tilde_token(char *input, size_t *pos, t_str_info *token)
  * @param pos Current position.
  * @return t_error SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
  */
-t_error	ft_expand_tilde(char **input, t_hashtable *symtab, size_t *pos)
+t_error	ft_expand_tilde(t_track *input, t_hashtable *symtab)
 {
-	t_str_info	token;
-	t_str_info	replace;
+	t_str	token;
+	t_str	replace;
 	t_error		err;
 
-	if (*pos != 0 && (*input)[*pos - 1] != '=')
+	if (input->pos != 0 && input->str[input->pos - 1] != '=')
 		return (ERR_NOEXPAND);
-	token.str = NULL;
-	err = ft_get_tilde_token(*input, pos, &token);
+	token.ptr = NULL;
+	err = ft_get_tilde_token(input, &token);
 	if (err != SUCCESS)
 		return (err);
-	replace.str = NULL;
-	err = ft_get_tilde_replace(token, symtab, &replace, pos);
+	replace.ptr = NULL;
+	err = ft_get_tilde_replace(token, symtab, &replace, &input->pos);
 	if (err == ERR_NOT_FOUND)
 		return (ERR_NOEXPAND);
 	if (err != SUCCESS)
 		return (err);
-	err = ft_insert_replace(input, *pos, token, replace);
-	free(replace.str);
+	err = ft_insert_replace(input, token, replace);
+	free(replace.ptr);
 	if (err != SUCCESS)
 		return (err);
-	*pos += replace.len;
+	input->pos += replace.len;
 	return (SUCCESS);
 }
