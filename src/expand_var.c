@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/17 19:40:58 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/17 20:13:24 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,23 @@ t_error	ft_get_var_replace(t_str_info token, t_hashtable *symtab, t_str_info *re
  * @param input String.
  * @param pos Current position.
  * @param token Pointer to struct.
- * @return t_error SUCCESS.
+ * @return t_error SUCCESS, ERR_NOEXPAND.
  */
-t_error	ft_get_var_token(char *input, size_t pos, t_str_info *token)
+t_error	ft_get_var_token(char *input, size_t *pos, t_str_info *token)
 {
-	token->str = input + pos + 1;
+	token->str = input + *pos + 1;
 	token->len = 0;
 	if (token->str[token->len] == '_' || ft_isalpha(token->str[token->len]))
+	{
 		token->len++;
-	while (token->str[token->len] == '_' || ft_isalnum(token->str[token->len]))
-		token->len++;
+		while (token->str[token->len] == '_' || ft_isalnum(token->str[token->len]))
+			token->len++;
+	}
+	if (token->len == 0)
+	{
+		(*pos)++;
+		return (ERR_NOEXPAND);
+	}
 	return (SUCCESS);
 }
 
@@ -74,7 +81,7 @@ t_error	ft_get_var_token(char *input, size_t pos, t_str_info *token)
  * @param replace Where to save replace string.
  * @param token Used for token.len
  * @param info Struct containing ret_code and shell_name
- * @return t_error SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
+ * @return t_error SUCCESS, ERR_MALLOC.
  */
 t_error	ft_special_var(char c, t_str_info *replace, t_str_info *token, t_info *info)
 {
@@ -102,7 +109,7 @@ t_error	ft_special_var(char c, t_str_info *replace, t_str_info *token, t_info *i
  * @param symtab Environment.
  * @param pos Current position.
  * @param info Struct containing ret_code and shell_name.
- * @return t_error SUCCESS, ERR_MALLOC.
+ * @return t_error SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
  */
 t_error	ft_expand_var(char **input, t_hashtable *symtab, size_t *pos, t_info *info)
 {
@@ -114,9 +121,9 @@ t_error	ft_expand_var(char **input, t_hashtable *symtab, size_t *pos, t_info *in
 		err = ft_special_var((*input)[*pos + 1], &replace, &token, info);
 	else
 	{
-		err = ft_get_var_token(*input, *pos, &token);
-		if (token.len == 0)
-			return (ERR_NOEXPAND);
+		err = ft_get_var_token(*input, pos, &token);
+		if (err != SUCCESS)
+			return (err);
 		err = ft_get_var_replace(token, symtab, &replace);
 	}
 	if (err != SUCCESS)
