@@ -6,16 +6,21 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 15:51:09 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 19:46:50 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file lexer_tok.c
+ * @brief Contains functions to create tokens.
+ */
 #include "minishell.h"
 #include "lexer_src.h"
 #include "lexer_tok.h"
 #include "lexer_utils.h"
 #include "lexer_tok_utils.h"
 #include "minishell_error.h"
+
 /**
  * @brief Create a token.
  * 
