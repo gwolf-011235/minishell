@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/17 19:25:37 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/17 19:39:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
  * @param pos Current position.
  * @return t_error SUCCESS, ERR_NOT_FOUND, ERR_MALLOC
  */
-t_error	ft_get_tilde_replace(t_tok token, t_hashtable *symtab, t_tok *replace, size_t *pos)
+t_error	ft_get_tilde_replace(t_str_info token, t_hashtable *symtab, t_str_info *replace, size_t *pos)
 {
 	char		*target;
 	t_env_var	*env_var;
@@ -72,7 +72,7 @@ t_error	ft_get_tilde_replace(t_tok token, t_hashtable *symtab, t_tok *replace, s
  * @param token Where to save the token.
  * @return t_error SUCCESS.
  */
-t_error	ft_get_tilde_token(char *input, size_t *pos, t_tok *token)
+t_error	ft_get_tilde_token(char *input, size_t *pos, t_str_info *token)
 {
 	size_t	i;
 
@@ -111,9 +111,9 @@ t_error	ft_get_tilde_token(char *input, size_t *pos, t_tok *token)
  */
 t_error	ft_expand_tilde(char **input, t_hashtable *symtab, size_t *pos)
 {
-	t_tok	token;
-	t_tok	replace;
-	t_error	err;
+	t_str_info	token;
+	t_str_info	replace;
+	t_error		err;
 
 	if (*pos != 0 && (*input)[*pos - 1] != '=')
 		return (ERR_NOEXPAND);

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/17 19:25:48 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/17 19:40:58 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
  * @param replace Pointer to struct where to save string.
  * @return t_error SUCCESS, ERR_MALLOC.
  */
-t_error	ft_get_var_replace(t_tok token, t_hashtable *symtab, t_tok *replace)
+t_error	ft_get_var_replace(t_str_info token, t_hashtable *symtab, t_str_info *replace)
 {
 	t_env_var	*env_var;
 
@@ -56,7 +56,7 @@ t_error	ft_get_var_replace(t_tok token, t_hashtable *symtab, t_tok *replace)
  * @param token Pointer to struct.
  * @return t_error SUCCESS.
  */
-t_error	ft_get_var_token(char *input, size_t pos, t_tok *token)
+t_error	ft_get_var_token(char *input, size_t pos, t_str_info *token)
 {
 	token->str = input + pos + 1;
 	token->len = 0;
@@ -76,7 +76,7 @@ t_error	ft_get_var_token(char *input, size_t pos, t_tok *token)
  * @param info Struct containing ret_code and shell_name
  * @return t_error SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
  */
-t_error	ft_special_var(char c, t_tok *replace, t_tok *token, t_info *info)
+t_error	ft_special_var(char c, t_str_info *replace, t_str_info *token, t_info *info)
 {
 	token->len = 1;
 	if (c == '0')
@@ -106,9 +106,9 @@ t_error	ft_special_var(char c, t_tok *replace, t_tok *token, t_info *info)
  */
 t_error	ft_expand_var(char **input, t_hashtable *symtab, size_t *pos, t_info *info)
 {
-	t_tok	token;
-	t_tok	replace;
-	t_error	err;
+	t_str_info	token;
+	t_str_info	replace;
+	t_error		err;
 
 	if ((*input)[*pos + 1] == '0' || (*input)[*pos + 1] == '?')
 		err = ft_special_var((*input)[*pos + 1], &replace, &token, info);

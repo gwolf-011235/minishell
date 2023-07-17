@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/17 19:23:54 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/17 19:41:30 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  * @param replace Struct containing the replacement.
  * @return t_error SUCCESS, ERR_MALLOC
  */
-t_error	ft_insert_replace(char **input, size_t pos, t_tok token, t_tok replace)
+t_error	ft_insert_replace(char **input, size_t pos, t_str_info token, t_str_info replace)
 {
 	size_t	new_len;
 	char	*new_str;
@@ -133,7 +133,7 @@ t_error	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info)
 			err = ft_expand_var(expr, symtab, &i, info);
 		else
 			i++;
-		if (err != SUCCESS || err != ERR_NOEXPAND)
+		if (err != SUCCESS && err != ERR_NOEXPAND)
 			return (err);
 	}
 	return (SUCCESS);
