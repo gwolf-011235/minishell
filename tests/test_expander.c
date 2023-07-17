@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 18:23:39 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/17 20:04:41 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,124 +16,13 @@ extern char			*string;
 extern t_hashtable	*symtab;
 extern t_info		info;
 
-void	tilde_empty(void)
+void	exec_expand(char *testname, char *test)
 {
-	printf("\tTEST: no HOME set\n");
-	string = ft_strdup("~");
-	printf("String = '%s'\n", string);
+	printf("TEST: %s\n", testname);
+	string = ft_strdup(test);
+	printf("String:\t|%s|\n", string);
 	ft_expand_expr(&string, symtab, &info);
-	printf("Result: '%s'\n", string);
-	free(string);
-}
-
-void	tilde_normal(void)
-{
-	printf("\tTEST: every $var is set\n");
-	string = ft_strdup("~");
-	printf("String = '%s'\n", string);
-	ft_expand_expr(&string, symtab, &info);
-	printf("Result: '%s'\n", string);
-	free(string);
-	string = ft_strdup("~+");
-	printf("String = %s\n", string);
-	ft_expand_expr(&string, symtab, &info);
-	printf("Result: '%s'\n", string);
-	free(string);
-	string = ft_strdup("~-");
-	printf("String = '%s'\n", string);
-	ft_expand_expr(&string, symtab, &info);
-	printf("Result: '%s'\n", string);
-	free(string);
-}
-
-void	tilde_assign(void)
-{
-	printf("\tTEST: tilde in assignment\n");
-	string = ft_strdup("var=~");
-	printf("String = '%s'\n", string);
-	ft_expand_expr(&string, symtab, &info);
-	printf("Result: '%s'\n", string);
-	free(string);
-}
-
-void	var_normal(void)
-{
-	printf("\tTEST: var normal\n");
-	string = ft_strdup("$TEST");
-	printf("String = '%s'\n", string);
-	ft_expand_expr(&string, symtab, &info);
-	printf("Result: '%s'\n", string);
-	free(string);
-}
-
-void	var_empty(void)
-{
-	printf("\tTEST: var empty\n");
-	string = ft_strdup("$NO");
-	printf("String = '%s'\n", string);
-	ft_expand_expr(&string, symtab, &info);
-	printf("Result: '%s'\n", string);
-	free(string);
-}
-
-void	var_double(void)
-{
-	printf("\tTEST: var double\n");
-	string = ft_strdup("$TEST$TEST");
-	printf("String = '%s'\n", string);
-	ft_expand_expr(&string, symtab, &info);
-	printf("Result: '%s'\n", string);
-	free(string);
-}
-
-void	var_special(void)
-{
-	printf("\n\tTEST: var special\n");
-	string = ft_strdup("$?");
-	printf("String = '%s'\n", string);
-	ft_expand_expr(&string, symtab, &info);
-	printf("Result: '%s'\n", string);
-	free(string);
-	string = ft_strdup("$0");
-	printf("String = '%s'\n", string);
-	ft_expand_expr(&string, symtab, &info);
-	printf("Result: '%s'\n", string);
-	free(string);
-}
-
-void	quoted_str(void)
-{
-	printf("\n\tTEST: single quoted string\n");
-	string = ft_strdup("'Hallo'");
-	printf("String = |%s|\n", string);
-	ft_expand_expr(&string, symtab, &info);
-	printf("Result: |%s|\n", string);
-	free(string);
-	printf("\n\tTEST: double quoted string\n");
-	string = ft_strdup("This:\"Hallo\"");
-	printf("String = |%s|\n", string);
-	ft_expand_expr(&string, symtab, &info);
-	printf("Result: |%s|\n", string);
-	free(string);
-}
-
-void	combined(void)
-{
-	printf("\n\tTEST: combine everything\n");
-	string = ft_strdup("~/\"$TEST\"'betram'");
-	printf("String = |%s|\n", string);
-	ft_expand_expr(&string, symtab, &info);
-	printf("Result: |%s|\n", string);
-	free(string);
-	string = ft_strdup("test=$?");
-	printf("String = |%s|\n", string);
-	ft_expand_expr(&string, symtab, &info);
-	printf("Result: |%s|\n", string);
-	free(string);
-	string = ft_strdup("~$test$0$?");
-	printf("String = |%s|\n", string);
-	ft_expand_expr(&string, symtab, &info);
-	printf("Result: |%s|\n", string);
+	printf("Result:\t|%s|\n\n", string);
 	free(string);
 }
 
@@ -141,20 +30,35 @@ void	test_expand(void)
 {
 	printf("**\tTEST_EXPAND\t**\n");
 	symtab = ft_hashtable_create(1, ft_hash_fnv1);
-	info.ret_code = 125;
-	info.shell_name = "/bin/shell";
-	tilde_empty();
+
+	exec_expand("no HOME set", "~");
+
 	ft_hashtable_insert(symtab, ft_strdup("HOME=/this/is/home"), 4);
 	ft_hashtable_insert(symtab, ft_strdup("PWD=/this/is/PWD"), 3);
 	ft_hashtable_insert(symtab, ft_strdup("OLDPWD=/this/is/OLDPWD"), 6);
-	tilde_normal();
-	tilde_assign();
+	exec_expand("expand $HOME with ~", "~");
+	exec_expand("expand $PWD with ~+", "~+");
+	exec_expand("expand $OLDPWD with ~-", "~-");
+
+	exec_expand("tilde in assignment", "var=~");
+
 	ft_hashtable_insert(symtab, ft_strdup("TEST='I am test'"), 4);
-	var_normal();
-	var_empty();
-	var_double();
-	var_special();
-	quoted_str();
-	combined();
+ 	exec_expand("simple var expansion", "$TEST");
+	exec_expand("double var", "$TEST$TEST");
+	exec_expand("empty var", "$NO_VAR");
+	exec_expand("no var name", "$1");
+
+	info.ret_code = 125;
+	info.shell_name = "/bin/shell";
+	exec_expand("special var $?", "$?");
+	exec_expand("special var $0", "$0");
+
+	exec_expand("single quoted string", "'Hallo'");
+	exec_expand("double quoted string", "This:\"Hallo\"");
+
+	exec_expand("Combination 1", "~/\"$TEST\"'betram'");
+	exec_expand("Combination 2", "test=$?");
+	exec_expand("Combination 3", "~$test$0$?");
+
 	ft_hashtable_destroy(symtab);
 }
