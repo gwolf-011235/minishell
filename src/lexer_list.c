@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 14:07:57 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/17 23:46:23 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 #include "lexer_list.h"
 #include "lexer_utils.h"
 
+void	ft_free_tok(t_tok *token);
+
 /**
  * @brief Create a list of token.
- * 
+ *
  * @param data 		Overarching struct containing all meta data.
  * @param input 	Input string to be tokenised.
  * @return t_error 	ERR_EMPTY, ERR_MALLOC, SUCCESS
@@ -44,7 +46,7 @@ t_error	ft_list_token(t_data *data, char *input)
 
 /**
  * @brief Initate the lexer.
- * 
+ *
  * Fills source struct with values from the input string.
  * @param src 		Struct containing data on input/source string.
  * @param input 	Input string.
@@ -58,7 +60,7 @@ void	ft_init_lexer(t_src *src, char *input)
 
 /**
  * @brief Create a new node and add it to the end of the token list.
- * 
+ *
  * @param data		Overarching struct containing all meta data.
  * @param content	Content string to be written into new node.
  * @return t_error 	ERR_MALLOC, SUCCESS
@@ -78,7 +80,7 @@ t_error	ft_new_node(t_data *data, char *content)
 
 /**
  * @brief Iterate through token list and free all nodes.
- * 
+ *
  * @param lst Token list to be freed.
  * @param del Pointer to function used for clean up.
  */
@@ -99,7 +101,7 @@ void	ft_free_lst(t_tkn_list **lst)
 
 /**
  * @brief Go to end of token list and connect given token.
- * 
+ *
  * If there is a (last) node in the list, connect new token to the end.
  * If the list is yet empty, set new token as head of the list.
  * @param lst Token list.

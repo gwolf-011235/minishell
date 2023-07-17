@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/18 00:48:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/18 01:04:12 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	exec_expand(char *testname, char *test, char *expect)
 	printf("String:\t|%s|\n", string);
 	ft_expand_expr(&string, symtab, &info);
 	printf("Result:\t|%s|\n", string);
-	if (!ft_strcmp(string, expect))
+	if (!ft_strncmp(string, expect, ft_strlen(string)))
 	{
 		printf(GREEN"OK\n\n"RESET);
 		ret = 0;

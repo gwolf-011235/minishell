@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:22:18 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 19:45:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/18 01:04:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,24 +71,3 @@ char	*ft_strncat(char *dst, const char *src, size_t n)
 	*ptr = '\0';
 	return (dst);
 }
-
-/**
- * @brief Simple implementation of strcmp.
- *
- * Compares the two strings str1 and str2.
- * The comparison is done using unsigned chars.
- *
- * @param str1 String to compare.
- * @param str2 Second string to compare.
- * @return int 0 if equal, negative if str1 is less, positive if greater.
- */
-int	ft_strcmp(const char *str1, const char *str2)
-{
-	while (*str1 && *str1 == *str2)
-	{
-		str1++;
-		str2++;
-	}
-	return ((int)(unsigned char)(*str1) - (int)(unsigned char)(*str2));
-}
-

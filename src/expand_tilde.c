@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/18 00:18:46 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/18 01:03:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ t_error	ft_get_tilde_replace(t_str token, t_hashtable *symtab, t_str *replace, s
 	char		*target;
 	t_env_var	*env_var;
 
-	if (!ft_strcmp(token.ptr, "~"))
+	if (!ft_strncmp(token.ptr, "~", ft_strlen(token.ptr)))
 		target = "HOME";
-	else if (!ft_strcmp(token.ptr, "~+"))
+	else if (!ft_strncmp(token.ptr, "~+", ft_strlen(token.ptr)))
 		target = "PWD";
-	else if (!ft_strcmp(token.ptr, "~-"))
+	else if (!ft_strncmp(token.ptr, "~-", ft_strlen(token.ptr)))
 		target = "OLDPWD";
 	env_var = ft_hashtable_lookup(symtab, target, ft_strlen(target));
 	if (!env_var)
