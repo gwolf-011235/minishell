@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/17 19:20:56 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/17 19:25:37 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ t_error	ft_get_tilde_token(char *input, size_t *pos, t_tok *token)
  * @param input String.
  * @param symtab Environment.
  * @param pos Current position.
- * @return t_error SUCCESS, ERR_MALLOC.
+ * @return t_error SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
  */
 t_error	ft_expand_tilde(char **input, t_hashtable *symtab, size_t *pos)
 {
@@ -116,15 +116,15 @@ t_error	ft_expand_tilde(char **input, t_hashtable *symtab, size_t *pos)
 	t_error	err;
 
 	if (*pos != 0 && (*input)[*pos - 1] != '=')
-		return (SUCCESS);
+		return (ERR_NOEXPAND);
 	token.str = NULL;
 	ft_get_tilde_token(*input, pos, &token);
 	if (!token.str)
-		return (SUCCESS);
+		return (ERR_NOEXPAND);
 	replace.str = NULL;
 	err = ft_get_tilde_replace(token, symtab, &replace, pos);
 	if (err == ERR_NOT_FOUND)
-		return (SUCCESS);
+		return (ERR_NOEXPAND);
 	if (err != SUCCESS)
 		return (err);
 	err = ft_insert_replace(input, *pos, token, replace);

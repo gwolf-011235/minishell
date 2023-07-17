@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 19:59:06 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/17 19:25:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_error	ft_get_var_token(char *input, size_t pos, t_tok *token)
  * @param replace Where to save replace string.
  * @param token Used for token.len
  * @param info Struct containing ret_code and shell_name
- * @return t_error SUCCESS, ERR_MALLOC
+ * @return t_error SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
  */
 t_error	ft_special_var(char c, t_tok *replace, t_tok *token, t_info *info)
 {
@@ -116,7 +116,7 @@ t_error	ft_expand_var(char **input, t_hashtable *symtab, size_t *pos, t_info *in
 	{
 		err = ft_get_var_token(*input, *pos, &token);
 		if (token.len == 0)
-			return (SUCCESS);
+			return (ERR_NOEXPAND);
 		err = ft_get_var_replace(token, symtab, &replace);
 	}
 	if (err != SUCCESS)

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 19:37:36 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/17 19:23:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ t_error	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info)
 			err = ft_expand_var(expr, symtab, &i, info);
 		else
 			i++;
-		if (err != SUCCESS)
+		if (err != SUCCESS || err != ERR_NOEXPAND)
 			return (err);
 	}
 	return (SUCCESS);
