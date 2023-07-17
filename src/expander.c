@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/17 19:41:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/17 22:19:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,10 @@ t_error	ft_eat_char(char *input, size_t pos)
 /**
  * @brief Handle single quotes.
  *
+ * Remove found single quote with ft_eat_char().
+ * Jump over quoted part, searching for the second single.
+ * Remove the second single quote.
+ *
  * @param expr String
  * @param pos Current position
  * @return t_error SUCCESS
@@ -86,10 +90,15 @@ t_error	ft_handle_single_quote(char *expr, size_t *pos)
 /**
  * @brief Handle double quotes.
  *
+ * Remove found double quote with ft_eat_char().
+ * Switch bool in_quotes on/off.
+ * This way we know if we are in double quotes or not.
+ * The next time we see a double quote the switch gets flipped again.
+ *
  * @param expr String.
- * @param pos Current position
- * @param in_double_quotes Pointer to change switch
- * @return t_error SUCCESS
+ * @param pos Current position.
+ * @param in_double_quotes Pointer to change switch.
+ * @return t_error SUCCESS.
  */
 t_error	ft_handle_double_quote(char *expr, size_t pos, bool *in_double_quotes)
 {
@@ -104,8 +113,8 @@ t_error	ft_handle_double_quote(char *expr, size_t pos, bool *in_double_quotes)
  * Go through the string and check for special chars.
  * Tilde: ft_expand_tilde().
  * $: ft_expand_var().
- * Single quote: jump over quoted part and remove quotes.
- * Double quote: switch in_quotes on/off and remove quote.
+ * Single quote: ft_handle_single_quote().
+ * Double quote: ft_handle_double_quote().
  *
  * @param expr The expression to be expanded.
  * @param symtab The environment table
