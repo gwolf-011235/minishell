@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/17 20:04:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/17 21:01:50 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,49 +16,74 @@ extern char			*string;
 extern t_hashtable	*symtab;
 extern t_info		info;
 
-void	exec_expand(char *testname, char *test)
+int	exec_expand(char *testname, char *test, char *expect)
 {
+	int	ret;
+
 	printf("TEST: %s\n", testname);
 	string = ft_strdup(test);
 	printf("String:\t|%s|\n", string);
 	ft_expand_expr(&string, symtab, &info);
-	printf("Result:\t|%s|\n\n", string);
+	printf("Result:\t|%s|\n", string);
+	if (!ft_strcmp(string, expect))
+	{
+		printf(GREEN"OK\n\n"RESET);
+		ret = 0;
+	}
+	else
+	{
+		printf(RED"Expect:\t|%s|\n\n"RESET, expect);
+		ret = 1;
+	}
 	free(string);
+	return (ret);
 }
 
 void	test_expand(void)
 {
-	printf("**\tTEST_EXPAND\t**\n");
+	int	err_count;
+
+	printf(YELLOW"*******TEST_EXPAND*******\n\n"RESET);
+	err_count = 0;
 	symtab = ft_hashtable_create(1, ft_hash_fnv1);
 
-	exec_expand("no HOME set", "~");
+	printf(BLUE"**\tTILDE\t**\n\n"RESET);
+	err_count += exec_expand("no HOME set", "~", "~");
 
 	ft_hashtable_insert(symtab, ft_strdup("HOME=/this/is/home"), 4);
 	ft_hashtable_insert(symtab, ft_strdup("PWD=/this/is/PWD"), 3);
 	ft_hashtable_insert(symtab, ft_strdup("OLDPWD=/this/is/OLDPWD"), 6);
-	exec_expand("expand $HOME with ~", "~");
-	exec_expand("expand $PWD with ~+", "~+");
-	exec_expand("expand $OLDPWD with ~-", "~-");
+	err_count += exec_expand("expand $HOME with ~", "~", "/this/is/home");
+	err_count += exec_expand("expand $PWD with ~+", "~+", "/this/is/PWD");
+	err_count += exec_expand("expand $OLDPWD with ~-", "~-", "/this/is/OLDPWD");
 
-	exec_expand("tilde in assignment", "var=~");
+	err_count += exec_expand("tilde in assignment", "var=~", "var=/this/is/home");
 
+	printf(BLUE"**\tVARS\t**\n\n"RESET);
 	ft_hashtable_insert(symtab, ft_strdup("TEST='I am test'"), 4);
- 	exec_expand("simple var expansion", "$TEST");
-	exec_expand("double var", "$TEST$TEST");
-	exec_expand("empty var", "$NO_VAR");
-	exec_expand("no var name", "$1");
+	err_count += exec_expand("simple var expansion", "$TEST", "'I am test'");
+	err_count += exec_expand("double var", "$TEST$TEST", "'I am test''I am test'");
+	err_count += exec_expand("empty var", "$NO_VAR", "");
+	err_count += exec_expand("no alpha or underscore", "$1", "$1");
+	err_count += exec_expand("quoted string after $", "$\"TEST\"", "TEST");
+	err_count += exec_expand("quoted $", "\"$\"TEST", "$TEST");
+	err_count += exec_expand("quoted var name", "\"$TEST\"ING", "'I am test'ING");
 
 	info.ret_code = 125;
 	info.shell_name = "/bin/shell";
-	exec_expand("special var $?", "$?");
-	exec_expand("special var $0", "$0");
+	err_count += exec_expand("special var $?", "$?", "125");
+	err_count += exec_expand("special var $0", "$0", "/bin/shell");
 
-	exec_expand("single quoted string", "'Hallo'");
-	exec_expand("double quoted string", "This:\"Hallo\"");
+	printf(BLUE"**\tQUOTES\t**\n\n"RESET);
+	err_count += exec_expand("single quoted string", "'Hallo'", "Hallo");
+	err_count += exec_expand("double quoted string", "This:\"Hallo\"", "This:Hallo");
 
-	exec_expand("Combination 1", "~/\"$TEST\"'betram'");
-	exec_expand("Combination 2", "test=$?");
-	exec_expand("Combination 3", "~$test$0$?");
+	printf(BLUE"**\tCOMBI\t**\n\n"RESET);
+	err_count += exec_expand("Combination 1", "~/\"$TEST\"'betram'", "/this/is/home/'I am test'betram");
+	err_count += exec_expand("Combination 2", "test=$?", "test=125");
+	err_count += exec_expand("Combination 3", "~$NO_VAR$0$?", "~/bin/shell125");
 
+	if (err_count > 0)
+		printf(RED"ERRORS: %d\n"RESET, err_count);
 	ft_hashtable_destroy(symtab);
 }
