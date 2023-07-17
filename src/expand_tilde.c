@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/17 19:39:02 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/17 20:10:33 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_error	ft_get_tilde_replace(t_str_info token, t_hashtable *symtab, t_str_info *
  * @param input String.
  * @param pos Current position.
  * @param token Where to save the token.
- * @return t_error SUCCESS.
+ * @return t_error SUCCESS, ERR_NOEXPAND.
  */
 t_error	ft_get_tilde_token(char *input, size_t *pos, t_str_info *token)
 {
@@ -88,7 +88,7 @@ t_error	ft_get_tilde_token(char *input, size_t *pos, t_str_info *token)
 	if (input[i] != '/' && input[i] != '\0')
 	{
 		(*pos)++;
-		token->str = NULL;
+		return (ERR_NOEXPAND);
 	}
 	else
 		token->len = ft_strlen(token->str);
@@ -118,9 +118,9 @@ t_error	ft_expand_tilde(char **input, t_hashtable *symtab, size_t *pos)
 	if (*pos != 0 && (*input)[*pos - 1] != '=')
 		return (ERR_NOEXPAND);
 	token.str = NULL;
-	ft_get_tilde_token(*input, pos, &token);
-	if (!token.str)
-		return (ERR_NOEXPAND);
+	err = ft_get_tilde_token(*input, pos, &token);
+	if (err != SUCCESS)
+		return (err);
 	replace.str = NULL;
 	err = ft_get_tilde_replace(token, symtab, &replace, pos);
 	if (err == ERR_NOT_FOUND)
