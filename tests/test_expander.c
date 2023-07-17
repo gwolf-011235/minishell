@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/17 21:01:50 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/18 00:48:41 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,14 @@ void	test_expand(void)
 	err_count += exec_expand("simple var expansion", "$TEST", "'I am test'");
 	err_count += exec_expand("double var", "$TEST$TEST", "'I am test''I am test'");
 	err_count += exec_expand("empty var", "$NO_VAR", "");
-	err_count += exec_expand("no alpha or underscore", "$1", "$1");
-	err_count += exec_expand("quoted string after $", "$\"TEST\"", "TEST");
-	err_count += exec_expand("quoted $", "\"$\"TEST", "$TEST");
-	err_count += exec_expand("quoted var name", "\"$TEST\"ING", "'I am test'ING");
+	err_count += exec_expand("starting with number", "$1", "");
+	err_count += exec_expand("no alnum at start", "$§", "$§");
+	err_count += exec_expand("double quoted string after $", "$\"TEST\"", "TEST");
+	err_count += exec_expand("double quoted $", "\"$\"TEST", "$TEST");
+	err_count += exec_expand("double quoted var name", "\"$TEST\"ING", "'I am test'ING");
+	err_count += exec_expand("single quoted string after $", "$'TEST'", "TEST");
+	err_count += exec_expand("single quoted $", "'$'TEST", "$TEST");
+	err_count += exec_expand("single quoted var name", "'$TEST'ING", "$TESTING");
 
 	info.ret_code = 125;
 	info.shell_name = "/bin/shell";
