@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 19:46:50 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/18 15:59:21 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ t_error	ft_partition(t_src *src, t_buf *tmp)
 			ft_add_quoted_str(c, src, tmp);
 		else if ((c == ' ' || c == '\t') && tmp->cur_pos > 0)
 			break ;
-		else if ((c == '\n' || c == '|') && tmp->cur_pos > 0)
+		else if ((c == '\n' || c == '|' || c == '<' || c == '>')
+			&& tmp->cur_pos > 0)
 		{
 			ft_unget_char(src);
 			break ;
@@ -115,7 +116,7 @@ t_error	ft_partition(t_src *src, t_buf *tmp)
 		else
 		{
 			ft_add_to_buf(c, tmp);
-			if (c == '\n' || c == '|')
+			if (c == '\n' || c == '|' || c == '<' || c == '>')
 				break ;
 		}
 		err = ft_next_char(src, &c);

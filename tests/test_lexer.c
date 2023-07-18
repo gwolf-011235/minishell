@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 13:28:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 15:57:26 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/18 16:04:07 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	test_lexer(void)
 		ft_exit_failure(data, ERR_MALLOC);
 	data->lst_head = NULL;
 
-	printf("\nSimple command: ls\n");
+/* 	printf("\nSimple command: ls\n");
 	str = "ls";
 	ft_list_token(data, str);
 	tmp = data->lst_head;
@@ -89,7 +89,7 @@ void	test_lexer(void)
 		ft_printf("%s", (char *)tmp->content);
 		tmp = tmp->next;
 	}
-	ft_free_lst(&data->lst_head);
+	ft_free_lst(&data->lst_head); */
 
 	printf("\nSimple command: <infile grep huhu|wc -l >out with newline\n");
 	str = "<infile grep huhu|wc -l >out\n";
@@ -102,8 +102,8 @@ void	test_lexer(void)
 	}
 	ft_free_lst(&data->lst_head);
 
-	printf("\nSimple command: export string=\"hello world\" with newline\n");
-	str = "export string=\"hello world\"\n";
+	printf("\nSimple command: <infile grep huhu|wc -l >out with newline\n");
+	str = "< infile grep huhu|wc -l > out\n";
 	ft_list_token(data, str);
 	tmp = data->lst_head;
 	while (tmp)
@@ -112,6 +112,28 @@ void	test_lexer(void)
 		tmp = tmp->next;
 	}
 	ft_free_lst(&data->lst_head);
+
+	printf("\nSimple command: <infile grep huhu|wc -l >out with newline\n");
+	str = "<<delim grep huhu|wc -l >> out\n";
+	ft_list_token(data, str);
+	tmp = data->lst_head;
+	while (tmp)
+	{
+		ft_printf("%s", (char *)tmp->content);
+		tmp = tmp->next;
+	}
+	ft_free_lst(&data->lst_head);
+
+/* 	printf("\nSimple command: export string=\"hello world\" with newline\n");
+	str = "export string=\"hello world\"\n";
+	ft_list_token(data, str);
+	tmp = data->lst_head;
+	while (tmp)
+	{
+		ft_printf("%s", (char *)tmp->content);
+		tmp = tmp->next;
+	}
+	ft_free_lst(&data->lst_head); */
 
 	free(data);
 }
