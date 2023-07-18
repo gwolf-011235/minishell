@@ -60,7 +60,8 @@ SRC :=	main.c \
 		env_envp.c \
 		expander.c \
 		expand_tilde.c \
-		expand_var.c
+		expand_var.c \
+		expand_utils.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects
