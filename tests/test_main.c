@@ -6,16 +6,18 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/17 19:44:27 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/18 03:15:51 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-char		*string;
-t_hashtable	*symtab;
-char		**envp;
-t_info		info;
+t_data		g_data;
+char		*g_string;
+t_hashtable	*g_symtab;
+char		**g_envp;
+t_info		g_info;
+int			g_err_count;
 
 int	main(void)
 {
@@ -25,5 +27,6 @@ int	main(void)
 	//test_check_syntax();
 	//test_env_envp();
 	test_expand();
+	//test_lexer();
 	return (0);
 }
