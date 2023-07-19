@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/19 23:27:57 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/20 00:03:08 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
  * @param s 		Token string.
  * @return t_error 	ERR_MALLOC, ERR_EMPTY, SUCCESS
  */
-t_error	ft_create_tok(t_tok *token, char *s, bool eof)
+t_error	ft_create_tok(t_tok *token, char *s)
 {
 	if (!token || !s)
 		return (ERR_EMPTY);
@@ -41,8 +41,6 @@ t_error	ft_create_tok(t_tok *token, char *s, bool eof)
 		return (ERR_MALLOC);
 	ft_memcpy(token->tok, s, token->size);
 	token->tok[token->size] = '\0';
-	if (eof)
-		return (ERR_EOF);
 	return (SUCCESS);
 }
 
@@ -61,7 +59,6 @@ t_error	ft_tokenise(t_src *src, t_tok *token)
 {
 	t_buf	tmp;
 	t_error	err;
-	bool	eof;
 
 	if (!src || !src->buf || !src->buf_size)
 		return (ERR_EMPTY);
@@ -75,10 +72,7 @@ t_error	ft_tokenise(t_src *src, t_tok *token)
 	if (tmp.cur_pos >= tmp.size)
 		tmp.cur_pos--;
 	tmp.str[tmp.cur_pos] = '\0';
-	eof = 0;
-	if (err == ERR_EOF)
-		eof = 1;
-	err = ft_create_tok(token, tmp.str, eof);
+	err = ft_create_tok(token, tmp.str);
 	free(tmp.str);
 	return (err);
 }
