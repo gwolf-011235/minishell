@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 15:27:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 19:43:39 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/19 23:25:15 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,16 @@ t_error	ft_next_char(t_src *src, char *c)
  * @brief Go back to previous character of source string.
  * 
  * @param src Source structure.
+ * @return t_error ERR_OUT_OF_BOUNDS, SUCCESS
  */
-void	ft_unget_char(t_src *src)
+t_error	ft_unget_char(t_src *src)
 {
 	if (src->cur_pos < 0)
-		return ;
+		return (ERR_OUT_OF_BOUNDS);
 	src->cur_pos--;
+	return (SUCCESS);
 }
+
 /**
  * @brief Peek at next character.  
  * 
