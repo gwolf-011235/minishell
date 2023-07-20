@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_expander.c                                    :+:      :+:    :+:   */
+/*   test_expand_expr.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/18 03:16:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/20 08:59:43 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,30 +98,6 @@ void	test_expand_combi(void)
 	g_err_count += wrapper_ft_expand_expr("Combination 3", "~$NO_VAR$0$?", "~/bin/shell125");
 }
 
-void	test_expand_list(void)
-{
-	int			i;
-	t_tkn_list	*tmp;
-
-	i = 1;
-	g_data.lst_head = NULL;
-	g_data.env_table = g_symtab;
-	printf(BLUE"**\tLIST\t**\n\n"RESET);
-	g_string = "~ $TEST\n";
-	ft_list_token(&g_data, g_string);
-	ft_expand_tkn_lst(g_data.lst_head, &g_data);
-	tmp = g_data.lst_head;
-	while (tmp)
-	{
-		if (!strncmp(tmp->content, "\n", ft_strlen(tmp->content)))
-			printf("%d: newline\n", i);
-		else
-			printf("%d: %s\n", i, (char *)tmp->content);
-		tmp = tmp->next;
-		i++;
-	}
-
-}
 
 void	test_expand(void)
 {
