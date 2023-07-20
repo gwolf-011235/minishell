@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/18 00:54:32 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/20 08:57:24 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
  * @file expand_var.c
  * @brief Functions to handle expansion of variables.
  */
-#include "expander.h"
+#include "expand.h"
 
 /**
  * @brief Get replacement for variable.

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/18 01:03:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/20 08:57:20 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
  * @file expand_tilde.c
  * @brief Functions to handle expansion of tilde.
  */
-#include	"expander.h"
+#include	"expand.h"
 
 /**
  * @brief Find the corresponding replacement for token.
