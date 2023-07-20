@@ -79,7 +79,8 @@ TEST_SRC := test_main.c \
 			test_lexer.c \
 			test_check_syntax.c \
 			test_env_envp.c \
-			test_expand_expr.c
+			test_expand_expr.c \
+			test_list_expand.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 TEST_OBJ := $(TEST_SRC:.c=.o)
 TEST_OBJS := $(addprefix $(TEST_DIR)/, $(TEST_OBJ))

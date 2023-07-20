@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/20 09:10:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/20 09:32:39 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ void	test_expand(void)
 	test_expand_var();
 	test_expand_quotes();
 	test_expand_combi();
-	test_expand_list();
 	if (g_err_count > 0)
 		printf(RED"ERRORS: %d\n"RESET, g_err_count);
 	ft_hashtable_destroy(g_symtab);
