@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/18 02:06:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/18 00:34:41 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,14 @@ typedef struct s_str_navi {
 }	t_track;
 
 //expander.c
-t_error	ft_expand_tkn_lst(t_tkn_list *list, t_data *data);
+t_error	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info);
+t_error	ft_insert_replace(t_track *input, t_str token, t_str replace);
+t_error	ft_eat_char(char *input, size_t pos);
 
 //expand_tilde.c
 t_error	ft_expand_tilde(t_track *input, t_hashtable *symtab);
 
 //expand_var.c
 t_error	ft_expand_var(t_track *input, t_hashtable *symtab, t_info *info, bool quotes);
-
-//expand_utils.c
-t_error	ft_insert_replace(t_track *input, t_str token, t_str replace);
-t_error	ft_eat_char(char *input, size_t pos);
-t_error	ft_handle_single_quote(t_track *input);
-t_error	ft_handle_double_quote(t_track *input, bool *in_double_quotes);
 
 #endif
