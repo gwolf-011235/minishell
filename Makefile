@@ -61,6 +61,7 @@ SRC :=	main.c \
 		expand_expr.c \
 		expand_tilde.c \
 		expand_var.c \
+		lexer_expand.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects
