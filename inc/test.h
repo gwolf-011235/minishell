@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/17 20:20:34 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/20 09:18:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 # include "minishell.h"
 # include "lexer_check_syntax.h"
-# include "expander.h"
+# include "expand.h"
 # include "env_envp.h"
+# include "lexer_expand.h"
+# include "lexer_list.h"
 
 # define RESET "\033[0m"
 # define BOLD "\033[1m"
@@ -33,5 +35,6 @@ void	test_lexer(void);
 void	test_check_syntax(void);
 void	test_env_envp(void);
 void	test_expand(void);
+void	test_expand_list(void);
 
 #endif
