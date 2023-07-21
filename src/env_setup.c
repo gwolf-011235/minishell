@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_setup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:54:04 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 16:50:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,25 @@
  * @param data Pointer to data struct.
  * @return t_err SUCCESS if everything went right, else it ft_exit_failures.
  */
-t_err	ft_env_setup(t_hashtable *env_table)
+t_err	ft_env_setup(t_hashtable **env_table)
 {
 	t_err	err;
 
-	env_table = ft_hashtable_create(HASHTABLE_SIZE, ft_hash_fnv1);
-	if (env_table)
+	*env_table = ft_hashtable_create(HASHTABLE_SIZE, ft_hash_fnv1);
+	if (!env_table)
 		return (ERR_MALLOC);
-	err = ft_import_environ(env_table);
+	err = ft_import_environ(*env_table);
 	if (err == ERR_MALLOC)
 		return (ERR_MALLOC);
-	if (ft_hashtable_lookup(env_table, "PWD", 3) == NULL)
+	if (ft_hashtable_lookup(*env_table, "PWD", 3) == NULL)
 	{
-		err = ft_insert_env_pwd(env_table);
+		err = ft_insert_env_pwd(*env_table);
 		if (err != SUCCESS)
 			return (err);
 	}
-	err = ft_increment_shlvl(env_table);
+	err = ft_increment_shlvl(*env_table);
 	if (err == ERR_NO_SHLVL)
-		err = ft_insert_env_shlvl(env_table);
+		err = ft_insert_env_shlvl(*env_table);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);

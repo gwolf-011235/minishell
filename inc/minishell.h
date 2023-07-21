@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:20:01 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 16:55:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # include "minishell_config.h"
 
 //MODULE ENV
-t_err	ft_env_setup(t_hashtable *env_table);
+t_err	ft_env_setup(t_hashtable **env_table);
 
 //MODULE PROMPT
 t_err	ft_prompt_create(t_hashtable *sym_tab,
