@@ -45,7 +45,7 @@ SRC :=	main.c \
 		env_pwd.c \
 		env_shlvl.c \
 		env_envp.c \
-		prompt_create.c \
+		prompt.c \
 		prompt_replace_token.c \
 		prompt_replace_h.c \
 		prompt_replace_u.c \
@@ -56,12 +56,11 @@ SRC :=	main.c \
 		lexer_src.c \
 		lexer_tok.c \
 		lexer_tok_utils.c \
-		lexer_check_syntax.c \
-		utils.c \
-		expand_expr.c \
+		syntax.c \
+		expand.c \
 		expand_tilde.c \
 		expand_var.c \
-		lexer_expand.c
+		handle_input_expand.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects

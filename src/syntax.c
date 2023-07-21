@@ -1,16 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_check_syntax.c                               :+:      :+:    :+:   */
+/*   syntax_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:43:24 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:37:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 16:06:53 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer_check_syntax.h"
+/**
+ * @file syntax_check.c
+ * @brief Check input string for correct syntax
+ */
+#include "mod_syntax.h"
+
+/**
+ * @brief Check if char is Space (ASCII=33)
+ *
+ * @param c Char to check
+ * @return int 1 if true, 0 if not
+ */
+int	ft_is_space(char c)
+{
+	if (c == ' ')
+		return (1);
+	else
+		return (0);
+}
 
 /**
  * @brief Jump over a quoted part of input.

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt_create.c                                    :+:      :+:    :+:   */
+/*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 08:07:40 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:56:22 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 16:09:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file prompt_create.c
+ * @file prompt.c
  * @brief Create and expand a prompt string.
  */
 #include "mod_prompt.h"
