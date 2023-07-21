@@ -3,11 +3,9 @@
 	"tasks": [
 		{
 			"type": "cppbuild",
-			"label": "make debug",
+			"label": "make",
 			"command": "/usr/bin/make",
-			"args": [
-				"debug",
-			],
+			"args": [],
 			"options": {
 				"cwd": "${workspaceFolder}"
 			},

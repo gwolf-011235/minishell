@@ -52,7 +52,7 @@
 					"ignoreFailures": true
 				}
 			],
-			"preLaunchTask": "make debug"
+			"preLaunchTask": "make"
 		}
 
 	]
