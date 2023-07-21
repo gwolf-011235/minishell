@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 15:04:39 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 16:25:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define TEST_H
 
 # include "minishell.h"
-# include "lexer_check_syntax.h"
-# include "mod_expand.h"
 # include "mod_env.h"
-# include "lexer_expand.h"
+# include "mod_expand.h"
 # include "mod_handle_input.h"
+# include "mod_lexer.h"
+# include "mod_prompt.h"
+# include "mod_syntax.h"
 
 # define RESET "\033[0m"
 # define BOLD "\033[1m"
