@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_expr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 14:08:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
  * @file expander.c
  * @brief Contains driver function to handle expansion and quote removal.
  */
-#include "expand.h"
+#include "mod_expand.h"
 
 /**
  * @brief Search for token in input string and replace with replace.
