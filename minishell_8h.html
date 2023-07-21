@@ -89,7 +89,6 @@ $(document).ready(function(){initNavTree('minishell_8h.html',''); initResizable(
 
 <div class="header">
   <div class="summary">
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">minishell.h File Reference</div>  </div>
@@ -101,122 +100,60 @@ $(document).ready(function(){initNavTree('minishell_8h.html',''); initResizable(
 
 <p><a href="minishell_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:ad759c8e8f5fd7148bd64793ad7af4190"><td class="memItemLeft" align="right" valign="top"><a id="ad759c8e8f5fd7148bd64793ad7af4190"></a>
-typedef <a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><b>t_replace_ptr</b>) (char **replacement, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab)</td></tr>
-<tr class="separator:ad759c8e8f5fd7148bd64793ad7af4190"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a1d0cedfd2e488bc1b5642e1dbeae5c67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#a1d0cedfd2e488bc1b5642e1dbeae5c67">ft_env_setup</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table)</td></tr>
 <tr class="memdesc:a1d0cedfd2e488bc1b5642e1dbeae5c67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a env_table and imports env. If no PWD it creates one.  <a href="minishell_8h.html#a1d0cedfd2e488bc1b5642e1dbeae5c67">More...</a><br /></td></tr>
 <tr class="separator:a1d0cedfd2e488bc1b5642e1dbeae5c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dd0a4fdc3f5aef6997d3b8f6d68f39d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">ft_prompt_create</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab, char **prompt, char *ps, char *std)</td></tr>
+<tr class="memdesc:a1dd0a4fdc3f5aef6997d3b8f6d68f39d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a prompt string which gets expanded.  <a href="minishell_8h.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">More...</a><br /></td></tr>
+<tr class="separator:a1dd0a4fdc3f5aef6997d3b8f6d68f39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0940feb466ce10b2c7432c1cce66692"><td class="memItemLeft" align="right" valign="top"><a id="aa0940feb466ce10b2c7432c1cce66692"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ft_exit_failure</b> (<a class="el" href="structs__data.html">t_data</a> *data, <a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> exit_code)</td></tr>
 <tr class="separator:aa0940feb466ce10b2c7432c1cce66692"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6627e6607863c8029c30d01d89e80569"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#a6627e6607863c8029c30d01d89e80569">ft_realloc</a> (void *ptr, size_t new_size, size_t curr_size)</td></tr>
 <tr class="memdesc:a6627e6607863c8029c30d01d89e80569"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple implementation of realloc.  <a href="minishell_8h.html#a6627e6607863c8029c30d01d89e80569">More...</a><br /></td></tr>
 <tr class="separator:a6627e6607863c8029c30d01d89e80569"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad54224f5d44f1ef35b08f3a67ef82ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#aad54224f5d44f1ef35b08f3a67ef82ae">ft_calc_replace_len</a> (const char *str, const char *token, const char *replacement, size_t *expanded_len)</td></tr>
-<tr class="memdesc:aad54224f5d44f1ef35b08f3a67ef82ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the len of the string, where tokens have been replaced.  <a href="minishell_8h.html#aad54224f5d44f1ef35b08f3a67ef82ae">More...</a><br /></td></tr>
-<tr class="separator:aad54224f5d44f1ef35b08f3a67ef82ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47a8b69f98bb36e0c974f848e56bcb89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#a47a8b69f98bb36e0c974f848e56bcb89">ft_replace_token</a> (char **str, const char *token, const char *replacement)</td></tr>
-<tr class="memdesc:a47a8b69f98bb36e0c974f848e56bcb89"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function finds token in str and replaces it.  <a href="minishell_8h.html#a47a8b69f98bb36e0c974f848e56bcb89">More...</a><br /></td></tr>
-<tr class="separator:a47a8b69f98bb36e0c974f848e56bcb89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c280f1485689fb72d75ffbde310e37e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#a1c280f1485689fb72d75ffbde310e37e">ft_create_prompt</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab, char **prompt, char *ps, char *std)</td></tr>
-<tr class="memdesc:a1c280f1485689fb72d75ffbde310e37e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a prompt string which gets expanded.  <a href="minishell_8h.html#a1c280f1485689fb72d75ffbde310e37e">More...</a><br /></td></tr>
-<tr class="separator:a1c280f1485689fb72d75ffbde310e37e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a883ace2476620a65379268743c22d90c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#a883ace2476620a65379268743c22d90c">ft_prompt_replace_n</a> (char **replacement, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab)</td></tr>
-<tr class="memdesc:a883ace2476620a65379268743c22d90c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates replacement string for token <br  />
-.  <a href="minishell_8h.html#a883ace2476620a65379268743c22d90c">More...</a><br /></td></tr>
-<tr class="separator:a883ace2476620a65379268743c22d90c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09c56a8929c190c74a059392fca63ced"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#a09c56a8929c190c74a059392fca63ced">ft_prompt_replace_r</a> (char **replacement, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab)</td></tr>
-<tr class="memdesc:a09c56a8929c190c74a059392fca63ced"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates replacement string for token \r.  <a href="minishell_8h.html#a09c56a8929c190c74a059392fca63ced">More...</a><br /></td></tr>
-<tr class="separator:a09c56a8929c190c74a059392fca63ced"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc354cc65e4b96151dfae9bbee8f88fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#afc354cc65e4b96151dfae9bbee8f88fe">ft_prompt_replace_not_found</a> (char **replacement)</td></tr>
-<tr class="memdesc:afc354cc65e4b96151dfae9bbee8f88fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create string if some $var for replacement wasn't found.  <a href="minishell_8h.html#afc354cc65e4b96151dfae9bbee8f88fe">More...</a><br /></td></tr>
-<tr class="separator:afc354cc65e4b96151dfae9bbee8f88fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee15418b23b0564fa88bab9ff2660cf0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#aee15418b23b0564fa88bab9ff2660cf0">ft_prompt_replace_empty</a> (char **replacement, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab)</td></tr>
-<tr class="memdesc:aee15418b23b0564fa88bab9ff2660cf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates empty string for wrong token.  <a href="minishell_8h.html#aee15418b23b0564fa88bab9ff2660cf0">More...</a><br /></td></tr>
-<tr class="separator:aee15418b23b0564fa88bab9ff2660cf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee3ae2959e7892667c2fdeaa4cc71919"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#aee3ae2959e7892667c2fdeaa4cc71919">ft_prompt_replace_h</a> (char **replacement, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab)</td></tr>
-<tr class="memdesc:aee3ae2959e7892667c2fdeaa4cc71919"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates replacement string for token \h.  <a href="minishell_8h.html#aee3ae2959e7892667c2fdeaa4cc71919">More...</a><br /></td></tr>
-<tr class="separator:aee3ae2959e7892667c2fdeaa4cc71919"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5ae20bf7365d0a943324be951e95386"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#ac5ae20bf7365d0a943324be951e95386">ft_prompt_create_hostname</a> (char **replacement, const char *str)</td></tr>
-<tr class="memdesc:ac5ae20bf7365d0a943324be951e95386"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and save hostname string from provided string.  <a href="minishell_8h.html#ac5ae20bf7365d0a943324be951e95386">More...</a><br /></td></tr>
-<tr class="separator:ac5ae20bf7365d0a943324be951e95386"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa71074e44ebbc92046d04a3e793c8a7d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#aa71074e44ebbc92046d04a3e793c8a7d">ft_prompt_replace_u</a> (char **replacement, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab)</td></tr>
-<tr class="memdesc:aa71074e44ebbc92046d04a3e793c8a7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates replacement string for token \u.  <a href="minishell_8h.html#aa71074e44ebbc92046d04a3e793c8a7d">More...</a><br /></td></tr>
-<tr class="separator:aa71074e44ebbc92046d04a3e793c8a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad9db21014298a83d58bf5b0856fcbf6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#aad9db21014298a83d58bf5b0856fcbf6">ft_prompt_replace_w</a> (char **replacement, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab)</td></tr>
-<tr class="memdesc:aad9db21014298a83d58bf5b0856fcbf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates replacement string for token \w.  <a href="minishell_8h.html#aad9db21014298a83d58bf5b0856fcbf6">More...</a><br /></td></tr>
-<tr class="separator:aad9db21014298a83d58bf5b0856fcbf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Overarching header. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="aad54224f5d44f1ef35b08f3a67ef82ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad54224f5d44f1ef35b08f3a67ef82ae">&#9670;&nbsp;</a></span>ft_calc_replace_len()</h2>
+<a id="a1d0cedfd2e488bc1b5642e1dbeae5c67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d0cedfd2e488bc1b5642e1dbeae5c67">&#9670;&nbsp;</a></span>ft_env_setup()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_calc_replace_len </td>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_env_setup </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
+          <td class="paramname"><em>env_table</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>token</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>replacement</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t *&#160;</td>
-          <td class="paramname"><em>expanded_len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calculates the len of the string, where tokens have been replaced. </p>
-<p>Check if either of the provided pointers is empty. Calc the strlen of token and replacement. Search for instances of token in string. If one is found add len upto token, add replacement len, then jump over token. Search again. If no token is found add remaining len of str.</p>
+<p>Creates a env_table and imports env. If no PWD it creates one. </p>
+<p>Create hashtable env_table with HASHTABLE_SIZE. Call ft_import_environ to fill env_table. If env was empty set PWD and SHLVL. If PWD is not available set PWD. Increment SHLVL. If not found set it.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">str</td><td>The string for which the expanded len should be calculated. </td></tr>
-    <tr><td class="paramname">token</td><td>Char string which is going to be replaced. </td></tr>
-    <tr><td class="paramname">replacement</td><td>Char string as replacement for token. </td></tr>
-    <tr><td class="paramname">expanded_len</td><td>Pointer to size_t in which to save the len. </td></tr>
+    <tr><td class="paramname">env_table</td><td>Environment. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error ERR_EMPTY, SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_MALLOC. </dd></dl>
 
 </div>
 </div>
-<a id="a1c280f1485689fb72d75ffbde310e37e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c280f1485689fb72d75ffbde310e37e">&#9670;&nbsp;</a></span>ft_create_prompt()</h2>
+<a id="a1dd0a4fdc3f5aef6997d3b8f6d68f39d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">&#9670;&nbsp;</a></span>ft_prompt_create()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_create_prompt </td>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_prompt_create </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
           <td class="paramname"><em>sym_tab</em>, </td>
@@ -259,337 +196,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ft_exit_failure</b> (
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_MALLOC, ERR_EMPTY </dd></dl>
-
-</div>
-</div>
-<a id="a1d0cedfd2e488bc1b5642e1dbeae5c67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d0cedfd2e488bc1b5642e1dbeae5c67">&#9670;&nbsp;</a></span>ft_env_setup()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_env_setup </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>env_table</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Creates a env_table and imports env. If no PWD it creates one. </p>
-<p>Create hashtable env_table with HASHTABLE_SIZE. Call ft_import_environ to fill env_table. If env was empty set PWD and SHLVL. If PWD is not available set PWD. Increment SHLVL. If not found set it.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">env_table</td><td>Environment. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_MALLOC. </dd></dl>
-
-</div>
-</div>
-<a id="ac5ae20bf7365d0a943324be951e95386"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5ae20bf7365d0a943324be951e95386">&#9670;&nbsp;</a></span>ft_prompt_create_hostname()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_prompt_create_hostname </td>
-          <td>(</td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>replacement</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>str</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Create and save hostname string from provided string. </p>
-<p>This function expects a value of env_var SESSION_MANAGER. Search for "local/" and add 6 to get start of hostname. Search for '.' or ':' to get end, if not found ft_strlen is used. Create a substring.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">replacement</td><td>Pointer pointer where to save string. </td></tr>
-    <tr><td class="paramname">str</td><td>The value of SESSION_MANAGER. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_MALLOC </dd></dl>
-
-</div>
-</div>
-<a id="aee15418b23b0564fa88bab9ff2660cf0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee15418b23b0564fa88bab9ff2660cf0">&#9670;&nbsp;</a></span>ft_prompt_replace_empty()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_prompt_replace_empty </td>
-          <td>(</td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>replacement</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>sym_tab</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Creates empty string for wrong token. </p>
-<p>Just simply ft_strdup() "" (empty string) and saves it. Sym_tab is voided to use this ft in ft pointer.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">replacement</td><td>Where to save string. </td></tr>
-    <tr><td class="paramname">sym_tab</td><td>symbol_table - not used. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_MALLOC </dd></dl>
-
-</div>
-</div>
-<a id="aee3ae2959e7892667c2fdeaa4cc71919"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee3ae2959e7892667c2fdeaa4cc71919">&#9670;&nbsp;</a></span>ft_prompt_replace_h()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_prompt_replace_h </td>
-          <td>(</td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>replacement</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>sym_tab</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Creates replacement string for token \h. </p>
-<p>Search for env_var $SESSION_MANAGER. If found search for "local/" after where localhost name is saved. Create string with sub function. If any not found create UNKNOWN with sub function.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">replacement</td><td>Pointer pointer where to save string. </td></tr>
-    <tr><td class="paramname">sym_tab</td><td>Symbol table where to search for env_var. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_MALLOC </dd></dl>
-
-</div>
-</div>
-<a id="a883ace2476620a65379268743c22d90c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a883ace2476620a65379268743c22d90c">&#9670;&nbsp;</a></span>ft_prompt_replace_n()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_prompt_replace_n </td>
-          <td>(</td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>replacement</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>sym_tab</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Creates replacement string for token <br  />
-. </p>
-<p>Just simply ft_strdup() '<br  />
-' and saves it. Sym_tab is voided to use this ft in ft pointer.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">replacement</td><td>Where to save string. </td></tr>
-    <tr><td class="paramname">sym_tab</td><td>symbol_table - not used. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_MALLOC </dd></dl>
-
-</div>
-</div>
-<a id="afc354cc65e4b96151dfae9bbee8f88fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc354cc65e4b96151dfae9bbee8f88fe">&#9670;&nbsp;</a></span>ft_prompt_replace_not_found()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_prompt_replace_not_found </td>
-          <td>(</td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>replacement</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Create string if some $var for replacement wasn't found. </p>
-<p>Use ft_strdup() on macro UNKNOWN defined in <a class="el" href="minishell_8h.html" title="Overarching header.">minishell.h</a> and save it.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">replacement</td><td>Pointer pointer where to save string. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_MALLOC </dd></dl>
-
-</div>
-</div>
-<a id="a09c56a8929c190c74a059392fca63ced"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09c56a8929c190c74a059392fca63ced">&#9670;&nbsp;</a></span>ft_prompt_replace_r()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_prompt_replace_r </td>
-          <td>(</td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>replacement</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>sym_tab</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Creates replacement string for token \r. </p>
-<p>Just simply ft_strdup() '\r' and saves it. Sym_tab is voided to use this ft in ft pointer.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">replacement</td><td>Where to save string. </td></tr>
-    <tr><td class="paramname">sym_tab</td><td>symbol_table - not used. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_MALLOC </dd></dl>
-
-</div>
-</div>
-<a id="aa71074e44ebbc92046d04a3e793c8a7d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa71074e44ebbc92046d04a3e793c8a7d">&#9670;&nbsp;</a></span>ft_prompt_replace_u()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_prompt_replace_u </td>
-          <td>(</td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>replacement</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>sym_tab</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Creates replacement string for token \u. </p>
-<p>Search for env_var $USER. If found ft_strdup value and save in replacement. If not found create UNKNOWN with sub function.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">replacement</td><td>Pointer pointer where to save string. </td></tr>
-    <tr><td class="paramname">sym_tab</td><td>Symbol table where to search for env_var. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_MALLOC </dd></dl>
-
-</div>
-</div>
-<a id="aad9db21014298a83d58bf5b0856fcbf6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad9db21014298a83d58bf5b0856fcbf6">&#9670;&nbsp;</a></span>ft_prompt_replace_w()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_prompt_replace_w </td>
-          <td>(</td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>replacement</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>sym_tab</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Creates replacement string for token \w. </p>
-<p>Search for env_var $PWD. If found ft_strdup value and save in replacement. If not found create UNKNOWN with <a class="el" href="minishell_8h.html#afc354cc65e4b96151dfae9bbee8f88fe" title="Create string if some $var for replacement wasn&#39;t found.">ft_prompt_replace_not_found()</a>. Try to replace $HOME with ft_prompt_replace_tilde().</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">replacement</td><td>Pointer pointer where to save string. </td></tr>
-    <tr><td class="paramname">sym_tab</td><td>Symbol table where to search for env_var. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_MALLOC </dd></dl>
 
 </div>
 </div>
@@ -636,52 +242,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ft_exit_failure</b> (
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void* New malloc'd and memcpy'd pointer, NULL if fail. </dd></dl>
-
-</div>
-</div>
-<a id="a47a8b69f98bb36e0c974f848e56bcb89"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47a8b69f98bb36e0c974f848e56bcb89">&#9670;&nbsp;</a></span>ft_replace_token()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_replace_token </td>
-          <td>(</td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>token</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>replacement</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>This function finds token in str and replaces it. </p>
-<p>Calculate expanded len of str. Malloc a buffer which holds expanded len and zero terminate. Copy str into buffer whereby each token is replaced. Free str and update pointer to the expanded string.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">str</td><td>Pointer pointer to char string which is expanded. </td></tr>
-    <tr><td class="paramname">token</td><td>Char string to search for. </td></tr>
-    <tr><td class="paramname">replacement</td><td>Char string which replaces token. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_MALLOC, ERR_EMPTY </dd></dl>
 
 </div>
 </div>

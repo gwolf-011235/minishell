@@ -30,6 +30,7 @@ var files_dup =
     [ "minishell_struct.h", "minishell__struct_8h_source.html", null ],
     [ "mod_env.h", "mod__env_8h_source.html", null ],
     [ "mod_lexer.h", "mod__lexer_8h_source.html", null ],
+    [ "mod_prompt.h", "mod__prompt_8h_source.html", null ],
     [ "test.h", "test_8h_source.html", null ],
     [ "utils.h", "utils_8h_source.html", null ]
 ];
