@@ -98,16 +98,16 @@ $(document).ready(function(){initNavTree('structs__cmd.html',''); initResizable(
 <p>Linked list of simple commands existing of token extracted from input.  
  <a href="structs__cmd.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="minishell__struct_8h_source.html">minishell_struct.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="mod__handle__input_8h_source.html">mod_handle_input.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a988acbf76208b2c16eb342ec5624a0b8"><td class="memItemLeft" align="right" valign="top"><a id="a988acbf76208b2c16eb342ec5624a0b8"></a>
 char *&#160;</td><td class="memItemRight" valign="bottom"><b>exe</b></td></tr>
 <tr class="separator:a988acbf76208b2c16eb342ec5624a0b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac35871b9c59d887c9442096075089725"><td class="memItemLeft" align="right" valign="top"><a id="ac35871b9c59d887c9442096075089725"></a>
-char **&#160;</td><td class="memItemRight" valign="bottom"><b>opts</b></td></tr>
-<tr class="separator:ac35871b9c59d887c9442096075089725"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa24f72e6a4d6a997528142211b375496"><td class="memItemLeft" align="right" valign="top"><a id="aa24f72e6a4d6a997528142211b375496"></a>
+char **&#160;</td><td class="memItemRight" valign="bottom"><b>args</b></td></tr>
+<tr class="separator:aa24f72e6a4d6a997528142211b375496"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa99784c5e39bc01a4eb26b588d24170e"><td class="memItemLeft" align="right" valign="top"><a id="aa99784c5e39bc01a4eb26b588d24170e"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>fd_in</b></td></tr>
 <tr class="separator:aa99784c5e39bc01a4eb26b588d24170e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,12 +132,12 @@ struct <a class="el" href="structs__cmd.html">s_cmd</a> *&#160;</td><td class="m
 <p>Each node of the list contains information about the respective token. Not all variables necessarily need to be populated. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">exe</td><td>Pointer to executable string. </td></tr>
-    <tr><td class="paramname">opts</td><td>Pointer to options string. </td></tr>
+    <tr><td class="paramname">args</td><td>Pointer to argument string array. </td></tr>
     <tr><td class="paramname">fd_in</td><td>File descriptor of infile. </td></tr>
     <tr><td class="paramname">fd_out</td><td>File descriptor of outfile. </td></tr>
     <tr><td class="paramname">delim</td><td>Pointer to delimiter string. </td></tr>
     <tr><td class="paramname">append</td><td>Boole value to indicate append mode. </td></tr>
-    <tr><td class="paramname">index</td><td>Index indicating position of token in the pipeline. </td></tr>
+    <tr><td class="paramname">index</td><td>Index indicating position of command in the pipeline. </td></tr>
   </table>
   </dd>
 </dl>

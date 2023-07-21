@@ -8,6 +8,7 @@ var files_dup =
     [ "expand.c", "expand_8c.html", "expand_8c" ],
     [ "expand_tilde.c", "expand__tilde_8c.html", "expand__tilde_8c" ],
     [ "expand_var.c", "expand__var_8c.html", "expand__var_8c" ],
+    [ "handle_input.c", "handle__input_8c.html", "handle__input_8c" ],
     [ "hashtable.h", "hashtable_8h.html", "hashtable_8h" ],
     [ "hashtable_generate.c", "hashtable__generate_8c.html", "hashtable__generate_8c" ],
     [ "hashtable_utils.c", "hashtable__utils_8c.html", "hashtable__utils_8c" ],
