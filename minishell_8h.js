@@ -4,10 +4,12 @@ var minishell_8h =
     [ "s_tkn_list", "structs__tkn__list.html", "structs__tkn__list" ],
     [ "s_cmd", "structs__cmd.html", "structs__cmd" ],
     [ "s_checks", "structs__checks.html", "structs__checks" ],
+    [ "s_info", "structs__info.html", "structs__info" ],
     [ "s_data", "structs__data.html", "structs__data" ],
     [ "t_checks", "minishell_8h.html#a2ac6aa615028570d7164697e4439c92b", null ],
     [ "t_cmd", "minishell_8h.html#a4fac5b0c1334043d22fc2631fd6277c7", null ],
     [ "t_data", "minishell_8h.html#a24e28e95867f9681b9d87781b1caa65b", null ],
+    [ "t_info", "minishell_8h.html#ae94d8324261ed8fcae571842ee4bedd9", null ],
     [ "t_replace_ptr", "minishell_8h.html#a78c8eca2294fff713bfaf3b95f73256b", null ],
     [ "t_tkn_list", "minishell_8h.html#a1501ea25e9d50f7c9372c07c6df68109", null ],
     [ "t_tok", "minishell_8h.html#a645b2343c2e39e81f91aef14bb100d63", null ],
@@ -32,7 +34,5 @@ var minishell_8h =
     [ "ft_prompt_replace_w", "minishell_8h.html#a8b371312da26da3f6ed863956f495f14", null ],
     [ "ft_realloc", "minishell_8h.html#a6627e6607863c8029c30d01d89e80569", null ],
     [ "ft_replace_token", "minishell_8h.html#ac922717f4eb643174092da005d66f5e2", null ],
-    [ "ft_strcat", "minishell_8h.html#a04c31fd901f86723a78305f000581d10", null ],
-    [ "ft_strncat", "minishell_8h.html#a589733b59f8def829548d13bedf591f0", null ],
     [ "environ", "minishell_8h.html#aa006daaf11f1e2e45a6ababaf463212b", null ]
 ];

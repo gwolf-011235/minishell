@@ -15,6 +15,8 @@ var minishell__error_8h =
       [ "ERR_MAX_SHLVL", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aefe06b2c607d230b0b7e5f1d4ae56b0a", null ],
       [ "ERR_OUT_OF_BOUNDS", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a495247f86f2d33551142fd94a74eeae1", null ],
       [ "ERR_WRONG_TOKEN", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aacdc7b9755d24bf9caf955c7a9ecab48", null ],
-      [ "ERR_SYNTAX", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aeed16f7745959d523aed6190f839dea8", null ]
+      [ "ERR_SYNTAX", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aeed16f7745959d523aed6190f839dea8", null ],
+      [ "ERR_NOT_FOUND", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a3cfe3eff41c31f8283d57f835269a958", null ],
+      [ "ERR_NOEXPAND", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a3da755970fe3ecf3630c15029f5b0517", null ]
     ] ]
 ];
