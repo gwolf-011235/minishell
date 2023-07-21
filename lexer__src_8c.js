@@ -1,6 +1,6 @@
 var lexer__src_8c =
 [
-    [ "ft_next_char", "lexer__src_8c.html#a81a8d1f009e34ffc6fb064935c76f724", null ],
-    [ "ft_peek_char", "lexer__src_8c.html#ac1dfef884bcfc0376710008311d963c2", null ],
-    [ "ft_unget_char", "lexer__src_8c.html#a2fa80cf85035b06363f3dc5d6f342f89", null ]
+    [ "ft_next_char", "lexer__src_8c.html#a3151462151b37c9a72f166296840fe5e", null ],
+    [ "ft_peek_char", "lexer__src_8c.html#a241f7b0e2c92574564b96addf86295d8", null ],
+    [ "ft_unget_char", "lexer__src_8c.html#a2afc49cb9da9fa8bfb4219f85acf7d5d", null ]
 ];

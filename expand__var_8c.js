@@ -1,7 +1,7 @@
 var expand__var_8c =
 [
-    [ "ft_expand_var", "expand__var_8c.html#aeb0972d5b5e009f7630a7d91b4c1d68a", null ],
-    [ "ft_get_var_replace", "expand__var_8c.html#a975702a51f9c88f2f1594c2d8a06a461", null ],
-    [ "ft_get_var_token", "expand__var_8c.html#a9f81f86b907efd5140a0581866ec680a", null ],
-    [ "ft_special_var", "expand__var_8c.html#a074cfb86b46223ce12b43d53b57a5d7a", null ]
+    [ "ft_expand_var", "expand__var_8c.html#a00e347769d014163f29c4d1ca7c3a9c9", null ],
+    [ "ft_get_var_replace", "expand__var_8c.html#a36ebbe0e53b0df4ed40648824f028aae", null ],
+    [ "ft_get_var_token", "expand__var_8c.html#a4dcec0f53a3aa03885d0454ac04df33d", null ],
+    [ "ft_special_var", "expand__var_8c.html#aa8599780d9d57d0885657d19ae1c34f5", null ]
 ];
