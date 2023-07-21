@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Minishell: prompt_create.c File Reference</title>
+<title>Minishell: prompt.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('prompt__create_8c.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('prompt_8c.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -91,7 +91,7 @@ $(document).ready(function(){initNavTree('prompt__create_8c.html',''); initResiz
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">prompt_create.c File Reference</div>  </div>
+<div class="title">prompt.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -100,20 +100,20 @@ $(document).ready(function(){initNavTree('prompt__create_8c.html',''); initResiz
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa87dca583890cfca26a5d2bb452886ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prompt__create_8c.html#aa87dca583890cfca26a5d2bb452886ba">ft_get_replace</a> (char **replacement, unsigned char target, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab)</td></tr>
-<tr class="memdesc:aa87dca583890cfca26a5d2bb452886ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Malloc replacement string for provided token.  <a href="prompt__create_8c.html#aa87dca583890cfca26a5d2bb452886ba">More...</a><br /></td></tr>
+<tr class="memitem:aa87dca583890cfca26a5d2bb452886ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prompt_8c.html#aa87dca583890cfca26a5d2bb452886ba">ft_get_replace</a> (char **replacement, unsigned char target, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab)</td></tr>
+<tr class="memdesc:aa87dca583890cfca26a5d2bb452886ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Malloc replacement string for provided token.  <a href="prompt_8c.html#aa87dca583890cfca26a5d2bb452886ba">More...</a><br /></td></tr>
 <tr class="separator:aa87dca583890cfca26a5d2bb452886ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d36cd625a4e25b59f853a9e1ca57a4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prompt__create_8c.html#a4d36cd625a4e25b59f853a9e1ca57a4a">ft_get_token</a> (char **token, unsigned char target)</td></tr>
-<tr class="memdesc:a4d36cd625a4e25b59f853a9e1ca57a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assign corresponding token string.  <a href="prompt__create_8c.html#a4d36cd625a4e25b59f853a9e1ca57a4a">More...</a><br /></td></tr>
+<tr class="memitem:a4d36cd625a4e25b59f853a9e1ca57a4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prompt_8c.html#a4d36cd625a4e25b59f853a9e1ca57a4a">ft_get_token</a> (char **token, unsigned char target)</td></tr>
+<tr class="memdesc:a4d36cd625a4e25b59f853a9e1ca57a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assign corresponding token string.  <a href="prompt_8c.html#a4d36cd625a4e25b59f853a9e1ca57a4a">More...</a><br /></td></tr>
 <tr class="separator:a4d36cd625a4e25b59f853a9e1ca57a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1606c53415a04f230ee2ab2eaf046bd5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prompt__create_8c.html#a1606c53415a04f230ee2ab2eaf046bd5">ft_search_token</a> (const char *ps_string, char **token)</td></tr>
-<tr class="memdesc:a1606c53415a04f230ee2ab2eaf046bd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search string for occurence of token.  <a href="prompt__create_8c.html#a1606c53415a04f230ee2ab2eaf046bd5">More...</a><br /></td></tr>
+<tr class="memitem:a1606c53415a04f230ee2ab2eaf046bd5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prompt_8c.html#a1606c53415a04f230ee2ab2eaf046bd5">ft_search_token</a> (const char *ps_string, char **token)</td></tr>
+<tr class="memdesc:a1606c53415a04f230ee2ab2eaf046bd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search string for occurence of token.  <a href="prompt_8c.html#a1606c53415a04f230ee2ab2eaf046bd5">More...</a><br /></td></tr>
 <tr class="separator:a1606c53415a04f230ee2ab2eaf046bd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a150f1b0320c638ae1d05f6af6cb231f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prompt__create_8c.html#a150f1b0320c638ae1d05f6af6cb231f7">ft_expand_prompt_str</a> (char **prompt, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab)</td></tr>
-<tr class="memdesc:a150f1b0320c638ae1d05f6af6cb231f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expands the provided prompt string.  <a href="prompt__create_8c.html#a150f1b0320c638ae1d05f6af6cb231f7">More...</a><br /></td></tr>
+<tr class="memitem:a150f1b0320c638ae1d05f6af6cb231f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prompt_8c.html#a150f1b0320c638ae1d05f6af6cb231f7">ft_expand_prompt_str</a> (char **prompt, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab)</td></tr>
+<tr class="memdesc:a150f1b0320c638ae1d05f6af6cb231f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expands the provided prompt string.  <a href="prompt_8c.html#a150f1b0320c638ae1d05f6af6cb231f7">More...</a><br /></td></tr>
 <tr class="separator:a150f1b0320c638ae1d05f6af6cb231f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dd0a4fdc3f5aef6997d3b8f6d68f39d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prompt__create_8c.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">ft_prompt_create</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab, char **prompt, char *ps, char *std)</td></tr>
-<tr class="memdesc:a1dd0a4fdc3f5aef6997d3b8f6d68f39d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a prompt string which gets expanded.  <a href="prompt__create_8c.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">More...</a><br /></td></tr>
+<tr class="memitem:a1dd0a4fdc3f5aef6997d3b8f6d68f39d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prompt_8c.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">ft_prompt_create</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab, char **prompt, char *ps, char *std)</td></tr>
+<tr class="memdesc:a1dd0a4fdc3f5aef6997d3b8f6d68f39d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a prompt string which gets expanded.  <a href="prompt_8c.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">More...</a><br /></td></tr>
 <tr class="separator:a1dd0a4fdc3f5aef6997d3b8f6d68f39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -146,7 +146,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Expands the provided prompt string. </p>
-<p>In infinite loop: Search for token with <a class="el" href="prompt__create_8c.html#a1606c53415a04f230ee2ab2eaf046bd5" title="Search string for occurence of token.">ft_search_token()</a>. Create replacement with <a class="el" href="prompt__create_8c.html#aa87dca583890cfca26a5d2bb452886ba" title="Malloc replacement string for provided token.">ft_get_replace()</a>. Replace token with <a class="el" href="prompt__replace__token_8c.html#a47a8b69f98bb36e0c974f848e56bcb89" title="This function finds token in str and replaces it.">ft_replace_token()</a>. If no token is found (anymore) break out.</p>
+<p>In infinite loop: Search for token with <a class="el" href="prompt_8c.html#a1606c53415a04f230ee2ab2eaf046bd5" title="Search string for occurence of token.">ft_search_token()</a>. Create replacement with <a class="el" href="prompt_8c.html#aa87dca583890cfca26a5d2bb452886ba" title="Malloc replacement string for provided token.">ft_get_replace()</a>. Replace token with <a class="el" href="prompt__replace__token_8c.html#a47a8b69f98bb36e0c974f848e56bcb89" title="This function finds token in str and replaces it.">ft_replace_token()</a>. If no token is found (anymore) break out.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">prompt</td><td>This gets searched and expanded. </td></tr>
@@ -282,7 +282,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Create a prompt string which gets expanded. </p>
-<p>Search for provided var $PS1 or $PS2 in sym_tab. If not found create prompt with provided standard. If found ft_strdup() value of var. Expand the string with <a class="el" href="prompt__create_8c.html#a150f1b0320c638ae1d05f6af6cb231f7" title="Expands the provided prompt string.">ft_expand_prompt_str()</a>.</p>
+<p>Search for provided var $PS1 or $PS2 in sym_tab. If not found create prompt with provided standard. If found ft_strdup() value of var. Expand the string with <a class="el" href="prompt_8c.html#a150f1b0320c638ae1d05f6af6cb231f7" title="Expands the provided prompt string.">ft_expand_prompt_str()</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sym_tab</td><td>Symbol table where to search. </td></tr>
@@ -323,7 +323,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Search string for occurence of token. </p>
-<p>First searches for backslash in prompt string. If not found return. If backslash is found get token string for next char using <a class="el" href="prompt__create_8c.html#a4d36cd625a4e25b59f853a9e1ca57a4a" title="Assign corresponding token string.">ft_get_token()</a>. If char is '\0' error msg is printed and empty string assigned. If char is not recognised error msg is printed and empty string assigned. Empty string helps to break out of loop in <a class="el" href="prompt__create_8c.html#a150f1b0320c638ae1d05f6af6cb231f7" title="Expands the provided prompt string.">ft_expand_prompt_str()</a></p>
+<p>First searches for backslash in prompt string. If not found return. If backslash is found get token string for next char using <a class="el" href="prompt_8c.html#a4d36cd625a4e25b59f853a9e1ca57a4a" title="Assign corresponding token string.">ft_get_token()</a>. If char is '\0' error msg is printed and empty string assigned. If char is not recognised error msg is printed and empty string assigned. Empty string helps to break out of loop in <a class="el" href="prompt_8c.html#a150f1b0320c638ae1d05f6af6cb231f7" title="Expands the provided prompt string.">ft_expand_prompt_str()</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ps_string</td><td>The prompt string which gets searched. </td></tr>
@@ -340,7 +340,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="prompt__create_8c.html">prompt_create.c</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="prompt_8c.html">prompt.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

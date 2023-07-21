@@ -19,7 +19,7 @@ var searchData=
   ['err_5fundefined_16',['ERR_UNDEFINED',['../minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a5bb280b3fe12d695d5a7c158f93eb603',1,'minishell_error.h']]],
   ['err_5fwrong_5ftoken_17',['ERR_WRONG_TOKEN',['../minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aacdc7b9755d24bf9caf955c7a9ecab48',1,'minishell_error.h']]],
   ['exit_5ffailure_2ec_18',['exit_failure.c',['../exit__failure_8c.html',1,'']]],
-  ['expand_5fexpr_2ec_19',['expand_expr.c',['../expand__expr_8c.html',1,'']]],
+  ['expand_2ec_19',['expand.c',['../expand_8c.html',1,'']]],
   ['expand_5ftilde_2ec_20',['expand_tilde.c',['../expand__tilde_8c.html',1,'']]],
   ['expand_5fvar_2ec_21',['expand_var.c',['../expand__var_8c.html',1,'']]]
 ];

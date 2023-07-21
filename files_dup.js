@@ -5,7 +5,7 @@ var files_dup =
     [ "env_setup.c", "env__setup_8c.html", "env__setup_8c" ],
     [ "env_shlvl.c", "env__shlvl_8c.html", "env__shlvl_8c" ],
     [ "exit_failure.c", "exit__failure_8c.html", "exit__failure_8c" ],
-    [ "expand_expr.c", "expand__expr_8c.html", "expand__expr_8c" ],
+    [ "expand.c", "expand_8c.html", "expand_8c" ],
     [ "expand_tilde.c", "expand__tilde_8c.html", "expand__tilde_8c" ],
     [ "expand_var.c", "expand__var_8c.html", "expand__var_8c" ],
     [ "ft_string.h", "ft__string_8h_source.html", null ],
@@ -13,7 +13,6 @@ var files_dup =
     [ "hashtable_generate.c", "hashtable__generate_8c.html", "hashtable__generate_8c" ],
     [ "hashtable_utils.c", "hashtable__utils_8c.html", "hashtable__utils_8c" ],
     [ "hashtable_utils2.c", "hashtable__utils2_8c.html", "hashtable__utils2_8c" ],
-    [ "lexer_check_syntax.h", "lexer__check__syntax_8h_source.html", null ],
     [ "lexer_expand.h", "lexer__expand_8h_source.html", null ],
     [ "lexer_list.c", "lexer__list_8c.html", "lexer__list_8c" ],
     [ "lexer_src.c", "lexer__src_8c.html", "lexer__src_8c" ],
@@ -30,12 +29,12 @@ var files_dup =
     [ "mod_handle_input.h", "mod__handle__input_8h_source.html", null ],
     [ "mod_lexer.h", "mod__lexer_8h_source.html", null ],
     [ "mod_prompt.h", "mod__prompt_8h_source.html", null ],
-    [ "prompt_create.c", "prompt__create_8c.html", "prompt__create_8c" ],
+    [ "mod_syntax.h", "mod__syntax_8h_source.html", null ],
+    [ "prompt.c", "prompt_8c.html", "prompt_8c" ],
     [ "prompt_replace_h.c", "prompt__replace__h_8c.html", "prompt__replace__h_8c" ],
     [ "prompt_replace_small.c", "prompt__replace__small_8c.html", "prompt__replace__small_8c" ],
     [ "prompt_replace_token.c", "prompt__replace__token_8c.html", "prompt__replace__token_8c" ],
     [ "prompt_replace_u.c", "prompt__replace__u_8c.html", "prompt__replace__u_8c" ],
     [ "prompt_replace_w.c", "prompt__replace__w_8c.html", "prompt__replace__w_8c" ],
-    [ "test.h", "test_8h_source.html", null ],
-    [ "utils.h", "utils_8h_source.html", null ]
+    [ "test.h", "test_8h_source.html", null ]
 ];
