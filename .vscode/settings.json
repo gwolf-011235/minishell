@@ -11,6 +11,7 @@
 		"lexer_tok.h": "c",
 		"lexer_utils.h": "c",
 		"stdlib.h": "c",
-		"expander.h": "c"
+		"expander.h": "c",
+		"hashtable.h": "c"
 	}
 }

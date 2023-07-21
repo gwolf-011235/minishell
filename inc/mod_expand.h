@@ -6,16 +6,15 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:08:04 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:24:01 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MOD_EXPAND_H
 # define MOD_EXPAND_H
 
-# include "minishell.h"
-# include "minishell_error.h"
 # include "hashtable.h"
+# include "minishell_struct.h"
 # include "ft_string.h"
 
 /**

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:41:48 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 13:40:43 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:21:56 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include <errno.h>
 
 # include "minishell_config.h"
-# include "minishell_struct.h"
-# include "minishell_error.h"
 # include "hashtable.h"
 
 /**

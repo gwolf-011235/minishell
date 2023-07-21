@@ -6,14 +6,13 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:45:35 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:04:35 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:23:08 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MOD_PROMPT_H
 # define MOD_PROMPT_H
 
-# include "minishell_error.h"
 # include "minishell_config.h"
 # include "hashtable.h"
 # include "ft_string.h"
