@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_envp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 18:09:38 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 13:40:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env_envp.h"
+#include "mod_env.h"
 
 /**
  * @brief Loop through all elements and copy the pointers.
@@ -19,7 +19,7 @@
  * @param envp Where to save pointers.
  * @return t_error SUCCESS
  */
-static t_err	ft_envp_fill(t_hashtable *ht, char **envp)
+t_err	ft_envp_fill(t_hashtable *ht, char **envp)
 {
 	uint32_t	i;
 	t_env_var	*tmp;

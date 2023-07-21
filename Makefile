@@ -45,6 +45,7 @@ SRC :=	main.c \
 		env_setup.c \
 		env_pwd.c \
 		env_shlvl.c \
+		env_envp.c \
 		prompt.c \
 		prompt_replace_h.c \
 		prompt_replace_u.c \
@@ -57,7 +58,6 @@ SRC :=	main.c \
 		lexer_tok_utils.c \
 		lexer_check_syntax.c \
 		utils.c \
-		env_envp.c \
 		expand_expr.c \
 		expand_tilde.c \
 		expand_var.c \
