@@ -3,15 +3,8 @@ var minishell_8h =
     [ "t_replace_ptr", "minishell_8h.html#ad759c8e8f5fd7148bd64793ad7af4190", null ],
     [ "ft_calc_replace_len", "minishell_8h.html#aad54224f5d44f1ef35b08f3a67ef82ae", null ],
     [ "ft_create_prompt", "minishell_8h.html#a1c280f1485689fb72d75ffbde310e37e", null ],
-    [ "ft_create_pwd_env_str", "minishell_8h.html#ab32cc5839c4adc59e721fd12740ad793", null ],
-    [ "ft_create_pwd_value", "minishell_8h.html#a90aa40452a5af9eec0b7f887cee48b94", null ],
-    [ "ft_create_shlvl_env_str", "minishell_8h.html#a6960cc356ca0b58ef6318579b7ff8600", null ],
-    [ "ft_env_import", "minishell_8h.html#a9a72000c052bc0188b3a05f82ce97f65", null ],
-    [ "ft_env_insert_pwd", "minishell_8h.html#a54bf9c1bce47b9bf8b470e80b9a30ebc", null ],
-    [ "ft_env_insert_shlvl", "minishell_8h.html#a3727ed0cfd3aea7d9ad46b50fc4bc82e", null ],
-    [ "ft_env_setup", "minishell_8h.html#af1d19a8b3de6806224bd906e123a74b6", null ],
+    [ "ft_env_setup", "minishell_8h.html#a1d0cedfd2e488bc1b5642e1dbeae5c67", null ],
     [ "ft_exit_failure", "minishell_8h.html#aa0940feb466ce10b2c7432c1cce66692", null ],
-    [ "ft_increment_shlvl", "minishell_8h.html#a36f91e8cd6b90173de87aa897321088c", null ],
     [ "ft_prompt_create_hostname", "minishell_8h.html#ac5ae20bf7365d0a943324be951e95386", null ],
     [ "ft_prompt_replace_empty", "minishell_8h.html#aee15418b23b0564fa88bab9ff2660cf0", null ],
     [ "ft_prompt_replace_h", "minishell_8h.html#aee3ae2959e7892667c2fdeaa4cc71919", null ],
@@ -21,6 +14,5 @@ var minishell_8h =
     [ "ft_prompt_replace_u", "minishell_8h.html#aa71074e44ebbc92046d04a3e793c8a7d", null ],
     [ "ft_prompt_replace_w", "minishell_8h.html#aad9db21014298a83d58bf5b0856fcbf6", null ],
     [ "ft_realloc", "minishell_8h.html#a6627e6607863c8029c30d01d89e80569", null ],
-    [ "ft_replace_token", "minishell_8h.html#a47a8b69f98bb36e0c974f848e56bcb89", null ],
-    [ "environ", "minishell_8h.html#aa006daaf11f1e2e45a6ababaf463212b", null ]
+    [ "ft_replace_token", "minishell_8h.html#a47a8b69f98bb36e0c974f848e56bcb89", null ]
 ];

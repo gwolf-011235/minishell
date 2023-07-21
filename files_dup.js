@@ -1,6 +1,8 @@
 var files_dup =
 [
-    [ "env_envp.h", "env__envp_8h_source.html", null ],
+    [ "env_pwd.c", "env__pwd_8c.html", "env__pwd_8c" ],
+    [ "env_setup.c", "env__setup_8c.html", "env__setup_8c" ],
+    [ "env_shlvl.c", "env__shlvl_8c.html", "env__shlvl_8c" ],
     [ "exit_failure.c", "exit__failure_8c.html", "exit__failure_8c" ],
     [ "expand.h", "expand_8h_source.html", null ],
     [ "expand_tilde.c", "expand__tilde_8c.html", "expand__tilde_8c" ],
@@ -9,7 +11,6 @@ var files_dup =
     [ "hashtable.h", "hashtable_8h.html", "hashtable_8h" ],
     [ "hashtable_generate.c", "hashtable__generate_8c.html", "hashtable__generate_8c" ],
     [ "hashtable_utils.c", "hashtable__utils_8c.html", "hashtable__utils_8c" ],
-    [ "init.c", "init_8c.html", "init_8c" ],
     [ "lexer_check_syntax.h", "lexer__check__syntax_8h_source.html", null ],
     [ "lexer_expand.h", "lexer__expand_8h_source.html", null ],
     [ "lexer_list.c", "lexer__list_8c.html", "lexer__list_8c" ],
@@ -24,11 +25,11 @@ var files_dup =
     [ "lexer_utils.h", "lexer__utils_8h_source.html", null ],
     [ "main.c", "main_8c.html", "main_8c" ],
     [ "minishell.h", "minishell_8h.html", "minishell_8h" ],
+    [ "minishell_config.h", "minishell__config_8h_source.html", null ],
     [ "minishell_error.h", "minishell__error_8h.html", "minishell__error_8h" ],
     [ "minishell_struct.h", "minishell__struct_8h_source.html", null ],
+    [ "mod_env.h", "mod__env_8h_source.html", null ],
     [ "mod_lexer.h", "mod__lexer_8h_source.html", null ],
-    [ "pwd.c", "pwd_8c.html", "pwd_8c" ],
-    [ "shlvl.c", "shlvl_8c.html", "shlvl_8c" ],
     [ "test.h", "test_8h_source.html", null ],
     [ "utils.h", "utils_8h_source.html", null ]
 ];

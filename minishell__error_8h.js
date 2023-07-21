@@ -12,7 +12,6 @@ var minishell__error_8h =
       [ "ERR_EMPTY", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8acdc3171f597e4c1349717464b452dc1e", null ],
       [ "ERR_CWD_FAIL", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a43f9e208f2ea10d501bd49791594abc7", null ],
       [ "ERR_NO_SHLVL", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aeeff5ceb398b3bd6b8ce179c47fb917f", null ],
-      [ "ERR_MAX_SHLVL", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aefe06b2c607d230b0b7e5f1d4ae56b0a", null ],
       [ "ERR_OUT_OF_BOUNDS", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a495247f86f2d33551142fd94a74eeae1", null ],
       [ "ERR_WRONG_TOKEN", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aacdc7b9755d24bf9caf955c7a9ecab48", null ],
       [ "ERR_SYNTAX", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aeed16f7745959d523aed6190f839dea8", null ],
