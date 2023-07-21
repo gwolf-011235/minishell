@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_error.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/08 16:02:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/17 19:23:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef enum e_error {
 	ERR_OUT_OF_BOUNDS, ///< A parameter has exceeded the allowed range.
 	ERR_WRONG_TOKEN, ///< A prompt substitution was not recognized.
 	ERR_SYNTAX = 2, ///< Syntax error with quotes, pipes or redirect.
+	ERR_NOT_FOUND, ///< If a search failed.
+	ERR_NOEXPAND ///< Expansion of a token failed.
 }	t_error;
 
 

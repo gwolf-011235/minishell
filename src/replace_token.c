@@ -6,12 +6,12 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:03:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/31 14:38:03 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/13 20:52:04 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "string.h"
+#include "ft_string.h"
 
 /**
  * @brief Calculates the len of the string, where tokens have been replaced.

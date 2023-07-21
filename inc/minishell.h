@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 19:16:58 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/14 19:44:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef t_error		(*t_replace_ptr)(char **replacement, t_hashtable *sym_tab);
 
 /**
  * @brief Token structure.
- * 
+ *
  * Includes token string and the token size.
  * @param tok String containing token.
  * @param size Size of token string.
@@ -66,7 +66,7 @@ typedef struct s_tok
 
 /**
  * @brief List of token.
- * 
+ *
  * Double-linked list of nodes that contain individual token strings. Each
  * node is connected to the previous and next node. The first node refers to
  * NUll as prev. The last node refers to NULL as next node.
@@ -80,8 +80,8 @@ typedef struct s_tkn_list
 }	t_tkn_list;
 
 /**
- * @brief Linked list of simple commands existing of token extracted from input. 
- * 
+ * @brief Linked list of simple commands existing of token extracted from input.
+ *
  * Each node of the list contains information about the respective token. Not
  * all variables necessarily need to be populated.
  * @param exe Pointer to executable string.
@@ -117,6 +117,11 @@ typedef struct s_checks {
 	bool	no_pwd;
 }	t_checks;
 
+typedef struct s_info {
+	size_t	ret_code;
+	char	*shell_name;
+}	t_info;
+
 /**
  * @brief Overarching struct to hold all necessarry data.
  *
@@ -138,6 +143,7 @@ typedef struct s_data {
 	t_cmd		*cmds;
 	char		*prompt1;
 	char		*prompt2;
+	t_info		info;
 }	t_data;
 
 /**
@@ -172,10 +178,6 @@ t_error	ft_calc_replace_len(const char *str, const char *token,
 			const char *replacement, size_t *expanded_len);
 t_error	ft_replace_token(char **str, const char *token,
 			const char *replacement);
-
-//ft_string.c
-char	*ft_strcat(char *dst, const char *src);
-char	*ft_strncat(char *dst, const char *src, size_t n);
 
 //prompt.c
 t_error	ft_create_prompt(t_hashtable *sym_tab,

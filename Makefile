@@ -57,7 +57,11 @@ SRC :=	main.c \
 		lexer_tok_utils.c \
 		lexer_check_syntax.c \
 		utils.c \
-		env_envp.c
+		env_envp.c \
+		expand_expr.c \
+		expand_tilde.c \
+		expand_var.c \
+		lexer_expand.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects
@@ -74,7 +78,9 @@ TEST_SRC := test_main.c \
 			test_hashtable.c \
 			test_lexer.c \
 			test_check_syntax.c \
-			test_env_envp.c
+			test_env_envp.c \
+			test_expand_expr.c \
+			test_list_expand.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 TEST_OBJ := $(TEST_SRC:.c=.o)
 TEST_OBJS := $(addprefix $(TEST_DIR)/, $(TEST_OBJ))
@@ -172,7 +178,7 @@ include $(wildcard $(DEPFILES))
 
 # Perform memory check on leaks
 .PHONY: valgr
-valgr:			
+valgr:
 	@valgrind --leak-check=full\
 			--show-leak-kinds=all\
 			--trace-children=no\
@@ -180,4 +186,3 @@ valgr:
 			--log-file=valgrind-out.txt\
 			./test
 	@less ./valgrind-out.txt
-	
