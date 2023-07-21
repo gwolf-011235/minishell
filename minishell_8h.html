@@ -111,9 +111,6 @@ Functions</h2></td></tr>
 <tr class="memitem:aa0940feb466ce10b2c7432c1cce66692"><td class="memItemLeft" align="right" valign="top"><a id="aa0940feb466ce10b2c7432c1cce66692"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ft_exit_failure</b> (<a class="el" href="structs__data.html">t_data</a> *data, <a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> exit_code)</td></tr>
 <tr class="separator:aa0940feb466ce10b2c7432c1cce66692"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6627e6607863c8029c30d01d89e80569"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#a6627e6607863c8029c30d01d89e80569">ft_realloc</a> (void *ptr, size_t new_size, size_t curr_size)</td></tr>
-<tr class="memdesc:a6627e6607863c8029c30d01d89e80569"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple implementation of realloc.  <a href="minishell_8h.html#a6627e6607863c8029c30d01d89e80569">More...</a><br /></td></tr>
-<tr class="separator:a6627e6607863c8029c30d01d89e80569"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Overarching header. </p>
@@ -195,52 +192,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ft_exit_failure</b> (
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC, ERR_EMPTY </dd></dl>
-
-</div>
-</div>
-<a id="a6627e6607863c8029c30d01d89e80569"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6627e6607863c8029c30d01d89e80569">&#9670;&nbsp;</a></span>ft_realloc()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void* ft_realloc </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>ptr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>new_size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>curr_size</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Simple implementation of realloc. </p>
-<p>If pointer and new size are empty, NULL is returned. If new size is 0 the old pointer gets free'd. If the pointer is NULL, it gets malloc'd with size. Else a new pointer is malloc'd and memcpy'd.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ptr</td><td>The ptr to the memory to realloc. </td></tr>
-    <tr><td class="paramname">new_size</td><td>The new memory block size. </td></tr>
-    <tr><td class="paramname">curr_size</td><td>The old memory block size. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>void* New malloc'd and memcpy'd pointer, NULL if fail. </dd></dl>
 
 </div>
 </div>
