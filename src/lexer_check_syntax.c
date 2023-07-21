@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:43:24 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 19:19:05 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  * @param target Either " or ' quote.
  * @return t_error
  */
-t_error	ft_quote_skipper(const char *quote_start, size_t *i, char target)
+t_err	ft_quote_skipper(const char *quote_start, size_t *i, char target)
 {
 	char	*quote_end;
 
@@ -49,7 +49,7 @@ t_error	ft_quote_skipper(const char *quote_start, size_t *i, char target)
  * @param pos Position of checked pipe in input.
  * @return t_error SUCCESS, ERR_SYNTAX.
  */
-t_error	ft_check_pipe(const char *input, size_t pos)
+t_err	ft_check_pipe(const char *input, size_t pos)
 {
 	size_t	i;
 
@@ -89,7 +89,7 @@ t_error	ft_check_pipe(const char *input, size_t pos)
  * @param symbol Either '<' or '>'.
  * @return t_error SUCCESS, ERR_SYNTAX
  */
-t_error	ft_check_redirect(const char *input, size_t pos, char symbol)
+t_err	ft_check_redirect(const char *input, size_t pos, char symbol)
 {
 	size_t	i;
 
@@ -121,9 +121,9 @@ t_error	ft_check_redirect(const char *input, size_t pos, char symbol)
  * @param input Input string from readline.
  * @return t_error SUCCESS, ERR_SYNTAX
  */
-t_error	ft_check_syntax(const char *input)
+t_err	ft_check_syntax(const char *input)
 {
-	t_error	error;
+	t_err	error;
 	size_t	i;
 
 	error = SUCCESS;

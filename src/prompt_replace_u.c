@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_replace_u.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/03 00:40:01 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
  * @param sym_tab Symbol table where to search for env_var.
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
-t_error	ft_prompt_replace_u(char **replacement, t_hashtable *sym_tab)
+t_err	ft_prompt_replace_u(char **replacement, t_hashtable *sym_tab)
 {
-	t_error		err;
+	t_err		err;
 	t_env_var	*env_var;
 
 	if (!replacement || !sym_tab)

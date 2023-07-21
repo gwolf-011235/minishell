@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_tilde.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/20 08:57:20 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@
  * @param symtab Environment.
  * @param replace Where to save replace string.
  * @param pos Current position.
- * @return t_error SUCCESS, ERR_NOT_FOUND, ERR_MALLOC
+ * @return t_err SUCCESS, ERR_NOT_FOUND, ERR_MALLOC
  */
-t_error	ft_get_tilde_replace(t_str token, t_hashtable *symtab, t_str *replace, size_t *pos)
+t_err	ft_get_tilde_replace(t_str token, t_hashtable *symtab, t_str *replace, size_t *pos)
 {
 	char		*target;
 	t_env_var	*env_var;
@@ -70,9 +70,9 @@ t_error	ft_get_tilde_replace(t_str token, t_hashtable *symtab, t_str *replace, s
  * @param input String.
  * @param pos Current position.
  * @param token Where to save the token.
- * @return t_error SUCCESS, ERR_NOEXPAND.
+ * @return t_err SUCCESS, ERR_NOEXPAND.
  */
-t_error	ft_get_tilde_token(t_track *input, t_str *token)
+t_err	ft_get_tilde_token(t_track *input, t_str *token)
 {
 	size_t	i;
 
@@ -107,13 +107,13 @@ t_error	ft_get_tilde_token(t_track *input, t_str *token)
  * @param input String.
  * @param symtab Environment.
  * @param pos Current position.
- * @return t_error SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
+ * @return t_err SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
  */
-t_error	ft_expand_tilde(t_track *input, t_hashtable *symtab)
+t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab)
 {
 	t_str	token;
 	t_str	replace;
-	t_error		err;
+	t_err		err;
 
 	if (input->pos != 0 && input->str[input->pos - 1] != '=')
 		return (ERR_NOEXPAND);

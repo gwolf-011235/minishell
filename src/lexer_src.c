@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 15:27:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 10:57:33 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
  * @param c Character looked at.
  * @return t_error SUCCESS, ERR_EMPTY
  */
-t_error	ft_next_char(t_src *src, char *c)
+t_err	ft_next_char(t_src *src, char *c)
 {
 	if (!src || !src->buf)
 		return (ERR_EMPTY);
@@ -46,7 +46,7 @@ t_error	ft_next_char(t_src *src, char *c)
  * @param src Source structure.
  * @return t_error ERR_OUT_OF_BOUNDS, SUCCESS
  */
-t_error	ft_unget_char(t_src *src)
+t_err	ft_unget_char(t_src *src)
 {
 	if (src->cur_pos < 0)
 		return (ERR_OUT_OF_BOUNDS);
@@ -64,7 +64,7 @@ t_error	ft_unget_char(t_src *src)
  * @return t_error SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS
  */
 
-t_error	ft_peek_char(t_src *src, char *c)
+t_err	ft_peek_char(t_src *src, char *c)
 {
 	int	peek;
 

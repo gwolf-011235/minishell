@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   hashtable_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:47:39 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/07 11:22:49 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hashtable.h"
 
-t_error	ft_hashtable_swap(t_hashtable *ht, char *string, size_t keylen)
+t_err	ft_hashtable_swap(t_hashtable *ht, char *string, size_t keylen)
 {
 	t_env_var	*env_var;
 

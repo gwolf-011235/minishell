@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 08:07:40 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/06 16:29:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
  * @param sym_tab Symbols needed for some replacement functions.
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
-t_error	ft_get_token_replacement(char **replacement, unsigned char target,
+t_err	ft_get_token_replacement(char **replacement, unsigned char target,
 		t_hashtable *sym_tab)
 {
 	static const t_replace_ptr	look_up_tab[128] = {
@@ -55,7 +55,7 @@ t_error	ft_get_token_replacement(char **replacement, unsigned char target,
  * @return t_error SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS,
  * ERR_WRONG_TOKEN
  */
-t_error	ft_get_token(char **token, unsigned char target)
+t_err	ft_get_token(char **token, unsigned char target)
 {
 	static const char	*look_up_tab[128] = {
 	['\0'] = PROMPT_EXPAND_EMPTY,
@@ -90,10 +90,10 @@ t_error	ft_get_token(char **token, unsigned char target)
  * @param token Here the token string is assigned to.
  * @return t_error SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS, ERR_WRONG_TOKEN
  */
-t_error	ft_search_token(const char *ps_string, char **token)
+t_err	ft_search_token(const char *ps_string, char **token)
 {
 	char	*target;
-	t_error	err;
+	t_err	err;
 
 	if (!ps_string || !token)
 		return (ERR_EMPTY);
@@ -131,9 +131,9 @@ t_error	ft_search_token(const char *ps_string, char **token)
  * @param sym_tab Symbols which can are used to expand.
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
-t_error	ft_expand_prompt_str(char **prompt, t_hashtable *sym_tab)
+t_err	ft_expand_prompt_str(char **prompt, t_hashtable *sym_tab)
 {
-	t_error	err;
+	t_err	err;
 	char	*token;
 	char	*replacement;
 
@@ -173,11 +173,11 @@ t_error	ft_expand_prompt_str(char **prompt, t_hashtable *sym_tab)
  * @param std Standard string if ps is not found.
  * @return t_error SUCCESS, ERR_MALLOC, ERR_EMPTY
  */
-t_error	ft_create_prompt(t_hashtable *sym_tab,
+t_err	ft_create_prompt(t_hashtable *sym_tab,
 			char **prompt, char *ps, char *std)
 {
 	t_env_var	*env_var;
-	t_error		err;
+	t_err		err;
 
 	env_var = ft_hashtable_lookup(sym_tab, ps, 3);
 	if (!env_var)

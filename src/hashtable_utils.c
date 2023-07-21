@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hashtable_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:17:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/07 11:22:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static size_t	ft_hashtable_index(
  * @param keylen Length of env_var (everything before =)
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_HT_NO_INSERT
  */
-t_error	ft_hashtable_insert(t_hashtable *ht, char *string, size_t keylen)
+t_err	ft_hashtable_insert(t_hashtable *ht, char *string, size_t keylen)
 {
 	size_t		index;
 	t_env_var	*env_var;
@@ -115,7 +115,7 @@ t_env_var	*ft_hashtable_lookup(
  * @param keylen length of env_var (everthing before =)
  * @return t_error SUCCESS, ERR_EMPTY, ERR_HT_NO_DELETE
  */
-t_error	ft_hashtable_delete(
+t_err	ft_hashtable_delete(
 	t_hashtable *ht, char *string, size_t keylen)
 {
 	size_t		index;

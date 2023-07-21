@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:40:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/20 00:09:30 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
  * @param src 		Struct containing source string.
  * @return t_error	ERR_EMPTY, ERR_EOF, SUCCESS
  */
-t_error	ft_skip_space(t_src *src)
+t_err	ft_skip_space(t_src *src)
 {
 	char	c;
-	t_error	err;
+	t_err	err;
 
 	if (!src || !src->buf || !src->buf_size)
 		return (ERR_EMPTY);

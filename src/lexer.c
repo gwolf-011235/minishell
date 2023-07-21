@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/06/26 16:56:51 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
  * 
  * @param data 	Overarching struct to hold all necessarry data.
  * @param input Input string delivered by <readline>.
- * @return t_error 
+ * @return t_err 
  */
-t_error	ft_lexer(t_data *data, char *input)
+t_err	ft_lexer(t_data *data, char *input)
 {
 	int		i;
 	bool	exe_found;
@@ -55,7 +55,7 @@ t_error	ft_lexer(t_data *data, char *input)
 }
 
 
-t_error	ft_categorise(t_data *data, char *input, bool *exe_found)
+t_err	ft_categorise(t_data *data, char *input, bool *exe_found)
 {
 	int		i;
 
@@ -82,7 +82,7 @@ t_error	ft_categorise(t_data *data, char *input, bool *exe_found)
 }
 
 
-t_error	ft_categorise2(t_data *data, char *input, bool *exe_found)
+t_err	ft_categorise2(t_data *data, char *input, bool *exe_found)
 {
 	if (exe_found == false)
 	{
@@ -97,7 +97,7 @@ t_error	ft_categorise2(t_data *data, char *input, bool *exe_found)
 }
 
 
-t_error	ft_save_heredoc(t_data *data, char *input)
+t_err	ft_save_heredoc(t_data *data, char *input)
 {
 	char	*tmp;
 

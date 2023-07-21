@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/20 08:57:24 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
  * @param token Info about the variable.
  * @param symtab Environment.
  * @param replace Pointer to struct where to save string.
- * @return t_error SUCCESS, ERR_MALLOC.
+ * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_error	ft_get_var_replace(t_str token, t_hashtable *symtab, t_str *replace)
+t_err	ft_get_var_replace(t_str token, t_hashtable *symtab, t_str *replace)
 {
 	t_env_var	*env_var;
 
@@ -54,9 +54,9 @@ t_error	ft_get_var_replace(t_str token, t_hashtable *symtab, t_str *replace)
  * @param input String.
  * @param pos Current position.
  * @param token Pointer to struct.
- * @return t_error SUCCESS, ERR_NOEXPAND.
+ * @return t_err SUCCESS, ERR_NOEXPAND.
  */
-t_error	ft_get_var_token(t_track *input, t_str *token, bool quotes)
+t_err	ft_get_var_token(t_track *input, t_str *token, bool quotes)
 {
 	token->ptr = input->str + input->pos + 1;
 	token->len = 0;
@@ -84,9 +84,9 @@ t_error	ft_get_var_token(t_track *input, t_str *token, bool quotes)
  * @param replace Where to save replace string.
  * @param token Used for token.len
  * @param info Struct containing ret_code and shell_name
- * @return t_error SUCCESS, ERR_MALLOC.
+ * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_error	ft_special_var(char c, t_str *replace, t_str *token, t_info *info)
+t_err	ft_special_var(char c, t_str *replace, t_str *token, t_info *info)
 {
 	token->len = 1;
 	if (c == '0')
@@ -112,13 +112,13 @@ t_error	ft_special_var(char c, t_str *replace, t_str *token, t_info *info)
  * @param symtab Environment.
  * @param pos Current position.
  * @param info Struct containing ret_code and shell_name.
- * @return t_error SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
+ * @return t_err SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
  */
-t_error	ft_expand_var(t_track *input, t_hashtable *symtab, t_info *info, bool quotes)
+t_err	ft_expand_var(t_track *input, t_hashtable *symtab, t_info *info, bool quotes)
 {
 	t_str	token;
 	t_str	replace;
-	t_error	err;
+	t_err	err;
 
 	if (input->str[input->pos + 1] == '0' || input->str[input->pos + 1] == '?')
 		err = ft_special_var(input->str[input->pos + 1], &replace, &token, info);

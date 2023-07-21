@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_replace_small.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:05:43 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/03 00:40:51 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * @param replacement Pointer pointer where to save string.
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
-t_error	ft_prompt_replace_not_found(char **replacement)
+t_err	ft_prompt_replace_not_found(char **replacement)
 {
 	if (!replacement)
 		return (ERR_EMPTY);
@@ -40,7 +40,7 @@ t_error	ft_prompt_replace_not_found(char **replacement)
  * @param sym_tab symbol_table - not used.
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
-t_error	ft_prompt_replace_n(char **replacement, t_hashtable *sym_tab)
+t_err	ft_prompt_replace_n(char **replacement, t_hashtable *sym_tab)
 {
 	if (!replacement || !sym_tab)
 		return (ERR_EMPTY);
@@ -61,7 +61,7 @@ t_error	ft_prompt_replace_n(char **replacement, t_hashtable *sym_tab)
  * @param sym_tab symbol_table - not used.
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
-t_error	ft_prompt_replace_r(char **replacement, t_hashtable *sym_tab)
+t_err	ft_prompt_replace_r(char **replacement, t_hashtable *sym_tab)
 {
 	if (!replacement || !sym_tab)
 		return (ERR_EMPTY);
@@ -82,7 +82,7 @@ t_error	ft_prompt_replace_r(char **replacement, t_hashtable *sym_tab)
  * @param sym_tab symbol_table - not used.
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
-t_error	ft_prompt_replace_empty(char **replacement, t_hashtable *sym_tab)
+t_err	ft_prompt_replace_empty(char **replacement, t_hashtable *sym_tab)
 {
 	if (!replacement || !sym_tab)
 		return (ERR_EMPTY);

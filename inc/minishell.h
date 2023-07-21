@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 19:44:17 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define PROMPT_EXPAND_R "\\r"
 # define PROMPT_EXPAND_W "\\w"
 
-typedef t_error		(*t_replace_ptr)(char **replacement, t_hashtable *sym_tab);
+typedef t_err		(*t_replace_ptr)(char **replacement, t_hashtable *sym_tab);
 
 /* ====== STRUCTS ====== */
 
@@ -137,7 +137,7 @@ typedef struct s_info {
 typedef struct s_data {
 	t_hashtable	*env_table;
 	t_checks	checks;
-	t_error		err;
+	t_err		err;
 	t_tok		token;
 	t_tkn_list	*lst_head;
 	t_cmd		*cmds;
@@ -154,49 +154,49 @@ typedef struct s_data {
 extern char	**environ;
 
 //exit_failure.c
-void	ft_exit_failure(t_data *data, t_error exit_code);
+void	ft_exit_failure(t_data *data, t_err exit_code);
 
 //init.c
-t_error	ft_env_setup(t_data *data);
-t_error	ft_env_import(t_data *data);
-t_error	ft_env_insert_pwd(t_data *data);
-t_error	ft_env_insert_shlvl(t_data *data);
+t_err	ft_env_setup(t_data *data);
+t_err	ft_env_import(t_data *data);
+t_err	ft_env_insert_pwd(t_data *data);
+t_err	ft_env_insert_shlvl(t_data *data);
 
 //pwd.c
-t_error	ft_create_pwd_value(char **pwd_value);
-t_error	ft_create_pwd_env_str(char **pwd);
+t_err	ft_create_pwd_value(char **pwd_value);
+t_err	ft_create_pwd_env_str(char **pwd);
 
 //shlvl.c
-t_error	ft_create_shlvl_env_str(char **shlvl);
-t_error	ft_increment_shlvl(t_data *data);
+t_err	ft_create_shlvl_env_str(char **shlvl);
+t_err	ft_increment_shlvl(t_data *data);
 
 //ft_memory.c
 void	*ft_realloc(void *ptr, size_t new_size, size_t curr_size);
 
 //replace_token.c
-t_error	ft_calc_replace_len(const char *str, const char *token,
+t_err	ft_calc_replace_len(const char *str, const char *token,
 			const char *replacement, size_t *expanded_len);
-t_error	ft_replace_token(char **str, const char *token,
+t_err	ft_replace_token(char **str, const char *token,
 			const char *replacement);
 
 //prompt.c
-t_error	ft_create_prompt(t_hashtable *sym_tab,
+t_err	ft_create_prompt(t_hashtable *sym_tab,
 			char **prompt, char *ps, char *std);
 
 //prompt_replace_small.c
-t_error	ft_prompt_replace_n(char **replacement, t_hashtable *sym_tab);
-t_error	ft_prompt_replace_r(char **replacement, t_hashtable *sym_tab);
-t_error	ft_prompt_replace_not_found(char **replacement);
-t_error	ft_prompt_replace_empty(char **replacement, t_hashtable *sym_tab);
+t_err	ft_prompt_replace_n(char **replacement, t_hashtable *sym_tab);
+t_err	ft_prompt_replace_r(char **replacement, t_hashtable *sym_tab);
+t_err	ft_prompt_replace_not_found(char **replacement);
+t_err	ft_prompt_replace_empty(char **replacement, t_hashtable *sym_tab);
 
 //prompt_replace_h.c
-t_error	ft_prompt_replace_h(char **replacement, t_hashtable *sym_tab);
-t_error	ft_prompt_create_hostname(char **replacement, const char *str);
+t_err	ft_prompt_replace_h(char **replacement, t_hashtable *sym_tab);
+t_err	ft_prompt_create_hostname(char **replacement, const char *str);
 
 //prompt_replace_u.c
-t_error	ft_prompt_replace_u(char **replacement, t_hashtable *sym_tab);
+t_err	ft_prompt_replace_u(char **replacement, t_hashtable *sym_tab);
 
 //prompt_replace_w.c
-t_error	ft_prompt_replace_w(char **replacement, t_hashtable *sym_tab);
+t_err	ft_prompt_replace_w(char **replacement, t_hashtable *sym_tab);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:46:44 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 10:58:04 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_free_tok(t_tok *token)
  * @param buf 		Temporary buffer to save as token.
  * @return t_error 	ERR_MALLOC, SUCCESS
  */
-t_error	ft_add_to_buf(char c, t_buf *buf)
+t_err	ft_add_to_buf(char c, t_buf *buf)
 {
 	char	*temp;
 
@@ -65,10 +65,10 @@ t_error	ft_add_to_buf(char c, t_buf *buf)
  * @param buf 		Temporary buffer to save as token.
  * @return t_error 	SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS
  */
-t_error	ft_check_double_redirect(t_src *src, char *c, t_buf *buf)
+t_err	ft_check_double_redirect(t_src *src, char *c, t_buf *buf)
 {
 	char	next;
-	t_error	err;
+	t_err	err;
 
 	err = ft_peek_char(src, &next);
 	if (err != SUCCESS)

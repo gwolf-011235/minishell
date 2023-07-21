@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:15:11 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 19:18:40 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
  * @param pwd_value Pointer to pointer where to save string
  * @return t_error Not SUCCESS if malloc or getcwd error.
  */
-t_error	ft_create_pwd_value(char **pwd_value)
+t_err	ft_create_pwd_value(char **pwd_value)
 {
 	size_t	size;
 
@@ -66,9 +66,9 @@ t_error	ft_create_pwd_value(char **pwd_value)
  * @param pwd Pointer to pointer where to save string.
  * @return t_error Not SUCCESS if malloc or sub-call fail
  */
-t_error	ft_create_pwd_env_str(char **pwd)
+t_err	ft_create_pwd_env_str(char **pwd)
 {
-	t_error	err;
+	t_err	err;
 	char	*pwd_value;
 
 	pwd_value = NULL;

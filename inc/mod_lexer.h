@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.h                                            :+:      :+:    :+:   */
+/*   mod_lexer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:38 by sqiu              #+#    #+#             */
-/*   Updated: 2023/06/23 16:46:31 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 11:45:45 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
-# define LEXER_H
+#ifndef MOD_LEXER_H
+# define MOD_LEXER_H
 
 /* ====== Includes ====== */
 
 # include "minishell.h"
-# include "lexer_utils.h"
+
+/* ====== Structs ====== */
+
 
 /* ====== Functions ====== */
 

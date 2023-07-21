@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_envp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 18:09:38 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/07 12:04:45 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @param envp Where to save pointers.
  * @return t_error SUCCESS
  */
-static t_error	ft_envp_fill(t_hashtable *ht, char **envp)
+static t_err	ft_envp_fill(t_hashtable *ht, char **envp)
 {
 	uint32_t	i;
 	t_env_var	*tmp;
@@ -52,7 +52,7 @@ static t_error	ft_envp_fill(t_hashtable *ht, char **envp)
  * @param envp Pointer to char**, where to save.
  * @return t_error ERR_EMPTY, ERR_MALLOC, SUCCESS
  */
-t_error	ft_envp_create(t_hashtable *ht, char ***envp)
+t_err	ft_envp_create(t_hashtable *ht, char ***envp)
 {
 	if (!ht || !envp)
 		return (ERR_EMPTY);
@@ -73,7 +73,7 @@ t_error	ft_envp_create(t_hashtable *ht, char ***envp)
  * @param envp The pointer to free.
  * @return t_error SUCCESS
  */
-t_error	ft_envp_destroy(char ***envp)
+t_err	ft_envp_destroy(char ***envp)
 {
 	if (*envp)
 	{

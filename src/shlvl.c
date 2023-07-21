@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shlvl.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:45:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/25 14:46:19 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  * @param shlvl Pointer pointer to change value outside of function.
  * @return t_error SUCCESS or ERR_MALLOC
  */
-t_error	ft_create_shlvl_env_str(char **shlvl)
+t_err	ft_create_shlvl_env_str(char **shlvl)
 {
 	*shlvl = ft_strdup("SHLVL=1");
 	if (*shlvl == NULL)
@@ -45,7 +45,7 @@ t_error	ft_create_shlvl_env_str(char **shlvl)
  * @param data Big data struct.
  * @return t_error SUCCESS, ERR_NO_SHLVL, ERR_MAX_SHLVL, ERR_MALLOC.
  */
-t_error	ft_increment_shlvl(t_data *data)
+t_err	ft_increment_shlvl(t_data *data)
 {
 	t_env_var	*shlvl_node;
 	int			shlvl_value;

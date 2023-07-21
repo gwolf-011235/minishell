@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_expr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/20 08:57:15 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
  * @param pos Current position.
  * @param token Struct containing the searched for token.
  * @param replace Struct containing the replacement.
- * @return t_error SUCCESS, ERR_MALLOC
+ * @return t_err SUCCESS, ERR_MALLOC
  */
-t_error	ft_insert_replace(t_track *input, t_str token, t_str replace)
+t_err	ft_insert_replace(t_track *input, t_str token, t_str replace)
 {
 	size_t	new_len;
 	char	*new_str;
@@ -53,9 +53,9 @@ t_error	ft_insert_replace(t_track *input, t_str token, t_str replace)
  *
  * @param input String.
  * @param pos Current position.
- * @return t_error SUCCESS
+ * @return t_err SUCCESS
  */
-t_error	ft_eat_char(char *input, size_t pos)
+t_err	ft_eat_char(char *input, size_t pos)
 {
 	char	*str1;
 	char	*str2;
@@ -76,9 +76,9 @@ t_error	ft_eat_char(char *input, size_t pos)
  *
  * @param expr String
  * @param pos Current position
- * @return t_error SUCCESS
+ * @return t_err SUCCESS
  */
-t_error	ft_handle_single_quote(t_track *input)
+t_err	ft_handle_single_quote(t_track *input)
 {
 	ft_eat_char(input->str, input->pos);
 	while (input->str[input->pos] != '\'')
@@ -98,9 +98,9 @@ t_error	ft_handle_single_quote(t_track *input)
  * @param expr String.
  * @param pos Current position.
  * @param in_double_quotes Pointer to change switch.
- * @return t_error SUCCESS.
+ * @return t_err SUCCESS.
  */
-t_error	ft_handle_double_quote(t_track *input, bool *in_double_quotes)
+t_err	ft_handle_double_quote(t_track *input, bool *in_double_quotes)
 {
 	ft_eat_char(input->str, input->pos);
 	*in_double_quotes = !(*in_double_quotes);
@@ -119,13 +119,13 @@ t_error	ft_handle_double_quote(t_track *input, bool *in_double_quotes)
  * @param expr The expression to be expanded.
  * @param symtab The environment table
  * @param info Data for return code and shell name.
- * @return t_error SUCCESS, ERR_MALLOC
+ * @return t_err SUCCESS, ERR_MALLOC
  */
-t_error	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info)
+t_err	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info)
 {
 	t_track	input;
 	bool	in_double_quotes;
-	t_error	err;
+	t_err	err;
 
 	input.str = *expr;
 	input.pos = 0;

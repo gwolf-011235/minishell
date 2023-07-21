@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 15:27:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/19 22:52:46 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_src
 
 /* ====== Functions ====== */
 
-t_error	ft_next_char(t_src *src, char *c);
-t_error	ft_unget_char(t_src *src);
-t_error	ft_peek_char(t_src *src, char *c);
+t_err	ft_next_char(t_src *src, char *c);
+t_err	ft_unget_char(t_src *src);
+t_err	ft_peek_char(t_src *src, char *c);
 
 #endif

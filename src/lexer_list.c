@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 11:09:38 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@
  * @param input 	Input string to be tokenised.
  * @return t_error 	ERR_EMPTY, ERR_MALLOC, SUCCESS
  */
-t_error	ft_list_token(t_data *data, char *input)
+t_err	ft_list_token(t_data *data, char *input)
 {
 	t_src		src;
-	t_error		err;
+	t_err		err;
 
 	ft_init_lexer(&src, input);
 	err = ft_tokenise(&src, &data->token);
@@ -68,7 +68,7 @@ void	ft_init_lexer(t_src *src, char *input)
  * @param content	Content string to be written into new node.
  * @return t_error 	ERR_MALLOC, SUCCESS
  */
-t_error	ft_new_node(t_data *data, char *content)
+t_err	ft_new_node(t_data *data, char *content)
 {
 	t_tkn_list	*new;
 

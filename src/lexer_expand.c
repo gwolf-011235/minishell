@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_expand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:01:08 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/20 09:08:47 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
  *
  * @param list List of tokens.
  * @param data Overarching struct.
- * @return t_error SUCCESS, ERR_MALLOC.
+ * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_error	ft_expand_tkn_lst(t_tkn_list *list, t_data *data)
+t_err	ft_expand_tkn_lst(t_tkn_list *list, t_data *data)
 {
-	t_error	err;
+	t_err	err;
 
 	while (list)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_token.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:03:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/13 20:52:04 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
  * @param expanded_len Pointer to size_t in which to save the len.
  * @return t_error ERR_EMPTY, SUCCESS
  */
-t_error	ft_calc_replace_len(const char *str, const char *token,
+t_err	ft_calc_replace_len(const char *str, const char *token,
 		const char *replacement, size_t *expanded_len)
 {
 	size_t	token_len;
@@ -64,7 +64,7 @@ t_error	ft_calc_replace_len(const char *str, const char *token,
  * @param replacement Char string which is inserted instead of token.
  * @return t_error SUCCESS, ERR_EMPTY
  */
-t_error	ft_expand_str(char **expanded_str, const char *str,
+t_err	ft_expand_str(char **expanded_str, const char *str,
 		const char *token, const char *replacement)
 {
 	size_t	token_len;
@@ -98,11 +98,11 @@ t_error	ft_expand_str(char **expanded_str, const char *str,
  * @param replacement Char string which replaces token.
  * @return t_error SUCCESS, ERR_MALLOC, ERR_EMPTY
  */
-t_error	ft_replace_token(char **str, const char *token, const char *replacement)
+t_err	ft_replace_token(char **str, const char *token, const char *replacement)
 {
 	size_t	expanded_len;
 	char	*expanded_str;
-	t_error	err;
+	t_err	err;
 
 	expanded_len = 0;
 	err = ft_calc_replace_len(*str, token, replacement, &expanded_len);

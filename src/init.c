@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/05/25 14:49:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
  * @param data Pointer to data struct.
  * @return t_error SUCCESS if everything went right, else it ft_exit_failures.
  */
-t_error	ft_env_setup(t_data *data)
+t_err	ft_env_setup(t_data *data)
 {
 	data->env_table = ft_hashtable_create(HASHTABLE_SIZE, ft_hash_fnv1);
 	if (!data->env_table)
@@ -55,7 +55,7 @@ t_error	ft_env_setup(t_data *data)
  * @return t_error SUCCESS if environ not empty and mallocs ok.
  * @todo Check if valid env_str
  */
-t_error	ft_env_import(t_data *data)
+t_err	ft_env_import(t_data *data)
 {
 	int		i;
 	char	*env_ptr;
@@ -85,7 +85,7 @@ t_error	ft_env_import(t_data *data)
  * @param data
  * @return t_error If SUCCESS it exits
  */
-t_error	ft_env_insert_pwd(t_data *data)
+t_err	ft_env_insert_pwd(t_data *data)
 {
 	char	*pwd;
 
@@ -106,7 +106,7 @@ t_error	ft_env_insert_pwd(t_data *data)
  * @param data
  * @return t_error If SUCCESS it exits
  */
-t_error	ft_env_insert_shlvl(t_data *data)
+t_err	ft_env_insert_shlvl(t_data *data)
 {
 	char	*shlvl;
 
