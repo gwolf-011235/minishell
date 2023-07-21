@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_handle_input.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 16:12:03 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 17:51:29 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,43 @@ typedef struct s_tkn_list
 	struct s_tkn_list	*next;
 }	t_tkn_list;
 
+
+/**
+ * @brief Linked list of simple commands existing of token extracted from input.
+ *
+ * Each node of the list contains information about the respective token. Not
+ * all variables necessarily need to be populated.
+ * @param exe Pointer to executable string.
+ * @param args Pointer to argument string array.
+ * @param fd_in File descriptor of infile.
+ * @param fd_out File descriptor of outfile.
+ * @param delim Pointer to delimiter string.
+ * @param append Boole value to indicate append mode.
+ * @param index Index indicating position of command in the pipeline.
+ */
+typedef struct s_cmd
+{
+	char			*exe;
+	char			**args;
+	int				fd_in;
+	int				fd_out;
+	char			*delim;
+	bool			append;
+	int				index;
+	struct s_cmd	*next;
+}	t_cmd;
+
 /* ====== Functions ====== */
 
+// syntax
+t_err	ft_check_syntax(const char *input);
+
+// lexer
 t_err	ft_lex_input(t_tkn_list	**lst_head, char *input);
 void	ft_free_lst(t_tkn_list **lst);
 
 //expand
 t_err	ft_expand_tkn_lst(t_tkn_list *list, t_data *data);
-
-//Module Expand
 t_err	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info);
 
 #endif

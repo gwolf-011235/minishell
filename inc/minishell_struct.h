@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:38:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:08:14 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 17:49:38 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,6 @@
 # include "minishell_error.h"
 
 /* ====== STRUCTS ====== */
-
-/**
- * @brief Linked list of simple commands existing of token extracted from input.
- *
- * Each node of the list contains information about the respective token. Not
- * all variables necessarily need to be populated.
- * @param exe Pointer to executable string.
- * @param opts Pointer to options string.
- * @param fd_in File descriptor of infile.
- * @param fd_out File descriptor of outfile.
- * @param delim Pointer to delimiter string.
- * @param append Boole value to indicate append mode.
- * @param index Index indicating position of token in the pipeline.
- */
-typedef struct s_cmd
-{
-	char			*exe;
-	char			**opts;
-	int				fd_in;
-	int				fd_out;
-	char			*delim;
-	bool			append;
-	int				index;
-	struct s_cmd	*next;
-}	t_cmd;
 
 /**
  * @brief Flags which can be set to store some info.
