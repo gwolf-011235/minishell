@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:51:41 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 16:20:01 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,5 @@ t_err	ft_prompt_create(t_hashtable *sym_tab,
 
 //exit_failure.c
 void	ft_exit_failure(t_data *data, t_err exit_code);
-
-
-//ft_memory.c
-void	*ft_realloc(void *ptr, size_t new_size, size_t curr_size);
-
 
 #endif

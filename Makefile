@@ -35,8 +35,8 @@ TEST := test
 
 # Source files
 SRC :=	main.c \
-		ft_memory.c \
-		ft_string.c \
+		utils_memory.c \
+		utils_string.c \
 		hashtable_generate.c \
 		hashtable_utils.c \
 		hashtable_utils2.c \

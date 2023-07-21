@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:24:01 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 16:22:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "hashtable.h"
 # include "minishell_struct.h"
-# include "ft_string.h"
+# include "minishell_utils.h"
 
 /**
  * @brief String struct.

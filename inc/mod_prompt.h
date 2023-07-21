@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:45:35 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:23:08 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 16:21:43 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define MOD_PROMPT_H
 
 # include "minishell_config.h"
+# include "minishell_utils.h"
 # include "hashtable.h"
-# include "ft_string.h"
 
 # define PROMPT_EXPAND_SUPPORTED "hnurw"
 # define PROMPT_EXPAND_EMPTY "\\"
