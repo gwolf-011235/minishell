@@ -42,9 +42,9 @@ SRC :=	main.c \
 		hashtable_utils.c \
 		hashtable_utils2.c \
 		exit_failure.c \
-		init.c \
-		pwd.c \
-		shlvl.c \
+		env_setup.c \
+		env_pwd.c \
+		env_shlvl.c \
 		prompt.c \
 		prompt_replace_h.c \
 		prompt_replace_u.c \
