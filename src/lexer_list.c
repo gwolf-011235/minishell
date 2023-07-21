@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/18 01:12:27 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 11:09:38 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 #include "minishell.h"
 #include "lexer_list.h"
 #include "lexer_utils.h"
-
-void	ft_free_tok(t_tok *token);
+#include "lexer_tok_utils.h"
 
 /**
  * @brief Create a list of token.

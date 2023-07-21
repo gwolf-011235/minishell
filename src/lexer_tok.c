@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 19:46:50 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 11:00:46 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
  * @param s 		Token string.
  * @return t_error 	ERR_MALLOC, ERR_EMPTY, SUCCESS
  */
-t_error	ft_create_tok(t_tok *token, char *s, bool eof)
+t_error	ft_create_tok(t_tok *token, char *s)
 {
 	if (!token || !s)
 		return (ERR_EMPTY);
@@ -41,8 +41,6 @@ t_error	ft_create_tok(t_tok *token, char *s, bool eof)
 		return (ERR_MALLOC);
 	ft_memcpy(token->tok, s, token->size);
 	token->tok[token->size] = '\0';
-	if (eof)
-		return (ERR_EOF);
 	return (SUCCESS);
 }
 
@@ -59,27 +57,23 @@ t_error	ft_create_tok(t_tok *token, char *s, bool eof)
  */
 t_error	ft_tokenise(t_src *src, t_tok *token)
 {
-	t_buf	tmp;
+	t_buf	buf;
 	t_error	err;
-	bool	eof;
 
 	if (!src || !src->buf || !src->buf_size)
 		return (ERR_EMPTY);
-	tmp.size = 2048;
-	tmp.str = malloc(tmp.size);
-	if (!tmp.str)
+	buf.size = 2048;
+	buf.str = malloc(buf.size);
+	if (!buf.str)
 		return (ERR_MALLOC);
-	tmp.cur_pos = 0;
-	tmp.str[0] = '\0';
-	err = ft_partition(src, &tmp);
-	if (tmp.cur_pos >= tmp.size)
-		tmp.cur_pos--;
-	tmp.str[tmp.cur_pos] = '\0';
-	eof = 0;
-	if (err == ERR_EOF)
-		eof = 1;
-	err = ft_create_tok(token, tmp.str, eof);
-	free(tmp.str);
+	buf.cur_pos = 0;
+	buf.str[0] = '\0';
+	err = ft_partition(src, &buf);
+	if (buf.cur_pos >= buf.size)
+		buf.cur_pos--;
+	buf.str[buf.cur_pos] = '\0';
+	err = ft_create_tok(token, buf.str);
+	free(buf.str);
 	return (err);
 }
 
@@ -90,12 +84,10 @@ t_error	ft_tokenise(t_src *src, t_tok *token)
  * Delimiters: Space, tab, newline, pipe
  * @param src 		Struct containing the input string,
  * 					its length and current position.
- * @param buf 		Buffer string to be filled.
- * @param buf_pos 	Current position in buffer string.
- * @param buf_size 	Buffer malloced size. 
+ * @param buf 		Temporary buffer to save as token.
  * @return t_error 	ERR_EMPTY, ERR_EOF, SUCCESS
  */
-t_error	ft_partition(t_src *src, t_buf *tmp)
+t_error	ft_partition(t_src *src, t_buf *buf)
 {
 	char	c;
 	t_error	err;
@@ -104,19 +96,16 @@ t_error	ft_partition(t_src *src, t_buf *tmp)
 	while (err != ERR_EOF)
 	{
 		if (c == '"' || c == '\'')
-			ft_add_quoted_str(c, src, tmp);
-		else if ((c == ' ' || c == '\t') && tmp->cur_pos > 0)
+			ft_add_quoted_str(c, src, buf);
+		else if ((c == ' ' || c == '\t') && buf->cur_pos > 0)
 			break ;
-		else if ((c == '\n' || c == '|') && tmp->cur_pos > 0)
-		{
-			ft_unget_char(src);
-			break ;
-		}
+		else if (ft_strchr("\n|<>", c) && buf->cur_pos > 0)
+			return (ft_unget_char(src));
 		else
 		{
-			ft_add_to_buf(c, tmp);
-			if (c == '\n' || c == '|')
-				break ;
+			ft_add_to_buf(c, buf);
+			if (ft_strchr("\n|<>", c))
+				return (ft_check_double_redirect(src, &c, buf));
 		}
 		err = ft_next_char(src, &c);
 	}
@@ -143,7 +132,14 @@ t_error	ft_init_partition(t_src *src, char *c)
 	return (SUCCESS);
 }
 
-void	ft_add_quoted_str(char quote, t_src *src, t_buf *tmp)
+/**
+ * @brief Add anything inside of quotes.
+ * 
+ * @param quote Either ' or "
+ * @param src 	Struct containing the source string.
+ * @param buf 	Temporary buffer to save as token.
+ */
+void	ft_add_quoted_str(char quote, t_src *src, t_buf *buf)
 {
 	char	c;
 	bool	first_loop;
@@ -152,9 +148,9 @@ void	ft_add_quoted_str(char quote, t_src *src, t_buf *tmp)
 	first_loop = 1;
 	while (c != quote || first_loop == 1)
 	{
-		ft_add_to_buf(c, tmp);
+		ft_add_to_buf(c, buf);
 		ft_next_char(src, &c);
 		first_loop = 0;
 	}
-	ft_add_to_buf(c, tmp);
+	ft_add_to_buf(c, buf);
 }
