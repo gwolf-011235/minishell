@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/14 13:50:48 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 13:37:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 	data = malloc(sizeof(*data));
 	if (!data)
 		ft_exit_failure(data, ERR_MALLOC);
-	if (ft_env_setup(data) != SUCCESS)
+	if (ft_env_setup(data->env_table) != SUCCESS)
 		printf("NO\n");
 	ft_hashtable_insert(data->env_table, "PS1=\\u@\\h:\\w$ ", 3);
 	while (1)
