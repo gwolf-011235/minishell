@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:46:44 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 14:37:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
  * @file lexer_tok_utils.c
  * @brief Contains helper functions for tokenising.
  */
-#include "minishell.h"
-#include "lexer_src.h"
+#include "mod_lexer.h"
+/* #include "lexer_src.h"
 #include "lexer_tok.h"
-#include "lexer_tok_utils.h"
+#include "lexer_tok_utils.h" */
 
 /**
  * @brief Free token string.
@@ -26,8 +26,8 @@
  */
 void	ft_free_tok(t_tok *token)
 {
-	if (token->tok)
-		free(token->tok);
+	if (token->str)
+		free(token->str);
 }
 
 /**
@@ -36,7 +36,7 @@ void	ft_free_tok(t_tok *token)
  * In case the buffer string is not long enough, its size is doubled.
  * @param c 		Character to be added.
  * @param buf 		Temporary buffer to save as token.
- * @return t_error 	ERR_MALLOC, SUCCESS
+ * @return t_err 	ERR_MALLOC, SUCCESS
  */
 t_err	ft_add_to_buf(char c, t_buf *buf)
 {
@@ -63,7 +63,7 @@ t_err	ft_add_to_buf(char c, t_buf *buf)
  * 					its length and current position.
  * @param c 		Special char: \n, |, < or >
  * @param buf 		Temporary buffer to save as token.
- * @return t_error 	SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS
+ * @return t_err 	SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS
  */
 t_err	ft_check_double_redirect(t_src *src, char *c, t_buf *buf)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 13:59:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:55:07 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
  */
 
 #include "minishell.h"
-#include "lexer_list.h"
-#include "lexer_tok_utils.h"
+#include "mod_lexer.h"
+/* #include "lexer_list.h"
+#include "lexer_tok_utils.h" */
 
 #ifdef TESTING
 # define main not_main
@@ -25,15 +26,17 @@
 
 int	main(int argc, char **argv)
 {
-	t_data	*data;
-	char 	*input;
+	t_data		*data;
+	char 		*input;
+	t_tkn_list	*lst;
 
 	(void)argc;
 	(void)argv;
 	data = malloc(sizeof(*data));
 	if (!data)
 		ft_exit_failure(data, ERR_MALLOC);
-	if (ft_env_setup(data->env_table) != SUCCESS)
+	lst = NULL;
+	if (ft_env_setup(data) != SUCCESS)
 		printf("NO\n");
 	ft_hashtable_insert(data->env_table, "PS1=\\u@\\h:\\w$ ", 3);
 	while (1)
@@ -48,7 +51,7 @@ int	main(int argc, char **argv)
 		if (!input)
 			break ;
 		add_history(input);
-		ft_list_token(data, input);
+		ft_lex_input(lst, input);
 		//do stuff
 		free(input);
 		free(data->prompt1);

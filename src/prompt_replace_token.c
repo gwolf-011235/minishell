@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_replace_token.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:03:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:16:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:57:27 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
  * @param token Char string which is going to be replaced.
  * @param replacement Char string as replacement for token.
  * @param expanded_len Pointer to size_t in which to save the len.
- * @return t_error ERR_EMPTY, SUCCESS
+ * @return t_err ERR_EMPTY, SUCCESS
  */
 t_err	ft_calc_replace_len(const char *str, const char *token,
 		const char *replacement, size_t *expanded_len)
@@ -65,7 +65,7 @@ t_err	ft_calc_replace_len(const char *str, const char *token,
  * @param str Pointer to str which gets copied and expanded.
  * @param token Char string which should be replaced.
  * @param replacement Char string which is inserted instead of token.
- * @return t_error SUCCESS, ERR_EMPTY
+ * @return t_err SUCCESS, ERR_EMPTY
  */
 t_err	ft_expand_str(char **expanded_str, const char *str,
 		const char *token, const char *replacement)
@@ -99,7 +99,7 @@ t_err	ft_expand_str(char **expanded_str, const char *str,
  * @param str Pointer pointer to char string which is expanded.
  * @param token Char string to search for.
  * @param replacement Char string which replaces token.
- * @return t_error SUCCESS, ERR_MALLOC, ERR_EMPTY
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_EMPTY
  */
 t_err	ft_replace_token(char **str, const char *token, const char *replacement)
 {

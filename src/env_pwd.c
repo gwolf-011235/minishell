@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_pwd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:15:11 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 13:25:58 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:53:39 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
  * @brief Create string with the present working directory.
  *
  * Receives pointer to pointer to change value outside of function.
- * Return is t_error, so it can't return pointer itself.
+ * Return is t_err, so it can't return pointer itself.
  * Malloc string with 4096 and call getcwd for pwd.
  * If path is longer than size, free and malloc twice the size.
  * Repeat until path fits in array.
  *
  * @param pwd_value Pointer to pointer where to save string
- * @return t_error SUCCESS, ERR_MALLOC, ERR_CWD_FAIL.
+ * @return t_err Not SUCCESS if malloc or getcwd error.
  */
 t_err	ft_create_pwd_value(char **pwd_value)
 {
@@ -60,13 +60,13 @@ t_err	ft_create_pwd_value(char **pwd_value)
  * @brief Creates a new env_var PWD=path/to/pwd.
  *
  * Receives pointer to pointer to change value outside of function.
- * Return is t_error, so it can't return pointer itself.
+ * Return is t_err, so it can't return pointer itself.
  * Call ft_create_pwd_value to get right side of env_var.
  * If error passes on the error.
  * If success strjoin with left side.
  *
  * @param pwd Pointer to pointer where to save string.
- * @return t_error SUCCESS, ERR_MALLOC, ERR_CWD_FAIL.
+ * @return t_err Not SUCCESS if malloc or sub-call fail
  */
 t_err	ft_create_env_pwd(char **pwd)
 {

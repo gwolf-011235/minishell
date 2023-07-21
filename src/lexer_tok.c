@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 14:37:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
  * @file lexer_tok.c
  * @brief Contains functions to create tokens.
  */
-#include "minishell.h"
-#include "lexer_src.h"
+#include "mod_lexer.h"
+/* #include "lexer_src.h"
 #include "lexer_tok.h"
 #include "lexer_utils.h"
 #include "lexer_tok_utils.h"
-#include "minishell_error.h"
+#include "minishell_error.h" */
 
 /**
  * @brief Create a token.
@@ -27,7 +27,7 @@
  * Token contains the token string and its length.
  * @param token 	Created token.
  * @param s 		Token string.
- * @return t_error 	ERR_MALLOC, ERR_EMPTY, SUCCESS
+ * @return t_err 	ERR_MALLOC, ERR_EMPTY, SUCCESS
  */
 t_err	ft_create_tok(t_tok *token, char *s)
 {
@@ -36,11 +36,11 @@ t_err	ft_create_tok(t_tok *token, char *s)
 	token->size = ft_strlen(s);
 	if (!token->size)
 		return (ERR_EOF);
-	token->tok = malloc(token->size + 1);
-	if (!token->tok)
+	token->str = malloc(token->size + 1);
+	if (!token->str)
 		return (ERR_MALLOC);
-	ft_memcpy(token->tok, s, token->size);
-	token->tok[token->size] = '\0';
+	ft_memcpy(token->str, s, token->size);
+	token->str[token->size] = '\0';
 	return (SUCCESS);
 }
 
@@ -53,7 +53,7 @@ t_err	ft_create_tok(t_tok *token, char *s)
  * @param src 		Struct containing the input string,
  * 					its length and current position.
  * @param token 	Token to be created.
- * @return t_error* ERR_EMPTY, ERR_MALLOC, SUCCESS
+ * @return t_err* ERR_EMPTY, ERR_MALLOC, SUCCESS
  */
 t_err	ft_tokenise(t_src *src, t_tok *token)
 {
@@ -85,7 +85,7 @@ t_err	ft_tokenise(t_src *src, t_tok *token)
  * @param src 		Struct containing the input string,
  * 					its length and current position.
  * @param buf 		Temporary buffer to save as token.
- * @return t_error 	ERR_EMPTY, ERR_EOF, SUCCESS
+ * @return t_err 	ERR_EMPTY, ERR_EOF, SUCCESS
  */
 t_err	ft_partition(t_src *src, t_buf *buf)
 {
@@ -119,7 +119,7 @@ t_err	ft_partition(t_src *src, t_buf *buf)
  * Retrieve the first character.
  * @param src 		Struct containing the source string.
  * @param c 		Character retrieved.
- * @return t_error 	ERR_EMPTY, ERR_MALLOC, SUCCESS
+ * @return t_err 	ERR_EMPTY, ERR_MALLOC, SUCCESS
  */
 t_err	ft_init_partition(t_src *src, char *c)
 {

@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 14:37:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,37 @@
  * @file lexer_list.c
  * @brief Contains functions to create a double-linked list of tokens.
  */
-#include "minishell.h"
-#include "lexer_list.h"
+
+#include "mod_lexer.h"
+/* #include "lexer_list.h"
 #include "lexer_utils.h"
-#include "lexer_tok_utils.h"
+#include "lexer_tok_utils.h" */
 
 /**
  * @brief Create a list of token.
  *
- * @param data 		Overarching struct containing all meta data.
+ * @param lst_head	Head node of token list.
  * @param input 	Input string to be tokenised.
- * @return t_error 	ERR_EMPTY, ERR_MALLOC, SUCCESS
+ * @return t_err 	ERR_EMPTY, ERR_MALLOC, SUCCESS
  */
-t_err	ft_list_token(t_data *data, char *input)
+t_err	ft_lex_input(t_tkn_list	*lst_head, char *input)
 {
-	t_src		src;
-	t_err		err;
+	t_src	src;
+	t_err	err;
+	t_tok	token;	
 
 	ft_init_lexer(&src, input);
-	err = ft_tokenise(&src, &data->token);
-	while (err != ERR_EOF || !data->lst_head)
+	err = ft_tokenise(&src, &token);
+	while (err != ERR_EOF || !lst_head)
 	{
-		err = ft_new_node(data, data->token.tok);
+		err = ft_new_node(lst_head, token.str);
 		if (err != SUCCESS)
 		{
-			ft_free_lst(&data->lst_head);
-			ft_free_tok(&data->token);
+			ft_free_lst(&lst_head);
+			ft_free_tok(&token);
 			return (err);
 		}
-		err = ft_tokenise(&src, &data->token);
+		err = ft_tokenise(&src, &token);
 	}
 	return (SUCCESS);
 }
@@ -64,11 +66,11 @@ void	ft_init_lexer(t_src *src, char *input)
 /**
  * @brief Create a new node and add it to the end of the token list.
  *
- * @param data		Overarching struct containing all meta data.
+ * @param lst_head	Head node of token list.
  * @param content	Content string to be written into new node.
- * @return t_error 	ERR_MALLOC, SUCCESS
+ * @return t_err 	ERR_MALLOC, SUCCESS
  */
-t_err	ft_new_node(t_data *data, char *content)
+t_err	ft_new_node(t_tkn_list	*lst_head, char *content)
 {
 	t_tkn_list	*new;
 
@@ -77,7 +79,7 @@ t_err	ft_new_node(t_data *data, char *content)
 		return (ERR_MALLOC);
 	new->content = content;
 	new->next = NULL;
-	ft_add_list(&data->lst_head, new);
+	ft_add_lst(&lst_head, new);
 	return (SUCCESS);
 }
 
@@ -110,7 +112,7 @@ void	ft_free_lst(t_tkn_list **lst)
  * @param lst Token list.
  * @param new Given token to be added to token list.
  */
-void	ft_add_list(t_tkn_list **lst, t_tkn_list *new)
+void	ft_add_lst(t_tkn_list **lst, t_tkn_list *new)
 {
 	t_tkn_list	*tmp;
 

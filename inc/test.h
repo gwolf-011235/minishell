@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/20 09:31:14 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:34:53 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "expand.h"
 # include "env_envp.h"
 # include "lexer_expand.h"
-# include "lexer_list.h"
+# include "mod_handle_input.h"
 
 # define RESET "\033[0m"
 # define BOLD "\033[1m"

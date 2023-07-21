@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:17:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 14:37:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static size_t	ft_hashtable_index(
  * @param ht Hashtable in which to insert
  * @param string env_string which should be inserted
  * @param keylen Length of env_var (everything before =)
- * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_HT_NO_INSERT
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_HT_NO_INSERT
  */
 t_err	ft_hashtable_insert(t_hashtable *ht, char *string, size_t keylen)
 {
@@ -113,7 +113,7 @@ t_env_var	*ft_hashtable_lookup(
  * @param ht Hashtable in which to delete one element
  * @param string env_string which should be deleted
  * @param keylen length of env_var (everthing before =)
- * @return t_error SUCCESS, ERR_EMPTY, ERR_HT_NO_DELETE
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_HT_NO_DELETE
  */
 t_err	ft_hashtable_delete(
 	t_hashtable *ht, char *string, size_t keylen)

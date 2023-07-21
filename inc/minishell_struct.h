@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_struct.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:38:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 11:40:07 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:08:14 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +19,6 @@
 # include "minishell_error.h"
 
 /* ====== STRUCTS ====== */
-
-/**
- * @brief Token structure.
- *
- * Includes token string and the token size.
- * @param tok String containing token.
- * @param size Size of token string.
- */
-typedef struct s_tok
-{
-	char	*tok;
-	int		size;
-}	t_tok;
-
-/**
- * @brief List of token.
- *
- * Double-linked list of nodes that contain individual token strings. Each
- * node is connected to the previous and next node. The first node refers to
- * NUll as prev. The last node refers to NULL as next node.
- * @param content String containing token.
- */
-typedef struct s_tkn_list
-{
-	char				*content;
-	struct s_tkn_list	*prev;
-	struct s_tkn_list	*next;
-}	t_tkn_list;
 
 /**
  * @brief Linked list of simple commands existing of token extracted from input.
@@ -107,8 +79,6 @@ typedef struct s_data {
 	t_hashtable	*env_table;
 	t_checks	checks;
 	t_err		err;
-	t_tok		token;
-	t_tkn_list	*lst_head;
 	t_cmd		*cmds;
 	char		*prompt1;
 	char		*prompt2;

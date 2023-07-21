@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_envp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 18:09:38 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:11:22 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:50:57 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  *
  * @param ht Environment table which to copy.
  * @param envp Where to save pointers.
- * @return t_error SUCCESS
+ * @return t_err SUCCESS
  */
 t_err	ft_envp_fill(t_hashtable *ht, char **envp)
 {
@@ -54,7 +54,7 @@ t_err	ft_envp_fill(t_hashtable *ht, char **envp)
  *
  * @param ht Environment from which to copy.
  * @param envp Pointer to char**, where to save.
- * @return t_error ERR_EMPTY, ERR_MALLOC, SUCCESS
+ * @return t_err ERR_EMPTY, ERR_MALLOC, SUCCESS
  */
 t_err	ft_envp_create(t_hashtable *ht, char ***envp)
 {
@@ -75,7 +75,7 @@ t_err	ft_envp_create(t_hashtable *ht, char ***envp)
  * Does not free elements.
  *
  * @param envp The pointer to free.
- * @return t_error SUCCESS
+ * @return t_err SUCCESS
  */
 t_err	ft_envp_destroy(char ***envp)
 {

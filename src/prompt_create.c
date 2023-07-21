@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_create.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 08:07:40 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:13:45 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:56:22 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
  * Uses look up table of function pointers.
  * Target is char after backslash of token. It is used as index.
  * The pointed to functions malloc the replacement string.
- * Since they are t_error functions they can be returned.
+ * Since they are t_err functions they can be returned.
  * The first function is for wrong tokens = empty string.
  *
  * @param replacement Where to save the string
  * @param target Which function to use of look up table.
  * @param sym_tab Symbols needed for some replacement functions.
- * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
 t_err	ft_get_replace(char **replacement, unsigned char target,
 		t_hashtable *sym_tab)
@@ -56,7 +56,7 @@ t_err	ft_get_replace(char **replacement, unsigned char target,
  *
  * @param token Where to assign string.
  * @param target Which string shall be assigned.
- * @return t_error SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS,
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS,
  * ERR_WRONG_TOKEN
  */
 t_err	ft_get_token(char **token, unsigned char target)
@@ -92,7 +92,7 @@ t_err	ft_get_token(char **token, unsigned char target)
  *
  * @param ps_string The prompt string which gets searched.
  * @param token Here the token string is assigned to.
- * @return t_error SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS, ERR_WRONG_TOKEN
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS, ERR_WRONG_TOKEN
  */
 t_err	ft_search_token(const char *ps_string, char **token)
 {
@@ -133,7 +133,7 @@ t_err	ft_search_token(const char *ps_string, char **token)
  *
  * @param prompt This gets searched and expanded.
  * @param sym_tab Symbols which can are used to expand.
- * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
 t_err	ft_expand_prompt_str(char **prompt, t_hashtable *sym_tab)
 {
@@ -175,7 +175,7 @@ t_err	ft_expand_prompt_str(char **prompt, t_hashtable *sym_tab)
  * @param prompt Where to save the prompt.
  * @param ps Prompt string variable $PS1 or $PS2.
  * @param std Standard string if ps is not found.
- * @return t_error SUCCESS, ERR_MALLOC, ERR_EMPTY
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_EMPTY
  */
 t_err	ft_prompt_create(t_hashtable *sym_tab,
 			char **prompt, char *ps, char *std)

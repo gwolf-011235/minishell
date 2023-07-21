@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_check_syntax.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:33:38 by gwolf             #+#    #+#             */
-/*   Updated: 2023/06/24 11:27:48 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:37:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	test_check_quote(void)
 		"\'I am fine thanks"
 
 	};
-	t_error		error;
+	t_err		error;
 	size_t		i;
 
 	printf("\t\n** Quotes **\n\n");
@@ -54,7 +54,7 @@ void	test_check_pipe(void)
 		"hello | | bye",
 		"hello || bye"
 	};
-	t_error		error;
+	t_err		error;
 	size_t		i;
 
 	printf("\t\n** Pipes **\n\n");
@@ -85,7 +85,7 @@ void	test_check_redirect(void)
 		"Spaces at the end: <<   ",
 		"<| test"
 	};
-	t_error		error;
+	t_err		error;
 	size_t		i;
 
 	printf("\t\n** Redirect **\n\n");

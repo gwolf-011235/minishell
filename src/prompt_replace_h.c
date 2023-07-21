@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_replace_h.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:14:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:56:47 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
  *
  * @param replacement Pointer pointer where to save string.
  * @param str The value of SESSION_MANAGER.
- * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
 t_err	ft_create_hostname(char **replacement, const char *str)
 {
@@ -57,7 +57,7 @@ t_err	ft_create_hostname(char **replacement, const char *str)
  *
  * @param replacement Pointer pointer where to save string.
  * @param sym_tab Symbol table where to search for env_var.
- * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
 t_err	ft_replace_h(char **replacement, t_hashtable *sym_tab)
 {

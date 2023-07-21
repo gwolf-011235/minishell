@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:40:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 14:37:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
  * @file lexer_utils.c
  * @brief Contains helper functions to create the token list.
  */
-#include "minishell.h"
-#include "lexer_utils.h"
+
+#include "mod_lexer.h"
+//#include "lexer_utils.h"
 
 /**
  * @brief Skip all spaces and tabs in source string.
  * 
  * @param src 		Struct containing source string.
- * @return t_error	ERR_EMPTY, ERR_EOF, SUCCESS
+ * @return t_err	ERR_EMPTY, ERR_EOF, SUCCESS
  */
 t_err	ft_skip_space(t_src *src)
 {
@@ -73,23 +74,3 @@ t_tkn_list	*ft_last(t_tkn_list *lst)
 	}
 	return (0);
 }
-
-/* t_error	ft_extract_str(char *src, char *dst)
-{
-	int	i;
-	int	start;
-
-	i = 0;
-	while (src[i] == '<' || src[i] == '>')
-		i++;
-	i += ft_skip_space(src + i);
-	start = i;
-	while (src[i] != ' ' && src[i] != '|')
-		i++;
-	dst = malloc(sizeof(char) * (i - start + 1));
-	if (!dst)
-		return (ERR_MALLOC);
-	ft_memmove(dst, src, i - start);
-	dst[i] = '\0';
-	return (SUCCESS);
-} */

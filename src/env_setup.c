@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_setup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 13:35:03 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:54:04 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@
  * If env was empty set PWD and SHLVL.
  * If PWD is not available set PWD.
  * Increment SHLVL. If not found set it.
- *
- * @param env_table Environment.
- * @return t_error SUCCESS, ERR_MALLOC.
+ * @param data Pointer to data struct.
+ * @return t_err SUCCESS if everything went right, else it ft_exit_failures.
  */
 t_err	ft_env_setup(t_hashtable *env_table)
 {
@@ -58,10 +57,9 @@ t_err	ft_env_setup(t_hashtable *env_table)
  *
  * Check if environ is not null, else return.
  * Loop trhough the environ array. Environ is NULL-terminated.
- * Strdup the strings and save them in env_table.
- *
- * @param env_table Environment.
- * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC.
+ * Strdup the strings and save them in env_table
+ * @param data Pointer to data struct
+ * @return t_err SUCCESS if environ not empty and mallocs ok.
  * @todo Check if valid env_str
  */
 t_err	ft_import_environ(t_hashtable *env_table)
@@ -92,9 +90,8 @@ t_err	ft_import_environ(t_hashtable *env_table)
  * @brief Creates and inserts the env_var PWD.
  *
  * If no PWD is present in env_table, this function inserts.
- *
- * @param env_table Environment.
- * @return t_error SUCCESS, ERR_MALLOC, ERR_CWD_FAIL, ERR_HT_NO_INSERT.
+ * @param data
+ * @return t_err If SUCCESS it exits
  */
 t_err	ft_insert_env_pwd(t_hashtable *env_table)
 {
@@ -115,9 +112,8 @@ t_err	ft_insert_env_pwd(t_hashtable *env_table)
  * @brief Creates and inserts the env_var SHLVL.
  *
  * If no SHLVL is present in env_table, this function inserts.
- *
- * @param env_table Environment
- * @return t_error SUCCESS, ERR_MALLOC, ERR_HT_NO_INSERT
+ * @param data
+ * @return t_err If SUCCESS it exits
  */
 t_err	ft_insert_env_shlvl(t_hashtable *env_table)
 {

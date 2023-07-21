@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_replace_small.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:05:43 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:16:07 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:57:10 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * Use ft_strdup() on macro UNKNOWN defined in minishell.h and save it.
  *
  * @param replacement Pointer pointer where to save string.
- * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
 t_err	ft_replace_not_found(char **replacement)
 {
@@ -42,7 +42,7 @@ t_err	ft_replace_not_found(char **replacement)
  *
  * @param replacement Where to save string.
  * @param sym_tab symbol_table - not used.
- * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
 t_err	ft_replace_n(char **replacement, t_hashtable *sym_tab)
 {
@@ -63,7 +63,7 @@ t_err	ft_replace_n(char **replacement, t_hashtable *sym_tab)
  *
  * @param replacement Where to save string.
  * @param sym_tab symbol_table - not used.
- * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
 t_err	ft_replace_r(char **replacement, t_hashtable *sym_tab)
 {
@@ -84,7 +84,7 @@ t_err	ft_replace_r(char **replacement, t_hashtable *sym_tab)
  *
  * @param replacement Where to save string.
  * @param sym_tab symbol_table - not used.
- * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
 t_err	ft_replace_empty(char **replacement, t_hashtable *sym_tab)
 {

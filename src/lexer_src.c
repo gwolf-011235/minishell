@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 15:27:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 14:37:37 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
  * @file lexer_src.c
  * @brief Contains functions to handle source string.
  */
-#include "minishell.h"
-#include "lexer_src.h"
+
+#include "mod_lexer.h"
+//#include "lexer_src.h"
 
 /**
  * @brief Retrieves next character in source string.
@@ -24,7 +25,7 @@
  * and the current position looked at.
  * @param src Source structure.
  * @param c Character looked at.
- * @return t_error SUCCESS, ERR_EMPTY
+ * @return t_err SUCCESS, ERR_EMPTY
  */
 t_err	ft_next_char(t_src *src, char *c)
 {
@@ -44,7 +45,7 @@ t_err	ft_next_char(t_src *src, char *c)
  * @brief Go back to previous character of source string.
  * 
  * @param src Source structure.
- * @return t_error ERR_OUT_OF_BOUNDS, SUCCESS
+ * @return t_err ERR_OUT_OF_BOUNDS, SUCCESS
  */
 t_err	ft_unget_char(t_src *src)
 {
@@ -61,7 +62,7 @@ t_err	ft_unget_char(t_src *src)
  * actually changing the current position.
  * @param src Source structure.
  * @param c Character looked at.
- * @return t_error SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS
  */
 
 t_err	ft_peek_char(t_src *src, char *c)
