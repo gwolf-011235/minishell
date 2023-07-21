@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_handle_input.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 15:18:19 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 16:12:03 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,11 @@ typedef struct s_tkn_list
 
 t_err	ft_lex_input(t_tkn_list	**lst_head, char *input);
 void	ft_free_lst(t_tkn_list **lst);
+
+//expand
+t_err	ft_expand_tkn_lst(t_tkn_list *list, t_data *data);
+
+//Module Expand
+t_err	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info);
 
 #endif
