@@ -6,10 +6,14 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 08:07:40 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:03:54 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:13:45 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file prompt_create.c
+ * @brief Create and expand a prompt string.
+ */
 #include "mod_prompt.h"
 
 /**

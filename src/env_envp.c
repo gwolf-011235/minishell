@@ -6,10 +6,14 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 18:09:38 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 13:40:22 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:11:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file env_envp.c
+ * @brief Create and destroy environment pointer.
+ */
 #include "mod_env.h"
 
 /**

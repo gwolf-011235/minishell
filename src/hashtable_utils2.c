@@ -3,13 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   hashtable_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:47:39 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 14:12:41 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file hashtable_utils2.c
+ * @brief Utils functions to use with env hashtable (continued)
+ */
 #include "hashtable.h"
 
 t_err	ft_hashtable_swap(t_hashtable *ht, char *string, size_t keylen)

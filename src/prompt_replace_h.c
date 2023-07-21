@@ -6,10 +6,14 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:02:18 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:14:21 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file prompt_replace_h.c
+ * @brief Create replacement for token h = hostname.
+ */
 #include "mod_prompt.h"
 
 /**

@@ -6,10 +6,14 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:05:43 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:02:01 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:16:07 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file prompt_replace_small.c
+ * @brief Create replacement for smaller tokens like newline and empty.
+ */
 #include "mod_prompt.h"
 
 /**

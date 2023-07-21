@@ -6,10 +6,14 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:03:54 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:15:18 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file prompt_replace_w.c
+ * @brief Create replacement for token w = PWD
+ */
 #include "mod_prompt.h"
 
 /**
