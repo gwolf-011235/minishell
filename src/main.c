@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 13:37:27 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 13:59:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	main(int argc, char **argv)
 	ft_hashtable_insert(data->env_table, "PS1=\\u@\\h:\\w$ ", 3);
 	while (1)
 	{
-		data->err = ft_create_prompt(data->env_table, &data->prompt1, "PS1", PS1_STD);
+		data->err = ft_prompt_create(data->env_table, &data->prompt1, "PS1", PS1_STD);
 		if (data->err != SUCCESS)
 			ft_exit_failure(data, data->err);
-		data->err = ft_create_prompt(data->env_table, &data->prompt2, "PS2", PS2_STD);
+		data->err = ft_prompt_create(data->env_table, &data->prompt2, "PS2", PS2_STD);
 		if (data->err != SUCCESS)
 			ft_exit_failure(data, data->err);
 		input = readline(data->prompt1);

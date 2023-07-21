@@ -37,7 +37,6 @@ TEST := test
 SRC :=	main.c \
 		ft_memory.c \
 		ft_string.c \
-		replace_token.c \
 		hashtable_generate.c \
 		hashtable_utils.c \
 		hashtable_utils2.c \
@@ -46,7 +45,8 @@ SRC :=	main.c \
 		env_pwd.c \
 		env_shlvl.c \
 		env_envp.c \
-		prompt.c \
+		prompt_create.c \
+		prompt_replace_token.c \
 		prompt_replace_h.c \
 		prompt_replace_u.c \
 		prompt_replace_small.c \

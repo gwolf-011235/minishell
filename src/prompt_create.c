@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   prompt_create.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 08:07:40 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 14:03:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "mod_prompt.h"
 
 /**
  * @brief Malloc replacement string for provided token.
@@ -26,16 +26,16 @@
  * @param sym_tab Symbols needed for some replacement functions.
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
-t_err	ft_get_token_replacement(char **replacement, unsigned char target,
+t_err	ft_get_replace(char **replacement, unsigned char target,
 		t_hashtable *sym_tab)
 {
 	static const t_replace_ptr	look_up_tab[128] = {
-	['\0'] = ft_prompt_replace_empty,
-	['h'] = ft_prompt_replace_h,
-	['n'] = ft_prompt_replace_n,
-	['u'] = ft_prompt_replace_u,
-	['r'] = ft_prompt_replace_r,
-	['w'] = ft_prompt_replace_w
+	['\0'] = ft_replace_empty,
+	['h'] = ft_replace_h,
+	['n'] = ft_replace_n,
+	['u'] = ft_replace_u,
+	['r'] = ft_replace_r,
+	['w'] = ft_replace_w
 	};
 
 	if (!replacement || !sym_tab)
@@ -123,7 +123,7 @@ t_err	ft_search_token(const char *ps_string, char **token)
  *
  * In infinite loop:
  * Search for token with ft_search_token().
- * Create replacement with ft_get_token_replacement().
+ * Create replacement with ft_get_replace().
  * Replace token with ft_replace_token().
  * If no token is found (anymore) break out.
  *
@@ -148,7 +148,7 @@ t_err	ft_expand_prompt_str(char **prompt, t_hashtable *sym_tab)
 			return (err);
 		if (!token)
 			return (SUCCESS);
-		err = ft_get_token_replacement(&replacement, *(token + 1), sym_tab);
+		err = ft_get_replace(&replacement, *(token + 1), sym_tab);
 		if (err != SUCCESS)
 			return (err);
 		err = ft_replace_token(prompt, token, replacement);
@@ -173,7 +173,7 @@ t_err	ft_expand_prompt_str(char **prompt, t_hashtable *sym_tab)
  * @param std Standard string if ps is not found.
  * @return t_error SUCCESS, ERR_MALLOC, ERR_EMPTY
  */
-t_err	ft_create_prompt(t_hashtable *sym_tab,
+t_err	ft_prompt_create(t_hashtable *sym_tab,
 			char **prompt, char *ps, char *std)
 {
 	t_env_var	*env_var;

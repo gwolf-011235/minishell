@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_replace_h.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 14:02:18 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "mod_prompt.h"
 
 /**
  * @brief Create and save hostname string from provided string.
@@ -24,7 +24,7 @@
  * @param str The value of SESSION_MANAGER.
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
-t_err	ft_prompt_create_hostname(char **replacement, const char *str)
+t_err	ft_create_hostname(char **replacement, const char *str)
 {
 	char	*start;
 	char	*end;
@@ -55,7 +55,7 @@ t_err	ft_prompt_create_hostname(char **replacement, const char *str)
  * @param sym_tab Symbol table where to search for env_var.
  * @return t_error SUCCESS, ERR_EMPTY, ERR_MALLOC
  */
-t_err	ft_prompt_replace_h(char **replacement, t_hashtable *sym_tab)
+t_err	ft_replace_h(char **replacement, t_hashtable *sym_tab)
 {
 	t_err		err;
 	t_env_var	*env_var;
@@ -65,9 +65,9 @@ t_err	ft_prompt_replace_h(char **replacement, t_hashtable *sym_tab)
 	env_var = ft_hashtable_lookup(sym_tab, "SESSION_MANAGER", 15);
 	if (!env_var || !ft_strnstr(env_var->value, "local/",
 			ft_strlen(env_var->value)))
-		err = ft_prompt_replace_not_found(replacement);
+		err = ft_replace_not_found(replacement);
 	else
-		err = ft_prompt_create_hostname(replacement, env_var->value);
+		err = ft_create_hostname(replacement, env_var->value);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);
