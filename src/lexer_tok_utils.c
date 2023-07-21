@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:46:44 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 19:45:40 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 10:58:04 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,48 @@ void	ft_free_tok(t_tok *token)
  * 
  * In case the buffer string is not long enough, its size is doubled.
  * @param c 		Character to be added.
- * @param buf 		Buffer string.
- * @param buf_size 	Buffer string length.
- * @param buf_pos 	Current position in buffer string.
+ * @param buf 		Temporary buffer to save as token.
  * @return t_error 	ERR_MALLOC, SUCCESS
  */
-t_error	ft_add_to_buf(char c, t_buf *tmp)
+t_error	ft_add_to_buf(char c, t_buf *buf)
 {
 	char	*temp;
 
-	tmp->str[tmp->cur_pos] = c;
-	tmp->cur_pos++;
-	if (tmp->cur_pos >= tmp->size)
+	buf->str[buf->cur_pos] = c;
+	buf->cur_pos++;
+	if (buf->cur_pos >= buf->size)
 	{
-		temp = ft_realloc(tmp->str, (tmp->size * 2), tmp->size);
+		temp = ft_realloc(buf->str, (buf->size * 2), buf->size);
 		if (!temp)
 			return (ERR_MALLOC);
-		tmp->str = temp;
-		tmp->size *= 2;
+		buf->str = temp;
+		buf->size *= 2;
+	}
+	return (SUCCESS);
+}
+
+/**
+ * @brief Check if next char is a redirect.
+ * 
+ * If yes, save next char as well into buf.
+ * @param src 		Struct containing the input string,
+ * 					its length and current position.
+ * @param c 		Special char: \n, |, < or >
+ * @param buf 		Temporary buffer to save as token.
+ * @return t_error 	SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS
+ */
+t_error	ft_check_double_redirect(t_src *src, char *c, t_buf *buf)
+{
+	char	next;
+	t_error	err;
+
+	err = ft_peek_char(src, &next);
+	if (err != SUCCESS)
+		return (err);
+	if (ft_strchr("<>", *c) && next == *c)
+	{
+		ft_next_char(src, c);
+		ft_add_to_buf(*c, buf);
 	}
 	return (SUCCESS);
 }

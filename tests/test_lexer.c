@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 13:28:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 15:57:26 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/19 23:51:29 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	test_lexer(void)
 	tmp = data->lst_head;
 	while (tmp)
 	{
-		printf("%s", (char *)tmp->content);
+		printf("%s\n", (char *)tmp->content);
 		tmp = tmp->next;
 	}
 	ft_free_lst(&data->lst_head);
@@ -42,7 +42,7 @@ void	test_lexer(void)
 	tmp = data->lst_head;
 	while (tmp)
 	{
-		ft_printf("%s", (char *)tmp->content);
+		ft_printf("%s\n", (char *)tmp->content);
 		tmp = tmp->next;
 	}
 	ft_free_lst(&data->lst_head);
@@ -53,7 +53,7 @@ void	test_lexer(void)
 	tmp = data->lst_head;
 	while (tmp)
 	{
-		ft_printf("%s", (char *)tmp->content);
+		ft_printf("%s\n", (char *)tmp->content);
 		tmp = tmp->next;
 	}
 	ft_free_lst(&data->lst_head);
@@ -64,7 +64,7 @@ void	test_lexer(void)
 	tmp = data->lst_head;
 	while (tmp)
 	{
-		ft_printf("%s", (char *)tmp->content);
+		ft_printf("%s\n", (char *)tmp->content);
 		tmp = tmp->next;
 	}
 	ft_free_lst(&data->lst_head);
@@ -75,7 +75,7 @@ void	test_lexer(void)
 	tmp = data->lst_head;
 	while (tmp)
 	{
-		ft_printf("%s", (char *)tmp->content);
+		ft_printf("%s\n", (char *)tmp->content);
 		tmp = tmp->next;
 	}
 	ft_free_lst(&data->lst_head);
@@ -86,7 +86,7 @@ void	test_lexer(void)
 	tmp = data->lst_head;
 	while (tmp)
 	{
-		ft_printf("%s", (char *)tmp->content);
+		ft_printf("%s\n", (char *)tmp->content);
 		tmp = tmp->next;
 	}
 	ft_free_lst(&data->lst_head);
@@ -97,7 +97,29 @@ void	test_lexer(void)
 	tmp = data->lst_head;
 	while (tmp)
 	{
-		ft_printf("%s", (char *)tmp->content);
+		ft_printf("%s\n", (char *)tmp->content);
+		tmp = tmp->next;
+	}
+	ft_free_lst(&data->lst_head);
+
+	printf("\nSimple command: < infile grep huhu|wc -l > out with newline\n");
+	str = "< infile grep huhu|wc -l > out\n";
+	ft_list_token(data, str);
+	tmp = data->lst_head;
+	while (tmp)
+	{
+		ft_printf("%s\n", (char *)tmp->content);
+		tmp = tmp->next;
+	}
+	ft_free_lst(&data->lst_head);
+
+	printf("\nSimple command: <<delim grep huhu|wc -l >> out with newline\n");
+	str = "<<delim grep huhu|wc -l >> out\n";
+	ft_list_token(data, str);
+	tmp = data->lst_head;
+	while (tmp)
+	{
+		ft_printf("%s\n", (char *)tmp->content);
 		tmp = tmp->next;
 	}
 	ft_free_lst(&data->lst_head);
@@ -108,7 +130,18 @@ void	test_lexer(void)
 	tmp = data->lst_head;
 	while (tmp)
 	{
-		ft_printf("%s", (char *)tmp->content);
+		ft_printf("%s\n", (char *)tmp->content);
+		tmp = tmp->next;
+	}
+	ft_free_lst(&data->lst_head);
+
+	printf("\n~ $TEST\n");
+	str = "~ $TEST";
+	ft_list_token(data, str);
+	tmp = data->lst_head;
+	while (tmp)
+	{
+		printf("%s\n", (char *)tmp->content);
 		tmp = tmp->next;
 	}
 	ft_free_lst(&data->lst_head);

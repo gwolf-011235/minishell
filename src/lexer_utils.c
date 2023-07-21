@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:40:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/14 19:47:59 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/20 00:09:30 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_error	ft_skip_space(t_src *src)
 	if (!src || !src->buf || !src->buf_size)
 		return (ERR_EMPTY);
 	err = ft_peek_char(src, &c);
-	while (err != ERR_EOF && (c == ' ' || c == '\t'))
+	while (err != ERR_OUT_OF_BOUNDS && (c == ' ' || c == '\t'))
 	{
 		ft_next_char(src, &c);
 		err = ft_peek_char(src, &c);
