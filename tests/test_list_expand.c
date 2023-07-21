@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_list_expand.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 08:58:42 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/20 09:33:19 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 15:06:45 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ void	test_expand_list(void)
 	i = 1;
 	printf(BLUE"**\tLIST\t**\n\n"RESET);
 	g_string = "~ $TEST\n";
-	ft_list_token(&g_data, g_string);
-	ft_expand_tkn_lst(g_data.lst_head, &g_data);
-	tmp = g_data.lst_head;
+	ft_lex_input(tmp, g_string);
+	ft_expand_tkn_lst(tmp, &g_data);
 	while (tmp)
 	{
 		if (!strncmp(tmp->content, "\n", ft_strlen(tmp->content)))

@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:38 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 15:00:03 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 15:01:53 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@
 # define INIT_SRC_POS -2
 
 
-/**/**
- * @brief 
- * 
- */
- * 
+/**
+ * @brief Source structure.
+ *  
  * @param buf		Source string.
  * @param buf_size	Length of source string.
  * @param cur_pos	Current position inside source string.

@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:34:53 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 15:04:39 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "minishell.h"
 # include "lexer_check_syntax.h"
-# include "expand.h"
-# include "env_envp.h"
+# include "mod_expand.h"
+# include "mod_env.h"
 # include "lexer_expand.h"
 # include "mod_handle_input.h"
 

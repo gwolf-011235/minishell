@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   test_expand_expr.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/20 09:32:39 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 15:05:15 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-#include "lexer_list.h"
-#include "lexer_tok.h"
 
 extern t_data		g_data;
 extern char			*g_string;
