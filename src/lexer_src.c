@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 15:27:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/19 23:45:11 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 10:57:33 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_error	ft_unget_char(t_src *src)
  * actually changing the current position.
  * @param src Source structure.
  * @param c Character looked at.
- * @return t_error SUCCESS, ERR_EMPTY
+ * @return t_error SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS
  */
 
 t_error	ft_peek_char(t_src *src, char *c)
