@@ -25,6 +25,7 @@ var files_dup =
     [ "main.c", "main_8c.html", "main_8c" ],
     [ "minishell.h", "minishell_8h.html", "minishell_8h" ],
     [ "minishell_error.h", "minishell__error_8h.html", "minishell__error_8h" ],
+    [ "minishell_struct.h", "minishell__struct_8h_source.html", null ],
     [ "mod_lexer.h", "mod__lexer_8h_source.html", null ],
     [ "pwd.c", "pwd_8c.html", "pwd_8c" ],
     [ "shlvl.c", "shlvl_8c.html", "shlvl_8c" ],

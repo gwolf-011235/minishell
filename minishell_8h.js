@@ -1,18 +1,6 @@
 var minishell_8h =
 [
-    [ "s_tok", "structs__tok.html", "structs__tok" ],
-    [ "s_tkn_list", "structs__tkn__list.html", "structs__tkn__list" ],
-    [ "s_cmd", "structs__cmd.html", "structs__cmd" ],
-    [ "s_checks", "structs__checks.html", "structs__checks" ],
-    [ "s_info", "structs__info.html", "structs__info" ],
-    [ "s_data", "structs__data.html", "structs__data" ],
-    [ "t_checks", "minishell_8h.html#a2ac6aa615028570d7164697e4439c92b", null ],
-    [ "t_cmd", "minishell_8h.html#a4fac5b0c1334043d22fc2631fd6277c7", null ],
-    [ "t_data", "minishell_8h.html#a24e28e95867f9681b9d87781b1caa65b", null ],
-    [ "t_info", "minishell_8h.html#ae94d8324261ed8fcae571842ee4bedd9", null ],
     [ "t_replace_ptr", "minishell_8h.html#ad759c8e8f5fd7148bd64793ad7af4190", null ],
-    [ "t_tkn_list", "minishell_8h.html#a1501ea25e9d50f7c9372c07c6df68109", null ],
-    [ "t_tok", "minishell_8h.html#a645b2343c2e39e81f91aef14bb100d63", null ],
     [ "ft_calc_replace_len", "minishell_8h.html#aad54224f5d44f1ef35b08f3a67ef82ae", null ],
     [ "ft_create_prompt", "minishell_8h.html#a1c280f1485689fb72d75ffbde310e37e", null ],
     [ "ft_create_pwd_env_str", "minishell_8h.html#ab32cc5839c4adc59e721fd12740ad793", null ],
