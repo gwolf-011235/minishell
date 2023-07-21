@@ -100,14 +100,14 @@ $(document).ready(function(){initNavTree('lexer__expand_8h_source.html',''); ini
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*   By: sqiu &lt;sqiu@student.42vienna.com&gt;           +#+  +:+       +#+        */</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">/*                                                +#+#+#+#+#+   +#+           */</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">/*   Created: 2023/07/20 09:01:29 by gwolf             #+#    #+#             */</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/07/21 14:23:11 by sqiu             ###   ########.fr       */</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/*                                                                            */</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* ************************************************************************** */</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifndef LEXER_EXPAND_H</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"># define LEXER_EXPAND_H</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="minishell__error_8h.html">minishell_error.h</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"># include &quot;mod_handle_input.h&quot;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="minishell_8h.html">minishell.h</a>&quot;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">//import from expand_expr.c</span></div>
@@ -118,12 +118,11 @@ $(document).ready(function(){initNavTree('lexer__expand_8h_source.html',''); ini
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aexpand__expr_8c_html_a7353b3c94f80fe5c8e7637229adaedf8"><div class="ttname"><a href="expand__expr_8c.html#a7353b3c94f80fe5c8e7637229adaedf8">ft_expand_expr</a></div><div class="ttdeci">t_err ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info)</div><div class="ttdoc">Expand expressions received from token list.</div><div class="ttdef"><b>Definition:</b> expand_expr.c:124</div></div>
 <div class="ttc" id="aminishell_8h_html"><div class="ttname"><a href="minishell_8h.html">minishell.h</a></div><div class="ttdoc">Overarching header.</div></div>
-<div class="ttc" id="aminishell__error_8h_html"><div class="ttname"><a href="minishell__error_8h.html">minishell_error.h</a></div><div class="ttdoc">Header to store error codes.</div></div>
 <div class="ttc" id="aminishell__error_8h_html_ab40f6b0320b416162d7f6d5eed804232"><div class="ttname"><a href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a></div><div class="ttdeci">enum e_error t_err</div><div class="ttdoc">Enum, which contains all error codes.</div></div>
-<div class="ttc" id="astructs__data_html"><div class="ttname"><a href="structs__data.html">s_data</a></div><div class="ttdoc">Overarching struct to hold all necessarry data.</div><div class="ttdef"><b>Definition:</b> minishell_struct.h:106</div></div>
+<div class="ttc" id="astructs__data_html"><div class="ttname"><a href="structs__data.html">s_data</a></div><div class="ttdoc">Overarching struct to hold all necessarry data.</div><div class="ttdef"><b>Definition:</b> minishell_struct.h:78</div></div>
 <div class="ttc" id="astructs__hashtable_html"><div class="ttname"><a href="structs__hashtable.html">s_hashtable</a></div><div class="ttdoc">Hashtable with external chaining.</div><div class="ttdef"><b>Definition:</b> hashtable.h:74</div></div>
-<div class="ttc" id="astructs__info_html"><div class="ttname"><a href="structs__info.html">s_info</a></div><div class="ttdef"><b>Definition:</b> minishell_struct.h:89</div></div>
-<div class="ttc" id="astructs__tkn__list_html"><div class="ttname"><a href="structs__tkn__list.html">s_tkn_list</a></div><div class="ttdoc">List of token.</div><div class="ttdef"><b>Definition:</b> minishell_struct.h:45</div></div>
+<div class="ttc" id="astructs__info_html"><div class="ttname"><a href="structs__info.html">s_info</a></div><div class="ttdef"><b>Definition:</b> minishell_struct.h:61</div></div>
+<div class="ttc" id="astructs__tkn__list_html"><div class="ttname"><a href="structs__tkn__list.html">s_tkn_list</a></div><div class="ttdoc">List of token.</div><div class="ttdef"><b>Definition:</b> mod_handle_input.h:33</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

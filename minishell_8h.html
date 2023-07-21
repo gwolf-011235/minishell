@@ -135,14 +135,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ft_exit_failure</b> (
 </div><div class="memdoc">
 
 <p>Creates a env_table and imports env. If no PWD it creates one. </p>
-<p>Create hashtable env_table with HASHTABLE_SIZE. Call ft_import_environ to fill env_table. If env was empty set PWD and SHLVL. If PWD is not available set PWD. Increment SHLVL. If not found set it.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Create hashtable env_table with HASHTABLE_SIZE. Call ft_import_environ to fill env_table. If env was empty set PWD and SHLVL. If PWD is not available set PWD. Increment SHLVL. If not found set it. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">env_table</td><td>Environment. </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to data struct. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_MALLOC. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS if everything went right, else it ft_exit_failures. </dd></dl>
 
 </div>
 </div>
@@ -195,7 +194,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ft_exit_failure</b> (
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_MALLOC, ERR_EMPTY </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC, ERR_EMPTY </dd></dl>
 
 </div>
 </div>

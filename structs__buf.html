@@ -94,6 +94,11 @@ $(document).ready(function(){initNavTree('structs__buf.html',''); initResizable(
 <div class="title">s_buf Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Buffer structure.  
+ <a href="structs__buf.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="mod__lexer_8h_source.html">mod_lexer.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -107,7 +112,17 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>size</b></td></tr>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>cur_pos</b></td></tr>
 <tr class="separator:af4fba3e8e8ab050d3864038be9eedf88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Buffer structure. </p>
+<p>Contains temporary buffer string which is to be saved inside the token. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>Buffer string. </td></tr>
+    <tr><td class="paramname">size</td><td>Size of malloced buffer memory in Bytes. </td></tr>
+    <tr><td class="paramname">cur_pos</td><td>Current position inside malloced buffer memory. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

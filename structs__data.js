@@ -5,8 +5,6 @@ var structs__data =
     [ "env_table", "structs__data.html#a620d7cca305e87ced02de1ebe2d1658a", null ],
     [ "err", "structs__data.html#a84de6566daefc9cf594f1e0cd3009660", null ],
     [ "info", "structs__data.html#a9e0781df0cabb7ccff9b70199546529d", null ],
-    [ "lst_head", "structs__data.html#ab391df5a937ff52513a3d93bf6d48ef1", null ],
     [ "prompt1", "structs__data.html#aac347c0c2870bc29e171377983ad23cc", null ],
-    [ "prompt2", "structs__data.html#ac811868441df47ffc5a798a9f7dfec8d", null ],
-    [ "token", "structs__data.html#a026be852d88a409faa4affbab34698dc", null ]
+    [ "prompt2", "structs__data.html#ac811868441df47ffc5a798a9f7dfec8d", null ]
 ];

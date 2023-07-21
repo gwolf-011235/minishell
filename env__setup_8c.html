@@ -133,14 +133,13 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Creates a env_table and imports env. If no PWD it creates one. </p>
-<p>Create hashtable env_table with HASHTABLE_SIZE. Call ft_import_environ to fill env_table. If env was empty set PWD and SHLVL. If PWD is not available set PWD. Increment SHLVL. If not found set it.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Create hashtable env_table with HASHTABLE_SIZE. Call ft_import_environ to fill env_table. If env was empty set PWD and SHLVL. If PWD is not available set PWD. Increment SHLVL. If not found set it. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">env_table</td><td>Environment. </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to data struct. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_MALLOC. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS if everything went right, else it ft_exit_failures. </dd></dl>
 
 </div>
 </div>
@@ -161,14 +160,13 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Import env_vars from global environ. </p>
-<p>Check if environ is not null, else return. Loop trhough the environ array. Environ is NULL-terminated. Strdup the strings and save them in env_table.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Check if environ is not null, else return. Loop trhough the environ array. Environ is NULL-terminated. Strdup the strings and save them in env_table </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">env_table</td><td>Environment. </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to data struct </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_MALLOC. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS if environ not empty and mallocs ok. </dd></dl>
 
 </div>
 </div>
@@ -189,14 +187,13 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Creates and inserts the env_var PWD. </p>
-<p>If no PWD is present in env_table, this function inserts.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>If no PWD is present in env_table, this function inserts. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">env_table</td><td>Environment. </td></tr>
+    <tr><td class="paramname">data</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_MALLOC, ERR_CWD_FAIL, ERR_HT_NO_INSERT. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err If SUCCESS it exits </dd></dl>
 
 </div>
 </div>
@@ -217,14 +214,13 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Creates and inserts the env_var SHLVL. </p>
-<p>If no SHLVL is present in env_table, this function inserts.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>If no SHLVL is present in env_table, this function inserts. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">env_table</td><td>Environment </td></tr>
+    <tr><td class="paramname">data</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_MALLOC, ERR_HT_NO_INSERT </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err If SUCCESS it exits </dd></dl>
 
 </div>
 </div>

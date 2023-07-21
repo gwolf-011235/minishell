@@ -127,14 +127,14 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Creates a new env_var PWD=path/to/pwd. </p>
-<p>Receives pointer to pointer to change value outside of function. Return is t_error, so it can't return pointer itself. Call ft_create_pwd_value to get right side of env_var. If error passes on the error. If success strjoin with left side.</p>
+<p>Receives pointer to pointer to change value outside of function. Return is t_err, so it can't return pointer itself. Call ft_create_pwd_value to get right side of env_var. If error passes on the error. If success strjoin with left side.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pwd</td><td>Pointer to pointer where to save string. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_MALLOC, ERR_CWD_FAIL. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err Not SUCCESS if malloc or sub-call fail </dd></dl>
 
 </div>
 </div>
@@ -155,14 +155,14 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Create string with the present working directory. </p>
-<p>Receives pointer to pointer to change value outside of function. Return is t_error, so it can't return pointer itself. Malloc string with 4096 and call getcwd for pwd. If path is longer than size, free and malloc twice the size. Repeat until path fits in array.</p>
+<p>Receives pointer to pointer to change value outside of function. Return is t_err, so it can't return pointer itself. Malloc string with 4096 and call getcwd for pwd. If path is longer than size, free and malloc twice the size. Repeat until path fits in array.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pwd_value</td><td>Pointer to pointer where to save string </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_MALLOC, ERR_CWD_FAIL. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err Not SUCCESS if malloc or getcwd error. </dd></dl>
 
 </div>
 </div>

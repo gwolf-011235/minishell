@@ -154,7 +154,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_MALLOC </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_EMPTY, ERR_MALLOC </dd></dl>
 
 </div>
 </div>
@@ -191,7 +191,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Malloc replacement string for provided token. </p>
-<p>Uses look up table of function pointers. Target is char after backslash of token. It is used as index. The pointed to functions malloc the replacement string. Since they are t_error functions they can be returned. The first function is for wrong tokens = empty string.</p>
+<p>Uses look up table of function pointers. Target is char after backslash of token. It is used as index. The pointed to functions malloc the replacement string. Since they are t_err functions they can be returned. The first function is for wrong tokens = empty string.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">replacement</td><td>Where to save the string </td></tr>
@@ -200,7 +200,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_MALLOC </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_EMPTY, ERR_MALLOC </dd></dl>
 
 </div>
 </div>
@@ -239,7 +239,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS, ERR_WRONG_TOKEN </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS, ERR_WRONG_TOKEN </dd></dl>
 
 </div>
 </div>
@@ -292,7 +292,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_MALLOC, ERR_EMPTY </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC, ERR_EMPTY </dd></dl>
 
 </div>
 </div>
@@ -331,7 +331,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS, ERR_WRONG_TOKEN </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS, ERR_WRONG_TOKEN </dd></dl>
 
 </div>
 </div>
