@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Minishell: s_str_info Struct Reference</title>
+<title>Minishell: prompt_replace_u.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('structs__str__info.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('prompt__replace__u_8c.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -89,42 +89,69 @@ $(document).ready(function(){initNavTree('structs__str__info.html',''); initResi
 
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Data Fields</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">s_str_info Struct Reference</div>  </div>
+<div class="title">prompt_replace_u.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>String struct.  
- <a href="structs__str__info.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="mod__expand_8h_source.html">mod_expand.h</a>&gt;</code></p>
+<p>Create replacement for token u = USER.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Data Fields</h2></td></tr>
-<tr class="memitem:a935adc2e417a61d7eb6f04efb18ba031"><td class="memItemLeft" align="right" valign="top"><a id="a935adc2e417a61d7eb6f04efb18ba031"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>ptr</b></td></tr>
-<tr class="separator:a935adc2e417a61d7eb6f04efb18ba031"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7360b55975153b822efc5217b7734e6a"><td class="memItemLeft" align="right" valign="top"><a id="a7360b55975153b822efc5217b7734e6a"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>len</b></td></tr>
-<tr class="separator:a7360b55975153b822efc5217b7734e6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a2e28be81d6364ec1fc1e56741ce945e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prompt__replace__u_8c.html#a2e28be81d6364ec1fc1e56741ce945e4">ft_replace_u</a> (char **replacement, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab)</td></tr>
+<tr class="memdesc:a2e28be81d6364ec1fc1e56741ce945e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates replacement string for token \u.  <a href="prompt__replace__u_8c.html#a2e28be81d6364ec1fc1e56741ce945e4">More...</a><br /></td></tr>
+<tr class="separator:a2e28be81d6364ec1fc1e56741ce945e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>String struct. </p>
-<p>Saves info about a string to save space.</p>
+<div class="textblock"><p>Create replacement for token u = USER. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a2e28be81d6364ec1fc1e56741ce945e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e28be81d6364ec1fc1e56741ce945e4">&#9670;&nbsp;</a></span>ft_replace_u()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_replace_u </td>
+          <td>(</td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>replacement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
+          <td class="paramname"><em>sym_tab</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates replacement string for token \u. </p>
+<p>Search for env_var $USER. If found ft_strdup value and save in replacement. If not found create UNKNOWN with sub function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ptr</td><td>Pointer to string. </td></tr>
-    <tr><td class="paramname">len</td><td>Len of string. </td></tr>
+    <tr><td class="paramname">replacement</td><td>Pointer pointer where to save string. </td></tr>
+    <tr><td class="paramname">sym_tab</td><td>Symbol table where to search for env_var. </td></tr>
   </table>
   </dd>
 </dl>
-</div></div><!-- contents -->
+<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_MALLOC </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="structs__str__info.html">s_str_info</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="prompt__replace__u_8c.html">prompt_replace_u.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

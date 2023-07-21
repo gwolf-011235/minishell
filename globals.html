@@ -146,6 +146,9 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>ft_add_to_buf()
 : <a class="el" href="lexer__tok__utils_8c.html#a3e632a35dac6d7b11d24668347e8d968">lexer_tok_utils.c</a>
 </li>
+<li>ft_calc_replace_len()
+: <a class="el" href="prompt__replace__token_8c.html#aad54224f5d44f1ef35b08f3a67ef82ae">prompt_replace_token.c</a>
+</li>
 <li>ft_check_double_redirect()
 : <a class="el" href="lexer__tok__utils_8c.html#a9f51cbe5cbae67cee5a0d7b0334ccc51">lexer_tok_utils.c</a>
 </li>
@@ -154,6 +157,9 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 </li>
 <li>ft_create_env_shlvl()
 : <a class="el" href="env__shlvl_8c.html#a9ecd05fc9d8802e1a313d6e38ca48f61">env_shlvl.c</a>
+</li>
+<li>ft_create_hostname()
+: <a class="el" href="prompt__replace__h_8c.html#aa3d740596b18c224f5f533484898afdb">prompt_replace_h.c</a>
 </li>
 <li>ft_create_pwd_value()
 : <a class="el" href="env__pwd_8c.html#a90aa40452a5af9eec0b7f887cee48b94">env_pwd.c</a>
@@ -164,9 +170,30 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>ft_del_node()
 : <a class="el" href="lexer__utils_8c.html#ae0c88035464da76fc04497d46480968c">lexer_utils.c</a>
 </li>
+<li>ft_eat_char()
+: <a class="el" href="expand__expr_8c.html#ada999d5922c81fc6832ca8760fb860cc">expand_expr.c</a>
+</li>
 <li>ft_env_setup()
 : <a class="el" href="minishell_8h.html#a1d0cedfd2e488bc1b5642e1dbeae5c67">minishell.h</a>
 , <a class="el" href="env__setup_8c.html#a1d0cedfd2e488bc1b5642e1dbeae5c67">env_setup.c</a>
+</li>
+<li>ft_envp_create()
+: <a class="el" href="env__envp_8c.html#a855a4925df79141d067f1dac75b2a0e3">env_envp.c</a>
+</li>
+<li>ft_envp_destroy()
+: <a class="el" href="env__envp_8c.html#a119c93151620b9c8ee199daaee94bde6">env_envp.c</a>
+</li>
+<li>ft_envp_fill()
+: <a class="el" href="env__envp_8c.html#a81da0d8dfe5b4fee7a8ce6671ef565b5">env_envp.c</a>
+</li>
+<li>ft_expand_expr()
+: <a class="el" href="expand__expr_8c.html#a7353b3c94f80fe5c8e7637229adaedf8">expand_expr.c</a>
+</li>
+<li>ft_expand_prompt_str()
+: <a class="el" href="prompt__create_8c.html#a150f1b0320c638ae1d05f6af6cb231f7">prompt_create.c</a>
+</li>
+<li>ft_expand_str()
+: <a class="el" href="prompt__replace__token_8c.html#a4a212eed50cd6f9a49f7ee2bcdf8f128">prompt_replace_token.c</a>
 </li>
 <li>ft_expand_tilde()
 : <a class="el" href="expand__tilde_8c.html#a34ad580054e2b5eb1abf1fe8a1857369">expand_tilde.c</a>
@@ -180,17 +207,29 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>ft_free_tok()
 : <a class="el" href="lexer__tok__utils_8c.html#a8e343c99002752d806050e3a0b9c23ee">lexer_tok_utils.c</a>
 </li>
+<li>ft_get_replace()
+: <a class="el" href="prompt__create_8c.html#aa87dca583890cfca26a5d2bb452886ba">prompt_create.c</a>
+</li>
 <li>ft_get_tilde_replace()
 : <a class="el" href="expand__tilde_8c.html#a55d69b5504e527353379ad412011f019">expand_tilde.c</a>
 </li>
 <li>ft_get_tilde_token()
 : <a class="el" href="expand__tilde_8c.html#ad30f0aa239b8fb36270b80553dddbfd6">expand_tilde.c</a>
 </li>
+<li>ft_get_token()
+: <a class="el" href="prompt__create_8c.html#a4d36cd625a4e25b59f853a9e1ca57a4a">prompt_create.c</a>
+</li>
 <li>ft_get_var_replace()
 : <a class="el" href="expand__var_8c.html#a36ebbe0e53b0df4ed40648824f028aae">expand_var.c</a>
 </li>
 <li>ft_get_var_token()
 : <a class="el" href="expand__var_8c.html#a4dcec0f53a3aa03885d0454ac04df33d">expand_var.c</a>
+</li>
+<li>ft_handle_double_quote()
+: <a class="el" href="expand__expr_8c.html#af7ad8465d462dd84508f4bf67144e7b9">expand_expr.c</a>
+</li>
+<li>ft_handle_single_quote()
+: <a class="el" href="expand__expr_8c.html#a571ae371086b17fbfb80f4f9d02b1daf">expand_expr.c</a>
 </li>
 <li>ft_hash_fnv1()
 : <a class="el" href="hashtable_8h.html#af37880da67810775057259120c621cb9">hashtable.h</a>
@@ -238,6 +277,9 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>ft_insert_env_shlvl()
 : <a class="el" href="env__setup_8c.html#a5b455cc8e12609665c7e0025bc3fa071">env_setup.c</a>
 </li>
+<li>ft_insert_replace()
+: <a class="el" href="expand__expr_8c.html#aef23d275d3576325a15b4521e3b49660">expand_expr.c</a>
+</li>
 <li>ft_last()
 : <a class="el" href="lexer__utils_8c.html#a1f3f746b4cc76d1cb870e96e534194ec">lexer_utils.c</a>
 </li>
@@ -258,9 +300,40 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 </li>
 <li>ft_prompt_create()
 : <a class="el" href="minishell_8h.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">minishell.h</a>
+, <a class="el" href="prompt__create_8c.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">prompt_create.c</a>
 </li>
 <li>ft_realloc()
 : <a class="el" href="minishell_8h.html#a6627e6607863c8029c30d01d89e80569">minishell.h</a>
+</li>
+<li>ft_replace_empty()
+: <a class="el" href="prompt__replace__small_8c.html#a4c49b7aaef5bca6dde15c294733417fe">prompt_replace_small.c</a>
+</li>
+<li>ft_replace_h()
+: <a class="el" href="prompt__replace__h_8c.html#a1d00e521724dd09342be363631a9b961">prompt_replace_h.c</a>
+</li>
+<li>ft_replace_n()
+: <a class="el" href="prompt__replace__small_8c.html#a13254b05f98d3b866a500b848612438e">prompt_replace_small.c</a>
+</li>
+<li>ft_replace_not_found()
+: <a class="el" href="prompt__replace__small_8c.html#a80d7034c4afdfa7770ddccad8dbba311">prompt_replace_small.c</a>
+</li>
+<li>ft_replace_r()
+: <a class="el" href="prompt__replace__small_8c.html#a0754cb09cd8f9ffd94cc5189aad55599">prompt_replace_small.c</a>
+</li>
+<li>ft_replace_tilde()
+: <a class="el" href="prompt__replace__w_8c.html#a8540924befc9786dc03a7b95d798358c">prompt_replace_w.c</a>
+</li>
+<li>ft_replace_token()
+: <a class="el" href="prompt__replace__token_8c.html#a47a8b69f98bb36e0c974f848e56bcb89">prompt_replace_token.c</a>
+</li>
+<li>ft_replace_u()
+: <a class="el" href="prompt__replace__u_8c.html#a2e28be81d6364ec1fc1e56741ce945e4">prompt_replace_u.c</a>
+</li>
+<li>ft_replace_w()
+: <a class="el" href="prompt__replace__w_8c.html#a81c5b97f38064cc6ff1446072c45fe42">prompt_replace_w.c</a>
+</li>
+<li>ft_search_token()
+: <a class="el" href="prompt__create_8c.html#a1606c53415a04f230ee2ab2eaf046bd5">prompt_create.c</a>
 </li>
 <li>ft_skip_space()
 : <a class="el" href="lexer__utils_8c.html#a1bcefcb15413e6efb9d3fe1cc3fd3496">lexer_utils.c</a>
