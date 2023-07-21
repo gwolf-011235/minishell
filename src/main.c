@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 15:03:35 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 15:18:49 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int argc, char **argv)
 		if (!input)
 			break ;
 		add_history(input);
-		ft_lex_input(lst, input);
+		ft_lex_input(&lst, input);
 		//do stuff
 		free(input);
 		free(data->prompt1);

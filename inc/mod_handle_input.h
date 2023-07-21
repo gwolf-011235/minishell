@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 14:14:11 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 15:18:19 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_tkn_list
 
 /* ====== Functions ====== */
 
-t_err	ft_lex_input(t_tkn_list	*lst_head, char *input);
+t_err	ft_lex_input(t_tkn_list	**lst_head, char *input);
 void	ft_free_lst(t_tkn_list **lst);
 
 #endif

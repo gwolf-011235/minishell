@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 14:37:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 15:57:04 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
  * @param input 	Input string to be tokenised.
  * @return t_err 	ERR_EMPTY, ERR_MALLOC, SUCCESS
  */
-t_err	ft_lex_input(t_tkn_list	*lst_head, char *input)
+t_err	ft_lex_input(t_tkn_list	**lst_head, char *input)
 {
 	t_src	src;
 	t_err	err;
@@ -35,12 +35,12 @@ t_err	ft_lex_input(t_tkn_list	*lst_head, char *input)
 
 	ft_init_lexer(&src, input);
 	err = ft_tokenise(&src, &token);
-	while (err != ERR_EOF || !lst_head)
+	while (err != ERR_EOF || !*lst_head)
 	{
 		err = ft_new_node(lst_head, token.str);
 		if (err != SUCCESS)
 		{
-			ft_free_lst(&lst_head);
+			ft_free_lst(lst_head);
 			ft_free_tok(&token);
 			return (err);
 		}
@@ -70,7 +70,7 @@ void	ft_init_lexer(t_src *src, char *input)
  * @param content	Content string to be written into new node.
  * @return t_err 	ERR_MALLOC, SUCCESS
  */
-t_err	ft_new_node(t_tkn_list	*lst_head, char *content)
+t_err	ft_new_node(t_tkn_list	**lst_head, char *content)
 {
 	t_tkn_list	*new;
 
@@ -79,7 +79,7 @@ t_err	ft_new_node(t_tkn_list	*lst_head, char *content)
 		return (ERR_MALLOC);
 	new->content = content;
 	new->next = NULL;
-	ft_add_lst(&lst_head, new);
+	ft_add_lst(lst_head, new);
 	return (SUCCESS);
 }
 

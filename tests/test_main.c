@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:28:26 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/21 15:08:05 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	main(void)
 	//test_prompt();
 	//test_check_syntax();
 	//test_env_envp();
-	test_expand();
-	//test_lexer();
-	test_expand_list();
+	//test_expand();
+	test_lexer();
+	//test_expand_list();
 	return (0);
 }
