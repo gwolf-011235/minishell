@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:55:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 17:24:01 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ t_err	ft_env_setup(t_hashtable **env_table);
 //MODULE PROMPT
 t_err	ft_prompt_create(t_hashtable *sym_tab,
 			char **prompt, char *ps, char *std);
+
+// MODULE HANDLE INPUT
+t_err	ft_handle_input(char *input);
 
 //exit_failure.c
 void	ft_exit_failure(t_data *data, t_err exit_code);

@@ -60,7 +60,8 @@ SRC :=	main.c \
 		expand.c \
 		expand_tilde.c \
 		expand_var.c \
-		handle_input_expand.c
+		handle_input_expand.c \
+		handle_input.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects

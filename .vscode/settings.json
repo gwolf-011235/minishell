@@ -12,6 +12,7 @@
 		"lexer_utils.h": "c",
 		"stdlib.h": "c",
 		"expander.h": "c",
-		"hashtable.h": "c"
+		"hashtable.h": "c",
+		"mod_lexer.h": "c"
 	}
 }
