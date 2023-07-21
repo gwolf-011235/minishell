@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:53:59 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 17:31:07 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #include "minishell.h"
 #include "mod_lexer.h"
+#include "mod_signal.h"
 /* #include "lexer_list.h"
 #include "lexer_tok_utils.h" */
 
@@ -32,6 +33,7 @@ int	main(int argc, char **argv)
 
 	(void)argc;
 	(void)argv;
+	ft_signal_setup();
 	data = malloc(sizeof(*data));
 	if (!data)
 		ft_exit_failure(data, ERR_MALLOC);

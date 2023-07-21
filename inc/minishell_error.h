@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 13:42:56 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/21 17:22:10 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef enum e_error {
 	ERR_WRONG_TOKEN, ///< A prompt substitution was not recognized.
 	ERR_SYNTAX = 2, ///< Syntax error with quotes, pipes or redirect.
 	ERR_NOT_FOUND, ///< If a search failed.
-	ERR_NOEXPAND ///< Expansion of a token failed.
+	ERR_NOEXPAND, ///< Expansion of a token failed.
+	ERR_SIGNAL ///< Sigaction() failed.
 }	t_err;
 
 
