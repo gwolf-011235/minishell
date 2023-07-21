@@ -103,15 +103,18 @@ Functions</h2></td></tr>
 <tr class="memitem:a8e343c99002752d806050e3a0b9c23ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__tok__utils_8c.html#a8e343c99002752d806050e3a0b9c23ee">ft_free_tok</a> (<a class="el" href="minishell_8h.html#a645b2343c2e39e81f91aef14bb100d63">t_tok</a> *token)</td></tr>
 <tr class="memdesc:a8e343c99002752d806050e3a0b9c23ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free token string.  <a href="lexer__tok__utils_8c.html#a8e343c99002752d806050e3a0b9c23ee">More...</a><br /></td></tr>
 <tr class="separator:a8e343c99002752d806050e3a0b9c23ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac746a5e7a0c792248ecda8acbc5d885f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#a3afa13b5cd1d40f4f5a9a96bf55368a2">t_error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__tok__utils_8c.html#ac746a5e7a0c792248ecda8acbc5d885f">ft_add_to_buf</a> (char c, <a class="el" href="structs__buf.html">t_buf</a> *tmp)</td></tr>
-<tr class="memdesc:ac746a5e7a0c792248ecda8acbc5d885f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add character to buffer string.  <a href="lexer__tok__utils_8c.html#ac746a5e7a0c792248ecda8acbc5d885f">More...</a><br /></td></tr>
-<tr class="separator:ac746a5e7a0c792248ecda8acbc5d885f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7ef9e2ce860c7bec50e077ea0630b28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#a3afa13b5cd1d40f4f5a9a96bf55368a2">t_error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__tok__utils_8c.html#aa7ef9e2ce860c7bec50e077ea0630b28">ft_add_to_buf</a> (char c, <a class="el" href="structs__buf.html">t_buf</a> *buf)</td></tr>
+<tr class="memdesc:aa7ef9e2ce860c7bec50e077ea0630b28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add character to buffer string.  <a href="lexer__tok__utils_8c.html#aa7ef9e2ce860c7bec50e077ea0630b28">More...</a><br /></td></tr>
+<tr class="separator:aa7ef9e2ce860c7bec50e077ea0630b28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a001a6b88380ad9b88ef5bd4ae7c41052"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#a3afa13b5cd1d40f4f5a9a96bf55368a2">t_error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__tok__utils_8c.html#a001a6b88380ad9b88ef5bd4ae7c41052">ft_check_double_redirect</a> (<a class="el" href="structs__src.html">t_src</a> *src, char *c, <a class="el" href="structs__buf.html">t_buf</a> *buf)</td></tr>
+<tr class="memdesc:a001a6b88380ad9b88ef5bd4ae7c41052"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if next char is a redirect.  <a href="lexer__tok__utils_8c.html#a001a6b88380ad9b88ef5bd4ae7c41052">More...</a><br /></td></tr>
+<tr class="separator:a001a6b88380ad9b88ef5bd4ae7c41052"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains helper functions for tokenising. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ac746a5e7a0c792248ecda8acbc5d885f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac746a5e7a0c792248ecda8acbc5d885f">&#9670;&nbsp;</a></span>ft_add_to_buf()</h2>
+<a id="aa7ef9e2ce860c7bec50e077ea0630b28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7ef9e2ce860c7bec50e077ea0630b28">&#9670;&nbsp;</a></span>ft_add_to_buf()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -126,7 +129,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structs__buf.html">t_buf</a> *&#160;</td>
-          <td class="paramname"><em>tmp</em>&#160;</td>
+          <td class="paramname"><em>buf</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -140,13 +143,57 @@ Functions</h2></td></tr>
 <p>In case the buffer string is not long enough, its size is doubled. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">c</td><td>Character to be added. </td></tr>
-    <tr><td class="paramname">buf</td><td>Buffer string. </td></tr>
-    <tr><td class="paramname">buf_size</td><td>Buffer string length. </td></tr>
-    <tr><td class="paramname">buf_pos</td><td>Current position in buffer string. </td></tr>
+    <tr><td class="paramname">buf</td><td>Temporary buffer to save as token. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>t_error ERR_MALLOC, SUCCESS </dd></dl>
+
+</div>
+</div>
+<a id="a001a6b88380ad9b88ef5bd4ae7c41052"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a001a6b88380ad9b88ef5bd4ae7c41052">&#9670;&nbsp;</a></span>ft_check_double_redirect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#a3afa13b5cd1d40f4f5a9a96bf55368a2">t_error</a> ft_check_double_redirect </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structs__src.html">t_src</a> *&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structs__buf.html">t_buf</a> *&#160;</td>
+          <td class="paramname"><em>buf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if next char is a redirect. </p>
+<p>If yes, save next char as well into buf. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>Struct containing the input string, its length and current position. </td></tr>
+    <tr><td class="paramname">c</td><td>Special char: <br  />
+, |, &lt; or &gt; </td></tr>
+    <tr><td class="paramname">buf</td><td>Temporary buffer to save as token. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS </dd></dl>
 
 </div>
 </div>

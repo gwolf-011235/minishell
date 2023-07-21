@@ -103,9 +103,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a81a8d1f009e34ffc6fb064935c76f724"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#a3afa13b5cd1d40f4f5a9a96bf55368a2">t_error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__src_8c.html#a81a8d1f009e34ffc6fb064935c76f724">ft_next_char</a> (<a class="el" href="structs__src.html">t_src</a> *src, char *c)</td></tr>
 <tr class="memdesc:a81a8d1f009e34ffc6fb064935c76f724"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves next character in source string.  <a href="lexer__src_8c.html#a81a8d1f009e34ffc6fb064935c76f724">More...</a><br /></td></tr>
 <tr class="separator:a81a8d1f009e34ffc6fb064935c76f724"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac45a1fd0e32f8b1b324861c71cb97f05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__src_8c.html#ac45a1fd0e32f8b1b324861c71cb97f05">ft_unget_char</a> (<a class="el" href="structs__src.html">t_src</a> *src)</td></tr>
-<tr class="memdesc:ac45a1fd0e32f8b1b324861c71cb97f05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Go back to previous character of source string.  <a href="lexer__src_8c.html#ac45a1fd0e32f8b1b324861c71cb97f05">More...</a><br /></td></tr>
-<tr class="separator:ac45a1fd0e32f8b1b324861c71cb97f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fa80cf85035b06363f3dc5d6f342f89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#a3afa13b5cd1d40f4f5a9a96bf55368a2">t_error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__src_8c.html#a2fa80cf85035b06363f3dc5d6f342f89">ft_unget_char</a> (<a class="el" href="structs__src.html">t_src</a> *src)</td></tr>
+<tr class="memdesc:a2fa80cf85035b06363f3dc5d6f342f89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Go back to previous character of source string.  <a href="lexer__src_8c.html#a2fa80cf85035b06363f3dc5d6f342f89">More...</a><br /></td></tr>
+<tr class="separator:a2fa80cf85035b06363f3dc5d6f342f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1dfef884bcfc0376710008311d963c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#a3afa13b5cd1d40f4f5a9a96bf55368a2">t_error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__src_8c.html#ac1dfef884bcfc0376710008311d963c2">ft_peek_char</a> (<a class="el" href="structs__src.html">t_src</a> *src, char *c)</td></tr>
 <tr class="memdesc:ac1dfef884bcfc0376710008311d963c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peek at next character. <br  />
   <a href="lexer__src_8c.html#ac1dfef884bcfc0376710008311d963c2">More...</a><br /></td></tr>
@@ -187,18 +187,18 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS </dd></dl>
 
 </div>
 </div>
-<a id="ac45a1fd0e32f8b1b324861c71cb97f05"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac45a1fd0e32f8b1b324861c71cb97f05">&#9670;&nbsp;</a></span>ft_unget_char()</h2>
+<a id="a2fa80cf85035b06363f3dc5d6f342f89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fa80cf85035b06363f3dc5d6f342f89">&#9670;&nbsp;</a></span>ft_unget_char()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ft_unget_char </td>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#a3afa13b5cd1d40f4f5a9a96bf55368a2">t_error</a> ft_unget_char </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structs__src.html">t_src</a> *&#160;</td>
           <td class="paramname"><em>src</em></td><td>)</td>
@@ -214,6 +214,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>t_error ERR_OUT_OF_BOUNDS, SUCCESS </dd></dl>
 
 </div>
 </div>
