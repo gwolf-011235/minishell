@@ -61,7 +61,9 @@ SRC :=	main.c \
 		expand_tilde.c \
 		expand_var.c \
 		handle_input_expand.c \
-		handle_input.c
+		handle_input.c \
+		builtin_cd.c \
+		builtin_utils.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects
@@ -80,7 +82,8 @@ TEST_SRC := test_main.c \
 			test_check_syntax.c \
 			test_env_envp.c \
 			test_expand_expr.c \
-			test_list_expand.c
+			test_list_expand.c \
+			test_builtin_cd.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 TEST_OBJ := $(TEST_SRC:.c=.o)
 TEST_OBJS := $(addprefix $(TEST_DIR)/, $(TEST_OBJ))
