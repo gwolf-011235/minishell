@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 17:51:29 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/22 19:39:07 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_cmd
 {
 	char			*exe;
 	char			**args;
+	char			*arg_buf;
 	int				fd_in;
 	int				fd_out;
 	char			*delim;

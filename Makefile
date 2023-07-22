@@ -52,7 +52,7 @@ SRC :=	main.c \
 		prompt_replace_small.c \
 		prompt_replace_w.c \
 		lexer_utils.c \
-		lexer_list.c \
+		lexer.c \
 		lexer_src.c \
 		lexer_tok.c \
 		lexer_tok_utils.c \
@@ -61,7 +61,10 @@ SRC :=	main.c \
 		expand_tilde.c \
 		expand_var.c \
 		handle_input_expand.c \
-		handle_input.c
+		handle_input.c \
+		parser.c \
+		parser_utils.c \
+		parser_fill_cmd.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects

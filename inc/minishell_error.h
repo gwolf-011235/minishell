@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_error.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 13:42:56 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/22 15:14:00 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef enum e_error {
 	ERR_WRONG_TOKEN, ///< A prompt substitution was not recognized.
 	ERR_SYNTAX = 2, ///< Syntax error with quotes, pipes or redirect.
 	ERR_NOT_FOUND, ///< If a search failed.
-	ERR_NOEXPAND ///< Expansion of a token failed.
+	ERR_NOEXPAND, ///< Expansion of a token failed.
+	ERR_BAD_FD	///< While opening a file, a bad file descriptor was attributed.
 }	t_err;
 
 
