@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/22 20:49:54 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/22 20:53:12 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,17 +114,17 @@ t_err	ft_init_cmd(t_cmd *new)
 t_err	ft_categorise(t_tkn_list *lst, t_cmd *new, bool *exe_found,
 	bool *cmd_complete)
 {
-	if (lst->content == '<')
+	if (ft_strncmp(lst->content, "<", ft_strlen(lst->content)) == 0)
 		return (ft_save_infile(lst, new));
 	else if (ft_strncmp(lst->content, "<<", ft_strlen(lst->content)) == 0)
 		return (ft_save_heredoc(lst, new));
-	else if (lst->content == '>')
+	else if (ft_strncmp(lst->content, ">", ft_strlen(lst->content)) == 0)
 		return (ft_save_outfile(lst, new, 0));
 	else if (ft_strncmp(lst->content, ">>", ft_strlen(lst->content)) == 0)
 		return (ft_save_outfile(lst, new, 1));
-	else if (lst->content == '|')
+	else if (ft_strncmp(lst->content, "|", ft_strlen(lst->content)) == 0)
 		*cmd_complete = 1;
-	else if (lst->content == '\n')
+	else if (ft_strncmp(lst->content, "\n", ft_strlen(lst->content)) == 0)
 		return (SUCCESS);
 	else if (exe_found)
 		return (ft_save_arg(lst, new));
