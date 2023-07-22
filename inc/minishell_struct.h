@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:38:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 17:49:38 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/22 20:40:45 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct s_data {
 	t_hashtable	*env_table;
 	t_checks	checks;
 	t_err		err;
-	t_cmd		*cmds;
 	char		*prompt1;
 	char		*prompt2;
 	t_info		info;

@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/22 19:39:07 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/22 20:41:44 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,11 @@ t_err	ft_check_syntax(const char *input);
 t_err	ft_lex_input(t_tkn_list	**lst_head, char *input);
 void	ft_free_lst(t_tkn_list **lst);
 
-//expand
+// expand
 t_err	ft_expand_tkn_lst(t_tkn_list *list, t_data *data);
 t_err	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info);
+
+// parser
+t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd);
 
 #endif
