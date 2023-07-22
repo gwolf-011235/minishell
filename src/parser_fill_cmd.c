@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/22 20:35:51 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/22 20:54:35 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ t_err	ft_save_arg(t_tkn_list *lst, t_cmd *new)
 	int		len;
 	char	*tmp;
 	char	*tmp2;
-	int		i;
 
 	len = ft_strlen(lst->content);
 	if (!new->arg_buf)
