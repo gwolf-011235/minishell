@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/22 20:27:50 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/22 20:49:54 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd)
 
 	exe_found = 0;
 	cmd_complete = 0;
+	new = NULL;
 	err = ft_init_cmd(new);
 	if (err != SUCCESS)
 		return (err);
@@ -66,6 +67,7 @@ t_cmd	*ft_new_cmd(t_cmd *curr, t_cmd **cmd, bool *exe_found,
 	t_cmd	*new;
 	t_err	err;
 
+	new = NULL;
 	curr->args = ft_split(curr->arg_buf, ' ');
 	ft_add_cmd(curr, cmd);
 	err = ft_init_cmd(new);
