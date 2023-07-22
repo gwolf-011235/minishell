@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 17:31:07 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/22 17:18:45 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 
 	(void)argc;
 	(void)argv;
-	ft_signal_setup();
+	ft_signal_setup_std();
 	data = malloc(sizeof(*data));
 	if (!data)
 		ft_exit_failure(data, ERR_MALLOC);

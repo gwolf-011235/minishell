@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:59:36 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 17:45:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/22 17:18:45 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,19 @@
 # include <signal.h>
 # include <stddef.h>
 # include <unistd.h>
+# include <readline/readline.h>
 
 # include "minishell_error.h"
 # include "libft.h"
 
+typedef enum e_state {
+	SIG_STD,
+	SIG_PARENT,
+	SIG_CHILD,
+	SIG_HEREDOC
+}	t_state;
 
-t_err	ft_signal_setup(void);
-void	ft_signal_handler(int signum, siginfo_t *info, void *ucontext);
+t_err	ft_signal_setup_std(void);
+void	ft_sighandler_std(int signum);
 
 #endif
