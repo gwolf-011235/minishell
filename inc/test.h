@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:25:17 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/22 20:04:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "mod_lexer.h"
 # include "mod_prompt.h"
 # include "mod_syntax.h"
+# include "mod_builtin.h"
 
 # define RESET "\033[0m"
 # define BOLD "\033[1m"
@@ -40,5 +41,6 @@ void	test_check_syntax(void);
 void	test_env_envp(void);
 void	test_expand(void);
 void	test_expand_list(void);
+void	test_builtin_cd(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:27:23 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/22 20:05:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_tkn_list	*lst_head;
 
 void	test_setup_data(void)
 {
-	ft_env_setup(g_data.env_table);
+	ft_env_setup(&g_data.env_table);
 	lst_head = NULL;
 	g_data.info.shell_name = "/bin/minishell";
 	g_data.info.ret_code = 255;
@@ -41,7 +41,8 @@ int	main(void)
 	//test_check_syntax();
 	//test_env_envp();
 	//test_expand();
-	test_lexer();
+	//test_lexer();
 	//test_expand_list();
+	test_builtin_cd();
 	return (0);
 }
