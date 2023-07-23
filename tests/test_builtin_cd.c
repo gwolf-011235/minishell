@@ -6,14 +6,14 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 19:50:48 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/23 22:11:28 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/23 23:20:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
 extern t_data	g_data;
-char	*g_argv[5];
+extern char		**g_argv;
 
 void	execute_cd_test(char *name, char *path)
 {
@@ -35,6 +35,7 @@ void	test_builtin_cd(void)
 {
 	printf(YELLOW"**\tTEST BUILTIN CD\t**\n\n"RESET);
 	test_setup_data();
+	test_setup_argv(4);
 	g_argv[0] = "cd";
 	g_argv[2] = NULL;
 	execute_cd_test("Existing path /usr", "/usr");
@@ -48,4 +49,5 @@ void	test_builtin_cd(void)
 	g_argv[3] = NULL;
 	execute_cd_test("Too many args", "/usr");
 	test_teardown_data();
+	test_teardown_argv();
 }

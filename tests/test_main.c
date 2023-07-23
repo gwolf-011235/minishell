@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/23 22:19:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/23 23:23:45 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char		**g_envp;
 t_info		g_info;
 int			g_err_count;
 t_tkn_list	*lst_head;
+char		**g_argv;
 
 void	test_setup_data(void)
 {
@@ -33,6 +34,17 @@ void	test_teardown_data(void)
 	ft_hashtable_destroy(g_data.env_table);
 }
 
+void	test_setup_argv(size_t size)
+{
+	g_argv = malloc(sizeof(char *) * size);
+}
+
+void	test_teardown_argv(void)
+{
+	free(g_argv);
+	g_argv = NULL;
+}
+
 int	main(void)
 {
 	//test_hashtable();
@@ -43,7 +55,8 @@ int	main(void)
 	//test_expand();
 	//test_lexer();
 	//test_expand_list();
+	test_builtin_echo();
 	//test_builtin_cd();
-	test_builtin_pwd();
+	//test_builtin_pwd();
 	return (0);
 }
