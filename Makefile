@@ -62,9 +62,10 @@ SRC :=	main.c \
 		expand_var.c \
 		handle_input_expand.c \
 		handle_input.c \
-		builtin_cd.c \
 		builtin_utils.c \
-		builtin_error.c
+		builtin_error.c \
+		builtin_cd.c \
+		builtin_pwd.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects
