@@ -64,6 +64,7 @@ SRC :=	main.c \
 		handle_input.c \
 		builtin_utils.c \
 		builtin_error.c \
+		builtin_echo.c \
 		builtin_cd.c \
 		builtin_pwd.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
