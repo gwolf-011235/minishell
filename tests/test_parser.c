@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:41:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/23 19:09:53 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/23 19:56:38 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,20 @@ static int	test_wrapper(char *testname, char *test, bool heredoc, bool append)
 			local_err_count++;
 		}
 		if (cmd->fd_in > 2)
+		{
 			printf (GREEN"infile fd: %d\n"RESET, cmd->fd_in);
+			close(cmd->fd_in);
+		}
 		else
 		{
 			printf(RED"error: no fd_in\n"RESET);
 			local_err_count++;
 		}
 		if (cmd->fd_out > 2)
+		{
 			printf (GREEN"outfile fd: %d\n"RESET, cmd->fd_out);
+			close(cmd->fd_out);
+		}
 		else
 		{
 			printf(RED"error: no fd_out\n"RESET);
@@ -97,6 +103,7 @@ static int	test_wrapper(char *testname, char *test, bool heredoc, bool append)
 void	test_one_cmd(void)
 {
 	test_wrapper("One simple cmd", "< infile grep he -i > outfile", 0, 0);
+	test_wrapper("One simple cmd", "ls < infile  > outfile -la", 0, 0);
 }
 
 
