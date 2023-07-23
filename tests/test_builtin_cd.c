@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 19:50:48 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/23 21:52:15 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/23 22:11:28 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ void	test_builtin_cd(void)
 	g_argv[2] = "garbage";
 	g_argv[3] = NULL;
 	execute_cd_test("Too many args", "/usr");
+	test_teardown_data();
 }
