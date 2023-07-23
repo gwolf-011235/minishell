@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/22 20:53:12 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/23 16:46:41 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd)
 	exe_found = 0;
 	cmd_complete = 0;
 	new = NULL;
-	err = ft_init_cmd(new);
+	err = ft_init_cmd(&new);
 	if (err != SUCCESS)
 		return (err);
 	while (lst)
@@ -70,7 +70,7 @@ t_cmd	*ft_new_cmd(t_cmd *curr, t_cmd **cmd, bool *exe_found,
 	new = NULL;
 	curr->args = ft_split(curr->arg_buf, ' ');
 	ft_add_cmd(curr, cmd);
-	err = ft_init_cmd(new);
+	err = ft_init_cmd(&new);
 	if (err != SUCCESS)
 		return (NULL);
 	*exe_found = 0;
@@ -84,20 +84,23 @@ t_cmd	*ft_new_cmd(t_cmd *curr, t_cmd **cmd, bool *exe_found,
  * @param new Newly created cmd struct.
  * @return t_err 	ERR_MALLOC, SUCCESS
  */
-t_err	ft_init_cmd(t_cmd *new)
+t_err	ft_init_cmd(t_cmd **new)
 {
-	new = malloc(sizeof(t_cmd));
-	if (!new)
+	t_cmd	*tmp;
+
+	tmp = malloc(sizeof(t_cmd));
+	if (!tmp)
 		return (ERR_MALLOC);
-	new->append = -1;
-	new->arg_buf = NULL;
-	new->args = NULL;
-	new->delim = NULL;
-	new->exe = NULL;
-	new->fd_in = -1;
-	new->fd_out = -1;
-	new->index = -1;
-	new->next = NULL;
+	tmp->append = 0;
+	tmp->arg_buf = NULL;
+	tmp->args = NULL;
+	tmp->delim = NULL;
+	tmp->exe = NULL;
+	tmp->fd_in = -1;
+	tmp->fd_out = -1;
+	tmp->index = -1;
+	tmp->next = NULL;
+	*new = tmp;
 	return (SUCCESS);
 }
 
