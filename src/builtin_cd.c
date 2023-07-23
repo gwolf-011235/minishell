@@ -6,31 +6,11 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/23 21:36:47 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/23 21:44:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mod_builtin.h"
-
-t_err	ft_create_env_pwd(char **pwd);
-
-t_err	ft_cd_error(t_err err, char *oldpwd, char *path)
-{
-	if (oldpwd)
-		free(oldpwd);
-	if (err == ERR_ARGCOUNT)
-		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
-	else if (err == ERR_NOT_FOUND)
-		ft_putstr_fd("minishell: cd: HOME not set\n", 2);
-	else if (err == ERR_MALLOC)
-		ft_putstr_fd("minishell: cd: Malloc failed\n", 2);
-	else if (err == ERR_CHDIR_FAIL)
-	{
-		ft_putstr_fd("minishell: cd: ", 2);
-		perror(path);
-	}
-	return (err);
-}
 
 t_err	ft_set_env_var(t_hashtable *env_tab, char *key, char *string)
 {
@@ -49,7 +29,6 @@ t_err	ft_set_env_var(t_hashtable *env_tab, char *key, char *string)
 
 t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd)
 {
-	t_env_var	*env_pwd;
 	char		*pwd;
 	t_err		err;
 
@@ -61,7 +40,10 @@ t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd)
 			return (err);
 		err = ft_set_env_var(env_tab, "PWD", pwd);
 		if (err != SUCCESS)
+		{
+			free(pwd);
 			return (err);
+		}
 		err = ft_set_env_var(env_tab, "OLDPWD", oldpwd);
 		if (err != SUCCESS)
 			return (err);
