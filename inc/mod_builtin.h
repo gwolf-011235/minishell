@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:20 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/22 20:03:07 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/23 21:45:44 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,20 @@
 
 # include "hashtable.h"
 
-t_err	ft_get_array_size(char **array, size_t *size);
-t_err	ft_cd(char **argv, t_hashtable *env_tab);
+//IMPORT MOD_ENV
+t_err	ft_create_env_pwd(char **pwd);
 
+//utils.c
+t_err	ft_get_array_size(char **array, size_t *size);
+
+//error.c
+t_err	ft_cd_error(t_err err, char *oldpwd, char *path);
+
+//cd.c
+t_err	ft_set_env_var(t_hashtable *env_tab, char *key, char *string);
+t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd);
+t_err	ft_set_home_path(char **path, t_hashtable *env_tab);
+t_err	ft_save_cur_pwd(char **oldpwd, t_hashtable *env_tab);
+t_err	ft_cd(char **argv, t_hashtable *env_tab);
 
 #endif
