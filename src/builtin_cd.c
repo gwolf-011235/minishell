@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/22 20:10:35 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/23 21:19:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_err	ft_cd_error(t_err err, char *oldpwd, char *path)
 		ft_putstr_fd("minishell: cd: Malloc failed\n", 2);
 	else if (err == ERR_CHDIR_FAIL)
 	{
-		ft_putstr_fd("minishell: cd:", 2);
+		ft_putstr_fd("minishell: cd: ", 2);
 		perror(path);
 	}
 	return (err);
@@ -41,7 +41,6 @@ t_err	ft_set_oldpwd(t_hashtable *env_tab, char *oldpwd)
 		ft_hashtable_swap(env_tab, oldpwd, 6);
 	else
 		ft_hashtable_insert(env_tab, oldpwd, 6);
-	free(oldpwd);
 	return (SUCCESS);
 }
 
@@ -62,7 +61,6 @@ t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd)
 			ft_hashtable_swap(env_tab, pwd, 3);
 		else
 			ft_hashtable_insert(env_tab, pwd, 3);
-		free(pwd);
 		ft_set_oldpwd(env_tab, oldpwd);
 	}
 	else
@@ -98,6 +96,8 @@ t_err	ft_cd(char **argv, t_hashtable *env_tab)
 	env_pwd = ft_hashtable_lookup(env_tab, "PWD", 3);
 	if (env_pwd)
 		oldpwd = ft_strjoin("OLDPWD=", env_pwd->value);
+	else
+		oldpwd = ft_strdup("OLDPWD=");
 	if (!oldpwd)
 		return (ft_cd_error(ERR_MALLOC, oldpwd, NULL));
 	if (size == 1)
