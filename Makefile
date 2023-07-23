@@ -86,6 +86,7 @@ TEST_SRC := test_main.c \
 			test_env_envp.c \
 			test_expand_expr.c \
 			test_list_expand.c \
+			test_builtin_echo.c \
 			test_builtin_cd.c \
 			test_builtin_pwd.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
