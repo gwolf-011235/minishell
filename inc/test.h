@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/22 20:04:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/23 22:19:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ void	test_env_envp(void);
 void	test_expand(void);
 void	test_expand_list(void);
 void	test_builtin_cd(void);
+void	test_builtin_pwd(void);
 
 #endif
