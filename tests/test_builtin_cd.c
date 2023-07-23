@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 19:50:48 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/23 21:11:43 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/23 21:52:15 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	execute_cd_test(char *name, char *path)
 
 void	test_builtin_cd(void)
 {
-	printf("**\tTEST BUILTIN CD\t**\n\n");
+	printf(YELLOW"**\tTEST BUILTIN CD\t**\n\n"RESET);
 	test_setup_data();
 	g_argv[0] = "cd";
 	g_argv[2] = NULL;
@@ -41,8 +41,10 @@ void	test_builtin_cd(void)
 	execute_cd_test("No arg = $HOME", NULL);
 	execute_cd_test("Double dot", "..");
 	execute_cd_test("Single dot", ".");
-	execute_cd_test("Error: not existing", "/garbage");
+	execute_cd_test("Not existing dir", "/garbage");
+	ft_hashtable_delete(g_data.env_table, "HOME", 4);
+	execute_cd_test("HOME not set", NULL);
 	g_argv[2] = "garbage";
 	g_argv[3] = NULL;
-	execute_cd_test("Error: too many args", "/usr");
+	execute_cd_test("Too many args", "/usr");
 }
