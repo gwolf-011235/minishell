@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:47:19 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/23 23:08:22 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/23 23:25:51 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_err	ft_skip_n_flags(char **argv, size_t *i, bool *newline)
 {
 	while (argv[*i] && !ft_strncmp(argv[*i], "-n", ft_strlen(argv[*i])))
 	{
-		newline = false;
-		i++;
+		*newline = false;
+		(*i)++;
 	}
 	return (SUCCESS);
 }
@@ -29,7 +29,7 @@ t_err	ft_write_args(char **argv, size_t *i)
 		ft_putstr_fd(argv[*i], 1);
 		if (argv[*i + 1] && argv[*i][0] != '\0')
 			write(1, " ", 1);
-		i++;
+		(*i)++;
 	}
 	return (SUCCESS);
 }
