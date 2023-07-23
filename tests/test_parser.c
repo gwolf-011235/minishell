@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:41:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/23 16:35:59 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/23 19:09:53 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	test_wrapper(char *testname, char *test, bool heredoc, bool append)
 	lst = NULL;
 	cmd = NULL;
 	printf("TEST: %s\n", testname);
-	printf("Command:%s\n", test);
+	printf("Command:%s\n\n", test);
 	ft_lex_input(&lst, test);
 	ft_parser(lst, &cmd);
 	while (cmd)
@@ -43,22 +43,22 @@ static int	test_wrapper(char *testname, char *test, bool heredoc, bool append)
 		{
 			printf(GREEN"args:\n"RESET);
 			while (cmd->args[i])
-				printf(GREEN"%s\n"RESET, cmd->args[i++]);
+				printf(GREEN"\t%s\n"RESET, cmd->args[i++]);
 		}
 		else
 		{
 			printf(RED"error: no args\n"RESET);
 			local_err_count++;
 		}
-		if (cmd->fd_in > 3)
-			printf (GREEN"infile fd: %d"RESET, cmd->fd_in);
+		if (cmd->fd_in > 2)
+			printf (GREEN"infile fd: %d\n"RESET, cmd->fd_in);
 		else
 		{
 			printf(RED"error: no fd_in\n"RESET);
 			local_err_count++;
 		}
-		if (cmd->fd_out > 3)
-			printf (GREEN"outfile fd: %d"RESET, cmd->fd_out);
+		if (cmd->fd_out > 2)
+			printf (GREEN"outfile fd: %d\n"RESET, cmd->fd_out);
 		else
 		{
 			printf(RED"error: no fd_out\n"RESET);
@@ -87,9 +87,9 @@ static int	test_wrapper(char *testname, char *test, bool heredoc, bool append)
 		cmd = cmd->next;
 	}
 	if (local_err_count == 0)
-		printf(GREEN"OK\n\n"RESET);
+		printf(GREEN"\nOK\n\n"RESET);
 	else
-		printf(RED"KO:\t|%d| errors found\n\n"RESET, local_err_count);
+		printf(RED"\nKO:\t%d errors found\n\n"RESET, local_err_count);
 	return (local_err_count);
 }
 
