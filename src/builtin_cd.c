@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/23 21:19:17 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/23 21:36:47 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,19 @@ t_err	ft_cd_error(t_err err, char *oldpwd, char *path)
 	return (err);
 }
 
-t_err	ft_set_oldpwd(t_hashtable *env_tab, char *oldpwd)
+t_err	ft_set_env_var(t_hashtable *env_tab, char *key, char *string)
 {
-	t_env_var	*env_oldpwd;
+	t_env_var	*env_var;
+	size_t		keylen;
+	t_err		err;
 
-	env_oldpwd = ft_hashtable_lookup(env_tab, "OLDPWD", 6);
-	if (env_oldpwd)
-		ft_hashtable_swap(env_tab, oldpwd, 6);
+	keylen = ft_strlen(key);
+	env_var = ft_hashtable_lookup(env_tab, key, keylen);
+	if (env_var)
+		err = ft_hashtable_swap(env_tab, string, keylen);
 	else
-		ft_hashtable_insert(env_tab, oldpwd, 6);
-	return (SUCCESS);
+		err = ft_hashtable_insert(env_tab, string, keylen);
+	return (err);
 }
 
 t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd)
@@ -55,16 +58,16 @@ t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd)
 		pwd = NULL;
 		err = ft_create_env_pwd(&pwd);
 		if (err != SUCCESS)
-			return (ft_cd_error(err, oldpwd, NULL));
-		env_pwd = ft_hashtable_lookup(env_tab, "PWD", 3);
-		if (env_pwd)
-			ft_hashtable_swap(env_tab, pwd, 3);
-		else
-			ft_hashtable_insert(env_tab, pwd, 3);
-		ft_set_oldpwd(env_tab, oldpwd);
+			return (err);
+		err = ft_set_env_var(env_tab, "PWD", pwd);
+		if (err != SUCCESS)
+			return (err);
+		err = ft_set_env_var(env_tab, "OLDPWD", oldpwd);
+		if (err != SUCCESS)
+			return (err);
 	}
 	else
-		ft_cd_error(ERR_CHDIR_FAIL, oldpwd, path);
+		return (ERR_CHDIR_FAIL);
 	return (SUCCESS);
 }
 
@@ -74,8 +77,22 @@ t_err	ft_set_home_path(char **path, t_hashtable *env_tab, char *oldpwd)
 
 	env_home = ft_hashtable_lookup(env_tab, "HOME", 4);
 	if (!env_home)
-		return (ft_cd_error(ERR_NOT_FOUND, oldpwd, NULL));
+		return (ERR_NOT_FOUND);
 	*path = env_home->value;
+	return (SUCCESS);
+}
+
+t_err	ft_save_cur_pwd(char **oldpwd, t_hashtable *env_tab)
+{
+	t_env_var	*env_pwd;
+
+	env_pwd = ft_hashtable_lookup(env_tab, "PWD", 3);
+	if (env_pwd)
+		*oldpwd = ft_strjoin("OLDPWD=", env_pwd->value);
+	else
+		*oldpwd = ft_strdup("OLDPWD=");
+	if (!*oldpwd)
+		return (ERR_MALLOC);
 	return (SUCCESS);
 }
 
@@ -83,7 +100,6 @@ t_err	ft_cd(char **argv, t_hashtable *env_tab)
 {
 	size_t		size;
 	char		*oldpwd;
-	t_env_var	*env_pwd;
 	t_err		err;
 
 	size = 0;
@@ -93,15 +109,17 @@ t_err	ft_cd(char **argv, t_hashtable *env_tab)
 		return (err);
 	if (size > 2)
 		return (ft_cd_error(ERR_ARGCOUNT, oldpwd, NULL));
-	env_pwd = ft_hashtable_lookup(env_tab, "PWD", 3);
-	if (env_pwd)
-		oldpwd = ft_strjoin("OLDPWD=", env_pwd->value);
-	else
-		oldpwd = ft_strdup("OLDPWD=");
-	if (!oldpwd)
-		return (ft_cd_error(ERR_MALLOC, oldpwd, NULL));
+	err = ft_save_cur_pwd(&oldpwd, env_tab);
+	if (err != SUCCESS)
+		return (ft_cd_error(err, oldpwd, NULL));
 	if (size == 1)
-		ft_set_home_path(&argv[1], env_tab, oldpwd);
-	ft_change_dir(argv[1], env_tab, oldpwd);
+	{
+		err = ft_set_home_path(&argv[1], env_tab, oldpwd);
+		if (err != SUCCESS)
+			return (ft_cd_error(err, oldpwd, NULL));
+	}
+	err = ft_change_dir(argv[1], env_tab, oldpwd);
+	if (err != SUCCESS)
+		return (ft_cd_error(err, oldpwd, NULL));
 	return (SUCCESS);
 }
