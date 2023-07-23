@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/22 20:54:35 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/23 17:29:14 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,18 @@
  * @param new 		New cmd to be filled.
  * @return t_err 	ERR_BAD_FD, SUCCESS
  */
-t_err	ft_save_infile(t_tkn_list *lst, t_cmd *new)
+t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 {
-	int	fd_in;
+	int			fd_in;
+	t_tkn_list	*tmp;
 
-	lst = lst->next;
-	fd_in = open(lst->content, O_RDONLY);
-	if (fd_in < 3)
-		return (ERR_BAD_FD);
+	tmp = *lst;
+	tmp = tmp->next;
+	fd_in = open(tmp->content, O_RDONLY);
+	/* if (fd_in < 3)
+		return (ERR_BAD_FD); */
 	new->fd_in = fd_in;
+	*lst = tmp;
 	return (SUCCESS);
 }
 
@@ -52,7 +55,7 @@ t_err	ft_save_heredoc(t_tkn_list *lst, t_cmd *new)
 	new->delim = malloc(sizeof(len + 1));
 	if (!new->delim)
 		return (ERR_MALLOC);
-	ft_strlcpy(new->delim, lst->content, len);
+	ft_strlcpy(new->delim, lst->content, len + 1);
 	new->delim[len] = '\0';
 	return (SUCCESS);
 }
@@ -101,7 +104,7 @@ t_err	ft_save_exe(t_tkn_list *lst, t_cmd *new, bool *exe_found)
 	new->exe = malloc(sizeof(len + 1));
 	if (!new->exe)
 		return (ERR_MALLOC);
-	ft_strlcpy(new->exe, lst->content, len);
+	ft_strlcpy(new->exe, lst->content, len + 1);
 	new->exe[len] = '\0';
 	*exe_found = 1;
 	return (SUCCESS);
@@ -126,7 +129,7 @@ t_err	ft_save_arg(t_tkn_list *lst, t_cmd *new)
 		new->arg_buf = malloc(sizeof(len + 1));
 		if (!new->arg_buf)
 			return (ERR_MALLOC);
-		ft_strlcpy(new->arg_buf, lst->content, len);
+		ft_strlcpy(new->arg_buf, lst->content, len + 1);
 		new->arg_buf[len] = '\0';
 	}
 	else

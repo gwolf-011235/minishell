@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/23 16:46:41 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/23 17:25:24 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd)
 		return (err);
 	while (lst)
 	{
-		err = ft_categorise(lst, new, &exe_found, &cmd_complete);
+		err = ft_categorise(&lst, new, &exe_found, &cmd_complete);
 		if (err != SUCCESS)
 			return (err);
 		if (cmd_complete)
@@ -114,25 +114,33 @@ t_err	ft_init_cmd(t_cmd **new)
  * @param cmd_complete 	Bool to indicate if cmd ist complete.
  * @return t_err 		SUCCESS
  */
-t_err	ft_categorise(t_tkn_list *lst, t_cmd *new, bool *exe_found,
+t_err	ft_categorise(t_tkn_list **lst, t_cmd *new, bool *exe_found,
 	bool *cmd_complete)
 {
-	if (ft_strncmp(lst->content, "<", ft_strlen(lst->content)) == 0)
-		return (ft_save_infile(lst, new));
-	else if (ft_strncmp(lst->content, "<<", ft_strlen(lst->content)) == 0)
-		return (ft_save_heredoc(lst, new));
-	else if (ft_strncmp(lst->content, ">", ft_strlen(lst->content)) == 0)
-		return (ft_save_outfile(lst, new, 0));
-	else if (ft_strncmp(lst->content, ">>", ft_strlen(lst->content)) == 0)
-		return (ft_save_outfile(lst, new, 1));
-	else if (ft_strncmp(lst->content, "|", ft_strlen(lst->content)) == 0)
+	t_tkn_list	*tmp;
+	t_err		err;
+
+	err = SUCCESS;
+	tmp = *lst;
+	if (ft_strncmp(tmp->content, "<", ft_strlen(tmp->content)) == 0)
+		err = ft_save_infile(&tmp, new);
+	else if (ft_strncmp(tmp->content, "<<", ft_strlen(tmp->content)) == 0)
+		err = ft_save_heredoc(tmp, new);
+	else if (ft_strncmp(tmp->content, ">", ft_strlen(tmp->content)) == 0)
+		err = ft_save_outfile(tmp, new, 0);
+	else if (ft_strncmp(tmp->content, ">>", ft_strlen(tmp->content)) == 0)
+		err = ft_save_outfile(tmp, new, 1);
+	else if (ft_strncmp(tmp->content, "|", ft_strlen(tmp->content)) == 0)
 		*cmd_complete = 1;
-	else if (ft_strncmp(lst->content, "\n", ft_strlen(lst->content)) == 0)
+	else if (ft_strncmp(tmp->content, "\n", ft_strlen(tmp->content)) == 0)
 		return (SUCCESS);
 	else if (exe_found)
-		return (ft_save_arg(lst, new));
+		err = ft_save_arg(tmp, new);
 	else
-		return (ft_save_exe(lst, new, exe_found));
+		err = ft_save_exe(tmp, new, exe_found);
+	if (err != SUCCESS)
+		return (err);
+	*lst = tmp;
 	return (SUCCESS);
 }
 
