@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/23 17:25:24 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/23 19:01:41 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd)
 			return (ERR_MALLOC);
 		lst = lst->next;
 	}
+	new->args = ft_split(new->arg_buf, ' ');
+	ft_add_cmd(new, cmd);
 	return (SUCCESS);
 }
 
@@ -125,16 +127,16 @@ t_err	ft_categorise(t_tkn_list **lst, t_cmd *new, bool *exe_found,
 	if (ft_strncmp(tmp->content, "<", ft_strlen(tmp->content)) == 0)
 		err = ft_save_infile(&tmp, new);
 	else if (ft_strncmp(tmp->content, "<<", ft_strlen(tmp->content)) == 0)
-		err = ft_save_heredoc(tmp, new);
+		err = ft_save_heredoc(&tmp, new);
 	else if (ft_strncmp(tmp->content, ">", ft_strlen(tmp->content)) == 0)
-		err = ft_save_outfile(tmp, new, 0);
+		err = ft_save_outfile(&tmp, new, 0);
 	else if (ft_strncmp(tmp->content, ">>", ft_strlen(tmp->content)) == 0)
-		err = ft_save_outfile(tmp, new, 1);
+		err = ft_save_outfile(&tmp, new, 1);
 	else if (ft_strncmp(tmp->content, "|", ft_strlen(tmp->content)) == 0)
 		*cmd_complete = 1;
 	else if (ft_strncmp(tmp->content, "\n", ft_strlen(tmp->content)) == 0)
 		return (SUCCESS);
-	else if (exe_found)
+	else if (*exe_found)
 		err = ft_save_arg(tmp, new);
 	else
 		err = ft_save_exe(tmp, new, exe_found);

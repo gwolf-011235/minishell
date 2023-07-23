@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/23 17:29:14 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/23 18:56:27 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,20 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
  * @param new 		New cmd to be filled.
  * @return t_err 	ERR_MALLOC, SUCCESS
  */
-t_err	ft_save_heredoc(t_tkn_list *lst, t_cmd *new)
+t_err	ft_save_heredoc(t_tkn_list **lst, t_cmd *new)
 {
-	int	len;
+	int			len;
+	t_tkn_list	*tmp;
 
-	lst = lst->next;
-	len = ft_strlen(lst->content);
+	tmp = *lst;
+	tmp = tmp->next;
+	len = ft_strlen(tmp->content);
 	new->delim = malloc(sizeof(len + 1));
 	if (!new->delim)
 		return (ERR_MALLOC);
-	ft_strlcpy(new->delim, lst->content, len + 1);
+	ft_strlcpy(new->delim, tmp->content, len + 1);
 	new->delim[len] = '\0';
+	*lst = tmp;
 	return (SUCCESS);
 }
 
@@ -69,15 +72,17 @@ t_err	ft_save_heredoc(t_tkn_list *lst, t_cmd *new)
  * @param append	Bool to indicate if append mode is required.
  * @return t_err 	ERR_BAD_FD, SUCCESS
  */
-t_err	ft_save_outfile(t_tkn_list *lst, t_cmd *new, bool append)
+t_err	ft_save_outfile(t_tkn_list **lst, t_cmd *new, bool append)
 {
-	int	fd_out;
+	int			fd_out;
+	t_tkn_list	*tmp;
 
-	lst = lst->next;
+	tmp = *lst;
+	tmp = tmp->next;
 	if (append)
-		fd_out = open(lst->content, O_WRONLY | O_APPEND | O_CREAT, 0644);
+		fd_out = open(tmp->content, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	else
-		fd_out = open(lst->content, O_RDWR | O_TRUNC | O_CREAT, 0644);
+		fd_out = open(tmp->content, O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (fd_out < 3)
 		return (ERR_BAD_FD);
 	new->fd_out = fd_out;
@@ -85,6 +90,7 @@ t_err	ft_save_outfile(t_tkn_list *lst, t_cmd *new, bool append)
 		new->append = 1;
 	else
 		new->append = 0;
+	*lst = tmp;
 	return (SUCCESS);
 }
 

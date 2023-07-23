@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 12:06:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/23 17:19:45 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/23 18:56:33 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	ft_add_cmd(t_cmd *new, t_cmd **cmd);
 
 // fill cmd struc
 t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new);
-t_err	ft_save_heredoc(t_tkn_list *lst, t_cmd *new);
-t_err	ft_save_outfile(t_tkn_list *lst, t_cmd *new, bool append);
+t_err	ft_save_heredoc(t_tkn_list **lst, t_cmd *new);
+t_err	ft_save_outfile(t_tkn_list **lst, t_cmd *new, bool append);
 t_err	ft_save_exe(t_tkn_list *lst, t_cmd *new, bool *exe_found);
 t_err	ft_save_arg(t_tkn_list *lst, t_cmd *new);
 
