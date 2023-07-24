@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:41:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/24 13:11:59 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/24 13:29:55 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,14 +123,18 @@ void	test_five_cmds(void)
 	test_wrapper("Five simple cmds", "<   infile ls -la | grep chtulu | wc -m | cmd4 -weeee -o -asa| >outfile cmd5 ww 235", 0, 0);
 }
 
+void	test_three_infiles(void)
+{
+	test_wrapper("Three infiles", "grep <infile < infile2 mammmmamia <infile3", 0, 0);
+}
 void	test_parser(void)
 {
 	printf(YELLOW"*******TEST_PARSER*******\n\n"RESET);
 	//test_one_cmd();
 	//test_two_cmds();
-	test_five_cmds();
-	/* test_three_infiles();
-	test_heredoc();
+	//test_five_cmds();
+	test_three_infiles();
+/* 	test_heredoc();
 	test_three_outfiles();
 	test_five_args(); */
 }
