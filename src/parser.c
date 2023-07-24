@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/23 19:01:41 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/24 13:11:06 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ t_err	ft_init_cmd(t_cmd **new)
 	tmp->exe = NULL;
 	tmp->fd_in = -1;
 	tmp->fd_out = -1;
+	tmp->infile = 0;
+	tmp->outfile = 0;
 	tmp->index = -1;
 	tmp->next = NULL;
 	*new = tmp;

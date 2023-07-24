@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/23 15:30:25 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/24 13:10:30 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_cmd
 	int				fd_out;
 	char			*delim;
 	bool			append;
+	bool			infile;
+	bool			outfile;
 	int				index;
 	struct s_cmd	*next;
 }	t_cmd;
