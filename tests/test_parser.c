@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:41:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/24 13:42:42 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/24 14:04:43 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,14 +138,19 @@ void	test_three_outfiles(void)
 	test_wrapper("Three outfiles", "echo >outfile > outfile2 mammmmamia >outfile3", 0, 0);
 }
 
+void	test_append(void)
+{
+	test_wrapper("Append", "<infile wc -l >>outfile", 0, 1);
+}
+
 void	test_parser(void)
 {
 	printf(YELLOW"*******TEST_PARSER*******\n\n"RESET);
 	//test_one_cmd();
 	//test_two_cmds();
 	//test_five_cmds();
-	test_three_infiles();
+	//test_three_infiles();
 	//test_heredoc();
 	//test_three_outfiles();
-	//test_five_args();
+	test_append();
 }
