@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/24 13:13:14 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/24 13:32:54 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 	tmp = *lst;
 	tmp = tmp->next;
 	new->infile = 1;
+	if (new->fd_in > 0)
+		close(new->fd_in);
 	fd_in = open(tmp->content, O_RDONLY);
-	if (fd_in < 3)
-		return (ERR_BAD_FD);
+/* 	if (fd_in < 3)
+		return (ERR_BAD_FD); */
 	new->fd_in = fd_in;
 	*lst = tmp;
 	return (SUCCESS);
@@ -81,6 +83,8 @@ t_err	ft_save_outfile(t_tkn_list **lst, t_cmd *new, bool append)
 	tmp = *lst;
 	tmp = tmp->next;
 	new->outfile = 1;
+	if (new->fd_out)
+		close(new->fd_out);
 	if (append)
 		fd_out = open(tmp->content, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	else
