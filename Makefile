@@ -186,7 +186,7 @@ valgr:
 	@valgrind --leak-check=full\
 			--show-leak-kinds=all\
 			--trace-children=no\
-			--track-fds=no\
+			--track-fds=yes\
 			--log-file=valgrind-out.txt\
 			./test
 	@less ./valgrind-out.txt
