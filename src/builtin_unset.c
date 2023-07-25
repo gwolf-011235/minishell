@@ -6,12 +6,25 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:07:27 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 13:25:46 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 23:53:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file builtin_unset.c
+ * @brief Implementation of builtin unset.
+ */
 #include "mod_builtin.h"
 
+/**
+ * @brief Delete variables out of environment.
+ *
+ * For every arg try ft_hashtable_delete().
+ *
+ * @param argv NULL terminated args.
+ * @param env_tab Environment.
+ * @return t_err SUCCESS.
+ */
 t_err	ft_unset(char **argv, t_hashtable *env_tab)
 {
 	size_t		i;
