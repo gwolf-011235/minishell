@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:20 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 10:34:02 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 11:29:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_err	ft_pwd(void);
 //export.c
 t_err	ft_get_env_keylen(char *str, size_t *len);
 t_err	ft_insert_env_var(t_hashtable *env_tab, char *env_str, size_t keylen);
+t_err	ft_check_and_insert(char *str, t_hashtable *env_tab);
 t_err	ft_export(char **argv, t_hashtable *env_tab);
 
 
