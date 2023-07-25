@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 23:12:15 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/23 23:38:00 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 16:31:03 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void	test_builtin_echo(void)
 	exec_test_builtin_echo("Two -n flags", "-n", "-n", "I have two flags");
 	exec_test_builtin_echo("Three -n flags", "-n", "-n", "-n");
 	exec_test_builtin_echo("No args", NULL, NULL, NULL);
-	exec_test_builtin_echo("Two -n flags, arg in the middle", "-n", "Sneaky", "-n");
+	exec_test_builtin_echo("Two -n flags, arg in the middle", "-n", "sneaky", "-n");
+	test_teardown_argv();
 }
