@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:07:27 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 13:16:00 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 13:25:46 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_err	ft_unset(char **argv, t_hashtable *env_tab)
 {
 	size_t		i;
-	t_env_var	*target;
 
 	i = 1;
 	while (argv[i])
