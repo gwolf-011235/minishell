@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:20 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/23 23:13:59 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 10:34:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_err	ft_get_array_size(char **array, size_t *size);
 //error.c
 t_err	ft_cd_error(t_err err, char *oldpwd, char *path);
 t_err	ft_pwd_error(t_err err);
+t_err	ft_export_error(t_err err, char *arg);
 
 //echo.c
 t_err	ft_skip_n_flags(char **argv, size_t *i, bool *newline);
@@ -40,6 +41,12 @@ t_err	ft_cd(char **argv, t_hashtable *env_tab);
 
 //pwd.c
 t_err	ft_pwd(void);
+
+//export.c
+t_err	ft_get_env_keylen(char *str, size_t *len);
+t_err	ft_insert_env_var(t_hashtable *env_tab, char *env_str, size_t keylen);
+t_err	ft_export(char **argv, t_hashtable *env_tab);
+
 
 
 #endif
