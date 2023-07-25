@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:20 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 15:32:14 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 16:36:25 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ t_err	ft_write_args(char **argv, size_t *i);
 t_err	ft_echo(char **argv);
 
 //cd.c
-t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd);
-t_err	ft_set_home_path(char **path, t_hashtable *env_tab);
-t_err	ft_save_cur_pwd(char **oldpwd, t_hashtable *env_tab);
 t_err	ft_cd(char **argv, t_hashtable *env_tab);
+t_err	ft_save_cur_pwd(char **oldpwd, t_hashtable *env_tab);
+t_err	ft_set_path_to_home(char **path, t_hashtable *env_tab);
+t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd);
 
 //pwd.c
 t_err	ft_pwd(void);
