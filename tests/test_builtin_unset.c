@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:17:27 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 13:35:31 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 13:43:25 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	exec_ft_unset(char *name, char *arg1, char *arg2, char *arg3)
 	ft_unset(g_argv, g_symtab);
 	printf("\n");
 	printf("\tPRINT\n");
-	ft_hashtable_print(g_symtab);
+	ft_hashtable_pretty_print(g_symtab);
 	printf("\n");
 
 }
@@ -44,7 +44,7 @@ void	test_builtin_unset(void)
 	ft_hashtable_insert(g_symtab, ft_strdup("tr3s=sparta"), 4);
 	ft_hashtable_insert(g_symtab, ft_strdup("quatro=!"), 6);
 	ft_hashtable_insert(g_symtab, ft_strdup("sneaky=boy"), 6);
-	ft_hashtable_print(g_symtab);
+	ft_hashtable_pretty_print(g_symtab);
 	exec_ft_unset("Unset one var", "uno", NULL, NULL);
 	exec_ft_unset("Unset three vars", "dos", "tr3s", "quatro");
 	exec_ft_unset("Unset not existing", "sneak", NULL, NULL);
