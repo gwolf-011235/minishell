@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/24 13:11:06 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/26 01:25:52 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd)
 			return (ERR_MALLOC);
 		lst = lst->next;
 	}
-	new->args = ft_split(new->arg_buf, ' ');
-	ft_add_cmd(new, cmd);
-	return (SUCCESS);
+	return (ft_finish_cmd_list(new, cmd));
 }
 
 /**
@@ -71,6 +69,9 @@ t_cmd	*ft_new_cmd(t_cmd *curr, t_cmd **cmd, bool *exe_found,
 
 	new = NULL;
 	curr->args = ft_split(curr->arg_buf, ' ');
+	curr->delims = ft_split(curr->delim_buf, ' ');
+	if (!curr->args || !curr->delims)
+		return (NULL);
 	ft_add_cmd(curr, cmd);
 	err = ft_init_cmd(&new);
 	if (err != SUCCESS)
@@ -96,7 +97,8 @@ t_err	ft_init_cmd(t_cmd **new)
 	tmp->append = 0;
 	tmp->arg_buf = NULL;
 	tmp->args = NULL;
-	tmp->delim = NULL;
+	tmp->delim_buf = NULL;
+	tmp->delims = NULL;
 	tmp->exe = NULL;
 	tmp->fd_in = -1;
 	tmp->fd_out = -1;

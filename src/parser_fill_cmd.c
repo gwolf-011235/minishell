@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/24 14:00:15 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/26 01:15:14 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,29 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
  */
 t_err	ft_save_heredoc(t_tkn_list **lst, t_cmd *new)
 {
-	int			len;
 	t_tkn_list	*tmp;
+	char		*buf;
+	char		*buf2;
 
 	tmp = *lst;
 	tmp = tmp->next;
-	len = ft_strlen(tmp->content);
-	new->delim = malloc(sizeof(len + 1));
-	if (!new->delim)
-		return (ERR_MALLOC);
-	ft_strlcpy(new->delim, tmp->content, len + 1);
-	new->delim[len] = '\0';
+	if (!new->delim_buf)
+	{
+		new->delim_buf = malloc(ft_strlen(tmp->content) + 1);
+		if (!new->delim_buf)
+			return (ERR_MALLOC);
+		ft_strlcpy(new->delim_buf, tmp->content, ft_strlen(tmp->content) + 1);
+	}
+	else
+	{
+		buf = ft_strjoin(new->delim_buf, " ");
+		free(new->delim_buf);
+		buf2 = ft_strjoin(buf, tmp->content);
+		if (!buf2)
+			return (ERR_MALLOC);
+		free(buf);
+		new->delim_buf = buf2;
+	}
 	*lst = tmp;
 	return (SUCCESS);
 }

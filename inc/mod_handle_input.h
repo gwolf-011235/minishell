@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/24 13:10:30 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/26 01:09:39 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ typedef struct s_cmd
 	char			*arg_buf;
 	int				fd_in;
 	int				fd_out;
-	char			*delim;
+	char			*delim_buf;
+	char			**delims;
 	bool			append;
 	bool			infile;
 	bool			outfile;
