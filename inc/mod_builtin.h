@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:20 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 12:56:35 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 13:02:59 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ t_err	ft_envp_destroy(char ***envp);
 
 //utils.c
 t_err	ft_get_array_size(char **array, size_t *size);
+t_err	ft_get_env_keylen(char *str, size_t *len);
 t_err	ft_update_env_var(t_hashtable *env_tab, char *env_str, size_t keylen);
+void	ft_swap(char **str1, char **str2);
+void	ft_quicksort_strings(char **arr, int low, int high);
 
 //error.c
 t_err	ft_cd_error(t_err err, char *oldpwd, char *path);
@@ -45,14 +48,9 @@ t_err	ft_cd(char **argv, t_hashtable *env_tab);
 t_err	ft_pwd(void);
 
 //export.c
-t_err	ft_get_env_keylen(char *str, size_t *len);
-t_err	ft_check_and_insert(char *str, t_hashtable *env_tab);
-void	ft_swap(char **str1, char **str2);
-void	ft_quicksort_strings(char **arr, int low, int high);
+t_err	ft_check_and_update_env(char *str, t_hashtable *env_tab);
 t_err	ft_pretty_print_envp(char **envp, size_t size);
 t_err	ft_print_env_sorted(t_hashtable *env_tab);
 t_err	ft_export(char **argv, t_hashtable *env_tab);
-
-
 
 #endif
