@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:41:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/26 01:29:26 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/26 01:33:36 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,12 +156,12 @@ void	test_append(void)
 void	test_parser(void)
 {
 	printf(YELLOW"*******TEST_PARSER*******\n\n"RESET);
-	//test_one_cmd();
-	//test_two_cmds();
-	//test_five_cmds();
-	//test_three_infiles();
-	//test_heredoc();
+	test_one_cmd();
+	test_two_cmds();
+	test_five_cmds();
+	test_three_infiles();
+	test_heredoc();
 	test_three_heredocs();
-	//test_three_outfiles();
-	//test_append();
+	test_three_outfiles();
+	test_append();
 }
