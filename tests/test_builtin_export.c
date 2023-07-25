@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 10:38:07 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 13:43:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 15:37:58 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	test_builtin_export(void)
 {
 	printf(YELLOW"**\tTEST BUILTIN EXPORT\t**\n\n"RESET);
 	g_symtab = ft_hashtable_create(1, ft_hash_fnv1);
-	test_setup_argv(4);
+	test_setup_argv(5);
 	g_argv[0] = "export";
 	g_argv[4] = NULL;
 	exec_ft_export("Simple insert", "test=hello", NULL, NULL);
