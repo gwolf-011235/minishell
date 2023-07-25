@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:20 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 16:36:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:39:32 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ t_err	ft_export_error(t_err err, char *arg);
 t_err	ft_exit_error(t_err err, char *arg);
 
 //echo.c
+t_err	ft_echo(char **argv);
 t_err	ft_skip_n_flags(char **argv, size_t *i, bool *newline);
 t_err	ft_write_args(char **argv, size_t *i);
-t_err	ft_echo(char **argv);
 
 //cd.c
 t_err	ft_cd(char **argv, t_hashtable *env_tab);
@@ -62,5 +62,6 @@ t_err	ft_env(t_hashtable *env_tab);
 
 //exit.c
 t_err	ft_exit(char **argv, t_hashtable *env_tab);
+t_err	ft_is_number(char *str);
 
 #endif

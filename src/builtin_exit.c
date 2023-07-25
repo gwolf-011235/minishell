@@ -6,30 +6,32 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:43:10 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 15:42:44 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:39:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file builtin_exit.c
+ * @brief Implementation of builtin exit.
+ */
 #include "mod_builtin.h"
 
-t_err	ft_is_number(char *str)
-{
-	size_t	i;
-
-	if (!str)
-		return (ERR_EMPTY);
-	i = 0;
-	if (str[i] == '+' || str[i] == '-')
-		i++;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (ERR_NONUM);
-		i++;
-	}
-	return (SUCCESS);
-}
-
+/**
+ * @brief Exit the current shell instance.
+ *
+ * Check size of given args.
+ * If at least one arg is given check if it is a number with ft_is_number().
+ * If not a number print error msg and set return code but continue.
+ * If a exactly one number arg convert it with ft_atoi().
+ * If arg1 is a number but more than one arg print error msg and return(!).
+ * Free t_hashtable.
+ * Call exit() with error code.
+ *
+ * @param argv NULL terminated args.
+ * @param env_tab Environment.
+ * @return t_err ERR_EXIT
+ * @todo Maybe restructure to not use exit() and handle t_err instead.
+ */
 t_err	ft_exit(char **argv, t_hashtable *env_tab)
 {
 	size_t	size;
@@ -56,4 +58,31 @@ t_err	ft_exit(char **argv, t_hashtable *env_tab)
 	}
 	ft_hashtable_destroy(env_tab);
 	exit(ret_code);
+}
+
+/**
+ * @brief Check if provided str is number.
+ *
+ * A single sign (+/-) is jumped over.
+ * Iterate as long as current char is digit with ft_isdigit().
+ *
+ * @param str String to check.
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_NONUM
+ */
+t_err	ft_is_number(char *str)
+{
+	size_t	i;
+
+	if (!str)
+		return (ERR_EMPTY);
+	i = 0;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (ERR_NONUM);
+		i++;
+	}
+	return (SUCCESS);
 }
