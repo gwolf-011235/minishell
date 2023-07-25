@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/23 23:23:45 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 11:39:59 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ int	main(void)
 	//test_expand();
 	//test_lexer();
 	//test_expand_list();
-	test_builtin_echo();
+	//test_builtin_echo();
 	//test_builtin_cd();
 	//test_builtin_pwd();
+	test_builtin_export();
 	return (0);
 }
