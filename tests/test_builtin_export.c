@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 10:38:07 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 12:18:14 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 13:21:44 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ void	test_builtin_export(void)
 	exec_ft_export("Good, bad, ugly", "good=boy", "{bad=boy", "_ugly=boy");
 	exec_ft_export("Insert just var name", "lonely", NULL, NULL);
 	exec_ft_export("No args", NULL, NULL, NULL);
+	ft_hashtable_destroy(g_symtab);
+	test_teardown_argv();
 }
 
