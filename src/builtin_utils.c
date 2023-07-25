@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:24:50 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 16:53:32 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:16:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  *
  * @param array NULL terminated array.
  * @param size Where to save the size.
- * @return t_err ERR_EMPTY
+ * @return t_err SUCCESS, ERR_EMPTY
  */
 t_err	ft_get_array_size(char **array, size_t *size)
 {
@@ -42,7 +42,7 @@ t_err	ft_get_array_size(char **array, size_t *size)
  *
  * @param str Env_str to check
  * @param len Where to save the len.
- * @return t_err ERR_INVALID_NAME.
+ * @return t_err SUCCESS, ERR_INVALID_NAME.
  */
 t_err	ft_get_env_keylen(char *str, size_t *len)
 {
@@ -65,7 +65,8 @@ t_err	ft_get_env_keylen(char *str, size_t *len)
  * @param env_tab Environment.
  * @param env_str New environment string.
  * @param keylen Length of the variable key.
- * @return t_err ERR_EMPTY, ERR_MALLOC, ERR_HT_NO_SWAP, ERR_HT_NO_INSERT.
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_HT_NO_SWAP,
+ * ERR_HT_NO_INSERT.
  */
 t_err	ft_update_env_var(t_hashtable *env_tab, char *env_str, size_t keylen)
 {

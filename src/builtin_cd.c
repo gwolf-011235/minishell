@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 16:35:45 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:15:12 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
  *
  * @param argv NULL terminated args.
  * @param env_tab Environment.
- * @return t_err ERR_EMPTY, ERR_ARGCOUNT, ERR_MALLOC, ERR_NOT_FOUND
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_ARGCOUNT, ERR_MALLOC, ERR_NOT_FOUND
  */
 t_err	ft_cd(char **argv, t_hashtable *env_tab)
 {
@@ -69,7 +69,7 @@ t_err	ft_cd(char **argv, t_hashtable *env_tab)
  *
  * @param oldpwd Where to save the env_str.
  * @param env_tab Environment.
- * @return t_err ERR_MALLOC
+ * @return t_err SUCCESS, ERR_MALLOC
  */
 t_err	ft_save_cur_pwd(char **oldpwd, t_hashtable *env_tab)
 {
@@ -90,7 +90,7 @@ t_err	ft_save_cur_pwd(char **oldpwd, t_hashtable *env_tab)
  *
  * @param path Pointer which should be changed.
  * @param env_tab Environment.
- * @return t_err ERR_NOT_FOUND
+ * @return t_err SUCCESS, ERR_NOT_FOUND
  */
 t_err	ft_set_path_to_home(char **path, t_hashtable *env_tab)
 {
@@ -115,7 +115,7 @@ t_err	ft_set_path_to_home(char **path, t_hashtable *env_tab)
  * @param path Where to change to.
  * @param env_tab Environment.
  * @param oldpwd Saved pwd env_str to update $OLDPWD.
- * @return t_err ERR_MALLOC, ERR_EMPTY, ERR_HT_NO_INSERT, ERR_HT_NO_SWAP,
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_EMPTY, ERR_HT_NO_INSERT, ERR_HT_NO_SWAP,
  * ERR_CHDIR_FAIL
  */
 t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd)

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:47:19 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 17:11:47 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:16:53 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,3 @@ t_err	ft_write_args(char **argv, size_t *i)
 	}
 	return (SUCCESS);
 }
-
