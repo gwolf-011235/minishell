@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:20 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 14:05:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 15:32:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_quicksort_strings(char **arr, int low, int high);
 t_err	ft_cd_error(t_err err, char *oldpwd, char *path);
 t_err	ft_pwd_error(t_err err);
 t_err	ft_export_error(t_err err, char *arg);
+t_err	ft_exit_error(t_err err, char *arg);
 
 //echo.c
 t_err	ft_skip_n_flags(char **argv, size_t *i, bool *newline);
@@ -58,5 +59,8 @@ t_err	ft_unset(char **argv, t_hashtable *env_tab);
 
 //env.c
 t_err	ft_env(t_hashtable *env_tab);
+
+//exit.c
+t_err	ft_exit(char **argv, t_hashtable *env_tab);
 
 #endif

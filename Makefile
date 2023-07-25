@@ -69,7 +69,8 @@ SRC :=	main.c \
 		builtin_pwd.c \
 		builtin_export.c \
 		builtin_unset.c \
-		builtin_env.c
+		builtin_env.c \
+		builtin_exit.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects
