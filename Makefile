@@ -68,7 +68,8 @@ SRC :=	main.c \
 		builtin_cd.c \
 		builtin_pwd.c \
 		builtin_export.c \
-		builtin_unset.c
+		builtin_unset.c \
+		builtin_env.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects
@@ -92,7 +93,8 @@ TEST_SRC := test_main.c \
 			test_builtin_cd.c \
 			test_builtin_pwd.c \
 			test_builtin_export.c \
-			test_builtin_unset.c
+			test_builtin_unset.c \
+			test_builtin_env.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 TEST_OBJ := $(TEST_SRC:.c=.o)
 TEST_OBJS := $(addprefix $(TEST_DIR)/, $(TEST_OBJ))

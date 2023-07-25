@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:20 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 13:24:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 14:05:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,8 @@ t_err	ft_export(char **argv, t_hashtable *env_tab);
 
 //unset.c
 t_err	ft_unset(char **argv, t_hashtable *env_tab);
+
+//env.c
+t_err	ft_env(t_hashtable *env_tab);
 
 #endif
