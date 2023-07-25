@@ -6,12 +6,23 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:24:50 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 13:01:47 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 16:53:32 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file builtin_utils.c
+ * @brief Helper functions for builtins.
+ */
 #include "mod_builtin.h"
 
+/**
+ * @brief Calc the size of an NULL terminated array.
+ *
+ * @param array NULL terminated array.
+ * @param size Where to save the size.
+ * @return t_err ERR_EMPTY
+ */
 t_err	ft_get_array_size(char **array, size_t *size)
 {
 	if (!array || !size)
@@ -21,6 +32,18 @@ t_err	ft_get_array_size(char **array, size_t *size)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Calc the keylen of an environment var.
+ *
+ * First char has to be alphabetical or underscore.
+ * Following chars can also include numbers.
+ * The char following the key has to be '=' if assigned a value.
+ * Or zero terminator if no value.
+ *
+ * @param str Env_str to check
+ * @param len Where to save the len.
+ * @return t_err ERR_INVALID_NAME.
+ */
 t_err	ft_get_env_keylen(char *str, size_t *len)
 {
 	if (!ft_isalpha(str[*len]) && str[*len] != '_')
@@ -32,6 +55,18 @@ t_err	ft_get_env_keylen(char *str, size_t *len)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Insert or swap the given env_str.
+ *
+ * Search for the env var.
+ * If found swap it with the new one.
+ * If not found insert it.
+ *
+ * @param env_tab Environment.
+ * @param env_str New environment string.
+ * @param keylen Length of the variable key.
+ * @return t_err ERR_EMPTY, ERR_MALLOC, ERR_HT_NO_SWAP, ERR_HT_NO_INSERT.
+ */
 t_err	ft_update_env_var(t_hashtable *env_tab, char *env_str, size_t keylen)
 {
 	t_env_var	*env_var;
@@ -45,6 +80,12 @@ t_err	ft_update_env_var(t_hashtable *env_tab, char *env_str, size_t keylen)
 	return (err);
 }
 
+/**
+ * @brief Swap two string pointers.
+ *
+ * @param str1 First string.
+ * @param str2 Second string.
+ */
 void	ft_swap(char **str1, char **str2)
 {
 	char	*temp;
@@ -54,6 +95,19 @@ void	ft_swap(char **str1, char **str2)
 	*str2 = temp;
 }
 
+/**
+ * @brief Quicksort a string array.
+ *
+ * Implements the quicksort algorithm.
+ * Starting pivot_index low is zero, first element of array is pivot.
+ * Divides the array in sub-arrays around the pivot.
+ * String are compared using ft_strncmp() and then swapped if needed.
+ * Gets called recursively until all sub-arrays are sorted.
+ *
+ * @param arr Array to be sorted.
+ * @param low Starting index.
+ * @param high Endinf index.
+ */
 void	ft_quicksort_strings(char **arr, int low, int high)
 {
 	int		pivot_idx;
