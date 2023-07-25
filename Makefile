@@ -95,7 +95,8 @@ TEST_SRC := test_main.c \
 			test_builtin_pwd.c \
 			test_builtin_export.c \
 			test_builtin_unset.c \
-			test_builtin_env.c
+			test_builtin_env.c \
+			test_builtin_exit.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 TEST_OBJ := $(TEST_SRC:.c=.o)
 TEST_OBJS := $(addprefix $(TEST_DIR)/, $(TEST_OBJ))

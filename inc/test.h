@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 14:07:17 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 15:39:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void	test_builtin_pwd(void);
 void	test_builtin_export(void);
 void	test_builtin_unset(void);
 void	test_builtin_env(void);
+void	test_builtin_exit(void);
 
 #endif
