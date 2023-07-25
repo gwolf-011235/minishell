@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:40:34 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 10:25:08 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 10:36:51 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ t_err	ft_export_error(t_err err, char *arg)
 {
 	if (err == ERR_INVALID_NAME)
 	{
-		ft_putstr_fd("minishell: export: `", stderr);
-		ft_putstr_fd(arg, stderr);
-		ft_putendl_fd("`: not a valid identifier", stderr);
+		ft_putstr_fd("minishell: export: `", STDERR_FILENO);
+		ft_putstr_fd(arg, STDERR_FILENO);
+		ft_putendl_fd("`: not a valid identifier", STDERR_FILENO);
 	}
 	else if (err == ERR_MALLOC)
-		ft_putendl_fd("minishell: export: malloc() failed", stderr);
+		ft_putendl_fd("minishell: export: malloc() failed", STDERR_FILENO);
 	return (err);
 }
 
