@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 08:11:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 10:33:37 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 10:37:10 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_err	ft_export(char **argv, t_hashtable *env_tab)
 	while (argv[++i])
 	{
 		keylen = 0;
-		err = ft_get_env_keylen(argv[i], keylen);
+		err = ft_get_env_keylen(argv[i], &keylen);
 		if (err != SUCCESS)
 		{
 			ft_export_error(err, argv[i]);
