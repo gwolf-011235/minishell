@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 08:11:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 11:36:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 12:48:39 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,84 @@ t_err	ft_check_and_insert(char *str, t_hashtable *env_tab)
 	return (SUCCESS);
 }
 
+void	ft_swap(char **str1, char **str2)
+{
+	char	*temp;
+
+	temp = *str1;
+	*str1 = *str2;
+	*str2 = temp;
+}
+
+void	ft_quicksort_strings(char **arr, int low, int high)
+{
+	int		pivot_idx;
+	char	*pivot_value;
+	int		i;
+
+	pivot_idx = low;
+	pivot_value = arr[pivot_idx];
+	if (low < high)
+	{
+		i = low + 1;
+		while (i <= high)
+		{
+			if (ft_strncmp(arr[i], pivot_value, ft_strlen(pivot_value)) < 0)
+			{
+				pivot_idx++;
+				ft_swap(&arr[i], &arr[pivot_idx]);
+			}
+			i++;
+		}
+		ft_swap(&arr[low], &arr[pivot_idx]);
+		ft_quicksort_strings(arr, low, pivot_idx - 1);
+		ft_quicksort_strings(arr, pivot_idx + 1, high);
+	}
+}
+
+t_err	ft_pretty_print_envp(char **envp, size_t size)
+{
+	size_t	i;
+	size_t	j;
+	size_t	keylen;
+	t_err	err;
+
+	i = 0;
+	while (i < size)
+	{
+		keylen = 0;
+		err = ft_get_env_keylen(envp[i], &keylen);
+		if (err != SUCCESS)
+			return (err);
+		ft_putstr_fd("export ", 1);
+		j = 0;
+		while (j < keylen)
+		{
+			ft_putchar_fd(envp[i][j], 1);
+			j++;
+		}
+		if (envp[i][keylen] == '=')
+			printf("=\"%s\"", envp[i] + keylen + 1);
+		printf("\n");
+		i++;
+	}
+	return (SUCCESS);
+}
+
+t_err	ft_print_env_sorted(t_hashtable *env_tab)
+{
+	char	**envp;
+	t_err	err;
+
+	envp = NULL;
+	err = ft_envp_create(env_tab, &envp);
+	if (err != SUCCESS)
+		return (ft_export_error(err, NULL));
+	ft_quicksort_strings(envp, 0, env_tab->num_elements - 1);
+	err = ft_pretty_print_envp(envp, env_tab->num_elements);
+	return (err);
+}
+
 t_err	ft_export(char **argv, t_hashtable *env_tab)
 {
 	size_t	size;
@@ -67,10 +145,7 @@ t_err	ft_export(char **argv, t_hashtable *env_tab)
 	size = 0;
 	err = ft_get_array_size(argv, &size);
 	if (size == 1)
-	{
-		//ft_print_sorted();
-		return (SUCCESS);
-	}
+		return (ft_print_env_sorted(env_tab));
 	i = 1;
 	while (argv[i])
 	{
@@ -81,6 +156,3 @@ t_err	ft_export(char **argv, t_hashtable *env_tab)
 	}
 	return (SUCCESS);
 }
-
-//export can export multiple vars
-//try for every var even if something in the middle doesn't work

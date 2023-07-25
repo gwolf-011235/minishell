@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:20 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 11:29:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 12:49:59 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 //IMPORT MOD_ENV
 t_err	ft_create_pwd_value(char **pwd_value);
 t_err	ft_create_env_pwd(char **pwd);
+t_err	ft_envp_create(t_hashtable *ht, char ***envp);
+t_err	ft_envp_destroy(char ***envp);
 
 //utils.c
 t_err	ft_get_array_size(char **array, size_t *size);
@@ -46,6 +48,10 @@ t_err	ft_pwd(void);
 t_err	ft_get_env_keylen(char *str, size_t *len);
 t_err	ft_insert_env_var(t_hashtable *env_tab, char *env_str, size_t keylen);
 t_err	ft_check_and_insert(char *str, t_hashtable *env_tab);
+void	ft_swap(char **str1, char **str2);
+void	ft_quicksort_strings(char **arr, int low, int high);
+t_err	ft_pretty_print_envp(char **envp, size_t size);
+t_err	ft_print_env_sorted(t_hashtable *env_tab);
 t_err	ft_export(char **argv, t_hashtable *env_tab);
 
 
