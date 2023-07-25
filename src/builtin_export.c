@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 08:11:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 12:48:39 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 12:54:00 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,6 @@ t_err	ft_get_env_keylen(char *str, size_t *len)
 	return (SUCCESS);
 }
 
-t_err	ft_insert_env_var(t_hashtable *env_tab, char *env_str, size_t keylen)
-{
-	t_env_var	*env_var;
-	t_err		err;
-
-	env_var = ft_hashtable_lookup(env_tab, env_str, keylen);
-	if (env_var)
-		err = ft_hashtable_swap(env_tab, env_str, keylen);
-	else
-		err = ft_hashtable_insert(env_tab, env_str, keylen);
-	return (err);
-}
 
 t_err	ft_check_and_insert(char *str, t_hashtable *env_tab)
 {
@@ -49,7 +37,7 @@ t_err	ft_check_and_insert(char *str, t_hashtable *env_tab)
 	temp = ft_strdup(str);
 	if (!temp)
 		return (ERR_MALLOC);
-	err = ft_insert_env_var(env_tab, temp, keylen);
+	err = ft_update_env_var(env_tab, temp, keylen);
 	if (err != SUCCESS)
 	{
 		free(temp);

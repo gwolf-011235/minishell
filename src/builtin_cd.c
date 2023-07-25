@@ -6,26 +6,11 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/23 21:46:05 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 12:56:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mod_builtin.h"
-
-t_err	ft_set_env_var(t_hashtable *env_tab, char *key, char *string)
-{
-	t_env_var	*env_var;
-	size_t		keylen;
-	t_err		err;
-
-	keylen = ft_strlen(key);
-	env_var = ft_hashtable_lookup(env_tab, key, keylen);
-	if (env_var)
-		err = ft_hashtable_swap(env_tab, string, keylen);
-	else
-		err = ft_hashtable_insert(env_tab, string, keylen);
-	return (err);
-}
 
 t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd)
 {
@@ -38,13 +23,13 @@ t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd)
 		err = ft_create_env_pwd(&pwd);
 		if (err != SUCCESS)
 			return (err);
-		err = ft_set_env_var(env_tab, "PWD", pwd);
+		err = ft_update_env_var(env_tab, pwd, 3);
 		if (err != SUCCESS)
 		{
 			free(pwd);
 			return (err);
 		}
-		err = ft_set_env_var(env_tab, "OLDPWD", oldpwd);
+		err = ft_update_env_var(env_tab, oldpwd, 6);
 		if (err != SUCCESS)
 			return (err);
 	}
