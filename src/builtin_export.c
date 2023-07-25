@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 08:11:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 13:02:28 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 13:09:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ t_err	ft_export(char **argv, t_hashtable *env_tab)
 
 	size = 0;
 	err = ft_get_array_size(argv, &size);
+	if (err != SUCCESS)
+		return (err);
 	if (size == 1)
 		return (ft_print_env_sorted(env_tab));
 	i = 1;
