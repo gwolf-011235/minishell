@@ -38,8 +38,8 @@ SRC :=	main.c \
 		utils_memory.c \
 		utils_string.c \
 		hashtable_generate.c \
+		hashtable_print.c \
 		hashtable_utils.c \
-		hashtable_utils2.c \
 		exit_failure.c \
 		env_setup.c \
 		env_pwd.c \
