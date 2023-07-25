@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/22 19:43:07 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/25 08:50:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ typedef enum e_error {
 	ERR_NOT_FOUND, ///< If a search failed.
 	ERR_NOEXPAND, ///< Expansion of a token failed.
 	ERR_ARGCOUNT, ///< Too many arguments where counted.
-	ERR_CHDIR_FAIL ///< function chdir() failed.
+	ERR_CHDIR_FAIL, ///< function chdir() failed.
+	ERR_INVALID_NAME ///< Not a valid env name.
 }	t_err;
 
 
