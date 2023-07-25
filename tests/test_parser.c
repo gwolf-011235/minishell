@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:41:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/24 14:04:43 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/26 01:29:26 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,13 @@ static int	test_wrapper(char *testname, char *test, bool heredoc, bool append)
 		}
 		if (heredoc)
 		{
-			if (cmd->delim)
-				printf(GREEN"delimiter: %s\n"RESET, cmd->delim);
+			if (cmd->delims)
+			{
+				printf(GREEN"delimiters:\n"RESET);
+				i = 0;
+				while (cmd->delims[i])
+					printf(GREEN"\t%s\n"RESET, cmd->delims[i++]);
+			}
 			else
 			{
 				printf(RED"error: no delimiter\n"RESET);
@@ -133,6 +138,11 @@ void	test_heredoc(void)
 	test_wrapper("Heredoc", "<< EOF wc -l >outfile", 1, 0);
 }
 
+void	test_three_heredocs(void)
+{
+	test_wrapper("Three heredocs", "<< EOF wc <<mimi -l << siuuu >outfile", 1, 0);
+}
+
 void	test_three_outfiles(void)
 {
 	test_wrapper("Three outfiles", "echo >outfile > outfile2 mammmmamia >outfile3", 0, 0);
@@ -151,6 +161,7 @@ void	test_parser(void)
 	//test_five_cmds();
 	//test_three_infiles();
 	//test_heredoc();
+	test_three_heredocs();
 	//test_three_outfiles();
-	test_append();
+	//test_append();
 }
