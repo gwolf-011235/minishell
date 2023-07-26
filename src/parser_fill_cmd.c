@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/27 00:44:53 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/27 01:09:05 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * 
  * @param lst 		List of token.
  * @param new 		New cmd to be filled.
- * @return t_err 	ERR_BAD_FD, SUCCESS
+ * @return t_err 	ERR_BAD_FD, ERR_CLOSE, SUCCESS
  */
 t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 {
@@ -32,8 +32,9 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 	tmp = *lst;
 	tmp = tmp->next;
 	new->infile = 1;
-	if (new->fd_in > 0)
-		close(new->fd_in);
+	if (new->fd_in > -1)
+		if (close(new->fd_in) < 0)
+			return (ERR_CLOSE);
 	fd_in = open(tmp->content, O_RDONLY);
 /* 	if (fd_in < 3)
 		return (ERR_BAD_FD); */
@@ -90,8 +91,9 @@ t_err	ft_save_outfile(t_tkn_list **lst, t_cmd *new, bool append)
 	tmp = *lst;
 	tmp = tmp->next;
 	new->outfile = 1;
-	if (new->fd_out)
-		close(new->fd_out);
+	if (new->fd_out > -1)
+		if (close(new->fd_out) < 0)
+			return (ERR_CLOSE);
 	if (append)
 		fd_out = open(tmp->content, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	else
