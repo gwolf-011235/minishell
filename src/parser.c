@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/27 00:35:08 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/27 01:02:42 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,18 @@ t_cmd	*ft_new_cmd(t_cmd *curr, t_cmd **cmd_head, bool *exe_found,
 	t_err	err;
 
 	new = NULL;
-	curr->args = ft_split(curr->arg_buf, ' ');
-	curr->delims = ft_split(curr->delim_buf, ' ');
-	if (!curr->args || !curr->delims)
-		return (NULL);
+	if (curr->arg_buf)
+	{
+		curr->args = ft_split(curr->arg_buf, ' ');
+		if (!curr->args)
+			return (NULL);
+	}
+	if (curr->delim_buf)
+	{
+		curr->delims = ft_split(curr->delim_buf, ' ');
+		if (!curr->delims)
+			return (NULL);
+	}
 	ft_add_cmd(curr, cmd_head);
 	err = ft_create_cmd(&new);
 	if (err != SUCCESS)
