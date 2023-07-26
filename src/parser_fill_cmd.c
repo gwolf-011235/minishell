@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/26 01:15:14 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/27 00:44:53 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,7 @@ t_err	ft_save_heredoc(t_tkn_list **lst, t_cmd *new)
 	tmp = *lst;
 	tmp = tmp->next;
 	if (!new->delim_buf)
-	{
-		new->delim_buf = malloc(ft_strlen(tmp->content) + 1);
-		if (!new->delim_buf)
-			return (ERR_MALLOC);
-		ft_strlcpy(new->delim_buf, tmp->content, ft_strlen(tmp->content) + 1);
-	}
+		new->delim_buf = ft_strdup(tmp->content);
 	else
 	{
 		buf = ft_strjoin(new->delim_buf, " ");
@@ -142,18 +137,11 @@ t_err	ft_save_exe(t_tkn_list *lst, t_cmd *new, bool *exe_found)
  */
 t_err	ft_save_arg(t_tkn_list *lst, t_cmd *new)
 {
-	int		len;
 	char	*tmp;
 	char	*tmp2;
 
-	len = ft_strlen(lst->content);
 	if (!new->arg_buf)
-	{
-		new->arg_buf = malloc(len + 1);
-		if (!new->arg_buf)
-			return (ERR_MALLOC);
-		ft_strlcpy(new->arg_buf, lst->content, len + 1);
-	}
+		new->arg_buf = ft_strdup(lst->content);
 	else
 	{
 		tmp = ft_strjoin(new->arg_buf, " ");
