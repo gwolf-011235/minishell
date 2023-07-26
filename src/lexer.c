@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_list.c                                       :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 15:57:04 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/27 01:26:01 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_err	ft_new_node(t_tkn_list	**lst_head, char *content)
 {
 	t_tkn_list	*new;
 
-	new = (t_tkn_list *)malloc(sizeof(t_tkn_list));
+	new = malloc(sizeof(t_tkn_list));
 	if (!new)
 		return (ERR_MALLOC);
 	new->content = content;
