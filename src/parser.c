@@ -6,13 +6,14 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/26 01:25:52 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/27 00:35:08 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file parser.c
- * @brief 
+ * @brief Contains functions to parse the token list, categorise the tokens and
+ * create a cmd list.
  */
 
 #include "mod_parser.h"
@@ -22,10 +23,10 @@
  * 
  * Creates cmd structures and fills them with the token list.
  * @param lst 		Pointer to list of tokens.
- * @param cmd 		Pointer pointer to first node of cmd list.
+ * @param cmd_head 		Pointer pointer to first node of cmd list.
  * @return t_err 	ERR_MALLOC, SUCCESS
  */
-t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd)
+t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd_head)
 {
 	t_err	err;
 	t_cmd	*new;
@@ -35,7 +36,7 @@ t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd)
 	exe_found = 0;
 	cmd_complete = 0;
 	new = NULL;
-	err = ft_init_cmd(&new);
+	err = ft_create_cmd(&new);
 	if (err != SUCCESS)
 		return (err);
 	while (lst)
@@ -44,24 +45,24 @@ t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd)
 		if (err != SUCCESS)
 			return (err);
 		if (cmd_complete)
-			new = ft_new_cmd(new, cmd, &exe_found, &cmd_complete);
+			new = ft_new_cmd(new, cmd_head, &exe_found, &cmd_complete);
 		if (!new)
 			return (ERR_MALLOC);
 		lst = lst->next;
 	}
-	return (ft_finish_cmd_list(new, cmd));
+	return (ft_finish_cmd_list(new, cmd_head));
 }
 
 /**
  * @brief Adds current cmd to cmd_list and creates a new cmd struct.
  * 
  * @param curr 			Current cmd struct.
- * @param cmd 			List of cmd structs.
+ * @param cmd_head 			List of cmd structs.
  * @param exe_found 	Bool to indicate if executable has been found.
  * @param cmd_complete 	Bool to indicate if cmd ist complete.
  * @return t_cmd* 
  */
-t_cmd	*ft_new_cmd(t_cmd *curr, t_cmd **cmd, bool *exe_found,
+t_cmd	*ft_new_cmd(t_cmd *curr, t_cmd **cmd_head, bool *exe_found,
 	bool *cmd_complete)
 {
 	t_cmd	*new;
@@ -72,8 +73,8 @@ t_cmd	*ft_new_cmd(t_cmd *curr, t_cmd **cmd, bool *exe_found,
 	curr->delims = ft_split(curr->delim_buf, ' ');
 	if (!curr->args || !curr->delims)
 		return (NULL);
-	ft_add_cmd(curr, cmd);
-	err = ft_init_cmd(&new);
+	ft_add_cmd(curr, cmd_head);
+	err = ft_create_cmd(&new);
 	if (err != SUCCESS)
 		return (NULL);
 	*exe_found = 0;
@@ -87,7 +88,7 @@ t_cmd	*ft_new_cmd(t_cmd *curr, t_cmd **cmd, bool *exe_found,
  * @param new Newly created cmd struct.
  * @return t_err 	ERR_MALLOC, SUCCESS
  */
-t_err	ft_init_cmd(t_cmd **new)
+t_err	ft_create_cmd(t_cmd **new)
 {
 	t_cmd	*tmp;
 
@@ -154,15 +155,15 @@ t_err	ft_categorise(t_tkn_list **lst, t_cmd *new, bool *exe_found,
  * @brief Add a new cmd structure to the end of cmd-list.
  * 
  * @param new New cmd structure.
- * @param cmd List of cmds.
+ * @param cmd_head List of cmds.
  */
-void	ft_add_cmd(t_cmd *new, t_cmd **cmd)
+void	ft_add_cmd(t_cmd *new, t_cmd **cmd_head)
 {
 	t_cmd	*tmp;
 
-	tmp = ft_last_cmd(*cmd);
+	tmp = ft_last_cmd(*cmd_head);
 	if (tmp)
 		tmp->next = new;
 	else
-		*cmd = new;
+		*cmd_head = new;
 }
