@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/27 01:09:05 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/27 01:11:23 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,13 +119,7 @@ t_err	ft_save_outfile(t_tkn_list **lst, t_cmd *new, bool append)
  */
 t_err	ft_save_exe(t_tkn_list *lst, t_cmd *new, bool *exe_found)
 {
-	int	len;
-
-	len = ft_strlen(lst->content);
-	new->exe = malloc(len + 1);
-	if (!new->exe)
-		return (ERR_MALLOC);
-	ft_strlcpy(new->exe, lst->content, len + 1);
+	new->exe = ft_strdup(lst->content);
 	*exe_found = 1;
 	return (SUCCESS);
 }
