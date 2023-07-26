@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:43:10 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 17:39:06 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/26 22:13:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
  * @param env_tab Environment.
  * @return t_err ERR_EXIT
  * @todo Maybe restructure to not use exit() and handle t_err instead.
+ * @todo If no arg is given should return exit status of last command - global?
  */
 t_err	ft_exit(char **argv, t_hashtable *env_tab)
 {
@@ -39,7 +40,7 @@ t_err	ft_exit(char **argv, t_hashtable *env_tab)
 	int		ret_code;
 
 	size = 0;
-	ret_code = 255;
+	ret_code = 0;
 	err = ft_get_array_size(argv, &size);
 	ft_putendl_fd("exit", 2);
 	if (size >= 2)
