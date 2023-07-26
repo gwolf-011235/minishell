@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:07:27 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 23:53:14 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/26 22:21:47 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
  * @brief Delete variables out of environment.
  *
  * For every arg try ft_hashtable_delete().
+ * Returns always SUCCESS, even if var was not found.
  *
  * @param argv NULL terminated args.
  * @param env_tab Environment.
