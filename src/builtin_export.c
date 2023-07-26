@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 08:11:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 23:46:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/26 22:20:18 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@
  *
  * Check arg size with ft_get_array_size().
  * If no arg is given ft_print_env_sorted().
- * For all args try to insert them into environment with
- * ft_check_and_update_env(). If error is encountered print
- * error with ft_export_error(). Continue for all other args.
+ * Save_err is set to SUCCESS. For all args try to insert them into environment
+ * with ft_check_and_update_env(). If error is encountered print error with
+ * ft_export_error() and save error code. Continue for all other args.
+ * At the end return saved error
  *
  * @param argv NULL terminated args.
  * @param env_tab Environment.
@@ -33,6 +34,7 @@ t_err	ft_export(char **argv, t_hashtable *env_tab)
 {
 	size_t	size;
 	t_err	err;
+	t_err	save_err;
 	size_t	i;
 
 	size = 0;
@@ -42,14 +44,18 @@ t_err	ft_export(char **argv, t_hashtable *env_tab)
 	if (size == 1)
 		return (ft_print_env_sorted(env_tab));
 	i = 1;
+	save_err = SUCCESS;
 	while (argv[i])
 	{
 		err = ft_check_and_update_env(argv[i], env_tab);
 		if (err != SUCCESS)
+		{
 			ft_export_error(err, argv[i]);
+			save_err = err;
+		}
 		i++;
 	}
-	return (SUCCESS);
+	return (save_err);
 }
 
 /**
