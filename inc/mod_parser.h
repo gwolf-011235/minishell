@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 12:06:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/27 00:35:08 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/28 13:07:38 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,21 @@
 /* ====== Functions ====== */
 
 // cmd list creation
-t_cmd	*ft_new_cmd(t_cmd *curr, t_cmd **cmd, bool *exe_found,
+t_cmd	*ft_new_cmd(t_tkn_list *lst, t_cmd *curr, t_cmd **cmd,
 			bool *cmd_complete);
-t_err	ft_create_cmd(t_cmd **new);
-t_err	ft_categorise(t_tkn_list **lst, t_cmd *new, bool *exe_found,
-			bool *cmd_complete);
+t_err	ft_create_cmd(t_cmd **new, t_tkn_list *lst);
+t_err	ft_categorise(t_tkn_list **lst, t_cmd *new, bool *cmd_complete);
 void	ft_add_cmd(t_cmd *new, t_cmd **cmd);
 
 // fill cmd struc
 t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new);
 t_err	ft_save_heredoc(t_tkn_list **lst, t_cmd *new);
 t_err	ft_save_outfile(t_tkn_list **lst, t_cmd *new, bool append);
-t_err	ft_save_exe(t_tkn_list *lst, t_cmd *new, bool *exe_found);
 t_err	ft_save_arg(t_tkn_list *lst, t_cmd *new);
 
 // helpers
 t_cmd	*ft_last_cmd(t_cmd *cmd);
-t_err	ft_finish_cmd_list(t_cmd *new, t_cmd **cmd);
+t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim);
+t_err	ft_create_str_arr(t_cmd **new, int count_arg, int count_delim);
 
 #endif

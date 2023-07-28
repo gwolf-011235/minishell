@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/26 01:09:39 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/28 12:45:11 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,12 @@ typedef struct s_tkn_list
  */
 typedef struct s_cmd
 {
-	char			*exe;
 	char			**args;
-	char			*arg_buf;
+	int				arg_pos;
 	int				fd_in;
 	int				fd_out;
-	char			*delim_buf;
 	char			**delims;
+	int				delim_pos;
 	bool			append;
 	bool			infile;
 	bool			outfile;

@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/27 00:57:09 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/28 13:34:31 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,65 @@ t_cmd	*ft_last_cmd(t_cmd *cmd_head)
 }
 
 /**
- * @brief Finish up last cmd in cmd_list.
+ * @brief Counts the amount of arguments and, if given delimiters.
  * 
- * @param new 		Last cmd.
- * @param cmd_head 	List of cmds.
- * @return t_err 	ERR_MALLOC, SUCCESS
+ * Arguments include the executable.
+ * @param lst 			List of tokens.
+ * @param count_arg 	Argument counter.
+ * @param count_delim 	Delimiter counter.
+ * @return t_err 		SUCCESS
  */
-t_err	ft_finish_cmd_list(t_cmd *new, t_cmd **cmd_head)
+t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim)
 {
-	if (new->arg_buf)
+	while (lst)
 	{
-		new->args = ft_split(new->arg_buf, ' ');
-		if (!new->args)
-			return (ERR_MALLOC);
+		if (ft_strncmp(lst->content, "<<", 2) == 0)
+		{
+			lst = lst->next;
+			(*count_delim)++;
+		}
+		else if (ft_strncmp(lst->content, "|", 1) == 0)
+			return (SUCCESS);
+		else if (ft_strncmp(lst->content, "<", 1) == 0)
+			lst = lst->next;
+		else if (ft_strncmp(lst->content, ">", 1) == 0)
+			lst = lst->next;
+		else if (ft_strncmp(lst->content, ">>", 2) == 0)
+			lst = lst->next;
+		else if (ft_strncmp(lst->content, "\n", 1) == 0)
+			;
+		else
+			(*count_arg)++;
+		lst = lst->next;
 	}
-	if (new->delim_buf)
+	return (SUCCESS);
+}
+
+t_err	ft_create_str_arr(t_cmd **new, int count_arg, int count_delim)
+{
+	t_cmd	*tmp;
+
+	tmp = malloc(sizeof(t_cmd));
+	if (!tmp)
+		return (ERR_MALLOC);
+	if (count_arg)
 	{
-		new->delims = ft_split(new->delim_buf, ' ');
-		if (!new->delims)
+		tmp->args = malloc(sizeof(char *) * (count_arg + 1));
+		if (!tmp->args)
 			return (ERR_MALLOC);
+		tmp->args[count_arg] = NULL;
 	}
-	ft_add_cmd(new, cmd_head);
+	else
+		tmp->args = NULL;
+	if (count_delim)
+	{
+		tmp->delims = malloc(sizeof(char *) * (count_delim + 1));
+		if (!tmp->delims)
+			return (ERR_MALLOC);
+		tmp->delims[count_delim] = NULL;
+	}
+	else
+		tmp->delims = NULL;
+	*new = tmp;
 	return (SUCCESS);
 }
