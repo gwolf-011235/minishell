@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/28 14:15:10 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/28 18:02:28 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_err	ft_lex_input(t_tkn_list	**lst_head, char *input)
 		}
 		err = ft_tokenise(&src, &token);
 	}
+	ft_assign_type(*lst_head);
 	return (SUCCESS);
 }
 
