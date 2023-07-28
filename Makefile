@@ -34,8 +34,7 @@ LIBFT := $(LIB_DIR_FT)/libft.a
 TEST := test
 
 # Source files
-SRC :=	main.c \
-		utils_memory.c \
+SRC :=	utils_memory.c \
 		utils_string.c \
 		hashtable_generate.c \
 		hashtable_utils.c \
@@ -67,13 +66,15 @@ SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 # Objects
 OBJ := $(SRC:.c=.o)
 OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))
+OBJ_MAIN = $(OBJ_DIR)/main.o
 
 # Dependencies
-DEPFILES :=$(SRC:%.c=$(DEP_DIR)/%.d)
+DEPFILES = $(SRC:%.c=$(DEP_DIR)/%.d)
+# add dependency for main, since not in SRC
+DEPFILES += $(DEP_DIR)/main.d
 
 # Test
-TEST_SRC := test_main.c \
-			test_replace_token.c \
+TEST_SRC := test_replace_token.c \
 			test_prompt.c \
 			test_hashtable.c \
 			test_lexer.c \
@@ -84,16 +85,17 @@ TEST_SRC := test_main.c \
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 TEST_OBJ := $(TEST_SRC:.c=.o)
 TEST_OBJS := $(addprefix $(TEST_DIR)/, $(TEST_OBJ))
+TEST_OBJ_MAIN = $(TEST_DIR)/test_main.o
 
 .PHONY: all
 all: $(NAME)
 
 # Linking the NAME target
-$(NAME): $(LIBFT) $(OBJS)
+$(NAME): $(LIBFT) $(OBJS) $(OBJ_MAIN)
 	@printf "\n$(YELLOW)$(BOLD)link binary$(RESET) [$(BLUE)minishell$(RESET)]\n"
-	$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $@
+	$(CC) $(LDFLAGS) $(OBJS) $(OBJ_MAIN) $(LDLIBS) -o $@
 	@printf "\n$(YELLOW)$(BOLD)compilation successful$(RESET) [$(BLUE)minishell$(RESET)]\n"
-	@printf "$(GREEN)$(NAME) created!$(RESET)\n"
+	@printf "$(BOLD)$(GREEN)$(NAME) created!$(RESET)\n\n"
 
 # This target adds fsanitize leak checker to the flags. It needs to clean and recompile.
 .PHONY: leak
@@ -102,19 +104,58 @@ leak: LDFLAGS += -fsanitize=leak
 leak: clean $(NAME)
 	@printf "Compiled with $(YELLOW)$(BOLD)fsanitize=leak$(RESET)\n\n"
 
+# This target adds fsanitize address checker to the flags. It needs to clean and recompile.
+.PHONY: address
+address: CFLAGS += -fsanitize=address
+address: LDFLAGS += -fsanitize=address
+address: clean $(NAME)
+	@printf "Compiled with $(YELLOW)$(BOLD)fsanitize=address$(RESET)\n\n"
+
+# Perform memory check on minishell. Needs manual clean if leak or address was called before
+.PHONY: valgr
+valgr: $(NAME)
+	@valgrind --leak-check=full\
+			--show-leak-kinds=all\
+			--trace-children=no\
+			--track-fds=no\
+			--log-file=valgrind-out.txt\
+			./$(NAME)
+	@less ./valgrind-out.txt
+
 # Create the binary tester, which has its own test_main. To avoid compile problems it sets the
 # TESTING variable which renames "normal" main, and removes the main if it exists.
 # After compiling it removes normal main again, making regular compilation of NAME target possible.
-$(TEST): CFLAGS = -g -DTESTING -gdwarf-4
-$(TEST): prep_test $(TEST_OBJS) $(OBJS)
-	$(CC) $(LDFLAGS) $(TEST_OBJS) $(OBJS) $(LDLIBS) -o $@
-	rm -f obj/main.o
-	@printf "$(GREEN)Starting test!$(RESET)\n"
+$(TEST): CFLAGS = -g -gdwarf-4
+$(TEST): $(LIBFT) $(OBJS) $(TEST_OBJS) $(TEST_OBJ_MAIN)
+	@printf "\n$(YELLOW)$(BOLD)link test binary$(RESET) [$(BLUE)minishell$(RESET)]\n"
+	$(CC) $(LDFLAGS) $(OBJS) $(TEST_OBJS) $(TEST_OBJ_MAIN) $(LDLIBS) -o $@
+	@printf "\n$(YELLOW)$(BOLD)compilation successful$(RESET) [$(BLUE)minishell$(RESET)]\n"
+	@printf "$(BOLD)$(GREEN)$(TEST) created!$(RESET)\n\n"
 
-# To ensure "normal" main is compiled with flag TESTING it gets removed.
-.PHONY: prep_test
-prep_test:
-	rm -f obj/main.o
+# This target adds fsanitize leak checker to the flags. It needs to clean and recompile.
+.PHONY: tleak
+tleak: CFLAGS += -fsanitize=leak
+tleak: LDFLAGS += -fsanitize=leak
+tleak: clean tclean $(TEST)
+	@printf "Compiled with $(YELLOW)$(BOLD)fsanitize=leak$(RESET)\n\n"
+
+# This target adds fsanitize address checker to the flags. It needs to clean and recompile.
+.PHONY: taddress
+taddress: CFLAGS += -fsanitize=address
+taddress: LDFLAGS += -fsanitize=address
+taddress: clean tclean $(TEST)
+	@printf "Compiled with $(YELLOW)$(BOLD)fsanitize=address$(RESET)\n\n"
+
+# Perform memory check on test. Needs manual clean if leak or address was called before
+.PHONY: tvalgr
+tvalgr: $(TEST)
+	@valgrind --leak-check=full\
+			--show-leak-kinds=all\
+			--trace-children=no\
+			--track-fds=no\
+			--log-file=valgrind-out.txt\
+			./$(TEST)
+	@less ./valgrind-out.txt
 
 # Create object and dependency files
 # $(DEP_DIR)/%.d =	Declare the generated dependency file as a prerequisite of the target,
@@ -154,21 +195,20 @@ clean:
 	@rm -rf $(OBJ_DIR)
 	@printf "$(RED)removed subdir $(OBJ_DIR)$(RESET)\n"
 
-.PHONY: fclean
-fclean: clean
-	@rm -rf $(NAME)
-	@printf "$(RED)clean bin $(NAME)$(RESET)\n"
-	@printf "$(YELLOW)$(BOLD)clean$(RESET) [$(BLUE)libft$(RESET)]\n"
-	@$(MAKE) --no-print-directory -C $(LIB_DIR_FT) fclean
-
 # Clean test objects and tester
 .PHONY: tclean
 tclean:
-	@printf "$(YELLOW)$(BOLD)clean test files$(RESET) [$(BLUE)minishell$(RESET)]\n"
 	@rm -rf $(TEST_DIR)/*.o
 	@printf "$(RED)removed .o files in subdir $(TEST_DIR)$(RESET)\n"
 	@rm -rf $(TEST)
 	@printf "$(RED)clean bin $(TEST)$(RESET)\n"
+
+.PHONY: fclean
+fclean: clean tclean
+	@rm -rf $(NAME)
+	@printf "$(RED)clean bin $(NAME)$(RESET)\n"
+	@printf "$(YELLOW)$(BOLD)clean$(RESET) [$(BLUE)libft$(RESET)]\n"
+	@$(MAKE) --no-print-directory -C $(LIB_DIR_FT) fclean
 
 .PHONY: re
 re: fclean all
@@ -176,13 +216,3 @@ re: fclean all
 # Include the dependency files that exist. Use wildcard to avoid failing on non-existent files.
 include $(wildcard $(DEPFILES))
 
-# Perform memory check on leaks
-.PHONY: valgr
-valgr:
-	@valgrind --leak-check=full\
-			--show-leak-kinds=all\
-			--trace-children=no\
-			--track-fds=no\
-			--log-file=valgrind-out.txt\
-			./test
-	@less ./valgrind-out.txt
