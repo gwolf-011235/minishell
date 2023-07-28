@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 23:12:15 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 17:07:32 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/28 16:25:10 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void	test_builtin_echo(void)
 	exec_test_builtin_echo("Empty string", "", NULL, NULL);
 	exec_test_builtin_echo("Empty string after arg", "First", "", NULL);
 	exec_test_builtin_echo("Empty string in the middle", "First", "", "Third");
+	exec_test_builtin_echo("Wrong -n flag", "-ns", "Hello", "World");
 	test_teardown_argv();
 }
