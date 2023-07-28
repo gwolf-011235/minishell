@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:47:19 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/28 16:22:01 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/28 16:24:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_err	ft_echo(char **argv)
  */
 t_err	ft_skip_n_flags(char **argv, size_t *i, bool *newline)
 {
-	while (argv[*i] && !ft_strncmp(argv[*i], "-n", 2))
+	while (argv[*i] && !ft_strncmp(argv[*i], "-n", 3))
 	{
 		*newline = false;
 		(*i)++;
