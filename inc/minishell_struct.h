@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_struct.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:38:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 17:49:38 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/28 13:01:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_data {
 	t_hashtable	*env_table;
 	t_checks	checks;
 	t_err		err;
-	t_cmd		*cmds;
+	//t_cmd		*cmds;
 	char		*prompt1;
 	char		*prompt2;
 	t_info		info;
