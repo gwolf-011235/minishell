@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 08:11:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/26 22:20:18 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/28 17:01:42 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ t_err	ft_pretty_print_envp(char **envp, size_t size)
 			j++;
 		}
 		if (envp[i][keylen] == '=')
-			printf("=\"%s\"", envp[i] + keylen + 1);
-		printf("\n");
+			ft_printf("=\"%s\"", envp[i] + keylen + 1);
+		ft_printf("\n");
 		i++;
 	}
 	return (SUCCESS);
