@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:57:58 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 17:19:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/28 17:39:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,31 @@
  * @brief Print all environment variables.
  *
  * The strings are not sorted in any way.
- * Just calls ft_hashtable_print().
+ * Check if array at index i has a node.
+ * If yes print all nodes found.
+ * Check next array index.
  *
  * @param env_tab Environment.
  * @return t_err SUCCESS.
  */
 t_err	ft_env(t_hashtable *env_tab)
 {
-	ft_hashtable_print(env_tab);
+	size_t		i;
+	t_env_var	*tmp;
+
+	i = 0;
+	while (i < env_tab->size)
+	{
+		if (env_tab->elements[i] != NULL)
+		{
+			tmp = env_tab->elements[i];
+			while (tmp != NULL)
+			{
+				printf("%s\n", tmp->env_string);
+				tmp = tmp->next;
+			}
+		}
+		i++;
+	}
 	return (SUCCESS);
 }
