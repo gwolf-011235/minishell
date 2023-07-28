@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/28 14:56:29 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/28 17:42:32 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * 
  * Creates cmd structures and fills them with the token list.
  * @param lst 		Pointer to list of tokens.
- * @param cmd_head 		Pointer pointer to first node of cmd list.
+ * @param cmd_head 	Pointer pointer to first node of cmd list.
  * @return t_err 	ERR_MALLOC, SUCCESS
  */
 t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd_head)
@@ -58,7 +58,6 @@ t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd_head)
  * @param lst			List of tokens at end position of previous cmd.
  * @param curr 			Current cmd struct.
  * @param cmd_head 		List of cmd structs.
- * @param exe_found 	Bool to indicate if executable has been found.
  * @param cmd_complete 	Bool to indicate if cmd ist complete.
  * @return t_cmd* 
  */
@@ -81,7 +80,8 @@ t_cmd	*ft_lock_and_load_cmd(t_tkn_list *lst, t_cmd *curr, t_cmd **cmd_head,
 /**
  * @brief Initiates the cmd struct.
  * 
- * @param new Newly created cmd struct.
+ * @param new 		Newly created cmd struct.
+ * @param lst		List of tokens at current position.
  * @return t_err 	ERR_MALLOC, SUCCESS
  */
 t_err	ft_create_cmd(t_cmd **new, t_tkn_list *lst)

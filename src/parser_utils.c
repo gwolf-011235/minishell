@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/28 13:34:31 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/28 17:47:54 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,15 @@ t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Reserve memory space for cmd struct and in case
+ * for argument and/or delimiter string arrays.
+ * 
+ * @param new 			New cmd struct to be created.
+ * @param count_arg 	Amount of arguments.
+ * @param count_delim 	Amount of delimiters.
+ * @return t_err 		ERR_MALLOC, SUCCESS
+ */
 t_err	ft_create_str_arr(t_cmd **new, int count_arg, int count_delim)
 {
 	t_cmd	*tmp;
