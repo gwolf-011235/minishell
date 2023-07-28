@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/28 13:15:31 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/28 14:56:29 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd_head)
 		if (err != SUCCESS)
 			return (err);
 		if (cmd_complete)
-			new = ft_new_cmd(lst, new, cmd_head, &cmd_complete);
+			new = ft_lock_and_load_cmd(lst, new, cmd_head, &cmd_complete);
 		if (!new)
 			return (ERR_MALLOC);
 		lst = lst->next;
@@ -62,7 +62,7 @@ t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd_head)
  * @param cmd_complete 	Bool to indicate if cmd ist complete.
  * @return t_cmd* 
  */
-t_cmd	*ft_new_cmd(t_tkn_list *lst, t_cmd *curr, t_cmd **cmd_head,
+t_cmd	*ft_lock_and_load_cmd(t_tkn_list *lst, t_cmd *curr, t_cmd **cmd_head,
 		bool *cmd_complete)
 {
 	t_cmd	*new;
@@ -126,10 +126,10 @@ t_err	ft_categorise(t_tkn_list **lst, t_cmd *new, bool *cmd_complete)
 
 	err = SUCCESS;
 	tmp = *lst;
-	if (ft_strncmp(tmp->content, "<", ft_strlen(tmp->content)) == 0)
-		err = ft_save_infile(&tmp, new);
-	else if (ft_strncmp(tmp->content, "<<", ft_strlen(tmp->content)) == 0)
+	if (ft_strncmp(tmp->content, "<<", 2) == 0)
 		err = ft_save_heredoc(&tmp, new);
+	else if (ft_strncmp(tmp->content, "<", 1) == 0)
+		err = ft_save_infile(&tmp, new);
 	else if (ft_strncmp(tmp->content, ">", ft_strlen(tmp->content)) == 0)
 		err = ft_save_outfile(&tmp, new, 0);
 	else if (ft_strncmp(tmp->content, ">>", ft_strlen(tmp->content)) == 0)

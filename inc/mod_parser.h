@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 12:06:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/28 13:07:38 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/28 14:56:14 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 /* ====== Functions ====== */
 
 // cmd list creation
-t_cmd	*ft_new_cmd(t_tkn_list *lst, t_cmd *curr, t_cmd **cmd,
+t_cmd	*ft_lock_and_load_cmd(t_tkn_list *lst, t_cmd *curr, t_cmd **cmd,
 			bool *cmd_complete);
 t_err	ft_create_cmd(t_cmd **new, t_tkn_list *lst);
 t_err	ft_categorise(t_tkn_list **lst, t_cmd *new, bool *cmd_complete);
