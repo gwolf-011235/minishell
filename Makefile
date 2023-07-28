@@ -1,4 +1,19 @@
-# Text effects
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
+#    Updated: 2023/07/28 13:24:33 by gwolf            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# ******************************
+# *     Text effects           *
+# ******************************
+
 RESET := \033[0m
 BOLD := \033[1m
 BLACK := \033[30m
@@ -7,7 +22,10 @@ YELLOW := \033[33m
 RED := \033[31m
 BLUE := \033[34m
 
-# Directories
+# ******************************
+# *     Directories            *
+# ******************************
+
 SRC_DIR := src
 OBJ_DIR := obj
 LIB_DIR := lib
@@ -16,11 +34,17 @@ INC_DIR := inc
 DEP_DIR := $(OBJ_DIR)/dep
 TEST_DIR := tests
 
-# Libraries
+# ******************************
+# *     Libraries              *
+# ******************************
+
 LDFLAGS := -L $(LIB_DIR_FT)
 LDLIBS := -l ft -l readline
 
-# Compiling
+# ******************************
+# *     Vars for compiling     *
+# ******************************
+
 CC := cc
 CPPFLAGS := -I $(INC_DIR) -I lib/libft
 CFLAGS = -Wall -Werror -Wextra -g -gdwarf-4
@@ -28,12 +52,18 @@ DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.Td
 COMPILE = $(CC) $(DEPFLAGS) $(CPPFLAGS) $(CFLAGS) -c
 POSTCOMPILE = @mv -f $(DEP_DIR)/$*.Td $(DEP_DIR)/$*.d && touch $@
 
-# Targets
+# ******************************
+# *     Targets                *
+# ******************************
+
 NAME := minishell
 LIBFT := $(LIB_DIR_FT)/libft.a
 TEST := test
 
-# Source files
+# ******************************
+# *     Source files           *
+# ******************************
+
 SRC :=	utils_memory.c \
 		utils_string.c \
 		hashtable_generate.c \
@@ -63,17 +93,26 @@ SRC :=	utils_memory.c \
 		handle_input.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
-# Objects
+# ******************************
+# *     Object files           *
+# ******************************
+
 OBJ := $(SRC:.c=.o)
 OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))
 OBJ_MAIN = $(OBJ_DIR)/main.o
 
-# Dependencies
+# ******************************
+# *     Dependency files       *
+# ******************************
+
 DEPFILES = $(SRC:%.c=$(DEP_DIR)/%.d)
 # add dependency for main, since not in SRC
 DEPFILES += $(DEP_DIR)/main.d
 
-# Test
+# ******************************
+# *     Test files             *
+# ******************************
+
 TEST_SRC := test_replace_token.c \
 			test_prompt.c \
 			test_hashtable.c \
@@ -89,6 +128,10 @@ TEST_OBJ_MAIN = $(TEST_DIR)/test_main.o
 
 .PHONY: all
 all: $(NAME)
+
+# ******************************
+# *     NAME linkage           *
+# ******************************
 
 # Linking the NAME target
 $(NAME): $(LIBFT) $(OBJS) $(OBJ_MAIN)
@@ -111,7 +154,7 @@ address: LDFLAGS += -fsanitize=address
 address: clean $(NAME)
 	@printf "Compiled with $(YELLOW)$(BOLD)fsanitize=address$(RESET)\n\n"
 
-# Perform memory check on minishell. Needs manual clean if leak or address was called before
+# Perform memory check on NAME. Needs manual clean if target leak or address was called before
 .PHONY: valgr
 valgr: $(NAME)
 	@valgrind --leak-check=full\
@@ -122,9 +165,11 @@ valgr: $(NAME)
 			./$(NAME)
 	@less ./valgrind-out.txt
 
-# Create the binary tester, which has its own test_main. To avoid compile problems it sets the
-# TESTING variable which renames "normal" main, and removes the main if it exists.
-# After compiling it removes normal main again, making regular compilation of NAME target possible.
+# ******************************
+# *     TEST linkage           *
+# ******************************
+
+# Create the binary TEST, which has its own test_main.
 $(TEST): CFLAGS = -g -gdwarf-4
 $(TEST): $(LIBFT) $(OBJS) $(TEST_OBJS) $(TEST_OBJ_MAIN)
 	@printf "\n$(YELLOW)$(BOLD)link test binary$(RESET) [$(BLUE)minishell$(RESET)]\n"
@@ -146,7 +191,7 @@ taddress: LDFLAGS += -fsanitize=address
 taddress: clean tclean $(TEST)
 	@printf "Compiled with $(YELLOW)$(BOLD)fsanitize=address$(RESET)\n\n"
 
-# Perform memory check on test. Needs manual clean if leak or address was called before
+# Perform memory check on TEST. Needs manual clean if tleak or taddress was called before
 .PHONY: tvalgr
 tvalgr: $(TEST)
 	@valgrind --leak-check=full\
@@ -156,6 +201,11 @@ tvalgr: $(TEST)
 			--log-file=valgrind-out.txt\
 			./$(TEST)
 	@less ./valgrind-out.txt
+
+# ******************************
+# *     Object compiling and   *
+# *     dependecy creation     *
+# ******************************
 
 # Create object and dependency files
 # $(DEP_DIR)/%.d =	Declare the generated dependency file as a prerequisite of the target,
@@ -184,10 +234,18 @@ $(DEP_DIR):
 # Mention each dependency file as a target, so that make won’t fail if the file doesn’t exist.
 $(DEPFILES):
 
+# ******************************
+# *     External Libraries     *
+# ******************************
+
 # Use Makefile of libft to compile the library.
 $(LIBFT):
 	@printf "$(YELLOW)$(BOLD)compilation$(RESET) [$(BLUE)libft$(RESET)]\n"
 	$(MAKE) -s -C $(LIB_DIR)/libft
+
+# ******************************
+# *     Cleanup                *
+# ******************************
 
 .PHONY: clean
 clean:
@@ -210,9 +268,17 @@ fclean: clean tclean
 	@printf "$(YELLOW)$(BOLD)clean$(RESET) [$(BLUE)libft$(RESET)]\n"
 	@$(MAKE) --no-print-directory -C $(LIB_DIR_FT) fclean
 
+# ******************************
+# *     Recompilation          *
+# ******************************
+
 .PHONY: re
 re: fclean all
 
-# Include the dependency files that exist. Use wildcard to avoid failing on non-existent files.
-include $(wildcard $(DEPFILES))
+# ******************************
+# *     Various                *
+# ******************************
 
+# Include the dependency files that exist. Use wildcard to avoid failing on non-existent files.
+# Needs to be last target
+include $(wildcard $(DEPFILES))
