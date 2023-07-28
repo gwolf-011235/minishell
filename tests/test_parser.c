@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:41:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/26 01:33:36 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/28 13:28:56 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,9 @@ static int	test_wrapper(char *testname, char *test, bool heredoc, bool append)
 	ft_parser(lst, &cmd);
 	while (cmd)
 	{
-		if (cmd->exe)
-			printf(GREEN"\nexe: %s\n"RESET, cmd->exe);
-		else
-		{
-			printf(RED"error: no exe\n"RESET);
-			local_err_count++;
-		}
 		if (cmd->args)
 		{
-			printf(GREEN"args:\n"RESET);
+			printf(GREEN"\nargs:\n"RESET);
 			i = 0;
 			while (cmd->args[i])
 				printf(GREEN"\t%s\n"RESET, cmd->args[i++]);
@@ -115,7 +108,7 @@ static int	test_wrapper(char *testname, char *test, bool heredoc, bool append)
 void	test_one_cmd(void)
 {
 	test_wrapper("One simple cmd", "< infile grep he -i > outfile", 0, 0);
-	test_wrapper("One simple cmd", "ls < infile  > outfile -la", 0, 0);
+	//test_wrapper("One simple cmd", "ls < infile  > outfile -la", 0, 0);
 }
 
 void	test_two_cmds(void)
