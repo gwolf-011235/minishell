@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:07:23 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 13:52:55 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/28 17:56:04 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ t_err		ft_hashtable_swap(
 				t_hashtable *ht, char *string, size_t keylen);
 
 //hashtable_print.c
-void		ft_hashtable_print(t_hashtable *ht);
 void		ft_hashtable_pretty_print(t_hashtable *ht);
 
 #endif

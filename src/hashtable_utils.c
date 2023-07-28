@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:17:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 13:55:48 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/28 17:55:29 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
  *
  * It uses the hashfunction of the passed hashtable to create the hash.
  * With % size the hash is made to fit the hashtable as index.
- *
  * @param ht Used hashtable
  * @param key String to check the hash for
  * @param keylen Length of the given string
@@ -42,7 +41,6 @@ size_t	ft_hashtable_index(t_hashtable *ht, const char *key, size_t keylen)
  * Check if any param is empty and if key is already inserted.
  * Generate index and malloc new element.
  * Set new element as head of the list pointed to by index.
- *
  * @param ht Hashtable in which to insert
  * @param string env_string which should be inserted
  * @param keylen Length of env_var (everything before =)
@@ -76,7 +74,6 @@ t_err	ft_hashtable_insert(t_hashtable *ht, char *string, size_t keylen)
  * Check if params are empty.
  * Generate index of given env_var and loop through list.
  * If element is found return the element.
- *
  * @param ht Hashtable in which to look
  * @param string env_string which should be looked up
  * @param keylen Length of env_var (everything before =)
@@ -111,7 +108,6 @@ t_env_var	*ft_hashtable_lookup(
  * If prev == NULL element is at start of list.
  * If element is found free.
  * Then free element and update next pointer.
- *
  * @param ht Hashtable in which to delete one element
  * @param string env_string which should be deleted
  * @param keylen length of env_var (everthing before =)
@@ -153,7 +149,6 @@ t_err	ft_hashtable_delete(
  * Search for key of given string, if not found return.
  * Free the old env_str.
  * Set the passed string and adjust value.
- *
  * @param ht Hashtable where to insert.
  * @param string Env_string which should be inserted
  * @param keylen Length of the key.

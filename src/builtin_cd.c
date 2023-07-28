@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 17:15:12 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/28 17:48:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
  * If $HOME was not found return error.
  * Change directory with ft_change_dir().
  * In case of error call ft_cd_error().
- *
  * @param argv NULL terminated args.
  * @param env_tab Environment.
  * @return t_err SUCCESS, ERR_EMPTY, ERR_ARGCOUNT, ERR_MALLOC, ERR_NOT_FOUND
@@ -66,7 +65,6 @@ t_err	ft_cd(char **argv, t_hashtable *env_tab)
  * Search environment for $PWD.
  * If found create $OLDPWD env_str.
  * If not found create empty $OLDPWD env_str.
- *
  * @param oldpwd Where to save the env_str.
  * @param env_tab Environment.
  * @return t_err SUCCESS, ERR_MALLOC
@@ -111,7 +109,6 @@ t_err	ft_set_path_to_home(char **path, t_hashtable *env_tab)
  * Update $PWD in environment with ft_update_env_var().
  * The update $OLDPWD with passed oldpwd.
  * If chdir fails return error.
- *
  * @param path Where to change to.
  * @param env_tab Environment.
  * @param oldpwd Saved pwd env_str to update $OLDPWD.

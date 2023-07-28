@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 08:11:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/28 17:01:42 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/28 17:49:33 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
  * with ft_check_and_update_env(). If error is encountered print error with
  * ft_export_error() and save error code. Continue for all other args.
  * At the end return saved error
- *
  * @param argv NULL terminated args.
  * @param env_tab Environment.
  * @return t_err SUCCESS, ERR_EMPTY, ERR_INVALID_NAME
@@ -66,7 +65,6 @@ t_err	ft_export(char **argv, t_hashtable *env_tab)
  * Use ft_quicksort_string() to sort envp.
  * Print env_strings with ft_pretty_print_envp().
  * Destroy envp with ft_envp_destroy().
- *
  * @param env_tab Environment.
  * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_INVALID_NAME.
  */
@@ -93,7 +91,6 @@ t_err	ft_print_env_sorted(t_hashtable *env_tab)
  * Print "export ".
  * Print key of the env_var.
  * If followed by a value print equals sign and value enclosed in double quotes.
- *
  * @param envp Array with all env_str.
  * @param size Size of pointer array.
  * @return t_err SUCCESS, ERR_INVALID_NAME.
@@ -133,7 +130,6 @@ t_err	ft_pretty_print_envp(char **envp, size_t size)
  * Check key with ft_get_env_keylen().
  * If valid ft_strdup() the given env_str.
  * Then update environment with ft_update_env_var().
- *
  * @param str Env_str to check.
  * @param env_tab Environment.
  * @return t_err SUCCESS, ERR_INVALID_NAME, ERR_MALLOC, ERR_EMPTY,

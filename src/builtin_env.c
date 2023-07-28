@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:57:58 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/28 17:39:48 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/28 17:48:35 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
  * Check if array at index i has a node.
  * If yes print all nodes found.
  * Check next array index.
- *
  * @param env_tab Environment.
  * @return t_err SUCCESS.
  */

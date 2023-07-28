@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:40:34 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 17:27:56 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/28 17:48:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
  *
  * Error if second arg is not numeric.
  * Error if more than two args are given.
- *
  * @param err Error code.
  * @param arg First arg given to ft_exit().
  * @return t_err ERR_NONUM, ERR_EXIT.
@@ -44,7 +43,6 @@ t_err	ft_exit_error(t_err err, char *arg)
  *
  * Error if given name is not valid for env key.
  * Error if malloc failed.
- *
  * @param err Error code.
  * @param arg Current arg given to export.
  * @return t_err ERR_INVALID_NAME, ERR_MALLOC.
@@ -67,7 +65,6 @@ t_err	ft_export_error(t_err err, char *arg)
  *
  * Error if malloc failed.
  * Error if getcwd failed.
- *
  * @param err Error Code.
  * @return t_err ERR_MALLOC, ERR_CWD_FAIL.
  */
@@ -89,7 +86,6 @@ t_err	ft_pwd_error(t_err err)
  * Error if malloc failed.
  * Error if chdir failed, e.g. given path was not valid.
  * In last case print exact error with perror.
- *
  * @param err Error code
  * @param oldpwd Pointer to saved $PWD.
  * @param path Arg given to chdir.

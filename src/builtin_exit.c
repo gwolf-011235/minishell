@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:43:10 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/26 22:13:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/28 17:49:10 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
  * If arg1 is a number but more than one arg print error msg and return(!).
  * Free t_hashtable.
  * Call exit() with error code.
- *
  * @param argv NULL terminated args.
  * @param env_tab Environment.
  * @return t_err ERR_EXIT
@@ -66,7 +65,6 @@ t_err	ft_exit(char **argv, t_hashtable *env_tab)
  *
  * A single sign (+/-) is jumped over.
  * Iterate as long as current char is digit with ft_isdigit().
- *
  * @param str String to check.
  * @return t_err SUCCESS, ERR_EMPTY, ERR_NONUM
  */

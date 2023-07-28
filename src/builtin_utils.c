@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:24:50 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 17:16:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/28 17:51:28 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_err	ft_get_array_size(char **array, size_t *size)
  * Following chars can also include numbers.
  * The char following the key has to be '=' if assigned a value.
  * Or zero terminator if no value.
- *
  * @param str Env_str to check
  * @param len Where to save the len.
  * @return t_err SUCCESS, ERR_INVALID_NAME.
@@ -61,7 +60,6 @@ t_err	ft_get_env_keylen(char *str, size_t *len)
  * Search for the env var.
  * If found swap it with the new one.
  * If not found insert it.
- *
  * @param env_tab Environment.
  * @param env_str New environment string.
  * @param keylen Length of the variable key.
@@ -104,7 +102,6 @@ void	ft_swap(char **str1, char **str2)
  * Divides the array in sub-arrays around the pivot.
  * String are compared using ft_strncmp() and then swapped if needed.
  * Gets called recursively until all sub-arrays are sorted.
- *
  * @param arr Array to be sorted.
  * @param low Starting index.
  * @param high Endinf index.

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:59:29 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 23:49:15 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/28 17:50:53 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
  *
  * Create str of working directory with ft_create_pwd_value().
  * Print it and free str.
- *
  * @return t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL.
  */
 t_err	ft_pwd(void)

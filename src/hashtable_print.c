@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:47:39 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 13:50:55 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/28 17:54:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,6 @@
 #include "hashtable.h"
 
 /**
- * @brief Print all elements of hashtable.
- *
- * Prints all elements at every index, separated by a newline.
- *
- * @param ht Hashtable to print.
- */
-void	ft_hashtable_print(t_hashtable *ht)
-{
-	uint32_t	i;
-	t_env_var	*tmp;
-
-	i = 0;
-	while (i < ht->size)
-	{
-		if (ht->elements[i] != NULL)
-		{
-			tmp = ht->elements[i];
-			while (tmp != NULL)
-			{
-				printf("%s\n", tmp->env_string);
-				tmp = tmp->next;
-			}
-		}
-		i++;
-	}
-}
-
-/**
  * @brief Pretty print all elements.
  *
  * Print starting string.
@@ -52,7 +24,6 @@ void	ft_hashtable_print(t_hashtable *ht)
  * If more than one element is at a given index they get separated by newline.
  * Print number of elements.
  * Print end string.
- *
  * @param ht Hashtable to print.
  */
 void	ft_hashtable_pretty_print(t_hashtable *ht)

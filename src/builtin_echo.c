@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:47:19 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/28 16:24:06 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/28 17:48:29 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
  * Skip over -n flags with ft_skip_n_flags().
  * Write all remaining args with ft_write_args().
  * Only print newline if no -n flags was encountered.
- *
  * @param argv NULL terminated args.
  * @return t_err SUCCESS, ERR_EMPTY
  */
@@ -57,7 +56,6 @@ t_err	ft_echo(char **argv)
  * It's possible to pass several -n flags even though they have no
  * additional effect.
  * If at least one -n flag is found, set bool newline to false.
- *
  * @param argv NULL terminated args.
  * @param i Pointer to current index of array.
  * @param newline Pointer to bool which can get switched.
@@ -78,7 +76,6 @@ t_err	ft_skip_n_flags(char **argv, size_t *i, bool *newline)
  *
  * Write arg at index i.
  * If there is another arg, write a space.
- *
  * @param argv NULL temrinated args.
  * @param i Pointer to current index of array.
  * @return t_err SUCCESS
