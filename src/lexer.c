@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/27 01:26:01 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/28 14:15:10 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 /**
  * @brief Create a list of token.
  *
+ * Loops through input, creates token until no more
+ * chars are found and returns ERR_EOF which breaks the loop. 
+ * Creates initial node even if first token ends directly with ERR_EOF.
  * @param lst_head	Head node of token list.
  * @param input 	Input string to be tokenised.
  * @return t_err 	ERR_EMPTY, ERR_MALLOC, SUCCESS
@@ -87,7 +90,6 @@ t_err	ft_new_node(t_tkn_list	**lst_head, char *content)
  * @brief Iterate through token list and free all nodes.
  *
  * @param lst Token list to be freed.
- * @param del Pointer to function used for clean up.
  */
 void	ft_free_lst(t_tkn_list **lst)
 {
