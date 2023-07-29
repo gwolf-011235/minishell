@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/28 17:42:32 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/29 13:33:56 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,19 +126,19 @@ t_err	ft_categorise(t_tkn_list **lst, t_cmd *new, bool *cmd_complete)
 
 	err = SUCCESS;
 	tmp = *lst;
-	if (ft_strncmp(tmp->content, "<<", 2) == 0)
+	if (tmp->type == HEREDOC)
 		err = ft_save_heredoc(&tmp, new);
-	else if (ft_strncmp(tmp->content, "<", 1) == 0)
+	else if (tmp->type == INFILE)
 		err = ft_save_infile(&tmp, new);
-	else if (ft_strncmp(tmp->content, ">", ft_strlen(tmp->content)) == 0)
+	else if (tmp->type == OUTFILE)
 		err = ft_save_outfile(&tmp, new, 0);
-	else if (ft_strncmp(tmp->content, ">>", ft_strlen(tmp->content)) == 0)
+	else if (tmp->type == APPEND)
 		err = ft_save_outfile(&tmp, new, 1);
-	else if (ft_strncmp(tmp->content, "|", ft_strlen(tmp->content)) == 0)
+	else if (tmp->type == PIPE)
 		*cmd_complete = 1;
-	else if (ft_strncmp(tmp->content, "\n", ft_strlen(tmp->content)) == 0)
+	else if (tmp->type == NEWLINE)
 		return (SUCCESS);
-	else
+	else if (tmp->type == ARG)
 		err = ft_save_arg(tmp, new);
 	if (err != SUCCESS)
 		return (err);

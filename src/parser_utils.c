@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/28 17:47:54 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/29 13:37:30 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,22 @@ t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim)
 {
 	while (lst)
 	{
-		if (ft_strncmp(lst->content, "<<", 2) == 0)
+		if (lst->type == HEREDOC)
 		{
 			lst = lst->next;
 			(*count_delim)++;
 		}
-		else if (ft_strncmp(lst->content, "|", 1) == 0)
+		else if (lst->type == PIPE)
 			return (SUCCESS);
-		else if (ft_strncmp(lst->content, "<", 1) == 0)
+		else if (lst->type == INFILE)
 			lst = lst->next;
-		else if (ft_strncmp(lst->content, ">", 1) == 0)
+		else if (lst->type == OUTFILE)
 			lst = lst->next;
-		else if (ft_strncmp(lst->content, ">>", 2) == 0)
+		else if (lst->type == APPEND)
 			lst = lst->next;
-		else if (ft_strncmp(lst->content, "\n", 1) == 0)
+		else if (lst->type == NEWLINE)
 			;
-		else
+		else if (lst->type == ARG)
 			(*count_arg)++;
 		lst = lst->next;
 	}
