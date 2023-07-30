@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:27:23 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/23 13:40:39 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	main(void)
 	//test_check_syntax();
 	//test_env_envp();
 	//test_expand();
-	test_lexer();
+	//test_lexer();
 	//test_expand_list();
+	test_parser();
 	return (0);
 }

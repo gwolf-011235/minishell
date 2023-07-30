@@ -13,6 +13,7 @@
 		"stdlib.h": "c",
 		"expander.h": "c",
 		"hashtable.h": "c",
-		"mod_lexer.h": "c"
+		"mod_lexer.h": "c",
+		"mod_handle_input.h": "c"
 	}
 }

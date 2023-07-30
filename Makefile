@@ -52,7 +52,7 @@ SRC :=	main.c \
 		prompt_replace_small.c \
 		prompt_replace_w.c \
 		lexer_utils.c \
-		lexer_list.c \
+		lexer.c \
 		lexer_src.c \
 		lexer_tok.c \
 		lexer_tok_utils.c \
@@ -61,7 +61,10 @@ SRC :=	main.c \
 		expand_tilde.c \
 		expand_var.c \
 		handle_input_expand.c \
-		handle_input.c
+		handle_input.c \
+		parser.c \
+		parser_utils.c \
+		parser_fill_cmd.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects
@@ -80,7 +83,8 @@ TEST_SRC := test_main.c \
 			test_check_syntax.c \
 			test_env_envp.c \
 			test_expand_expr.c \
-			test_list_expand.c
+			test_list_expand.c \
+			test_parser.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 TEST_OBJ := $(TEST_SRC:.c=.o)
 TEST_OBJS := $(addprefix $(TEST_DIR)/, $(TEST_OBJ))
@@ -182,7 +186,7 @@ valgr:
 	@valgrind --leak-check=full\
 			--show-leak-kinds=all\
 			--trace-children=no\
-			--track-fds=no\
+			--track-fds=yes\
 			--log-file=valgrind-out.txt\
 			./test
 	@less ./valgrind-out.txt

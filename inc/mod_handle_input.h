@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 17:51:29 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/28 18:06:43 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,28 @@
 /* ====== Structs ====== */
 
 /**
+ * @brief Enum of different types that can be assigned to tokens
+ * 
+ * @param ARG		Any string that is not connected to redirects, piping or newlines.
+ * @param INFILE	Redirect evoking an infile.
+ * @param HEREDOC	Redirect evoking a heredoc.
+ * @param OUTFILE	Redirect evoking an outfile.
+ * @param APPEND	Redirect evoking an outfile in append mode.
+ * @param PIPE		Char indicating piping of commands.
+ * @param Newline	Char indicating end of a command.
+ */
+typedef enum e_type
+{
+	ARG,
+	INFILE,
+	HEREDOC,
+	OUTFILE,
+	APPEND,
+	PIPE,
+	NEWLINE
+}	t_type;
+
+/**
  * @brief List of token.
  *
  * Double-linked list of nodes that contain individual token strings. Each
@@ -32,6 +54,7 @@
 typedef struct s_tkn_list
 {
 	char				*content;
+	t_type				type;
 	struct s_tkn_list	*prev;
 	struct s_tkn_list	*next;
 }	t_tkn_list;
@@ -52,12 +75,15 @@ typedef struct s_tkn_list
  */
 typedef struct s_cmd
 {
-	char			*exe;
 	char			**args;
+	int				arg_pos;
 	int				fd_in;
 	int				fd_out;
-	char			*delim;
+	char			**delims;
+	int				delim_pos;
 	bool			append;
+	bool			infile;
+	bool			outfile;
 	int				index;
 	struct s_cmd	*next;
 }	t_cmd;
@@ -71,8 +97,11 @@ t_err	ft_check_syntax(const char *input);
 t_err	ft_lex_input(t_tkn_list	**lst_head, char *input);
 void	ft_free_lst(t_tkn_list **lst);
 
-//expand
+// expand
 t_err	ft_expand_tkn_lst(t_tkn_list *list, t_data *data);
 t_err	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info);
+
+// parser
+t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd);
 
 #endif
