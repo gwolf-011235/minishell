@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Minishell: hashtable_utils2.c File Reference</title>
+<title>Minishell: builtin_unset.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('hashtable__utils2_8c.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('builtin__unset_8c.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -91,27 +91,66 @@ $(document).ready(function(){initNavTree('hashtable__utils2_8c.html',''); initRe
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">hashtable_utils2.c File Reference</div>  </div>
+<div class="title">builtin_unset.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Utils functions to use with env hashtable (continued)  
+<p>Implementation of builtin unset.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a1ca2c65592970a45cca7385e295bdd06"><td class="memItemLeft" align="right" valign="top"><a id="a1ca2c65592970a45cca7385e295bdd06"></a>
-<a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ft_hashtable_swap</b> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *ht, char *string, size_t keylen)</td></tr>
-<tr class="separator:a1ca2c65592970a45cca7385e295bdd06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a849e8f851d0d61350cec85ea7e321c11"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__unset_8c.html#a849e8f851d0d61350cec85ea7e321c11">ft_unset</a> (char **argv, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_tab)</td></tr>
+<tr class="memdesc:a849e8f851d0d61350cec85ea7e321c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete variables out of environment.  <a href="builtin__unset_8c.html#a849e8f851d0d61350cec85ea7e321c11">More...</a><br /></td></tr>
+<tr class="separator:a849e8f851d0d61350cec85ea7e321c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Utils functions to use with env hashtable (continued) </p>
-</div></div><!-- contents -->
+<div class="textblock"><p>Implementation of builtin unset. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a849e8f851d0d61350cec85ea7e321c11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a849e8f851d0d61350cec85ea7e321c11">&#9670;&nbsp;</a></span>ft_unset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_unset </td>
+          <td>(</td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
+          <td class="paramname"><em>env_tab</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delete variables out of environment. </p>
+<p>For every arg try <a class="el" href="hashtable_8h.html#a7c91a2ec393664b5d7c0d79e563ff33c" title="Delete one element of hashtable.">ft_hashtable_delete()</a>. Returns always SUCCESS, even if var was not found. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argv</td><td>NULL terminated args. </td></tr>
+    <tr><td class="paramname">env_tab</td><td>Environment. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="hashtable__utils2_8c.html">hashtable_utils2.c</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="builtin__unset_8c.html">builtin_unset.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

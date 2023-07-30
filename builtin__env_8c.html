@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Minishell: Globals</title>
+<title>Minishell: builtin_env.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('globals_eval.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('builtin__env_8c.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -87,77 +87,59 @@ $(document).ready(function(){initNavTree('globals_eval.html',''); initResizable(
 </iframe>
 </div>
 
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">builtin_env.c File Reference</div>  </div>
+</div><!--header-->
 <div class="contents">
-&#160;<ul>
-<li>ERR_ARGCOUNT
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aac585c0b955a636ff9af3785999da72a">minishell_error.h</a>
-</li>
-<li>ERR_BAD_FD
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a240d5e7db94dfe5927cbe79cf35aa580">minishell_error.h</a>
-</li>
-<li>ERR_CHDIR_FAIL
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a1147eede29e1c66a62ffb9a5c1511d0c">minishell_error.h</a>
-</li>
-<li>ERR_CLOSE
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a15e26636fe4beda2e309e7bfae4bf96f">minishell_error.h</a>
-</li>
-<li>ERR_CWD_FAIL
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a43f9e208f2ea10d501bd49791594abc7">minishell_error.h</a>
-</li>
-<li>ERR_EMPTY
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8acdc3171f597e4c1349717464b452dc1e">minishell_error.h</a>
-</li>
-<li>ERR_EXIT
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a5a0d2a6d70b1942e50b5cc6a083ca42d">minishell_error.h</a>
-</li>
-<li>ERR_HT_NO_DELETE
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8af8bf8c87ef1c70714aa7fba1cc453102">minishell_error.h</a>
-</li>
-<li>ERR_HT_NO_INSERT
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8ab4ebe8e8dcc7871d3bda1dde1a607acb">minishell_error.h</a>
-</li>
-<li>ERR_HT_NO_SWAP
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aea63d4a8cbb4265221254be5156d4db4">minishell_error.h</a>
-</li>
-<li>ERR_INVALID_NAME
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8adce9e60bb85e17769ebe7d5cfcce0f4b">minishell_error.h</a>
-</li>
-<li>ERR_MALLOC
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8ae3b87db92437e1daf0e1013442b79b56">minishell_error.h</a>
-</li>
-<li>ERR_NO_SHLVL
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aeeff5ceb398b3bd6b8ce179c47fb917f">minishell_error.h</a>
-</li>
-<li>ERR_NOEXPAND
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a3da755970fe3ecf3630c15029f5b0517">minishell_error.h</a>
-</li>
-<li>ERR_NONUM
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a4488b85575df5d5fd846dc13029e64e4">minishell_error.h</a>
-</li>
-<li>ERR_NOT_FOUND
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a3cfe3eff41c31f8283d57f835269a958">minishell_error.h</a>
-</li>
-<li>ERR_OUT_OF_BOUNDS
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a495247f86f2d33551142fd94a74eeae1">minishell_error.h</a>
-</li>
-<li>ERR_SYNTAX
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aeed16f7745959d523aed6190f839dea8">minishell_error.h</a>
-</li>
-<li>ERR_UNDEFINED
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a5bb280b3fe12d695d5a7c158f93eb603">minishell_error.h</a>
-</li>
-<li>ERR_WRONG_TOKEN
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aacdc7b9755d24bf9caf955c7a9ecab48">minishell_error.h</a>
-</li>
-<li>SUCCESS
-: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8ac7f69f7c9e5aea9b8f54cf02870e2bf8">minishell_error.h</a>
-</li>
-</ul>
+
+<p>Implementation of builtin env.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a0041eecb04e549d5d178c6de70a786f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__env_8c.html#a0041eecb04e549d5d178c6de70a786f0">ft_env</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_tab)</td></tr>
+<tr class="memdesc:a0041eecb04e549d5d178c6de70a786f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print all environment variables.  <a href="builtin__env_8c.html#a0041eecb04e549d5d178c6de70a786f0">More...</a><br /></td></tr>
+<tr class="separator:a0041eecb04e549d5d178c6de70a786f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementation of builtin env. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a0041eecb04e549d5d178c6de70a786f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0041eecb04e549d5d178c6de70a786f0">&#9670;&nbsp;</a></span>ft_env()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_env </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
+          <td class="paramname"><em>env_tab</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Print all environment variables. </p>
+<p>The strings are not sorted in any way. Check if array at index i has a node. If yes print all nodes found. Check next array index. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">env_tab</td><td>Environment. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS. </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="builtin__env_8c.html">builtin_env.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

@@ -131,6 +131,12 @@ Enumerations</h2></td></tr>
 , <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a240d5e7db94dfe5927cbe79cf35aa580">ERR_BAD_FD</a>
 , <br />
 &#160;&#160;<a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a15e26636fe4beda2e309e7bfae4bf96f">ERR_CLOSE</a>
+, <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aac585c0b955a636ff9af3785999da72a">ERR_ARGCOUNT</a>
+, <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a1147eede29e1c66a62ffb9a5c1511d0c">ERR_CHDIR_FAIL</a>
+, <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8adce9e60bb85e17769ebe7d5cfcce0f4b">ERR_INVALID_NAME</a>
+, <br />
+&#160;&#160;<a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a4488b85575df5d5fd846dc13029e64e4">ERR_NONUM</a>
+, <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a5a0d2a6d70b1942e50b5cc6a083ca42d">ERR_EXIT</a>
 <br />
  }</td></tr>
 <tr class="memdesc:ad8acf3cd529715d9fa841ce2b860bad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum, which contains all error codes.  <a href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8">More...</a><br /></td></tr>
@@ -182,7 +188,7 @@ Enumerations</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8af8bf8c87ef1c70714aa7fba1cc453102"></a>ERR_HT_NO_DELETE&#160;</td><td class="fielddoc"><p><a class="el" href="hashtable_8h.html#a7c91a2ec393664b5d7c0d79e563ff33c" title="Delete one element of hashtable.">ft_hashtable_delete()</a> could not delete. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8aea63d4a8cbb4265221254be5156d4db4"></a>ERR_HT_NO_SWAP&#160;</td><td class="fielddoc"><p>ft_hashtable_swap() didn't find element. </p>
+<tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8aea63d4a8cbb4265221254be5156d4db4"></a>ERR_HT_NO_SWAP&#160;</td><td class="fielddoc"><p><a class="el" href="hashtable_8h.html#a1ca2c65592970a45cca7385e295bdd06" title="Swap an env_string in hashtable.">ft_hashtable_swap()</a> didn't find element. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8acdc3171f597e4c1349717464b452dc1e"></a>ERR_EMPTY&#160;</td><td class="fielddoc"><p>One or more passed params are empty. </p>
 </td></tr>
@@ -203,6 +209,16 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8a240d5e7db94dfe5927cbe79cf35aa580"></a>ERR_BAD_FD&#160;</td><td class="fielddoc"><p>While opening a file, a bad file descriptor was attributed. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8a15e26636fe4beda2e309e7bfae4bf96f"></a>ERR_CLOSE&#160;</td><td class="fielddoc"><p>Closing fd failed. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8aac585c0b955a636ff9af3785999da72a"></a>ERR_ARGCOUNT&#160;</td><td class="fielddoc"><p>Too many arguments where counted. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8a1147eede29e1c66a62ffb9a5c1511d0c"></a>ERR_CHDIR_FAIL&#160;</td><td class="fielddoc"><p>function chdir() failed. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8adce9e60bb85e17769ebe7d5cfcce0f4b"></a>ERR_INVALID_NAME&#160;</td><td class="fielddoc"><p>Not a valid env name. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8a4488b85575df5d5fd846dc13029e64e4"></a>ERR_NONUM&#160;</td><td class="fielddoc"><p>The string doesn't represent a number. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8a5a0d2a6d70b1942e50b5cc6a083ca42d"></a>ERR_EXIT&#160;</td><td class="fielddoc"><p><a class="el" href="builtin__exit_8c.html#a9e6528bb69d7be6c060b7a8a512b0de2" title="Exit the current shell instance.">ft_exit()</a> failed because of too many args. </p>
 </td></tr>
 </table>
 

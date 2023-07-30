@@ -9,8 +9,8 @@ var hashtable_8h =
     [ "ft_hashtable_create", "hashtable_8h.html#aa351d9fc0d424272cfdba942bf015652", null ],
     [ "ft_hashtable_delete", "hashtable_8h.html#a7c91a2ec393664b5d7c0d79e563ff33c", null ],
     [ "ft_hashtable_destroy", "hashtable_8h.html#a73387b5064ffe2aee0755ef13824885c", null ],
+    [ "ft_hashtable_index", "hashtable_8h.html#a2a3c7ee74c7a9df01dd0cf92c9d1991b", null ],
     [ "ft_hashtable_insert", "hashtable_8h.html#a8976bd21fc85d689a7731436a5a46559", null ],
     [ "ft_hashtable_lookup", "hashtable_8h.html#a47451b021c36ef99c300d76ad458aceb", null ],
-    [ "ft_hashtable_print", "hashtable_8h.html#a86de9075423bf65d8edb292bb2f51711", null ],
     [ "ft_hashtable_swap", "hashtable_8h.html#a1ca2c65592970a45cca7385e295bdd06", null ]
 ];

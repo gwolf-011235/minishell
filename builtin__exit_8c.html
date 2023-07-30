@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Minishell: env_shlvl.c File Reference</title>
+<title>Minishell: builtin_exit.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('env__shlvl_8c.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('builtin__exit_8c.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -91,42 +91,42 @@ $(document).ready(function(){initNavTree('env__shlvl_8c.html',''); initResizable
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">env_shlvl.c File Reference</div>  </div>
+<div class="title">builtin_exit.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Functions relating to env_var SHLVL.  
+<p>Implementation of builtin exit.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9ecd05fc9d8802e1a313d6e38ca48f61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__shlvl_8c.html#a9ecd05fc9d8802e1a313d6e38ca48f61">ft_create_env_shlvl</a> (char **shlvl, int val)</td></tr>
-<tr class="memdesc:a9ecd05fc9d8802e1a313d6e38ca48f61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an env_var SHLVL starting at 1.  <a href="env__shlvl_8c.html#a9ecd05fc9d8802e1a313d6e38ca48f61">More...</a><br /></td></tr>
-<tr class="separator:a9ecd05fc9d8802e1a313d6e38ca48f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a066e1f3688d1861f796118a8acd584c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__shlvl_8c.html#a066e1f3688d1861f796118a8acd584c0">ft_increment_shlvl</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table)</td></tr>
-<tr class="memdesc:a066e1f3688d1861f796118a8acd584c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments the env_var SHLVL.  <a href="env__shlvl_8c.html#a066e1f3688d1861f796118a8acd584c0">More...</a><br /></td></tr>
-<tr class="separator:a066e1f3688d1861f796118a8acd584c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e6528bb69d7be6c060b7a8a512b0de2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__exit_8c.html#a9e6528bb69d7be6c060b7a8a512b0de2">ft_exit</a> (char **argv, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_tab)</td></tr>
+<tr class="memdesc:a9e6528bb69d7be6c060b7a8a512b0de2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit the current shell instance.  <a href="builtin__exit_8c.html#a9e6528bb69d7be6c060b7a8a512b0de2">More...</a><br /></td></tr>
+<tr class="separator:a9e6528bb69d7be6c060b7a8a512b0de2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5e722ed0c19c5ea55c08d5073769f44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__exit_8c.html#ac5e722ed0c19c5ea55c08d5073769f44">ft_is_number</a> (char *str)</td></tr>
+<tr class="memdesc:ac5e722ed0c19c5ea55c08d5073769f44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if provided str is number.  <a href="builtin__exit_8c.html#ac5e722ed0c19c5ea55c08d5073769f44">More...</a><br /></td></tr>
+<tr class="separator:ac5e722ed0c19c5ea55c08d5073769f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Functions relating to env_var SHLVL. </p>
+<div class="textblock"><p>Implementation of builtin exit. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a9ecd05fc9d8802e1a313d6e38ca48f61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ecd05fc9d8802e1a313d6e38ca48f61">&#9670;&nbsp;</a></span>ft_create_env_shlvl()</h2>
+<a id="a9e6528bb69d7be6c060b7a8a512b0de2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e6528bb69d7be6c060b7a8a512b0de2">&#9670;&nbsp;</a></span>ft_exit()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_create_env_shlvl </td>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_exit </td>
           <td>(</td>
           <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>shlvl</em>, </td>
+          <td class="paramname"><em>argv</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>val</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
+          <td class="paramname"><em>env_tab</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -136,43 +136,42 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Create an env_var SHLVL starting at 1. </p>
-<p>If there is no SHLVL present, this function creates one. if val is 1 just ft_strdup() the str and return. Else convert val to char* with ft_itoa(). Create new str with ft_strjoin().</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Exit the current shell instance. </p>
+<p>Check size of given args. If at least one arg is given check if it is a number with <a class="el" href="builtin__exit_8c.html#ac5e722ed0c19c5ea55c08d5073769f44" title="Check if provided str is number.">ft_is_number()</a>. If not a number print error msg and set return code but continue. If a exactly one number arg convert it with ft_atoi(). If arg1 is a number but more than one arg print error msg and return(!). Free t_hashtable. Call exit() with error code. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">shlvl</td><td>Pointer pointer to change value outside of function. </td></tr>
+    <tr><td class="paramname">argv</td><td>NULL terminated args. </td></tr>
+    <tr><td class="paramname">env_tab</td><td>Environment. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_MALLOC </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_EXIT </dd></dl>
 
 </div>
 </div>
-<a id="a066e1f3688d1861f796118a8acd584c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a066e1f3688d1861f796118a8acd584c0">&#9670;&nbsp;</a></span>ft_increment_shlvl()</h2>
+<a id="ac5e722ed0c19c5ea55c08d5073769f44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5e722ed0c19c5ea55c08d5073769f44">&#9670;&nbsp;</a></span>ft_is_number()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_increment_shlvl </td>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_is_number </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>env_table</em></td><td>)</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Increments the env_var SHLVL. </p>
-<p>Search for $SHLVL, if not found return error. Extract number of found $SHLVL and add 1 to it. If result is higher than MAX_SHLVL return error. Create a new env_string with <a class="el" href="env__shlvl_8c.html#a066e1f3688d1861f796118a8acd584c0" title="Increments the env_var SHLVL.">ft_increment_shlvl()</a>. Update $SHLVL with <a class="el" href="hashtable_8h.html#a1ca2c65592970a45cca7385e295bdd06" title="Swap an env_string in hashtable.">ft_hashtable_swap()</a>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Check if provided str is number. </p>
+<p>A single sign (+/-) is jumped over. Iterate as long as current char is digit with ft_isdigit(). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">env_table</td><td>Environment. </td></tr>
+    <tr><td class="paramname">str</td><td>String to check. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_NO_SHLVL, ERR_MALLOC, ERR_EMPTY, ERR_HT_NO_SWAP. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_EMPTY, ERR_NONUM </dd></dl>
 
 </div>
 </div>
@@ -181,7 +180,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="env__shlvl_8c.html">env_shlvl.c</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="builtin__exit_8c.html">builtin_exit.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
