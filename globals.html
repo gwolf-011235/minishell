@@ -94,6 +94,12 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>e_error
 : <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8">minishell_error.h</a>
 </li>
+<li>ERR_BAD_FD
+: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a240d5e7db94dfe5927cbe79cf35aa580">minishell_error.h</a>
+</li>
+<li>ERR_CLOSE
+: <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a15e26636fe4beda2e309e7bfae4bf96f">minishell_error.h</a>
+</li>
 <li>ERR_CWD_FAIL
 : <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a43f9e208f2ea10d501bd49791594abc7">minishell_error.h</a>
 </li>
@@ -137,8 +143,8 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 
 
 <h3><a id="index_f"></a>- f -</h3><ul>
-<li>ft_add_lst()
-: <a class="el" href="lexer__list_8c.html#a1a0a304025c33a56762146d8f8061503">lexer_list.c</a>
+<li>ft_add_cmd()
+: <a class="el" href="parser_8c.html#af93abcc74690bbf845f1ff701e5aefb6">parser.c</a>
 </li>
 <li>ft_add_quoted_str()
 : <a class="el" href="lexer__tok_8c.html#aa53a268d6714044a5832f7ed06022ecc">lexer_tok.c</a>
@@ -146,11 +152,23 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>ft_add_to_buf()
 : <a class="el" href="lexer__tok__utils_8c.html#a3e632a35dac6d7b11d24668347e8d968">lexer_tok_utils.c</a>
 </li>
+<li>ft_assign_type()
+: <a class="el" href="lexer__utils_8c.html#ac54bac510056809b9ec67c2a43c1c6a3">lexer_utils.c</a>
+</li>
 <li>ft_calc_replace_len()
 : <a class="el" href="prompt__replace__token_8c.html#aad54224f5d44f1ef35b08f3a67ef82ae">prompt_replace_token.c</a>
 </li>
+<li>ft_categorise()
+: <a class="el" href="parser_8c.html#a1166f2e50c252dc9ab20581523508ccb">parser.c</a>
+</li>
 <li>ft_check_double_redirect()
 : <a class="el" href="lexer__tok__utils_8c.html#a9f51cbe5cbae67cee5a0d7b0334ccc51">lexer_tok_utils.c</a>
+</li>
+<li>ft_count_str()
+: <a class="el" href="parser__utils_8c.html#ae6edd1a07303046258611de33cd205b7">parser_utils.c</a>
+</li>
+<li>ft_create_cmd()
+: <a class="el" href="parser_8c.html#a389d091b63d457e7c80cc2c8812c9fa8">parser.c</a>
 </li>
 <li>ft_create_env_pwd()
 : <a class="el" href="env__pwd_8c.html#a0208d01b53cc9eb1fac5531e37b8a007">env_pwd.c</a>
@@ -163,6 +181,9 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 </li>
 <li>ft_create_pwd_value()
 : <a class="el" href="env__pwd_8c.html#a90aa40452a5af9eec0b7f887cee48b94">env_pwd.c</a>
+</li>
+<li>ft_create_str_arr()
+: <a class="el" href="parser__utils_8c.html#a6c9170323e7e07b2a55880c27341fc96">parser_utils.c</a>
 </li>
 <li>ft_create_tok()
 : <a class="el" href="lexer__tok_8c.html#a3d4589c2e9018842b50a7fa65fc71208">lexer_tok.c</a>
@@ -200,9 +221,6 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 </li>
 <li>ft_expand_var()
 : <a class="el" href="expand__var_8c.html#a00e347769d014163f29c4d1ca7c3a9c9">expand_var.c</a>
-</li>
-<li>ft_free_lst()
-: <a class="el" href="lexer__list_8c.html#a36d52ea1e6097b923db73664e5da6032">lexer_list.c</a>
 </li>
 <li>ft_free_tok()
 : <a class="el" href="lexer__tok__utils_8c.html#a8e343c99002752d806050e3a0b9c23ee">lexer_tok_utils.c</a>
@@ -265,9 +283,6 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>ft_increment_shlvl()
 : <a class="el" href="env__shlvl_8c.html#a066e1f3688d1861f796118a8acd584c0">env_shlvl.c</a>
 </li>
-<li>ft_init_lexer()
-: <a class="el" href="lexer__list_8c.html#a02108e3f5116f87165715562e1450555">lexer_list.c</a>
-</li>
 <li>ft_init_partition()
 : <a class="el" href="lexer__tok_8c.html#a7d04e31225aa019b12684e6deda365fa">lexer_tok.c</a>
 </li>
@@ -283,14 +298,17 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>ft_last()
 : <a class="el" href="lexer__utils_8c.html#a1f3f746b4cc76d1cb870e96e534194ec">lexer_utils.c</a>
 </li>
-<li>ft_lex_input()
-: <a class="el" href="lexer__list_8c.html#a7b50257e0bf7fd24ebdcd7f079fa90d8">lexer_list.c</a>
+<li>ft_last_cmd()
+: <a class="el" href="parser__utils_8c.html#a080dddc8f44ae0c428a00f22b1397a9e">parser_utils.c</a>
 </li>
-<li>ft_new_node()
-: <a class="el" href="lexer__list_8c.html#ae39d2d38d4fd3a442ce489acc1d742b4">lexer_list.c</a>
+<li>ft_lock_and_load_cmd()
+: <a class="el" href="parser_8c.html#adffc203ae5ea22399eefa1b3e11cc1b3">parser.c</a>
 </li>
 <li>ft_next_char()
 : <a class="el" href="lexer__src_8c.html#a3151462151b37c9a72f166296840fe5e">lexer_src.c</a>
+</li>
+<li>ft_parser()
+: <a class="el" href="parser_8c.html#a3b3a3511d07169beb9d38bb2db1f401d">parser.c</a>
 </li>
 <li>ft_partition()
 : <a class="el" href="lexer__tok_8c.html#ab2350d638595dca0ab50e098994f7cb4">lexer_tok.c</a>
@@ -299,8 +317,8 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 : <a class="el" href="lexer__src_8c.html#a241f7b0e2c92574564b96addf86295d8">lexer_src.c</a>
 </li>
 <li>ft_prompt_create()
-: <a class="el" href="minishell_8h.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">minishell.h</a>
-, <a class="el" href="prompt_8c.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">prompt.c</a>
+: <a class="el" href="prompt_8c.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">prompt.c</a>
+, <a class="el" href="minishell_8h.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">minishell.h</a>
 </li>
 <li>ft_replace_empty()
 : <a class="el" href="prompt__replace__small_8c.html#a4c49b7aaef5bca6dde15c294733417fe">prompt_replace_small.c</a>
@@ -328,6 +346,18 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 </li>
 <li>ft_replace_w()
 : <a class="el" href="prompt__replace__w_8c.html#a81c5b97f38064cc6ff1446072c45fe42">prompt_replace_w.c</a>
+</li>
+<li>ft_save_arg()
+: <a class="el" href="parser__fill__cmd_8c.html#aaae5b21f08e29f974ae77be60e89cbaf">parser_fill_cmd.c</a>
+</li>
+<li>ft_save_heredoc()
+: <a class="el" href="parser__fill__cmd_8c.html#a436b3fd1c22f313c78cd839df882ac70">parser_fill_cmd.c</a>
+</li>
+<li>ft_save_infile()
+: <a class="el" href="parser__fill__cmd_8c.html#a1e7c0533b68aeed2bba8b95fb4e54a74">parser_fill_cmd.c</a>
+</li>
+<li>ft_save_outfile()
+: <a class="el" href="parser__fill__cmd_8c.html#a5c5fcc2204494ac1451850d0553a3c31">parser_fill_cmd.c</a>
 </li>
 <li>ft_search_token()
 : <a class="el" href="prompt_8c.html#a1606c53415a04f230ee2ab2eaf046bd5">prompt.c</a>

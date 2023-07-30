@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('mod__handle__input_8h_source.html','')
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*   By: sqiu &lt;sqiu@student.42vienna.com&gt;           +#+  +:+       +#+        */</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">/*                                                +#+#+#+#+#+   +#+           */</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">/*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/07/21 17:51:29 by sqiu             ###   ########.fr       */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/07/28 18:06:43 by sqiu             ###   ########.fr       */</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/*                                                                            */</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* ************************************************************************** */</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
@@ -115,50 +115,67 @@ $(document).ready(function(){initNavTree('mod__handle__input_8h_source.html','')
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">/* ====== Structs ====== */</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="structs__tkn__list.html">   32</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structs__tkn__list.html">s_tkn_list</a></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">char</span>                *content;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">struct </span><a class="code" href="structs__tkn__list.html">s_tkn_list</a>   *prev;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">struct </span><a class="code" href="structs__tkn__list.html">s_tkn_list</a>   *next;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}   <a class="code" href="structs__tkn__list.html">t_tkn_list</a>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structs__cmd.html">   53</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structs__cmd.html">s_cmd</a></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">char</span>            *exe;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">char</span>            **args;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">int</span>             fd_in;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">int</span>             fd_out;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">char</span>            *delim;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">bool</span>            append;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">int</span>             index;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">struct </span><a class="code" href="structs__cmd.html">s_cmd</a>    *next;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}   <a class="code" href="structs__cmd.html">t_cmd</a>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">/* ====== Functions ====== */</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">// syntax</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_check_syntax(<span class="keyword">const</span> <span class="keywordtype">char</span> *input);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">// lexer</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="lexer__list_8c.html#a7b50257e0bf7fd24ebdcd7f079fa90d8">ft_lex_input</a>(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> **lst_head, <span class="keywordtype">char</span> *input);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keywordtype">void</span>    <a class="code" href="lexer__list_8c.html#a36d52ea1e6097b923db73664e5da6032">ft_free_lst</a>(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> **lst);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">//expand</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_expand_tkn_lst(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> *list, <a class="code" href="structs__data.html">t_data</a> *data);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="expand_8c.html#a7353b3c94f80fe5c8e7637229adaedf8">ft_expand_expr</a>(<span class="keywordtype">char</span> **expr, <a class="code" href="structs__hashtable.html">t_hashtable</a> *symtab, <a class="code" href="structs__info.html">t_info</a> *info);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> e_type</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    ARG,</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    INFILE,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    HEREDOC,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    OUTFILE,</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    APPEND,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    PIPE,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    NEWLINE</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}   t_type;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structs__tkn__list.html">   54</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structs__tkn__list.html">s_tkn_list</a></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">char</span>                *content;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    t_type              type;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">struct </span><a class="code" href="structs__tkn__list.html">s_tkn_list</a>   *prev;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">struct </span><a class="code" href="structs__tkn__list.html">s_tkn_list</a>   *next;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}   <a class="code" href="structs__tkn__list.html">t_tkn_list</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="structs__cmd.html">   76</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structs__cmd.html">s_cmd</a></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">char</span>            **args;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">int</span>             arg_pos;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">int</span>             fd_in;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">int</span>             fd_out;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">char</span>            **delims;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">int</span>             delim_pos;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">bool</span>            append;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">bool</span>            infile;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">bool</span>            outfile;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">int</span>             index;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">struct </span><a class="code" href="structs__cmd.html">s_cmd</a>    *next;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}   <a class="code" href="structs__cmd.html">t_cmd</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">/* ====== Functions ====== */</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">// syntax</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_check_syntax(<span class="keyword">const</span> <span class="keywordtype">char</span> *input);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">// lexer</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_lex_input(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> **lst_head, <span class="keywordtype">char</span> *input);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keywordtype">void</span>    ft_free_lst(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> **lst);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">// expand</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_expand_tkn_lst(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> *list, <a class="code" href="structs__data.html">t_data</a> *data);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="expand_8c.html#a7353b3c94f80fe5c8e7637229adaedf8">ft_expand_expr</a>(<span class="keywordtype">char</span> **expr, <a class="code" href="structs__hashtable.html">t_hashtable</a> *symtab, <a class="code" href="structs__info.html">t_info</a> *info);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">// parser</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="parser_8c.html#a3b3a3511d07169beb9d38bb2db1f401d">ft_parser</a>(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> *lst, <a class="code" href="structs__cmd.html">t_cmd</a> **cmd);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aexpand_8c_html_a7353b3c94f80fe5c8e7637229adaedf8"><div class="ttname"><a href="expand_8c.html#a7353b3c94f80fe5c8e7637229adaedf8">ft_expand_expr</a></div><div class="ttdeci">t_err ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info)</div><div class="ttdoc">Expand expressions received from token list.</div><div class="ttdef"><b>Definition:</b> expand.c:124</div></div>
-<div class="ttc" id="alexer__list_8c_html_a36d52ea1e6097b923db73664e5da6032"><div class="ttname"><a href="lexer__list_8c.html#a36d52ea1e6097b923db73664e5da6032">ft_free_lst</a></div><div class="ttdeci">void ft_free_lst(t_tkn_list **lst)</div><div class="ttdoc">Iterate through token list and free all nodes.</div><div class="ttdef"><b>Definition:</b> lexer_list.c:92</div></div>
-<div class="ttc" id="alexer__list_8c_html_a7b50257e0bf7fd24ebdcd7f079fa90d8"><div class="ttname"><a href="lexer__list_8c.html#a7b50257e0bf7fd24ebdcd7f079fa90d8">ft_lex_input</a></div><div class="ttdeci">t_err ft_lex_input(t_tkn_list **lst_head, char *input)</div><div class="ttdoc">Create a list of token.</div><div class="ttdef"><b>Definition:</b> lexer_list.c:30</div></div>
 <div class="ttc" id="aminishell__error_8h_html"><div class="ttname"><a href="minishell__error_8h.html">minishell_error.h</a></div><div class="ttdoc">Header to store error codes.</div></div>
 <div class="ttc" id="aminishell__error_8h_html_ab40f6b0320b416162d7f6d5eed804232"><div class="ttname"><a href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a></div><div class="ttdeci">enum e_error t_err</div><div class="ttdoc">Enum, which contains all error codes.</div></div>
-<div class="ttc" id="astructs__cmd_html"><div class="ttname"><a href="structs__cmd.html">s_cmd</a></div><div class="ttdoc">Linked list of simple commands existing of token extracted from input.</div><div class="ttdef"><b>Definition:</b> mod_handle_input.h:54</div></div>
+<div class="ttc" id="aparser_8c_html_a3b3a3511d07169beb9d38bb2db1f401d"><div class="ttname"><a href="parser_8c.html#a3b3a3511d07169beb9d38bb2db1f401d">ft_parser</a></div><div class="ttdeci">t_err ft_parser(t_tkn_list *lst, t_cmd **cmd_head)</div><div class="ttdoc">Driver function to parse token list.</div><div class="ttdef"><b>Definition:</b> parser.c:29</div></div>
+<div class="ttc" id="astructs__cmd_html"><div class="ttname"><a href="structs__cmd.html">s_cmd</a></div><div class="ttdoc">Linked list of simple commands existing of token extracted from input.</div><div class="ttdef"><b>Definition:</b> mod_handle_input.h:77</div></div>
 <div class="ttc" id="astructs__data_html"><div class="ttname"><a href="structs__data.html">s_data</a></div><div class="ttdoc">Overarching struct to hold all necessarry data.</div><div class="ttdef"><b>Definition:</b> minishell_struct.h:53</div></div>
 <div class="ttc" id="astructs__hashtable_html"><div class="ttname"><a href="structs__hashtable.html">s_hashtable</a></div><div class="ttdoc">Hashtable with external chaining.</div><div class="ttdef"><b>Definition:</b> hashtable.h:74</div></div>
 <div class="ttc" id="astructs__info_html"><div class="ttname"><a href="structs__info.html">s_info</a></div><div class="ttdef"><b>Definition:</b> minishell_struct.h:36</div></div>
-<div class="ttc" id="astructs__tkn__list_html"><div class="ttname"><a href="structs__tkn__list.html">s_tkn_list</a></div><div class="ttdoc">List of token.</div><div class="ttdef"><b>Definition:</b> mod_handle_input.h:33</div></div>
+<div class="ttc" id="astructs__tkn__list_html"><div class="ttname"><a href="structs__tkn__list.html">s_tkn_list</a></div><div class="ttdoc">List of token.</div><div class="ttdef"><b>Definition:</b> mod_handle_input.h:55</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

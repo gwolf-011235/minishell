@@ -109,10 +109,39 @@ Functions</h2></td></tr>
 <tr class="memitem:a1f3f746b4cc76d1cb870e96e534194ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structs__tkn__list.html">t_tkn_list</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__utils_8c.html#a1f3f746b4cc76d1cb870e96e534194ec">ft_last</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> *lst)</td></tr>
 <tr class="memdesc:a1f3f746b4cc76d1cb870e96e534194ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterate to last node of given list.  <a href="lexer__utils_8c.html#a1f3f746b4cc76d1cb870e96e534194ec">More...</a><br /></td></tr>
 <tr class="separator:a1f3f746b4cc76d1cb870e96e534194ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac54bac510056809b9ec67c2a43c1c6a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__utils_8c.html#ac54bac510056809b9ec67c2a43c1c6a3">ft_assign_type</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> *lst)</td></tr>
+<tr class="memdesc:ac54bac510056809b9ec67c2a43c1c6a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns type to tokens.  <a href="lexer__utils_8c.html#ac54bac510056809b9ec67c2a43c1c6a3">More...</a><br /></td></tr>
+<tr class="separator:ac54bac510056809b9ec67c2a43c1c6a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains helper functions to create the token list. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="ac54bac510056809b9ec67c2a43c1c6a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac54bac510056809b9ec67c2a43c1c6a3">&#9670;&nbsp;</a></span>ft_assign_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ft_assign_type </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structs__tkn__list.html">t_tkn_list</a> *&#160;</td>
+          <td class="paramname"><em>lst</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Assigns type to tokens. </p>
+<p>Order of checks is significant, otherwise the double redirects would never be detected, e.g. &lt; before &lt;&lt; would always result into INFILE. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lst</td><td>List of tokens. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ae0c88035464da76fc04497d46480968c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae0c88035464da76fc04497d46480968c">&#9670;&nbsp;</a></span>ft_del_node()</h2>
 

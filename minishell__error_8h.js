@@ -16,6 +16,8 @@ var minishell__error_8h =
       [ "ERR_WRONG_TOKEN", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aacdc7b9755d24bf9caf955c7a9ecab48", null ],
       [ "ERR_SYNTAX", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aeed16f7745959d523aed6190f839dea8", null ],
       [ "ERR_NOT_FOUND", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a3cfe3eff41c31f8283d57f835269a958", null ],
-      [ "ERR_NOEXPAND", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a3da755970fe3ecf3630c15029f5b0517", null ]
+      [ "ERR_NOEXPAND", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a3da755970fe3ecf3630c15029f5b0517", null ],
+      [ "ERR_BAD_FD", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a240d5e7db94dfe5927cbe79cf35aa580", null ],
+      [ "ERR_CLOSE", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a15e26636fe4beda2e309e7bfae4bf96f", null ]
     ] ]
 ];
