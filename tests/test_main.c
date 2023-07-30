@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/28 16:25:38 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/30 15:00:35 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	main(void)
 	//test_expand();
 	//test_lexer();
 	//test_expand_list();
+	test_parser();
 	test_builtin_echo();
 	//test_builtin_cd();
 	//test_builtin_pwd();

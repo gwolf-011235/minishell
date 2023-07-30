@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 15:39:36 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/30 14:58:55 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "mod_env.h"
 # include "mod_expand.h"
 # include "mod_handle_input.h"
-# include "mod_lexer.h"
 # include "mod_prompt.h"
 # include "mod_syntax.h"
 # include "mod_builtin.h"
@@ -44,6 +43,7 @@ void	test_check_syntax(void);
 void	test_env_envp(void);
 void	test_expand(void);
 void	test_expand_list(void);
+void	test_parser(void);
 void	test_builtin_echo(void);
 void	test_builtin_cd(void);
 void	test_builtin_pwd(void);

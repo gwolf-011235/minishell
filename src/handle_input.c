@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:16:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/22 19:59:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/30 14:59:26 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ t_err	ft_handle_input(char *input, t_data *data)
 	if (err != SUCCESS)
 		return (err);
 	ft_free_lst(&lst);
-	//err = ft_executor(cmd);
+	/* err = ft_executor(cmd);
 	if (err != SUCCESS)
-		return (err);
+		return (err); */
 	return (SUCCESS);
 }

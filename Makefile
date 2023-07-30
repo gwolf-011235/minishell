@@ -52,7 +52,7 @@ SRC :=	main.c \
 		prompt_replace_small.c \
 		prompt_replace_w.c \
 		lexer_utils.c \
-		lexer_list.c \
+		lexer.c \
 		lexer_src.c \
 		lexer_tok.c \
 		lexer_tok_utils.c \
@@ -62,6 +62,9 @@ SRC :=	main.c \
 		expand_var.c \
 		handle_input_expand.c \
 		handle_input.c \
+		parser.c \
+		parser_utils.c \
+		parser_fill_cmd.c \
 		builtin_utils.c \
 		builtin_error.c \
 		builtin_echo.c \
@@ -90,6 +93,7 @@ TEST_SRC := test_main.c \
 			test_env_envp.c \
 			test_expand_expr.c \
 			test_list_expand.c \
+			test_parser.c \
 			test_builtin_echo.c \
 			test_builtin_cd.c \
 			test_builtin_pwd.c \
@@ -198,7 +202,7 @@ valgr:
 	@valgrind --leak-check=full\
 			--show-leak-kinds=all\
 			--trace-children=no\
-			--track-fds=no\
+			--track-fds=yes\
 			--log-file=valgrind-out.txt\
 			./test
 	@less ./valgrind-out.txt
