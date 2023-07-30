@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/29 13:37:30 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/30 18:59:15 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,8 @@ t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim)
  * @param count_delim 	Amount of delimiters.
  * @return t_err 		ERR_MALLOC, SUCCESS
  */
-t_err	ft_create_str_arr(t_cmd **new, int count_arg, int count_delim)
+t_err	ft_create_str_arr(t_cmd *tmp, int count_arg, int count_delim)
 {
-	t_cmd	*tmp;
-
-	tmp = malloc(sizeof(t_cmd));
-	if (!tmp)
-		return (ERR_MALLOC);
 	if (count_arg)
 	{
 		tmp->args = malloc(sizeof(char *) * (count_arg + 1));
@@ -107,6 +102,5 @@ t_err	ft_create_str_arr(t_cmd **new, int count_arg, int count_delim)
 	}
 	else
 		tmp->delims = NULL;
-	*new = tmp;
 	return (SUCCESS);
 }
