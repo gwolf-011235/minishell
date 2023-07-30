@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:01:08 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:11:00 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/07/30 14:11:15 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,27 @@ t_err	ft_expand_tkn_lst(t_tkn_list *list, t_data *data)
 		}
 	}
 	return (SUCCESS);
+}
+
+t_err	ft_expand_tkn_lst_new(t_tkn_list *list, t_data *data)
+{
+	t_err	err;
+	t_type	type;
+
+	while (list)
+	{
+		type = list->type;
+		if (type == PIPE || type == NEWLINE)
+		{
+			list = list->next;
+			continue ;
+		}
+		if (type == REDIRECT_IN || type == REDIRECT_OUT || type == APPEND
+			|| type == HEREDOC)
+			list = list->next;
+		err = ft_expand_token(list, data->env_table, type);
+		if (err != SUCCESS)
+			return (err);
+		list = list->next;
+	}
 }
