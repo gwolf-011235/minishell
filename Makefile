@@ -39,7 +39,6 @@ SRC :=	main.c \
 		utils_string.c \
 		hashtable_generate.c \
 		hashtable_utils.c \
-		hashtable_utils2.c \
 		exit_failure.c \
 		env_setup.c \
 		env_pwd.c \
@@ -64,7 +63,16 @@ SRC :=	main.c \
 		handle_input.c \
 		parser.c \
 		parser_utils.c \
-		parser_fill_cmd.c
+		parser_fill_cmd.c \
+		builtin_utils.c \
+		builtin_error.c \
+		builtin_echo.c \
+		builtin_cd.c \
+		builtin_pwd.c \
+		builtin_export.c \
+		builtin_unset.c \
+		builtin_env.c \
+		builtin_exit.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # Objects
@@ -84,7 +92,14 @@ TEST_SRC := test_main.c \
 			test_env_envp.c \
 			test_expand_expr.c \
 			test_list_expand.c \
-			test_parser.c
+			test_parser.c \
+			test_builtin_echo.c \
+			test_builtin_cd.c \
+			test_builtin_pwd.c \
+			test_builtin_export.c \
+			test_builtin_unset.c \
+			test_builtin_env.c \
+			test_builtin_exit.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 TEST_OBJ := $(TEST_SRC:.c=.o)
 TEST_OBJS := $(addprefix $(TEST_DIR)/, $(TEST_OBJ))
