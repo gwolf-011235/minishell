@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:16:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/31 10:43:28 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/31 11:07:45 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_err	ft_handle_input(char *input, t_data *data)
 {
 	t_tkn_list	*lst;
 	t_err		err;
-	//t_cmd		*cmd;
+	t_cmd		*cmd;
 
 	lst = NULL;
 	err = ft_check_syntax(input);
@@ -33,7 +33,7 @@ t_err	ft_handle_input(char *input, t_data *data)
 	err = ft_expand_tkn_lst(lst, data);
 	if (err != SUCCESS)
 		return (err);
-	//err = ft_parser(lst, &cmd);
+	err = ft_parser(lst, &cmd);
 	if (err != SUCCESS)
 		return (err);
 	ft_free_lst(&lst);
