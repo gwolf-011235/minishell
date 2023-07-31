@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:40:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/29 13:28:41 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/31 12:42:17 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	ft_assign_type(t_tkn_list *lst)
 		else if (ft_strncmp(lst->content, "|", 1) == 0)
 			lst->type = PIPE;
 		else if (ft_strncmp(lst->content, "\n", 1) == 0)
-			lst->type = NEWLINE;
+			lst->type = NWL;
 		else
 			lst->type = ARG;
 		lst = lst->next;

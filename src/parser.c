@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/30 18:58:48 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/31 12:41:08 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,15 +100,7 @@ t_err	ft_create_cmd(t_cmd **new, t_tkn_list *lst)
 	err = ft_create_str_arr(tmp, count_arg, count_delim);
 	if (err != SUCCESS)
 		return (err);
-	tmp->arg_pos = 0;
-	tmp->delim_pos = 0;
-	tmp->append = 0;
-	tmp->fd_in = -1;
-	tmp->fd_out = -1;
-	tmp->infile = 0;
-	tmp->outfile = 0;
-	tmp->index = -1;
-	tmp->next = NULL;
+	ft_init_cmd(tmp);
 	*new = tmp;
 	return (SUCCESS);
 }
@@ -139,7 +131,7 @@ t_err	ft_categorise(t_tkn_list **lst, t_cmd *new, bool *cmd_complete)
 		err = ft_save_outfile(&tmp, new, 1);
 	else if (tmp->type == PIPE)
 		*cmd_complete = 1;
-	else if (tmp->type == NEWLINE)
+	else if (tmp->type == NWL)
 		return (SUCCESS);
 	else if (tmp->type == ARG)
 		err = ft_save_arg(tmp, new);

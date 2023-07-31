@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/28 18:06:43 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/31 12:40:42 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef enum e_type
 	OUTFILE,
 	APPEND,
 	PIPE,
-	NEWLINE
+	NWL
 }	t_type;
 
 /**
@@ -85,6 +85,7 @@ typedef struct s_cmd
 	bool			infile;
 	bool			outfile;
 	int				index;
+	int				cmd_num;
 	struct s_cmd	*next;
 }	t_cmd;
 
