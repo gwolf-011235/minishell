@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/31 12:39:45 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/31 13:18:39 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int	main(void)
 	//test_expand();
 	//test_lexer();
 	//test_expand_list();
-	test_parser();
+	//test_parser();
+	test_executor();
 	//test_builtin_echo();
 	//test_builtin_cd();
 	//test_builtin_pwd();
