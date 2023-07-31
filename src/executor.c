@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/31 12:39:22 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/31 13:15:07 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,20 @@ t_err	ft_executor(t_cmd *cmd)
 
 void	ft_init_exec(t_cmd *cmd)
 {
-	cmd->cmd_num = 0;
+	int		count;
+	t_cmd	*tmp;
+
+	count = -1;
+	tmp = cmd;
+	while (tmp)
+	{
+		count++;
+		tmp->index = count;
+		tmp = tmp->next;
+	}
+	while (cmd)
+	{
+		cmd->cmd_num = count + 1;
+		cmd = cmd->next;
+	}
 }
