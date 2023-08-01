@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 15:05:15 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/23 15:31:47 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ extern t_hashtable	*g_symtab;
 extern t_info		g_info;
 extern int			g_err_count;
 
-int	test_wrapper(char *testname, char *test, char *expect)
+static int	test_wrapper(char *testname, char *test, char *expect)
 {
 	int	ret;
 

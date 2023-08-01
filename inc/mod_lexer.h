@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:38 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 15:34:48 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/28 18:12:57 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ t_tkn_list	*ft_last(t_tkn_list *lst);
 void		ft_del_node(t_tkn_list *lst);
 t_err		ft_skip_space(t_src *src);
 void		*ft_realloc(void *ptr, size_t new_size, size_t curr_size);
+void		ft_assign_type(t_tkn_list *lst);
 
 #endif

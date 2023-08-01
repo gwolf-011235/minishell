@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:40:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 14:37:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/29 13:28:41 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,34 @@ t_tkn_list	*ft_last(t_tkn_list *lst)
 		last = last -> next;
 	}
 	return (0);
+}
+
+/**
+ * @brief 	Assigns type to tokens.
+ * 
+ * Order of checks is significant, otherwise
+ * the double redirects would never be detected, e.g.
+ * < before << would always result into INFILE.
+ * @param lst List of tokens.
+ */
+void	ft_assign_type(t_tkn_list *lst)
+{
+	while (lst)
+	{
+		if (ft_strncmp(lst->content, "<<", 2) == 0)
+			lst->type = HEREDOC;
+		else if (ft_strncmp(lst->content, "<", 1) == 0)
+			lst->type = INFILE;
+		else if (ft_strncmp(lst->content, ">>", 2) == 0)
+			lst->type = APPEND;
+		else if (ft_strncmp(lst->content, ">", 1) == 0)
+			lst->type = OUTFILE;
+		else if (ft_strncmp(lst->content, "|", 1) == 0)
+			lst->type = PIPE;
+		else if (ft_strncmp(lst->content, "\n", 1) == 0)
+			lst->type = NEWLINE;
+		else
+			lst->type = ARG;
+		lst = lst->next;
+	}
 }

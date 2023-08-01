@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hashtable_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:17:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:37:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/28 17:55:29 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,12 @@
  *
  * It uses the hashfunction of the passed hashtable to create the hash.
  * With % size the hash is made to fit the hashtable as index.
- * Static since no where else planned to use.
  * @param ht Used hashtable
  * @param key String to check the hash for
  * @param keylen Length of the given string
  * @return size_t Index of the given string
  */
-static size_t	ft_hashtable_index(
-	t_hashtable *ht, const char *key, size_t keylen)
+size_t	ft_hashtable_index(t_hashtable *ht, const char *key, size_t keylen)
 {
 	size_t	result;
 
@@ -146,36 +144,27 @@ t_err	ft_hashtable_delete(
 }
 
 /**
- * @brief Print out all elements.
+ * @brief Swap an env_string in hashtable
  *
- * Prints a starting string. Then prints all elements it finds at each index.
- * If more than one element is at a given index they get separated by newline.
- * Can be adapted to just print env_vars.
- * @param ht Hashtable to print.
+ * Search for key of given string, if not found return.
+ * Free the old env_str.
+ * Set the passed string and adjust value.
+ * @param ht Hashtable where to insert.
+ * @param string Env_string which should be inserted
+ * @param keylen Length of the key.
+ * @return t_err ERR_EMPTY, ERR_HT_NO_SWAP, SUCCESS
  */
-void	ft_hashtable_print(t_hashtable *ht)
+t_err	ft_hashtable_swap(t_hashtable *ht, char *string, size_t keylen)
 {
-	uint32_t	i;
-	t_env_var	*tmp;
+	t_env_var	*env_var;
 
-	printf("Start Table\n");
-	i = 0;
-	while (i < ht->size)
-	{
-		if (ht->elements[i] == NULL)
-			printf("%i\n---\n", i);
-		else
-		{
-			printf("%i\n", i);
-			tmp = ht->elements[i];
-			while (tmp != NULL)
-			{
-				printf("->\t%s\n", tmp->env_string);
-				tmp = tmp->next;
-			}
-		}
-		i++;
-	}
-	printf("Number of elements: %d\n", ht->num_elements);
-	printf("End Table\n");
+	if (!ht || !string || !keylen)
+		return (ERR_EMPTY);
+	env_var = ft_hashtable_lookup(ht, string, keylen);
+	if (!env_var)
+		return (ERR_HT_NO_SWAP);
+	free(env_var->env_string);
+	env_var->env_string = string;
+	env_var->value = string + keylen + 1;
+	return (SUCCESS);
 }
