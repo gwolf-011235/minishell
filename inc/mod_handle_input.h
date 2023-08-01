@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/31 13:21:12 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/01 17:18:35 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_cmd
 	int				arg_pos;
 	int				fd_in;
 	int				fd_out;
+	int				fd_pipe[2];
 	char			**delims;
 	int				delim_pos;
 	bool			append;
