@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 07:49:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/03 07:59:09 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/03 09:03:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_err	ft_eat_char(char *input, size_t pos)
  * @param pos Current position
  * @return t_err SUCCESS
  */
-t_err	ft_handle_single_quote(t_track *input)
+t_err	ft_rm_single_quote(t_track *input)
 {
 	ft_eat_char(input->str, input->pos);
 	while (input->str[input->pos] != '\'')
@@ -64,7 +64,7 @@ t_err	ft_handle_single_quote(t_track *input)
  * @param in_double_quotes Pointer to change switch.
  * @return t_err SUCCESS.
  */
-t_err	ft_handle_double_quote(t_track *input, bool *in_double_quotes)
+t_err	ft_rm_double_quote(t_track *input, bool *in_double_quotes)
 {
 	ft_eat_char(input->str, input->pos);
 	*in_double_quotes = !(*in_double_quotes);
@@ -81,9 +81,9 @@ t_err	ft_quote_removal(t_track input)
 	while (input.str[input.pos])
 	{
 		if (input.str[input.pos] == '\'' && !in_double_quotes)
-			err = ft_handle_single_quote(&input);
+			err = ft_rm_single_quote(&input);
 		else if (input.str[input.pos] == '"')
-			err = ft_handle_double_quote(&input, &in_double_quotes);
+			err = ft_rm_double_quote(&input, &in_double_quotes);
 		else
 			input.pos++;
 		if (err != SUCCESS)
