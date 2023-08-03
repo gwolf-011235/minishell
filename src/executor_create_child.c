@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/31 14:23:59 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/04 00:00:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 /* This function distinguishes between the position of the command needing
 to be executed and creates the pertinent child. */
 
-void	create_child(t_meta *meta, char **envp)
+void	ft_create_child(t_cmd *cmd, char **envp)
 {
-	if (meta->i == 0)
-		raise_first(meta, envp);
-	else if (meta->i == meta->cmd_num - 1)
-		raise_last(meta, envp);
+	if (cmd->index == 0)
+		ft_raise_first(cmd, envp);
+	else if (cmd->index == cmd->cmd_num - 1)
+		ft_raise_last(cmd, envp);
 	else
-		raise_middle(meta, envp);
+		ft_raise_middle(cmd, envp);
 }
 
 /* This function creates a child by forking and calls the pertinent
@@ -36,7 +36,7 @@ for the child to finish (flag WNOHANG set), but retrieves its pid when
 its done. The parent closes the fd which are duplicated and used by the child.
 */
 
-void	raise_first(t_meta *meta, char **envp)
+void	ft_raise_first(t_cmd *cmd, char **envp)
 {
 	meta->cmds[meta->i].pid = fork();
 	if (meta->cmds[meta->i].pid < 0)
@@ -61,7 +61,7 @@ the child has finished.
 The parent closes the fd which are duplicated and used by the child. 
 */
 
-void	raise_last(t_meta *meta, char **envp)
+void	ft_raise_last(t_cmd *cmd, char **envp)
 {
 	meta->cmds[meta->i].pid = fork();
 	if (meta->cmds[meta->i].pid < 0)
@@ -84,7 +84,7 @@ for the child to finish (flag WNOHANG set), but retrieves its pid when
 its done. The parent closes the fd which are duplicated and used by the child.
 */
 
-void	raise_middle(t_meta *meta, char **envp)
+void	ft_raise_middle(t_cmd *cmd, char **envp)
 {
 	meta->cmds[meta->i].pid = fork();
 	if (meta->cmds[meta->i].pid < 0)
