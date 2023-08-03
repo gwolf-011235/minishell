@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:08:27 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/03 09:18:03 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_err	ft_get_var_replace(t_str token, t_hashtable *symtab, t_str *replace)
  * Calc the token.len:
  * As first char after $ only underscore and alphabetic are allowed.
  * After that underscore and alphanumeric are allowed.
+ * In case of token.len 0: if a quote follows after $, $ is removed.
+ * Else $ is skipped.
  *
  * @param input String.
  * @param pos Current position.
@@ -60,7 +62,7 @@ t_err	ft_get_var_token(t_track *input, t_str *token, bool quotes)
 {
 	token->ptr = input->str + input->pos + 1;
 	token->len = 0;
-	if (token->ptr[token->len] == '_' || ft_isalnum(token->ptr[token->len]))
+	if (token->ptr[token->len] == '_' || ft_isalpha(token->ptr[token->len]))
 	{
 		token->len++;
 		while (token->ptr[token->len] == '_' || ft_isalnum(token->ptr[token->len]))
