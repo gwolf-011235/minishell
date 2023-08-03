@@ -6,7 +6,7 @@
 #    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/07/31 13:27:31 by sqiu             ###   ########.fr        #
+#    Updated: 2023/08/01 18:03:47 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,7 +102,11 @@ SRC :=	utils_memory.c \
 		builtin_unset.c \
 		builtin_env.c \
 		builtin_exit.c \
-		executor.c
+		executor.c \
+		executor_create_child.c \
+		executor_child.c \
+		executor_cleanup.c \
+		executor_utils.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # ******************************

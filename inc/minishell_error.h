@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_error.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/30 15:03:56 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/01 18:06:50 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ typedef enum e_error {
 	ERR_CHDIR_FAIL, ///< function chdir() failed.
 	ERR_INVALID_NAME, ///< Not a valid env name.
 	ERR_NONUM, ///< The string doesn't represent a number.
-	ERR_EXIT ///< ft_exit() failed because of too many args.
+	ERR_EXIT, ///< ft_exit() failed because of too many args.
+	ERR_PIPE, ///< Piping failed.
+	ERR_UNKNOWN_CMD /// Command not found.
 }	t_err;
 
 

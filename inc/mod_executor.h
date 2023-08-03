@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/31 12:38:54 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/01 18:04:07 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 
 /* ====== Functions ====== */
 
-void	ft_init_exec(t_cmd *cmd);
+void	ft_init_exec(t_cmd *cmd, char **envp);
+
+// utils
+char	*ft_get_path(char *cmd, char **cmd_paths);
 
 #endif
