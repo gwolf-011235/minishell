@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 07:49:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/03 09:03:27 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/03 14:57:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_err	ft_eat_char(char *input, size_t pos)
 }
 
 /**
- * @brief Handle single quotes.
+ * @brief Remove single quotes.
  *
  * Remove found single quote with ft_eat_char().
  * Jump over quoted part, searching for the second single.
@@ -52,7 +52,7 @@ t_err	ft_rm_single_quote(t_track *input)
 }
 
 /**
- * @brief Handle double quotes.
+ * @brief Remove double quotes.
  *
  * Remove found double quote with ft_eat_char().
  * Switch bool in_quotes on/off.
