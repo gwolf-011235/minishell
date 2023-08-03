@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/03 15:02:56 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/03 15:46:18 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "hashtable.h"
 # include "minishell_struct.h"
 # include "minishell_utils.h"
+# include "mod_handle_input.h"
 
 /**
  * @brief String struct.
@@ -59,6 +60,10 @@ t_err	ft_expand_var(t_track *input, t_hashtable *symtab, bool quotes);
 t_err	ft_eat_char(char *input, size_t pos);
 t_err	ft_rm_single_quote(t_track *input);
 t_err	ft_rm_double_quote(t_track *input, bool *in_double_quotes);
+t_err	ft_quote_removal(t_track input);
 
+//expand_handler.c
+t_err	ft_handle_heredoc(t_tkn_list **list);
+t_err	ft_handle_redirect(t_tkn_list **list, t_hashtable *symtab);
 
 #endif
