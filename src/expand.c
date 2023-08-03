@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:08:37 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/03 07:51:40 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,65 +45,6 @@ t_err	ft_insert_replace(t_track *input, t_str token, t_str replace)
 	ft_strcat(new_str, (old_str + cur_pos));
 	free(old_str);
 	input->str = new_str;
-	return (SUCCESS);
-}
-
-/**
- * @brief Remove single char from string. Doesn't realloc.
- *
- * @param input String.
- * @param pos Current position.
- * @return t_err SUCCESS
- */
-t_err	ft_eat_char(char *input, size_t pos)
-{
-	char	*str1;
-	char	*str2;
-
-	str1 = input + pos;
-	str2 = str1 + 1;
-	while (*str1)
-		*str1++ = *str2++;
-	return (SUCCESS);
-}
-
-/**
- * @brief Handle single quotes.
- *
- * Remove found single quote with ft_eat_char().
- * Jump over quoted part, searching for the second single.
- * Remove the second single quote.
- *
- * @param expr String
- * @param pos Current position
- * @return t_err SUCCESS
- */
-t_err	ft_handle_single_quote(t_track *input)
-{
-	ft_eat_char(input->str, input->pos);
-	while (input->str[input->pos] != '\'')
-		input->pos++;
-	ft_eat_char(input->str, input->pos);
-	return (SUCCESS);
-}
-
-/**
- * @brief Handle double quotes.
- *
- * Remove found double quote with ft_eat_char().
- * Switch bool in_quotes on/off.
- * This way we know if we are in double quotes or not.
- * The next time we see a double quote the switch gets flipped again.
- *
- * @param expr String.
- * @param pos Current position.
- * @param in_double_quotes Pointer to change switch.
- * @return t_err SUCCESS.
- */
-t_err	ft_handle_double_quote(t_track *input, bool *in_double_quotes)
-{
-	ft_eat_char(input->str, input->pos);
-	*in_double_quotes = !(*in_double_quotes);
 	return (SUCCESS);
 }
 

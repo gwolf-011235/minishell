@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:22:17 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/03 07:52:31 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,11 @@ t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab);
 
 //expand_var.c
 t_err	ft_expand_var(t_track *input, t_hashtable *symtab, t_info *info, bool quotes);
+
+//expand_quote_removal.c
+t_err	ft_eat_char(char *input, size_t pos);
+t_err	ft_handle_single_quote(t_track *input);
+t_err	ft_handle_double_quote(t_track *input, bool *in_double_quotes);
+
 
 #endif

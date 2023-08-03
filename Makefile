@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
+#    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/07/31 10:41:31 by sqiu             ###   ########.fr        #
+#    Updated: 2023/08/03 08:00:13 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@ SRC :=	utils_memory.c \
 		expand.c \
 		expand_tilde.c \
 		expand_var.c \
+		expand_quote_removal.c \
 		handle_input_expand.c \
 		handle_input.c \
 		parser.c \
