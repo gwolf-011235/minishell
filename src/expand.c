@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/03 14:59:42 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/03 15:47:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,35 @@ t_err	ft_expand_expr(char **expr, t_hashtable *symtab)
 			return (err);
 	}
 	*expr = input.str;
+	return (SUCCESS);
+}
+
+
+t_err	ft_expander(t_track input, t_hashtable *symtab, bool *exec)
+{
+	bool	in_double_quotes;
+	t_err	err;
+
+	in_double_quotes = false;
+	err = ERR_NOEXPAND;
+	while (input.str[input.pos])
+	{
+		if (input.str[input.pos] == '\'' && !in_double_quotes)
+			ft_skip_single_quote(&input);
+		else if (input.str[input.pos] == '"')
+			ft_skip_double_quote(&input, &in_double_quotes);
+		else if (input.str[input.pos] == '~' && !in_double_quotes)
+			err = ft_expand_tilde(&input, symtab);
+		else if (input.str[input.pos] == '$')
+		{
+			err = ft_expand_var(&input, symtab, in_double_quotes);
+			if (err == SUCCESS)
+				*exec = true;
+		}
+		else
+			input.pos++;
+		if (err != SUCCESS && err != ERR_NOEXPAND)
+			return (err);
+	}
 	return (SUCCESS);
 }
