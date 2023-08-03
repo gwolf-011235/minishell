@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:01:08 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/03 15:06:36 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/03 15:45:39 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,8 @@
  * @param data Overarching struct.
  * @return t_err SUCCESS, ERR_MALLOC.
  */
+
 t_err	ft_expand_tkn_lst(t_tkn_list *list, t_data *data)
-{
-	t_err	err;
-
-	while (list)
-	{
-		if (!ft_strncmp(list->content, "<<", ft_strlen(list->content)))
-			list = list->next->next;
-		else
-		{
-			err = ft_expand_expr(&list->content, data->env_table);
-			if (err != SUCCESS)
-				return (err);
-			list = list->next;
-		}
-	}
-	return (SUCCESS);
-}
-
-/*
-t_err	ft_expand_tkn_lst_new(t_tkn_list *list, t_data *data)
 {
 	t_err	err;
 	t_type	type;
@@ -55,14 +36,15 @@ t_err	ft_expand_tkn_lst_new(t_tkn_list *list, t_data *data)
 			list = list->next;
 			continue ;
 		}
-		if (type == INFILE || type == OUTFILE || type == APPEND
-			|| type == HEREDOC)
-			list = list->next;
-		//err = ft_expand_token(list, data->env_table, type);
+		if (type == HEREDOC)
+			err = ft_handle_heredoc(&list);
+		if (type == INFILE || type == OUTFILE || type == APPEND)
+			err = ft_handle_redirect(&list, data->env_table);
+		else
+			err = ft_handle_arg(&list, data->env_table);
 		if (err != SUCCESS)
 			return (err);
 		list = list->next;
 	}
 	return (SUCCESS);
 }
-*/
