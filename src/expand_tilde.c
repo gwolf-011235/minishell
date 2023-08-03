@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:08:20 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/03 09:04:11 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab)
 {
 	t_str	token;
 	t_str	replace;
-	t_err		err;
+	t_err	err;
 
 	if (input->pos != 0 && input->str[input->pos - 1] != '=')
 		return (ERR_NOEXPAND);
