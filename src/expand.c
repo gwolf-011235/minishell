@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/03 09:28:56 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/03 14:59:42 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ t_err	ft_skip_double_quote(t_track *input, bool *in_double_quotes)
  * @param info Data for return code and shell name.
  * @return t_err SUCCESS, ERR_MALLOC
  */
-t_err	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info)
+t_err	ft_expand_expr(char **expr, t_hashtable *symtab)
 {
 	t_track	input;
 	bool	in_double_quotes;
@@ -121,7 +121,7 @@ t_err	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info)
 		else if (input.str[input.pos] == '~' && !in_double_quotes)
 			err = ft_expand_tilde(&input, symtab);
 		else if (input.str[input.pos] == '$')
-			err = ft_expand_var(&input, symtab, info, in_double_quotes);
+			err = ft_expand_var(&input, symtab, in_double_quotes);
 		else
 			input.pos++;
 		if (err != SUCCESS && err != ERR_NOEXPAND)

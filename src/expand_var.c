@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/03 09:18:03 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/03 15:03:25 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ t_err	ft_get_var_token(t_track *input, t_str *token, bool quotes)
  * @param info Struct containing ret_code and shell_name
  * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_err	ft_special_var(char c, t_str *replace, t_str *token, t_info *info)
+/*
+t_err	ft_special_var(char c, t_str *replace, t_str *token)
 {
 	token->len = 1;
 	if (c == '0')
@@ -100,6 +101,7 @@ t_err	ft_special_var(char c, t_str *replace, t_str *token, t_info *info)
 	replace->len = ft_strlen(replace->ptr);
 	return (SUCCESS);
 }
+*/
 
 /**
  * @brief Expand an environment variable in string.
@@ -116,14 +118,14 @@ t_err	ft_special_var(char c, t_str *replace, t_str *token, t_info *info)
  * @param info Struct containing ret_code and shell_name.
  * @return t_err SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
  */
-t_err	ft_expand_var(t_track *input, t_hashtable *symtab, t_info *info, bool quotes)
+t_err	ft_expand_var(t_track *input, t_hashtable *symtab, bool quotes)
 {
 	t_str	token;
 	t_str	replace;
 	t_err	err;
 
 	if (input->str[input->pos + 1] == '0' || input->str[input->pos + 1] == '?')
-		err = ft_special_var(input->str[input->pos + 1], &replace, &token, info);
+		err = SUCCESS; //err = ft_special_var(input->str[input->pos + 1], &replace, &token, info);
 	else
 	{
 		err = ft_get_var_token(input, &token, quotes);

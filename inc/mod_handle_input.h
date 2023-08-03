@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_handle_input.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/28 18:06:43 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/03 15:02:38 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 /**
  * @brief Enum of different types that can be assigned to tokens
- * 
+ *
  * @param ARG		Any string that is not connected to redirects, piping or newlines.
  * @param INFILE	Redirect evoking an infile.
  * @param HEREDOC	Redirect evoking a heredoc.
@@ -99,7 +99,7 @@ void	ft_free_lst(t_tkn_list **lst);
 
 // expand
 t_err	ft_expand_tkn_lst(t_tkn_list *list, t_data *data);
-t_err	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info);
+t_err	ft_expand_expr(char **expr, t_hashtable *symtab);
 
 // parser
 t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd);
