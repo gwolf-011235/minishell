@@ -6,13 +6,13 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:51:22 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/04 19:18:08 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/04 19:30:19 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mod_expand.h"
 
-t_err	ft_quote_skipper(const char *quote_start, size_t *i, char target)
+t_err	ft_quote_skip(const char *quote_start, size_t *i, char target)
 {
 	char	*quote_end;
 
@@ -29,7 +29,7 @@ t_err	ft_count_expand_words(char *str, size_t *words)
 	while (str[i])
 	{
 		if (str[i] == '"' || str[i] == '\'')
-			ft_quote_skipper(&str[i], &i, str[i]);
+			ft_quote_skip(&str[i], &i, str[i]);
 		if (str[i] == ' ' && str[i + 1] != ' ' && str[i + 1] != '\0')
 			(*words)++;
 		if (str[i] != ' ' && i == 0)
@@ -75,7 +75,7 @@ t_err	ft_better_tokenise(t_src *src, t_tok *token, t_buf *buf)
 
 	if (!src || !src->buf || !src->buf_size)
 		return (ERR_EMPTY);
-	err = ft_partition_two(src, &buf);
+	err = ft_partition_two(src, buf);
 	if (buf->cur_pos >= buf->size)
 		buf->cur_pos--;
 	buf->str[buf->cur_pos] = '\0';
@@ -107,7 +107,7 @@ t_err	ft_insert_new_node(t_tkn_list **lst_head, char *content)
 	return (SUCCESS);
 }
 
-t_err	ft_split_nodes(t_tkn_list **lst_head, size_t words)
+t_err	ft_split_nodes(t_tkn_list **lst_head)
 {
 	t_src	src;
 	t_err	err;
@@ -129,6 +129,7 @@ t_err	ft_split_nodes(t_tkn_list **lst_head, size_t words)
 		}
 		err = ft_better_tokenise(&src, &token, &buf);
 	}
+	free(buf.str);
 	return (SUCCESS);
 }
 
@@ -162,7 +163,6 @@ t_err	ft_update_ptr(t_tkn_list **list, size_t words)
 t_err	ft_field_split(t_tkn_list **list)
 {
 	size_t	words;
-	char	**split;
 	t_err	err;
 
 	words = 0;
@@ -171,7 +171,7 @@ t_err	ft_field_split(t_tkn_list **list)
 		return (SUCCESS);
 	else if (words == 0)
 		ft_lst_del_inside(list);
-	err = ft_split_nodes(list, words);
+	err = ft_split_nodes(list);
 	if (err != SUCCESS)
 		return (err);
 	ft_update_ptr(list, words);
