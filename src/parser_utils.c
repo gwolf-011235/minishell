@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/01 17:20:42 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/04 14:04:14 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,6 @@ void	ft_init_cmd(t_cmd *tmp)
 	tmp->outfile = 0;
 	tmp->index = -1;
 	tmp->cmd_num = 0;
+	tmp->heredoc = NULL;
 	tmp->next = NULL;
 }
