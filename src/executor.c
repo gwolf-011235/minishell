@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/04 10:50:26 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/04 14:10:38 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,26 @@ void	ft_init_exec(t_cmd *cmd)
  */
 t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths)
 {
-	int	i;
+	int		i;
+	t_err	err;
 
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
+		err = ft_check_cmd_access(cmd->args, paths);
+		if (err == ERR_MALLOC)
+			return (err);
+		if (err == ERR_UNKNOWN_CMD)
+			//print cmd + : command not found
+			// close pipe
+		if (err == SUCCESS) 
+			ft_create_child(cmd, envp);
+		err = ft_handle_heredoc(cmd);
 		if (cmd->index < cmd->cmd_num - 1)
 			if (pipe(cmd->fd_pipe) < 0)
 				return (ERR_PIPE); //no_senor(meta, ERR_PIPE);
-		if (ft_check_builtin(cmd->args))
+		/* if (ft_check_builtin(cmd->args))
 			return (ft_execute_builtin(cmd));
-		cmd->args[0] = ft_prefix_path(cmd->args[0], paths);
-		if (!cmd->args[0])
-			return (ERR_UNKNOWN_CMD);
-		ft_create_child(cmd, envp);
+		 */
 		i = -1;
 		while (cmd->args[++i])
 			free(cmd->args[i]);
