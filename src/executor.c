@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/03 23:55:26 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/04 10:50:26 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ t_err	ft_executor(t_cmd *cmd, char **envp)
 	t_err	err;
 	char	**paths;
 
+	paths = NULL;
 	ft_init_exec(cmd);
-	paths = ft_get_path(envp);
+	err = ft_get_path(envp, &paths);
+	if (err == ERR_MALLOC)
+		return (err);
 	err = ft_execute_cmds(cmd, envp, paths);
 	return (SUCCESS);
 }

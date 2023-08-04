@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/03 23:57:55 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/04 10:49:06 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths);
 
 // utils
 char	*ft_prefix_path(char *cmd, char **cmd_paths);
-char	**ft_get_path(char **envp);
+t_err	ft_get_path(char **envp, char ***paths);
 
 #endif
