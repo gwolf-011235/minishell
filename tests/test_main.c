@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/31 13:18:39 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/04 12:05:26 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(void)
 	//test_lexer();
 	//test_expand_list();
 	//test_parser();
-	test_executor();
+	//test_executor();
 	//test_builtin_echo();
 	//test_builtin_cd();
 	//test_builtin_pwd();
@@ -64,5 +64,13 @@ int	main(void)
 	//test_builtin_unset();
 	//test_builtin_env();
 	//test_builtin_exit();
+	if (access("minishell", F_OK | X_OK) == 0)
+		printf("yja\n");
+	else
+		printf("njet\n");
+	if (access("./minishell", F_OK | X_OK) == 0)
+		printf("\n./: yja\n");
+	else
+		printf("./: njet\n");
 	return (0);
 }
