@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/03 15:46:18 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/04 19:28:10 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include "minishell_struct.h"
 # include "minishell_utils.h"
 # include "mod_handle_input.h"
+# include "mod_lexer.h"
+
+# define BUF_SIZE 2048
 
 /**
  * @brief String struct.
@@ -45,6 +48,7 @@ typedef struct s_str_navi {
 }	t_track;
 
 //expander.c
+t_err	ft_expander(t_track input, t_hashtable *symtab, bool *exec);
 t_err	ft_expand_expr(char **expr, t_hashtable *symtab);
 t_err	ft_insert_replace(t_track *input, t_str token, t_str replace);
 t_err	ft_skip_single_quote(t_track *input);
@@ -65,5 +69,9 @@ t_err	ft_quote_removal(t_track input);
 //expand_handler.c
 t_err	ft_handle_heredoc(t_tkn_list **list);
 t_err	ft_handle_redirect(t_tkn_list **list, t_hashtable *symtab);
+t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab);
+
+//expand_field_split.c
+t_err	ft_field_split(t_tkn_list **list);
 
 #endif
