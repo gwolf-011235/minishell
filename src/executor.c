@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/04 14:10:38 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/04 20:36:25 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@
 #include "mod_executor.h"
 
 /**
- * @brief 
+ * @brief Driver function to execute list of cmds.
  * 
- * @param cmd 
- * @param envp 
- * @return t_err 
+ * Index the list of cmds.
+ * Get PATH from envp and save it into paths.
+ * If no path is found (ERR_NOPATH), try to execute
+ * cmd nonetheless in the current directory.
+ * @param cmd 		List of cmds.
+ * @param envp 		String array with env variables.
+ * @return t_err 	ERR_MALLOC, SUCCESS
  */
 t_err	ft_executor(t_cmd *cmd, char **envp)
 {
@@ -35,13 +39,15 @@ t_err	ft_executor(t_cmd *cmd, char **envp)
 	if (err == ERR_MALLOC)
 		return (err);
 	err = ft_execute_cmds(cmd, envp, paths);
+	// clean t_cmd list?
 	return (SUCCESS);
 }
 
 /**
- * @brief 
+ * @brief Initialise executor by indexing.
  * 
- * @param cmd 
+ * Second run assigns total number of cmds.
+ * @param cmd 		List of cmds.
  */
 void	ft_init_exec(t_cmd *cmd)
 {
