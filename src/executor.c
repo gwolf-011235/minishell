@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/04 20:36:25 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/04 21:06:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,21 +88,25 @@ t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths)
 
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
-		err = ft_check_cmd_access(cmd->args, paths);
-		if (err == ERR_MALLOC)
-			return (err);
-		if (err == ERR_UNKNOWN_CMD)
-			//print cmd + : command not found
-			// close pipe
-		if (err == SUCCESS) 
-			ft_create_child(cmd, envp);
-		err = ft_handle_heredoc(cmd);
 		if (cmd->index < cmd->cmd_num - 1)
 			if (pipe(cmd->fd_pipe) < 0)
 				return (ERR_PIPE); //no_senor(meta, ERR_PIPE);
 		/* if (ft_check_builtin(cmd->args))
 			return (ft_execute_builtin(cmd));
 		 */
+		err = ft_check_cmd_access(cmd->args, paths);
+		if (err == ERR_MALLOC)
+			return (err);
+		else if (err == ERR_UNKNOWN_CMD)
+		{
+			//print cmd + : command not found
+			// close pipe
+		}
+		else if (err == SUCCESS)
+		{
+			err = ft_handle_heredoc(cmd);
+			ft_create_child(cmd, envp);
+		}
 		i = -1;
 		while (cmd->args[++i])
 			free(cmd->args[i]);
