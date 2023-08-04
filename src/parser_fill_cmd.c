@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/01 12:05:30 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/04 13:10:36 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,11 @@ t_err	ft_save_heredoc(t_tkn_list **lst, t_cmd *new)
 	if (!new->delims)
 		return (SUCCESS);
 	if (new->fd_in > -1)
+	{
 		if (close(new->fd_in) < 0)
 			return (ERR_CLOSE);
+		new->fd_in = -1;
+	}
 	new->delims[new->delim_pos] = ft_strdup(tmp->content);
 	if (!new->delims[new->delim_pos])
 		return (ERR_MALLOC);
