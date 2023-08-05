@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 11:27:25 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 20:26:04 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "minishell_struct.h"
 # include "libft.h"
 # include <fcntl.h>			        /* required for opening files */
+# include <sys/wait.h>				/* required for wait calls */
 
 /* ====== Structs ====== */
 
@@ -89,6 +90,7 @@ typedef struct s_cmd
 	bool			outfile;
 	int				index;
 	int				cmd_num;
+	pid_t			pid;
 	struct s_cmd	*next;
 }	t_cmd;
 

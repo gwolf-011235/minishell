@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/04 00:00:40 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 20:26:53 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,18 @@ its done. The parent closes the fd which are duplicated and used by the child.
 
 void	ft_raise_first(t_cmd *cmd, char **envp)
 {
-	meta->cmds[meta->i].pid = fork();
-	if (meta->cmds[meta->i].pid < 0)
-		no_senor(meta, ERR_FORK);
-	else if (meta->cmds[meta->i].pid == 0)
-		firstborn(meta, envp);
-	if (waitpid(meta->cmds[meta->i].pid, NULL, WNOHANG) < 0)
-		mamma_mia(meta, ERR_FIRST);
-	if (meta->fd_in > 0 && close(meta->fd_in) < 0)
-		mamma_mia(meta, ERR_CLOSE);
-	meta->fd_in = -1;
-	if (close(meta->cmds[meta->i].fd[1]) < 0)
-		mamma_mia(meta, ERR_CLOSE);
-	meta->cmds[meta->i].fd[1] = -1;
+	cmd->pid = fork();
+	if (cmd->pid < 0)
+	{
+		ft_plug_pipe(cmd, 0);
+		return (ERR_FORK);
+	}
+	else if (cmd->pid == 0)
+		ft_firstborn(cmd, envp);
+	if (waitpid(cmd->pid, NULL, WNOHANG) < 0)
+		return (ERR_FIRST);
+	ft_plug_pipe(cmd, 0);
+	cmd->fd_pipe[1] = -1;
 }
 
 /* This function creates a child by forking and calls the pertinent

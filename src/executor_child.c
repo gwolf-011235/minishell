@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 12:37:20 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 20:20:02 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ command in the chain.
 
 Afterwards these are closed as well and the command is being executed. */
 
-void	firstborn(t_meta *meta, char **envp)
+void	ft_firstborn(t_meta *meta, char **envp)
 {
 	ft_close(meta->fd_out);
 	ft_close(meta->cmds[meta->i].fd[0]);
@@ -61,7 +61,7 @@ void	lastborn(t_meta *meta, char **envp)
 	ft_close(meta->fd_in);
 	j = -1;
 	while (++j < meta->i - 1)
-		plug_pipes(meta, j);
+		ft_plug_pipe(meta, j);
 	ft_close(meta->cmds[meta->i - 1].fd[1]);
 	replace_fd(meta->cmds[meta->i - 1].fd[0], meta->fd_out);
 	ft_close(meta->fd_out);
@@ -95,7 +95,7 @@ void	middle_child(t_meta *meta, char **envp)
 	ft_close(meta->fd_out);
 	j = -1;
 	while (++j < meta->i - 1)
-		plug_pipes(meta, j);
+		ft_plug_pipe(meta, j);
 	ft_close(meta->cmds[meta->i - 1].fd[1]);
 	ft_close(meta->cmds[meta->i].fd[0]);
 	replace_fd(meta->cmds[meta->i - 1].fd[0], meta->cmds[meta->i].fd[1]);
