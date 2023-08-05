@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:51:22 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 08:15:08 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 16:32:58by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ t_err	ft_count_expand_words(char *str, size_t *words)
 	return (SUCCESS);
 }
 
-void	ft_lst_insert(t_tkn_list *cur, t_tkn_list *new)
+void	ft_lst_after_insert(t_tkn_list *cur, t_tkn_list *new)
 {
-	new->prev = cur->prev;
-	if (cur->prev)
-		cur->prev->next = new;
-	new->next = cur;
-	cur->prev = new;
+	new->next = cur->next;
+	if (cur->next)
+		cur->next->prev = new;
+	cur->next = new;
+	new->prev = cur;
 }
 
 t_err	ft_partition_two(t_src *src, t_buf *buf)
@@ -103,7 +103,9 @@ t_err	ft_insert_new_node(t_tkn_list **lst_head, char *content)
 		return (ERR_MALLOC);
 	new->content = content;
 	new->next = NULL;
-	ft_lst_insert(*lst_head, new);
+	new->prev = NULL;
+	ft_lst_after_insert(*lst_head, new);
+	(*lst_head) = (*lst_head)->next;
 	return (SUCCESS);
 }
 
@@ -143,30 +145,26 @@ t_err	ft_lst_del_inside(t_tkn_list **lst_head)
 	return (SUCCESS);
 }
 
-t_err	ft_update_ptr(t_tkn_list **list, size_t words)
+t_err	ft_update_ptr(t_tkn_list **list, size_t *words)
 {
-	t_tkn_list	*tmp;
 	size_t		i;
 
-	tmp = *list;
 	i = 0;
-	while (i++ < words)
+	while (i++ < *words)
 		(*list) = (*list)->prev;
-	ft_lst_del_inside(&tmp);
+	ft_lst_del_inside(list);
 	return (SUCCESS);
 }
 
-t_err	ft_field_split(t_tkn_list **list)
+t_err	ft_field_split(t_tkn_list **list, size_t *words)
 {
-	size_t	words;
 	t_err	err;
 	t_buf	buf;
 
-	words = 0;
-	ft_count_expand_words((*list)->content, &words);
-	if (words == 1)
+	ft_count_expand_words((*list)->content, words);
+	if (*words == 1)
 		return (SUCCESS);
-	else if (words == 0)
+	else if (*words == 0)
 		ft_lst_del_inside(list);
 	err = ft_init_buf(&buf);
 	if (err != SUCCESS)
