@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 11:32:44 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 12:28:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,14 @@ void	test_expand_var(void)
 	g_err_count += test_wrapper("simple var expansion", "$TEST", "'I am test'");
 	g_err_count += test_wrapper("double var", "$TEST$TEST", "'I am test''I am test'");
 	g_err_count += test_wrapper("empty var", "$NO_VAR", "");
-	g_err_count += test_wrapper("starting with number", "$1", "");
+	g_err_count += test_wrapper("starting with number", "$1", "$1");
 	g_err_count += test_wrapper("no alnum at start", "$§", "$§");
-	g_err_count += test_wrapper("double quoted string after $", "$\"TEST\"", "TEST");
-	g_err_count += test_wrapper("double quoted $", "\"$\"TEST", "$TEST");
-	g_err_count += test_wrapper("double quoted var name", "\"$TEST\"ING", "'I am test'ING");
-	g_err_count += test_wrapper("single quoted string after $", "$'TEST'", "TEST");
-	g_err_count += test_wrapper("single quoted $", "'$'TEST", "$TEST");
-	g_err_count += test_wrapper("single quoted var name", "'$TEST'ING", "$TESTING");
+	g_err_count += test_wrapper("double quoted string after $", "$\"TEST\"", "\"TEST\"");
+	g_err_count += test_wrapper("double quoted $", "\"$\"TEST", "\"$\"TEST");
+	g_err_count += test_wrapper("double quoted var name", "\"$TEST\"ING", "\"'I am test'\"ING");
+	g_err_count += test_wrapper("single quoted string after $", "$'TEST'", "'TEST'");
+	g_err_count += test_wrapper("single quoted $", "'$'TEST", "'$'TEST");
+	g_err_count += test_wrapper("single quoted var name", "'$TEST'ING", "'$TEST'ING");
 
 	g_err_count += test_wrapper("special var $?", "$?", "125");
 }
@@ -100,8 +100,8 @@ void	test_expand_expander(void)
 	printf(YELLOW"*******TEST_EXPAND*******\n\n"RESET);
 	g_err_count = 0;
 	g_symtab = ft_hashtable_create(1, ft_hash_fnv1);
-	test_expand_tilde();
-	//test_expand_var();
+	//test_expand_tilde();
+	test_expand_var();
 	//test_expand_quotes();
 	//test_expand_combi();
 	if (g_err_count > 0)
