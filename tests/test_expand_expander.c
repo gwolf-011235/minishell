@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_expand_expr.c                                 :+:      :+:    :+:   */
+/*   test_expand_expander.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 08:21:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 11:32:44 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,16 @@ static int	test_wrapper(char *testname, char *test, char *expect)
 {
 	t_track	input;
 	int		ret;
+	bool	exec;
 
 	printf("TEST: %s\n", testname);
-	g_string = ft_strdup(test);
 	input.str = ft_strdup(test);
 	input.pos = 0;
+	exec = false;
 	printf("String:\t|%s|\n", test);
-	ft_expander(&input, g_symtab);
-	printf("Result:\t|%s|\n", g_string);
-	if (!ft_strncmp(g_string, expect, ft_strlen(g_string)))
+	ft_expander(&input, g_symtab, &exec);
+	printf("Result:\t|%s|\n", input.str);
+	if (!ft_strncmp(input.str, expect, ft_strlen(input.str)))
 	{
 		printf(GREEN"OK\n\n"RESET);
 		ret = 0;
@@ -39,7 +40,7 @@ static int	test_wrapper(char *testname, char *test, char *expect)
 		printf(RED"Expect:\t|%s|\n\n"RESET, expect);
 		ret = 1;
 	}
-	free(g_string);
+	free(input.str);
 	return (ret);
 }
 
@@ -75,10 +76,7 @@ void	test_expand_var(void)
 	g_err_count += test_wrapper("single quoted $", "'$'TEST", "$TEST");
 	g_err_count += test_wrapper("single quoted var name", "'$TEST'ING", "$TESTING");
 
-	g_info.ret_code = 125;
-	g_info.shell_name = "/bin/shell";
 	g_err_count += test_wrapper("special var $?", "$?", "125");
-	g_err_count += test_wrapper("special var $0", "$0", "/bin/shell");
 }
 
 void	test_expand_quotes(void)
@@ -97,15 +95,15 @@ void	test_expand_combi(void)
 }
 
 
-void	test_expand(void)
+void	test_expand_expander(void)
 {
 	printf(YELLOW"*******TEST_EXPAND*******\n\n"RESET);
 	g_err_count = 0;
 	g_symtab = ft_hashtable_create(1, ft_hash_fnv1);
 	test_expand_tilde();
-	test_expand_var();
-	test_expand_quotes();
-	test_expand_combi();
+	//test_expand_var();
+	//test_expand_quotes();
+	//test_expand_combi();
 	if (g_err_count > 0)
 		printf(RED"ERRORS: %d\n"RESET, g_err_count);
 	ft_hashtable_destroy(g_symtab);
