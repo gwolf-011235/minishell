@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_src.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 15:27:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 14:37:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 18:39:38 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 
 /**
  * @brief Retrieves next character in source string.
- * 
+ *
  * Source structure contains input string and information on its length
  * and the current position looked at.
  * @param src Source structure.
  * @param c Character looked at.
- * @return t_err SUCCESS, ERR_EMPTY
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_EOF
  */
 t_err	ft_next_char(t_src *src, char *c)
 {
@@ -43,7 +43,7 @@ t_err	ft_next_char(t_src *src, char *c)
 
 /**
  * @brief Go back to previous character of source string.
- * 
+ *
  * @param src Source structure.
  * @return t_err ERR_OUT_OF_BOUNDS, SUCCESS
  */
@@ -56,8 +56,8 @@ t_err	ft_unget_char(t_src *src)
 }
 
 /**
- * @brief Peek at next character.  
- * 
+ * @brief Peek at next character.
+ *
  * Look at next character in source input string w/o
  * actually changing the current position.
  * @param src Source structure.
