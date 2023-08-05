@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:40:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/29 13:28:41 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 08:16:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 /**
  * @brief Skip all spaces and tabs in source string.
- * 
+ *
  * @param src 		Struct containing source string.
  * @return t_err	ERR_EMPTY, ERR_EOF, SUCCESS
  */
@@ -42,7 +42,7 @@ t_err	ft_skip_space(t_src *src)
 
 /**
  * @brief Delete the content and the node itself.
- * 
+ *
  * @param lst List containing the nodes to be deleted.
  * @param del Pointer to function to delete content of nodes.
  */
@@ -56,7 +56,7 @@ void	ft_del_node(t_tkn_list *lst)
 
 /**
  * @brief Iterate to last node of given list.
- * 
+ *
  * Returns 0 if list is empty.
  * @param lst 			List to be iterated through.
  * @return t_tkn_list* 	Last node of list.
@@ -77,7 +77,7 @@ t_tkn_list	*ft_last(t_tkn_list *lst)
 
 /**
  * @brief 	Assigns type to tokens.
- * 
+ *
  * Order of checks is significant, otherwise
  * the double redirects would never be detected, e.g.
  * < before << would always result into INFILE.
@@ -98,7 +98,7 @@ void	ft_assign_type(t_tkn_list *lst)
 		else if (ft_strncmp(lst->content, "|", 1) == 0)
 			lst->type = PIPE;
 		else if (ft_strncmp(lst->content, "\n", 1) == 0)
-			lst->type = NEWLINE;
+			lst->type = NEW_LINE;
 		else
 			lst->type = ARG;
 		lst = lst->next;

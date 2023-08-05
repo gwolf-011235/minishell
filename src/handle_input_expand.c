@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:01:08 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/04 19:21:55 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 08:16:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_err	ft_expand_tkn_lst(t_tkn_list *list, t_data *data)
 	while (list)
 	{
 		type = list->type;
-		if (type == PIPE || type == NEWLINE)
+		if (type == PIPE || type == NEW_LINE)
 		{
 			list = list->next;
 			continue ;

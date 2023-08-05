@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/30 18:59:15 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 08:16:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 /**
  * @brief Iterate to last node of given list.
- * 
+ *
  * Returns 0 if list is empty.
  * @param cmd_head 		List of cmd-structures
- * @return t_cmd* 
+ * @return t_cmd*
  */
 t_cmd	*ft_last_cmd(t_cmd *cmd_head)
 {
@@ -40,7 +40,7 @@ t_cmd	*ft_last_cmd(t_cmd *cmd_head)
 
 /**
  * @brief Counts the amount of arguments and, if given delimiters.
- * 
+ *
  * Arguments include the executable.
  * @param lst 			List of tokens.
  * @param count_arg 	Argument counter.
@@ -64,7 +64,7 @@ t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim)
 			lst = lst->next;
 		else if (lst->type == APPEND)
 			lst = lst->next;
-		else if (lst->type == NEWLINE)
+		else if (lst->type == NEW_LINE)
 			;
 		else if (lst->type == ARG)
 			(*count_arg)++;
@@ -76,7 +76,7 @@ t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim)
 /**
  * @brief Reserve memory space for cmd struct and in case
  * for argument and/or delimiter string arrays.
- * 
+ *
  * @param new 			New cmd struct to be created.
  * @param count_arg 	Amount of arguments.
  * @param count_delim 	Amount of delimiters.
