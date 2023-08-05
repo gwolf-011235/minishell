@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 17:57:21 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 20:06:02 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ t_err	ft_initiate_heredoc(int index, char *name, int *fd);
 t_err	ft_heredoc_fate(t_cmd *cmd, char *name, int fd, int curr_delim);
 
 // cleanup
+void	ft_cleanup_cmd(t_cmd *cmd);
 t_err	ft_unlink_heredoc(char *name, t_err err);
 t_err	ft_close(int fd);
+t_err	ft_plug_pipe(t_cmd *cmd, bool close_read_end);
 
 // utils
 t_err	ft_check_cmd_access(char **args, char **cmd_paths);
