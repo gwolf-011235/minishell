@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 13:09:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 14:51:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 15:15:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	exec_ft_handle_redirect(void)
 	head = NULL;
 	ft_new_node(&head, ft_strdup("<"));
 	ft_new_node(&head, ft_strdup("$TEST"));
-	ft_hashtable_insert(g_symtab, ft_strdup("TEST=hi"), 4);
+	ft_hashtable_insert(g_symtab, ft_strdup("TEST=\"Hello      World\""), 4);
 	ft_handle_redirect(&head, g_symtab);
 	printf("This is content: %s\n", head->content);
 	ft_hashtable_delete(g_symtab, "TEST", 4);
