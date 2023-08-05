@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:51:22 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/04 19:30:19 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 08:10:18 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,17 +107,13 @@ t_err	ft_insert_new_node(t_tkn_list **lst_head, char *content)
 	return (SUCCESS);
 }
 
-t_err	ft_split_nodes(t_tkn_list **lst_head)
+t_err	ft_split_nodes(t_tkn_list **lst_head, t_buf *buf)
 {
 	t_src	src;
 	t_err	err;
 	t_tok	token;
-	t_buf	buf;
 
 	ft_init_lexer(&src, (*lst_head)->content);
-	err = ft_init_buf(&buf);
-	if (err != SUCCESS)
-		return (err);
 	err = ft_better_tokenise(&src, &token, &buf);
 	while (err != ERR_EOF || !*lst_head)
 	{
@@ -127,9 +123,9 @@ t_err	ft_split_nodes(t_tkn_list **lst_head)
 			ft_free_tok(&token);
 			return (err);
 		}
+		buf->cur_pos = 0;
 		err = ft_better_tokenise(&src, &token, &buf);
 	}
-	free(buf.str);
 	return (SUCCESS);
 }
 
@@ -164,6 +160,7 @@ t_err	ft_field_split(t_tkn_list **list)
 {
 	size_t	words;
 	t_err	err;
+	t_buf	buf;
 
 	words = 0;
 	ft_count_expand_words((*list)->content, &words);
@@ -171,7 +168,11 @@ t_err	ft_field_split(t_tkn_list **list)
 		return (SUCCESS);
 	else if (words == 0)
 		ft_lst_del_inside(list);
-	err = ft_split_nodes(list);
+	err = ft_init_buf(&buf);
+	if (err != SUCCESS)
+		return (err);
+	err = ft_split_nodes(list, &buf);
+	free(buf.str);
 	if (err != SUCCESS)
 		return (err);
 	ft_update_ptr(list, words);
