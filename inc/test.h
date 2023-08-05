@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 11:33:42 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 13:21:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	test_env_envp(void);
 void	test_expand_expander(void);
 void	test_expand_list(void);
 void	test_expand_field_split(void);
+void	test_expand_handler(void);
 void	test_parser(void);
 void	test_builtin_echo(void);
 void	test_builtin_cd(void);
