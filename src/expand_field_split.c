@@ -12,6 +12,14 @@
 
 #include "mod_expand.h"
 
+/**
+ * @brief Iterate over a quoted part of string.
+ *
+ * @param quote_start Pointer where opening quote was found.
+ * @param i Pointer to current iterator
+ * @param target Either single or double quote.
+ * @return t_err SUCCESS
+ */
 t_err	ft_quote_skip(const char *quote_start, size_t *i, char target)
 {
 	char	*quote_end;
@@ -21,6 +29,17 @@ t_err	ft_quote_skip(const char *quote_start, size_t *i, char target)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Count how many words will be after splitting.
+ *
+ * Iterate over string.
+ * If a quote is found, skip over the quoted part (it won't get split).
+ * If a space preceeds a not space and not a zero temrinator a word is found.
+ * A word is also found if the first char is not a space.
+ * @param str Pointer to string.
+ * @param words Pointer to words variable.
+ * @return t_err SUCCESS
+ */
 t_err	ft_count_expand_words(char *str, size_t *words)
 {
 	size_t	i;
@@ -39,53 +58,17 @@ t_err	ft_count_expand_words(char *str, size_t *words)
 	return (SUCCESS);
 }
 
-t_err	ft_partition_two(t_src *src, t_buf *buf)
-{
-	char	c;
-	t_err	err;
-
-	err = ft_init_partition(src, &c);
-	while (err != ERR_EOF)
-	{
-		if (c == '"' || c == '\'')
-			ft_add_quoted_str(c, src, buf);
-		else if ((c == ' ' || c == '\t') && buf->cur_pos > 0)
-			break ;
-		else
-		{
-			ft_add_to_buf(c, buf);
-		}
-		err = ft_next_char(src, &c);
-	}
-	return (err);
-}
-
-t_err	ft_better_tokenise(t_src *src, t_tok *token, t_buf *buf)
-{
-	t_err	err;
-
-	if (!src || !src->buf || !src->buf_size)
-		return (ERR_EMPTY);
-	err = ft_partition_two(src, buf);
-	if (buf->cur_pos >= buf->size)
-		buf->cur_pos--;
-	buf->str[buf->cur_pos] = '\0';
-	err = ft_create_tok(token, buf->str);
-	return (err);
-}
-
-t_err	ft_init_buf(t_buf *buf)
-{
-	buf->size = BUF_SIZE;
-	buf->str = malloc(buf->size);
-	if (!buf->str)
-		return (ERR_MALLOC);
-	buf->str[0] = '\0';
-	buf->cur_pos = 0;
-	return (SUCCESS);
-}
-
-t_err	ft_split_nodes(t_tkn_list **lst_head, t_buf *buf)
+/**
+ * @brief Split a node into words.
+ *
+ * See also ft_lex_input().
+ * Difference: uses ft_better_tokenize() which receives a buffer.
+ * And ft_new_node_mid() to insert the node inbetween.
+ * @param lst_head Pointer to the current node.
+ * @param buf Pointer to the malloced buffer.
+ * @return t_err SUCCESS, ERR_MALLOC.
+ */
+t_err	ft_split_node(t_tkn_list **lst_head, t_buf *buf)
 {
 	t_src	src;
 	t_err	err;
@@ -107,7 +90,14 @@ t_err	ft_split_nodes(t_tkn_list **lst_head, t_buf *buf)
 	return (SUCCESS);
 }
 
-t_err	ft_update_ptr(t_tkn_list **list, size_t *words)
+/**
+ * @brief Deletes node, which was split and corrects pointer position.
+ *
+ * @param list Pointer to the last inserted word
+ * @param words How many words have been created.
+ * @return t_err SUCCESS
+ */
+t_err	ft_del_old_node(t_tkn_list **list, size_t *words)
 {
 	size_t		i;
 
@@ -118,6 +108,20 @@ t_err	ft_update_ptr(t_tkn_list **list, size_t *words)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Splits an expanded node into several words.
+ *
+ * Count the words with ft_count_expand_words().
+ * If one word return.
+ * If no word delete the node.
+ * If more words:
+ * Setup buffer with ft_init_buf().
+ * Split into several words with ft_split_node().
+ * Del old node and update list pointer with ft_del_old_node().
+ * @param list Pointer pointer to the current node.
+ * @param words Where to save the count.
+ * @return t_err SUCCESS, ERR_MALLOC.
+ */
 t_err	ft_field_split(t_tkn_list **list, size_t *words)
 {
 	t_err	err;
@@ -131,10 +135,10 @@ t_err	ft_field_split(t_tkn_list **list, size_t *words)
 	err = ft_init_buf(&buf);
 	if (err != SUCCESS)
 		return (err);
-	err = ft_split_nodes(list, &buf);
+	err = ft_split_node(list, &buf);
 	free(buf.str);
 	if (err != SUCCESS)
 		return (err);
-	ft_update_ptr(list, words);
+	ft_del_old_node(list, words);
 	return (SUCCESS);
 }
