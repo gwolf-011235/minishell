@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:51:22 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 08:10:18 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 08:15:08 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ t_err	ft_split_nodes(t_tkn_list **lst_head, t_buf *buf)
 	t_tok	token;
 
 	ft_init_lexer(&src, (*lst_head)->content);
-	err = ft_better_tokenise(&src, &token, &buf);
+	err = ft_better_tokenise(&src, &token, buf);
 	while (err != ERR_EOF || !*lst_head)
 	{
 		err = ft_insert_new_node(lst_head, token.str);
@@ -124,7 +124,7 @@ t_err	ft_split_nodes(t_tkn_list **lst_head, t_buf *buf)
 			return (err);
 		}
 		buf->cur_pos = 0;
-		err = ft_better_tokenise(&src, &token, &buf);
+		err = ft_better_tokenise(&src, &token, buf);
 	}
 	return (SUCCESS);
 }
