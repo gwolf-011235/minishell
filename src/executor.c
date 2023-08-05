@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 17:42:09 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 18:36:55 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,22 +95,38 @@ t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths)
 			return (ft_execute_builtin(cmd));
 		 */
 		err = ft_check_cmd_access(cmd->args, paths);
-		if (err == ERR_MALLOC)
+		err = ft_process_cmd(cmd, err, envp);
+		if (err != SUCCESS)
 			return (err);
-		else if (err == ERR_UNKNOWN_CMD)
-		{
-			//print cmd + : command not found
-			// close pipe
-		}
-		else if (err == SUCCESS)
-		{
-			err = ft_handle_heredoc(cmd);
-			if (err != SUCCESS)
-				return (err);
-			ft_create_child(cmd, envp);
-		}
 		ft_free_str_arr(cmd->args);
 		cmd = cmd->next;
 	}
+	return (SUCCESS);
+}
+
+/**
+ * @brief Decide program behaviour depending on err.
+ * 
+ * Output error message if command was not found.
+ * On success, create child process to execute cmd.
+ * @param cmd 		Current cmd being processed.
+ * @param err 		Error code of cmd access check.
+ * @param envp 		Env string array.
+ * @return t_err 	ERR_MALLOC, ERR_CLOSE, SUCCESS
+ */
+t_err	ft_process_cmd(t_cmd *cmd, t_err err, char **envp)
+{
+	if (err == ERR_MALLOC)
+		return (err);
+	else if (err == ERR_UNKNOWN_CMD)
+	{
+		ft_putstr_fd(cmd->args[0], 2);
+		write(2, ": command not found", 19);
+		err = ft_close(cmd->fd_pipe[1]);
+		if (err != SUCCESS)
+			return (err);
+	}
+	else if (err == SUCCESS)
+		ft_create_child(cmd, envp);
 	return (SUCCESS);
 }
