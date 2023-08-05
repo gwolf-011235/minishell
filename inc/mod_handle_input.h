@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 17:16:08 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 20:13:03 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ typedef enum e_type
 	OUTFILE,
 	APPEND,
 	PIPE,
-	NEW_LINE
+	NEW_LINE,
+	AMBIGUOUS
 }	t_type;
 
 /**

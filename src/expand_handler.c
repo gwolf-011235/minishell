@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 15:17:01 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 20:13:19 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ t_err	ft_handle_redirect(t_tkn_list **list, t_hashtable *symtab)
 	input.pos = 0;
 	if (err != SUCCESS)
 		return (err);
-	err = ft_quote_removal(input);
+	if (input.str[input.pos] == '\0')
+		(*list)->prev->type = AMBIGUOUS;
+	else
+		err = ft_quote_removal(input);
 	return (err);
 }
 
