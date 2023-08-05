@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/04 14:03:34 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 11:27:25 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "minishell_error.h"
 # include "minishell_struct.h"
 # include "libft.h"
+# include <fcntl.h>			        /* required for opening files */
 
 /* ====== Structs ====== */
 
@@ -30,7 +31,7 @@
  * @param OUTFILE	Redirect evoking an outfile.
  * @param APPEND	Redirect evoking an outfile in append mode.
  * @param PIPE		Char indicating piping of commands.
- * @param Newline	Char indicating end of a command.
+ * @param NWL		Char indicating end of a command.
  */
 typedef enum e_type
 {
