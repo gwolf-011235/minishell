@@ -6,7 +6,7 @@
 #    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/04 19:23:34 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/04 19:48:40 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,6 +126,7 @@ DEPFILES += $(DEP_DIR)/main.d
 # ******************************
 # *     Test files             *
 # ******************************
+# test_expand_expr.c
 
 TEST_SRC := test_replace_token.c \
 			test_prompt.c \
@@ -133,7 +134,7 @@ TEST_SRC := test_replace_token.c \
 			test_lexer.c \
 			test_check_syntax.c \
 			test_env_envp.c \
-			test_expand_expr.c \
+			test_expand_field_split.c \
 			test_list_expand.c \
 			test_parser.c \
 			test_builtin_echo.c \
