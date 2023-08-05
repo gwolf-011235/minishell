@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 12:37:43 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 20:21:47 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ typedef enum e_error {
 	ERR_EXIT, ///< ft_exit() failed because of too many args.
 	ERR_PIPE, ///< Piping failed.
 	ERR_UNKNOWN_CMD, ///< Command not found.
-	ERR_NOPATH ///< No path found.
+	ERR_NOPATH, ///< No path found.
+	ERR_FORK, ///< Failure to fork.
+	ERR_FIRST ///< First child process encountered error.
 }	t_err;
 
 
