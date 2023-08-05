@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 08:16:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 17:16:08 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,17 +91,30 @@ typedef struct s_cmd
 /* ====== Functions ====== */
 
 // syntax
-t_err	ft_check_syntax(const char *input);
+t_err		ft_check_syntax(const char *input);
 
 // lexer
-t_err	ft_lex_input(t_tkn_list	**lst_head, char *input);
-void	ft_free_lst(t_tkn_list **lst);
+t_err		ft_lex_input(t_tkn_list	**lst_head, char *input);
+void		ft_free_lst(t_tkn_list **lst);
 
 // expand
-t_err	ft_expand_tkn_lst(t_tkn_list *list, t_data *data);
-t_err	ft_expand_expr(char **expr, t_hashtable *symtab);
+t_err		ft_expand_tkn_lst(t_tkn_list *list, t_data *data);
+t_err		ft_expand_expr(char **expr, t_hashtable *symtab);
 
 // parser
-t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd);
+t_err		ft_parser(t_tkn_list *lst, t_cmd **cmd);
+
+//handle_input_tkn_list.c
+t_tkn_list	*ft_last(t_tkn_list *lst);
+t_err		ft_new_node(t_tkn_list	**lst_head, char *content);
+void		ft_add_lst(t_tkn_list **lst, t_tkn_list *new);
+void		ft_add_lst_mid(t_tkn_list *cur, t_tkn_list *new);
+t_err		ft_new_node_mid(t_tkn_list **lst_head, char *content);
+
+//handle_input_tkn_list2.c
+void		ft_del_node(t_tkn_list *lst);
+void		ft_del_node_mid(t_tkn_list **lst_head);
+void		ft_free_lst(t_tkn_list **lst);
+
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_lexer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:38 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/28 18:12:57 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 16:59:43 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 /**
  * @brief Source structure.
- *  
+ *
  * @param buf		Source string.
  * @param buf_size	Length of source string.
  * @param cur_pos	Current position inside source string.
@@ -33,7 +33,7 @@ typedef struct s_src
 {
 	char	*buf;
 	int		buf_size;
-	int		cur_pos;	
+	int		cur_pos;
 }	t_src;
 
 
@@ -53,8 +53,8 @@ typedef struct s_tok
 
 /**
  * @brief Buffer structure.
- * 
- * Contains temporary buffer string which is to be 
+ *
+ * Contains temporary buffer string which is to be
  * saved inside the token.
  * @param str		Buffer string.
  * @param size		Size of malloced buffer memory in Bytes.
@@ -65,7 +65,7 @@ typedef struct s_buf
 {
 	char	*str;
 	int		size;
-	int		cur_pos;	
+	int		cur_pos;
 }	t_buf;
 
 /* ====== Functions ====== */
@@ -90,14 +90,7 @@ t_err		ft_tokenise(t_src *src, t_tok *token);
 t_err		ft_create_tok(t_tok *token, char *s);
 void		ft_free_tok(t_tok *token);
 
-// list handling
-t_err		ft_new_node(t_tkn_list	**lst_head, char *content);
-void		ft_add_lst(t_tkn_list **lst, t_tkn_list *new);
-void		ft_free_lst(t_tkn_list **lst);
-
 // helpers
-t_tkn_list	*ft_last(t_tkn_list *lst);
-void		ft_del_node(t_tkn_list *lst);
 t_err		ft_skip_space(t_src *src);
 void		*ft_realloc(void *ptr, size_t new_size, size_t curr_size);
 void		ft_assign_type(t_tkn_list *lst);

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:40:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 08:16:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 16:51:15 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,41 +38,6 @@ t_err	ft_skip_space(t_src *src)
 		err = ft_peek_char(src, &c);
 	}
 	return (err);
-}
-
-/**
- * @brief Delete the content and the node itself.
- *
- * @param lst List containing the nodes to be deleted.
- * @param del Pointer to function to delete content of nodes.
- */
-void	ft_del_node(t_tkn_list *lst)
-{
-	if (!lst)
-		return ;
-	free(lst -> content);
-	free(lst);
-}
-
-/**
- * @brief Iterate to last node of given list.
- *
- * Returns 0 if list is empty.
- * @param lst 			List to be iterated through.
- * @return t_tkn_list* 	Last node of list.
- */
-t_tkn_list	*ft_last(t_tkn_list *lst)
-{
-	t_tkn_list	*last;
-
-	last = lst;
-	while (last)
-	{
-		if (last -> next == NULL)
-			return (last);
-		last = last -> next;
-	}
-	return (0);
 }
 
 /**

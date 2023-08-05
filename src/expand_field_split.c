@@ -39,15 +39,6 @@ t_err	ft_count_expand_words(char *str, size_t *words)
 	return (SUCCESS);
 }
 
-void	ft_lst_after_insert(t_tkn_list *cur, t_tkn_list *new)
-{
-	new->next = cur->next;
-	if (cur->next)
-		cur->next->prev = new;
-	cur->next = new;
-	new->prev = cur;
-}
-
 t_err	ft_partition_two(t_src *src, t_buf *buf)
 {
 	char	c;
@@ -94,21 +85,6 @@ t_err	ft_init_buf(t_buf *buf)
 	return (SUCCESS);
 }
 
-t_err	ft_insert_new_node(t_tkn_list **lst_head, char *content)
-{
-	t_tkn_list	*new;
-
-	new = malloc(sizeof(*new));
-	if (!new)
-		return (ERR_MALLOC);
-	new->content = content;
-	new->next = NULL;
-	new->prev = NULL;
-	ft_lst_after_insert(*lst_head, new);
-	(*lst_head) = (*lst_head)->next;
-	return (SUCCESS);
-}
-
 t_err	ft_split_nodes(t_tkn_list **lst_head, t_buf *buf)
 {
 	t_src	src;
@@ -119,7 +95,7 @@ t_err	ft_split_nodes(t_tkn_list **lst_head, t_buf *buf)
 	err = ft_better_tokenise(&src, &token, buf);
 	while (err != ERR_EOF || !*lst_head)
 	{
-		err = ft_insert_new_node(lst_head, token.str);
+		err = ft_new_node_mid(lst_head, token.str);
 		if (err != SUCCESS)
 		{
 			ft_free_tok(&token);
@@ -131,20 +107,6 @@ t_err	ft_split_nodes(t_tkn_list **lst_head, t_buf *buf)
 	return (SUCCESS);
 }
 
-t_err	ft_lst_del_inside(t_tkn_list **lst_head)
-{
-	t_tkn_list	*cur;
-
-	cur = *lst_head;
-	*lst_head = cur->next;
-	if (cur->next)
-		cur->next->prev = cur->prev;
-	if (cur->prev)
-		cur->prev->next = cur->next;
-	ft_del_node(cur);
-	return (SUCCESS);
-}
-
 t_err	ft_update_ptr(t_tkn_list **list, size_t *words)
 {
 	size_t		i;
@@ -152,7 +114,7 @@ t_err	ft_update_ptr(t_tkn_list **list, size_t *words)
 	i = 0;
 	while (i++ < *words)
 		(*list) = (*list)->prev;
-	ft_lst_del_inside(list);
+	ft_del_node_mid(list);
 	return (SUCCESS);
 }
 
@@ -165,7 +127,7 @@ t_err	ft_field_split(t_tkn_list **list, size_t *words)
 	if (*words == 1)
 		return (SUCCESS);
 	else if (*words == 0)
-		ft_lst_del_inside(list);
+		ft_del_node_mid(list);
 	err = ft_init_buf(&buf);
 	if (err != SUCCESS)
 		return (err);

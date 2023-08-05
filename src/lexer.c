@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/28 18:02:28 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 16:52:11 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  * @brief Create a list of token.
  *
  * Loops through input, creates token until no more
- * chars are found and returns ERR_EOF which breaks the loop. 
+ * chars are found and returns ERR_EOF which breaks the loop.
  * Creates initial node even if first token ends directly with ERR_EOF.
  * @param lst_head	Head node of token list.
  * @param input 	Input string to be tokenised.
@@ -34,7 +34,7 @@ t_err	ft_lex_input(t_tkn_list	**lst_head, char *input)
 {
 	t_src	src;
 	t_err	err;
-	t_tok	token;	
+	t_tok	token;
 
 	ft_init_lexer(&src, input);
 	err = ft_tokenise(&src, &token);
@@ -65,69 +65,4 @@ void	ft_init_lexer(t_src *src, char *input)
 	src->buf = input;
 	src->buf_size = ft_strlen(input);
 	src->cur_pos = INIT_SRC_POS;
-}
-
-/**
- * @brief Create a new node and add it to the end of the token list.
- *
- * @param lst_head	Head node of token list.
- * @param content	Content string to be written into new node.
- * @return t_err 	ERR_MALLOC, SUCCESS
- */
-t_err	ft_new_node(t_tkn_list	**lst_head, char *content)
-{
-	t_tkn_list	*new;
-
-	new = malloc(sizeof(t_tkn_list));
-	if (!new)
-		return (ERR_MALLOC);
-	new->content = content;
-	new->next = NULL;
-	ft_add_lst(lst_head, new);
-	return (SUCCESS);
-}
-
-/**
- * @brief Iterate through token list and free all nodes.
- *
- * @param lst Token list to be freed.
- */
-void	ft_free_lst(t_tkn_list **lst)
-{
-	t_tkn_list	*tmp;
-
-	if (!lst)
-		return ;
-	while (*lst)
-	{
-		tmp = (*lst)-> next;
-		ft_del_node((*lst));
-		*lst = tmp;
-	}
-	(*lst) = NULL;
-}
-
-/**
- * @brief Go to end of token list and connect given token.
- *
- * If there is a (last) node in the list, connect new token to the end.
- * If the list is yet empty, set new token as head of the list.
- * @param lst Token list.
- * @param new Given token to be added to token list.
- */
-void	ft_add_lst(t_tkn_list **lst, t_tkn_list *new)
-{
-	t_tkn_list	*tmp;
-
-	tmp = ft_last(*lst);
-	if (tmp)
-	{
-		tmp->next = new;
-		new->prev = tmp;
-	}
-	else
-	{
-		*lst = new;
-		new->prev = NULL;
-	}
 }
