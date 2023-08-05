@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/28 13:36:12 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 12:59:03 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
  */
 
 #include "minishell.h"
+
+__sig_atomic_t	g_status;
 
 int	main(int argc, char **argv)
 {

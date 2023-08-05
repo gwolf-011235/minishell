@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 11:29:44 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 12:59:56 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "mod_lexer.h"
 
 # define BUF_SIZE 2048
+
+extern __sig_atomic_t	g_status;
 
 /**
  * @brief String struct.

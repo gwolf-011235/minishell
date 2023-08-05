@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 11:27:55 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 13:01:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char		**g_envp;
 int			g_err_count;
 t_tkn_list	*lst_head;
 char		**g_argv;
+
+__sig_atomic_t	g_status;
 
 void	test_setup_data(void)
 {
