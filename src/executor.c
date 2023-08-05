@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/04 21:06:40 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 17:42:09 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,11 @@ t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths)
 		else if (err == SUCCESS)
 		{
 			err = ft_handle_heredoc(cmd);
+			if (err != SUCCESS)
+				return (err);
 			ft_create_child(cmd, envp);
 		}
-		i = -1;
-		while (cmd->args[++i])
-			free(cmd->args[i]);
-		free(cmd->args);
+		ft_free_str_arr(cmd->args);
 		cmd = cmd->next;
 	}
 	return (SUCCESS);
