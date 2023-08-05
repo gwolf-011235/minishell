@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 13:09:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 15:15:17 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 20:16:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ void	exec_ft_handle_redirect(void)
 
 	head = NULL;
 	ft_new_node(&head, ft_strdup("<"));
-	ft_new_node(&head, ft_strdup("$TEST"));
-	ft_hashtable_insert(g_symtab, ft_strdup("TEST=\"Hello      World\""), 4);
+	ft_new_node(&head, ft_strdup("$TES"));
+	ft_hashtable_insert(g_symtab, ft_strdup("TEST=no senor"), 4);
 	ft_handle_redirect(&head, g_symtab);
-	printf("This is content: %s\n", head->content);
+	if (head->prev->type == AMBIGUOUS)
+	printf("Type is ambiguous\n");
 	ft_hashtable_delete(g_symtab, "TEST", 4);
 	ft_free_lst(&head);
 }
