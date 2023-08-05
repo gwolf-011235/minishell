@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 12:28:02 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 13:01:38 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	test_expand_var(void)
 	g_err_count += test_wrapper("single quoted $", "'$'TEST", "'$'TEST");
 	g_err_count += test_wrapper("single quoted var name", "'$TEST'ING", "'$TEST'ING");
 
+	g_status = 125;
 	g_err_count += test_wrapper("special var $?", "$?", "125");
 }
 

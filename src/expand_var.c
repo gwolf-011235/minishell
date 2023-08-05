@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/03 15:03:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 13:00:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,28 +80,23 @@ t_err	ft_get_var_token(t_track *input, t_str *token, bool quotes)
 }
 
 /**
- * @brief Handle the special variables $? and $0
+ * @brief Handle the special variables $?
  *
- * @param c Char representing ? or 0.
+ * @param c Char representing ?.
  * @param replace Where to save replace string.
  * @param token Used for token.len
  * @param info Struct containing ret_code and shell_name
  * @return t_err SUCCESS, ERR_MALLOC.
  */
-/*
-t_err	ft_special_var(char c, t_str *replace, t_str *token)
+t_err	ft_special_var(t_str *token, t_str *replace)
 {
 	token->len = 1;
-	if (c == '0')
-		replace->ptr = ft_strdup(info->shell_name);
-	else if (c == '?')
-		replace->ptr = ft_itoa(info->ret_code);
+	replace->ptr = ft_itoa(g_status);
 	if (!replace->ptr)
 		return (ERR_MALLOC);
 	replace->len = ft_strlen(replace->ptr);
 	return (SUCCESS);
 }
-*/
 
 /**
  * @brief Expand an environment variable in string.
@@ -124,8 +119,8 @@ t_err	ft_expand_var(t_track *input, t_hashtable *symtab, bool quotes)
 	t_str	replace;
 	t_err	err;
 
-	if (input->str[input->pos + 1] == '0' || input->str[input->pos + 1] == '?')
-		err = SUCCESS; //err = ft_special_var(input->str[input->pos + 1], &replace, &token, info);
+	if (input->str[input->pos + 1] == '?')
+		err = ft_special_var(&token, &replace);
 	else
 	{
 		err = ft_get_var_token(input, &token, quotes);
