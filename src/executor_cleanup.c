@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/01 17:13:15 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 16:17:06 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	abort_mission(t_meta *meta, char *s)
 {
 	if (meta->here_doc)
 		unlink(".tmp_heredoc");
-	do_close(meta->fd_in);
-	do_close(meta->fd_out);
+	ft_close(meta->fd_in);
+	ft_close(meta->fd_out);
 	free(meta->cmds);
 	terminate(s);
 }
@@ -75,8 +75,8 @@ void	cleanup(t_meta *meta)
 
 	if (meta->here_doc)
 		unlink(".tmp_heredoc");
-	do_close(meta->fd_in);
-	do_close(meta->fd_out);
+	ft_close(meta->fd_in);
+	ft_close(meta->fd_out);
 	i = -1;
 	while (meta->cmd_paths[++i])
 		free(meta->cmd_paths[i]);
@@ -84,23 +84,34 @@ void	cleanup(t_meta *meta)
 	free(meta->cmds);
 }
 
-/* This function unlinks the temporary heredoc file created and
-terminates the program. */
-
-void	unlink_heredoc(char *s)
+/**
+ * @brief Unlinks the temporary heredoc file created.
+ * 
+ * Returns provided error code.
+ * @param name 		Name of heredoc to be unlinked.
+ * @param err 		Provided error code.
+ * @return t_err 	err
+ */
+t_err	ft_unlink_heredoc(char *name, t_err err)
 {
-	unlink(".tmp_heredoc");
-	terminate(s);
+	unlink(name);
+	free(name);
+	return (err);
 }
 
-/* This function performs the closing of a file and returns an error
-if the closing failed. */
-
-void	do_close(int fd)
+/**
+ * @brief Performs the closing of a file.
+ * 
+ * Returns an error if the closing failed. * 
+ * @param fd 		File descriptor to be closed.
+ * @return t_err 	ERR_CLOSE, SUCCESS
+ */
+t_err	ft_close(int fd)
 {
 	if (fd >= 0)
 		if (close(fd) < 0)
-			terminate(ERR_CLOSE);
+			return (ERR_CLOSE);
+	return (SUCCESS);
 }
 
 /* This function closes all pipes which have been created. 
@@ -125,6 +136,6 @@ specified pipe. */
 
 void	plug_pipes(t_meta *meta, int i)
 {
-	do_close(meta->cmds[i].fd[0]);
-	do_close(meta->cmds[i].fd[1]);
+	ft_close(meta->cmds[i].fd[0]);
+	ft_close(meta->cmds[i].fd[1]);
 }

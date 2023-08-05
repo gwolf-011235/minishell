@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/31 14:26:00 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 12:37:20 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ Afterwards these are closed as well and the command is being executed. */
 
 void	firstborn(t_meta *meta, char **envp)
 {
-	do_close(meta->fd_out);
-	do_close(meta->cmds[meta->i].fd[0]);
+	ft_close(meta->fd_out);
+	ft_close(meta->cmds[meta->i].fd[0]);
 	replace_fd(meta->fd_in, meta->cmds[meta->i].fd[1]);
-	do_close(meta->fd_in);
-	do_close(meta->cmds[meta->i].fd[1]);
+	ft_close(meta->fd_in);
+	ft_close(meta->cmds[meta->i].fd[1]);
 	if (execve(meta->cmds[meta->i].cmd, meta->cmds[meta->i].arg, envp) < 0)
 	{
 		pipinator(meta);
@@ -58,14 +58,14 @@ void	lastborn(t_meta *meta, char **envp)
 {
 	int	j;
 
-	do_close(meta->fd_in);
+	ft_close(meta->fd_in);
 	j = -1;
 	while (++j < meta->i - 1)
 		plug_pipes(meta, j);
-	do_close(meta->cmds[meta->i - 1].fd[1]);
+	ft_close(meta->cmds[meta->i - 1].fd[1]);
 	replace_fd(meta->cmds[meta->i - 1].fd[0], meta->fd_out);
-	do_close(meta->fd_out);
-	do_close(meta->cmds[meta->i - 1].fd[0]);
+	ft_close(meta->fd_out);
+	ft_close(meta->cmds[meta->i - 1].fd[0]);
 	if (execve(meta->cmds[meta->i].cmd, meta->cmds[meta->i].arg, envp) < 0)
 	{
 		pipinator(meta);
@@ -91,16 +91,16 @@ void	middle_child(t_meta *meta, char **envp)
 {
 	int	j;
 
-	do_close(meta->fd_in);
-	do_close(meta->fd_out);
+	ft_close(meta->fd_in);
+	ft_close(meta->fd_out);
 	j = -1;
 	while (++j < meta->i - 1)
 		plug_pipes(meta, j);
-	do_close(meta->cmds[meta->i - 1].fd[1]);
-	do_close(meta->cmds[meta->i].fd[0]);
+	ft_close(meta->cmds[meta->i - 1].fd[1]);
+	ft_close(meta->cmds[meta->i].fd[0]);
 	replace_fd(meta->cmds[meta->i - 1].fd[0], meta->cmds[meta->i].fd[1]);
-	do_close(meta->cmds[meta->i - 1].fd[0]);
-	do_close(meta->cmds[meta->i].fd[1]);
+	ft_close(meta->cmds[meta->i - 1].fd[0]);
+	ft_close(meta->cmds[meta->i].fd[1]);
 	if (execve(meta->cmds[meta->i].cmd, meta->cmds[meta->i].arg, envp) < 0)
 	{
 		pipinator(meta);
