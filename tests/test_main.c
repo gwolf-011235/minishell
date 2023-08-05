@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/31 10:43:38 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/04 19:49:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_data		g_data;
 char		*g_string;
 t_hashtable	*g_symtab;
 char		**g_envp;
-t_info		g_info;
 int			g_err_count;
 t_tkn_list	*lst_head;
 char		**g_argv;
@@ -25,8 +24,6 @@ void	test_setup_data(void)
 {
 	ft_env_setup(&g_data.env_table);
 	lst_head = NULL;
-	g_data.info.shell_name = "/bin/minishell";
-	g_data.info.ret_code = 255;
 }
 
 void	test_teardown_data(void)
@@ -55,13 +52,14 @@ int	main(void)
 	//test_expand();
 	//test_lexer();
 	//test_expand_list();
-	test_parser();
-	test_builtin_echo();
+	//test_parser();
+	//test_builtin_echo();
 	//test_builtin_cd();
 	//test_builtin_pwd();
 	//test_builtin_export();
 	//test_builtin_unset();
 	//test_builtin_env();
 	//test_builtin_exit();
+	test_expand_field_split();
 	return (0);
 }
