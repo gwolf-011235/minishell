@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 18:36:55 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 18:46:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	ft_init_exec(t_cmd *cmd)
  * 		fd_pipe[1] refers to the write end of the pipe.
  * Data written to the write end of the pipe is buffered 
  * by the kernel until it is read from the read end of the pipe.
- * @param cmd 
- * @param envp 
- * @return t_err 
+ * @param cmd 		List of cmds.
+ * @param envp 		Env string array.
+ * @return t_err 	ERR_MALLOC, ERR_CLOSE, SUCCESS
  */
 t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths)
 {
