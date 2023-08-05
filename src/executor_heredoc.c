@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 16:31:11 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 18:25:05 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,16 @@ t_err	ft_handle_heredoc(t_cmd *cmd)
 	int		i;
 	t_err	err;
 
-	i = -1;
-	while (++i <= cmd->delim_pos)
+	while (cmd)
 	{
-		err = ft_create_heredoc(cmd, cmd->delims[i], i);
-		if (err != SUCCESS)
-			return (err);
+		i = -1;
+		while (++i <= cmd->delim_pos)
+		{
+			err = ft_create_heredoc(cmd, cmd->delims[i], i);
+			if (err != SUCCESS)
+				return (err);
+		}
+		cmd = cmd->next;
 	}
 	return (SUCCESS);
 }
