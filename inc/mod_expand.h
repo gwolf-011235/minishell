@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 12:59:56 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 15:18:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ t_err	ft_handle_redirect(t_tkn_list **list, t_hashtable *symtab);
 t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab);
 
 //expand_field_split.c
-t_err	ft_field_split(t_tkn_list **list);
+t_err	ft_field_split(t_tkn_list **list, size_t *words);
 
 #endif
