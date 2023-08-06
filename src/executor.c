@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 19:55:42 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 17:54:17 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ t_err	ft_executor(t_cmd *cmd, char **envp)
 	if (err == ERR_MALLOC)
 		return (err);
 	err = ft_execute_cmds(cmd, envp, paths);
-	// clean t_cmd list?
-	return (SUCCESS);
+	return (err);
 }
 
 /**
@@ -79,7 +78,7 @@ void	ft_init_exec(t_cmd *cmd)
  * by the kernel until it is read from the read end of the pipe.
  * @param cmd 		List of cmds.
  * @param envp 		Env string array.
- * @return t_err 	ERR_MALLOC, ERR_CLOSE, SUCCESS
+ * @return t_err 	ERR_MALLOC, ERR_PIPE, ERR_CLOSE, SUCCESS
  */
 t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths)
 {
@@ -89,8 +88,12 @@ t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths)
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
 		if (cmd->index < cmd->cmd_num - 1)
+		{
 			if (pipe(cmd->fd_pipe) < 0)
-				return (ERR_PIPE); //no_senor(meta, ERR_PIPE);
+				return (ERR_PIPE);
+			cmd->next->fd_prev_pipe[0] = cmd->fd_pipe[0];
+			cmd->next->fd_prev_pipe[1] = cmd->fd_pipe[1];
+		}
 		/* if (ft_check_builtin(cmd->args))
 			return (ft_execute_builtin(cmd));
 		 */
@@ -122,10 +125,8 @@ t_err	ft_process_cmd(t_cmd *cmd, t_err err, char **envp)
 		ft_putstr_fd(cmd->args[0], 2);
 		write(2, ": command not found", 19);
 		err = ft_close(cmd->fd_pipe[1]);
-		if (err != SUCCESS)
-			return (err);
 	}
 	else if (err == SUCCESS)
-		ft_create_child(cmd, envp);
-	return (SUCCESS);
+		err = ft_create_child(cmd, envp);
+	return (err);
 }
