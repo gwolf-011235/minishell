@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 11:31:12 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 09:40:55 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,19 @@ t_err	ft_skip_double_quote(t_track *input, bool *in_double_quotes)
 	return (SUCCESS);
 }
 
+t_err	ft_init_tracker(t_track *input, char *str)
+{
+	input->str = str;
+	input->pos = 0;
+	return (SUCCESS);
+}
+
+t_err	ft_move_tracker(t_track *input)
+{
+	input->pos++;
+	return (SUCCESS);
+}
+
 /**
  * @brief Expand expressions received from token list.
  *
@@ -102,31 +115,29 @@ t_err	ft_skip_double_quote(t_track *input, bool *in_double_quotes)
  * @param info Data for return code and shell name.
  * @return t_err SUCCESS, ERR_MALLOC
  */
-t_err	ft_expander(t_track *input, t_hashtable *symtab, bool *exec)
+t_err	ft_expander(char **str, t_hashtable *symtab, bool *exec)
 {
+	t_track	input;
 	bool	in_double_quotes;
 	t_err	err;
 
+	ft_init_tracker(&input, *str);
 	in_double_quotes = false;
-	err = SUCCESS;
-	while (input->str[input->pos])
+	while (input.str[input.pos])
 	{
-		if (input->str[input->pos] == '\'' && !in_double_quotes)
-			ft_skip_single_quote(input);
-		else if (input->str[input->pos] == '"')
-			ft_skip_double_quote(input, &in_double_quotes);
-		else if (input->str[input->pos] == '~' && !in_double_quotes)
-			err = ft_expand_tilde(input, symtab);
-		else if (input->str[input->pos] == '$')
-		{
-			err = ft_expand_var(input, symtab, in_double_quotes);
-			if (err == SUCCESS)
-				*exec = true;
-		}
+		if (input.str[input.pos] == '\'' && !in_double_quotes)
+			err = ft_skip_single_quote(&input);
+		else if (input.str[input.pos] == '"')
+			err = ft_skip_double_quote(&input, &in_double_quotes);
+		else if (input.str[input.pos] == '~' && !in_double_quotes)
+			err = ft_expand_tilde(&input, symtab);
+		else if (input.str[input.pos] == '$')
+			err = ft_expand_var(&input, symtab, in_double_quotes, exec);
 		else
-			input->pos++;
+			err = ft_move_tracker(&input);
 		if (err != SUCCESS && err != ERR_NOEXPAND)
 			return (err);
 	}
+	*str = input.str;
 	return (SUCCESS);
 }

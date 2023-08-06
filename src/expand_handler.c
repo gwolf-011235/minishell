@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 21:11:47 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 13:28:12 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,39 @@
 
 t_err	ft_handle_heredoc(t_tkn_list **list)
 {
-	t_track	input;
 	t_err	err;
 
 	*list = (*list)->next;
-	input.str = (*list)->content;
-	input.pos = 0;
-	err = ft_quote_removal(input);
+	err = ft_quote_removal((*list)->content);
 	return (err);
 }
 
 t_err	ft_handle_redirect(t_tkn_list **list, t_hashtable *symtab)
 {
-	t_track	input;
-	t_err	err;
 	bool	exec;
+	t_err	err;
 
 	*list = (*list)->next;
-	input.str = (*list)->content;
-	input.pos = 0;
 	exec = false;
-	err = ft_expander(&input, symtab, &exec);
-	(*list)->content = input.str;
-	input.pos = 0;
+	err = ft_expander(&((*list)->content), symtab, &exec);
 	if (err != SUCCESS)
 		return (err);
-	if (input.str[input.pos] == '\0')
+	if ((*list)->content && (*list)->content[0] == '\0')
 		(*list)->prev->type = AMBIGUOUS;
 	else
-		err = ft_quote_removal(input);
+		err = ft_quote_removal((*list)->content);
 	return (err);
 }
 
 t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab)
 {
-	t_track	input;
-	t_err	err;
 	bool	exec;
 	size_t	words;
+	t_err	err;
 
-	input.str = (*list)->content;
-	input.pos = 0;
 	exec = false;
-	err = ft_expander(&input, symtab, &exec);
-	(*list)->content = input.str;
-	input.pos = 0;
+	words = 1;
+	err = ft_expander(&((*list)->content), symtab, &exec);
 	if (err != SUCCESS)
 		return (err);
 	if (exec)
@@ -68,6 +56,10 @@ t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab)
 		if (err != SUCCESS)
 			return (err);
 	}
-	err = ft_quote_removal(input);
+	while (words-- && *list)
+	{
+		err = ft_quote_removal((*list)->content);
+		*list = (*list)->next;
+	}
 	return (err);
 }
