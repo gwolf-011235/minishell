@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 20:20:02 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 18:38:22 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,93 +17,118 @@
 
 #include "mod_executor.h"
 
-/* This is the first command of the command chain. 
-
-This function closes all unrequired file descriptors (all fd except
-the two fd which are to replace stdin/stdout) and assigns the corresponding
-file descriptors to stdin and stdout depending on the position of the
-command in the chain.
-
-	First command: stdin = fd_in, stdout = write end of first pipe
-
-Afterwards these are closed as well and the command is being executed. */
-
-void	ft_firstborn(t_meta *meta, char **envp)
+/**
+ * @brief First cmd of pipe.
+ * 		fd_pipe[0] refers to the read end of the pipe.
+ * 		fd_pipe[1] refers to the write end of the pipe.
+ * Close all unrequired file descriptors.
+ * Assign fds to stdin and stdout.
+ * 		If fd_out exists, assign stdout with fd_out, else with fd_pipe[1]
+ * 		if fd_in exists, assign stdin with fd_in, else with 0
+ * Close assigned fds.
+ * Execute cmd.
+ * @param cmd 		Current cmd being processed.
+ * @param envp		String array of env.
+ */
+void	ft_firstborn(t_cmd *cmd, char **envp)
 {
-	ft_close(meta->fd_out);
-	ft_close(meta->cmds[meta->i].fd[0]);
-	replace_fd(meta->fd_in, meta->cmds[meta->i].fd[1]);
-	ft_close(meta->fd_in);
-	ft_close(meta->cmds[meta->i].fd[1]);
-	if (execve(meta->cmds[meta->i].cmd, meta->cmds[meta->i].arg, envp) < 0)
+	ft_close(cmd->fd_pipe[0]);
+	if (cmd->fd_out)
 	{
-		pipinator(meta);
-		mamma_mia(meta, ERR_FIRST);
+		if (cmd->fd_in)
+			ft_replace_fd(cmd->fd_in, cmd->fd_out);
+		else
+			ft_replace_fd(0, cmd->fd_out);
+		ft_close(cmd->fd_out);
 	}
+	else
+	{
+		if (cmd->fd_in)
+			ft_replace_fd(cmd->fd_in, cmd->fd_pipe[1]);
+		else
+			ft_replace_fd(0, cmd->fd_pipe[1]);
+		ft_close(cmd->fd_pipe[1]);
+	}
+	ft_close(cmd->fd_in);
+	if (execve(cmd->args[0], cmd->args, envp) < 0)
+		printf("\nexecve encountered an error\n");
 }
 
-/* This is the last command of the command chain. 
-
-This function closes all previous pipes except for the last pipe
-connecting the last command to its predecessor. The write end of 
-the last pipe is being closed. It assigns the corresponding
-file descriptors to stdin and stdout depending on the position of the
-command in the chain. 
-
-	Last command: stdin = read end of previous pipe, stdout = fd_out
-
-Afterwards these are closed as well and the command is being executed. */
-
-void	lastborn(t_meta *meta, char **envp)
+/**
+ * @brief Last cmd of pipe.
+ * 		fd_pipe[0] refers to the read end of the pipe.
+ * 		fd_pipe[1] refers to the write end of the pipe.
+ * Close all unrequired file descriptors.
+ * The write end of the previous pipe is being closed.
+ * Assign fds to stdin and stdout.
+ * 		If fd_out exists, assign stdout with fd_out, else with 1.
+ * 		if fd_in exists, assign stdin with fd_in, else with fd_prev_pipe[0]
+ * Close assigned fds.
+ * Execute cmd.
+ * @param cmd 		Current cmd being processed.
+ * @param envp		String array of env.
+ */
+void	ft_lastborn(t_cmd *cmd, char **envp)
 {
-	int	j;
-
-	ft_close(meta->fd_in);
-	j = -1;
-	while (++j < meta->i - 1)
-		ft_plug_pipe(meta, j);
-	ft_close(meta->cmds[meta->i - 1].fd[1]);
-	replace_fd(meta->cmds[meta->i - 1].fd[0], meta->fd_out);
-	ft_close(meta->fd_out);
-	ft_close(meta->cmds[meta->i - 1].fd[0]);
-	if (execve(meta->cmds[meta->i].cmd, meta->cmds[meta->i].arg, envp) < 0)
+	ft_close(cmd->fd_prev_pipe[1]);
+	if (cmd->fd_out)
 	{
-		pipinator(meta);
-		mamma_mia(meta, ERR_LAST);
+		if (cmd->fd_in)
+			ft_replace_fd(cmd->fd_in, cmd->fd_out);
+		else
+			ft_replace_fd(cmd->fd_prev_pipe[0], cmd->fd_out);
 	}
+	else
+	{
+		if (cmd->fd_in)
+			ft_replace_fd(cmd->fd_in, 1);
+		else
+			ft_replace_fd(cmd->fd_prev_pipe[0], 1);
+	}
+	ft_close(cmd->fd_out);
+	ft_close(cmd->fd_prev_pipe[0]);
+	ft_close(cmd->fd_in);
+	if (execve(cmd->args[0], cmd->args, envp) < 0)
+		printf("\nexecve encountered an error\n");
 }
 
-/* This is a command in between the first and last. 
-
-This function closes all previous pipes except for the last pipe
-connecting the command to its predecessor. The write end of 
-the previous pipe is being closed as well as the read end of
-the current pipe. It assigns the corresponding
-file descriptors to stdin and stdout depending on the position of the
-command in the chain. 
-
-	In between command: stdin = read end of previous pipe,
-		stdout = write end of current pipe
-
-Afterwards these are closed as well and the command is being executed. */
-
-void	middle_child(t_meta *meta, char **envp)
+/**
+ * @brief Cmd in between the first and last of pipe.
+ * 		fd_pipe[0] refers to the read end of the pipe.
+ * 		fd_pipe[1] refers to the write end of the pipe.
+ * Close all unrequired file descriptors.
+ * The write end of the previous pipe is being closed as well as the read
+ * end of the current pipe.
+ * Assign fds to stdin and stdout.
+ * 		If fd_out exists, assign stdout with fd_out, else with fd_pipe[1].
+ * 		if fd_in exists, assign stdin with fd_in, else with fd_prev_pipe[0]
+ * Close assigned fds.
+ * Execute cmd.
+ * @param cmd 		Current cmd being processed.
+ * @param envp		String array of env.
+ */
+void	ft_middle_child(t_cmd *cmd, char **envp)
 {
-	int	j;
-
-	ft_close(meta->fd_in);
-	ft_close(meta->fd_out);
-	j = -1;
-	while (++j < meta->i - 1)
-		ft_plug_pipe(meta, j);
-	ft_close(meta->cmds[meta->i - 1].fd[1]);
-	ft_close(meta->cmds[meta->i].fd[0]);
-	replace_fd(meta->cmds[meta->i - 1].fd[0], meta->cmds[meta->i].fd[1]);
-	ft_close(meta->cmds[meta->i - 1].fd[0]);
-	ft_close(meta->cmds[meta->i].fd[1]);
-	if (execve(meta->cmds[meta->i].cmd, meta->cmds[meta->i].arg, envp) < 0)
+	ft_close(cmd->fd_prev_pipe[1]);
+	ft_close(cmd->fd_pipe[0]);
+	if (cmd->fd_out)
 	{
-		pipinator(meta);
-		mamma_mia(meta, ERR_MID);
+		if (cmd->fd_in)
+			ft_replace_fd(cmd->fd_in, cmd->fd_out);
+		else
+			ft_replace_fd(cmd->fd_prev_pipe[0], cmd->fd_out);
+		ft_close(cmd->fd_out);
 	}
+	else
+	{
+		if (cmd->fd_in)
+			ft_replace_fd(cmd->fd_in, cmd->fd_pipe[1]);
+		else
+			ft_replace_fd(cmd->fd_prev_pipe[0], cmd->fd_pipe[1]);
+	}
+	ft_close(cmd->fd_prev_pipe[0]);
+	ft_close(cmd->fd_pipe[1]);
+	ft_close(cmd->fd_in);
+	if (execve(cmd->args[0], cmd->args, envp) < 0)
+		printf("\nexecve encountered an error\n");
 }
