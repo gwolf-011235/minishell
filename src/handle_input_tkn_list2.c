@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:55:09 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 17:15:00 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 13:21:13by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,21 @@ void	ft_free_lst(t_tkn_list **lst)
 		*lst = tmp;
 	}
 	(*lst) = NULL;
+}
+
+/**
+ * @brief Iterate to first node of given list.
+ *
+ * @param lst Pointer pointer to a list node.
+ * @return t_err SUCCESS.
+ */
+t_tkn_list	*ft_list_first(t_tkn_list *list)
+{
+	while (list)
+	{
+		if (list->prev == NULL)
+			break ;
+		list = list->prev;
+	}
+	return (list);
 }
