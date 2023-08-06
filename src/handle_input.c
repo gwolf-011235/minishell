@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:16:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 18:17:49 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 22:58:58 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ t_err	ft_handle_input(char *input, t_data *data)
 	if (err != SUCCESS)
 		return (err);
 	ft_free_lst(&lst);
-	err = ft_handle_heredoc(cmd);
-	if (err != SUCCESS)
-		return (err);
 	/* err = ft_executor(cmd);
 	if (err != SUCCESS)
 		return (err); */

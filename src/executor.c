@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 21:01:33 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 22:59:29 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ t_err	ft_executor(t_cmd *cmd, char **envp)
 
 	paths = NULL;
 	ft_init_exec(cmd);
+	err = ft_handle_heredoc(cmd);
+	if (err != SUCCESS)
+		return (err);
 	err = ft_create_pipes(cmd);
 	if (err != SUCCESS)
 		return (err);
