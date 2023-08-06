@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 20:13:19 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 21:11:47 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab)
 	bool	exec;
 	size_t	words;
 
-	*list = (*list)->next;
 	input.str = (*list)->content;
 	input.pos = 0;
 	exec = false;
