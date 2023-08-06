@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 13:01:38 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 12:07:11 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,16 @@ extern int			g_err_count;
 
 static int	test_wrapper(char *testname, char *test, char *expect)
 {
-	t_track	input;
 	int		ret;
 	bool	exec;
 
 	printf("TEST: %s\n", testname);
-	input.str = ft_strdup(test);
-	input.pos = 0;
+	g_string = ft_strdup(test);
 	exec = false;
 	printf("String:\t|%s|\n", test);
-	ft_expander(&input, g_symtab, &exec);
-	printf("Result:\t|%s|\n", input.str);
-	if (!ft_strncmp(input.str, expect, ft_strlen(input.str)))
+	ft_expander(&g_string, g_symtab, &exec);
+	printf("Result:\t|%s|\n", g_string);
+	if (!ft_strncmp(g_string, expect, ft_strlen(g_string)))
 	{
 		printf(GREEN"OK\n\n"RESET);
 		ret = 0;
@@ -40,7 +38,7 @@ static int	test_wrapper(char *testname, char *test, char *expect)
 		printf(RED"Expect:\t|%s|\n\n"RESET, expect);
 		ret = 1;
 	}
-	free(input.str);
+	free(g_string);
 	return (ret);
 }
 
@@ -101,7 +99,7 @@ void	test_expand_expander(void)
 	printf(YELLOW"*******TEST_EXPAND*******\n\n"RESET);
 	g_err_count = 0;
 	g_symtab = ft_hashtable_create(1, ft_hash_fnv1);
-	//test_expand_tilde();
+	test_expand_tilde();
 	test_expand_var();
 	//test_expand_quotes();
 	//test_expand_combi();
