@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 20:26:53 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 16:09:57 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,85 +17,121 @@
 
 #include "mod_executor.h"
 
-/* This function distinguishes between the position of the command needing
-to be executed and creates the pertinent child. */
-
-void	ft_create_child(t_cmd *cmd, char **envp)
+/**
+ * @brief Distinguishes between the position of the command 
+ * to be executed and creates the pertinent child.
+ * 
+ * @param cmd 	Current cmd to be processed.
+ * @param envp 	String array of env.
+ */
+t_err	ft_create_child(t_cmd *cmd, char **envp)
 {
+	t_err	err;
+
 	if (cmd->index == 0)
-		ft_raise_first(cmd, envp);
+		err = ft_raise_first(cmd, envp);
 	else if (cmd->index == cmd->cmd_num - 1)
-		ft_raise_last(cmd, envp);
+		err = ft_raise_last(cmd, envp);
 	else
-		ft_raise_middle(cmd, envp);
+		err = ft_raise_middle(cmd, envp);
+	return (err);
 }
 
-/* This function creates a child by forking and calls the pertinent
-function which is to be executed by the child. The parent does not wait
-for the child to finish (flag WNOHANG set), but retrieves its pid when
-its done. The parent closes the fd which are duplicated and used by the child.
-*/
-
-void	ft_raise_first(t_cmd *cmd, char **envp)
+/**
+ * @brief Creates a child by forking and calls the pertinent
+ * function which is to be executed by the child.
+ * 
+ * The parent does not wait for the child to finish (flag WNOHANG set), it
+ * calls its status info immediately. If child has not finished yet,
+ * an error code is returned. The parent closes the write end fd of
+ * the pipe (fd_pipe[1]).
+ * @param cmd 		Current cmd to be processed.
+ * @param envp 		String array of env.
+ * @return t_err	ERR_CLOSE, ERR_FORK, ERR_FIRST, SUCCESS
+ */
+t_err	ft_raise_first(t_cmd *cmd, char **envp)
 {
+	t_err	err;
+
 	cmd->pid = fork();
 	if (cmd->pid < 0)
 	{
-		ft_plug_pipe(cmd, 0);
+		err = ft_plug_pipe(cmd, 0);
+		if (err != SUCCESS)
+			return (err);
 		return (ERR_FORK);
 	}
 	else if (cmd->pid == 0)
 		ft_firstborn(cmd, envp);
 	if (waitpid(cmd->pid, NULL, WNOHANG) < 0)
 		return (ERR_FIRST);
-	ft_plug_pipe(cmd, 0);
+	err = ft_plug_pipe(cmd, 0);
+	if (err != SUCCESS)
+		return (err);
 	cmd->fd_pipe[1] = -1;
+	return (SUCCESS);
 }
 
-/* This function creates a child by forking and calls the pertinent
-function which is to be executed by the child. The parent waits
-for the child to finish (no flags set) and retrieves its pid when
-its done. This prohibits the parent to terminate before
-the child has finished. 
-The parent closes the fd which are duplicated and used by the child. 
-*/
-
-void	ft_raise_last(t_cmd *cmd, char **envp)
+/**
+ * @brief Creates a child by forking and calls the pertinent
+ * function which is to be executed by the child.
+ * 
+ * The parent waits for the child to finish (no flags set), it
+ * retrieves its status info when it's done.
+ * @param cmd 	Current cmd to be processed.
+ * @param envp 	String array of env.
+ * @return t_err	ERR_CLOSE, ERR_FORK, ERR_LAST, SUCCESS
+ */
+t_err	ft_raise_last(t_cmd *cmd, char **envp)
 {
-	meta->cmds[meta->i].pid = fork();
-	if (meta->cmds[meta->i].pid < 0)
-		no_senor(meta, ERR_FORK);
-	else if (meta->cmds[meta->i].pid == 0)
-		lastborn(meta, envp);
-	if (waitpid(meta->cmds[meta->i].pid, NULL, 0) < 0)
-		mamma_mia(meta, ERR_LAST);
-	if (close(meta->fd_out) < 0)
-		mamma_mia(meta, ERR_CLOSE);
-	meta->fd_out = -1;
-	if (close(meta->cmds[meta->i - 1].fd[0]) < 0)
-		mamma_mia(meta, ERR_CLOSE);
-	meta->cmds[meta->i - 1].fd[0] = -1;
+	t_err	err;
+
+	cmd->pid = fork();
+	if (cmd->pid < 0)
+	{
+		err = ft_plug_pipe(cmd, 0);
+		if (err != SUCCESS)
+			return (err);
+		return (ERR_FORK);
+	}
+	else if (cmd->pid == 0)
+		ft_lastborn(cmd, envp);
+	if (waitpid(cmd->pid, NULL, 0) < 0)
+		return (ERR_LAST);
+	return (SUCCESS);
 }
 
-/* This function creates a child by forking and calls the pertinent
-function which is to be executed by the child. The parent does not wait
-for the child to finish (flag WNOHANG set), but retrieves its pid when
-its done. The parent closes the fd which are duplicated and used by the child.
-*/
-
-void	ft_raise_middle(t_cmd *cmd, char **envp)
+/**
+ * @brief Creates a child by forking and calls the pertinent
+ * function which is to be executed by the child.
+ * 
+ * The parent does not wait for the child to finish (flag WNOHANG set), it
+ * calls its status info immediately. If child has not finished yet,
+ * an error code is returned. The parent closes the write end fd of
+ * the pipe (fd_pipe[1]).
+ * @param cmd 	Current cmd to be processed.
+ * @param envp 	String array of env.
+ * @return t_err	ERR_CLOSE, ERR_FORK, ERR_MID, SUCCESS
+ */
+t_err	ft_raise_middle(t_cmd *cmd, char **envp)
 {
-	meta->cmds[meta->i].pid = fork();
-	if (meta->cmds[meta->i].pid < 0)
-		no_senor(meta, ERR_FORK);
-	else if (meta->cmds[meta->i].pid == 0)
-		middle_child(meta, envp);
-	if (waitpid(meta->cmds[meta->i].pid, NULL, WNOHANG) < 0)
-		mamma_mia(meta, ERR_MID);
-	if (close(meta->cmds[meta->i - 1].fd[0]) < 0)
-		mamma_mia(meta, ERR_CLOSE);
-	meta->cmds[meta->i - 1].fd[0] = -1;
-	if (close(meta->cmds[meta->i].fd[1]) < 0)
-		mamma_mia(meta, ERR_CLOSE);
-	meta->cmds[meta->i].fd[1] = -1;
+	t_err	err;
+
+	cmd->pid = fork();
+	if (cmd->pid < 0)
+	{
+		err = ft_plug_pipe(cmd, 0);
+		if (err != SUCCESS)
+			return (err);
+		return (ERR_FORK);
+	}
+	else if (cmd->pid == 0)
+		ft_middle_child(cmd, envp);
+	if (waitpid(cmd->pid, NULL, WNOHANG) < 0)
+		return (ERR_MID);
+	err = ft_plug_pipe(cmd, 0);
+	if (err != SUCCESS)
+		return (err);
+	cmd->fd_pipe[1] = -1;
+	return (SUCCESS);
 }
