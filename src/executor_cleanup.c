@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 20:14:28 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 15:48:39 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,8 @@ void	pipinator(t_meta *meta)
  * 
  * fd_pipe[0] refers to the read end of the pipe.
  * fd_pipe[1] refers to the write end of the pipe.
- * @param cmd	Current cmd.
+ * @param cmd		Current cmd.
+ * @return t_err	ERR_CLOSE, SUCCESS
  */
 t_err	ft_plug_pipe(t_cmd *cmd, bool close_read_end)
 {
