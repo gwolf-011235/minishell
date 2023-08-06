@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 13:26:45 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 09:30:49 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,47 @@ void	test_teardown_argv(void)
 {
 	free(g_argv);
 	g_argv = NULL;
+}
+
+void	test_print_t_type(t_type type)
+{
+	char	*str;
+
+	if (type == ARG)
+		str = "ARG";
+	else if (type == INFILE)
+		str = "INFILE";
+	else if (type == HEREDOC)
+		str = "HEREDOC";
+	else if (type == OUTFILE)
+		str = "OUTFILE";
+	else if (type == APPEND)
+		str = "APPEND";
+	else if (type == PIPE)
+		str = "PIPE";
+	else if (type == NEW_LINE)
+		str = "NEWLINE";
+	else if (type == AMBIGUOUS)
+		str = "AMBIGUOUS";
+	printf("   Type:\t%s\n", str);
+}
+
+void	test_print_tkn_list(t_tkn_list *head)
+{
+	int	i;
+
+	i = 0;
+	printf("** Token list **\n");
+	printf("-> NULL\n");
+	while (head)
+	{
+		i++;
+		printf("-> %d\n", i);
+		printf("   String:\t%s\n", head->content);
+		test_print_t_type(head->type);
+		head = head->next;
+	}
+	printf("-> NULL\n\n");
 }
 
 int	main(void)
