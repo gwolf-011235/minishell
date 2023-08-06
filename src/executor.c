@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 19:49:11 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 21:01:33 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ t_err	ft_process_cmd(t_cmd *cmd, t_err err, char **envp)
 	else if (err == ERR_UNKNOWN_CMD)
 	{
 		ft_putstr_fd(cmd->args[0], 2);
-		write(2, ": command not found", 19);
+		write(2, ": command not found\n", 20);
 		err = ft_close(cmd->fd_pipe[1]);
 	}
 	else if (err == SUCCESS)
