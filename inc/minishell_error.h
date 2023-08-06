@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 20:21:47 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 15:39:28 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ typedef enum e_error {
 	ERR_UNKNOWN_CMD, ///< Command not found.
 	ERR_NOPATH, ///< No path found.
 	ERR_FORK, ///< Failure to fork.
-	ERR_FIRST ///< First child process encountered error.
+	ERR_FIRST, ///< First child process encountered error.
+	ERR_LAST, ///< Last child process encountered error.
+	ERR_MID, ///< Middle child process encountered error.
+	ERR_DUPL, ///< Error while duplicating file descriptor.
+	ERR_EXECVE ///< Execve encountered an error.
 }	t_err;
 
 
