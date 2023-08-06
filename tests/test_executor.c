@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:17:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 16:59:23 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 21:09:42 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	test_wrapper(char *testname, char *test)
 	i = 0;
 	lst = NULL;
 	cmd = NULL;
-	ft_env_setup(g_symtab);
+	ft_env_setup(&g_symtab);
 	ft_envp_create(g_symtab, &envp);
 	printf("TEST: %s\n", testname);
 	printf("Command:%s\n", test);
@@ -86,7 +86,7 @@ static int	test_heredoc_wrapper(char *testname, char *test)
 
 static void	test_enum_cmds(void)
 {
-	test_wrapper("Five simple cmds", "<   infile ls -la | grep chtulu | wc -m | cmd4 -weeee -o -asa| >outfile cmd5 ww 235");
+	test_wrapper("Five simple cmds", "<   infile ls -la | grep infile | wc -l  >outfile");
 }
 
 static void	test_heredoc(void)
