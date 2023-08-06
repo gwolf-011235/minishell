@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 17:49:31 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 18:44:13 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,9 @@ t_err	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info);
 
 // parser
 t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd);
+
+// heredoc
+t_err	ft_handle_heredoc(t_cmd *cmd);
 
 // executor
 t_err	ft_executor(t_cmd *cmd, char **envp);
