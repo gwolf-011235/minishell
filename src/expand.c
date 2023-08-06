@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_handler.c                                   :+:      :+:    :+:   */
+/*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 18:16:09 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 18:38:39 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * @param data Overarching struct.
  * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_err	ft_expand_tkn_lst(t_tkn_list **head, t_data *data)
+t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table)
 {
 	t_tkn_list	*tmp;
 	t_type		type;
@@ -37,9 +37,9 @@ t_err	ft_expand_tkn_lst(t_tkn_list **head, t_data *data)
 		else if (type == HEREDOC)
 			err = ft_handle_heredoc(&tmp);
 		else if (type == INFILE || type == OUTFILE || type == APPEND)
-			err = ft_handle_redirect(&tmp, data->env_table);
+			err = ft_handle_redirect(&tmp, env_table);
 		else
-			err = ft_handle_arg(&tmp, data->env_table);
+			err = ft_handle_arg(&tmp, env_table);
 		if (err != SUCCESS)
 			return (err);
 		if (tmp  == NULL || tmp->next == NULL)

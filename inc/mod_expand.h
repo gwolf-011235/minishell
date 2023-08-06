@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 18:32:04 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 18:39:01 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_str_navi {
 }	t_track;
 
 //expand.c
-t_err	ft_expand_tkn_lst(t_tkn_list **head, t_data *data);
+t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table);
 t_err	ft_handle_heredoc(t_tkn_list **list);
 t_err	ft_handle_redirect(t_tkn_list **list, t_hashtable *symtab);
 t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab);
