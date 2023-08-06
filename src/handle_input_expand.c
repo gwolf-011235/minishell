@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:01:08 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 08:16:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 13:26:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,30 @@
  * @return t_err SUCCESS, ERR_MALLOC.
  */
 
-t_err	ft_expand_tkn_lst(t_tkn_list *list, t_data *data)
+t_err	ft_expand_tkn_lst(t_tkn_list **head, t_data *data)
 {
-	t_err	err;
-	t_type	type;
+	t_tkn_list	*tmp;
+	t_type		type;
+	t_err		err;
 
-	while (list)
+	tmp = *head;
+	while (tmp)
 	{
-		type = list->type;
+		type = tmp->type;
 		if (type == PIPE || type == NEW_LINE)
-		{
-			list = list->next;
-			continue ;
-		}
-		if (type == HEREDOC)
-			err = ft_handle_heredoc(&list);
-		if (type == INFILE || type == OUTFILE || type == APPEND)
-			err = ft_handle_redirect(&list, data->env_table);
+			err = SUCCESS;
+		else if (type == HEREDOC)
+			err = ft_handle_heredoc(&tmp);
+		else if (type == INFILE || type == OUTFILE || type == APPEND)
+			err = ft_handle_redirect(&tmp, data->env_table);
 		else
-			err = ft_handle_arg(&list, data->env_table);
+			err = ft_handle_arg(&tmp, data->env_table);
 		if (err != SUCCESS)
 			return (err);
-		list = list->next;
+		if (tmp  == NULL || tmp->next == NULL)
+			break ;
+		tmp = tmp->next;
 	}
+	*head = ft_list_first(tmp);
 	return (SUCCESS);
 }
