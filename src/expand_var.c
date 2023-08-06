@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 13:00:17 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 12:37:50 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,10 @@ t_err	ft_special_var(t_str *token, t_str *replace)
  * @param input Input string.
  * @param symtab Environment.
  * @param pos Current position.
- * @param info Struct containing ret_code and shell_name.
+ * @param exec Set to true if expansion happened.
  * @return t_err SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
  */
-t_err	ft_expand_var(t_track *input, t_hashtable *symtab, bool quotes)
+t_err	ft_expand_var(t_track *input, t_hashtable *symtab, bool quotes, bool *exec)
 {
 	t_str	token;
 	t_str	replace;
@@ -135,5 +135,7 @@ t_err	ft_expand_var(t_track *input, t_hashtable *symtab, bool quotes)
 	if (replace.len > 0)
 		free (replace.ptr);
 	input->pos += replace.len;
+	if (err == SUCCESS && exec)
+		*exec = true;
 	return (err);
 }
