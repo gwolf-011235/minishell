@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:49:53 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 17:16:08 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 18:04:34 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ t_err	ft_new_node(t_tkn_list	**lst_head, char *content)
 	if (!new)
 		return (ERR_MALLOC);
 	new->content = content;
+	new->type = ARG;
 	new->next = NULL;
+	new->prev = NULL;
 	ft_add_lst(lst_head, new);
 	return (SUCCESS);
 }
@@ -86,6 +88,7 @@ t_err	ft_new_node_mid(t_tkn_list **lst_head, char *content)
 	if (!new)
 		return (ERR_MALLOC);
 	new->content = content;
+	new->type = ARG;
 	new->next = NULL;
 	new->prev = NULL;
 	ft_add_lst_mid(*lst_head, new);
