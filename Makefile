@@ -6,7 +6,7 @@
 #    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/06 18:34:33 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/06 18:35:59 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,7 +139,7 @@ TEST_SRC := test_replace_token.c \
 			test_expand_expander.c \
 			test_expand_field_split.c \
 			test_expand_handler.c \
-			test_list_expand.c \
+			test_expand.c \
 			test_parser.c \
 			test_builtin_echo.c \
 			test_builtin_cd.c \
