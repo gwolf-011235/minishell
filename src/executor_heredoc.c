@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 18:25:05 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 19:07:53 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim)
 	size_t	len;
 	t_err	err;
 
+	name = NULL;
 	err = ft_initiate_heredoc(cmd->index, name, &fd);
 	if (err != SUCCESS)
 		return (err);
@@ -90,7 +91,6 @@ t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim)
  */
 t_err	ft_name_heredoc(int index, char *name)
 {
-	char	*name;
 	char	*index_str;
 
 	index_str = ft_itoa(index);
