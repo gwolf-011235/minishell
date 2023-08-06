@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 18:44:40 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 19:49:11 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
  * cmd nonetheless in the current directory.
  * @param cmd 		List of cmds.
  * @param envp 		String array with env variables.
- * @return t_err 	ERR_MALLOC, SUCCESS
+ * @return t_err 	ERR_MALLOC, ERR_PIPE, SUCCESS
  */
 t_err	ft_executor(t_cmd *cmd, char **envp)
 {
@@ -35,6 +35,9 @@ t_err	ft_executor(t_cmd *cmd, char **envp)
 
 	paths = NULL;
 	ft_init_exec(cmd);
+	err = ft_create_pipes(cmd);
+	if (err != SUCCESS)
+		return (err);
 	err = ft_get_path(envp, &paths);
 	if (err == ERR_MALLOC)
 		return (err);
@@ -69,6 +72,32 @@ void	ft_init_exec(t_cmd *cmd)
 }
 
 /**
+ * @brief Create all necessary pipes.
+ * 
+ * Loop through cmd list and create pipe to connect cmds.
+ * Does not create pipe at last cmd.
+ * Gives cmds the possibility to access pipe created in
+ * predecessor.
+ * @param cmd 		List of cmds.
+ * @return t_err 	ERR_PIPE, SUCCESS
+ */
+t_err	ft_create_pipes(t_cmd *cmd)
+{
+	while (cmd)
+	{
+		if (cmd->index < cmd->cmd_num - 1)
+		{
+			if (pipe(cmd->fd_pipe) < 0)
+				return (ERR_PIPE);
+			cmd->next->fd_prev_pipe[0] = cmd->fd_pipe[0];
+			cmd->next->fd_prev_pipe[1] = cmd->fd_pipe[1];
+		}
+		cmd = cmd->next;
+	}
+	return (SUCCESS);
+}
+
+/**
  * @brief Executes list of cmds provided.
  * 
  * Create pipes inbetween cmds.
@@ -86,13 +115,6 @@ t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths)
 
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
-		if (cmd->index < cmd->cmd_num - 1)
-		{
-			if (pipe(cmd->fd_pipe) < 0)
-				return (ERR_PIPE);
-			cmd->next->fd_prev_pipe[0] = cmd->fd_pipe[0];
-			cmd->next->fd_prev_pipe[1] = cmd->fd_pipe[1];
-		}
 		/* if (ft_check_builtin(cmd->args))
 			return (ft_execute_builtin(cmd));
 		 */
