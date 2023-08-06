@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 20:13:03 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 13:26:11 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_err		ft_lex_input(t_tkn_list	**lst_head, char *input);
 void		ft_free_lst(t_tkn_list **lst);
 
 // expand
-t_err		ft_expand_tkn_lst(t_tkn_list *list, t_data *data);
+t_err		ft_expand_tkn_lst(t_tkn_list **list, t_data *data);
 t_err		ft_expand_expr(char **expr, t_hashtable *symtab);
 
 // parser
@@ -116,6 +116,7 @@ t_err		ft_new_node_mid(t_tkn_list **lst_head, char *content);
 void		ft_del_node(t_tkn_list *lst);
 void		ft_del_node_mid(t_tkn_list **lst_head);
 void		ft_free_lst(t_tkn_list **lst);
+t_tkn_list	*ft_list_first(t_tkn_list *list);
 
 
 #endif

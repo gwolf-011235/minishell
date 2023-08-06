@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 17:48:36 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 09:48:32 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,24 @@ typedef struct s_str_navi {
 }	t_track;
 
 //expander.c
-t_err	ft_expander(t_track *input, t_hashtable *symtab, bool *exec);
+t_err	ft_expander(char **str, t_hashtable *symtab, bool *exec);
 t_err	ft_insert_replace(t_track *input, t_str token, t_str replace);
 t_err	ft_skip_single_quote(t_track *input);
 t_err	ft_skip_double_quote(t_track *input, bool *in_double_quotes);
+t_err	ft_init_tracker(t_track *input, char *str);
+t_err	ft_move_tracker(t_track *input);
 
 //expand_tilde.c
 t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab);
 
 //expand_var.c
-t_err	ft_expand_var(t_track *input, t_hashtable *symtab, bool quotes);
+t_err	ft_expand_var(t_track *input, t_hashtable *symtab, bool quotes, bool *exec);
 
 //expand_quote_removal.c
 t_err	ft_eat_char(char *input, size_t pos);
 t_err	ft_rm_single_quote(t_track *input);
 t_err	ft_rm_double_quote(t_track *input, bool *in_double_quotes);
-t_err	ft_quote_removal(t_track input);
+t_err	ft_quote_removal(char *str);
 
 //expand_handler.c
 t_err	ft_handle_heredoc(t_tkn_list **list);
