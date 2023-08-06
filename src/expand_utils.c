@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 18:19:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 19:14:38 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 19:25:58 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ t_err	ft_move_tracker(t_track *input)
 /**
  * @brief Remove single char from string. Doesn't realloc.
  *
- * @param input String.
- * @param pos Current position.
+ * @param input Pointer to tracker.
  * @return t_err SUCCESS
  */
 t_err	ft_eat_char(t_track *input)
@@ -61,10 +60,13 @@ t_err	ft_eat_char(t_track *input)
 /**
  * @brief Search for token in input string and replace with replace.
  *
- * @param input String.
- * @param pos Current position.
- * @param token Struct containing the searched for token.
- * @param replace Struct containing the replacement.
+ * Calc len of the new string.
+ * Copy everything until token starts.
+ * Copy replacement string.
+ * Copy everything after token ends.
+ * @param input Pointer to tracker.
+ * @param token Struct containing searched for token.
+ * @param replace Struct containing replacement.
  * @return t_err SUCCESS, ERR_MALLOC
  */
 t_err	ft_insert_replace(t_track *input, t_str token, t_str replace)
