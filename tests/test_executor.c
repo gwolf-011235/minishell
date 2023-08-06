@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:17:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 21:09:42 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 21:15:22 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ static int	test_heredoc_wrapper(char *testname, char *test)
 	i = 0;
 	lst = NULL;
 	cmd = NULL;
-	ft_env_setup(g_symtab);
+	ft_env_setup(&g_symtab);
 	ft_envp_create(g_symtab, &envp);
 	printf("TEST: %s\n", testname);
 	printf("Command:%s\n", test);
 	ft_lex_input(&lst, test);
 	ft_parser(lst, &cmd);
-	ft_executor(cmd, envp);
+	ft_handle_heredoc(cmd);
 	while (cmd)
 	{
 		printf(GREEN"\ndelimiters:\n"RESET);
@@ -97,6 +97,7 @@ static void	test_heredoc(void)
 void	test_executor(void)
 {
 	printf(YELLOW"*******TEST_EXECUTOR*******\n\n"RESET);
-	test_enum_cmds();
+	//test_enum_cmds();
+	test_heredoc();
 
 }
