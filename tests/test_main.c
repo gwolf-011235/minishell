@@ -6,18 +6,20 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 12:10:07 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 16:24:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
+
+/* Globals for testing */
 
 t_data		g_data;
 char		*g_string;
 t_hashtable	*g_symtab;
 char		**g_envp;
 int			g_err_count;
-t_tkn_list	*lst_head;
+t_tkn_list	*g_head;
 char		**g_argv;
 
 __sig_atomic_t	g_status;
@@ -25,7 +27,7 @@ __sig_atomic_t	g_status;
 void	test_setup_data(void)
 {
 	ft_env_setup(&g_data.env_table);
-	lst_head = NULL;
+	g_head = NULL;
 }
 
 void	test_teardown_data(void)
