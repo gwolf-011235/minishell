@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/04 13:10:36 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 23:18:47 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 		if (close(new->fd_in) < 0)
 			return (ERR_CLOSE);
 	fd_in = open(tmp->content, O_RDONLY);
-/* 	if (fd_in == -1)
-		return (ERR_BAD_FD); */
+	if (fd_in == -1)
+		return (ERR_BAD_FD);
 	new->fd_in = fd_in;
 	*lst = tmp;
 	return (SUCCESS);
