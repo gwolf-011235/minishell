@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 09:48:32 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 18:32:04 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,27 @@ typedef struct s_str_navi {
 	size_t	pos;
 }	t_track;
 
-//expander.c
-t_err	ft_expander(char **str, t_hashtable *symtab, bool *exec);
-t_err	ft_insert_replace(t_track *input, t_str token, t_str replace);
-t_err	ft_skip_single_quote(t_track *input);
-t_err	ft_skip_double_quote(t_track *input, bool *in_double_quotes);
-t_err	ft_init_tracker(t_track *input, char *str);
-t_err	ft_move_tracker(t_track *input);
-
-//expand_tilde.c
-t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab);
-
-//expand_var.c
-t_err	ft_expand_var(t_track *input, t_hashtable *symtab, bool quotes, bool *exec);
-
-//expand_quote_removal.c
-t_err	ft_eat_char(char *input, size_t pos);
-t_err	ft_rm_single_quote(t_track *input);
-t_err	ft_rm_double_quote(t_track *input, bool *in_double_quotes);
-t_err	ft_quote_removal(char *str);
-
-//expand_handler.c
+//expand.c
+t_err	ft_expand_tkn_lst(t_tkn_list **head, t_data *data);
 t_err	ft_handle_heredoc(t_tkn_list **list);
 t_err	ft_handle_redirect(t_tkn_list **list, t_hashtable *symtab);
 t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab);
+
+//expand_expander.c
+t_err	ft_expander(char **str, t_hashtable *symtab, bool *exec);
+t_err	ft_skip_single_quote(t_track *input);
+t_err	ft_skip_double_quote(t_track *input, bool *in_double_quotes);
+
+//expand_tilde.c
+t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab);
+t_err	ft_get_tilde_replace(t_str token, t_hashtable *symtab, t_str *replace, size_t *pos);
+t_err	ft_get_tilde_token(t_track *input, t_str *token);
+
+//expand_var.c
+t_err	ft_expand_var(t_track *input, t_hashtable *symtab, bool quotes, bool *exec);
+t_err	ft_special_var(t_str *token, t_str *replace);
+t_err	ft_get_var_token(t_track *input, t_str *token, bool quotes);
+t_err	ft_get_var_replace(t_str token, t_hashtable *symtab, t_str *replace);
 
 //expand_field_split.c
 t_err	ft_field_split(t_tkn_list **list, size_t *words);
@@ -85,5 +82,16 @@ t_err	ft_del_old_node(t_tkn_list **list, size_t *words);
 t_err	ft_partition_two(t_src *src, t_buf *buf);
 t_err	ft_better_tokenise(t_src *src, t_tok *token, t_buf *buf);
 t_err	ft_init_buf(t_buf *buf);
+
+//expand_quote_removal.c
+t_err	ft_quote_removal(char *str);
+t_err	ft_rm_single_quote(t_track *input);
+t_err	ft_rm_double_quote(t_track *input, bool *in_double_quotes);
+
+//expand_utils.c
+t_err	ft_init_tracker(t_track *input, char *str);
+t_err	ft_move_tracker(t_track *input);
+t_err	ft_eat_char(char *input, size_t pos);
+t_err	ft_insert_replace(t_track *input, t_str token, t_str replace);
 
 #endif

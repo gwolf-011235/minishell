@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/03 09:04:11 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 18:27:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,45 @@
  * @file expand_tilde.c
  * @brief Functions to handle expansion of tilde.
  */
-#include	"mod_expand.h"
+#include "mod_expand.h"
 
 /**
- * @brief Find the corresponding replacement for token.
+ * @brief Expand a tilde char to corresponding environment var.
  *
- * Depending on the token find env var.
- * ~: $HOME.
- * ~+: $PWD.
- * ~-: $OLDPWD.
- * If not found increase update position to account for '~' and
- * return ERR_NOT_FOUND.
- * If found ft_strdup() the value.
- * Calc replace.len.
+ * If position is not 0 or the char before is not '=' return.
+ * Check if recognised token (~, ~+, ~-).
+ * Get the replacement for the found token.
+ * Insert the replacement in the string.
+ * Update the position to be after the inserted string.
  *
- * @param token Contains searched for token.
+ * @param input String.
  * @param symtab Environment.
- * @param replace Where to save replace string.
  * @param pos Current position.
- * @return t_err SUCCESS, ERR_NOT_FOUND, ERR_MALLOC
+ * @return t_err SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
  */
-t_err	ft_get_tilde_replace(t_str token, t_hashtable *symtab, t_str *replace, size_t *pos)
+t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab)
 {
-	char		*target;
-	t_env_var	*env_var;
+	t_str	token;
+	t_str	replace;
+	t_err	err;
 
-	if (!ft_strncmp(token.ptr, "~", ft_strlen(token.ptr)))
-		target = "HOME";
-	else if (!ft_strncmp(token.ptr, "~+", ft_strlen(token.ptr)))
-		target = "PWD";
-	else if (!ft_strncmp(token.ptr, "~-", ft_strlen(token.ptr)))
-		target = "OLDPWD";
-	env_var = ft_hashtable_lookup(symtab, target, ft_strlen(target));
-	if (!env_var)
-	{
-		(*pos)++;
-		return (ERR_NOT_FOUND);
-	}
-	replace->ptr = ft_strdup(env_var->value);
-	if (!replace->ptr)
-		return (ERR_MALLOC);
-	replace->len = ft_strlen(replace->ptr);
+	if (input->pos != 0 && input->str[input->pos - 1] != '=')
+		return (ERR_NOEXPAND);
+	token.ptr = NULL;
+	err = ft_get_tilde_token(input, &token);
+	if (err != SUCCESS)
+		return (err);
+	replace.ptr = NULL;
+	err = ft_get_tilde_replace(token, symtab, &replace, &input->pos);
+	if (err == ERR_NOT_FOUND)
+		return (ERR_NOEXPAND);
+	if (err != SUCCESS)
+		return (err);
+	err = ft_insert_replace(input, token, replace);
+	free(replace.ptr);
+	if (err != SUCCESS)
+		return (err);
+	input->pos += replace.len;
 	return (SUCCESS);
 }
 
@@ -96,41 +94,43 @@ t_err	ft_get_tilde_token(t_track *input, t_str *token)
 }
 
 /**
- * @brief Expand a tilde char to corresponding environment var.
+ * @brief Find the corresponding replacement for token.
  *
- * If position is not 0 or the char before is not '=' return.
- * Check if recognised token (~, ~+, ~-).
- * Get the replacement for the found token.
- * Insert the replacement in the string.
- * Update the position to be after the inserted string.
+ * Depending on the token find env var.
+ * ~: $HOME.
+ * ~+: $PWD.
+ * ~-: $OLDPWD.
+ * If not found increase update position to account for '~' and
+ * return ERR_NOT_FOUND.
+ * If found ft_strdup() the value.
+ * Calc replace.len.
  *
- * @param input String.
+ * @param token Contains searched for token.
  * @param symtab Environment.
+ * @param replace Where to save replace string.
  * @param pos Current position.
- * @return t_err SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
+ * @return t_err SUCCESS, ERR_NOT_FOUND, ERR_MALLOC
  */
-t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab)
+t_err	ft_get_tilde_replace(t_str token, t_hashtable *symtab, t_str *replace, size_t *pos)
 {
-	t_str	token;
-	t_str	replace;
-	t_err	err;
+	char		*target;
+	t_env_var	*env_var;
 
-	if (input->pos != 0 && input->str[input->pos - 1] != '=')
-		return (ERR_NOEXPAND);
-	token.ptr = NULL;
-	err = ft_get_tilde_token(input, &token);
-	if (err != SUCCESS)
-		return (err);
-	replace.ptr = NULL;
-	err = ft_get_tilde_replace(token, symtab, &replace, &input->pos);
-	if (err == ERR_NOT_FOUND)
-		return (ERR_NOEXPAND);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_insert_replace(input, token, replace);
-	free(replace.ptr);
-	if (err != SUCCESS)
-		return (err);
-	input->pos += replace.len;
+	if (!ft_strncmp(token.ptr, "~", ft_strlen(token.ptr)))
+		target = "HOME";
+	else if (!ft_strncmp(token.ptr, "~+", ft_strlen(token.ptr)))
+		target = "PWD";
+	else if (!ft_strncmp(token.ptr, "~-", ft_strlen(token.ptr)))
+		target = "OLDPWD";
+	env_var = ft_hashtable_lookup(symtab, target, ft_strlen(target));
+	if (!env_var)
+	{
+		(*pos)++;
+		return (ERR_NOT_FOUND);
+	}
+	replace->ptr = ft_strdup(env_var->value);
+	if (!replace->ptr)
+		return (ERR_MALLOC);
+	replace->len = ft_strlen(replace->ptr);
 	return (SUCCESS);
 }

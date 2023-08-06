@@ -1,143 +1,104 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.c                                           :+:      :+:    :+:   */
+/*   expand_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 09:40:55 by gwolf            ###   ########.fr       */
+/*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
+/*   Updated: 2023/08/06 18:16:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @file expand.c
- * @brief Contains driver function to handle expansion and quote removal.
- */
 #include "mod_expand.h"
 
 /**
- * @brief Search for token in input string and replace with replace.
+ * @brief Loop through token list and expand content.
  *
- * @param input String.
- * @param pos Current position.
- * @param token Struct containing the searched for token.
- * @param replace Struct containing the replacement.
- * @return t_err SUCCESS, ERR_MALLOC
+ * If a heredoc token is encountered, jump over the token and the next one.
+ * Else pass the token content to ft_expand_expr() which handles expansion.
+ *
+ * @param list List of tokens.
+ * @param data Overarching struct.
+ * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_err	ft_insert_replace(t_track *input, t_str token, t_str replace)
+t_err	ft_expand_tkn_lst(t_tkn_list **head, t_data *data)
 {
-	size_t	new_len;
-	char	*new_str;
-	char	*old_str;
-	size_t	cur_pos;
+	t_tkn_list	*tmp;
+	t_type		type;
+	t_err		err;
 
-	new_len = ft_strlen(input->str) - token.len + replace.len;
-	new_str = malloc(new_len);
-	if (!new_str)
-		return (ERR_MALLOC);
-	*new_str = '\0';
-	old_str = input->str;
-	cur_pos = input->pos;
-	ft_strncat(new_str, old_str, cur_pos);
-	ft_strcat(new_str, replace.ptr);
-	cur_pos += token.len;
-	ft_strcat(new_str, (old_str + cur_pos));
-	free(old_str);
-	input->str = new_str;
+	tmp = *head;
+	while (tmp)
+	{
+		type = tmp->type;
+		if (type == PIPE || type == NEW_LINE)
+			err = SUCCESS;
+		else if (type == HEREDOC)
+			err = ft_handle_heredoc(&tmp);
+		else if (type == INFILE || type == OUTFILE || type == APPEND)
+			err = ft_handle_redirect(&tmp, data->env_table);
+		else
+			err = ft_handle_arg(&tmp, data->env_table);
+		if (err != SUCCESS)
+			return (err);
+		if (tmp  == NULL || tmp->next == NULL)
+			break ;
+		tmp = tmp->next;
+	}
+	*head = ft_list_first(tmp);
 	return (SUCCESS);
 }
 
-/**
- * @brief Skip single quotes.
- *
- * Skip found single quote.
- * Jump over quoted part, searching for the second single.
- * Skip second single quote.
- *
- * @param expr String
- * @param pos Current position
- * @return t_err SUCCESS
- */
-t_err	ft_skip_single_quote(t_track *input)
+t_err	ft_handle_heredoc(t_tkn_list **list)
 {
-	input->pos++;
-	while (input->str[input->pos] != '\'')
-		input->pos++;
-	input->pos++;
-	return (SUCCESS);
-}
-
-/**
- * @brief Skip double quotes.
- *
- * Skip found double quote.
- * Switch bool in_quotes on/off.
- * This way we know if we are in double quotes or not.
- * The next time we see a double quote the switch gets flipped again.
- *
- * @param expr String.
- * @param pos Current position.
- * @param in_double_quotes Pointer to change switch.
- * @return t_err SUCCESS.
- */
-t_err	ft_skip_double_quote(t_track *input, bool *in_double_quotes)
-{
-	input->pos++;
-	*in_double_quotes = !(*in_double_quotes);
-	return (SUCCESS);
-}
-
-t_err	ft_init_tracker(t_track *input, char *str)
-{
-	input->str = str;
-	input->pos = 0;
-	return (SUCCESS);
-}
-
-t_err	ft_move_tracker(t_track *input)
-{
-	input->pos++;
-	return (SUCCESS);
-}
-
-/**
- * @brief Expand expressions received from token list.
- *
- * Go through the string and check for special chars.
- * Tilde: ft_expand_tilde().
- * $: ft_expand_var().
- * Single quote: ft_skip_single_quote().
- * Double quote: ft_skip_double_quote().
- *
- * @param expr The expression to be expanded.
- * @param symtab The environment table
- * @param info Data for return code and shell name.
- * @return t_err SUCCESS, ERR_MALLOC
- */
-t_err	ft_expander(char **str, t_hashtable *symtab, bool *exec)
-{
-	t_track	input;
-	bool	in_double_quotes;
 	t_err	err;
 
-	ft_init_tracker(&input, *str);
-	in_double_quotes = false;
-	while (input.str[input.pos])
+	*list = (*list)->next;
+	err = ft_quote_removal((*list)->content);
+	return (err);
+}
+
+t_err	ft_handle_redirect(t_tkn_list **list, t_hashtable *symtab)
+{
+	bool	exec;
+	t_err	err;
+
+	*list = (*list)->next;
+	exec = false;
+	err = ft_expander(&((*list)->content), symtab, &exec);
+	if (err != SUCCESS)
+		return (err);
+	if ((*list)->content && (*list)->content[0] == '\0')
+		(*list)->prev->type = AMBIGUOUS;
+	else
+		err = ft_quote_removal((*list)->content);
+	return (err);
+}
+
+t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab)
+{
+	bool	exec;
+	size_t	words;
+	t_err	err;
+
+	exec = false;
+	words = 1;
+	err = ft_expander(&((*list)->content), symtab, &exec);
+	if (err != SUCCESS)
+		return (err);
+	if (exec)
 	{
-		if (input.str[input.pos] == '\'' && !in_double_quotes)
-			err = ft_skip_single_quote(&input);
-		else if (input.str[input.pos] == '"')
-			err = ft_skip_double_quote(&input, &in_double_quotes);
-		else if (input.str[input.pos] == '~' && !in_double_quotes)
-			err = ft_expand_tilde(&input, symtab);
-		else if (input.str[input.pos] == '$')
-			err = ft_expand_var(&input, symtab, in_double_quotes, exec);
-		else
-			err = ft_move_tracker(&input);
-		if (err != SUCCESS && err != ERR_NOEXPAND)
+		words = 0;
+		err = ft_field_split(list, &words);
+		if (err != SUCCESS)
 			return (err);
 	}
-	*str = input.str;
-	return (SUCCESS);
+	while (words-- && *list)
+	{
+		err = ft_quote_removal((*list)->content);
+		if ((*list)->next != NULL)
+			*list = (*list)->next;
+	}
+	return (err);
 }

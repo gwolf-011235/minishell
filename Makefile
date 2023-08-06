@@ -6,7 +6,7 @@
 #    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/05 18:44:56 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/06 18:34:33 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,14 +85,14 @@ SRC :=	utils_memory.c \
 		lexer_tok.c \
 		lexer_tok_utils.c \
 		syntax.c \
-		expand.c \
-		expand_tilde.c \
-		expand_var.c \
-		expand_quote_removal.c \
+		expand_expander.c \
 		expand_field_split.c \
 		expand_field_split2.c \
-		expand_handler.c \
-		handle_input_expand.c \
+		expand_quote_removal.c \
+		expand_tilde.c \
+		expand_utils.c \
+		expand_var.c \
+		expand.c \
 		handle_input.c \
 		handle_input_tkn_list.c \
 		handle_input_tkn_list2.c \
