@@ -124,21 +124,27 @@ t_err	ft_del_old_node(t_tkn_list **list, size_t *words)
  */
 t_err	ft_field_split(t_tkn_list **list, size_t *words)
 {
-	t_err	err;
-	t_buf	buf;
+	t_tkn_list	*tmp;
+	t_buf		buf;
+	t_err		err;
 
-	ft_count_expand_words((*list)->content, words);
+	tmp = *list;
+	ft_count_expand_words(tmp->content, words);
 	if (*words == 1)
 		return (SUCCESS);
 	else if (*words == 0)
-		ft_del_node_mid(list);
-	err = ft_init_buf(&buf);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_split_node(list, &buf);
-	free(buf.str);
-	if (err != SUCCESS)
-		return (err);
-	ft_del_old_node(list, words);
+		ft_del_node_mid(&tmp);
+	else
+	{
+		err = ft_init_buf(&buf);
+		if (err != SUCCESS)
+			return (err);
+		err = ft_split_node(&tmp, &buf);
+		free(buf.str);
+		if (err != SUCCESS)
+			return (err);
+		ft_del_old_node(&tmp, words);
+	}
+	*list = tmp;
 	return (SUCCESS);
 }
