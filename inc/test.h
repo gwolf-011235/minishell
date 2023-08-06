@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/31 13:20:43 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 23:05:44 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "mod_prompt.h"
 # include "mod_syntax.h"
 # include "mod_builtin.h"
+# include "mod_executor.h"
 
 # define RESET "\033[0m"
 # define BOLD "\033[1m"
