@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 10:38:07 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 15:37:58 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 21:00:21 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	exec_ft_export(char *name, char *arg1, char *arg2, char *arg3)
 	ft_export(g_argv, g_symtab);
 	printf("\n");
 	printf("\tPRINT\n");
-	ft_hashtable_pretty_print(g_symtab);
+	test_hashtable_pretty_print(g_symtab);
 	printf("\n");
 }
 
