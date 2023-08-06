@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 20:06:02 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 16:09:52 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths);
 t_err	ft_process_cmd(t_cmd *cmd, t_err err, char **envp);
 
 // create child processes
-void	ft_create_child(t_cmd *cmd, char **envp);
+t_err	ft_create_child(t_cmd *cmd, char **envp);
+t_err	ft_raise_first(t_cmd *cmd, char **envp);
+t_err	ft_raise_last(t_cmd *cmd, char **envp);
+t_err	ft_raise_middle(t_cmd *cmd, char **envp);
 
 // heredoc
 t_err	ft_handle_heredoc(t_cmd *cmd);
@@ -46,6 +49,7 @@ t_err	ft_plug_pipe(t_cmd *cmd, bool close_read_end);
 t_err	ft_check_cmd_access(char **args, char **cmd_paths);
 t_err	ft_prefix_path(char **args, char **cmd_paths);
 t_err	ft_get_path(char **envp, char ***paths);
+t_err	ft_replace_fd(int input_fd, int output_fd);
 
 // include from mod_cleanup
 void	ft_free_str_arr(char **arr);

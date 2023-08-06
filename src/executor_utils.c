@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/04 21:01:14 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 15:00:19 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,27 @@ t_err	ft_get_path(char **envp, char ***paths)
 		*paths = NULL;
 		return (ERR_NOPATH);
 	}
+	return (SUCCESS);
+}
+
+/**
+ * @brief Replace the standard file descriptors
+ * 
+ * 	fd 0 (for system stdinput) with input_fd
+ * 	fd 1 (for system stdoutput) with output_fd
+ *
+ * allowing data to be read and written to different files.
+ * The input and output fds are closed after transfering their
+ * file description to stdin and stdout respectively.
+ * @param input_fd 		File descriptor to act as read end.
+ * @param output_fd 	File descriptor to act as write end.
+ * @return t_err		ERR_DUPL, SUCCESS
+ */
+t_err	ft_replace_fd(int input_fd, int output_fd)
+{
+	if (dup2(input_fd, 0) < 0)
+		return (ERR_DUPL);
+	if (dup2(output_fd, 1) < 0)
+		return (ERR_DUPL);
 	return (SUCCESS);
 }
