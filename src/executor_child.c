@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 18:43:07 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 21:07:03 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@
 void	ft_firstborn(t_cmd *cmd, char **envp)
 {
 	ft_close(cmd->fd_pipe[0]);
-	if (cmd->fd_out)
+	if (cmd->fd_out >= 0)
 	{
-		if (cmd->fd_in)
+		if (cmd->fd_in >= 0)
 			ft_replace_fd(cmd->fd_in, cmd->fd_out);
 		else
 			ft_replace_fd(0, cmd->fd_out);
@@ -43,7 +43,7 @@ void	ft_firstborn(t_cmd *cmd, char **envp)
 	}
 	else
 	{
-		if (cmd->fd_in)
+		if (cmd->fd_in >= 0)
 			ft_replace_fd(cmd->fd_in, cmd->fd_pipe[1]);
 		else
 			ft_replace_fd(0, cmd->fd_pipe[1]);
@@ -71,16 +71,16 @@ void	ft_firstborn(t_cmd *cmd, char **envp)
 void	ft_lastborn(t_cmd *cmd, char **envp)
 {
 	ft_close(cmd->fd_prev_pipe[1]);
-	if (cmd->fd_out)
+	if (cmd->fd_out >= 0)
 	{
-		if (cmd->fd_in)
+		if (cmd->fd_in >= 0)
 			ft_replace_fd(cmd->fd_in, cmd->fd_out);
 		else
 			ft_replace_fd(cmd->fd_prev_pipe[0], cmd->fd_out);
 	}
 	else
 	{
-		if (cmd->fd_in)
+		if (cmd->fd_in >= 0)
 			ft_replace_fd(cmd->fd_in, 1);
 		else
 			ft_replace_fd(cmd->fd_prev_pipe[0], 1);
@@ -111,9 +111,9 @@ void	ft_middle_child(t_cmd *cmd, char **envp)
 {
 	ft_close(cmd->fd_prev_pipe[1]);
 	ft_close(cmd->fd_pipe[0]);
-	if (cmd->fd_out)
+	if (cmd->fd_out >= 0)
 	{
-		if (cmd->fd_in)
+		if (cmd->fd_in >= 0)
 			ft_replace_fd(cmd->fd_in, cmd->fd_out);
 		else
 			ft_replace_fd(cmd->fd_prev_pipe[0], cmd->fd_out);
@@ -121,7 +121,7 @@ void	ft_middle_child(t_cmd *cmd, char **envp)
 	}
 	else
 	{
-		if (cmd->fd_in)
+		if (cmd->fd_in >= 0)
 			ft_replace_fd(cmd->fd_in, cmd->fd_pipe[1]);
 		else
 			ft_replace_fd(cmd->fd_prev_pipe[0], cmd->fd_pipe[1]);
