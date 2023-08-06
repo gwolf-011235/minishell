@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 09:30:49 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 12:10:07 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	test_print_tkn_list(t_tkn_list *head)
 
 	i = 0;
 	printf("** Token list **\n");
-	printf("-> NULL\n");
 	while (head)
 	{
 		i++;

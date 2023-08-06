@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 13:09:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 21:11:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 13:31:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	exec_ft_handle_arg(void)
 	ft_hashtable_insert(g_symtab, ft_strdup("TEST=no senor"), 4);
 	tmp = head;
 	ft_handle_arg(&tmp, g_symtab);
+	head = ft_list_first(tmp);
 	test_print_tkn_list(head);
 	ft_hashtable_delete(g_symtab, "TEST", 4);
 	ft_free_lst(&head);

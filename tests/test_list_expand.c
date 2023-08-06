@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 08:58:42 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:26:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 13:30:08 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	test_expand_list(void)
 	printf(BLUE"**\tLIST\t**\n\n"RESET);
 	g_string = "~ $TEST\n";
 	ft_lex_input(&tmp, g_string);
-	ft_expand_tkn_lst(tmp, &g_data);
+	ft_expand_tkn_lst(&tmp, &g_data);
 	while (tmp)
 	{
 		if (!strncmp(tmp->content, "\n", ft_strlen(tmp->content)))
