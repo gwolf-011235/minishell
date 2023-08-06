@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 18:28:23 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 19:15:07 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ t_err	ft_get_var_token(t_track *input, t_str *token, bool quotes)
 	if (token->len == 0)
 	{
 		if (!quotes && ft_strchr("\"'", input->str[input->pos + 1]))
-			ft_eat_char(input->str, input->pos);
+			ft_eat_char(input);
 		else
 			input->pos++;
 		return (ERR_NOEXPAND);

@@ -6,12 +6,19 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 18:19:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 18:24:06 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 19:14:38 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mod_expand.h"
 
+/**
+ * @brief Initialize a t_track with string and pos set to 0.
+ *
+ * @param input Pointer to tracker.
+ * @param str String which shall be tracked.
+ * @return t_err SUCCESS
+ */
 t_err	ft_init_tracker(t_track *input, char *str)
 {
 	input->str = str;
@@ -19,6 +26,13 @@ t_err	ft_init_tracker(t_track *input, char *str)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Move tracker forward by one.
+ *
+ * Function only needed because of norminette.
+ * @param input Pointer to tracker.
+ * @return t_err SUCCESS
+ */
 t_err	ft_move_tracker(t_track *input)
 {
 	input->pos++;
@@ -32,12 +46,12 @@ t_err	ft_move_tracker(t_track *input)
  * @param pos Current position.
  * @return t_err SUCCESS
  */
-t_err	ft_eat_char(char *input, size_t pos)
+t_err	ft_eat_char(t_track *input)
 {
 	char	*str1;
 	char	*str2;
 
-	str1 = input + pos;
+	str1 = input->str + input->pos;
 	str2 = str1 + 1;
 	while (*str1)
 		*str1++ = *str2++;

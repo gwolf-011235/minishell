@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 18:39:01 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 19:15:41 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_err	ft_rm_double_quote(t_track *input, bool *in_double_quotes);
 //expand_utils.c
 t_err	ft_init_tracker(t_track *input, char *str);
 t_err	ft_move_tracker(t_track *input);
-t_err	ft_eat_char(char *input, size_t pos);
+t_err	ft_eat_char(t_track *input);
 t_err	ft_insert_replace(t_track *input, t_str token, t_str replace);
 
 #endif
