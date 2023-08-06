@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 18:38:39 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 18:54:12 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table)
 			err = ft_handle_arg(&tmp, env_table);
 		if (err != SUCCESS)
 			return (err);
-		if (tmp  == NULL || tmp->next == NULL)
+		if (tmp == NULL || tmp->next == NULL)
 			break ;
 		tmp = tmp->next;
 	}
@@ -97,7 +97,7 @@ t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab)
 	while (words-- && *list)
 	{
 		err = ft_quote_removal((*list)->content);
-		if ((*list)->next != NULL)
+		if (words && (*list)->next != NULL)
 			*list = (*list)->next;
 	}
 	return (err);
