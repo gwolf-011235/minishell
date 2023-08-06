@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 15:48:39 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 18:45:33 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ t_err	ft_plug_pipe(t_cmd *cmd, bool close_read_end)
 	t_err	err;
 	t_err	err2;
 
+	err = SUCCESS;
 	if (close_read_end)
 		err = ft_close(cmd->fd_pipe[0]);
 	err2 = ft_close(cmd->fd_pipe[1]);
