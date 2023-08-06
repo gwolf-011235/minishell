@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 17:54:17 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 18:44:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	ft_init_exec(t_cmd *cmd)
  */
 t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths)
 {
-	int		i;
 	t_err	err;
 
 	while (cmd && cmd->index < cmd->cmd_num)
