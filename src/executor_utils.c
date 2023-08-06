@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 15:00:19 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 18:56:07 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ t_err	ft_check_cmd_access(char **args, char **cmd_paths)
 	err = ERR_UNKNOWN_CMD;
 	if ((*args)[0] == '/' || !ft_strncmp(*args, "./", 2)
 		|| !ft_strncmp(*args, "../", 3) || !cmd_paths)
+	{
 		if (access(*args, F_OK | X_OK) == 0)
 			return (SUCCESS);
+	}
 	else
 		err = ft_prefix_path(args, cmd_paths);
 	return (err);
@@ -89,15 +91,14 @@ t_err	ft_prefix_path(char **args, char **cmd_paths)
  * If PATH is empty, a '\0' is found and saved into *paths. This will
  * be treated as ERR_NOPATH as well.
  * @param envp 		String array containing all environment strings.
- * @param char***	String array containing all path strings.
+ * @param paths		Pointer to string array containing all path strings.
  * @return t_err	ERR_NOPATH, ERR_MALLOC, SUCCESS
  */
 t_err	ft_get_path(char **envp, char ***paths)
 {
 	char	*path_str;
-	char	**paths;
 
-	while (ft_strncmp(*envp, "PATH", 4) || (*envp + 4 != '='))
+	while (ft_strncmp(*envp, "PATH", 4) || (*(*envp + 4) != '='))
 		envp++;
 	if (!*envp)
 		return (ERR_NOPATH);
@@ -105,7 +106,7 @@ t_err	ft_get_path(char **envp, char ***paths)
 	*paths = ft_split(path_str, ':');
 	if (!*paths)
 		return (ERR_MALLOC);
-	if (**paths == '\0')
+	if (***paths == '\0')
 	{
 		free(*paths);
 		*paths = NULL;
