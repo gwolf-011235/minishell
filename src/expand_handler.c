@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 13:28:12 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 17:47:45 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab)
 	while (words-- && *list)
 	{
 		err = ft_quote_removal((*list)->content);
-		*list = (*list)->next;
+		if ((*list)->next != NULL)
+			*list = (*list)->next;
 	}
 	return (err);
 }
