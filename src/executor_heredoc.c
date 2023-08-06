@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 19:07:53 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 23:25:34 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_err	ft_handle_heredoc(t_cmd *cmd)
 	while (cmd)
 	{
 		i = -1;
-		while (++i <= cmd->delim_pos)
+		while (++i < cmd->delim_pos)
 		{
 			err = ft_create_heredoc(cmd, cmd->delims[i], i);
 			if (err != SUCCESS)
@@ -61,7 +61,7 @@ t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim)
 	t_err	err;
 
 	name = NULL;
-	err = ft_initiate_heredoc(cmd->index, name, &fd);
+	err = ft_initiate_heredoc(cmd->index, &name, &fd);
 	if (err != SUCCESS)
 		return (err);
 	len = ft_strlen(delim);
@@ -89,13 +89,13 @@ t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim)
  * @param name 		Name to be defined.
  * @return t_err 	ERR_MALLOC, SUCCESS
  */
-t_err	ft_name_heredoc(int index, char *name)
+t_err	ft_name_heredoc(int index, char **name)
 {
 	char	*index_str;
 
 	index_str = ft_itoa(index);
-	name = ft_strjoin(".tmp_heredoc_v", index_str);
-	if (!name)
+	*name = ft_strjoin(".tmp_heredoc_v", index_str);
+	if (!*name)
 		return (ERR_MALLOC);
 	return (SUCCESS);
 }
@@ -104,18 +104,18 @@ t_err	ft_name_heredoc(int index, char *name)
  * @brief Set heredoc name and open it.
  * 
  * @param index 	Index of current cmd.
- * @param name 		Name of heredoc to be created.
+ * @param name 		Pointer to name of heredoc to be created.
  * @param fd 		File descriptor for heredoc.
  * @return t_err 	ERR_MALLOC, ERR_BAD_FD, SUCCESS
  */
-t_err	ft_initiate_heredoc(int index, char *name, int *fd)
+t_err	ft_initiate_heredoc(int index, char **name, int *fd)
 {
 	t_err	err;
 
 	err = ft_name_heredoc(index, name);
 	if (err == ERR_MALLOC)
 		return (err);
-	*fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	*fd = open(*name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (*fd < 0)
 		return (ERR_BAD_FD);
 	return (SUCCESS);
@@ -140,7 +140,7 @@ t_err	ft_heredoc_fate(t_cmd *cmd, char *name, int fd, int curr_delim)
 	err = ft_close(fd);
 	if (err != SUCCESS)
 		return (err);
-	if (cmd->fd_in == -1 && curr_delim == cmd->delim_pos)
+	if (cmd->fd_in == -1 && curr_delim == cmd->delim_pos - 1)
 	{
 		cmd->fd_in = open(name, O_RDONLY);
 		if (cmd->fd_in < 0)

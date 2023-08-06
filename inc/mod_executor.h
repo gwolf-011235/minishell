@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 19:46:46 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 23:09:06 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	ft_middle_child(t_cmd *cmd, char **envp);
 // heredoc
 t_err	ft_handle_heredoc(t_cmd *cmd);
 t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim);
-t_err	ft_name_heredoc(int index, char *name);
-t_err	ft_initiate_heredoc(int index, char *name, int *fd);
+t_err	ft_name_heredoc(int index, char **name);
+t_err	ft_initiate_heredoc(int index, char **name, int *fd);
 t_err	ft_heredoc_fate(t_cmd *cmd, char *name, int fd, int curr_delim);
 
 // cleanup
