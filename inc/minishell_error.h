@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 15:39:28 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/07 11:49:48 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ typedef enum e_error {
 	ERR_LAST, ///< Last child process encountered error.
 	ERR_MID, ///< Middle child process encountered error.
 	ERR_DUPL, ///< Error while duplicating file descriptor.
-	ERR_EXECVE ///< Execve encountered an error.
+	ERR_EXECVE, ///< Execve encountered an error.
+	ERR_WAIT ///< Error while waiting for exit status of child process.
 }	t_err;
 
 

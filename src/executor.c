@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 22:59:29 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/07 11:51:05 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,9 @@ t_err	ft_create_pipes(t_cmd *cmd)
 t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths)
 {
 	t_err	err;
+	t_cmd	*tmp;
 
+	tmp = cmd;
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
 		/* if (ft_check_builtin(cmd->args))
@@ -126,6 +128,12 @@ t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths)
 		if (err != SUCCESS)
 			return (err);
 		cmd = cmd->next;
+	}
+	while (tmp)
+	{
+		if (waitpid(tmp->pid, NULL, 0) < 0)
+			return (ERR_WAIT);
+		tmp = tmp->next;
 	}
 	return (SUCCESS);
 }
