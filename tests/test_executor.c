@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:17:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/07 11:44:18 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/07 12:10:31 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,13 @@ static void	test_singlecmds(void)
 	//test_scmd_wrapper("scmd", "rm mumumu");
 	//test_scmd_wrapper("scmd", "rm -r shubidu");
 	//test_scmd_wrapper("scmd", "rm -r shubidu");
-	test_scmd_wrapper("scmd with infile", "cat <infile");
+	//test_scmd_wrapper("scmd with infile", "cat <infile");
+	//test_scmd_wrapper("scmd with infile and outfile", ">     outfile cat <infile");
+	//test_scmd_wrapper("scmd with infile followed by heredoc", "cat <infile <<  supi");
+	//test_scmd_wrapper("scmd with heredoc followed by infile", "cat  <<  supi  <infile");
+	//test_scmd_wrapper("scmd with several infiles", "cat  <infile3  <infile <infile2");
+	test_scmd_wrapper("scmd with several outfiles", "ls  >outfile3  >outfile >outfile2");
+	test_scmd_wrapper("scmd with outfile in append mode", "cat infile >>outfile2");
 }
 
 void	test_executor(void)
