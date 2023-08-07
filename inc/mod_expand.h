@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 19:15:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/07 21:31:12 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,12 @@ typedef struct s_str_info {
  * @param str Pointer to string.
  * @param pos Current position of the input string.
  */
-typedef struct s_str_navi {
+typedef struct s_track {
 	char	*str;
 	size_t	pos;
+	bool	quoted;
+	bool	expanded;
+	int		last_expand_len;
 }	t_track;
 
 //expand.c

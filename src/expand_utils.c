@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 18:19:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 19:25:58 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/07 21:31:28 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ t_err	ft_init_tracker(t_track *input, char *str)
 {
 	input->str = str;
 	input->pos = 0;
+	input->quoted = false;
+	input->expanded = false;
+	input->last_expand_len = -1;
 	return (SUCCESS);
 }
 
