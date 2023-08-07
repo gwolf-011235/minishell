@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/28 13:36:12 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/07 12:33:08 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 {
 	t_data		*data;
 	char 		*input;
+	char		**envp;
 
 	(void)argc;
 	(void)argv;
@@ -29,6 +30,7 @@ int	main(int argc, char **argv)
 		ft_exit_failure(data, ERR_MALLOC);
 	if (ft_env_setup(&data->env_table) != SUCCESS)
 		printf("NO\n");
+	ft_envp_create(data->env_table, &envp);
 	ft_hashtable_insert(data->env_table, "PS1=\\u@\\h:\\w$ ", 3);
 	while (1)
 	{
@@ -42,7 +44,7 @@ int	main(int argc, char **argv)
 		if (!input)
 			break ;
 		add_history(input);
-		data->err = ft_handle_input(input);
+		data->err = ft_handle_input(input, data, envp);
 		if (data->err != SUCCESS)
 			ft_exit_failure(data, data->err);
 		//do stuff

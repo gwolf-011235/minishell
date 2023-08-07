@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:16:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 22:58:58 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/07 12:32:42 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "mod_handle_input.h"
 
-t_err	ft_handle_input(char *input, t_data *data)
+t_err	ft_handle_input(char *input, t_data *data, char **envp)
 {
 	t_tkn_list	*lst;
 	t_err		err;
@@ -37,8 +37,8 @@ t_err	ft_handle_input(char *input, t_data *data)
 	if (err != SUCCESS)
 		return (err);
 	ft_free_lst(&lst);
-	/* err = ft_executor(cmd);
+	err = ft_executor(cmd, envp);
 	if (err != SUCCESS)
-		return (err); */
+		return (err);
 	return (SUCCESS);
 }
