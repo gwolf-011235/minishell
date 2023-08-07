@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 19:15:07 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/07 22:04:01 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
  * @param exec Set to true if expansion happened.
  * @return t_err SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
  */
-t_err	ft_expand_var(t_track *input, t_hashtable *symtab, bool quotes, bool *exec)
+t_err	ft_expand_var(t_track *input, t_hashtable *symtab)
 {
 	t_str	token;
 	t_str	replace;
@@ -41,7 +41,7 @@ t_err	ft_expand_var(t_track *input, t_hashtable *symtab, bool quotes, bool *exec
 		err = ft_special_var(&token, &replace);
 	else
 	{
-		err = ft_get_var_token(input, &token, quotes);
+		err = ft_get_var_token(input, &token);
 		if (err != SUCCESS)
 			return (err);
 		err = ft_get_var_replace(token, symtab, &replace);
@@ -53,8 +53,9 @@ t_err	ft_expand_var(t_track *input, t_hashtable *symtab, bool quotes, bool *exec
 	if (replace.len > 0)
 		free (replace.ptr);
 	input->pos += replace.len;
-	if (err == SUCCESS && exec)
-		*exec = true;
+	input->last_expand_len = replace.len;
+	if (err == SUCCESS)
+		input->expanded = true;
 	return (err);
 }
 
@@ -92,7 +93,7 @@ t_err	ft_special_var(t_str *token, t_str *replace)
  * @param token Pointer to struct.
  * @return t_err SUCCESS, ERR_NOEXPAND.
  */
-t_err	ft_get_var_token(t_track *input, t_str *token, bool quotes)
+t_err	ft_get_var_token(t_track *input, t_str *token)
 {
 	token->ptr = input->str + input->pos + 1;
 	token->len = 0;
@@ -104,7 +105,7 @@ t_err	ft_get_var_token(t_track *input, t_str *token, bool quotes)
 	}
 	if (token->len == 0)
 	{
-		if (!quotes && ft_strchr("\"'", input->str[input->pos + 1]))
+		if (!input->quoted && ft_strchr("\"'", input->str[input->pos + 1]))
 			ft_eat_char(input);
 		else
 			input->pos++;

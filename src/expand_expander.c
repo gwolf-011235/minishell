@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 18:25:02 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/07 22:21:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,28 @@
  * @brief Contains driver function to handle expansion and quote removal.
  */
 #include "mod_expand.h"
+
+t_err	ft_expander_redirect(t_track *input, t_hashtable *symtab)
+{
+	t_err	err;
+
+	while (input->str[input->pos])
+	{
+		if (input->str[input->pos] == '\'' && !input->quoted)
+			err = ft_rm_single_quote(input);
+		else if (input->str[input->pos] == '"')
+			err = ft_rm_double_quote(input);
+		else if (input->str[input->pos] == '~' && !input->quoted)
+			err = ft_expand_tilde(input, symtab);
+		else if (input->str[input->pos] == '$')
+			err = ft_expand_var(input, symtab);
+		else
+			err = ft_move_tracker(input);
+		if (err != SUCCESS && err != ERR_NOEXPAND)
+			return (err);
+	}
+	return (SUCCESS);
+}
 
 /**
  * @brief Expand expressions received from token list.
@@ -30,7 +52,7 @@
  * @param info Data for return code and shell name.
  * @return t_err SUCCESS, ERR_MALLOC
  */
-t_err	ft_expander(char **str, t_hashtable *symtab, bool *exec)
+t_err	ft_expander(char **str, t_hashtable *symtab)
 {
 	t_track	input;
 	bool	in_double_quotes;
@@ -47,7 +69,7 @@ t_err	ft_expander(char **str, t_hashtable *symtab, bool *exec)
 		else if (input.str[input.pos] == '~' && !in_double_quotes)
 			err = ft_expand_tilde(&input, symtab);
 		else if (input.str[input.pos] == '$')
-			err = ft_expand_var(&input, symtab, in_double_quotes, exec);
+			err = ft_expand_var(&input, symtab);
 		else
 			err = ft_move_tracker(&input);
 		if (err != SUCCESS && err != ERR_NOEXPAND)
