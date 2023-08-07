@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 13:09:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 19:36:07 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/07 22:34:15 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,31 +58,47 @@ void	exec_ft_handle_redirect(char *testname, char *str)
 	ft_free_lst(&g_head);
 }
 
-void	test_expand_handler(void)
+void	test_handle_arg(void)
 {
-	printf(YELLOW"*******TEST_EXPAND_HANDLER*******\n\n"RESET);
-	g_symtab = ft_hashtable_create(1, ft_hash_fnv1);
 	printf(BLUE"**\tft_handle_arg\t**\n\n"RESET);
 	exec_ft_handle_arg("empty var", "$TEST");
-	//exec_ft_handle_heredoc();
-	//exec_ft_handle_redirect();
-	ft_hashtable_insert(g_symtab, ft_strdup("TEST=I   have    spaces"), 4);
 	exec_ft_handle_arg("Var to expand", "$TEST");
 	exec_ft_handle_arg("Var to expand and stuff after", "$TEST \"Hello      boy\"");
 	exec_ft_handle_arg("Don't split but rm quotes", "'I     no    split' \"Me   neither\"");
 	exec_ft_handle_arg("Don't split but rm quotes 2", "\"Me   neither\"");
-	ft_hashtable_insert(g_symtab, ft_strdup("S=s -la"), 1);
 	exec_ft_handle_arg("Spicy expand", "l$S");
-	ft_hashtable_insert(g_symtab, ft_strdup("SINGLE=badboy'"), 6);
 	exec_ft_handle_arg("Single quote expand", "$SINGLE");
+}
 
+void	test_handle_heredoc(void)
+{
 	printf(BLUE"**\tft_handle_heredoc\t**\n\n"RESET);
 	exec_ft_handle_heredoc("Remove quotes", "<< 'ahoy'");
+}
 
+void	test_handle_redirect(void)
+{
 	printf(BLUE"**\tft_handle_redirect\t**\n\n"RESET);
 	exec_ft_handle_redirect("Var to expand", "< $TEST");
 	exec_ft_handle_redirect("Ambiguous redirect", "> $NOEXIST");
 	exec_ft_handle_redirect("Quoted", ">> \"Hello    World\"");
+	exec_ft_handle_redirect("Empty quotes", "< \"\"");
+	exec_ft_handle_redirect("Double var, one quoted", "> $TEST\"$TEST\"");
+	exec_ft_handle_redirect("Double empty var, one quoted", "> $NOEXIST\"$NOEXIST\"");
+	exec_ft_handle_redirect("Triple empty var", "<$NO$NJET$NADA");
+}
+
+void	test_expand_handler(void)
+{
+	printf(YELLOW"*******TEST_EXPAND_HANDLER*******\n\n"RESET);
+	g_symtab = ft_hashtable_create(1, ft_hash_fnv1);
+	ft_hashtable_insert(g_symtab, ft_strdup("TEST=I   have    spaces"), 4);
+	ft_hashtable_insert(g_symtab, ft_strdup("S=s -la"), 1);
+	ft_hashtable_insert(g_symtab, ft_strdup("SINGLE=badboy'"), 6);
+
+	//test_handle_arg();
+	test_handle_heredoc();
+	test_handle_redirect();
 
 	if (g_err_count > 0)
 		printf(RED"ERRORS: %d\n"RESET, g_err_count);
