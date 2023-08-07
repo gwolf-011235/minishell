@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/07 21:31:12 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/07 21:42:35 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_err	ft_init_buf(t_buf *buf);
 //expand_quote_removal.c
 t_err	ft_quote_removal(char *str);
 t_err	ft_rm_single_quote(t_track *input);
-t_err	ft_rm_double_quote(t_track *input, bool *in_double_quotes);
+t_err	ft_rm_double_quote(t_track *input);
 
 //expand_utils.c
 t_err	ft_init_tracker(t_track *input, char *str);
