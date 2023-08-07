@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/07 21:42:35 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/07 22:21:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_track {
 	bool	quoted;
 	bool	expanded;
 	int		last_expand_len;
+	bool	found_quote;
 }	t_track;
 
 //expand.c
@@ -59,7 +60,8 @@ t_err	ft_handle_redirect(t_tkn_list **list, t_hashtable *symtab);
 t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab);
 
 //expand_expander.c
-t_err	ft_expander(char **str, t_hashtable *symtab, bool *exec);
+t_err	ft_expander_redirect(t_track *input, t_hashtable *symtab);
+t_err	ft_expander(char **str, t_hashtable *symtab);
 t_err	ft_skip_single_quote(t_track *input);
 t_err	ft_skip_double_quote(t_track *input, bool *in_double_quotes);
 
@@ -69,9 +71,9 @@ t_err	ft_get_tilde_replace(t_str token, t_hashtable *symtab, t_str *replace, siz
 t_err	ft_get_tilde_token(t_track *input, t_str *token);
 
 //expand_var.c
-t_err	ft_expand_var(t_track *input, t_hashtable *symtab, bool quotes, bool *exec);
+t_err	ft_expand_var(t_track *input, t_hashtable *symtab);
 t_err	ft_special_var(t_str *token, t_str *replace);
-t_err	ft_get_var_token(t_track *input, t_str *token, bool quotes);
+t_err	ft_get_var_token(t_track *input, t_str *token);
 t_err	ft_get_var_replace(t_str token, t_hashtable *symtab, t_str *replace);
 
 //expand_field_split.c

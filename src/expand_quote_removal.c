@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 07:49:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/07 21:45:00 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/07 22:08:32 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_err	ft_rm_single_quote(t_track *input)
 	while (input->str[input->pos] != '\'')
 		input->pos++;
 	ft_eat_char(input);
+	input->found_quote = true;
 	return (SUCCESS);
 }
 
@@ -64,5 +65,6 @@ t_err	ft_rm_double_quote(t_track *input)
 {
 	ft_eat_char(input);
 	input->quoted = !(input->quoted);
+	input->found_quote = true;
 	return (SUCCESS);
 }
