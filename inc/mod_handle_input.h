@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 18:44:13 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/07 12:37:06 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct s_tkn_list
 	struct s_tkn_list	*prev;
 	struct s_tkn_list	*next;
 }	t_tkn_list;
-
 
 /**
  * @brief Linked list of simple commands existing of token extracted from input.
