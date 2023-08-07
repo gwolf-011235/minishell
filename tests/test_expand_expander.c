@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 12:07:11 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/07 22:25:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ extern int			g_err_count;
 static int	test_wrapper(char *testname, char *test, char *expect)
 {
 	int		ret;
-	bool	exec;
 
 	printf("TEST: %s\n", testname);
 	g_string = ft_strdup(test);
-	exec = false;
 	printf("String:\t|%s|\n", test);
-	ft_expander(&g_string, g_symtab, &exec);
+	ft_expander(&g_string, g_symtab);
 	printf("Result:\t|%s|\n", g_string);
 	if (!ft_strncmp(g_string, expect, ft_strlen(g_string)))
 	{
