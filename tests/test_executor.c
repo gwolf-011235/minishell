@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:17:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 23:30:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/07 10:55:19 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ static void	test_heredoc(void)
 {
 	test_heredoc_wrapper("heredocs followed by infile", "<<samba <<gg <<yuhu grep bu <infile");
 	test_heredoc_wrapper("infile followed by heredocs", "<<samba <infile <<gg <<yuhu grep bu");
+	test_heredoc_wrapper("piped heredocs", "<<sa cat | <<gg grep bu");
 }
 void	test_executor(void)
 {
