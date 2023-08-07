@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/07 11:47:44 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/07 12:27:02 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ t_err	ft_raise_first(t_cmd *cmd, char **envp)
 	}
 	else if (cmd->pid == 0)
 		ft_firstborn(cmd, envp);
-/* 	if (waitpid(cmd->pid, NULL, WNOHANG) < 0)
-		return (ERR_FIRST); */
 	err = ft_plug_pipe(cmd, 0);
 	if (err != SUCCESS)
 		return (err);
@@ -96,8 +94,6 @@ t_err	ft_raise_last(t_cmd *cmd, char **envp)
 	}
 	else if (cmd->pid == 0)
 		ft_lastborn(cmd, envp);
-/* 	if (waitpid(cmd->pid, NULL, 0) < 0)
-		return (ERR_LAST); */
 	return (SUCCESS);
 }
 
@@ -127,8 +123,6 @@ t_err	ft_raise_middle(t_cmd *cmd, char **envp)
 	}
 	else if (cmd->pid == 0)
 		ft_middle_child(cmd, envp);
-/* 	if (waitpid(cmd->pid, NULL, WNOHANG) < 0)
-		return (ERR_MID); */
 	err = ft_plug_pipe(cmd, 0);
 	if (err != SUCCESS)
 		return (err);
