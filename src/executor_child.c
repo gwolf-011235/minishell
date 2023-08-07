@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 21:07:03 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/07 17:53:51 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@
  * Execute cmd.
  * @param cmd 		Current cmd being processed.
  * @param envp		String array of env.
+ * @param data		Data struct containing the env.
+ * @param builtin	Bool indicating if cmd is a builtin.
  */
-void	ft_firstborn(t_cmd *cmd, char **envp)
+void	ft_firstborn(t_cmd *cmd, char **envp, t_data *data, bool builtin)
 {
 	ft_close(cmd->fd_pipe[0]);
 	if (cmd->fd_out >= 0)
@@ -50,8 +52,11 @@ void	ft_firstborn(t_cmd *cmd, char **envp)
 		ft_close(cmd->fd_pipe[1]);
 	}
 	ft_close(cmd->fd_in);
-	if (execve(cmd->args[0], cmd->args, envp) < 0)
-		printf("\nexecve encountered an error\n");
+	if (builtin)
+		ft_choose_builtin(cmd, data);
+	else
+		if (execve(cmd->args[0], cmd->args, envp) < 0)
+			printf("\nexecve encountered an error\n");
 }
 
 /**
@@ -67,8 +72,10 @@ void	ft_firstborn(t_cmd *cmd, char **envp)
  * Execute cmd.
  * @param cmd 		Current cmd being processed.
  * @param envp		String array of env.
+ * @param data		Data struct containing the env.
+ * @param builtin	Bool indicating if cmd is a builtin.
  */
-void	ft_lastborn(t_cmd *cmd, char **envp)
+void	ft_lastborn(t_cmd *cmd, char **envp, t_data *data, bool builtin)
 {
 	ft_close(cmd->fd_prev_pipe[1]);
 	if (cmd->fd_out >= 0)
@@ -88,8 +95,11 @@ void	ft_lastborn(t_cmd *cmd, char **envp)
 	ft_close(cmd->fd_out);
 	ft_close(cmd->fd_prev_pipe[0]);
 	ft_close(cmd->fd_in);
-	if (execve(cmd->args[0], cmd->args, envp) < 0)
-		printf("\nexecve encountered an error\n");
+	if (builtin)
+		ft_choose_builtin(cmd, data);
+	else
+		if (execve(cmd->args[0], cmd->args, envp) < 0)
+			printf("\nexecve encountered an error\n");
 }
 
 /**
@@ -106,8 +116,10 @@ void	ft_lastborn(t_cmd *cmd, char **envp)
  * Execute cmd.
  * @param cmd 		Current cmd being processed.
  * @param envp		String array of env.
+ * @param data		Data struct containing the env.
+ * @param builtin	Bool indicating if cmd is a builtin.
  */
-void	ft_middle_child(t_cmd *cmd, char **envp)
+void	ft_middle_child(t_cmd *cmd, char **envp, t_data *data, bool builtin)
 {
 	ft_close(cmd->fd_prev_pipe[1]);
 	ft_close(cmd->fd_pipe[0]);
@@ -129,6 +141,9 @@ void	ft_middle_child(t_cmd *cmd, char **envp)
 	ft_close(cmd->fd_prev_pipe[0]);
 	ft_close(cmd->fd_pipe[1]);
 	ft_close(cmd->fd_in);
-	if (execve(cmd->args[0], cmd->args, envp) < 0)
-		printf("\nexecve encountered an error\n");
+	if (builtin)
+		ft_choose_builtin(cmd, data);
+	else
+		if (execve(cmd->args[0], cmd->args, envp) < 0)
+			printf("\nexecve encountered an error\n");
 }

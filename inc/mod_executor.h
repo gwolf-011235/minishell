@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 23:09:06 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/07 17:54:46 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@
 // cmd handling
 void	ft_init_exec(t_cmd *cmd);
 t_err	ft_create_pipes(t_cmd *cmd);
-t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths);
-t_err	ft_process_cmd(t_cmd *cmd, t_err err, char **envp);
+t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths, t_data *data);
+t_err	ft_process_cmd(t_cmd *cmd, t_err err, char **envp, t_data *data);
 
 // create child processes
-t_err	ft_create_child(t_cmd *cmd, char **envp);
-t_err	ft_raise_first(t_cmd *cmd, char **envp);
-t_err	ft_raise_last(t_cmd *cmd, char **envp);
-t_err	ft_raise_middle(t_cmd *cmd, char **envp);
+t_err	ft_create_child(t_cmd *cmd, char **envp, t_data *data, bool builtin);
+t_err	ft_raise_first(t_cmd *cmd, char **envp, t_data *data, bool builtin);
+t_err	ft_raise_last(t_cmd *cmd, char **envp, t_data *data, bool builtin);
+t_err	ft_raise_middle(t_cmd *cmd, char **envp, t_data *data, bool builtin);
 
 // child behaviour
-void	ft_firstborn(t_cmd *cmd, char **envp);
-void	ft_lastborn(t_cmd *cmd, char **envp);
-void	ft_middle_child(t_cmd *cmd, char **envp);
+void	ft_firstborn(t_cmd *cmd, char **envp, t_data *data, bool builtin);
+void	ft_lastborn(t_cmd *cmd, char **envp, t_data *data, bool builtin);
+void	ft_middle_child(t_cmd *cmd, char **envp, t_data *data, bool builtin);
 
 // heredoc
 t_err	ft_handle_heredoc(t_cmd *cmd);
@@ -56,6 +56,10 @@ t_err	ft_check_cmd_access(char **args, char **cmd_paths);
 t_err	ft_prefix_path(char **args, char **cmd_paths);
 t_err	ft_get_path(char **envp, char ***paths);
 t_err	ft_replace_fd(int input_fd, int output_fd);
+
+// builtins
+bool	ft_check_builtin(char *arg);
+t_err	ft_execute_builtin(bool piped, t_cmd *cmd, char **envp, t_data *data);
 
 // include from mod_cleanup
 void	ft_free_str_arr(char **arr);

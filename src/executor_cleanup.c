@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 18:45:33 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/07 16:49:02 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
  * @file executor_cleanup.c
  * @brief Functions to clean up executor module after planned/unplanned abort.
  */
+
 #include "mod_executor.h"
 
 void	ft_cleanup_cmd(t_cmd *cmd)

@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/07 11:51:05 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/07 17:54:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@
  * cmd nonetheless in the current directory.
  * @param cmd 		List of cmds.
  * @param envp 		String array with env variables.
+ * @param data		Data struct containing the env.
  * @return t_err 	ERR_MALLOC, ERR_PIPE, SUCCESS
  */
-t_err	ft_executor(t_cmd *cmd, char **envp)
+t_err	ft_executor(t_cmd *cmd, char **envp, t_data *data)
 {
 	t_err	err;
 	char	**paths;
@@ -44,7 +45,7 @@ t_err	ft_executor(t_cmd *cmd, char **envp)
 	err = ft_get_path(envp, &paths);
 	if (err == ERR_MALLOC)
 		return (err);
-	err = ft_execute_cmds(cmd, envp, paths);
+	err = ft_execute_cmds(cmd, envp, paths, data);
 	return (err);
 }
 
@@ -112,7 +113,7 @@ t_err	ft_create_pipes(t_cmd *cmd)
  * @param envp 		Env string array.
  * @return t_err 	ERR_MALLOC, ERR_PIPE, ERR_CLOSE, SUCCESS
  */
-t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths)
+t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths, t_data *data)
 {
 	t_err	err;
 	t_cmd	*tmp;
@@ -120,11 +121,10 @@ t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths)
 	tmp = cmd;
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
-		/* if (ft_check_builtin(cmd->args))
-			return (ft_execute_builtin(cmd));
-		 */
+		if (ft_check_builtin(cmd->args[0]))
+			return (ft_execute_builtin(1, cmd, envp, data));
 		err = ft_check_cmd_access(cmd->args, paths);
-		err = ft_process_cmd(cmd, err, envp);
+		err = ft_process_cmd(cmd, err, envp, data);
 		if (err != SUCCESS)
 			return (err);
 		cmd = cmd->next;
@@ -146,9 +146,10 @@ t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths)
  * @param cmd 		Current cmd being processed.
  * @param err 		Error code of cmd access check.
  * @param envp 		Env string array.
+ * @param data		Data struct containing the env.
  * @return t_err 	ERR_MALLOC, ERR_CLOSE, SUCCESS
  */
-t_err	ft_process_cmd(t_cmd *cmd, t_err err, char **envp)
+t_err	ft_process_cmd(t_cmd *cmd, t_err err, char **envp, t_data *data)
 {
 	if (err == ERR_MALLOC)
 		return (err);
@@ -159,6 +160,6 @@ t_err	ft_process_cmd(t_cmd *cmd, t_err err, char **envp)
 		err = ft_close(cmd->fd_pipe[1]);
 	}
 	else if (err == SUCCESS)
-		err = ft_create_child(cmd, envp);
+		err = ft_create_child(cmd, envp, data, false);
 	return (err);
 }
