@@ -26,17 +26,19 @@
  * @param words Where to save the count.
  * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_err	ft_field_split(t_tkn_list **list, size_t *words)
+t_err	ft_field_split(t_track *input, t_tkn_list **list)
 {
 	t_tkn_list	*tmp;
 	t_buf		buf;
 	t_err		err;
+	size_t		words;
 
 	tmp = *list;
-	ft_count_expand_words(tmp->content, words);
-	if (*words == 1)
+	words = 0;
+	ft_count_expand_words(input, &words);
+	if (words == 1)
 		return (SUCCESS);
-	else if (*words == 0)
+	else if (words == 0)
 		ft_del_node_mid(&tmp);
 	else
 	{
@@ -47,7 +49,7 @@ t_err	ft_field_split(t_tkn_list **list, size_t *words)
 		free(buf.str);
 		if (err != SUCCESS)
 			return (err);
-		ft_del_old_node(&tmp, words);
+		ft_del_old_node(&tmp, &words);
 	}
 	*list = tmp;
 	return (SUCCESS);
@@ -81,21 +83,26 @@ t_err	ft_quote_skip(const char *quote_start, size_t *i, char target)
  * @param words Pointer to words variable.
  * @return t_err SUCCESS
  */
-t_err	ft_count_expand_words(char *str, size_t *words)
+t_err	ft_count_expand_words(t_track *input, size_t *words)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i])
+	input->pos = input->pos - input->last_expand_len;
+	if (input->pos != 0)
 	{
-		if (str[i] == '"' || str[i] == '\'')
-			ft_quote_skip(&str[i], &i, str[i]);
-		if (str[i] == ' ' && str[i + 1] != ' ' && str[i + 1] != '\0')
-			(*words)++;
-		if (str[i] != ' ' && i == 0)
-			(*words)++;
-		i++;
+		*words = 1;
+		while (input->str[input->pos] && input->str[input->pos] != ' ')
+			(input->pos)++;
 	}
+	while (input->str[input->pos] && (input->last_expand_len)--)
+	{
+		if (input->pos == 0 && input->str[input->pos] != ' ')
+			(*words)++;
+		else if (input->str[input->pos] == ' ' && input->str[input->pos + 1] != ' '
+				&& input->str[input->pos + 1] != '\0')
+			(*words)++;
+		input->pos++;
+	}
+	if (input->str[input->pos])
+		(*words)++;
 	return (SUCCESS);
 }
 
