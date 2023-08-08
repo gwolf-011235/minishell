@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:24:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/08 12:30:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 00:22:02 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,12 @@ void	ft_init_exec(t_cmd *cmd)
 
 /**
  * @brief Create all necessary pipes.
- * 
+ *
  * Loop through cmd list and create pipe to connect cmds.
+ * 		fd_pipe[0] refers to the read end of the pipe.
+ * 		fd_pipe[1] refers to the write end of the pipe.
+ * Data written to the write end of the pipe is buffered 
+ * by the kernel until it is read from the read end of the pipe.
  * Does not create pipe at last cmd.
  * Gives cmds the possibility to access pipe created in
  * predecessor.

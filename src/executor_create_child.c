@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 00:40:03 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 00:48:22 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,9 @@ t_err	ft_create_child(t_cmd *cmd, char **envp, t_data *data, bool builtin)
 
 /**
  * @brief Creates a child by forking and calls the pertinent
- * function which is to be executed by the child.
+ * function which is to be executed by the first cmd of the pipe.
  * 
- * The parent does not wait for the child to finish (flag WNOHANG set), it
- * calls its status info immediately. If child has not finished yet,
- * an error code is returned. The parent closes the write end fd of
- * the pipe (fd_pipe[1]).
+ * The parent closes the write end fd of the pipe (fd_pipe[1]).
  * @param cmd 		Current cmd to be processed.
  * @param envp 		String array of env.
  * @param data		Data struct containing the env.
@@ -71,18 +68,15 @@ t_err	ft_raise_first(t_cmd *cmd, char **envp, t_data *data, bool builtin)
 	err = ft_close(cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);
-	cmd->fd_pipe[1] = -1;
 	return (SUCCESS);
 }
 
 /**
  * @brief Creates a child by forking and calls the pertinent
- * function which is to be executed by the child.
+ * function which is to be executed by the last cmd of the pipe.
  * 
- * The parent waits for the child to finish (no flags set), it
- * retrieves its status info when it's done.
- * @param cmd 	Current cmd to be processed.
- * @param envp 	String array of env.
+ * @param cmd 		Current cmd to be processed.
+ * @param envp 		String array of env.
  * @param data		Data struct containing the env.
  * @param builtin	Bool indicating if cmd is a builtin.
  * @return t_err	ERR_CLOSE, ERR_FORK, SUCCESS
@@ -106,12 +100,10 @@ t_err	ft_raise_last(t_cmd *cmd, char **envp, t_data *data, bool builtin)
 
 /**
  * @brief Creates a child by forking and calls the pertinent
- * function which is to be executed by the child.
+ * function which is to be executed by a cmd between the first
+ * and last cmd of the pipe.
  * 
- * The parent does not wait for the child to finish (flag WNOHANG set), it
- * calls its status info immediately. If child has not finished yet,
- * an error code is returned. The parent closes the write end fd of
- * the pipe (fd_pipe[1]).
+ * The parent closes the write end fd of the pipe (fd_pipe[1]).
  * @param cmd 	Current cmd to be processed.
  * @param envp 	String array of env.
  * @param data		Data struct containing the env.
@@ -135,6 +127,5 @@ t_err	ft_raise_middle(t_cmd *cmd, char **envp, t_data *data, bool builtin)
 	err = ft_close(cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);
-	cmd->fd_pipe[1] = -1;
 	return (SUCCESS);
 }

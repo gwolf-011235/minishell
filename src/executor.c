@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/08 12:36:48 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 00:20:15 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
  * @brief Driver function to execute list of cmds.
  * 
  * Index the list of cmds.
+ * If heredocs are present in cmd, they are opened
+ * and take input from stdin. In case a heredoc is the
+ * last infile redirect, its fd is given to the cmd.
+ * All necessary pipes are created in advance to ensure
+ * definite fd assignment to all pipe ends.
  * Get PATH from envp and save it into paths.
  * If no path is found (ERR_NOPATH), try to execute
  * cmd nonetheless in the current directory.
@@ -78,11 +83,14 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **envp, char **paths, t_data *data)
 /**
  * @brief Executes list of cmds provided.
  * 
- * Create pipes inbetween cmds.
- * 		fd_pipe[0] refers to the read end of the pipe.
- * 		fd_pipe[1] refers to the write end of the pipe.
- * Data written to the write end of the pipe is buffered 
- * by the kernel until it is read from the read end of the pipe.
+ * Iterate through the cmd list:
+ * 	Check for built-ins.
+ * 	If yes, execute built-in and move onto next cmd.
+ * 	If no, check for system call by verifying its accessibility.
+ * 	On success system call is executed in child process.
+ * 	On failure error message is printed.
+ * After all cmds/children are launched, the parent waits for
+ * each termination.
  * @param cmd 		List of cmds.
  * @param envp 		Env string array.
  * @param paths		String array of all system bin paths.

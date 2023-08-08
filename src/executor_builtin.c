@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:47:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/08 09:45:45 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 00:23:34 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 /**
  * @brief Verify if given cmd is a builtin.
  * 
- * Return true if found, else false.
  * Compare including '\0' to be sure it is 
  * the cmd and not a str with same head.
  * @param arg 		Cmd str to check.
