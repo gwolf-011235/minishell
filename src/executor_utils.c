@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/08 14:52:48 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 01:33:22 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ t_err	ft_wait_for_babies(t_cmd *cmd)
 {
 	while (cmd)
 	{
-		if (waitpid(cmd->pid, NULL, 0) < 0)
+		if (waitpid(cmd->pid, NULL, 0) < 0) // retrieve exit status
 			return (ERR_WAIT);
 		cmd = cmd->next;
 	}
