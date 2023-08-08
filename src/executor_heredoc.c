@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 23:25:34 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 00:55:00 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim)
 	while (1)
 	{
 		write(1, "pipe heredoc> ", 14);
-		buf = get_next_line(0);
+		buf = get_next_line(0); //handle SIGNAL STR+D
 		if (!buf)
 			return (ft_unlink_heredoc(name, ERR_MALLOC));
 		if ((ft_strncmp(delim, buf, len) == 0) && *(buf + len) == '\n')
