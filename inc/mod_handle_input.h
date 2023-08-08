@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/07 17:18:02 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 01:42:38 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "libft.h"
 # include <fcntl.h>			        /* required for opening files */
 # include <sys/wait.h>				/* required for wait calls */
+# include "stdbool.h"				/* required for booleans */
 
 /* ====== Structs ====== */
 
