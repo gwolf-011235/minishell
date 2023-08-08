@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 08:31:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 09:00:33 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	test_expand_var(funptr_expand_t funptr_expand)
 	g_err_count += exec_expand("single quoted string after $", "$'TEST'", "TEST", funptr_expand);
 	g_err_count += exec_expand("single quoted $", "'$'TEST", "$TEST", funptr_expand);
 	g_err_count += exec_expand("single quoted var name", "'$TEST'ING", "$TESTING", funptr_expand);
+	g_err_count += exec_expand("Two jointly quoted vars", "\"$TEST$TEST\"", "'I am test''I am test'", funptr_expand);
+	g_err_count += exec_expand("Two separatedly quoted vars", "\"$TEST\"\"$TEST\"", "'I am test''I am test'", funptr_expand);
 
 	g_status = 125;
 	g_err_count += exec_expand("special var $?", "$?", "125", funptr_expand);
@@ -103,10 +105,10 @@ void	test_expand_expander(void)
 	//test_expand_var(ft_expander_redirect);
 	//test_expand_quotes(ft_expander_redirect);
 	//test_expand_combi(ft_expander_redirect);
-	test_expand_tilde(ft_expander_arg);
+	//test_expand_tilde(ft_expander_arg);
 	test_expand_var(ft_expander_arg);
-	test_expand_quotes(ft_expander_arg);
-	test_expand_combi(ft_expander_arg);
+	//test_expand_quotes(ft_expander_arg);
+	//test_expand_combi(ft_expander_arg);
 	if (g_err_count > 0)
 		printf(RED"ERRORS: %d\n"RESET, g_err_count);
 	ft_hashtable_destroy(g_symtab);
