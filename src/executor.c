@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/08 11:32:27 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/08 12:30:06 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,60 +45,38 @@ t_err	ft_executor(t_cmd *cmd, char **envp, t_data *data)
 	err = ft_get_path(envp, &paths);
 	if (err == ERR_MALLOC)
 		return (err);
-	err = ft_execute_cmds(cmd, envp, paths, data);
+	if (cmd->next == NULL)
+		err = ft_execute_scmd(cmd, envp, paths, data);
+	else
+		err = ft_execute_pcmds(cmd, envp, paths, data);
 	return (err);
 }
 
 /**
- * @brief Initialise executor by indexing.
+ * @brief Executes single cmd provided.
  * 
- * Second run assigns total number of cmds.
- * @param cmd 		List of cmds.
+ * @param cmd 		Cmd to be processed.
+ * @param envp 		Env string array.
+ * @param paths		String array of all system bin paths.
+ * @param data		Data struct containing the env.
+ * @return t_err 	ERR_MALLOC, ERR_PIPE, ERR_CLOSE, SUCCESS
  */
-void	ft_init_exec(t_cmd *cmd)
+t_err	ft_execute_scmd(t_cmd *cmd, char **envp, char **paths, t_data *data)
 {
-	int		count;
-	t_cmd	*tmp;
+	t_err	err;
 
-	count = -1;
-	tmp = cmd;
-	while (tmp)
+	if (ft_check_builtin(cmd->args[0]))
 	{
-		count++;
-		tmp->index = count;
-		tmp = tmp->next;
+		err = ft_execute_builtin(0, cmd, envp, data);
+		if (err != SUCCESS)
+			return (err);
 	}
-	while (cmd)
-	{
-		cmd->cmd_num = count + 1;
-		cmd = cmd->next;
-	}
-}
-
-/**
- * @brief Create all necessary pipes.
- * 
- * Loop through cmd list and create pipe to connect cmds.
- * Does not create pipe at last cmd.
- * Gives cmds the possibility to access pipe created in
- * predecessor.
- * @param cmd 		List of cmds.
- * @return t_err 	ERR_PIPE, SUCCESS
- */
-t_err	ft_create_pipes(t_cmd *cmd)
-{
-	while (cmd)
-	{
-		if (cmd->index < cmd->cmd_num - 1)
-		{
-			if (pipe(cmd->fd_pipe) < 0)
-				return (ERR_PIPE);
-			cmd->next->fd_prev_pipe[0] = cmd->fd_pipe[0];
-			cmd->next->fd_prev_pipe[1] = cmd->fd_pipe[1];
-		}
-		cmd = cmd->next;
-	}
-	return (SUCCESS);
+	err = ft_check_cmd_access(cmd->args, paths);
+	err = ft_process_cmd(cmd, err, envp, data);
+	if (err != SUCCESS)
+		return (err);
+	err = ft_wait_for_babies(cmd);
+	return (err);
 }
 
 /**
@@ -111,9 +89,11 @@ t_err	ft_create_pipes(t_cmd *cmd)
  * by the kernel until it is read from the read end of the pipe.
  * @param cmd 		List of cmds.
  * @param envp 		Env string array.
+ * @param paths		String array of all system bin paths.
+ * @param data		Data struct containing the env.
  * @return t_err 	ERR_MALLOC, ERR_PIPE, ERR_CLOSE, SUCCESS
  */
-t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths, t_data *data)
+t_err	ft_execute_pcmds(t_cmd *cmd, char **envp, char **paths, t_data *data)
 {
 	t_err	err;
 	t_cmd	*tmp;
