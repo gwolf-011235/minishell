@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 13:09:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 17:15:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 20:53:51 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ void	test_handle_arg(void)
 	exec_ft_handle_arg("Don't split but rm quotes", "'I     no    split' \"Me   neither\"");
 	exec_ft_handle_arg("Don't split but rm quotes 2", "\"Me   neither\"");
 	exec_ft_handle_arg("Spicy expand", "l$S");
-	exec_ft_handle_arg("Single quote expand", "$SINGLE");
+	exec_ft_handle_arg("Single quote after expand", "$SINGLE");
+	exec_ft_handle_arg("Stuff before, empty, expand after", "stuff$A$TEST");
+	exec_ft_handle_arg("Expand, empty, expand", "$TEST$A$TEST");
 }
 
 void	test_handle_heredoc(void)
