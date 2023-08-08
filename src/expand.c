@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 17:42:35 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 21:16:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab)
 		if (input.last_expand_len > 0 && !input.quoted && input.expanded)
 		{
 			err = ft_field_split(&input, list);
-			if (err != SUCCESS)
+			if (err != SUCCESS && err != ERR_NOSPLIT)
 				return (err);
 			if (err == SUCCESS)
 				ft_init_tracker(&input, (*list)->content);
