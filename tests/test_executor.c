@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:17:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/08 11:29:59 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/08 14:56:38 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,19 @@ static int	test_scmd_wrapper(char *testname, char *test)
 	i = 0;
 	lst = NULL;
 	cmd = NULL;
-	ft_env_setup(&g_symtab);
-	ft_envp_create(g_symtab, &envp);
+	test_setup_data();
+	// only 
+	if (!ft_strncmp(test, "minishell", 9))
+		ft_hashtable_delete(g_data.env_table, "PATH", 4);
+	ft_envp_create(g_data.env_table, &envp);
 	printf("TEST: %s\n", testname);
 	printf("Command:%s\n\n", test);
 	ft_lex_input(&lst, test);
 	ft_parser(lst, &cmd);
 	ft_executor(cmd, envp, &g_data);
+	printf("\n");
+	if (!ft_strncmp(test, "cd", 2))
+		ft_pwd();
 	printf("\n");
 /* 	while (cmd)
 	{
@@ -188,6 +194,10 @@ static void	test_singlecmds(void)
 	//test_scmd_wrapper("scmd with several infiles", "cat  <infile3  <infile <infile2");
 	//test_scmd_wrapper("scmd with several outfiles", "ls  >outfile3  >outfile >outfile2");
 	//test_scmd_wrapper("scmd with outfile in append mode", "cat infile >>outfile2");
+	//test_scmd_wrapper("scmd builtin cd", "cd ..");
+	//test_scmd_wrapper("scmd builtin exit", "exit");
+	//test_scmd_wrapper("scmd builtin export", "export");
+	test_scmd_wrapper("scmd inception", "minishell");
 }
 
 static void	test_pipe(void)
@@ -208,6 +218,6 @@ void	test_executor(void)
 	printf(YELLOW"*******TEST_EXECUTOR*******\n\n"RESET);
 	//test_enum_cmds();
 	//test_heredoc();
-	//test_singlecmds();
-	test_pipe();
+	test_singlecmds();
+	//test_pipe();
 }
