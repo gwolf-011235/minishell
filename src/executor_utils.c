@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 18:56:07 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/08 11:07:07 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,22 @@ t_err	ft_replace_fd(int input_fd, int output_fd)
 		return (ERR_DUPL);
 	if (dup2(output_fd, 1) < 0)
 		return (ERR_DUPL);
+	return (SUCCESS);
+}
+
+/**
+ * @brief Wait for child processes
+ * 
+ * @param cmd 		List of cmds.
+ * @return t_err 	ERR_WAIT, SUCCESS
+ */
+t_err	ft_wait_for_babies(t_cmd *cmd)
+{
+	while (cmd)
+	{
+		if (waitpid(cmd->pid, NULL, 0) < 0)
+			return (ERR_WAIT);
+		cmd = cmd->next;
+	}
 	return (SUCCESS);
 }

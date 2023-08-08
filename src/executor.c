@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/08 10:16:51 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/08 11:19:48 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,12 +122,12 @@ t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths, t_data *data)
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
 		if (ft_check_builtin(cmd->args[0]))
-		{	
+		{
 			err = ft_execute_builtin(1, cmd, envp, data);
 			if (err != SUCCESS)
 				return (err);
 			cmd = cmd->next;
-			continue;
+			continue ;
 		}
 		err = ft_check_cmd_access(cmd->args, paths);
 		err = ft_process_cmd(cmd, err, envp, data);
@@ -135,13 +135,8 @@ t_err	ft_execute_cmds(t_cmd *cmd, char **envp, char **paths, t_data *data)
 			return (err);
 		cmd = cmd->next;
 	}
-	while (tmp)
-	{
-		if (waitpid(tmp->pid, NULL, 0) < 0)
-			return (ERR_WAIT);
-		tmp = tmp->next;
-	}
-	return (SUCCESS);
+	err = ft_wait_for_babies(tmp);
+	return (err);
 }
 
 /**
