@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/07 12:33:08 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/08 15:19:54 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	if (ft_env_setup(&data->env_table) != SUCCESS)
 		printf("NO\n");
 	ft_envp_create(data->env_table, &envp);
-	ft_hashtable_insert(data->env_table, "PS1=\\u@\\h:\\w$ ", 3);
+	//ft_hashtable_insert(data->env_table, "PS1=\\u@\\h:\\w$ ", 3);
 	while (1)
 	{
 		data->err = ft_prompt_create(data->env_table, &data->prompt1, "PS1", PS1_STD);
