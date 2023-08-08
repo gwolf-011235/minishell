@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/07 17:54:46 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/08 09:42:52 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,18 @@ t_err	ft_replace_fd(int input_fd, int output_fd);
 // builtins
 bool	ft_check_builtin(char *arg);
 t_err	ft_execute_builtin(bool piped, t_cmd *cmd, char **envp, t_data *data);
+void	ft_choose_builtin(t_cmd *cmd, t_data *data);
 
 // include from mod_cleanup
 void	ft_free_str_arr(char **arr);
+
+// include from mod_builtin
+t_err	ft_cd(char **argv, t_hashtable *env_tab);
+t_err	ft_echo(char **argv);
+t_err	ft_pwd(void);
+t_err	ft_export(char **argv, t_hashtable *env_tab);
+t_err	ft_unset(char **argv, t_hashtable *env_tab);
+t_err	ft_env(t_hashtable *env_tab);
+t_err	ft_exit(char **argv, t_hashtable *env_tab);
 
 #endif
