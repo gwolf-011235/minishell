@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 18:19:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 09:38:51 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 21:20:43 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_err	ft_insert_replace(t_track *input, t_str token, t_str replace)
 	char	*old_str;
 	size_t	cur_pos;
 
-	new_len = ft_strlen(input->str) - token.len + replace.len;
+	new_len = ft_strlen(input->str) - token.len + replace.len + 1;
 	new_str = malloc(new_len);
 	if (!new_str)
 		return (ERR_MALLOC);
