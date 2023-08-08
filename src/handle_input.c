@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:16:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/07 17:17:48 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/08 15:13:31 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_err	ft_handle_input(char *input, t_data *data, char **envp)
 	t_cmd		*cmd;
 
 	lst = NULL;
+	cmd = NULL;
 	err = ft_check_syntax(input);
 	if (err != SUCCESS)
 		return (err);
