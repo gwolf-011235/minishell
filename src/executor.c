@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/08 11:19:48 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/08 11:32:27 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ t_err	ft_process_cmd(t_cmd *cmd, t_err err, char **envp, t_data *data)
 		return (err);
 	else if (err == ERR_UNKNOWN_CMD)
 	{
+		write(2, "minishell: ", 11);
 		ft_putstr_fd(cmd->args[0], 2);
 		write(2, ": command not found\n", 20);
 		err = ft_close(cmd->fd_pipe[1]);
