@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/07 16:49:02 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 00:40:03 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,31 @@
 
 #include "mod_executor.h"
 
-void	ft_cleanup_cmd(t_cmd *cmd)
+/**
+ * @brief Cleans cmd after its processing.
+ * 
+ * Close all fds.
+ * If present, unlink heredoc.
+ * Free all malloced variables.
+ * @param cmd 		Cmd to be cleaned.
+ * @return t_err 	ERR_CLOSE, SUCCESS
+ */
+t_err	ft_cleanup_cmd(t_cmd *cmd)
 {
-	ft_close(cmd->fd_in);
-	ft_close(cmd->fd_out);
-	ft_plug_pipe(cmd, 1);
+	t_err	err;
+
+	err = ft_close(cmd->fd_in);
+	if (err != SUCCESS)
+		return (err);
+	err = ft_close(cmd->fd_out);
+	if (err != SUCCESS)
+		return (err);
+	err = ft_plug_pipe(cmd);
+	if (err != SUCCESS)
+		return (err);
 	if (cmd->heredoc)
-		free(cmd->heredoc);
+		ft_unlink_heredoc(cmd->heredoc, err);
+	return (SUCCESS);
 }
 
 /* This function terminates the program and displays an error message 
@@ -154,14 +172,12 @@ void	pipinator(t_meta *meta)
  * @param cmd		Current cmd.
  * @return t_err	ERR_CLOSE, SUCCESS
  */
-t_err	ft_plug_pipe(t_cmd *cmd, bool close_read_end)
+t_err	ft_plug_pipe(t_cmd *cmd)
 {
 	t_err	err;
 	t_err	err2;
 
-	err = SUCCESS;
-	if (close_read_end)
-		err = ft_close(cmd->fd_pipe[0]);
+	err = ft_close(cmd->fd_pipe[0]);
 	err2 = ft_close(cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);

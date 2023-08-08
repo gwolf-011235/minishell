@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/07 17:51:43 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 00:40:03 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ t_err	ft_raise_first(t_cmd *cmd, char **envp, t_data *data, bool builtin)
 	cmd->pid = fork();
 	if (cmd->pid < 0)
 	{
-		err = ft_plug_pipe(cmd, 0);
+		err = ft_close(cmd->fd_pipe[1]);
 		if (err != SUCCESS)
 			return (err);
 		return (ERR_FORK);
 	}
 	else if (cmd->pid == 0)
 		ft_firstborn(cmd, envp, data, builtin);
-	err = ft_plug_pipe(cmd, 0);
+	err = ft_close(cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);
 	cmd->fd_pipe[1] = -1;
@@ -94,7 +94,7 @@ t_err	ft_raise_last(t_cmd *cmd, char **envp, t_data *data, bool builtin)
 	cmd->pid = fork();
 	if (cmd->pid < 0)
 	{
-		err = ft_plug_pipe(cmd, 0);
+		err = ft_close(cmd->fd_pipe[1]);
 		if (err != SUCCESS)
 			return (err);
 		return (ERR_FORK);
@@ -125,14 +125,14 @@ t_err	ft_raise_middle(t_cmd *cmd, char **envp, t_data *data, bool builtin)
 	cmd->pid = fork();
 	if (cmd->pid < 0)
 	{
-		err = ft_plug_pipe(cmd, 0);
+		err = ft_close(cmd->fd_pipe[1]);
 		if (err != SUCCESS)
 			return (err);
 		return (ERR_FORK);
 	}
 	else if (cmd->pid == 0)
 		ft_middle_child(cmd, envp, data, builtin);
-	err = ft_plug_pipe(cmd, 0);
+	err = ft_close(cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);
 	cmd->fd_pipe[1] = -1;
