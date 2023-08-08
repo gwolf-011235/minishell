@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 00:40:03 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 00:45:36 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,15 +134,19 @@ t_err	ft_unlink_heredoc(char *name, t_err err)
 /**
  * @brief Performs the closing of a file.
  * 
- * Returns an error if the closing failed. * 
+ * Returns an error if the closing failed.
+ * On success set fd value to -1. 
  * @param fd 		File descriptor to be closed.
  * @return t_err 	ERR_CLOSE, SUCCESS
  */
 t_err	ft_close(int fd)
 {
 	if (fd >= 0)
+	{
 		if (close(fd) < 0)
 			return (ERR_CLOSE);
+		fd = -1;
+	}
 	return (SUCCESS);
 }
 
