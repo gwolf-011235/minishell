@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 13:09:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 20:53:51 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 21:25:19 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void	test_handle_heredoc(void)
 {
 	printf(BLUE"**\tft_handle_heredoc\t**\n\n"RESET);
 	exec_ft_handle_heredoc("Remove quotes", "<< 'ahoy'");
+	exec_ft_handle_heredoc("Remove double quotes", "<< \"matey\"");
+	exec_ft_handle_heredoc("Remove double and single quotes", "<< \"\"shipmen''");
 }
 
 void	test_handle_redirect(void)
@@ -101,8 +103,8 @@ void	test_expand_handler(void)
 	ft_hashtable_insert(g_symtab, ft_strdup("SINGLE=badboy'"), 6);
 
 	test_handle_arg();
-	//test_handle_heredoc();
-	//test_handle_redirect();
+	test_handle_heredoc();
+	test_handle_redirect();
 
 	if (g_err_count > 0)
 		printf(RED"ERRORS: %d\n"RESET, g_err_count);
