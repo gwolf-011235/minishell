@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 17:38:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 17:37:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 20:59:19 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_err	ft_better_tokenise(t_src *src, t_tok *token, t_buf *buf, t_track *input)
 		buf->cur_pos--;
 	buf->str[buf->cur_pos] = '\0';
 	if (src->cur_pos == src->buf_size && input->str[input->pos])
-		ft_strlcpy_into_buf(buf, (input->str + input->pos), ft_strlen(input->str + input->pos));
+		ft_strlcpy_into_buf(buf, (input->str + input->pos), ft_strlen(input->str + input->pos) + 1);
 	err = ft_create_tok(token, buf->str);
 	return (err);
 }
