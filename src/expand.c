@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/07 22:22:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 08:10:21 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,27 +89,24 @@ t_err	ft_handle_redirect(t_tkn_list **list, t_hashtable *symtab)
 
 t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab)
 {
-	bool	exec;
 	size_t	words;
+	t_track	input;
 	t_err	err;
 
-	exec = false;
+	ft_init_tracker(&input, (*list)->content);
 	words = 1;
-	err = ft_expander(&((*list)->content), symtab);
-	if (err != SUCCESS)
-		return (err);
-	if (exec)
+	while (input.str[input.pos])
 	{
-		words = 0;
-		err = ft_field_split(list, &words);
+		err = ft_expander_arg(&input, symtab);
 		if (err != SUCCESS)
 			return (err);
-	}
-	while (words-- && *list)
-	{
-		err = ft_quote_removal((*list)->content);
-		if (words && (*list)->next != NULL)
-			*list = (*list)->next;
+		if (!input.quoted && input.expanded)
+		{
+			err = ft_field_split(list, &words);
+			if (err != SUCCESS)
+				return (err);
+			ft_init_tracker(&input, (*list)->content);
+		}
 	}
 	return (err);
 }

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/07 22:21:22 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 07:45:21 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab);
 
 //expand_expander.c
 t_err	ft_expander_redirect(t_track *input, t_hashtable *symtab);
-t_err	ft_expander(char **str, t_hashtable *symtab);
+t_err	ft_expander_arg(t_track *input, t_hashtable *symtab);
 t_err	ft_skip_single_quote(t_track *input);
 t_err	ft_skip_double_quote(t_track *input, bool *in_double_quotes);
 
