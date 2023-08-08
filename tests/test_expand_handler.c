@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 13:09:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 09:42:37 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 17:15:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ void	test_handle_arg(void)
 {
 	printf(BLUE"**\tft_handle_arg\t**\n\n"RESET);
 	exec_ft_handle_arg("Var to expand and stuff after", "$TEST\"Hello      boy\"");
-	exec_ft_handle_arg("empty var", "$TEST");
+	exec_ft_handle_arg("empty var", "$NOEXIST");
+	exec_ft_handle_arg("empty var but quoted", "\"$NOEXIST\"");
+	exec_ft_handle_arg("empty var, second quoted", "$NOEXIST\"$NOEXIST\"");
 	exec_ft_handle_arg("Var to expand", "$TEST");
 	exec_ft_handle_arg("Don't split but rm quotes", "'I     no    split' \"Me   neither\"");
 	exec_ft_handle_arg("Don't split but rm quotes 2", "\"Me   neither\"");

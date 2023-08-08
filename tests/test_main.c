@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 09:41:08 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 17:09:40 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	test_print_t_type(t_type type)
 		str = "NEWLINE";
 	else if (type == AMBIGUOUS)
 		str = "AMBIGUOUS";
+	else if (type == DELETE)
+		str = "DELETE";
 	printf("   Type:\t%s\n", str);
 }
 
