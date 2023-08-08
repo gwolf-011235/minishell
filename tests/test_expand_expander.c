@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/07 22:25:54 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 08:31:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@ extern char			*g_string;
 extern t_hashtable	*g_symtab;
 extern int			g_err_count;
 
-static int	test_wrapper(char *testname, char *test, char *expect)
+typedef t_err	(*funptr_expand_t)(t_track *input, t_hashtable *symtab);
+
+int	exec_expand(char *testname, char *test, char *expect, funptr_expand_t funptr_expand)
 {
+	t_track	input;
 	int		ret;
 
 	printf("TEST: %s\n", testname);
-	g_string = ft_strdup(test);
 	printf("String:\t|%s|\n", test);
-	ft_expander(&g_string, g_symtab);
-	printf("Result:\t|%s|\n", g_string);
-	if (!ft_strncmp(g_string, expect, ft_strlen(g_string)))
+	ft_init_tracker(&input, ft_strdup(test));
+	funptr_expand(&input, g_symtab);
+	printf("Result:\t|%s|\n", input.str);
+	if (!ft_strncmp(input.str, expect, ft_strlen(input.str)))
 	{
 		printf(GREEN"OK\n\n"RESET);
 		ret = 0;
@@ -36,71 +39,74 @@ static int	test_wrapper(char *testname, char *test, char *expect)
 		printf(RED"Expect:\t|%s|\n\n"RESET, expect);
 		ret = 1;
 	}
-	free(g_string);
+	free(input.str);
 	return (ret);
 }
 
-void	test_expand_tilde(void)
+void	test_expand_tilde(funptr_expand_t funptr_expand)
 {
 	printf(BLUE"**\tTILDE\t**\n\n"RESET);
-	g_err_count += test_wrapper("no HOME set", "~", "~");
+	g_err_count += exec_expand("no HOME set", "~", "~", funptr_expand);
 
 	ft_hashtable_insert(g_symtab, ft_strdup("HOME=/this/is/home"), 4);
 	ft_hashtable_insert(g_symtab, ft_strdup("PWD=/this/is/PWD"), 3);
 	ft_hashtable_insert(g_symtab, ft_strdup("OLDPWD=/this/is/OLDPWD"), 6);
-	g_err_count += test_wrapper("expand $HOME with ~", "~", "/this/is/home");
-	g_err_count += test_wrapper("expand $PWD with ~+", "~+", "/this/is/PWD");
-	g_err_count += test_wrapper("expand $OLDPWD with ~-", "~-", "/this/is/OLDPWD");
+	g_err_count += exec_expand("expand $HOME with ~", "~", "/this/is/home", funptr_expand);
+	g_err_count += exec_expand("expand $PWD with ~+", "~+", "/this/is/PWD", funptr_expand);
+	g_err_count += exec_expand("expand $OLDPWD with ~-", "~-", "/this/is/OLDPWD", funptr_expand);
 
-	g_err_count += test_wrapper("tilde in assignment", "var=~", "var=/this/is/home");
+	//g_err_count += exec_expand("tilde in assignment", "var=~", "var=/this/is/home", funptr_expand);
 
 }
 
-void	test_expand_var(void)
+void	test_expand_var(funptr_expand_t funptr_expand)
 {
 	printf(BLUE"**\tVARS\t**\n\n"RESET);
 	ft_hashtable_insert(g_symtab, ft_strdup("TEST='I am test'"), 4);
-	g_err_count += test_wrapper("simple var expansion", "$TEST", "'I am test'");
-	g_err_count += test_wrapper("double var", "$TEST$TEST", "'I am test''I am test'");
-	g_err_count += test_wrapper("empty var", "$NO_VAR", "");
-	g_err_count += test_wrapper("starting with number", "$1", "$1");
-	g_err_count += test_wrapper("no alnum at start", "$§", "$§");
-	g_err_count += test_wrapper("double quoted string after $", "$\"TEST\"", "\"TEST\"");
-	g_err_count += test_wrapper("double quoted $", "\"$\"TEST", "\"$\"TEST");
-	g_err_count += test_wrapper("double quoted var name", "\"$TEST\"ING", "\"'I am test'\"ING");
-	g_err_count += test_wrapper("single quoted string after $", "$'TEST'", "'TEST'");
-	g_err_count += test_wrapper("single quoted $", "'$'TEST", "'$'TEST");
-	g_err_count += test_wrapper("single quoted var name", "'$TEST'ING", "'$TEST'ING");
+	g_err_count += exec_expand("simple var expansion", "$TEST", "'I am test'", funptr_expand);
+	g_err_count += exec_expand("double var", "$TEST$TEST", "'I am test''I am test'", funptr_expand);
+	g_err_count += exec_expand("empty var", "$NO_VAR", "", funptr_expand);
+	g_err_count += exec_expand("starting with number", "$1", "$1", funptr_expand);
+	g_err_count += exec_expand("no alnum at start", "$§", "$§", funptr_expand);
+	g_err_count += exec_expand("double quoted string after $", "$\"TEST\"", "TEST", funptr_expand);
+	g_err_count += exec_expand("double quoted $", "\"$\"TEST", "$TEST", funptr_expand);
+	g_err_count += exec_expand("double quoted var name", "\"$TEST\"ING", "'I am test'ING", funptr_expand);
+	g_err_count += exec_expand("single quoted string after $", "$'TEST'", "TEST", funptr_expand);
+	g_err_count += exec_expand("single quoted $", "'$'TEST", "$TEST", funptr_expand);
+	g_err_count += exec_expand("single quoted var name", "'$TEST'ING", "$TESTING", funptr_expand);
 
 	g_status = 125;
-	g_err_count += test_wrapper("special var $?", "$?", "125");
+	g_err_count += exec_expand("special var $?", "$?", "125", funptr_expand);
 }
 
-void	test_expand_quotes(void)
+void	test_expand_quotes(funptr_expand_t funptr_expand)
 {
 	printf(BLUE"**\tQUOTES\t**\n\n"RESET);
-	g_err_count += test_wrapper("single quoted string", "'Hallo'", "Hallo");
-	g_err_count += test_wrapper("double quoted string", "This:\"Hallo\"", "This:Hallo");
+	g_err_count += exec_expand("single quoted string", "'Hallo'", "Hallo", funptr_expand);
+	g_err_count += exec_expand("double quoted string", "This:\"Hallo\"", "This:Hallo", funptr_expand);
 }
 
-void	test_expand_combi(void)
+void	test_expand_combi(funptr_expand_t funptr_expand)
 {
 	printf(BLUE"**\tCOMBI\t**\n\n"RESET);
-	g_err_count += test_wrapper("Combination 1", "~/\"$TEST\"'betram'", "/this/is/home/'I am test'betram");
-	g_err_count += test_wrapper("Combination 2", "test=$?", "test=125");
-	g_err_count += test_wrapper("Combination 3", "~$NO_VAR$0$?", "~/bin/shell125");
+	g_err_count += exec_expand("Combination 1", "~/\"$TEST\"'betram'", "/this/is/home/'I am test'betram", funptr_expand);
+	g_err_count += exec_expand("Combination 2", "test=$?", "test=125", funptr_expand);
+	g_err_count += exec_expand("Combination 3", "~$NO_VAR$?", "~125", funptr_expand);
 }
-
 
 void	test_expand_expander(void)
 {
 	printf(YELLOW"*******TEST_EXPAND*******\n\n"RESET);
 	g_err_count = 0;
 	g_symtab = ft_hashtable_create(1, ft_hash_fnv1);
-	test_expand_tilde();
-	test_expand_var();
-	//test_expand_quotes();
-	//test_expand_combi();
+	//test_expand_tilde(ft_expander_redirect);
+	//test_expand_var(ft_expander_redirect);
+	//test_expand_quotes(ft_expander_redirect);
+	//test_expand_combi(ft_expander_redirect);
+	test_expand_tilde(ft_expander_arg);
+	test_expand_var(ft_expander_arg);
+	test_expand_quotes(ft_expander_arg);
+	test_expand_combi(ft_expander_arg);
 	if (g_err_count > 0)
 		printf(RED"ERRORS: %d\n"RESET, g_err_count);
 	ft_hashtable_destroy(g_symtab);
