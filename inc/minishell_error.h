@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/30 15:03:56 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 17:41:45 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ typedef enum e_error {
 	ERR_CHDIR_FAIL, ///< function chdir() failed.
 	ERR_INVALID_NAME, ///< Not a valid env name.
 	ERR_NONUM, ///< The string doesn't represent a number.
-	ERR_EXIT ///< ft_exit() failed because of too many args.
+	ERR_EXIT, ///< ft_exit() failed because of too many args.
+	ERR_NOSPLIT ///< ft_field_split() didnt split.
 }	t_err;
 
 

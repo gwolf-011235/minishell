@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 17:38:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 16:53:50 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 17:37:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_err	ft_init_buf(t_buf *buf)
 t_err	ft_strlcpy_into_buf(t_buf *buf, char *str, size_t len)
 {
 	ft_strlcpy(&buf->str[buf->cur_pos], str, len);
-	buf->cur_pos += len;
+	buf->cur_pos += len - 1;
 	buf->str[buf->cur_pos] = '\0';
 	return (SUCCESS);
 }

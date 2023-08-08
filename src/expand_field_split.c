@@ -37,12 +37,7 @@ t_err	ft_field_split(t_track *input, t_tkn_list **list)
 	words = 0;
 	ft_count_expand_words(input, &words);
 	if (words == 1)
-		return (SUCCESS);
-	else if (words == 0)
-	{
-		(*list)->type = DELETE;
-		return (SUCCESS);
-	}
+		return (ERR_NOSPLIT);
 	else
 	{
 		err = ft_init_buf(&buf);
@@ -136,10 +131,7 @@ t_err	ft_split_node(t_track *input, t_tkn_list **lst_head, t_buf *buf)
 	t_err	err;
 
 	if (input->pos - input->last_expand_len != 0)
-	{
-		ft_strlcpy(buf->str, input->str, input->last_expand_len);
-		buf->cur_pos += input->last_expand_len;
-	}
+		ft_strlcpy_into_buf(buf, input->str, input->pos - input->last_expand_len + 1);
 	ft_init_lexer2(&src, &(input->str[input->pos - input->last_expand_len]), input->last_expand_len);
 	err = ft_better_tokenise(&src, &token, buf, input);
 	while (err != ERR_EOF || !*lst_head)
