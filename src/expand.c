@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 08:10:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 09:35:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,10 @@ t_err	ft_handle_redirect(t_tkn_list **list, t_hashtable *symtab)
 
 t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab)
 {
-	size_t	words;
 	t_track	input;
 	t_err	err;
 
 	ft_init_tracker(&input, (*list)->content);
-	words = 1;
 	while (input.str[input.pos])
 	{
 		err = ft_expander_arg(&input, symtab);
@@ -102,7 +100,7 @@ t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab)
 			return (err);
 		if (!input.quoted && input.expanded)
 		{
-			err = ft_field_split(list, &words);
+			err = ft_field_split(&input, list);
 			if (err != SUCCESS)
 				return (err);
 			ft_init_tracker(&input, (*list)->content);
