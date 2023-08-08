@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/08 12:30:06 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/08 12:36:48 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,7 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **envp, char **paths, t_data *data)
 	t_err	err;
 
 	if (ft_check_builtin(cmd->args[0]))
-	{
-		err = ft_execute_builtin(0, cmd, envp, data);
-		if (err != SUCCESS)
-			return (err);
-	}
+		return (ft_execute_builtin(0, cmd, envp, data));
 	err = ft_check_cmd_access(cmd->args, paths);
 	err = ft_process_cmd(cmd, err, envp, data);
 	if (err != SUCCESS)
