@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:17:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/07 12:24:19 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/08 11:29:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	test_wrapper(char *testname, char *test)
 	printf("Command:%s\n", test);
 	ft_lex_input(&lst, test);
 	ft_parser(lst, &cmd);
-	ft_executor(cmd, envp);
+	ft_executor(cmd, envp, &g_data);
 	while (cmd)
 	{
 		printf("\nCurrent index: %d\n", cmd->index);
@@ -103,7 +103,7 @@ static int	test_scmd_wrapper(char *testname, char *test)
 	printf("Command:%s\n\n", test);
 	ft_lex_input(&lst, test);
 	ft_parser(lst, &cmd);
-	ft_executor(cmd, envp);
+	ft_executor(cmd, envp, &g_data);
 	printf("\n");
 /* 	while (cmd)
 	{
@@ -140,7 +140,7 @@ static int	test_pipe_wrapper(char *testname, char *test)
 	printf("Command:%s\n\n", test);
 	ft_lex_input(&lst, test);
 	ft_parser(lst, &cmd);
-	ft_executor(cmd, envp);
+	ft_executor(cmd, envp, &g_data);
 	printf("\n");
 /* 	while (cmd)
 	{
@@ -186,8 +186,8 @@ static void	test_singlecmds(void)
 	//test_scmd_wrapper("scmd with infile followed by heredoc", "cat <infile <<  supi");
 	//test_scmd_wrapper("scmd with heredoc followed by infile", "cat  <<  supi  <infile");
 	//test_scmd_wrapper("scmd with several infiles", "cat  <infile3  <infile <infile2");
-	test_scmd_wrapper("scmd with several outfiles", "ls  >outfile3  >outfile >outfile2");
-	test_scmd_wrapper("scmd with outfile in append mode", "cat infile >>outfile2");
+	//test_scmd_wrapper("scmd with several outfiles", "ls  >outfile3  >outfile >outfile2");
+	//test_scmd_wrapper("scmd with outfile in append mode", "cat infile >>outfile2");
 }
 
 static void	test_pipe(void)
@@ -195,7 +195,12 @@ static void	test_pipe(void)
 	//test_pipe_wrapper("simple pipe", "ls -la | grep test");
 	//test_pipe_wrapper("pipe with append", "ls -la | grep test | wc -l >>outfile2");
 	//test_pipe_wrapper("pipe with individual infiles", "ls -la | <infile grep yo | <outfile wc -l");
-	test_pipe_wrapper("pipe with individual plural infiles", "ls -la | <infile <infile2 grep yo | <outfile <infile3 wc -m");
+	//test_pipe_wrapper("pipe with individual plural infiles", "ls -la | <infile <infile2 grep yo | <outfile <infile3 wc -m");
+	//test_pipe_wrapper("pipe with built-in", "ls -la | echo test yo momma");
+	//test_pipe_wrapper("pipe with built-in cd", "ls -la | cd .. | touch bogaloo");
+	//test_pipe_wrapper("pipe with built-in exit", "ls -la | exit | touch bogaloo");
+	//test_pipe_wrapper("pipe with built-in echo", "ls -la | echo call me daddy | touch bogaloo");
+	test_pipe_wrapper("pipe with wrong built-in", "ls -la | echowe call me daddy | touch bogaloo");
 }
 
 void	test_executor(void)
