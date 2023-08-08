@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/07 12:01:47 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/08 14:29:21 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ char		**g_argv;
 void	test_setup_data(void)
 {
 	ft_env_setup(&g_data.env_table);
-	lst_head = NULL;
-	g_data.info.shell_name = "/bin/minishell";
-	g_data.info.ret_code = 255;
 }
 
 void	test_teardown_data(void)
