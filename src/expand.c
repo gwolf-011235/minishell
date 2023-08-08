@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 09:35:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 17:02:39 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab)
 		err = ft_expander_arg(&input, symtab);
 		if (err != SUCCESS)
 			return (err);
+		(*list)->content = input.str;
 		if (!input.quoted && input.expanded)
 		{
 			err = ft_field_split(&input, list);

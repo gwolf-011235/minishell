@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 17:38:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 18:40:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/08 16:53:50 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ t_err	ft_partition_two(t_src *src, t_buf *buf)
 	err = ft_init_partition(src, &c);
 	while (err != ERR_EOF)
 	{
-		if (c == '"' || c == '\'')
-			ft_add_quoted_str(c, src, buf);
-		else if ((c == ' ' || c == '\t') && buf->cur_pos > 0)
+		if ((c == ' ' || c == '\t') && buf->cur_pos > 0)
 			break ;
 		else
 		{
@@ -56,7 +54,7 @@ t_err	ft_partition_two(t_src *src, t_buf *buf)
  * @param buf A pre malloced buffer.
  * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_EOF
  */
-t_err	ft_better_tokenise(t_src *src, t_tok *token, t_buf *buf)
+t_err	ft_better_tokenise(t_src *src, t_tok *token, t_buf *buf, t_track *input)
 {
 	t_err	err;
 
@@ -66,6 +64,8 @@ t_err	ft_better_tokenise(t_src *src, t_tok *token, t_buf *buf)
 	if (buf->cur_pos >= buf->size)
 		buf->cur_pos--;
 	buf->str[buf->cur_pos] = '\0';
+	if (src->cur_pos == src->buf_size && input->str[input->pos])
+		ft_strlcpy_into_buf(buf, (input->str + input->pos), ft_strlen(input->str + input->pos));
 	err = ft_create_tok(token, buf->str);
 	return (err);
 }
@@ -84,5 +84,13 @@ t_err	ft_init_buf(t_buf *buf)
 		return (ERR_MALLOC);
 	buf->str[0] = '\0';
 	buf->cur_pos = 0;
+	return (SUCCESS);
+}
+
+t_err	ft_strlcpy_into_buf(t_buf *buf, char *str, size_t len)
+{
+	ft_strlcpy(&buf->str[buf->cur_pos], str, len);
+	buf->cur_pos += len;
+	buf->str[buf->cur_pos] = '\0';
 	return (SUCCESS);
 }
