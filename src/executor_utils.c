@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/08 11:07:07 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/08 14:52:48 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_err	ft_get_path(char **envp, char ***paths)
 {
 	char	*path_str;
 
-	while (ft_strncmp(*envp, "PATH", 4) || (*(*envp + 4) != '='))
+	while (*envp && (ft_strncmp(*envp, "PATH", 4) || (*(*envp + 4) != '=')))
 		envp++;
 	if (!*envp)
 		return (ERR_NOPATH);
