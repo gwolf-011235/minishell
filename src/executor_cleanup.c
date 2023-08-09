@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 00:45:36 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/10 00:05:50 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_err	ft_cleanup_cmd(t_cmd *cmd)
 	if (err != SUCCESS)
 		return (err);
 	if (cmd->heredoc)
-		ft_unlink_heredoc(cmd->heredoc, err);
+		ft_unlink_heredoc(&cmd->heredoc, err);
 	return (SUCCESS);
 }
 
@@ -120,14 +120,15 @@ memory space. */
  * @brief Unlinks the temporary heredoc file created.
  * 
  * Returns provided error code.
- * @param name 		Name of heredoc to be unlinked.
+ * @param name 		Name of heredoc to be unlinked and freed.
  * @param err 		Provided error code.
  * @return t_err 	err
  */
-t_err	ft_unlink_heredoc(char *name, t_err err)
+t_err	ft_unlink_heredoc(char **name, t_err err)
 {
-	unlink(name);
-	free(name);
+	unlink(*name);
+	free(*name);
+	*name = NULL;
 	return (err);
 }
 

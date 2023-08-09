@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 01:04:32 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/10 00:05:23 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim)
 		write(1, "pipe heredoc> ", 14);
 		buf = get_next_line(0); //handle SIGNAL STR+D
 		if (!buf)
-			return (ft_unlink_heredoc(name, ERR_MALLOC));
+			return (ft_unlink_heredoc(&name, ERR_MALLOC));
 		if ((ft_strncmp(delim, buf, len) == 0) && *(buf + len) == '\n')
 			break ;
 		write(fd, buf, ft_strlen(buf));
 		free(buf);
 	}
 	free(buf);
-	err = ft_heredoc_fate(cmd, name, fd, curr_delim);
+	err = ft_heredoc_fate(cmd, &name, fd, curr_delim);
 	return (err);
 }
 
@@ -137,7 +137,7 @@ t_err	ft_initiate_heredoc(int index, char **name, int *fd)
  * @param curr_delim 	Current delimiter index.
  * @return t_err 		ERR_CLOSE, ERR_BAD_FD, SUCCESS
  */
-t_err	ft_heredoc_fate(t_cmd *cmd, char *name, int fd, int curr_delim)
+t_err	ft_heredoc_fate(t_cmd *cmd, char **name, int fd, int curr_delim)
 {
 	t_err	err;
 
@@ -146,10 +146,10 @@ t_err	ft_heredoc_fate(t_cmd *cmd, char *name, int fd, int curr_delim)
 		return (err);
 	if (cmd->fd_in == -1 && curr_delim == cmd->delim_pos - 1)
 	{
-		cmd->fd_in = open(name, O_RDONLY);
+		cmd->fd_in = open(*name, O_RDONLY);
 		if (cmd->fd_in < 0)
 			return (ft_unlink_heredoc(name, ERR_BAD_FD));
-		cmd->heredoc = name;
+		cmd->heredoc = *name;
 	}
 	else
 		ft_unlink_heredoc(name, SUCCESS);

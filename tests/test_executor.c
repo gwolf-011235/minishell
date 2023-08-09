@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:17:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 01:10:05 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 23:53:57 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,8 +173,8 @@ static void	test_enum_cmds(void)
 static void	test_heredoc(void)
 {
 	test_heredoc_wrapper("heredocs followed by infile", "<<samba <<gg <<yuhu grep bu <infile");
-	test_heredoc_wrapper("infile followed by heredocs", "<<samba <infile <<gg <<yuhu grep bu");
-	test_heredoc_wrapper("piped heredocs", "<<sa cat | <<gg grep bu");
+	//test_heredoc_wrapper("infile followed by heredocs", "<<samba <infile <<gg <<yuhu grep bu");
+	//test_heredoc_wrapper("piped heredocs", "<<sa cat | <<gg grep bu");
 }
 
 static void	test_singlecmds(void)
@@ -202,7 +202,7 @@ static void	test_singlecmds(void)
 
 static void	test_pipe(void)
 {
-	test_pipe_wrapper("simple pipe", "ls -la | grep test");
+	//test_pipe_wrapper("simple pipe", "ls -la | grep test");
 	//test_pipe_wrapper("pipe with append", "ls -la | grep test | wc -l >>outfile2");
 	//test_pipe_wrapper("pipe with individual infiles", "ls -la | <infile grep yo | <outfile wc -l");
 	//test_pipe_wrapper("pipe with individual plural infiles", "ls -la | <infile <infile2 grep yo | <outfile <infile3 wc -m");
@@ -217,7 +217,7 @@ void	test_executor(void)
 {
 	printf(YELLOW"*******TEST_EXECUTOR*******\n\n"RESET);
 	//test_enum_cmds();
-	//test_heredoc();
+	test_heredoc();
 	//test_singlecmds();
-	test_pipe();
+	//test_pipe();
 }
