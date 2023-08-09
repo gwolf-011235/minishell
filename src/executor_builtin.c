@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:47:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 00:23:34 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 23:34:34 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
  * Compare including '\0' to be sure it is 
  * the cmd and not a str with same head.
  * @param arg 		Cmd str to check.
- * @return true 
- * @return false 
+ * @return true 	Built-in found.
+ * @return false 	Built-in not found.
  */
 bool	ft_check_builtin(char *arg)
 {
