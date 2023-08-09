@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_replace_h.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:56:47 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 19:20:03 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,29 @@
 #include "mod_prompt.h"
 
 /**
- * @brief Create and save hostname string from provided string.
+ * @brief Retrieve hostname and save in provided pointer.
  *
- * This function expects a value of env_var SESSION_MANAGER.
- * Search for "local/" and add 6 to get start of hostname.
- * Search for '.' or ':' to get end, if not found ft_strlen is used.
- * Create a substring.
- *
+ * The current hostname is saved in /proc/sys/kernel/hostname.
+ * Open this file and retrieve hostname via get_next_line().
+ * Hostname is delimited by newline. Search for '\n' and replace with '\0'
  * @param replacement Pointer pointer where to save string.
- * @param str The value of SESSION_MANAGER.
- * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC
+ * @return t_err SUCCESS, ERR_OPEN, ERR_MALLOC
  */
-t_err	ft_create_hostname(char **replacement, const char *str)
+t_err	ft_retrieve_hostname(char **replacement)
 {
-	char	*start;
-	char	*end;
+	int		fd;
+	char	*newline;
 
-	if (!replacement || !str)
-		return (ERR_EMPTY);
-	start = ft_strnstr(str, "local/", ft_strlen(str)) + 6;
-	end = ft_strchr(start, '.');
-	if (!end)
-		end = ft_strchr(start, ':');
-	if (!end)
-		end = start + ft_strlen(start) - 1;
-	*replacement = ft_substr(start, 0, end - start);
+	fd = open("/proc/sys/kernel/hostname", O_RDONLY);
+	if (fd == -1)
+		return (ERR_OPEN);
+	*replacement = get_next_line(fd);
 	if (!*replacement)
 		return (ERR_MALLOC);
+	newline = ft_strrchr(*replacement, '\n');
+	if (newline)
+		*newline = '\0';
+	close(fd);
 	return (SUCCESS);
 }
 
@@ -62,17 +58,13 @@ t_err	ft_create_hostname(char **replacement, const char *str)
 t_err	ft_replace_h(char **replacement, t_hashtable *sym_tab)
 {
 	t_err		err;
-	t_env_var	*env_var;
 
 	if (!replacement || !sym_tab)
 		return (ERR_EMPTY);
-	env_var = ft_hashtable_lookup(sym_tab, "SESSION_MANAGER", 15);
-	if (!env_var || !ft_strnstr(env_var->value, "local/",
-			ft_strlen(env_var->value)))
-		err = ft_replace_not_found(replacement);
-	else
-		err = ft_create_hostname(replacement, env_var->value);
-	if (err != SUCCESS)
+	err = ft_retrieve_hostname(replacement);
+	if (err == ERR_MALLOC)
 		return (err);
-	return (SUCCESS);
+	else if (err != SUCCESS)
+		err = ft_replace_not_found(replacement);
+	return (err);
 }
