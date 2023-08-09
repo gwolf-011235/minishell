@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 21:16:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/09 18:15:31 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@
 t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table)
 {
 	t_tkn_list	*tmp;
-	t_type		type;
 	t_err		err;
 
 	tmp = *head;
 	while (tmp)
 	{
-		type = tmp->type;
-		if (type == PIPE || type == NEW_LINE)
-			err = SUCCESS;
-		else if (type == HEREDOC)
-			err = ft_handle_heredoc(&tmp);
-		else if (type == INFILE || type == OUTFILE || type == APPEND)
+		if (tmp->type == INFILE || tmp->type == OUTFILE || tmp->type == APPEND)
 			err = ft_handle_redirect(&tmp, env_table);
+		else if (tmp->type == HEREDOC)
+			err = ft_handle_heredoc(&tmp);
+		else if (tmp->type == ASSIGN)
+			err = ft_handle_assign(&tmp, env_table);
+		else if (tmp->type == PIPE || tmp->type == NEW_LINE)
+			err = SUCCESS;
 		else
 			err = ft_handle_arg(&tmp, env_table);
 		if (err != SUCCESS)
@@ -78,12 +78,26 @@ t_err	ft_handle_redirect(t_tkn_list **list, t_hashtable *symtab)
 
 	*list = (*list)->next;
 	ft_init_tracker(&input, (*list)->content);
-	err = ft_expander_redirect(&input, symtab);
+	err = ft_expander_full(&input, symtab);
 	if (err != SUCCESS)
 		return (err);
 	(*list)->content = input.str;
 	if ((*list)->content[0] == '\0' && !input.found_quote)
 		(*list)->prev->type = AMBIGUOUS;
+	return (err);
+}
+
+t_err	ft_handle_assign(t_tkn_list **list, t_hashtable *symtab)
+{
+	t_track	input;
+	t_err	err;
+
+	ft_init_tracker(&input, (*list)->content);
+	err = ft_expander_full(&input, symtab);
+	if (err != SUCCESS)
+		return (err);
+	(*list)->content = input.str;
+	(*list)->prev->type = ARG;
 	return (err);
 }
 
