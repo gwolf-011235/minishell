@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 08:58:42 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 19:02:20 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/09 18:40:34 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ void	test_expand_list(void)
 	exec_expand_tkn_lst("Simple heredoc quote removal", "<< 'hello' cat");
 	exec_expand_tkn_lst("Simple redirect expand", "echo blub > $NOEXIST");
 	exec_expand_tkn_lst("Heredoc, redirect and var", "<< 'never   stop' c$A > $LOGFILE");
+	exec_expand_tkn_lst("Assignment", "VAR=$TEST");
 }
