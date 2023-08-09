@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/31 12:41:08 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 23:31:16 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ t_err	ft_categorise(t_tkn_list **lst, t_cmd *new, bool *cmd_complete)
 		err = ft_save_outfile(&tmp, new, 1);
 	else if (tmp->type == PIPE)
 		*cmd_complete = 1;
-	else if (tmp->type == NWL)
+	else if (tmp->type == NEWL)
 		return (SUCCESS);
 	else if (tmp->type == ARG)
 		err = ft_save_arg(tmp, new);

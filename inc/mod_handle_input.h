@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 01:42:38 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 23:29:46 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
  * @param OUTFILE	Redirect evoking an outfile.
  * @param APPEND	Redirect evoking an outfile in append mode.
  * @param PIPE		Char indicating piping of commands.
- * @param NWL		Char indicating end of a command.
+ * @param NEWL		Char indicating end of a command.
  */
 typedef enum e_type
 {
@@ -43,7 +43,7 @@ typedef enum e_type
 	OUTFILE,
 	APPEND,
 	PIPE,
-	NWL
+	NEWL
 }	t_type;
 
 /**

@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 01:43:43 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 23:30:10 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim)
 			lst = lst->next;
 		else if (lst->type == APPEND)
 			lst = lst->next;
-		else if (lst->type == NWL)
+		else if (lst->type == NEWL)
 			;
 		else if (lst->type == ARG)
 			(*count_arg)++;
