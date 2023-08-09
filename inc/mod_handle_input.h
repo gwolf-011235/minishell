@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 18:02:04 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/09 18:29:04 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ void		ft_del_node(t_tkn_list *lst);
 void		ft_del_node_mid(t_tkn_list **lst_head);
 void		ft_free_lst(t_tkn_list **lst);
 t_tkn_list	*ft_list_first(t_tkn_list *list);
+void		ft_del_target_type(t_tkn_list **head, t_type target);
 
 
 #endif

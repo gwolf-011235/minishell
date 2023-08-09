@@ -55,6 +55,21 @@ void	ft_del_node_mid(t_tkn_list **head)
 	ft_del_node(cur);
 }
 
+void	ft_del_target_type(t_tkn_list **head, t_type target)
+{
+	t_tkn_list	*tmp;
+
+	while ((*head)->type == target)
+		ft_del_node_mid(head);
+	tmp = *head;
+	while (tmp)
+	{
+		if (tmp->type == target)
+			ft_del_node_mid(&tmp);
+		tmp = tmp->next;
+	}
+}
+
 /**
  * @brief Iterate through token list and free all nodes.
  *
