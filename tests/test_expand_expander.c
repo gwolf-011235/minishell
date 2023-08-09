@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 09:00:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/09 18:06:40 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ void	test_expand_expander(void)
 	printf(YELLOW"*******TEST_EXPAND*******\n\n"RESET);
 	g_err_count = 0;
 	g_symtab = ft_hashtable_create(1, ft_hash_fnv1);
-	//test_expand_tilde(ft_expander_redirect);
-	//test_expand_var(ft_expander_redirect);
-	//test_expand_quotes(ft_expander_redirect);
-	//test_expand_combi(ft_expander_redirect);
+	//test_expand_tilde(ft_expander_full);
+	//test_expand_var(ft_expander_full);
+	//test_expand_quotes(ft_expander_full);
+	//test_expand_combi(ft_expander_full);
 	//test_expand_tilde(ft_expander_arg);
 	test_expand_var(ft_expander_arg);
 	//test_expand_quotes(ft_expander_arg);

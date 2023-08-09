@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 08:09:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/09 18:06:40 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  */
 #include "mod_expand.h"
 
-t_err	ft_expander_redirect(t_track *input, t_hashtable *symtab)
+t_err	ft_expander_full(t_track *input, t_hashtable *symtab)
 {
 	t_err	err;
 
