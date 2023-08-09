@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:38 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 16:59:43 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/09 18:03:21 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ void		ft_free_tok(t_tok *token);
 t_err		ft_skip_space(t_src *src);
 void		*ft_realloc(void *ptr, size_t new_size, size_t curr_size);
 void		ft_assign_type(t_tkn_list *lst);
+bool		ft_is_env_assign(char *str);
 
 #endif

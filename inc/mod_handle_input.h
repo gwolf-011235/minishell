@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/08 12:01:05 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/09 18:02:04 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 typedef enum e_type
 {
 	ARG,
+	ASSIGN,
 	INFILE,
 	HEREDOC,
 	OUTFILE,

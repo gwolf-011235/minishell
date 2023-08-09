@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:40:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 16:51:15 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/09 18:01:23 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,30 @@ t_err	ft_skip_space(t_src *src)
 }
 
 /**
+ * @brief Checks if string is a valid environment assignment
+ *
+ * First char has to be alphabetical or underscore.
+ * Following chars can also include numbers.
+ * Char after the variable key has to be '='.
+ * @param str The string to check
+ * @return true Valid assignment.
+ * @return false Not an assignment.
+ */
+bool	ft_is_env_assign(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	if (!ft_isalpha(str[i]) && str[i] != '_')
+		return (false);
+	while (ft_isalnum(str[i]) || str[i] == '_')
+		i++;
+	if (str[i] != '=')
+		return (false);
+	return (true);
+}
+
+/**
  * @brief 	Assigns type to tokens.
  *
  * Order of checks is significant, otherwise
@@ -52,7 +76,9 @@ void	ft_assign_type(t_tkn_list *lst)
 {
 	while (lst)
 	{
-		if (ft_strncmp(lst->content, "<<", 2) == 0)
+		if (ft_is_env_assign(lst->content))
+			lst->type = ASSIGN;
+		else if (ft_strncmp(lst->content, "<<", 2) == 0)
 			lst->type = HEREDOC;
 		else if (ft_strncmp(lst->content, "<", 1) == 0)
 			lst->type = INFILE;
