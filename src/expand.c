@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/09 18:29:26 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/09 18:39:31 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_err	ft_handle_assign(t_tkn_list **list, t_hashtable *symtab)
 	if (err != SUCCESS)
 		return (err);
 	(*list)->content = input.str;
-	(*list)->prev->type = ARG;
+	(*list)->type = ARG;
 	return (err);
 }
 
