@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/09 18:06:40 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 11:58:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,45 +75,5 @@ t_err	ft_expander_arg(t_track *input, t_hashtable *symtab)
 		if (err != SUCCESS && err != ERR_NOEXPAND)
 			return (err);
 	}
-	return (SUCCESS);
-}
-
-/**
- * @brief Skip single quotes.
- *
- * Skip found single quote.
- * Jump over quoted part, searching for the second single.
- * Skip second single quote.
- *
- * @param expr String
- * @param pos Current position
- * @return t_err SUCCESS
- */
-t_err	ft_skip_single_quote(t_track *input)
-{
-	input->pos++;
-	while (input->str[input->pos] != '\'')
-		input->pos++;
-	input->pos++;
-	return (SUCCESS);
-}
-
-/**
- * @brief Skip double quotes.
- *
- * Skip found double quote.
- * Switch bool in_quotes on/off.
- * This way we know if we are in double quotes or not.
- * The next time we see a double quote the switch gets flipped again.
- *
- * @param expr String.
- * @param pos Current position.
- * @param in_double_quotes Pointer to change switch.
- * @return t_err SUCCESS.
- */
-t_err	ft_skip_double_quote(t_track *input, bool *in_double_quotes)
-{
-	input->pos++;
-	*in_double_quotes = !(*in_double_quotes);
 	return (SUCCESS);
 }

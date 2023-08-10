@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/09 18:08:43 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 12:08:44 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab);
 //expand_expander.c
 t_err	ft_expander_full(t_track *input, t_hashtable *symtab);
 t_err	ft_expander_arg(t_track *input, t_hashtable *symtab);
-t_err	ft_skip_single_quote(t_track *input);
-t_err	ft_skip_double_quote(t_track *input, bool *in_double_quotes);
 
 //expand_tilde.c
 t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab);
@@ -75,7 +73,7 @@ t_err	ft_get_tilde_token(t_track *input, t_str *token);
 t_err	ft_expand_var(t_track *input, t_hashtable *symtab);
 t_err	ft_special_var(t_str *token, t_str *replace);
 t_err	ft_get_var_token(t_track *input, t_str *token);
-t_err	ft_get_var_replace(t_str token, t_hashtable *symtab, t_str *replace);
+t_err	ft_get_var_replace(t_str *token, t_hashtable *symtab, t_str *replace);
 
 //expand_field_split.c
 t_err	ft_field_split(t_track *input, t_tkn_list **list);
