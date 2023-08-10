@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 18:27:09 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 11:34:34 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@
  * Get the replacement for the found token.
  * Insert the replacement in the string.
  * Update the position to be after the inserted string.
- *
- * @param input String.
+ * @param input Pointer to tracker.
  * @param symtab Environment.
- * @param pos Current position.
  * @return t_err SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
  */
 t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab)
@@ -62,11 +60,9 @@ t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab)
  * At first the string "~" is assigned.
  * If '+' or '-' is found increase position and reassign
  * Then a '/' or a '\0' has to be found, else the string is set to NULL.
- * Also if not found increase the position to jump over the '~'.
+ * Also if not found increase tracker position to jump over the '~'.
  * Calc the token.len.
- *
- * @param input String.
- * @param pos Current position.
+ * @param input Pointer to tracker.
  * @param token Where to save the token.
  * @return t_err SUCCESS, ERR_NOEXPAND.
  */
@@ -97,14 +93,13 @@ t_err	ft_get_tilde_token(t_track *input, t_str *token)
  * @brief Find the corresponding replacement for token.
  *
  * Depending on the token find env var.
- * ~: $HOME.
- * ~+: $PWD.
- * ~-: $OLDPWD.
- * If not found increase update position to account for '~' and
+ * ~ = $HOME.
+ * ~+ = $PWD.
+ * ~- = $OLDPWD.
+ * If not found increase tracker position to account for '~' and
  * return ERR_NOT_FOUND.
  * If found ft_strdup() the value.
  * Calc replace.len.
- *
  * @param token Contains searched for token.
  * @param symtab Environment.
  * @param replace Where to save replace string.
@@ -116,11 +111,11 @@ t_err	ft_get_tilde_replace(t_str token, t_hashtable *symtab, t_str *replace, siz
 	char		*target;
 	t_env_var	*env_var;
 
-	if (!ft_strncmp(token.ptr, "~", ft_strlen(token.ptr)))
+	if (!ft_strncmp(token.ptr, "~", 2))
 		target = "HOME";
-	else if (!ft_strncmp(token.ptr, "~+", ft_strlen(token.ptr)))
+	else if (!ft_strncmp(token.ptr, "~+", 3))
 		target = "PWD";
-	else if (!ft_strncmp(token.ptr, "~-", ft_strlen(token.ptr)))
+	else if (!ft_strncmp(token.ptr, "~-", 3))
 		target = "OLDPWD";
 	env_var = ft_hashtable_lookup(symtab, target, ft_strlen(target));
 	if (!env_var)
