@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 01:33:22 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/10 18:47:50 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@
 /**
  * @brief Check given args executable.
  * 
+ * Iterate through cmd_paths. If one or more paths are empty (""),
+ * boolean "empty_path" is set to true.
  * If args executable contains an absolute path (starts with /),
- * a relative path (starts with ./ or ../) or no paths are given,
- * its validity is checked in the current directory. If not successfully,
- * ERR_UNKNOWN_CMD is returned.
+ * a relative path (starts with ./ or ../), no paths are given or empty_path
+ * is true, its validity is checked in the current directory.
+ * If not successfully, ERR_UNKNOWN_CMD is returned. In case of empty_path,
+ * additionally the right path is searched for.
  * 
- * Else an attempt to find and assign the right path is started. If not
- * successfully, ERR_UNKNOWN_CMD is returned.  
+ * If none of the above is applicable solely an attempt to find and assign
+ * the right path is started. If not successfully, ERR_UNKNOWN_CMD is returned.  
  * @param args 			String array containing executable in first position.
  * @param cmd_paths 	String array of paths.
  * @return t_err 		ERR_UNKNOWN_CMD, ERR_MALLOC, SUCCESS
@@ -34,13 +37,25 @@
 t_err	ft_check_cmd_access(char **args, char **cmd_paths)
 {
 	t_err	err;
+	char	**tmp;
+	bool	empty_path;
 
 	err = ERR_UNKNOWN_CMD;
+	tmp = cmd_paths;
+	empty_path = false;
+	while (*tmp)
+	{
+		if (**tmp == '\0')
+			empty_path = true;
+		tmp++;
+	}
 	if ((*args)[0] == '/' || !ft_strncmp(*args, "./", 2)
-		|| !ft_strncmp(*args, "../", 3) || !cmd_paths)
+		|| !ft_strncmp(*args, "../", 3) || !cmd_paths || empty_path)
 	{
 		if (access(*args, F_OK | X_OK) == 0)
 			return (SUCCESS);
+		if (empty_path)
+			err = ft_prefix_path(args, cmd_paths);
 	}
 	else
 		err = ft_prefix_path(args, cmd_paths);
@@ -106,12 +121,6 @@ t_err	ft_get_path(char **envp, char ***paths)
 	*paths = ft_split(path_str, ':');
 	if (!*paths)
 		return (ERR_MALLOC);
-	if (***paths == '\0')
-	{
-		free(*paths);
-		*paths = NULL;
-		return (ERR_NOPATH);
-	}
 	return (SUCCESS);
 }
 
