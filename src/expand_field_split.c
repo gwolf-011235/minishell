@@ -97,13 +97,6 @@ t_err	ft_count_expand_words(t_track *input, size_t *words)
 	return (SUCCESS);
 }
 
-void	ft_init_lexer2(t_src *src, char *input, int len)
-{
-	src->buf = input;
-	src->buf_size = len;
-	src->cur_pos = INIT_SRC_POS;
-}
-
 /**
  * @brief Split a node into words.
  *
@@ -122,7 +115,7 @@ t_err	ft_split_node(t_track *input, t_tkn_list **lst_head, t_buf *buf)
 
 	if (input->pos - input->last_expand_len != 0)
 		ft_strlcpy_into_buf(buf, input->str, input->pos - input->last_expand_len + 1);
-	ft_init_lexer2(&src, &(input->str[input->pos - input->last_expand_len]), input->last_expand_len);
+	ft_init_lexer(&src, &(input->str[input->pos - input->last_expand_len]), input->last_expand_len);
 	err = ft_better_tokenise(&src, &token, buf, input);
 	while (err != ERR_EOF || !*lst_head)
 	{

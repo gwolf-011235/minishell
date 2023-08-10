@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 16:52:11 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 19:50:42 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_err	ft_lex_input(t_tkn_list	**lst_head, char *input)
 	t_err	err;
 	t_tok	token;
 
-	ft_init_lexer(&src, input);
+	ft_init_lexer(&src, input, ft_strlen(input));
 	err = ft_tokenise(&src, &token);
 	while (err != ERR_EOF || !*lst_head)
 	{
@@ -60,9 +60,9 @@ t_err	ft_lex_input(t_tkn_list	**lst_head, char *input)
  * @param src 		Struct containing data on input/source string.
  * @param input 	Input string.
  */
-void	ft_init_lexer(t_src *src, char *input)
+void	ft_init_lexer(t_src *src, char *input, int len)
 {
 	src->buf = input;
-	src->buf_size = ft_strlen(input);
+	src->buf_size = len;
 	src->cur_pos = INIT_SRC_POS;
 }

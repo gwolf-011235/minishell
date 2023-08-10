@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:38 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 18:03:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 19:49:50 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_buf
 /* ====== Functions ====== */
 
 // initiation
-void		ft_init_lexer(t_src *src, char *input);
+void		ft_init_lexer(t_src *src, char *input, int len);
 
 // src handling
 t_err		ft_next_char(t_src *src, char *c);
