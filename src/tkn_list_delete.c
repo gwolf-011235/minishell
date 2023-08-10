@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_input_tkn_list2.c                           :+:      :+:    :+:   */
+/*   tkn_list_delete.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/05 16:55:09 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 13:21:13by gwolf            ###   ########.fr       */
+/*   Created: 2023/08/10 21:43:35 by gwolf             #+#    #+#             */
+/*   Updated: 2023/08/10 22:14:01 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file handle_input_tkn_list2.c
+ * @file tkn_list_delete.c
  * @brief Deletion of nodes.
  */
-#include "mod_handle_input.h"
-
+#include "tkn_list.h"
 
 /**
  * @brief Delete the content and the node itself.
@@ -34,27 +33,34 @@ void	ft_del_node(t_tkn_list *lst)
 /**
  * @brief Delete a node and move pointer forward.
  *
- * Update pointers to that *head->prev and *head->next point to
+ * Update pointers to that *cur_node->prev and *cur_node->next point to
  * the right node (if they exist).
- * Use ft_del_node() to delete the old node.
- * Move the head pointer forward to *head->next.
- *
- * @param head Pointer pointer to current node.
+ * Use ft_del_node() to delete the target node.
+ * Move pointer forward.
+ * @param cur_node Pointer pointer to current node.
  * @return t_err SUCCESS
  */
-void	ft_del_node_mid(t_tkn_list **head)
+void	ft_del_node_mid(t_tkn_list **cur_node)
 {
-	t_tkn_list	*cur;
+	t_tkn_list	*tmp;
 
-	cur = *head;
-	*head = cur->next;
-	if (cur->next)
-		cur->next->prev = cur->prev;
-	if (cur->prev)
-		cur->prev->next = cur->next;
-	ft_del_node(cur);
+	tmp = *cur_node;
+	*cur_node = tmp->next;
+	if (tmp->next)
+		tmp->next->prev = tmp->prev;
+	if (tmp->prev)
+		tmp->prev->next = tmp->next;
+	ft_del_node(tmp);
 }
 
+/**
+ * @brief Deletes all nodes of specific type.
+ *
+ * If target node is at first place move the head forward.
+ * If not iterate through list and del nodes with target type.
+ * @param head Pointer to head of list.
+ * @param target Type to delete.
+ */
 void	ft_del_target_type(t_tkn_list **head, t_type target)
 {
 	t_tkn_list	*tmp;
@@ -68,6 +74,25 @@ void	ft_del_target_type(t_tkn_list **head, t_type target)
 			ft_del_node_mid(&tmp);
 		tmp = tmp->next;
 	}
+}
+
+/**
+ * @brief Iterates n nodes back and deletes found node.
+ *
+ * If position at nth pos is NULL do nothing
+ * @param cur_node Pointer to current node.
+ * @param n How many times to iterate back.
+ * @return t_err SUCCESS
+ */
+void	ft_del_prev_n(t_tkn_list *cur_node, size_t n)
+{
+	size_t		i;
+
+	i = 0;
+	while (cur_node && i++ < n)
+		cur_node = cur_node->prev;
+	if (cur_node)
+		ft_del_node_mid(&cur_node);
 }
 
 /**
@@ -88,21 +113,4 @@ void	ft_free_lst(t_tkn_list **lst)
 		*lst = tmp;
 	}
 	(*lst) = NULL;
-}
-
-/**
- * @brief Iterate to first node of given list.
- *
- * @param lst Pointer pointer to a list node.
- * @return t_err SUCCESS.
- */
-t_tkn_list	*ft_list_first(t_tkn_list *list)
-{
-	while (list)
-	{
-		if (list->prev == NULL)
-			break ;
-		list = list->prev;
-	}
-	return (list);
 }

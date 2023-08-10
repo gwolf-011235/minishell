@@ -1,37 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_input_tkn_list.c                            :+:      :+:    :+:   */
+/*   tkn_list_create.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/05 16:49:53 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 18:04:34 by gwolf            ###   ########.fr       */
+/*   Created: 2023/08/10 21:43:24 by gwolf             #+#    #+#             */
+/*   Updated: 2023/08/10 22:05:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mod_handle_input.h"
-
-
 /**
- * @brief Iterate to last node of given list.
- *
- * @param lst 			List to be iterated through.
- * @return t_tkn_list* 	Last node of list or NULL if empty.
+ * @file tkn_list_create.c
+ * @brief Create new nodes.
  */
-t_tkn_list	*ft_last(t_tkn_list *lst)
-{
-	t_tkn_list	*last;
-
-	last = lst;
-	while (last)
-	{
-		if (last -> next == NULL)
-			return (last);
-		last = last -> next;
-	}
-	return (NULL);
-}
+#include "tkn_list.h"
 
 /**
  * @brief Create a new node and add it to the end of the token list.
@@ -80,7 +63,14 @@ void	ft_add_lst(t_tkn_list **lst, t_tkn_list *new)
 	}
 }
 
-t_err	ft_new_node_mid(t_tkn_list **lst_head, char *content)
+/**
+ * @brief Create new node, insert after current node, move pointer.
+ *
+ * @param cur_node Pointer to current node.
+ * @param content Content string.
+ * @return t_err SUCCESS, ERR_MALLOC
+ */
+t_err	ft_new_node_mid(t_tkn_list **cur_node, char *content)
 {
 	t_tkn_list	*new;
 
@@ -91,11 +81,19 @@ t_err	ft_new_node_mid(t_tkn_list **lst_head, char *content)
 	new->type = ARG;
 	new->next = NULL;
 	new->prev = NULL;
-	ft_add_lst_mid(*lst_head, new);
-	(*lst_head) = (*lst_head)->next;
+	ft_add_lst_mid(*cur_node, new);
+	(*cur_node) = (*cur_node)->next;
 	return (SUCCESS);
 }
 
+/**
+ * @brief Insert new node in the list.
+ *
+ * New node is next of current node.
+ * If there is next node of current node, update pointer to new.
+ * @param cur Pointer to current node.
+ * @param new Pointer to newly created node.
+ */
 void	ft_add_lst_mid(t_tkn_list *cur, t_tkn_list *new)
 {
 	new->next = cur->next;
