@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 12:12:35 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 20:08:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ t_err	ft_get_var_replace(t_str *token, t_hashtable *symtab, t_str *replace);
 //expand_field_split.c
 t_err	ft_field_split(t_track *input, t_tkn_list **list);
 t_err	ft_count_expand_words(t_track *input, size_t *words);
-t_err	ft_split_node(t_track *input, t_tkn_list **lst_head, t_buf *buf);
-t_err	ft_del_old_node(t_tkn_list *list, size_t *words);
+t_err	ft_split_node(t_track *input, t_tkn_list **cur_node, t_buf *buf);
+t_err	ft_del_old_node(t_tkn_list *cur_node, size_t *words);
 
 //expand_field_split2.c
 t_err	ft_partition_two(t_src *src, t_buf *buf);

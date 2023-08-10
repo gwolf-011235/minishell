@@ -60,12 +60,12 @@ t_err	ft_field_split(t_track *input, t_tkn_list **list)
  * @brief Count how many words will be after splitting.
  *
  * Set tracker->pos to beginning of expanded part.
- * If the pos is bigger than 0, then something is before the expanded part.
- * Set words to one and skip all spaces to get to next word.
+ * If the pos is bigger than 0, then something is before
+ * expanded part -> Set words to one and skip all spaces to get to next word.
  * Looping through the str, delimited by expand len:
- * If pos is 0 and str is not space increase words.
- * If str is space but the next pos isn't increase words.
- * If expanded part ends with space, but there is still stuff after it increase words.
+ * If pos is 0 and str is not space incr words.
+ * If str is space but the next pos isn't incr words.
+ * If expanded part ends with space and there is still stuff incr words.
  * @param input Pointer to tracker.
  * @param words Pointer to where to save count:
  * @return t_err SUCCESS
@@ -100,26 +100,32 @@ t_err	ft_count_expand_words(t_track *input, size_t *words)
 /**
  * @brief Split a node into words.
  *
- * See also ft_lex_input().
- * Difference: uses ft_better_tokenize() which receives a buffer.
- * And ft_new_node_mid() to insert the node inbetween.
- * @param lst_head Pointer to the current node.
- * @param buf Pointer to the malloced buffer.
+ * Based on ft_lex_input().
+ * Calc pos beforen expansion.
+ * If not zero copy everything before expand into buf.
+ * Init t_src with ft_init_lexer() where len is expand_len.
+ * Use ft_better_tokenize() to create token.
+ * In loop add node and call ft_better_tokenize() again.
+ * @param input Pointer to tracker.
+ * @param cur_node Pointer to the current node.
+ * @param buf Pointer to buffer.
  * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_err	ft_split_node(t_track *input, t_tkn_list **lst_head, t_buf *buf)
+t_err	ft_split_node(t_track *input, t_tkn_list **cur_node, t_buf *buf)
 {
 	t_src	src;
 	t_tok	token;
 	t_err	err;
+	size_t	old_pos;
 
-	if (input->pos - input->last_expand_len != 0)
-		ft_strlcpy_into_buf(buf, input->str, input->pos - input->last_expand_len + 1);
-	ft_init_lexer(&src, &(input->str[input->pos - input->last_expand_len]), input->last_expand_len);
+	old_pos = input->pos - input->last_expand_len;
+	if (old_pos != 0)
+		ft_strlcpy_into_buf(buf, input->str, old_pos + 1);
+	ft_init_lexer(&src, &(input->str[old_pos]), input->last_expand_len);
 	err = ft_better_tokenise(&src, &token, buf, input);
-	while (err != ERR_EOF || !*lst_head)
+	while (err != ERR_EOF || !*cur_node)
 	{
-		err = ft_new_node_mid(lst_head, token.str);
+		err = ft_new_node_mid(cur_node, token.str);
 		if (err != SUCCESS)
 		{
 			ft_free_tok(&token);
@@ -134,17 +140,19 @@ t_err	ft_split_node(t_track *input, t_tkn_list **lst_head, t_buf *buf)
 /**
  * @brief Deletes node, which was split and corrects pointer position.
  *
- * @param list Pointer to the last inserted word
+ * Iterate number of words back.
+ * Then del the node, which moves pointer forward.
+ * @param cur_node Pointer to the last inserted word
  * @param words How many words have been created.
  * @return t_err SUCCESS
  */
-t_err	ft_del_old_node(t_tkn_list *list, size_t *words)
+t_err	ft_del_old_node(t_tkn_list *cur_node, size_t *words)
 {
 	size_t		i;
 
 	i = 0;
 	while (i++ < *words)
-		list = list->prev;
-	ft_del_node_mid(&list);
+		cur_node = cur_node->prev;
+	ft_del_node_mid(&cur_node);
 	return (SUCCESS);
 }
