@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 22:31:37 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 23:17:20 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	test_hashtable_pretty_print(t_hashtable *ht);
 void	test_print_tkn_list(t_tkn_list *head);
 void	test_print_t_type(t_type type);
 
+void	test_buffer(void);
 void	test_hashtable(void);
 void	test_replace_token(void);
 void	test_prompt(void);
