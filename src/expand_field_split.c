@@ -22,37 +22,37 @@
  * Count the words with ft_count_expand_words().
  * If one word return.
  * If more words:
- * Setup buffer with ft_init_buf().
+ * Setup buffer with ft_buf_init().
  * Split into several words with ft_split_node().
- * Del old node and update list pointer with ft_del_old_node().
+ * Del old node with ft_del_prev_n() and update list pointer.
  * @param input Pointer to tracker.
- * @param list Pointer pointer to the current node.
+ * @param cur_node Pointer pointer to the current node.
  * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_err	ft_field_split(t_track *input, t_tkn_list **list)
+t_err	ft_field_split(t_track *input, t_tkn_list **cur_node)
 {
 	t_tkn_list	*tmp;
 	t_buf		buf;
 	t_err		err;
 	size_t		words;
 
-	tmp = *list;
+	tmp = *cur_node;
 	words = 0;
 	ft_count_expand_words(input, &words);
 	if (words == 1)
 		return (ERR_NOSPLIT);
 	else
 	{
-		err = ft_init_buf(&buf);
+		err = ft_buf_init(&buf);
 		if (err != SUCCESS)
 			return (err);
 		err = ft_split_node(input, &tmp, &buf);
 		free(buf.str);
 		if (err != SUCCESS)
 			return (err);
-		ft_del_old_node(tmp, &words);
+		ft_del_prev_n(tmp, words);
 	}
-	*list = tmp;
+	*cur_node = tmp;
 	return (SUCCESS);
 }
 
@@ -120,9 +120,9 @@ t_err	ft_split_node(t_track *input, t_tkn_list **cur_node, t_buf *buf)
 
 	old_pos = input->pos - input->last_expand_len;
 	if (old_pos != 0)
-		ft_strlcpy_into_buf(buf, input->str, old_pos + 1);
+		ft_buf_strlcpy(buf, input->str, old_pos + 1);
 	ft_init_lexer(&src, &(input->str[old_pos]), input->last_expand_len);
-	err = ft_better_tokenise(&src, &token, buf, input);
+	err = ft_tokenise_fs(&src, &token, buf, input);
 	while (err != ERR_EOF || !*cur_node)
 	{
 		err = ft_new_node_mid(cur_node, token.str);
@@ -132,27 +132,65 @@ t_err	ft_split_node(t_track *input, t_tkn_list **cur_node, t_buf *buf)
 			return (err);
 		}
 		buf->cur_pos = 0;
-		err = ft_better_tokenise(&src, &token, buf, input);
+		err = ft_tokenise_fs(&src, &token, buf, input);
 	}
 	return (SUCCESS);
 }
 
 /**
- * @brief Deletes node, which was split and corrects pointer position.
+ * @brief Tokenise a string while field split.
  *
- * Iterate number of words back.
- * Then del the node, which moves pointer forward.
- * @param cur_node Pointer to the last inserted word
- * @param words How many words have been created.
- * @return t_err SUCCESS
+ * Based on ft_tokenise().
+ * Uses partition_two() to fill buffer.
+ * Creates a new token with ft_create_tok().
+ * @param src The string to tokenize.
+ * @param token Where to save the token.
+ * @param buf A pre malloced buffer.
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_EOF
  */
-t_err	ft_del_old_node(t_tkn_list *cur_node, size_t *words)
+t_err	ft_tokenise_fs(t_src *src, t_tok *token, t_buf *buf, t_track *input)
 {
-	size_t		i;
+	t_err	err;
 
-	i = 0;
-	while (i++ < *words)
-		cur_node = cur_node->prev;
-	ft_del_node_mid(&cur_node);
-	return (SUCCESS);
+	if (!src || !src->buf || !src->buf_size)
+		return (ERR_EMPTY);
+	err = ft_partition_fs(src, buf);
+	if (buf->cur_pos >= buf->size)
+		buf->cur_pos--;
+	buf->str[buf->cur_pos] = '\0';
+	if (src->cur_pos == src->buf_size && input->str[input->pos])
+		ft_buf_strlcpy(buf, (input->str + input->pos), ft_strlen(input->str + input->pos) + 1);
+	err = ft_create_tok(token, buf->str);
+	return (err);
+}
+
+/**
+ * @brief Fills buffer with a piece of string.
+ *
+ * Based on ft_partition(), adapted for field split.
+ * Difference: has fewer break conditions since expanded chars don't have
+ * special meaning anymore.
+ * @param src The tokenized string.
+ * @param buf Pointer to pre malloced buffer.
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_EOF
+ */
+t_err	ft_partition_fs(t_src *src, t_buf *buf)
+{
+	char	c;
+	t_err	err;
+
+	err = ft_init_partition(src, &c);
+	while (err != ERR_EOF)
+	{
+		if ((c == ' ' || c == '\t') && buf->cur_pos > 0)
+			break ;
+		else
+		{
+			err = ft_add_to_buf(c, buf);
+			if (err != SUCCESS)
+				return (err);
+		}
+		err = ft_next_char(src, &c);
+	}
+	return (err);
 }

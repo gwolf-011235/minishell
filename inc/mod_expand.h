@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 20:08:27 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 22:23:26 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ extern __sig_atomic_t	g_status;
  * @brief String struct.
  *
  * Saves info about a string to save space.
- *
  * @param ptr Pointer to string.
  * @param len Len of string.
  */
@@ -40,7 +39,6 @@ typedef struct s_str_info {
  * @brief Tracker struct.
  *
  * Track current position of input string.
- *
  * @param str Pointer to string.
  * @param pos Current position of the input string.
  */
@@ -79,13 +77,8 @@ t_err	ft_get_var_replace(t_str *token, t_hashtable *symtab, t_str *replace);
 t_err	ft_field_split(t_track *input, t_tkn_list **list);
 t_err	ft_count_expand_words(t_track *input, size_t *words);
 t_err	ft_split_node(t_track *input, t_tkn_list **cur_node, t_buf *buf);
-t_err	ft_del_old_node(t_tkn_list *cur_node, size_t *words);
-
-//expand_field_split2.c
-t_err	ft_partition_two(t_src *src, t_buf *buf);
-t_err	ft_better_tokenise(t_src *src, t_tok *token, t_buf *buf, t_track *input);
-t_err	ft_init_buf(t_buf *buf);
-t_err	ft_strlcpy_into_buf(t_buf *buf, char *str, size_t len);
+t_err	ft_tokenise_fs(t_src *src, t_tok *token, t_buf *buf, t_track *input);
+t_err	ft_partition_fs(t_src *src, t_buf *buf);
 
 //expand_quote_removal.c
 t_err	ft_quote_removal(char *str);
