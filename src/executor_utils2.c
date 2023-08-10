@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:24:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 00:22:02 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/10 23:11:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,31 @@ t_err	ft_create_pipes(t_cmd *cmd)
 		cmd = cmd->next;
 	}
 	return (SUCCESS);
+}
+
+/**
+ * @brief Check if PATH contains empty paths.
+ * 
+ * If PATH="", first condition returns true.
+ * If no colon is inside PATH, there is only one path
+ * and the check returns false.
+ * If a colon is followed by another colon or \0, the
+ * check returns true, otherwise false.
+ * @param path_str 	String of paths optionally separated by colons.
+ * @return true 	Empty path found.
+ * @return false 	No empty paths found.
+ */
+bool	ft_check_empty_path(char *path_str)
+{
+	char	*tmp;
+
+	if (!*path_str)
+		return (true);
+	tmp = ft_strchr(path_str, ':');
+	if (!tmp)
+		return (false);
+	tmp++;
+	if (*tmp == ':' || *tmp == '\0')
+		return (true);
+	return (false); 
 }

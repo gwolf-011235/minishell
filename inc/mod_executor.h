@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 23:59:30 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/10 23:20:07 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ t_err	ft_plug_pipe(t_cmd *cmd);
 // utils
 void	ft_init_exec(t_cmd *cmd);
 t_err	ft_create_pipes(t_cmd *cmd);
-t_err	ft_check_cmd_access(char **args, char **cmd_paths);
+t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path);
 t_err	ft_prefix_path(char **args, char **cmd_paths);
-t_err	ft_get_path(char **envp, char ***paths);
+t_err	ft_get_path(char **envp, char ***paths, bool *empty_path);
 t_err	ft_replace_fd(int input_fd, int output_fd);
 t_err	ft_wait_for_babies(t_cmd *cmd);
+bool	ft_check_empty_path(char *path_str);
 
 // builtins
 bool	ft_check_builtin(char *arg);

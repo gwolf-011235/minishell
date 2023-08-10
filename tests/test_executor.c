@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:17:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 23:53:57 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/10 19:04:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,8 @@ static int	test_scmd_wrapper(char *testname, char *test)
 	lst = NULL;
 	cmd = NULL;
 	test_setup_data();
-	// only 
-	if (!ft_strncmp(test, "minishell", 9))
-		ft_hashtable_delete(g_data.env_table, "PATH", 4);
+/* 	if (!ft_strncmp(test, "minishell", 9))
+		ft_hashtable_delete(g_data.env_table, "PATH", 4); */
 	ft_envp_create(g_data.env_table, &envp);
 	printf("TEST: %s\n", testname);
 	printf("Command:%s\n\n", test);
@@ -217,7 +216,7 @@ void	test_executor(void)
 {
 	printf(YELLOW"*******TEST_EXECUTOR*******\n\n"RESET);
 	//test_enum_cmds();
-	test_heredoc();
-	//test_singlecmds();
+	//test_heredoc();
+	test_singlecmds();
 	//test_pipe();
 }

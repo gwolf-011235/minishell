@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 00:20:15 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/10 23:20:35 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ t_err	ft_executor(t_cmd *cmd, char **envp, t_data *data)
 {
 	t_err	err;
 	char	**paths;
+	bool	empty_path;
 
 	paths = NULL;
+	empty_path = false;
 	ft_init_exec(cmd);
 	err = ft_handle_heredoc(cmd);
 	if (err != SUCCESS)
@@ -47,7 +49,7 @@ t_err	ft_executor(t_cmd *cmd, char **envp, t_data *data)
 	err = ft_create_pipes(cmd);
 	if (err != SUCCESS)
 		return (err);
-	err = ft_get_path(envp, &paths);
+	err = ft_get_path(envp, &paths, &empty_path);
 	if (err == ERR_MALLOC)
 		return (err);
 	if (cmd->next == NULL)
@@ -72,7 +74,7 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **envp, char **paths, t_data *data)
 
 	if (ft_check_builtin(cmd->args[0]))
 		return (ft_execute_builtin(0, cmd, envp, data));
-	err = ft_check_cmd_access(cmd->args, paths);
+	err = ft_check_cmd_access(cmd->args, paths, empty_path);
 	err = ft_process_cmd(cmd, err, envp, data);
 	if (err != SUCCESS)
 		return (err);
@@ -113,7 +115,7 @@ t_err	ft_execute_pcmds(t_cmd *cmd, char **envp, char **paths, t_data *data)
 			cmd = cmd->next;
 			continue ;
 		}
-		err = ft_check_cmd_access(cmd->args, paths);
+		err = ft_check_cmd_access(cmd->args, paths, empty_path);
 		err = ft_process_cmd(cmd, err, envp, data);
 		if (err != SUCCESS)
 			return (err);

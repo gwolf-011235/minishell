@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/10 18:47:50 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/10 23:19:16 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,14 @@
  * the right path is started. If not successfully, ERR_UNKNOWN_CMD is returned.  
  * @param args 			String array containing executable in first position.
  * @param cmd_paths 	String array of paths.
+ * @param empty_path	Boolean to determine if PATH contained empty paths.
  * @return t_err 		ERR_UNKNOWN_CMD, ERR_MALLOC, SUCCESS
  */
-t_err	ft_check_cmd_access(char **args, char **cmd_paths)
+t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path)
 {
 	t_err	err;
-	char	**tmp;
-	bool	empty_path;
 
 	err = ERR_UNKNOWN_CMD;
-	tmp = cmd_paths;
-	empty_path = false;
-	while (*tmp)
-	{
-		if (**tmp == '\0')
-			empty_path = true;
-		tmp++;
-	}
 	if ((*args)[0] == '/' || !ft_strncmp(*args, "./", 2)
 		|| !ft_strncmp(*args, "../", 3) || !cmd_paths || empty_path)
 	{
@@ -105,11 +96,12 @@ t_err	ft_prefix_path(char **args, char **cmd_paths)
  * If no PATH is found (*envp = NULL), return ERR_NOPATH.
  * If PATH is empty, a '\0' is found and saved into *paths. This will
  * be treated as ERR_NOPATH as well.
- * @param envp 		String array containing all environment strings.
- * @param paths		Pointer to string array containing all path strings.
- * @return t_err	ERR_NOPATH, ERR_MALLOC, SUCCESS
+ * @param envp 			String array containing all environment strings.
+ * @param paths			Pointer to string array containing all path strings.
+ * @param empty_path	Boolean	to determine if PATH contained empty paths.
+ * @return t_err		ERR_NOPATH, ERR_MALLOC, SUCCESS
  */
-t_err	ft_get_path(char **envp, char ***paths)
+t_err	ft_get_path(char **envp, char ***paths, bool *empty_path)
 {
 	char	*path_str;
 
@@ -118,6 +110,7 @@ t_err	ft_get_path(char **envp, char ***paths)
 	if (!*envp)
 		return (ERR_NOPATH);
 	path_str = *envp + 5;
+	*empty_path = ft_check_empty_path(path_str);
 	*paths = ft_split(path_str, ':');
 	if (!*paths)
 		return (ERR_MALLOC);
