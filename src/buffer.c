@@ -5,11 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/10 20:31:49 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 21:24:49by gwolf            ###   ########.fr       */
+/*   Created: 2023/08/10 22:34:14 by gwolf             #+#    #+#             */
+/*   Updated: 2023/08/10 22:34:19 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file buffer.c
+ * @brief Functions for handling the buffer.
+ */
 #include "buffer.h"
 
 /**
@@ -57,7 +61,6 @@ t_err	ft_buf_double(t_buf *buf)
 	buf->str = temp;
 	buf->size *= 2;
 	return (SUCCESS);
-
 }
 
 /**
