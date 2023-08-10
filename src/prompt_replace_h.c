@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/09 19:20:03 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 11:20:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,30 @@
  *
  * The current hostname is saved in /proc/sys/kernel/hostname.
  * Open this file and retrieve hostname via get_next_line().
- * Hostname is delimited by newline. Search for '\n' and replace with '\0'
+ * Hostname is searched for the first '.' which is replaced by '\0'.
+ * If no '.' is found hostname is delimited by newline. Search for '\n' and replace with '\0'
  * @param replacement Pointer pointer where to save string.
  * @return t_err SUCCESS, ERR_OPEN, ERR_MALLOC
  */
 t_err	ft_retrieve_hostname(char **replacement)
 {
 	int		fd;
-	char	*newline;
+	char	*delim;
 
 	fd = open("/proc/sys/kernel/hostname", O_RDONLY);
 	if (fd == -1)
 		return (ERR_OPEN);
 	*replacement = get_next_line(fd);
 	if (!*replacement)
+	{
+		close(fd);
 		return (ERR_MALLOC);
-	newline = ft_strrchr(*replacement, '\n');
-	if (newline)
-		*newline = '\0';
+	}
+	delim = ft_strchr(*replacement, '.');
+	if (!delim)
+		delim = ft_strrchr(*replacement, '\n');
+	if (delim)
+		*delim = '\0';
 	close(fd);
 	return (SUCCESS);
 }
@@ -46,14 +52,11 @@ t_err	ft_retrieve_hostname(char **replacement)
 /**
  * @brief Creates replacement string for token \h.
  *
- * Search for env_var $SESSION_MANAGER.
- * If found search for "local/" after where localhost name is saved.
- * Create string with sub function.
- * If any not found create UNKNOWN with sub function.
- *
+ * Get replacement with ft_retrieve_hostname().
+ * If it can't retrieve hostname call ft_replace_not_found().
  * @param replacement Pointer pointer where to save string.
  * @param sym_tab Symbol table where to search for env_var.
- * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC
+ * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_OPEN
  */
 t_err	ft_replace_h(char **replacement, t_hashtable *sym_tab)
 {
