@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 17:38:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 20:59:19 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 21:25:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,32 +65,7 @@ t_err	ft_better_tokenise(t_src *src, t_tok *token, t_buf *buf, t_track *input)
 		buf->cur_pos--;
 	buf->str[buf->cur_pos] = '\0';
 	if (src->cur_pos == src->buf_size && input->str[input->pos])
-		ft_strlcpy_into_buf(buf, (input->str + input->pos), ft_strlen(input->str + input->pos) + 1);
+		ft_buf_strlcpy(buf, (input->str + input->pos), ft_strlen(input->str + input->pos) + 1);
 	err = ft_create_tok(token, buf->str);
 	return (err);
-}
-
-/**
- * @brief Initiates a t_buf buffer
- *
- * @param buf Pointer to buffer
- * @return t_err SUCCESS, ERR_MALLOC
- */
-t_err	ft_init_buf(t_buf *buf)
-{
-	buf->size = BUF_SIZE;
-	buf->str = malloc(buf->size);
-	if (!buf->str)
-		return (ERR_MALLOC);
-	buf->str[0] = '\0';
-	buf->cur_pos = 0;
-	return (SUCCESS);
-}
-
-t_err	ft_strlcpy_into_buf(t_buf *buf, char *str, size_t len)
-{
-	ft_strlcpy(&buf->str[buf->cur_pos], str, len);
-	buf->cur_pos += len - 1;
-	buf->str[buf->cur_pos] = '\0';
-	return (SUCCESS);
 }

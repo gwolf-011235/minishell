@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:38 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/10 19:49:50 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 21:40:49 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /* ====== Includes ====== */
 
 # include "mod_handle_input.h"
+# include "buffer.h"
 
 /* ====== Structs ====== */
 
@@ -51,22 +52,6 @@ typedef struct s_tok
 }	t_tok;
 
 
-/**
- * @brief Buffer structure.
- *
- * Contains temporary buffer string which is to be
- * saved inside the token.
- * @param str		Buffer string.
- * @param size		Size of malloced buffer memory in Bytes.
- * @param cur_pos	Current position inside malloced buffer
- * 					memory.
- */
-typedef struct s_buf
-{
-	char	*str;
-	int		size;
-	int		cur_pos;
-}	t_buf;
 
 /* ====== Functions ====== */
 
