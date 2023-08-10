@@ -6,12 +6,22 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 07:49:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/07 22:08:32 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 11:57:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file expand_quote_removal.c
+ * @brief Functions for quote removal.
+ */
 #include "mod_expand.h"
 
+/**
+ * @brief Removes quotes from a string, ignores quoted quotes.
+ *
+ * @param str Where to remove quotes.
+ * @return t_err SUCCESS
+ */
 t_err	ft_quote_removal(char *str)
 {
 	t_track	input;

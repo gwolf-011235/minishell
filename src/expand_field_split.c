@@ -10,6 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file expand_field_split.c
+ * @brief Functions to perform field splitting on expanded parts of str.
+ */
 #include "mod_expand.h"
 
 /**
@@ -17,13 +21,12 @@
  *
  * Count the words with ft_count_expand_words().
  * If one word return.
- * If no word delete the node.
  * If more words:
  * Setup buffer with ft_init_buf().
  * Split into several words with ft_split_node().
  * Del old node and update list pointer with ft_del_old_node().
+ * @param input Pointer to tracker.
  * @param list Pointer pointer to the current node.
- * @param words Where to save the count.
  * @return t_err SUCCESS, ERR_MALLOC.
  */
 t_err	ft_field_split(t_track *input, t_tkn_list **list)
@@ -54,31 +57,17 @@ t_err	ft_field_split(t_track *input, t_tkn_list **list)
 }
 
 /**
- * @brief Iterate over a quoted part of string.
- *
- * @param quote_start Pointer where opening quote was found.
- * @param i Pointer to current iterator
- * @param target Either single or double quote.
- * @return t_err SUCCESS
- */
-t_err	ft_quote_skip(const char *quote_start, size_t *i, char target)
-{
-	char	*quote_end;
-
-	quote_end = ft_strchr((quote_start + 1), target);
-	*i += quote_end - quote_start;
-	return (SUCCESS);
-}
-
-/**
  * @brief Count how many words will be after splitting.
  *
- * Iterate over string.
- * If a quote is found, skip over the quoted part (it won't get split).
- * If a space preceeds a not space and not a zero temrinator a word is found.
- * A word is also found if the first char is not a space.
- * @param str Pointer to string.
- * @param words Pointer to words variable.
+ * Set tracker->pos to beginning of expanded part.
+ * If the pos is bigger than 0, then something is before the expanded part.
+ * Set words to one and skip all spaces to get to next word.
+ * Looping through the str, delimited by expand len:
+ * If pos is 0 and str is not space increase words.
+ * If str is space but the next pos isn't increase words.
+ * If expanded part ends with space, but there is still stuff after it increase words.
+ * @param input Pointer to tracker.
+ * @param words Pointer to where to save count:
  * @return t_err SUCCESS
  */
 t_err	ft_count_expand_words(t_track *input, size_t *words)
@@ -114,6 +103,7 @@ void	ft_init_lexer2(t_src *src, char *input, int len)
 	src->buf_size = len;
 	src->cur_pos = INIT_SRC_POS;
 }
+
 /**
  * @brief Split a node into words.
  *
