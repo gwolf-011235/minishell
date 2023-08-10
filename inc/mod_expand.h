@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 22:23:26 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 22:32:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@
 # include "hashtable.h"
 # include "minishell_struct.h"
 # include "minishell_utils.h"
-# include "mod_handle_input.h"
 # include "mod_lexer.h"
-
-# define BUF_SIZE 2048
 
 extern __sig_atomic_t	g_status;
 
@@ -64,7 +61,8 @@ t_err	ft_expander_arg(t_track *input, t_hashtable *symtab);
 
 //expand_tilde.c
 t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab);
-t_err	ft_get_tilde_replace(t_str token, t_hashtable *symtab, t_str *replace, size_t *pos);
+t_err	ft_get_tilde_replace(t_str token, t_hashtable *symtab,
+			t_str *replace, size_t *pos);
 t_err	ft_get_tilde_token(t_track *input, t_str *token);
 
 //expand_var.c

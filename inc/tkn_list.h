@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 21:45:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 22:13:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 22:30:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,5 @@ void		ft_del_node_mid(t_tkn_list **lst_head);
 void		ft_del_target_type(t_tkn_list **head, t_type target);
 void		ft_del_prev_n(t_tkn_list *cur_node, size_t n);
 void		ft_free_lst(t_tkn_list **lst);
-
 
 #endif

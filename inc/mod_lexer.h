@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:38 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/10 21:40:49 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 22:25:03 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 # define INIT_SRC_POS -2
 
-
 /**
  * @brief Source structure.
  *
@@ -37,7 +36,6 @@ typedef struct s_src
 	int		cur_pos;
 }	t_src;
 
-
 /**
  * @brief Token structure.
  *
@@ -50,8 +48,6 @@ typedef struct s_tok
 	char	*str;
 	int		size;
 }	t_tok;
-
-
 
 /* ====== Functions ====== */
 
@@ -77,7 +73,6 @@ void		ft_free_tok(t_tok *token);
 
 // helpers
 t_err		ft_skip_space(t_src *src);
-void		*ft_realloc(void *ptr, size_t new_size, size_t curr_size);
 void		ft_assign_type(t_tkn_list *lst);
 bool		ft_is_env_assign(char *str);
 

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/09 18:50:02 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 22:31:11 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,5 @@ typedef enum e_error {
 	ERR_NOSPLIT, ///< ft_field_split() didnt split.
 	ERR_OPEN
 }	t_err;
-
 
 #endif
