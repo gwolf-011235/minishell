@@ -6,14 +6,18 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 18:19:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 21:20:43 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/10 11:29:30 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file expand_utils.c
+ * @brief Functions for tracker and creating a new string with replacement.
+ */
 #include "mod_expand.h"
 
 /**
- * @brief Initialize a t_track with string and pos set to 0.
+ * @brief Initialize a tracker
  *
  * @param input Pointer to tracker.
  * @param str String which shall be tracked.
