@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:24:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 10:34:44 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 10:47:41 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ bool	ft_check_empty_path(char *path_str)
 	if (!*path_str)
 		return (true);
 	tmp = path_str;
+	if (*tmp == ':')
+		return (true);
 	while (*tmp)
 	{
 		tmp = ft_strchr(tmp, ':');
