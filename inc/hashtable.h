@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hashtable.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:07:23 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/30 14:55:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,13 @@ t_hashtable	*ft_hashtable_create(uint32_t size, t_hashfunction *hf);
 void		ft_hashtable_destroy(t_hashtable *ht);
 
 //hashtable_utils.c
+size_t		ft_hashtable_index(t_hashtable *ht, const char *key, size_t keylen);
 t_err		ft_hashtable_insert(
 				t_hashtable *ht, char *string, size_t keylen);
 t_env_var	*ft_hashtable_lookup(
 				t_hashtable *ht, const char *string, size_t keylen);
 t_err		ft_hashtable_delete(
 				t_hashtable *ht, char *string, size_t keylen);
-void		ft_hashtable_print(t_hashtable *ht);
-
-//hashtable_utils2.c
 t_err		ft_hashtable_swap(
 				t_hashtable *ht, char *string, size_t keylen);
 

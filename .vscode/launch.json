@@ -11,7 +11,7 @@
 			"program": "${workspaceFolder}/test",
 			"args": [],
 			"stopAtEntry": true,
-			"cwd": "${fileDirname}",
+			"cwd": "${workspaceFolder}/tests",
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "gdb",
@@ -53,7 +53,30 @@
 				}
 			],
 			"preLaunchTask": "make"
+		},
+		{
+			"name": "split",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/lib/libft/a.out",
+			"args": [],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}/lib/libft",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{
+					"description": "Set Disassembly Flavor to Intel",
+					"text": "-gdb-set disassembly-flavor intel",
+					"ignoreFailures": true
+				}
+			]
 		}
-
 	]
 }

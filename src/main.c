@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/22 17:18:45 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 15:45:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,12 @@
 /* #include "lexer_list.h"
 #include "lexer_tok_utils.h" */
 
-#ifdef TESTING
-# define main not_main
-#endif
+__sig_atomic_t	g_status;
 
 int	main(int argc, char **argv)
 {
 	t_data		*data;
 	char 		*input;
-	t_tkn_list	*lst;
 
 	(void)argc;
 	(void)argv;
@@ -37,10 +34,10 @@ int	main(int argc, char **argv)
 	data = malloc(sizeof(*data));
 	if (!data)
 		ft_exit_failure(data, ERR_MALLOC);
-	lst = NULL;
 	if (ft_env_setup(&data->env_table) != SUCCESS)
 		printf("NO\n");
-	ft_hashtable_insert(data->env_table, "PS1=\\u@\\h:\\w$ ", 3);
+	ft_envp_create(data->env_table, &data->envp);
+	//ft_hashtable_insert(data->env_table, "PS1=\\u@\\h:\\w$ ", 3);
 	while (1)
 	{
 		data->err = ft_prompt_create(data->env_table, &data->prompt1, "PS1", PS1_STD);
@@ -53,7 +50,9 @@ int	main(int argc, char **argv)
 		if (!input)
 			break ;
 		add_history(input);
-		ft_lex_input(&lst, input);
+		data->err = ft_handle_input(input, data);
+		if (data->err != SUCCESS)
+			ft_exit_failure(data, data->err);
 		//do stuff
 		free(input);
 		free(data->prompt1);
@@ -61,4 +60,3 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
-

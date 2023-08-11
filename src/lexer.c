@@ -3,107 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
+/*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
+/*   Updated: 2023/08/10 19:50:42 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+/**
+ * @file lexer_list.c
+ * @brief Contains functions to create a double-linked list of tokens.
+ */
+
+#include "mod_lexer.h"
+/* #include "lexer_list.h"
+#include "lexer_utils.h"
+#include "lexer_tok_utils.h" */
 
 /**
- * @brief Iterates through input string and categorises character sequences
- * into tokens.
- * 
- * Spaces are being skipped.
- * The input is divided into <simple commands> which are separated by
- * pipes '|' and may consist of the strings
- * 
- * 		<infile exe opt1 opt2 opt3 >outfile
- * 
- * Each of these input strings represent a token. These tokens are saved
- * according to each simple command. 
- * 
- * @param data 	Overarching struct to hold all necessarry data.
- * @param input Input string delivered by <readline>.
- * @return t_err 
+ * @brief Create a list of token.
+ *
+ * Loops through input, creates token until no more
+ * chars are found and returns ERR_EOF which breaks the loop.
+ * Creates initial node even if first token ends directly with ERR_EOF.
+ * @param lst_head	Head node of token list.
+ * @param input 	Input string to be tokenised.
+ * @return t_err 	ERR_EMPTY, ERR_MALLOC, SUCCESS
  */
-t_err	ft_lexer(t_data *data, char *input)
+t_err	ft_lex_input(t_tkn_list	**lst_head, char *input)
 {
-	int		i;
-	bool	exe_found;
+	t_src	src;
+	t_err	err;
+	t_tok	token;
 
-	data->token = NULL;
-	i = 0;
-	while (input[i])
+	ft_init_lexer(&src, input, ft_strlen(input));
+	err = ft_tokenise(&src, &token);
+	while (err != ERR_EOF || !*lst_head)
 	{
-		exe_found = false;
-		i += ft_skip_space(input);
-		while (input[i] != '|')
+		err = ft_new_node(lst_head, token.str);
+		if (err != SUCCESS)
 		{
-			data->err = ft_categorise(data, input + i, &exe_found);
-			if (data->err != SUCCESS)
-				return (data->err);
-			while (input[i] != ' ' && input[i] != '|')
-				i++;
-			i += ft_skip_space(input + i);
+			ft_free_lst(lst_head);
+			ft_free_tok(&token);
+			return (err);
 		}
-		i++;
+		err = ft_tokenise(&src, &token);
 	}
+	ft_assign_type(*lst_head);
 	return (SUCCESS);
 }
 
-
-t_err	ft_categorise(t_data *data, char *input, bool *exe_found)
+/**
+ * @brief Initate the lexer.
+ *
+ * Fills source struct with values from the input string.
+ * @param src 		Struct containing data on input/source string.
+ * @param input 	Input string.
+ */
+void	ft_init_lexer(t_src *src, char *input, int len)
 {
-	int		i;
-
-	i = 0;
-	if (input[i] == '<')
-	{
-		if (input[i + 1] == '<')
-			data->err = ft_save_heredoc(data, input);
-		else
-			data->err = ft_save_infile(data, input);
-	}
-	else if (input[i] == '>')
-	{
-		if (input[i + 1] == '>')
-			data->err = ft_save_append(data, input);
-		else
-			data->err = ft_save_outfile(data, input);
-	}
-	else
-		data->err = ft_categorise2(data, input, exe_found);
-	if (data->err != SUCCESS)
-		return (data->err);
-	return (SUCCESS);
+	src->buf = input;
+	src->buf_size = len;
+	src->cur_pos = INIT_SRC_POS;
 }
-
-
-t_err	ft_categorise2(t_data *data, char *input, bool *exe_found)
-{
-	if (exe_found == false)
-	{
-		data->err = ft_save_exe(data, input);
-		exe_found = true;
-	}
-	else
-		data->err = ft_save_opt(data, input);
-	if (data->err != SUCCESS)
-		return (data->err);
-	return (SUCCESS);
-}
-
-
-t_err	ft_save_heredoc(t_data *data, char *input)
-{
-	char	*tmp;
-
-	data->err = ft_extract_str(input, tmp);
-}
-
-/* data->err = ft_extract_str(input + i, tmp, &i);
-	if (data->err != SUCCESS)
-		return (data->err); */

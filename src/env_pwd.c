@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_pwd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:15:11 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:53:39 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/07/25 23:50:00 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
  * Repeat until path fits in array.
  *
  * @param pwd_value Pointer to pointer where to save string
- * @return t_err Not SUCCESS if malloc or getcwd error.
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL.
  */
 t_err	ft_create_pwd_value(char **pwd_value)
 {
@@ -66,7 +66,7 @@ t_err	ft_create_pwd_value(char **pwd_value)
  * If success strjoin with left side.
  *
  * @param pwd Pointer to pointer where to save string.
- * @return t_err Not SUCCESS if malloc or sub-call fail
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL
  */
 t_err	ft_create_env_pwd(char **pwd)
 {

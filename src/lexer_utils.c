@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:40:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 14:37:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 11:10:47 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 /**
  * @brief Skip all spaces and tabs in source string.
- * 
+ *
  * @param src 		Struct containing source string.
  * @return t_err	ERR_EMPTY, ERR_EOF, SUCCESS
  */
@@ -41,36 +41,57 @@ t_err	ft_skip_space(t_src *src)
 }
 
 /**
- * @brief Delete the content and the node itself.
- * 
- * @param lst List containing the nodes to be deleted.
- * @param del Pointer to function to delete content of nodes.
+ * @brief Checks if string is a valid environment assignment
+ *
+ * First char has to be alphabetical or underscore.
+ * Following chars can also include numbers.
+ * Char after the variable key has to be '='.
+ * @param str The string to check
+ * @return true Valid assignment.
+ * @return false Not an assignment.
  */
-void	ft_del_node(t_tkn_list *lst)
+bool	ft_is_env_assign(char *str)
 {
-	if (!lst)
-		return ;
-	free(lst -> content);
-	free(lst);
+	size_t	i;
+
+	i = 0;
+	if (!ft_isalpha(str[i]) && str[i] != '_')
+		return (false);
+	while (ft_isalnum(str[i]) || str[i] == '_')
+		i++;
+	if (str[i] != '=')
+		return (false);
+	return (true);
 }
 
 /**
- * @brief Iterate to last node of given list.
- * 
- * Returns 0 if list is empty.
- * @param lst 			List to be iterated through.
- * @return t_tkn_list* 	Last node of list.
+ * @brief 	Assigns type to tokens.
+ *
+ * Order of checks is significant, otherwise
+ * the double redirects would never be detected, e.g.
+ * < before << would always result into INFILE.
+ * @param lst List of tokens.
  */
-t_tkn_list	*ft_last(t_tkn_list *lst)
+void	ft_assign_type(t_tkn_list *lst)
 {
-	t_tkn_list	*last;
-
-	last = lst;
-	while (last)
+	while (lst)
 	{
-		if (last -> next == NULL)
-			return (last);
-		last = last -> next;
+		if (ft_is_env_assign(lst->content))
+			lst->type = ASSIGN;
+		else if (ft_strncmp(lst->content, "<<", 2) == 0)
+			lst->type = HEREDOC;
+		else if (ft_strncmp(lst->content, "<", 1) == 0)
+			lst->type = INFILE;
+		else if (ft_strncmp(lst->content, ">>", 2) == 0)
+			lst->type = APPEND;
+		else if (ft_strncmp(lst->content, ">", 1) == 0)
+			lst->type = OUTFILE;
+		else if (ft_strncmp(lst->content, "|", 1) == 0)
+			lst->type = PIPE;
+		else if (ft_strncmp(lst->content, "\n", 1) == 0)
+			lst->type = NEWL;
+		else
+			lst->type = ARG;
+		lst = lst->next;
 	}
-	return (0);
 }
