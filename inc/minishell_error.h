@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 17:22:10 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 15:48:58 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,22 @@ typedef enum e_error {
 	ERR_SYNTAX = 2, ///< Syntax error with quotes, pipes or redirect.
 	ERR_NOT_FOUND, ///< If a search failed.
 	ERR_NOEXPAND, ///< Expansion of a token failed.
-	ERR_SIGNAL ///< Sigaction() failed.
+	ERR_CLOSE, ///< Closing fd failed.
+	ERR_ARGCOUNT, ///< Too many arguments where counted.
+	ERR_CHDIR_FAIL, ///< function chdir() failed.
+	ERR_INVALID_NAME, ///< Not a valid env name.
+	ERR_NONUM, ///< The string doesn't represent a number.
+	ERR_EXIT, ///< ft_exit() failed because of too many args.
+	ERR_PIPE, ///< Piping failed.
+	ERR_UNKNOWN_CMD, ///< Command not found.
+	ERR_NOPATH, ///< No path found.
+	ERR_FORK, ///< Failure to fork.
+	ERR_DUPL, ///< Error while duplicating file descriptor.
+	ERR_EXECVE, ///< Execve encountered an error.
+	ERR_WAIT, ///< Error while waiting for exit status of child process.
+	ERR_NOSPLIT, ///< ft_field_split() didnt split.
+	ERR_OPEN, ///< open() failed.
+	ERR_SIGNAL ///< Setup of signal handler failed.
 }	t_err;
 
 
