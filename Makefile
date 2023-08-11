@@ -6,7 +6,7 @@
 #    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/11 12:44:35 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/11 15:11:50 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -158,7 +158,7 @@ TEST_SRC := test_replace_token.c \
 			test_builtin_unset.c \
 			test_builtin_env.c \
 			test_builtin_exit.c \
-			test_executor.c
+			test_executor.c \
 			test_buffer.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 TEST_OBJ := $(TEST_SRC:.c=.o)
