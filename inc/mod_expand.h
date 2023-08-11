@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 17:13:10 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 18:31:43 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ typedef struct s_str_info {
  * Track current position of input string.
  * @param str Pointer to string.
  * @param pos Current position of the input string.
+ * @param quoted True if string is currently inside double quotes.
+ * @param last_expand_len Last expansion which was inserted.
+ * @param found_quote At least one single or double quoted part was found
  */
 typedef struct s_track {
 	char	*str;
