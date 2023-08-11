@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 21:43:35 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 22:14:01 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 10:01:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_del_target_type(t_tkn_list **head, t_type target)
 {
 	t_tkn_list	*tmp;
 
-	while ((*head)->type == target)
+	while ((*head) && (*head)->type == target)
 		ft_del_node_mid(head);
 	tmp = *head;
 	while (tmp)
