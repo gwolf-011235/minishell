@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/06 23:05:44 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 11:10:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,21 @@ void	test_setup_argv(size_t size);
 void	test_teardown_argv(void);
 void	test_free_argv_elem(size_t index);
 
+void	test_hashtable_pretty_print(t_hashtable *ht);
+void	test_print_tkn_list(t_tkn_list *head);
+void	test_print_t_type(t_type type);
+
+void	test_buffer(void);
 void	test_hashtable(void);
 void	test_replace_token(void);
 void	test_prompt(void);
 void	test_lexer(void);
 void	test_check_syntax(void);
 void	test_env_envp(void);
-void	test_expand(void);
+void	test_expand_expander(void);
 void	test_expand_list(void);
+void	test_expand_field_split(void);
+void	test_expand_handler(void);
 void	test_parser(void);
 void	test_builtin_echo(void);
 void	test_builtin_cd(void);

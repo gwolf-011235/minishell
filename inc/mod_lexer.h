@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_lexer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:38 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/07 12:37:38 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 11:15:07 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /* ====== Includes ====== */
 
 # include "mod_handle_input.h"
+# include "buffer.h"
 
 /* ====== Structs ====== */
 
@@ -23,7 +24,7 @@
 
 /**
  * @brief Source structure.
- *  
+ *
  * @param buf		Source string.
  * @param buf_size	Length of source string.
  * @param cur_pos	Current position inside source string.
@@ -32,7 +33,7 @@ typedef struct s_src
 {
 	char	*buf;
 	int		buf_size;
-	int		cur_pos;	
+	int		cur_pos;
 }	t_src;
 
 /**
@@ -48,27 +49,10 @@ typedef struct s_tok
 	int		size;
 }	t_tok;
 
-/**
- * @brief Buffer structure.
- * 
- * Contains temporary buffer string which is to be 
- * saved inside the token.
- * @param str		Buffer string.
- * @param size		Size of malloced buffer memory in Bytes.
- * @param cur_pos	Current position inside malloced buffer
- * 					memory.
- */
-typedef struct s_buf
-{
-	char	*str;
-	int		size;
-	int		cur_pos;	
-}	t_buf;
-
 /* ====== Functions ====== */
 
 // initiation
-void		ft_init_lexer(t_src *src, char *input);
+void		ft_init_lexer(t_src *src, char *input, int len);
 
 // src handling
 t_err		ft_next_char(t_src *src, char *c);
@@ -87,16 +71,9 @@ t_err		ft_tokenise(t_src *src, t_tok *token);
 t_err		ft_create_tok(t_tok *token, char *s);
 void		ft_free_tok(t_tok *token);
 
-// list handling
-t_err		ft_new_node(t_tkn_list	**lst_head, char *content);
-void		ft_add_lst(t_tkn_list **lst, t_tkn_list *new);
-void		ft_free_lst(t_tkn_list **lst);
-
 // helpers
-t_tkn_list	*ft_last(t_tkn_list *lst);
-void		ft_del_node(t_tkn_list *lst);
 t_err		ft_skip_space(t_src *src);
-void		*ft_realloc(void *ptr, size_t new_size, size_t curr_size);
 void		ft_assign_type(t_tkn_list *lst);
+bool		ft_is_env_assign(char *str);
 
 #endif

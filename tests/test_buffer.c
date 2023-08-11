@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_config.h                                 :+:      :+:    :+:   */
+/*   test_buffer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 11:46:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 20:34:36 by gwolf            ###   ########.fr       */
+/*   Created: 2023/08/10 22:56:15 by gwolf             #+#    #+#             */
+/*   Updated: 2023/08/10 23:18:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_CONFIG_H
-# define MINISHELL_CONFIG_H
+#include "test.h"
 
-/* ====== DEFINITIONS ====== */
+//Make BUF_SIZE small in minishell_config.h for easier testing
 
-# define HASHTABLE_SIZE 10
-# define MAX_SHLVL 10
-# define BUF_SIZE 2048
+void	test_buffer(void)
+{
+	t_buf	buf;
+	size_t	i;
 
-# define PS1_STD "$ "
-# define PS2_STD "> "
-# define UNKNOWN "UNKNOWN"
+	ft_buf_init(&buf);
+	i = 0;
+	while (i < 1000)
+	{
+		ft_buf_strlcpy(&buf, "This has 20 char len", 21);
+		i++;
+	}
+}
 
-#endif

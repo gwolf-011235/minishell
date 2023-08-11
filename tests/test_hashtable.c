@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:29:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/30 14:55:10 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/05 21:00:21 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * Print end string.
  * @param ht Hashtable to print.
  */
-void	ft_hashtable_pretty_print(t_hashtable *ht)
+void	test_hashtable_pretty_print(t_hashtable *ht)
 {
 	uint32_t	i;
 	t_env_var	*tmp;

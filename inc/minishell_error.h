@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_error.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/07 12:27:16 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 19:07:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef enum e_error {
 	ERR_SYNTAX = 2, ///< Syntax error with quotes, pipes or redirect.
 	ERR_NOT_FOUND, ///< If a search failed.
 	ERR_NOEXPAND, ///< Expansion of a token failed.
-	ERR_BAD_FD,	///< While opening a file, a bad file descriptor was attributed.
 	ERR_CLOSE, ///< Closing fd failed.
 	ERR_ARGCOUNT, ///< Too many arguments where counted.
 	ERR_CHDIR_FAIL, ///< function chdir() failed.
@@ -53,8 +52,9 @@ typedef enum e_error {
 	ERR_FORK, ///< Failure to fork.
 	ERR_DUPL, ///< Error while duplicating file descriptor.
 	ERR_EXECVE, ///< Execve encountered an error.
-	ERR_WAIT ///< Error while waiting for exit status of child process.
+	ERR_WAIT, ///< Error while waiting for exit status of child process.
+	ERR_NOSPLIT, ///< ft_field_split() didnt split.
+	ERR_OPEN ///< open() failed.
 }	t_err;
-
 
 #endif

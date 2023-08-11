@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 23:30:10 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 11:11:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 /**
  * @brief Iterate to last node of given list.
- * 
+ *
  * Returns 0 if list is empty.
  * @param cmd_head 		List of cmd-structures
- * @return t_cmd* 
+ * @return t_cmd*
  */
 t_cmd	*ft_last_cmd(t_cmd *cmd_head)
 {
@@ -40,7 +40,7 @@ t_cmd	*ft_last_cmd(t_cmd *cmd_head)
 
 /**
  * @brief Counts the amount of arguments and, if given delimiters.
- * 
+ *
  * Arguments include the executable.
  * @param lst 			List of tokens.
  * @param count_arg 	Argument counter.
@@ -76,7 +76,7 @@ t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim)
 /**
  * @brief Reserve memory space for cmd struct and in case
  * for argument and/or delimiter string arrays.
- * 
+ *
  * @param new 			New cmd struct to be created.
  * @param count_arg 	Amount of arguments.
  * @param count_delim 	Amount of delimiters.
@@ -107,7 +107,7 @@ t_err	ft_create_str_arr(t_cmd *tmp, int count_arg, int count_delim)
 
 /**
  * @brief Initialise cmd values.
- * 
+ *
  * @param tmp Cmd being initialised.
  */
 void	ft_init_cmd(t_cmd *tmp)

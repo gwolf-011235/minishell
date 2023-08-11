@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 23:31:16 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 11:11:50 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 /**
  * @brief 			Driver function to parse token list.
- * 
+ *
  * Creates cmd structures and fills them with the token list.
  * @param lst 		Pointer to list of tokens.
  * @param cmd_head 	Pointer pointer to first node of cmd list.
@@ -54,12 +54,12 @@ t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd_head)
 
 /**
  * @brief Adds current cmd to cmd_list and creates a new cmd struct.
- * 
+ *
  * @param lst			List of tokens at end position of previous cmd.
  * @param curr 			Current cmd struct.
  * @param cmd_head 		List of cmd structs.
  * @param cmd_complete 	Bool to indicate if cmd ist complete.
- * @return t_cmd* 
+ * @return t_cmd*
  */
 t_cmd	*ft_lock_and_load_cmd(t_tkn_list *lst, t_cmd *curr, t_cmd **cmd_head,
 		bool *cmd_complete)
@@ -79,7 +79,7 @@ t_cmd	*ft_lock_and_load_cmd(t_tkn_list *lst, t_cmd *curr, t_cmd **cmd_head,
 
 /**
  * @brief Initiates the cmd struct.
- * 
+ *
  * @param new 		Newly created cmd struct.
  * @param lst		List of tokens at current position.
  * @return t_err 	ERR_MALLOC, SUCCESS
@@ -108,7 +108,7 @@ t_err	ft_create_cmd(t_cmd **new, t_tkn_list *lst)
 /**
  * @brief Sorts token and calls appropriate functions
  * 			to save token into the cmd structure.
- * 
+ *
  * @param lst 			Pointer to current token in the list.
  * @param new 			Pointer to cmd structure.
  * @param cmd_complete 	Bool to indicate if cmd ist complete.
@@ -143,7 +143,7 @@ t_err	ft_categorise(t_tkn_list **lst, t_cmd *new, bool *cmd_complete)
 
 /**
  * @brief Add a new cmd structure to the end of cmd-list.
- * 
+ *
  * @param new New cmd structure.
  * @param cmd_head List of cmds.
  */

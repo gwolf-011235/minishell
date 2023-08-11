@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_heredoc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/10 00:05:23 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 19:07:53 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 
 /**
  * @brief Drive creation of multiple heredocs.
- * 
+ *
  * @param cmd 		Current cmd being processed.
- * @return t_err 	ERR_MALLOC, ERR_CLOSE, ERR_BAD_FD, SUCCESS
+ * @return t_err 	ERR_MALLOC, ERR_CLOSE, ERR_OPEN, SUCCESS
  */
 t_err	ft_handle_heredoc(t_cmd *cmd)
 {
@@ -44,13 +44,13 @@ t_err	ft_handle_heredoc(t_cmd *cmd)
 
 /**
  * @brief Creates a heredoc file.
- * 
+ *
  * Stdin (fd = 0) input is written to file until the delimiter
- * is given. Subsequent behaviour handled by ft_heredoc_fate(). 
+ * is given. Subsequent behaviour handled by ft_heredoc_fate().
  * @param cmd 			Current cmd being processed.
  * @param delim			Delimiter string.
  * @param curr_delim 	Current delimiter index.
- * @param t_err			ERR_MALLOC, ERR_CLOSE, ERR_BAD_FD, SUCCESS
+ * @param t_err			ERR_MALLOC, ERR_CLOSE, ERR_OPEN, SUCCESS
  */
 t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim)
 {
@@ -83,7 +83,7 @@ t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim)
 
 /**
  * @brief Define the name of the heredoc file to be created.
- * 
+ *
  * Naming follows a base standard enhanced with the index.
  * @param cmd 		Current cmd being processed.
  * @param name 		Name to be defined.
@@ -106,11 +106,11 @@ t_err	ft_name_heredoc(int index, char **name)
 
 /**
  * @brief Set heredoc name and open it.
- * 
+ *
  * @param index 	Index of current cmd.
  * @param name 		Pointer to name of heredoc to be created.
  * @param fd 		File descriptor for heredoc.
- * @return t_err 	ERR_MALLOC, ERR_BAD_FD, SUCCESS
+ * @return t_err 	ERR_MALLOC, ERR_OPEN, SUCCESS
  */
 t_err	ft_initiate_heredoc(int index, char **name, int *fd)
 {
@@ -121,13 +121,13 @@ t_err	ft_initiate_heredoc(int index, char **name, int *fd)
 		return (err);
 	*fd = open(*name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (*fd < 0)
-		return (ERR_BAD_FD);
+		return (ERR_OPEN);
 	return (SUCCESS);
 }
 
 /**
  * @brief Determines usage of heredoc.
- * 
+ *
  * Heredoc set to fd_in if no infile followed the heredocs (fd_in = -1) and
  * it is the last heredoc among several. Else it is unlinked and its name is
  * freed.
@@ -135,7 +135,7 @@ t_err	ft_initiate_heredoc(int index, char **name, int *fd)
  * @param name 			Malloced name of heredoc.
  * @param fd 			File descriptor of open heredoc.
  * @param curr_delim 	Current delimiter index.
- * @return t_err 		ERR_CLOSE, ERR_BAD_FD, SUCCESS
+ * @return t_err 		ERR_CLOSE, ERR_OPEN, SUCCESS
  */
 t_err	ft_heredoc_fate(t_cmd *cmd, char **name, int fd, int curr_delim)
 {
@@ -148,7 +148,7 @@ t_err	ft_heredoc_fate(t_cmd *cmd, char **name, int fd, int curr_delim)
 	{
 		cmd->fd_in = open(*name, O_RDONLY);
 		if (cmd->fd_in < 0)
-			return (ft_unlink_heredoc(name, ERR_BAD_FD));
+			return (ft_unlink_heredoc(name, ERR_OPEN));
 		cmd->heredoc = *name;
 	}
 	else

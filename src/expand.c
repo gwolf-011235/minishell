@@ -5,147 +5,170 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:08:37 by gwolf            ###   ########.fr       */
+/*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
+/*   Updated: 2023/08/11 19:25:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file expand.c
- * @brief Contains driver function to handle expansion and quote removal.
+ * @brief Functions to exec different expansions depending on token type.
  */
 #include "mod_expand.h"
 
 /**
- * @brief Search for token in input string and replace with replace.
+ * @brief Loop through token list and expand content.
  *
- * @param input String.
- * @param pos Current position.
- * @param token Struct containing the searched for token.
- * @param replace Struct containing the replacement.
- * @return t_err SUCCESS, ERR_MALLOC
+ * If a heredoc token is encountered, jump over the token and the next one.
+ * Else pass the token content to ft_expand_expr() which handles expansion.
+ *
+ * @param list List of tokens.
+ * @param data Overarching struct.
+ * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_err	ft_insert_replace(t_track *input, t_str token, t_str replace)
+t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table)
 {
-	size_t	new_len;
-	char	*new_str;
-	char	*old_str;
-	size_t	cur_pos;
+	t_tkn_list	*tmp;
+	t_err		err;
 
-	new_len = ft_strlen(input->str) - token.len + replace.len;
-	new_str = malloc(new_len);
-	if (!new_str)
-		return (ERR_MALLOC);
-	*new_str = '\0';
-	old_str = input->str;
-	cur_pos = input->pos;
-	ft_strncat(new_str, old_str, cur_pos);
-	ft_strcat(new_str, replace.ptr);
-	cur_pos += token.len;
-	ft_strcat(new_str, (old_str + cur_pos));
-	free(old_str);
-	input->str = new_str;
+	tmp = *head;
+	while (tmp)
+	{
+		if (tmp->type == INFILE || tmp->type == OUTFILE || tmp->type == APPEND)
+			err = ft_expand_redirect(&tmp, env_table);
+		else if (tmp->type == HEREDOC)
+			err = ft_expand_heredoc(&tmp);
+		else if (tmp->type == ASSIGN)
+			err = ft_expand_assign(&tmp, env_table);
+		else if (tmp->type == PIPE || tmp->type == NEWL)
+			err = SUCCESS;
+		else
+			err = ft_expand_arg(&tmp, env_table);
+		if (err != SUCCESS)
+			return (err);
+		if (tmp->next == NULL)
+			break ;
+		tmp = tmp->next;
+	}
+	*head = ft_list_first(tmp);
+	ft_del_target_type(head, DELETE);
 	return (SUCCESS);
 }
 
 /**
- * @brief Remove single char from string. Doesn't realloc.
+ * @brief Expands token after HEREDOC = delim.
  *
- * @param input String.
- * @param pos Current position.
+ * Move forward a node.
+ * Init tracker with ft_init_tracker().
+ * Removes quotes of heredoc delim.
+ * @param list Pointer to HEREDOC node.
  * @return t_err SUCCESS
  */
-t_err	ft_eat_char(char *input, size_t pos)
-{
-	char	*str1;
-	char	*str2;
-
-	str1 = input + pos;
-	str2 = str1 + 1;
-	while (*str1)
-		*str1++ = *str2++;
-	return (SUCCESS);
-}
-
-/**
- * @brief Handle single quotes.
- *
- * Remove found single quote with ft_eat_char().
- * Jump over quoted part, searching for the second single.
- * Remove the second single quote.
- *
- * @param expr String
- * @param pos Current position
- * @return t_err SUCCESS
- */
-t_err	ft_handle_single_quote(t_track *input)
-{
-	ft_eat_char(input->str, input->pos);
-	while (input->str[input->pos] != '\'')
-		input->pos++;
-	ft_eat_char(input->str, input->pos);
-	return (SUCCESS);
-}
-
-/**
- * @brief Handle double quotes.
- *
- * Remove found double quote with ft_eat_char().
- * Switch bool in_quotes on/off.
- * This way we know if we are in double quotes or not.
- * The next time we see a double quote the switch gets flipped again.
- *
- * @param expr String.
- * @param pos Current position.
- * @param in_double_quotes Pointer to change switch.
- * @return t_err SUCCESS.
- */
-t_err	ft_handle_double_quote(t_track *input, bool *in_double_quotes)
-{
-	ft_eat_char(input->str, input->pos);
-	*in_double_quotes = !(*in_double_quotes);
-	return (SUCCESS);
-}
-
-/**
- * @brief Expand expressions received from token list.
- *
- * Go through the string and check for special chars.
- * Tilde: ft_expand_tilde().
- * $: ft_expand_var().
- * Single quote: ft_handle_single_quote().
- * Double quote: ft_handle_double_quote().
- *
- * @param expr The expression to be expanded.
- * @param symtab The environment table
- * @param info Data for return code and shell name.
- * @return t_err SUCCESS, ERR_MALLOC
- */
-t_err	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info)
+t_err	ft_expand_heredoc(t_tkn_list **list)
 {
 	t_track	input;
-	bool	in_double_quotes;
-	t_err	err;
 
-	input.str = *expr;
-	input.pos = 0;
-	in_double_quotes = false;
-	err = SUCCESS;
+	*list = (*list)->next;
+	ft_init_tracker(&input, (*list)->content);
 	while (input.str[input.pos])
 	{
-		if (input.str[input.pos] == '\'' && !in_double_quotes)
-			ft_handle_single_quote(&input);
+		if (input.str[input.pos] == '\'' && !input.quoted)
+			ft_rm_single_quote(&input);
 		else if (input.str[input.pos] == '"')
-			ft_handle_double_quote(&input, &in_double_quotes);
-		else if (input.str[input.pos] == '~' && !in_double_quotes)
-			err = ft_expand_tilde(&input, symtab);
-		else if (input.str[input.pos] == '$')
-			err = ft_expand_var(&input, symtab, info, in_double_quotes);
+			ft_rm_double_quote(&input);
 		else
-			input.pos++;
-		if (err != SUCCESS && err != ERR_NOEXPAND)
-			return (err);
+			ft_move_tracker(&input);
 	}
-	*expr = input.str;
 	return (SUCCESS);
+}
+
+/**
+ * @brief Expands token after REDIRECT = Infile, Outfile
+ *
+ * Move forward a node.
+ * Init tracker with ft_init_tracker().
+ * Expand and quote removal with ft_expander_full().
+ * If expanded token is nothing and was not quoted, change type of the
+ * redirect node (previous one) to AMBIGUOUS.
+ * @param list Pointer to REDIRECT node.
+ * @param symtab Environment.
+ * @return t_err SUCCESS, ERR_MALLOC
+ */
+t_err	ft_expand_redirect(t_tkn_list **list, t_hashtable *symtab)
+{
+	t_track	input;
+	t_err	err;
+
+	*list = (*list)->next;
+	ft_init_tracker(&input, (*list)->content);
+	err = ft_expander_arg(&input, symtab, INFILE);
+	if (err != SUCCESS)
+		return (err);
+	(*list)->content = input.str;
+	if ((*list)->content[0] == '\0' && !input.found_quote)
+		(*list)->prev->type = AMBIGUOUS;
+	return (err);
+}
+
+/**
+ * @brief Expands ASSIGN token.
+ *
+ * Init tracker with ft_init_tracker().
+ * Expand and quote removal with ft_expander_full().
+ * Set type to ARG to not coonfuse parser.
+ * @param list Pointer to ASSIGN node.
+ * @param symtab Environment.
+ * @return t_err SUCCESS, ERR_MALLOC
+ */
+t_err	ft_expand_assign(t_tkn_list **list, t_hashtable *symtab)
+{
+	t_track	input;
+	t_err	err;
+
+	ft_init_tracker(&input, (*list)->content);
+	err = ft_expander_arg(&input, symtab, ASSIGN);
+	if (err != SUCCESS)
+		return (err);
+	(*list)->content = input.str;
+	(*list)->type = ARG;
+	return (err);
+}
+
+/**
+ * @brief Expands ARG token.
+ *
+ * Init tracker with ft_init_tracker().
+ * Expand and quote removal with special ft_expander_arg().
+ * If expansion on unquoted var: check with ft_field_split() if node
+ * has to be split. If ft_field_split() fires it resets the tracker to the last
+ * node of the split to continue expansion.
+ * If expanded node is empty, and was no quotes found mark it as DELETE.
+ * @param list Pointer to ARG token.
+ * @param symtab Environment.
+ * @return t_err SUCCESS, ERR_MALLOC
+ */
+t_err	ft_expand_arg(t_tkn_list **list, t_hashtable *symtab)
+{
+	t_track	input;
+	t_err	err;
+
+	ft_init_tracker(&input, (*list)->content);
+	while (input.str[input.pos])
+	{
+		err = ft_expander_arg(&input, symtab, ARG);
+		if (err != SUCCESS)
+			return (err);
+		(*list)->content = input.str;
+		if (input.last_expand_len > 0 && !input.quoted)
+		{
+			err = ft_field_split(&input, list);
+			if (err != SUCCESS && err != ERR_NOSPLIT)
+				return (err);
+			if (err == SUCCESS)
+				ft_init_tracker(&input, (*list)->content);
+		}
+	}
+	if (ft_strlen((*list)->content) == 0 && !input.found_quote)
+		(*list)->type = DELETE;
+	return (err);
 }

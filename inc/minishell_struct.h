@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_struct.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:38:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 10:01:26 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 12:56:42 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,6 @@
 # include "minishell_error.h"
 
 /* ====== STRUCTS ====== */
-
-/**
- * @brief Flags which can be set to store some info.
- *
- * In this struct some flags can be stored to be set and then be checked
- * later on.
- * @param no_env Environ was empty.
- * @param no_pwd Environ wasn't empty but didn't contain a PWD variable.
- */
-typedef struct s_checks {
-	bool	no_env;
-	bool	no_pwd;
-}	t_checks;
-
-typedef struct s_info {
-	size_t	ret_code;
-	char	*shell_name;
-}	t_info;
 
 /**
  * @brief Overarching struct to hold all necessarry data.
@@ -54,11 +36,9 @@ typedef struct s_info {
 typedef struct s_data {
 	t_hashtable	*env_table;
 	char		**envp;
-	t_checks	checks;
 	t_err		err;
 	char		*prompt1;
 	char		*prompt2;
-	t_info		info;
 }	t_data;
 
 #endif

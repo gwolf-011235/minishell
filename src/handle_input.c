@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:16:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 10:04:23 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 11:10:18 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_err	ft_handle_input(char *input, t_data *data)
 	err = ft_lex_input(&lst, input);
 	if (err != SUCCESS)
 		return (err);
-	err = ft_expand_tkn_lst(lst, data);
+	err = ft_expand_tkn_lst(&lst, data->env_table);
 	if (err != SUCCESS)
 		return (err);
 	err = ft_parser(lst, &cmd);

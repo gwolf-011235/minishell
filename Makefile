@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
+#    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/08 12:33:06 by sqiu             ###   ########.fr        #
+#    Updated: 2023/08/11 19:28:20 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ TEST := test
 
 SRC :=	utils_memory.c \
 		utils_string.c \
+		buffer.c \
 		hashtable_generate.c \
 		hashtable_utils.c \
 		exit_failure.c \
@@ -85,10 +86,12 @@ SRC :=	utils_memory.c \
 		lexer_tok.c \
 		lexer_tok_utils.c \
 		syntax.c \
-		expand.c \
+		expand_expander.c \
+		expand_field_split.c \
 		expand_tilde.c \
-		expand_var.c \
-		handle_input_expand.c \
+		expand_utils.c \
+		expand_dollar.c \
+		expand.c \
 		handle_input.c \
 		parser.c \
 		parser_utils.c \
@@ -110,7 +113,10 @@ SRC :=	utils_memory.c \
 		executor_utils2.c \
 		executor_heredoc.c \
 		executor_builtin.c \
-		cleanup.c
+		cleanup.c \
+		tkn_list_create.c \
+		tkn_list_delete.c \
+		tkn_list_search.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # ******************************
@@ -139,8 +145,10 @@ TEST_SRC := test_replace_token.c \
 			test_lexer.c \
 			test_check_syntax.c \
 			test_env_envp.c \
-			test_expand_expr.c \
-			test_list_expand.c \
+			test_expand_expander.c \
+			test_expand_field_split.c \
+			test_expand_handler.c \
+			test_expand.c \
 			test_parser.c \
 			test_builtin_echo.c \
 			test_builtin_cd.c \
@@ -149,8 +157,8 @@ TEST_SRC := test_replace_token.c \
 			test_builtin_unset.c \
 			test_builtin_env.c \
 			test_builtin_exit.c \
-			test_executor.c
-# test_executor.c
+			test_executor.c \
+			test_buffer.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 TEST_OBJ := $(TEST_SRC:.c=.o)
 TEST_OBJS := $(addprefix $(TEST_DIR)/, $(TEST_OBJ))

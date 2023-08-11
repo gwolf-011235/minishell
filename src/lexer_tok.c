@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_tok.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/21 14:37:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/05 18:37:37 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 
 /**
  * @brief Create a token.
- * 
+ *
  * Token contains the token string and its length.
  * @param token 	Created token.
  * @param s 		Token string.
- * @return t_err 	ERR_MALLOC, ERR_EMPTY, SUCCESS
+ * @return t_err 	ERR_MALLOC, ERR_EMPTY, ERR_EOF, SUCCESS
  */
 t_err	ft_create_tok(t_tok *token, char *s)
 {
@@ -46,7 +46,7 @@ t_err	ft_create_tok(t_tok *token, char *s)
 
 /**
  * @brief Overarching function to create a token.
- * 
+ *
  * Divides input string into separate tokens. The token string
  * is extracted into a buffer string before being saved inside
  * a token.
@@ -79,7 +79,7 @@ t_err	ft_tokenise(t_src *src, t_tok *token)
 
 /**
  * @brief Iterate through input string and step out at predefined delimiters.
- * 
+ *
  * Fills buffer string until delimiters are reached.
  * Delimiters: Space, tab, newline, pipe
  * @param src 		Struct containing the input string,
@@ -114,7 +114,7 @@ t_err	ft_partition(t_src *src, t_buf *buf)
 
 /**
  * @brief Initate the partitioning.
- * 
+ *
  * Skip all initial spaces and tabs of source string.
  * Retrieve the first character.
  * @param src 		Struct containing the source string.
@@ -134,7 +134,7 @@ t_err	ft_init_partition(t_src *src, char *c)
 
 /**
  * @brief Add anything inside of quotes.
- * 
+ *
  * @param quote Either ' or "
  * @param src 	Struct containing the source string.
  * @param buf 	Temporary buffer to save as token.
