@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:47:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 23:34:34 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 10:14:25 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,16 @@ bool	ft_check_builtin(char *arg)
  * Creation of child process when part of a pipe.
  * @param piped 	Bool to differentiate if part of pipe.
  * @param cmd 		Cmd to be processed which is a built-in.
- * @param envp 		String array of env.
  * @param data 		Data struct containing env.
  * @return t_err 	ERR_CLOSE, ERR_FORK, SUCCESS
  */
-t_err	ft_execute_builtin(bool piped, t_cmd *cmd, char **envp, t_data *data)
+t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data)
 {
 	t_err	err;
 
 	if (piped)
 	{
-		err = ft_create_child(cmd, envp, data, true);
+		err = ft_create_child(cmd, data, true);
 		if (err != SUCCESS)
 			return (err);
 	}

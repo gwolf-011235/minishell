@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:17:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/10 19:04:59 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 10:04:23 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,18 @@ static int	test_wrapper(char *testname, char *test)
 	int			i;
 	t_tkn_list	*lst;
 	t_cmd		*cmd;
-	char		**envp;
 
 	local_err_count = 0;
 	i = 0;
 	lst = NULL;
 	cmd = NULL;
 	ft_env_setup(&g_symtab);
-	ft_envp_create(g_symtab, &envp);
+	ft_envp_create(g_symtab, &g_data.envp);
 	printf("TEST: %s\n", testname);
 	printf("Command:%s\n", test);
 	ft_lex_input(&lst, test);
 	ft_parser(lst, &cmd);
-	ft_executor(cmd, envp, &g_data);
+	ft_executor(cmd,&g_data);
 	while (cmd)
 	{
 		printf("\nCurrent index: %d\n", cmd->index);
@@ -100,12 +99,12 @@ static int	test_scmd_wrapper(char *testname, char *test)
 	test_setup_data();
 /* 	if (!ft_strncmp(test, "minishell", 9))
 		ft_hashtable_delete(g_data.env_table, "PATH", 4); */
-	ft_envp_create(g_data.env_table, &envp);
+	ft_envp_create(g_data.env_table, &g_data.envp);
 	printf("TEST: %s\n", testname);
 	printf("Command:%s\n\n", test);
 	ft_lex_input(&lst, test);
 	ft_parser(lst, &cmd);
-	ft_executor(cmd, envp, &g_data);
+	ft_executor(cmd, &g_data);
 	printf("\n");
 	if (!ft_strncmp(test, "cd", 2))
 		ft_pwd();
@@ -140,12 +139,12 @@ static int	test_pipe_wrapper(char *testname, char *test)
 	lst = NULL;
 	cmd = NULL;
 	ft_env_setup(&g_symtab);
-	ft_envp_create(g_symtab, &envp);
+	ft_envp_create(g_symtab, &g_data.envp);
 	printf("TEST: %s\n", testname);
 	printf("Command:%s\n\n", test);
 	ft_lex_input(&lst, test);
 	ft_parser(lst, &cmd);
-	ft_executor(cmd, envp, &g_data);
+	ft_executor(cmd, &g_data);
 	printf("\n");
 /* 	while (cmd)
 	{

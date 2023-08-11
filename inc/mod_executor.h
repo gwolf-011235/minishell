@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/10 23:20:07 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 10:18:03 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,22 @@
 /* ====== Functions ====== */
 
 // cmd handling
-t_err	ft_execute_scmd(t_cmd *cmd, char **envp, char **paths, t_data *data);
-t_err	ft_execute_pcmds(t_cmd *cmd, char **envp, char **paths, t_data *data);
-t_err	ft_process_cmd(t_cmd *cmd, t_err err, char **envp, t_data *data);
+t_err	ft_execute_scmd(t_cmd *cmd,
+			char **paths, t_data *data, bool empty_path);
+t_err	ft_execute_pcmds(t_cmd *cmd,
+			char **paths, t_data *data, bool empty_path);
+t_err	ft_process_cmd(t_cmd *cmd, t_err err, t_data *data);
 
 // create child processes
-t_err	ft_create_child(t_cmd *cmd, char **envp, t_data *data, bool builtin);
-t_err	ft_raise_first(t_cmd *cmd, char **envp, t_data *data, bool builtin);
-t_err	ft_raise_last(t_cmd *cmd, char **envp, t_data *data, bool builtin);
-t_err	ft_raise_middle(t_cmd *cmd, char **envp, t_data *data, bool builtin);
+t_err	ft_create_child(t_cmd *cmd, t_data *data, bool builtin);
+t_err	ft_raise_first(t_cmd *cmd, t_data *data, bool builtin);
+t_err	ft_raise_last(t_cmd *cmd, t_data *data, bool builtin);
+t_err	ft_raise_middle(t_cmd *cmd, t_data *data, bool builtin);
 
 // child behaviour
-void	ft_firstborn(t_cmd *cmd, char **envp, t_data *data, bool builtin);
-void	ft_lastborn(t_cmd *cmd, char **envp, t_data *data, bool builtin);
-void	ft_middle_child(t_cmd *cmd, char **envp, t_data *data, bool builtin);
+void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin);
+void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin);
+void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin);
 
 // heredoc
 t_err	ft_handle_heredoc(t_cmd *cmd);
@@ -62,7 +64,7 @@ bool	ft_check_empty_path(char *path_str);
 
 // builtins
 bool	ft_check_builtin(char *arg);
-t_err	ft_execute_builtin(bool piped, t_cmd *cmd, char **envp, t_data *data);
+t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data);
 void	ft_choose_builtin(t_cmd *cmd, t_data *data);
 
 // include from mod_cleanup

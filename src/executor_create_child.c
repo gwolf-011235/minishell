@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 00:48:22 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 10:16:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,20 @@
  * to be executed and creates the pertinent child.
  * 
  * @param cmd 		Current cmd to be processed.
- * @param envp 		String array of env.
  * @param data		Data struct containing the env.
  * @param builtin	Bool indicating if cmd is a builtin.
  * @return t_err	ERR_CLOSE, ERR_FORK, SUCCESS
  */
-t_err	ft_create_child(t_cmd *cmd, char **envp, t_data *data, bool builtin)
+t_err	ft_create_child(t_cmd *cmd, t_data *data, bool builtin)
 {
 	t_err	err;
 
 	if (cmd->index == 0)
-		err = ft_raise_first(cmd, envp, data, builtin);
+		err = ft_raise_first(cmd, data, builtin);
 	else if (cmd->index == cmd->cmd_num - 1)
-		err = ft_raise_last(cmd, envp, data, builtin);
+		err = ft_raise_last(cmd, data, builtin);
 	else
-		err = ft_raise_middle(cmd, envp, data, builtin);
+		err = ft_raise_middle(cmd, data, builtin);
 	return (err);
 }
 
@@ -46,12 +45,11 @@ t_err	ft_create_child(t_cmd *cmd, char **envp, t_data *data, bool builtin)
  * 
  * The parent closes the write end fd of the pipe (fd_pipe[1]).
  * @param cmd 		Current cmd to be processed.
- * @param envp 		String array of env.
  * @param data		Data struct containing the env.
  * @param builtin	Bool indicating if cmd is a builtin.
  * @return t_err	ERR_CLOSE, ERR_FORK, SUCCESS
  */
-t_err	ft_raise_first(t_cmd *cmd, char **envp, t_data *data, bool builtin)
+t_err	ft_raise_first(t_cmd *cmd, t_data *data, bool builtin)
 {
 	t_err	err;
 
@@ -64,7 +62,7 @@ t_err	ft_raise_first(t_cmd *cmd, char **envp, t_data *data, bool builtin)
 		return (ERR_FORK);
 	}
 	else if (cmd->pid == 0)
-		ft_firstborn(cmd, envp, data, builtin);
+		ft_firstborn(cmd, data, builtin);
 	err = ft_close(cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);
@@ -76,12 +74,11 @@ t_err	ft_raise_first(t_cmd *cmd, char **envp, t_data *data, bool builtin)
  * function which is to be executed by the last cmd of the pipe.
  * 
  * @param cmd 		Current cmd to be processed.
- * @param envp 		String array of env.
  * @param data		Data struct containing the env.
  * @param builtin	Bool indicating if cmd is a builtin.
  * @return t_err	ERR_CLOSE, ERR_FORK, SUCCESS
  */
-t_err	ft_raise_last(t_cmd *cmd, char **envp, t_data *data, bool builtin)
+t_err	ft_raise_last(t_cmd *cmd, t_data *data, bool builtin)
 {
 	t_err	err;
 
@@ -94,7 +91,7 @@ t_err	ft_raise_last(t_cmd *cmd, char **envp, t_data *data, bool builtin)
 		return (ERR_FORK);
 	}
 	else if (cmd->pid == 0)
-		ft_lastborn(cmd, envp, data, builtin);
+		ft_lastborn(cmd, data, builtin);
 	return (SUCCESS);
 }
 
@@ -105,12 +102,11 @@ t_err	ft_raise_last(t_cmd *cmd, char **envp, t_data *data, bool builtin)
  * 
  * The parent closes the write end fd of the pipe (fd_pipe[1]).
  * @param cmd 	Current cmd to be processed.
- * @param envp 	String array of env.
  * @param data		Data struct containing the env.
  * @param builtin	Bool indicating if cmd is a builtin.
  * @return t_err	ERR_CLOSE, ERR_FORK, SUCCESS
  */
-t_err	ft_raise_middle(t_cmd *cmd, char **envp, t_data *data, bool builtin)
+t_err	ft_raise_middle(t_cmd *cmd, t_data *data, bool builtin)
 {
 	t_err	err;
 
@@ -123,7 +119,7 @@ t_err	ft_raise_middle(t_cmd *cmd, char **envp, t_data *data, bool builtin)
 		return (ERR_FORK);
 	}
 	else if (cmd->pid == 0)
-		ft_middle_child(cmd, envp, data, builtin);
+		ft_middle_child(cmd, data, builtin);
 	err = ft_close(cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);
