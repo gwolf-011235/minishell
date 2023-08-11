@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 16:34:59 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 17:13:10 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ t_err	ft_expander_arg(t_track *input, t_hashtable *symtab, t_type type);
 t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab);
 t_err	ft_get_tilde_replace(t_str token, t_hashtable *symtab,
 			t_str *replace, size_t *pos);
-t_err	ft_get_tilde_token(t_track *input, t_str *token);
+t_err	ft_get_tilde_var(t_track *input, t_str *token);
 
 //expand_var.c
-t_err	ft_expand_var(t_track *input, t_hashtable *symtab);
-t_err	ft_special_var(t_str *token, t_str *replace);
-t_err	ft_get_var_token(t_track *input, t_str *token);
-t_err	ft_get_var_replace(t_str *token, t_hashtable *symtab, t_str *replace);
+t_err	ft_expand_dollar(t_track *input, t_hashtable *symtab);
+t_err	ft_special_dollar(t_str *token, t_str *replace);
+t_err	ft_get_dollar_var(t_track *input, t_str *token);
+t_err	ft_get_dollar_replace(t_str *token, t_hashtable *symtab, t_str *replace);
 
 //expand_field_split.c
 t_err	ft_field_split(t_track *input, t_tkn_list **list);

@@ -6,7 +6,7 @@
 #    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/11 15:11:50 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/11 17:16:05 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,7 @@ SRC :=	utils_memory.c \
 		expand_quote_removal.c \
 		expand_tilde.c \
 		expand_utils.c \
-		expand_var.c \
+		expand_dollar.c \
 		expand.c \
 		handle_input.c \
 		parser.c \

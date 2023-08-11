@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 17:11:47 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 17:12:35 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * Single quote: ft_skip_single_quote().
  * Double quote: ft_skip_double_quote().
  * Tilde: ft_expand_tilde().
- * $: ft_expand_var().
+ * $: ft_expand_dollar().
  * Uses passed type to activate different functionalities:
  * If type == ASSIGN additional tilde expand is checked:
  * Tilde is only expanded at pos == 0. But ASSIGN expands tilde also if it is
@@ -56,7 +56,7 @@ t_err	ft_expander_arg(t_track *input, t_hashtable *symtab, t_type type)
 			err = ft_expand_tilde(input, symtab);
 		else if (input->str[input->pos] == '$')
 		{
-			err = ft_expand_var(input, symtab);
+			err = ft_expand_dollar(input, symtab);
 			if (type == ARG && input->last_expand_len > 0 && !input->quoted)
 				break ;
 		}

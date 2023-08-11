@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 15:44:11 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 17:15:21 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +19,34 @@
 /**
  * @brief Expand an environment variable in string.
  *
- * Check if special variable - handle with ft_special_var().
+ * Check if special variable - handle with ft_special_dollar().
  * Else search for variable name and get the variable value.
- * Increase token.len to include $.
+ * Increase var.len to include $.
  * Insert the replacement in the string.
  * Update the position to be after the inserted replacement.
  * @param input Pointer to tracker.
  * @param symtab Environment.
  * @return t_err SUCCESS, ERR_NOEXPAND, ERR_MALLOC.
  */
-t_err	ft_expand_var(t_track *input, t_hashtable *symtab)
+t_err	ft_expand_dollar(t_track *input, t_hashtable *symtab)
 {
-	t_str	token;
+	t_str	var;
 	t_str	replace;
 	t_err	err;
 
 	if (input->str[input->pos + 1] == '?')
-		err = ft_special_var(&token, &replace);
+		err = ft_special_dollar(&var, &replace);
 	else
 	{
-		err = ft_get_var_token(input, &token);
+		err = ft_get_dollar_var(input, &var);
 		if (err != SUCCESS)
 			return (err);
-		err = ft_get_var_replace(&token, symtab, &replace);
+		err = ft_get_dollar_replace(&var, symtab, &replace);
 	}
 	if (err != SUCCESS)
 		return (err);
-	token.len++;
-	err = ft_insert_replace(input, token, replace);
+	var.len++;
+	err = ft_insert_replace(input, var, replace);
 	if (replace.len > 0)
 		free (replace.ptr);
 	input->pos += replace.len;
@@ -57,13 +57,13 @@ t_err	ft_expand_var(t_track *input, t_hashtable *symtab)
 /**
  * @brief Handle the special variable $?
  *
- * @param token Used for token.len
+ * @param var Used for var.len
  * @param replace Where to save replace string.
  * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_err	ft_special_var(t_str *token, t_str *replace)
+t_err	ft_special_dollar(t_str *var, t_str *replace)
 {
-	token->len = 1;
+	var->len = 1;
 	replace->ptr = ft_itoa(g_status);
 	if (!replace->ptr)
 		return (ERR_MALLOC);
@@ -72,29 +72,29 @@ t_err	ft_special_var(t_str *token, t_str *replace)
 }
 
 /**
- * @brief Get variable name token.
+ * @brief Get variable var.
  *
- * Sets token.ptr to position after $ and token.len to 0
- * Calc the token.len:
+ * Sets var.ptr to position after $ and var.len to 0
+ * Calc the var.len:
  * As first char after $ only underscore and alphabetic are allowed.
  * After that underscore and alphanumeric are allowed.
- * In case of token.len 0: if a quote follows after $, $ is removed.
+ * In case of var.len 0: if a quote follows after $, $ is removed.
  * Else $ is skipped.
  * @param input Pointer to tracker.
- * @param token Pointer to token struct.
+ * @param var Pointer to var struct.
  * @return t_err SUCCESS, ERR_NOEXPAND.
  */
-t_err	ft_get_var_token(t_track *input, t_str *token)
+t_err	ft_get_dollar_var(t_track *input, t_str *var)
 {
-	token->ptr = input->str + input->pos + 1;
-	token->len = 0;
-	if (token->ptr[token->len] == '_' || ft_isalpha(token->ptr[token->len]))
+	var->ptr = input->str + input->pos + 1;
+	var->len = 0;
+	if (var->ptr[var->len] == '_' || ft_isalpha(var->ptr[var->len]))
 	{
-		token->len++;
-		while (token->ptr[token->len] == '_' || ft_isalnum(token->ptr[token->len]))
-			token->len++;
+		var->len++;
+		while (var->ptr[var->len] == '_' || ft_isalnum(var->ptr[var->len]))
+			var->len++;
 	}
-	if (token->len == 0)
+	if (var->len == 0)
 	{
 		if (!input->quoted && ft_strchr("\"'", input->str[input->pos + 1]))
 			ft_eat_char(input);
@@ -111,16 +111,16 @@ t_err	ft_get_var_token(t_track *input, t_str *token)
  * Look for the variable in environment.
  * If not found empty string is ft_strdup(), else var is ft_strdup().
  * Calc the replace.len
- * @param token Pointer to token struct.
+ * @param var Pointer to var struct.
  * @param symtab Environment.
  * @param replace Pointer to struct where to save string.
  * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_err	ft_get_var_replace(t_str *token, t_hashtable *symtab, t_str *replace)
+t_err	ft_get_dollar_replace(t_str *var, t_hashtable *symtab, t_str *replace)
 {
 	t_env_var	*env_var;
 
-	env_var = ft_hashtable_lookup(symtab, token->ptr, token->len);
+	env_var = ft_hashtable_lookup(symtab, var->ptr, var->len);
 	if (!env_var)
 		replace->ptr = ft_strdup("");
 	else
