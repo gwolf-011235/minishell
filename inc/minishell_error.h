@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 22:31:11 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 11:07:05 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,14 @@ typedef enum e_error {
 	ERR_CHDIR_FAIL, ///< function chdir() failed.
 	ERR_INVALID_NAME, ///< Not a valid env name.
 	ERR_NONUM, ///< The string doesn't represent a number.
-	ERR_EXIT, ///< ft_exit() failed because of too many args.
+	ERR_EXIT,, ///< ft_exit() failed because of too many args.
+	ERR_PIPE, ///< Piping failed.
+	ERR_UNKNOWN_CMD, ///< Command not found.
+	ERR_NOPATH, ///< No path found.
+	ERR_FORK, ///< Failure to fork.
+	ERR_DUPL, ///< Error while duplicating file descriptor.
+	ERR_EXECVE, ///< Execve encountered an error.
+	ERR_WAIT ///< Error while waiting for exit status of child process.
 	ERR_NOSPLIT, ///< ft_field_split() didnt split.
 	ERR_OPEN
 }	t_err;

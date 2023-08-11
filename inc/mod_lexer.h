@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:38 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/10 22:25:03 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 11:09:44 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,24 @@ typedef struct s_tok
 	char	*str;
 	int		size;
 }	t_tok;
+
+
+/**
+ * @brief Buffer structure.
+ *
+ * Contains temporary buffer string which is to be
+ * saved inside the token.
+ * @param str		Buffer string.
+ * @param size		Size of malloced buffer memory in Bytes.
+ * @param cur_pos	Current position inside malloced buffer
+ * 					memory.
+ */
+typedef struct s_buf
+{
+	char	*str;
+	int		size;
+	int		cur_pos;
+}	t_buf;
 
 /* ====== Functions ====== */
 

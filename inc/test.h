@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 23:17:20 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 11:10:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "mod_prompt.h"
 # include "mod_syntax.h"
 # include "mod_builtin.h"
+# include "mod_executor.h"
 
 # define RESET "\033[0m"
 # define BOLD "\033[1m"
@@ -58,5 +59,6 @@ void	test_builtin_export(void);
 void	test_builtin_unset(void);
 void	test_builtin_env(void);
 void	test_builtin_exit(void);
+void	test_executor(void);
 
 #endif
