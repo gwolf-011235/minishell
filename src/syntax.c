@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_check.c                                     :+:      :+:    :+:   */
+/*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:43:24 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:06:53 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 23:14:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,28 +141,26 @@ t_err	ft_check_redirect(const char *input, size_t pos, char symbol)
  */
 t_err	ft_check_syntax(const char *input)
 {
-	t_err	error;
+	t_err	err;
 	size_t	i;
 
-	error = SUCCESS;
+	err = SUCCESS;
 	i = 0;
 	while (input[i])
 	{
 		while (ft_is_space(input[i]))
 			i++;
 		if (input[i] == '"' || input[i] == '\'')
-			error = ft_quote_skipper(&input[i], &i, input[i]);
-		if (error != SUCCESS)
-			return (error);
-		if (input[i] == '|')
-			error = ft_check_pipe(input, i);
-		if (error != SUCCESS)
-			return (error);
-		if (input[i] == '<' || input[i] == '>')
-			error = ft_check_redirect(input, i, input[i]);
-		if (error != SUCCESS)
-			return (error);
+			err = ft_quote_skipper(&input[i], &i, input[i]);
+		else if (input[i] == '|')
+			err = ft_check_pipe(input, i);
+		else if (input[i] == '<' || input[i] == '>')
+			err = ft_check_redirect(input, i, input[i]);
+		if (err != SUCCESS)
+			return (err);
 		i++;
 	}
+	if (i == 0)
+		return (ERR_NO_INPUT);
 	return (SUCCESS);
 }

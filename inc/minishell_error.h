@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 15:48:58 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 23:09:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ typedef enum e_error {
 	ERR_WAIT, ///< Error while waiting for exit status of child process.
 	ERR_NOSPLIT, ///< ft_field_split() didnt split.
 	ERR_OPEN, ///< open() failed.
-	ERR_SIGNAL ///< Setup of signal handler failed.
+	ERR_SIGNAL, ///< Setup of signal handler failed.
+	ERR_NO_INPUT ///< Input is empty.
 }	t_err;
 
 
