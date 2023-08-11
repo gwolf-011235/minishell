@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 21:45:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 11:16:06 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 14:41:45 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,15 @@
  * @brief Enum of different types that can be assigned to tokens
  *
  * @param ARG		Any string that is not connected to redirects, piping or newlines.
+ * @param ASSIGN	A variable assignment with valid key name.
  * @param INFILE	Redirect evoking an infile.
  * @param HEREDOC	Redirect evoking a heredoc.
  * @param OUTFILE	Redirect evoking an outfile.
  * @param APPEND	Redirect evoking an outfile in append mode.
  * @param PIPE		Char indicating piping of commands.
- * @param Newline	Char indicating end of a command.
+ * @param NEWL		Char indicating end of a command.
+ * @param AMBIGUOUS	After expand no file was left. Redirection fails.
+ * @param DELETE	After expand no token left. Node can be deleted.
  */
 typedef enum e_type
 {
