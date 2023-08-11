@@ -6,10 +6,14 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 11:18:26 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 15:38:33 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file expand.c
+ * @brief Functions to exec different expansions depending on token type.
+ */
 #include "mod_expand.h"
 
 /**
@@ -51,6 +55,15 @@ t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Expands token after HEREDOC = delim.
+ *
+ * Move forward a node.
+ * Init tracker with ft_init_tracker().
+ * Removes quotes of heredoc delim.
+ * @param list Pointer to HEREDOC node.
+ * @return t_err SUCCESS
+ */
 t_err	ft_expand_heredoc(t_tkn_list **list)
 {
 	t_track	input;
@@ -72,6 +85,18 @@ t_err	ft_expand_heredoc(t_tkn_list **list)
 	return (err);
 }
 
+/**
+ * @brief Expands token after REDIRECT = Infile, Outfile
+ *
+ * Move forward a node.
+ * Init tracker with ft_init_tracker().
+ * Expand and quote removal with ft_expander_full().
+ * If expanded token is nothing and was not quoted, change type of the
+ * redirect node (previous one) to AMBIGUOUS.
+ * @param list Pointer to REDIRECT node.
+ * @param symtab Environment.
+ * @return t_err SUCCESS, ERR_MALLOC
+ */
 t_err	ft_expand_redirect(t_tkn_list **list, t_hashtable *symtab)
 {
 	t_track	input;
@@ -88,6 +113,16 @@ t_err	ft_expand_redirect(t_tkn_list **list, t_hashtable *symtab)
 	return (err);
 }
 
+/**
+ * @brief Expands ASSIGN token.
+ *
+ * Init tracker with ft_init_tracker().
+ * Expand and quote removal with ft_expander_full().
+ * Set type to ARG to not coonfuse parser.
+ * @param list Pointer to ASSIGN node.
+ * @param symtab Environment.
+ * @return t_err SUCCESS, ERR_MALLOC
+ */
 t_err	ft_expand_assign(t_tkn_list **list, t_hashtable *symtab)
 {
 	t_track	input;
@@ -102,6 +137,19 @@ t_err	ft_expand_assign(t_tkn_list **list, t_hashtable *symtab)
 	return (err);
 }
 
+/**
+ * @brief Expands ARG token.
+ *
+ * Init tracker with ft_init_tracker().
+ * Expand and quote removal with special ft_expander_arg().
+ * If expansion on unquoted var: check with ft_field_split() if node
+ * has to be split. If ft_field_split() fires it resets the tracker to the last
+ * node of the split to continue expansion.
+ * If expanded node is empty, and was no quotes found mark it as DELETE.
+ * @param list Pointer to ARG token.
+ * @param symtab Environment.
+ * @return t_err SUCCESS, ERR_MALLOC
+ */
 t_err	ft_expand_arg(t_tkn_list **list, t_hashtable *symtab)
 {
 	t_track	input;
@@ -114,7 +162,7 @@ t_err	ft_expand_arg(t_tkn_list **list, t_hashtable *symtab)
 		if (err != SUCCESS)
 			return (err);
 		(*list)->content = input.str;
-		if (input.last_expand_len > 0 && !input.quoted && input.expanded)
+		if (input.last_expand_len > 0 && !input.quoted)
 		{
 			err = ft_field_split(&input, list);
 			if (err != SUCCESS && err != ERR_NOSPLIT)

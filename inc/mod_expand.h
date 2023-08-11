@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 11:44:54 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 15:43:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_track {
 	char	*str;
 	size_t	pos;
 	bool	quoted;
-	bool	expanded;
 	int		last_expand_len;
 	bool	found_quote;
 }	t_track;

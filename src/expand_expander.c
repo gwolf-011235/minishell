@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 11:58:54 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 15:38:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_err	ft_expander_arg(t_track *input, t_hashtable *symtab)
 
 	while (input->str[input->pos])
 	{
+		input->last_expand_len= 0;
 		if (input->str[input->pos] == '\'' && !input->quoted)
 			err = ft_rm_single_quote(input);
 		else if (input->str[input->pos] == '"')
@@ -67,7 +68,7 @@ t_err	ft_expander_arg(t_track *input, t_hashtable *symtab)
 		else if (input->str[input->pos] == '$')
 		{
 			err = ft_expand_var(input, symtab);
-			if (input->expanded && !input->quoted)
+			if (input->last_expand_len > 0 && !input->quoted)
 				break ;
 		}
 		else
