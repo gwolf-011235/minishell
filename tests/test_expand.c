@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 08:58:42 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/09 18:40:34 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 10:11:20 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,17 @@ void	test_expand_list(void)
 	ft_hashtable_insert(g_symtab, "TEST=USER    SPACEMAN", 4);
 	ft_hashtable_insert(g_symtab, "A=at -e", 1);
 	ft_hashtable_insert(g_symtab, "LOGFILE=/usr/log/logfile.txt", 7);
-	exec_expand_tkn_lst("Simple var expand", "Hello $TEST");
-	exec_expand_tkn_lst("Simple heredoc quote removal", "<< 'hello' cat");
-	exec_expand_tkn_lst("Simple redirect expand", "echo blub > $NOEXIST");
+	exec_expand_tkn_lst("Heredoc quote removal", "<< 'hello' cat");
+	exec_expand_tkn_lst("Redirect expand", "echo blub > $TEST");
+	exec_expand_tkn_lst("Redirect Ambiguous", "echo blub > $NOEXIST");
+	exec_expand_tkn_lst("Redirect Empty string", "echo blub > \"$NOEXIST\"");
+	exec_expand_tkn_lst("Assign expand", "VAR=$TEST");
+	exec_expand_tkn_lst("Assign no exist", "VAR=$NOEXIST");
+	exec_expand_tkn_lst("Assign in heredoc", "<< VAR=$TEST");
+	exec_expand_tkn_lst("Arg, Assign, Assign", "export VAR=$TEST _VAR2=String");
+	exec_expand_tkn_lst("Assign, Arg, Assign", "VAR=$TEST export _VAR2=String");
+	exec_expand_tkn_lst("Var expand", "Hello $TEST");
+	exec_expand_tkn_lst("Var no exist", "$NOEXIST");
+	exec_expand_tkn_lst("Var multiple expand", "Hello$TEST\"$NOEXIST\"yada\"   \"sisi");
 	exec_expand_tkn_lst("Heredoc, redirect and var", "<< 'never   stop' c$A > $LOGFILE");
-	exec_expand_tkn_lst("Assignment", "VAR=$TEST");
 }
