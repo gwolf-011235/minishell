@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 10:20:55 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 23:47:50 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 /**
  * @brief Driver function to execute list of cmds.
- * 
+ *
  * Index the list of cmds.
  * If heredocs are present in cmd, they are opened
  * and take input from stdin. In case a heredoc is the
@@ -52,16 +52,19 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
 	err = ft_get_path(data->envp, &paths, &empty_path);
 	if (err == ERR_MALLOC)
 		return (err);
-	if (cmd->next == NULL)
-		err = ft_execute_scmd(cmd, paths, data, empty_path);
-	else
-		err = ft_execute_pcmds(cmd, paths, data, empty_path);
+	if (cmd->args)
+	{
+		if (cmd->next == NULL)
+			err = ft_execute_scmd(cmd, paths, data, empty_path);
+		else
+			err = ft_execute_pcmds(cmd, paths, data, empty_path);
+	}
 	return (err);
 }
 
 /**
  * @brief Executes single cmd provided.
- * 
+ *
  * @param cmd 			Cmd to be processed.
  * @param paths			String array of all system bin paths.
  * @param data			Data struct containing the env.
@@ -84,7 +87,7 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 
 /**
  * @brief Executes list of cmds provided.
- * 
+ *
  * Iterate through the cmd list:
  * 	Check for built-ins.
  * 	If yes, execute built-in and move onto next cmd.
@@ -128,7 +131,7 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 
 /**
  * @brief Decide program behaviour depending on err.
- * 
+ *
  * Output error message if command was not found.
  * On success, create child process to execute cmd.
  * @param cmd 		Current cmd being processed.
