@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_fill_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/06 23:18:47 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 19:07:42 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 /**
  * @brief Open file and save fd as fd_in.
- * 
+ *
  * @param lst 		List of token.
  * @param new 		New cmd to be filled.
- * @return t_err 	ERR_BAD_FD, ERR_CLOSE, SUCCESS
+ * @return t_err 	ERR_OPEN, ERR_CLOSE, SUCCESS
  */
 t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 {
@@ -37,7 +37,7 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 			return (ERR_CLOSE);
 	fd_in = open(tmp->content, O_RDONLY);
 	if (fd_in == -1)
-		return (ERR_BAD_FD);
+		return (ERR_OPEN);
 	new->fd_in = fd_in;
 	*lst = tmp;
 	return (SUCCESS);
@@ -45,7 +45,7 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 
 /**
  * @brief Save token as delimiter string.
- * 
+ *
  * If no memory space is allocated for delimiters, return.
  * In case an infile has been opened before, close the fd.
  * @param lst 		List of token.
@@ -76,12 +76,12 @@ t_err	ft_save_heredoc(t_tkn_list **lst, t_cmd *new)
 
 /**
  * @brief Open file and save fd as fd_out.
- * 
+ *
  * If append bool is true, open file in append mode.
  * @param lst 		List of token.
  * @param new 		New cmd to be filled.
  * @param append	Bool to indicate if append mode is required.
- * @return t_err 	ERR_BAD_FD, SUCCESS
+ * @return t_err 	ERR_OPEN, SUCCESS
  */
 t_err	ft_save_outfile(t_tkn_list **lst, t_cmd *new, bool append)
 {
@@ -99,7 +99,7 @@ t_err	ft_save_outfile(t_tkn_list **lst, t_cmd *new, bool append)
 	else
 		fd_out = open(tmp->content, O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (fd_out == -1)
-		return (ERR_BAD_FD);
+		return (ERR_OPEN);
 	new->fd_out = fd_out;
 	if (append)
 		new->append = 1;
@@ -111,7 +111,7 @@ t_err	ft_save_outfile(t_tkn_list **lst, t_cmd *new, bool append)
 
 /**
  * @brief 		Save token into args string array.
- * 
+ *
  * After successful save, increase arg position to
  * allow next arg to be saved in the right position.
  * If there is no args string array, just return.

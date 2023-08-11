@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 12:55:35 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 19:07:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef enum e_error {
 	ERR_SYNTAX = 2, ///< Syntax error with quotes, pipes or redirect.
 	ERR_NOT_FOUND, ///< If a search failed.
 	ERR_NOEXPAND, ///< Expansion of a token failed.
-	ERR_BAD_FD,	///< While opening a file, a bad file descriptor was attributed.
 	ERR_CLOSE, ///< Closing fd failed.
 	ERR_ARGCOUNT, ///< Too many arguments where counted.
 	ERR_CHDIR_FAIL, ///< function chdir() failed.
