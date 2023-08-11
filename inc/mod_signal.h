@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:59:36 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/22 17:18:45 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 16:09:00 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 # include "minishell_error.h"
 # include "libft.h"
+
+extern __sig_atomic_t	g_status;
 
 typedef enum e_state {
 	SIG_STD,
