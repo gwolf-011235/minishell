@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 17:12:35 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 19:27:38 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,42 @@ t_err	ft_expander_arg(t_track *input, t_hashtable *symtab, t_type type)
 		if (err != SUCCESS && err != ERR_NOEXPAND)
 			return (err);
 	}
+	return (SUCCESS);
+}
+
+/**
+ * @brief Remove single quotes.
+ *
+ * Remove found single quote with ft_eat_char().
+ * Jump over quoted part, searching for the second single.
+ * Remove the second single quote.
+ * @param input Pointer to tracker.
+ * @return t_err SUCCESS
+ */
+t_err	ft_rm_single_quote(t_track *input)
+{
+	ft_eat_char(input);
+	while (input->str[input->pos] != '\'')
+		input->pos++;
+	ft_eat_char(input);
+	input->found_quote = true;
+	return (SUCCESS);
+}
+
+/**
+ * @brief Remove double quotes.
+ *
+ * Remove found double quote with ft_eat_char().
+ * Switch bool in_quotes on/off.
+ * This way we know if we are in double quotes or not.
+ * The next time we see a double quote the switch gets flipped again.
+ * @param input Pointer to tracker.
+ * @return t_err SUCCESS.
+ */
+t_err	ft_rm_double_quote(t_track *input)
+{
+	ft_eat_char(input);
+	input->quoted = !(input->quoted);
+	input->found_quote = true;
 	return (SUCCESS);
 }

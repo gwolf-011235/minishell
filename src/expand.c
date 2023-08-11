@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 18:33:19 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 19:25:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,19 @@ t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table)
 t_err	ft_expand_heredoc(t_tkn_list **list)
 {
 	t_track	input;
-	t_err	err;
 
 	*list = (*list)->next;
 	ft_init_tracker(&input, (*list)->content);
 	while (input.str[input.pos])
 	{
 		if (input.str[input.pos] == '\'' && !input.quoted)
-			err = ft_rm_single_quote(&input);
+			ft_rm_single_quote(&input);
 		else if (input.str[input.pos] == '"')
-			err = ft_rm_double_quote(&input);
+			ft_rm_double_quote(&input);
 		else
-			err = ft_move_tracker(&input);
-		if (err != SUCCESS)
-			return (err);
+			ft_move_tracker(&input);
 	}
-	return (err);
+	return (SUCCESS);
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:57 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 11:47:27 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 19:21:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,12 @@ t_err	ft_split_node(t_track *input, t_tkn_list **cur_node, t_buf *buf)
 /**
  * @brief Tokenise a string while field split.
  *
- * Based on ft_tokenise().
- * Uses partition_two() to fill buffer.
+ * Based on ft_tokenise(), adapted for field split.
+ * Uses partition_fs() to fill buffer.
  * Creates a new token with ft_create_tok().
+ * If field splitting is at end of expand_len (src_>cur_pos == src_buf_size) and
+ * after the expansion are chars, it gets copied into buffer with ft_buf_strlcpy()
+ * before last token is created.
  * @param src The string to tokenize.
  * @param token Where to save the token.
  * @param buf A pre malloced buffer.

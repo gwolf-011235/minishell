@@ -12,6 +12,7 @@
 		"string": "c",
 		"string_view": "c",
 		"mod_expand.h": "c",
-		"minishell_config.h": "c"
+		"minishell_config.h": "c",
+		"mod_prompt.h": "c"
 	}
 }
