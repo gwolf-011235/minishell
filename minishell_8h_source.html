@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('minishell_8h_source.html',''); initRes
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*   By: sqiu &lt;sqiu@student.42vienna.com&gt;           +#+  +:+       +#+        */</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">/*                                                +#+#+#+#+#+   +#+           */</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">/*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/07/21 17:24:01 by sqiu             ###   ########.fr       */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/08/11 10:05:10 by sqiu             ###   ########.fr       */</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/*                                                                            */</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* ************************************************************************** */</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
@@ -123,24 +123,26 @@ $(document).ready(function(){initNavTree('minishell_8h_source.html',''); initRes
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">//MODULE ENV</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="minishell_8h.html#abf61e420e8151a3154214b266499b6b9">ft_env_setup</a>(<a class="code" href="structs__hashtable.html">t_hashtable</a> **env_table);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">//MODULE PROMPT</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="minishell_8h.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">ft_prompt_create</a>(<a class="code" href="structs__hashtable.html">t_hashtable</a> *sym_tab,</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordtype">char</span> **prompt, <span class="keywordtype">char</span> *ps, <span class="keywordtype">char</span> *std);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">// MODULE HANDLE INPUT</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_handle_input(<span class="keywordtype">char</span> *input);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">//exit_failure.c</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">void</span>    ft_exit_failure(<a class="code" href="structs__data.html">t_data</a> *data, <a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> exit_code);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="minishell_8h.html#a855a4925df79141d067f1dac75b2a0e3">ft_envp_create</a>(<a class="code" href="structs__hashtable.html">t_hashtable</a> *ht, <span class="keywordtype">char</span> ***envp);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">//MODULE PROMPT</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="minishell_8h.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">ft_prompt_create</a>(<a class="code" href="structs__hashtable.html">t_hashtable</a> *sym_tab,</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordtype">char</span> **prompt, <span class="keywordtype">char</span> *ps, <span class="keywordtype">char</span> *std);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">// MODULE HANDLE INPUT</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_handle_input(<span class="keywordtype">char</span> *input, <a class="code" href="structs__data.html">t_data</a> *data);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">//exit_failure.c</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">void</span>    ft_exit_failure(<a class="code" href="structs__data.html">t_data</a> *data, <a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> exit_code);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="ahashtable_8h_html"><div class="ttname"><a href="hashtable_8h.html">hashtable.h</a></div><div class="ttdoc">Header for hashtable stuff.</div></div>
 <div class="ttc" id="aminishell_8h_html_a1dd0a4fdc3f5aef6997d3b8f6d68f39d"><div class="ttname"><a href="minishell_8h.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">ft_prompt_create</a></div><div class="ttdeci">t_err ft_prompt_create(t_hashtable *sym_tab, char **prompt, char *ps, char *std)</div><div class="ttdoc">Create a prompt string which gets expanded.</div><div class="ttdef"><b>Definition:</b> prompt.c:180</div></div>
+<div class="ttc" id="aminishell_8h_html_a855a4925df79141d067f1dac75b2a0e3"><div class="ttname"><a href="minishell_8h.html#a855a4925df79141d067f1dac75b2a0e3">ft_envp_create</a></div><div class="ttdeci">t_err ft_envp_create(t_hashtable *ht, char ***envp)</div><div class="ttdoc">Malloc a NULL-terminated envp.</div><div class="ttdef"><b>Definition:</b> env_envp.c:59</div></div>
 <div class="ttc" id="aminishell_8h_html_abf61e420e8151a3154214b266499b6b9"><div class="ttname"><a href="minishell_8h.html#abf61e420e8151a3154214b266499b6b9">ft_env_setup</a></div><div class="ttdeci">t_err ft_env_setup(t_hashtable **env_table)</div><div class="ttdoc">Creates a env_table and imports env. If no PWD it creates one.</div><div class="ttdef"><b>Definition:</b> env_setup.c:31</div></div>
 <div class="ttc" id="aminishell__error_8h_html"><div class="ttname"><a href="minishell__error_8h.html">minishell_error.h</a></div><div class="ttdoc">Header to store error codes.</div></div>
 <div class="ttc" id="aminishell__error_8h_html_ab40f6b0320b416162d7f6d5eed804232"><div class="ttname"><a href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a></div><div class="ttdeci">enum e_error t_err</div><div class="ttdoc">Enum, which contains all error codes.</div></div>
-<div class="ttc" id="astructs__data_html"><div class="ttname"><a href="structs__data.html">s_data</a></div><div class="ttdoc">Overarching struct to hold all necessarry data.</div><div class="ttdef"><b>Definition:</b> minishell_struct.h:53</div></div>
+<div class="ttc" id="astructs__data_html"><div class="ttname"><a href="structs__data.html">s_data</a></div><div class="ttdoc">Overarching struct to hold all necessarry data.</div><div class="ttdef"><b>Definition:</b> minishell_struct.h:54</div></div>
 <div class="ttc" id="astructs__hashtable_html"><div class="ttname"><a href="structs__hashtable.html">s_hashtable</a></div><div class="ttdoc">Hashtable with external chaining.</div><div class="ttdef"><b>Definition:</b> hashtable.h:74</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

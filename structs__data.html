@@ -105,6 +105,9 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a620d7cca305e87ced02de1ebe2d1658a"><td class="memItemLeft" align="right" valign="top"><a id="a620d7cca305e87ced02de1ebe2d1658a"></a>
 <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>env_table</b></td></tr>
 <tr class="separator:a620d7cca305e87ced02de1ebe2d1658a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19734b3262e10565eaf5ceb779a2af0f"><td class="memItemLeft" align="right" valign="top"><a id="a19734b3262e10565eaf5ceb779a2af0f"></a>
+char **&#160;</td><td class="memItemRight" valign="bottom"><b>envp</b></td></tr>
+<tr class="separator:a19734b3262e10565eaf5ceb779a2af0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6068d9c64acbfd51c0f3910398d1dd25"><td class="memItemLeft" align="right" valign="top"><a id="a6068d9c64acbfd51c0f3910398d1dd25"></a>
 <a class="el" href="structs__checks.html">t_checks</a>&#160;</td><td class="memItemRight" valign="bottom"><b>checks</b></td></tr>
 <tr class="separator:a6068d9c64acbfd51c0f3910398d1dd25"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,6 +129,7 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><b>prompt2</b></td></t
 <p>This struct will be passed around to give access to several needed var in different programm stages. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">env_table</td><td>Pointer to the env hashtable. </td></tr>
+    <tr><td class="paramname">envp</td><td>String array containing the environment. </td></tr>
     <tr><td class="paramname">checks</td><td>Struct with some flags. </td></tr>
     <tr><td class="paramname">err</td><td>Can hold an error code if data is available - maybe del. </td></tr>
     <tr><td class="paramname">token</td><td>Struct containing the current token and its size. </td></tr>

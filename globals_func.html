@@ -121,11 +121,32 @@ $(document).ready(function(){initNavTree('globals_func.html',''); initResizable(
 <li>ft_check_and_update_env()
 : <a class="el" href="builtin__export_8c.html#adccbbe9e617944ad0407a0a1871843a9">builtin_export.c</a>
 </li>
+<li>ft_check_builtin()
+: <a class="el" href="executor__builtin_8c.html#a5f054ad7b5add677f3e281846c700420">executor_builtin.c</a>
+</li>
+<li>ft_check_cmd_access()
+: <a class="el" href="executor__utils_8c.html#a42258eed5bd881c611e94a95a12940e4">executor_utils.c</a>
+</li>
 <li>ft_check_double_redirect()
 : <a class="el" href="lexer__tok__utils_8c.html#a9f51cbe5cbae67cee5a0d7b0334ccc51">lexer_tok_utils.c</a>
 </li>
+<li>ft_check_empty_path()
+: <a class="el" href="executor__utils2_8c.html#a990ed4560a78b275bd27a572857ef9dd">executor_utils2.c</a>
+</li>
+<li>ft_choose_builtin()
+: <a class="el" href="executor__builtin_8c.html#a3e48a950e0b7f67c0522bcdfc642916a">executor_builtin.c</a>
+</li>
+<li>ft_cleanup_cmd()
+: <a class="el" href="executor__cleanup_8c.html#ac5eb0f5813c93dc0833f5cf15fc2964c">executor_cleanup.c</a>
+</li>
+<li>ft_close()
+: <a class="el" href="executor__cleanup_8c.html#a8be725a4aa7e37ddc004c18c587e8818">executor_cleanup.c</a>
+</li>
 <li>ft_count_str()
 : <a class="el" href="parser__utils_8c.html#ae6edd1a07303046258611de33cd205b7">parser_utils.c</a>
+</li>
+<li>ft_create_child()
+: <a class="el" href="executor__create__child_8c.html#aaed9d1128f64e514ff5e5bbd1d5dbd11">executor_create_child.c</a>
 </li>
 <li>ft_create_cmd()
 : <a class="el" href="parser_8c.html#a389d091b63d457e7c80cc2c8812c9fa8">parser.c</a>
@@ -136,8 +157,14 @@ $(document).ready(function(){initNavTree('globals_func.html',''); initResizable(
 <li>ft_create_env_shlvl()
 : <a class="el" href="env__shlvl_8c.html#a9ecd05fc9d8802e1a313d6e38ca48f61">env_shlvl.c</a>
 </li>
+<li>ft_create_heredoc()
+: <a class="el" href="executor__heredoc_8c.html#a6ddd38cf4b3221e1319b33832eb9e6f8">executor_heredoc.c</a>
+</li>
 <li>ft_create_hostname()
 : <a class="el" href="prompt__replace__h_8c.html#aa3d740596b18c224f5f533484898afdb">prompt_replace_h.c</a>
+</li>
+<li>ft_create_pipes()
+: <a class="el" href="executor__utils2_8c.html#af5621d3971addb706e7d013c9bc5bd3c">executor_utils2.c</a>
 </li>
 <li>ft_create_pwd_value()
 : <a class="el" href="env__pwd_8c.html#a90aa40452a5af9eec0b7f887cee48b94">env_pwd.c</a>
@@ -165,13 +192,26 @@ $(document).ready(function(){initNavTree('globals_func.html',''); initResizable(
 , <a class="el" href="env__setup_8c.html#abf61e420e8151a3154214b266499b6b9">env_setup.c</a>
 </li>
 <li>ft_envp_create()
-: <a class="el" href="env__envp_8c.html#a855a4925df79141d067f1dac75b2a0e3">env_envp.c</a>
+: <a class="el" href="minishell_8h.html#a855a4925df79141d067f1dac75b2a0e3">minishell.h</a>
+, <a class="el" href="env__envp_8c.html#a855a4925df79141d067f1dac75b2a0e3">env_envp.c</a>
 </li>
 <li>ft_envp_destroy()
 : <a class="el" href="env__envp_8c.html#a119c93151620b9c8ee199daaee94bde6">env_envp.c</a>
 </li>
 <li>ft_envp_fill()
 : <a class="el" href="env__envp_8c.html#a81da0d8dfe5b4fee7a8ce6671ef565b5">env_envp.c</a>
+</li>
+<li>ft_execute_builtin()
+: <a class="el" href="executor__builtin_8c.html#aeb151e62617e173b78fa41ec6fe7c4c0">executor_builtin.c</a>
+</li>
+<li>ft_execute_pcmds()
+: <a class="el" href="executor_8c.html#a36119e3027eba3c838e3bbf93d55b9f5">executor.c</a>
+</li>
+<li>ft_execute_scmd()
+: <a class="el" href="executor_8c.html#ab1c6b116f47a4c13327f4c394dd357df">executor.c</a>
+</li>
+<li>ft_executor()
+: <a class="el" href="executor_8c.html#a7693f5d2efe1c6b61c5469a75e9d519a">executor.c</a>
 </li>
 <li>ft_exit()
 : <a class="el" href="builtin__exit_8c.html#a9e6528bb69d7be6c060b7a8a512b0de2">builtin_exit.c</a>
@@ -200,6 +240,12 @@ $(document).ready(function(){initNavTree('globals_func.html',''); initResizable(
 <li>ft_export_error()
 : <a class="el" href="builtin__error_8c.html#a9eb2836d5650ecf25c3b86bdcc348007">builtin_error.c</a>
 </li>
+<li>ft_firstborn()
+: <a class="el" href="executor__child_8c.html#abc815b7a5ce64a976f77c0071189b24a">executor_child.c</a>
+</li>
+<li>ft_free_str_arr()
+: <a class="el" href="cleanup_8c.html#a263fef06d5a379d7b7a8098c877acdc2">cleanup.c</a>
+</li>
 <li>ft_free_tok()
 : <a class="el" href="lexer__tok__utils_8c.html#a8e343c99002752d806050e3a0b9c23ee">lexer_tok_utils.c</a>
 </li>
@@ -208,6 +254,9 @@ $(document).ready(function(){initNavTree('globals_func.html',''); initResizable(
 </li>
 <li>ft_get_env_keylen()
 : <a class="el" href="builtin__utils_8c.html#a2c16593ceab13f7fd70d26679c0d32b3">builtin_utils.c</a>
+</li>
+<li>ft_get_path()
+: <a class="el" href="executor__utils_8c.html#a97014cc998a30590f3d49c702de01851">executor_utils.c</a>
 </li>
 <li>ft_get_replace()
 : <a class="el" href="prompt_8c.html#aa87dca583890cfca26a5d2bb452886ba">prompt.c</a>
@@ -230,6 +279,9 @@ $(document).ready(function(){initNavTree('globals_func.html',''); initResizable(
 <li>ft_handle_double_quote()
 : <a class="el" href="expand_8c.html#af7ad8465d462dd84508f4bf67144e7b9">expand.c</a>
 </li>
+<li>ft_handle_heredoc()
+: <a class="el" href="executor__heredoc_8c.html#a3d5edc2b999b7d3d6c0f6bf796b101d6">executor_heredoc.c</a>
+</li>
 <li>ft_handle_single_quote()
 : <a class="el" href="expand_8c.html#a571ae371086b17fbfb80f4f9d02b1daf">expand.c</a>
 </li>
@@ -246,8 +298,8 @@ $(document).ready(function(){initNavTree('globals_func.html',''); initResizable(
 , <a class="el" href="hashtable__utils_8c.html#a7c91a2ec393664b5d7c0d79e563ff33c">hashtable_utils.c</a>
 </li>
 <li>ft_hashtable_destroy()
-: <a class="el" href="hashtable__generate_8c.html#a73387b5064ffe2aee0755ef13824885c">hashtable_generate.c</a>
-, <a class="el" href="hashtable_8h.html#a73387b5064ffe2aee0755ef13824885c">hashtable.h</a>
+: <a class="el" href="hashtable_8h.html#a73387b5064ffe2aee0755ef13824885c">hashtable.h</a>
+, <a class="el" href="hashtable__generate_8c.html#a73387b5064ffe2aee0755ef13824885c">hashtable_generate.c</a>
 </li>
 <li>ft_hashtable_index()
 : <a class="el" href="hashtable_8h.html#a2a3c7ee74c7a9df01dd0cf92c9d1991b">hashtable.h</a>
@@ -265,14 +317,26 @@ $(document).ready(function(){initNavTree('globals_func.html',''); initResizable(
 : <a class="el" href="hashtable_8h.html#a1ca2c65592970a45cca7385e295bdd06">hashtable.h</a>
 , <a class="el" href="hashtable__utils_8c.html#a1ca2c65592970a45cca7385e295bdd06">hashtable_utils.c</a>
 </li>
+<li>ft_heredoc_fate()
+: <a class="el" href="executor__heredoc_8c.html#a00bfc73cd9c98390a9f1b321786990f9">executor_heredoc.c</a>
+</li>
 <li>ft_import_environ()
 : <a class="el" href="env__setup_8c.html#abb93d044e7c1b23f9818493c386983ac">env_setup.c</a>
 </li>
 <li>ft_increment_shlvl()
 : <a class="el" href="env__shlvl_8c.html#a066e1f3688d1861f796118a8acd584c0">env_shlvl.c</a>
 </li>
+<li>ft_init_cmd()
+: <a class="el" href="parser__utils_8c.html#aaf4a69d569463440a9d034a5ec69b857">parser_utils.c</a>
+</li>
+<li>ft_init_exec()
+: <a class="el" href="executor__utils2_8c.html#ae58895337c7d6518f8de3c5d3ce401ee">executor_utils2.c</a>
+</li>
 <li>ft_init_partition()
 : <a class="el" href="lexer__tok_8c.html#a7d04e31225aa019b12684e6deda365fa">lexer_tok.c</a>
+</li>
+<li>ft_initiate_heredoc()
+: <a class="el" href="executor__heredoc_8c.html#aac2606006de366e42af5a8977fc9ac4c">executor_heredoc.c</a>
 </li>
 <li>ft_insert_env_pwd()
 : <a class="el" href="env__setup_8c.html#a229e8b9407ecd87f8bd9124a20e607c0">env_setup.c</a>
@@ -292,8 +356,17 @@ $(document).ready(function(){initNavTree('globals_func.html',''); initResizable(
 <li>ft_last_cmd()
 : <a class="el" href="parser__utils_8c.html#a080dddc8f44ae0c428a00f22b1397a9e">parser_utils.c</a>
 </li>
+<li>ft_lastborn()
+: <a class="el" href="executor__child_8c.html#a5d5b78de4be1a8f1a85eadab569ec8b6">executor_child.c</a>
+</li>
 <li>ft_lock_and_load_cmd()
 : <a class="el" href="parser_8c.html#adffc203ae5ea22399eefa1b3e11cc1b3">parser.c</a>
+</li>
+<li>ft_middle_child()
+: <a class="el" href="executor__child_8c.html#a94aaa22d8b90f659927d2423ee9854f1">executor_child.c</a>
+</li>
+<li>ft_name_heredoc()
+: <a class="el" href="executor__heredoc_8c.html#a01f2ee3dfc9428db442ee0c29d3aaee6">executor_heredoc.c</a>
 </li>
 <li>ft_next_char()
 : <a class="el" href="lexer__src_8c.html#a3151462151b37c9a72f166296840fe5e">lexer_src.c</a>
@@ -307,11 +380,20 @@ $(document).ready(function(){initNavTree('globals_func.html',''); initResizable(
 <li>ft_peek_char()
 : <a class="el" href="lexer__src_8c.html#a241f7b0e2c92574564b96addf86295d8">lexer_src.c</a>
 </li>
+<li>ft_plug_pipe()
+: <a class="el" href="executor__cleanup_8c.html#aee816fc19b106d7994fc55e60632b2c2">executor_cleanup.c</a>
+</li>
+<li>ft_prefix_path()
+: <a class="el" href="executor__utils_8c.html#adedf7bd06fca6787779d557424fb4c61">executor_utils.c</a>
+</li>
 <li>ft_pretty_print_envp()
 : <a class="el" href="builtin__export_8c.html#aaa80cb411c0643fc8fddc05e0950901b">builtin_export.c</a>
 </li>
 <li>ft_print_env_sorted()
 : <a class="el" href="builtin__export_8c.html#a6d247d0a5f2003235b1cbc7d884602a1">builtin_export.c</a>
+</li>
+<li>ft_process_cmd()
+: <a class="el" href="executor_8c.html#ad9927302496e8c6c67aeb9c708c67cff">executor.c</a>
 </li>
 <li>ft_prompt_create()
 : <a class="el" href="minishell_8h.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">minishell.h</a>
@@ -326,8 +408,20 @@ $(document).ready(function(){initNavTree('globals_func.html',''); initResizable(
 <li>ft_quicksort_strings()
 : <a class="el" href="builtin__utils_8c.html#a143c65876a247de8ba18f7024c3d326c">builtin_utils.c</a>
 </li>
+<li>ft_raise_first()
+: <a class="el" href="executor__create__child_8c.html#a0c2f492aec667c26bb71a1ec49148c97">executor_create_child.c</a>
+</li>
+<li>ft_raise_last()
+: <a class="el" href="executor__create__child_8c.html#a838ea003e32bd3173c53e257924f40ab">executor_create_child.c</a>
+</li>
+<li>ft_raise_middle()
+: <a class="el" href="executor__create__child_8c.html#a3b9d65cc664da5c1685bec0662467839">executor_create_child.c</a>
+</li>
 <li>ft_replace_empty()
 : <a class="el" href="prompt__replace__small_8c.html#a4c49b7aaef5bca6dde15c294733417fe">prompt_replace_small.c</a>
+</li>
+<li>ft_replace_fd()
+: <a class="el" href="executor__utils_8c.html#ab11cfdb7a4da5f9fe4dde2a799e9fac1">executor_utils.c</a>
 </li>
 <li>ft_replace_h()
 : <a class="el" href="prompt__replace__h_8c.html#a1d00e521724dd09342be363631a9b961">prompt_replace_h.c</a>
@@ -392,11 +486,17 @@ $(document).ready(function(){initNavTree('globals_func.html',''); initResizable(
 <li>ft_unget_char()
 : <a class="el" href="lexer__src_8c.html#a2afc49cb9da9fa8bfb4219f85acf7d5d">lexer_src.c</a>
 </li>
+<li>ft_unlink_heredoc()
+: <a class="el" href="executor__cleanup_8c.html#a704f2dd231283f917ff32d07ebdc85d6">executor_cleanup.c</a>
+</li>
 <li>ft_unset()
 : <a class="el" href="builtin__unset_8c.html#a849e8f851d0d61350cec85ea7e321c11">builtin_unset.c</a>
 </li>
 <li>ft_update_env_var()
 : <a class="el" href="builtin__utils_8c.html#a548d2d08321de54eda700863336b16f2">builtin_utils.c</a>
+</li>
+<li>ft_wait_for_babies()
+: <a class="el" href="executor__utils_8c.html#aeb6def03ab4dba3883d949cd7880e459">executor_utils.c</a>
 </li>
 <li>ft_write_args()
 : <a class="el" href="builtin__echo_8c.html#a748ebcdefa436bb8fb9aa7b81a007550">builtin_echo.c</a>
