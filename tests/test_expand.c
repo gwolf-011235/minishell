@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 08:58:42 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 15:42:51 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 16:11:15 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,30 @@ void	test_expand_list(void)
 	ft_hashtable_insert(g_symtab, "TEST=USER    SPACEMAN", 4);
 	ft_hashtable_insert(g_symtab, "A=at -e", 1);
 	ft_hashtable_insert(g_symtab, "LOGFILE=/usr/log/logfile.txt", 7);
+	ft_hashtable_insert(g_symtab, "HOME=/usr/home", 4);
+	//HEREDOC
 	exec_expand_tkn_lst("Heredoc quote removal", "<< 'hello' cat");
+	//REDIRECT
 	exec_expand_tkn_lst("Redirect expand", "echo blub > $TEST");
 	exec_expand_tkn_lst("Redirect Ambiguous", "echo blub > $NOEXIST");
 	exec_expand_tkn_lst("Redirect Empty string", "echo blub > \"$NOEXIST\"");
+	exec_expand_tkn_lst("Redirect tilde start", "echo blub > ~/dir/log");
+	exec_expand_tkn_lst("Redirect tilde mid", "echo blub > no/expand/pls/~/dir/log");
+	//ASSIGN
 	exec_expand_tkn_lst("Assign expand", "VAR=$TEST");
 	exec_expand_tkn_lst("Assign no exist", "VAR=$NOEXIST");
 	exec_expand_tkn_lst("Assign in heredoc", "<< VAR=$TEST");
 	exec_expand_tkn_lst("Arg, Assign, Assign", "export VAR=$TEST _VAR2=String");
 	exec_expand_tkn_lst("Assign, Arg, Assign", "VAR=$TEST export _VAR2=String");
+	exec_expand_tkn_lst("Assign with tilde", "VAR=~/test");
+	exec_expand_tkn_lst("Assign with tilde mid", "VAR=no/expand/~/test");
+	//VAR
 	exec_expand_tkn_lst("Var expand", "Hello $TEST");
 	exec_expand_tkn_lst("Var no exist", "$NOEXIST");
 	exec_expand_tkn_lst("Var multiple expand", "Hello$TEST\"$NOEXIST\"yada\"   \"sisi");
-	exec_expand_tkn_lst("Heredoc, redirect and var", "<< 'never   stop' c$A > $LOGFILE");
 	exec_expand_tkn_lst("Var Expand then no expand", "\"$TEST\"$1");
 	exec_expand_tkn_lst("Var expand, then empty then var", "\"$TEST\"$NOEXIST$TEST");
+	exec_expand_tkn_lst("Var with tilde", "Hello ~");
+	//Multiple
+	exec_expand_tkn_lst("Heredoc, redirect and var", "<< 'never   stop' c$A > $LOGFILE");
 }
