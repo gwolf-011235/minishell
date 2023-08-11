@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:57 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 22:34:59 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 11:47:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_err	ft_field_split(t_track *input, t_tkn_list **cur_node)
 
 	tmp = *cur_node;
 	words = 0;
-	ft_count_expand_words(input, &words);
+	ft_count_expand_words(input, &words, input->last_expand_len);
 	if (words == 1)
 		return (ERR_NOSPLIT);
 	else
@@ -70,17 +70,18 @@ t_err	ft_field_split(t_track *input, t_tkn_list **cur_node)
  * @param words Pointer to where to save count:
  * @return t_err SUCCESS
  */
-t_err	ft_count_expand_words(t_track *input, size_t *words)
+t_err	ft_count_expand_words(t_track *input, size_t *words,
+			int last_expand_len)
 {
-	int	last_expand_len;
-
-	last_expand_len = input->last_expand_len;
 	input->pos = input->pos - input->last_expand_len;
 	if (input->pos != 0)
 	{
 		*words = 1;
 		while (input->str[input->pos] && input->str[input->pos] != ' ')
+		{
 			(input->pos)++;
+			last_expand_len--;
+		}
 	}
 	while (input->str[input->pos] && last_expand_len--)
 	{
