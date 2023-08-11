@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 16:35:55 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 17:11:47 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,26 @@
 #include "mod_expand.h"
 
 /**
- * @brief Expand expressions received from token list.
+ * @brief Expand input received from token list.
  *
- * Go through the string and check for special chars.
- * Tilde: ft_expand_tilde().
- * $: ft_expand_var().
+ * Loop through string using tracker and check for special chars.
  * Single quote: ft_skip_single_quote().
  * Double quote: ft_skip_double_quote().
- *
- * @param expr The expression to be expanded.
+ * Tilde: ft_expand_tilde().
+ * $: ft_expand_var().
+ * Uses passed type to activate different functionalities:
+ * If type == ASSIGN additional tilde expand is checked:
+ * Tilde is only expanded at pos == 0. But ASSIGN expands tilde also if it is
+ * directly after the first '='. For this the complicated if condition checks
+ * (1) if type is ASSIGN
+ * (2) pos of first '=' found (which has to be after the var name, else it
+ * wouldn't be an ASSIGN) equals tilde pos -1.
+ * If type == ARG a break out of loop happens if the expansion wasn't quoted.
+ * This makes it possible to field split the expanded part.
+ * To ensure this works properly last_expanded_len is set to 0 every loop.
+ * @param input Pointer to tracker.
  * @param symtab The environment table
- * @param info Data for return code and shell name.
+ * @param type Type of the expanded node.
  * @return t_err SUCCESS, ERR_MALLOC
  */
 t_err	ft_expander_arg(t_track *input, t_hashtable *symtab, t_type type)
