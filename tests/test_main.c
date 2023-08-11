@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 11:12:48 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 11:16:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	test_print_t_type(t_type type)
 		str = "APPEND";
 	else if (type == PIPE)
 		str = "PIPE";
-	else if (type == NEW_LINE)
+	else if (type == NEWL)
 		str = "NEWLINE";
 	else if (type == AMBIGUOUS)
 		str = "AMBIGUOUS";

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 13:09:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/08 21:25:19 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 11:18:26 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	exec_ft_handle_arg(char *testname, char *str)
 	printf("Input: %s\n\n", str);
 	ft_lex_input(&g_head, str);
 	tmp = g_head;
-	ft_handle_arg(&tmp, g_symtab);
+	ft_expand_arg(&tmp, g_symtab);
 	g_head = ft_list_first(tmp);
 	test_print_tkn_list(g_head);
 	ft_free_lst(&g_head);
@@ -38,7 +38,7 @@ void	exec_ft_handle_heredoc(char *testname, char *str)
 	printf("Input: %s\n\n", str);
 	ft_lex_input(&g_head, str);
 	tmp = g_head;
-	ft_handle_heredoc(&tmp);
+	ft_expand_heredoc(&tmp);
 	g_head = ft_list_first(tmp);
 	test_print_tkn_list(g_head);
 	ft_free_lst(&g_head);
@@ -52,7 +52,7 @@ void	exec_ft_handle_redirect(char *testname, char *str)
 	printf("Input: %s\n\n", str);
 	ft_lex_input(&g_head, str);
 	tmp = g_head;
-	ft_handle_redirect(&tmp, g_symtab);
+	ft_expand_redirect(&tmp, g_symtab);
 	g_head = ft_list_first(tmp);
 	test_print_tkn_list(g_head);
 	ft_free_lst(&g_head);

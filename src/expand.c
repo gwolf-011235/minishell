@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/09 18:39:31 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 11:18:26 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table)
 	while (tmp)
 	{
 		if (tmp->type == INFILE || tmp->type == OUTFILE || tmp->type == APPEND)
-			err = ft_handle_redirect(&tmp, env_table);
+			err = ft_expand_redirect(&tmp, env_table);
 		else if (tmp->type == HEREDOC)
-			err = ft_handle_heredoc(&tmp);
+			err = ft_expand_heredoc(&tmp);
 		else if (tmp->type == ASSIGN)
-			err = ft_handle_assign(&tmp, env_table);
-		else if (tmp->type == PIPE || tmp->type == NEW_LINE)
+			err = ft_expand_assign(&tmp, env_table);
+		else if (tmp->type == PIPE || tmp->type == NEWL)
 			err = SUCCESS;
 		else
-			err = ft_handle_arg(&tmp, env_table);
+			err = ft_expand_arg(&tmp, env_table);
 		if (err != SUCCESS)
 			return (err);
 		if (tmp == NULL || tmp->next == NULL)
@@ -51,7 +51,7 @@ t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table)
 	return (SUCCESS);
 }
 
-t_err	ft_handle_heredoc(t_tkn_list **list)
+t_err	ft_expand_heredoc(t_tkn_list **list)
 {
 	t_track	input;
 	t_err	err;
@@ -72,7 +72,7 @@ t_err	ft_handle_heredoc(t_tkn_list **list)
 	return (err);
 }
 
-t_err	ft_handle_redirect(t_tkn_list **list, t_hashtable *symtab)
+t_err	ft_expand_redirect(t_tkn_list **list, t_hashtable *symtab)
 {
 	t_track	input;
 	t_err	err;
@@ -88,7 +88,7 @@ t_err	ft_handle_redirect(t_tkn_list **list, t_hashtable *symtab)
 	return (err);
 }
 
-t_err	ft_handle_assign(t_tkn_list **list, t_hashtable *symtab)
+t_err	ft_expand_assign(t_tkn_list **list, t_hashtable *symtab)
 {
 	t_track	input;
 	t_err	err;
@@ -102,7 +102,7 @@ t_err	ft_handle_assign(t_tkn_list **list, t_hashtable *symtab)
 	return (err);
 }
 
-t_err	ft_handle_arg(t_tkn_list **list, t_hashtable *symtab)
+t_err	ft_expand_arg(t_tkn_list **list, t_hashtable *symtab)
 {
 	t_track	input;
 	t_err	err;

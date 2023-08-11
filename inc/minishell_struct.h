@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:38:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 11:07:36 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 11:14:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 typedef struct s_data {
 	t_hashtable	*env_table;
 	char		**envp;
-	t_checks	checks;
 	t_err		err;
 	char		*prompt1;
 	char		*prompt2;

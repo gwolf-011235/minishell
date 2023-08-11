@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 11:08:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 11:15:29 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,45 +24,6 @@
 # include "stdbool.h"				/* required for booleans */
 
 /* ====== Structs ====== */
-
-/**
- * @brief Enum of different types that can be assigned to tokens
- *
- * @param ARG		Any string that is not connected to redirects, piping or newlines.
- * @param INFILE	Redirect evoking an infile.
- * @param HEREDOC	Redirect evoking a heredoc.
- * @param OUTFILE	Redirect evoking an outfile.
- * @param APPEND	Redirect evoking an outfile in append mode.
- * @param PIPE		Char indicating piping of commands.
- * @param Newline	Char indicating end of a command.
- */
-typedef enum e_type
-{
-	ARG,
-	INFILE,
-	HEREDOC,
-	OUTFILE,
-	APPEND,
-	PIPE,
-	NEWLINE
-}	t_type;
-
-/**
- * @brief List of token.
- *
- * Double-linked list of nodes that contain individual token strings. Each
- * node is connected to the previous and next node. The first node refers to
- * NUll as prev. The last node refers to NULL as next node.
- * @param content String containing token.
- */
-typedef struct s_tkn_list
-{
-	char				*content;
-	t_type				type;
-	struct s_tkn_list	*prev;
-	struct s_tkn_list	*next;
-}	t_tkn_list;
-
 
 /**
  * @brief Linked list of simple commands existing of token extracted from input.
