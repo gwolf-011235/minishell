@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:24:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 10:32:16 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 10:34:44 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ t_err	ft_create_pipes(t_cmd *cmd)
  * If PATH="", first condition returns true.
  * If no colon is inside PATH, there is only one path
  * and the check returns false.
+ * 
+ * Loop through the following:
+ * Find colon inside of PATH.
  * If a colon is followed by another colon or \0, the
  * check returns true, otherwise false.
  * @param path_str 	String of paths optionally separated by colons.
