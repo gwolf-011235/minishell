@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 21:43:46 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 22:07:01 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 18:38:56 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 /**
  * @brief Iterate to first node of given list.
  *
- * @param lst Pointer pointer to a list node.
- * @return t_err SUCCESS.
+ * @param lst Poi
+ * @return t_tkn_list* 	First node of list or NULL if empty.
  */
 t_tkn_list	*ft_list_first(t_tkn_list *cur_node)
 {

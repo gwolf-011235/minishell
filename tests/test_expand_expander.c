@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/09 18:06:40 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 18:34:41 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ extern char			*g_string;
 extern t_hashtable	*g_symtab;
 extern int			g_err_count;
 
-typedef t_err	(*funptr_expand_t)(t_track *input, t_hashtable *symtab);
+typedef t_err	(*funptr_expand_t)(t_track *input, t_hashtable *symtab, t_type type);
 
 int	exec_expand(char *testname, char *test, char *expect, funptr_expand_t funptr_expand)
 {
@@ -27,7 +27,7 @@ int	exec_expand(char *testname, char *test, char *expect, funptr_expand_t funptr
 	printf("TEST: %s\n", testname);
 	printf("String:\t|%s|\n", test);
 	ft_init_tracker(&input, ft_strdup(test));
-	funptr_expand(&input, g_symtab);
+	funptr_expand(&input, g_symtab, ARG);
 	printf("Result:\t|%s|\n", input.str);
 	if (!ft_strncmp(input.str, expect, ft_strlen(input.str)))
 	{

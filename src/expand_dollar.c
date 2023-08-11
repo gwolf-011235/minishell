@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_var.c                                       :+:      :+:    :+:   */
+/*   expand_dollar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 17:15:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 18:38:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ t_err	ft_expand_dollar(t_track *input, t_hashtable *symtab)
 }
 
 /**
- * @brief Handle the special variable $?
+ * @brief Handle the special variable '$?'
  *
+ * Variable '$?' expands to exit status of last exectued command.
+ * Uses global variable g_status.
  * @param var Used for var.len
  * @param replace Where to save replace string.
  * @return t_err SUCCESS, ERR_MALLOC.

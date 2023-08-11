@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 18:19:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 15:44:07 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 18:35:47 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_err	ft_init_tracker(t_track *input, char *str)
 /**
  * @brief Move tracker forward by one.
  *
- * Function only needed because of norminette.
  * @param input Pointer to tracker.
  * @return t_err SUCCESS
  */

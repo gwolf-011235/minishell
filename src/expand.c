@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 16:05:36 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 18:33:19 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table)
 			err = ft_expand_arg(&tmp, env_table);
 		if (err != SUCCESS)
 			return (err);
-		if (tmp == NULL || tmp->next == NULL)
+		if (tmp->next == NULL)
 			break ;
 		tmp = tmp->next;
 	}
