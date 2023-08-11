@@ -103,12 +103,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a1bcefcb15413e6efb9d3fe1cc3fd3496"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__utils_8c.html#a1bcefcb15413e6efb9d3fe1cc3fd3496">ft_skip_space</a> (<a class="el" href="structs__src.html">t_src</a> *src)</td></tr>
 <tr class="memdesc:a1bcefcb15413e6efb9d3fe1cc3fd3496"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skip all spaces and tabs in source string.  <a href="lexer__utils_8c.html#a1bcefcb15413e6efb9d3fe1cc3fd3496">More...</a><br /></td></tr>
 <tr class="separator:a1bcefcb15413e6efb9d3fe1cc3fd3496"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0c88035464da76fc04497d46480968c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__utils_8c.html#ae0c88035464da76fc04497d46480968c">ft_del_node</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> *lst)</td></tr>
-<tr class="memdesc:ae0c88035464da76fc04497d46480968c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete the content and the node itself.  <a href="lexer__utils_8c.html#ae0c88035464da76fc04497d46480968c">More...</a><br /></td></tr>
-<tr class="separator:ae0c88035464da76fc04497d46480968c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f3f746b4cc76d1cb870e96e534194ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structs__tkn__list.html">t_tkn_list</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__utils_8c.html#a1f3f746b4cc76d1cb870e96e534194ec">ft_last</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> *lst)</td></tr>
-<tr class="memdesc:a1f3f746b4cc76d1cb870e96e534194ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterate to last node of given list.  <a href="lexer__utils_8c.html#a1f3f746b4cc76d1cb870e96e534194ec">More...</a><br /></td></tr>
-<tr class="separator:a1f3f746b4cc76d1cb870e96e534194ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbf14becb6caefd8e522ad510eb8b3e9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__utils_8c.html#adbf14becb6caefd8e522ad510eb8b3e9">ft_is_env_assign</a> (char *str)</td></tr>
+<tr class="memdesc:adbf14becb6caefd8e522ad510eb8b3e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if string is a valid environment assignment.  <a href="lexer__utils_8c.html#adbf14becb6caefd8e522ad510eb8b3e9">More...</a><br /></td></tr>
+<tr class="separator:adbf14becb6caefd8e522ad510eb8b3e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac54bac510056809b9ec67c2a43c1c6a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__utils_8c.html#ac54bac510056809b9ec67c2a43c1c6a3">ft_assign_type</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> *lst)</td></tr>
 <tr class="memdesc:ac54bac510056809b9ec67c2a43c1c6a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns type to tokens.  <a href="lexer__utils_8c.html#ac54bac510056809b9ec67c2a43c1c6a3">More...</a><br /></td></tr>
 <tr class="separator:ac54bac510056809b9ec67c2a43c1c6a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,57 +139,32 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae0c88035464da76fc04497d46480968c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0c88035464da76fc04497d46480968c">&#9670;&nbsp;</a></span>ft_del_node()</h2>
+<a id="adbf14becb6caefd8e522ad510eb8b3e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbf14becb6caefd8e522ad510eb8b3e9">&#9670;&nbsp;</a></span>ft_is_env_assign()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ft_del_node </td>
+          <td class="memname">bool ft_is_env_assign </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structs__tkn__list.html">t_tkn_list</a> *&#160;</td>
-          <td class="paramname"><em>lst</em></td><td>)</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Delete the content and the node itself. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Checks if string is a valid environment assignment. </p>
+<p>First char has to be alphabetical or underscore. Following chars can also include numbers. Char after the variable key has to be '='. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lst</td><td>List containing the nodes to be deleted. </td></tr>
-    <tr><td class="paramname">del</td><td>Pointer to function to delete content of nodes. </td></tr>
+    <tr><td class="paramname">str</td><td>The string to check </td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a1f3f746b4cc76d1cb870e96e534194ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f3f746b4cc76d1cb870e96e534194ec">&#9670;&nbsp;</a></span>ft_last()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structs__tkn__list.html">t_tkn_list</a>* ft_last </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structs__tkn__list.html">t_tkn_list</a> *&#160;</td>
-          <td class="paramname"><em>lst</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Iterate to last node of given list. </p>
-<p>Returns 0 if list is empty. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">lst</td><td>List to be iterated through. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_tkn_list* Last node of list. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true Valid assignment. </dd>
+<dd>
+false Not an assignment. </dd></dl>
 
 </div>
 </div>

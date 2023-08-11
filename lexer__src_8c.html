@@ -107,8 +107,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a2afc49cb9da9fa8bfb4219f85acf7d5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Go back to previous character of source string.  <a href="lexer__src_8c.html#a2afc49cb9da9fa8bfb4219f85acf7d5d">More...</a><br /></td></tr>
 <tr class="separator:a2afc49cb9da9fa8bfb4219f85acf7d5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a241f7b0e2c92574564b96addf86295d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__src_8c.html#a241f7b0e2c92574564b96addf86295d8">ft_peek_char</a> (<a class="el" href="structs__src.html">t_src</a> *src, char *c)</td></tr>
-<tr class="memdesc:a241f7b0e2c92574564b96addf86295d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peek at next character. <br  />
-  <a href="lexer__src_8c.html#a241f7b0e2c92574564b96addf86295d8">More...</a><br /></td></tr>
+<tr class="memdesc:a241f7b0e2c92574564b96addf86295d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peek at next character.  <a href="lexer__src_8c.html#a241f7b0e2c92574564b96addf86295d8">More...</a><br /></td></tr>
 <tr class="separator:a241f7b0e2c92574564b96addf86295d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -148,7 +147,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_EMPTY </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_EMPTY, ERR_EOF </dd></dl>
 
 </div>
 </div>
@@ -178,8 +177,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Peek at next character. <br  />
- </p>
+<p>Peek at next character. </p>
 <p>Look at next character in source input string w/o actually changing the current position. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">src</td><td>Source structure. </td></tr>

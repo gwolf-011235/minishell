@@ -1,5 +1,7 @@
 var files_dup =
 [
+    [ "buffer.c", "buffer_8c.html", "buffer_8c" ],
+    [ "buffer.h", "buffer_8h_source.html", null ],
     [ "builtin_cd.c", "builtin__cd_8c.html", "builtin__cd_8c" ],
     [ "builtin_echo.c", "builtin__echo_8c.html", "builtin__echo_8c" ],
     [ "builtin_env.c", "builtin__env_8c.html", "builtin__env_8c" ],
@@ -24,8 +26,9 @@ var files_dup =
     [ "executor_utils2.c", "executor__utils2_8c.html", "executor__utils2_8c" ],
     [ "exit_failure.c", "exit__failure_8c.html", "exit__failure_8c" ],
     [ "expand.c", "expand_8c.html", "expand_8c" ],
+    [ "expand_field_split.c", "expand__field__split_8c.html", "expand__field__split_8c" ],
     [ "expand_tilde.c", "expand__tilde_8c.html", "expand__tilde_8c" ],
-    [ "expand_var.c", "expand__var_8c.html", "expand__var_8c" ],
+    [ "expand_utils.c", "expand__utils_8c.html", "expand__utils_8c" ],
     [ "handle_input.c", "handle__input_8c.html", "handle__input_8c" ],
     [ "hashtable.h", "hashtable_8h.html", "hashtable_8h" ],
     [ "hashtable_generate.c", "hashtable__generate_8c.html", "hashtable__generate_8c" ],
@@ -59,5 +62,9 @@ var files_dup =
     [ "prompt_replace_token.c", "prompt__replace__token_8c.html", "prompt__replace__token_8c" ],
     [ "prompt_replace_u.c", "prompt__replace__u_8c.html", "prompt__replace__u_8c" ],
     [ "prompt_replace_w.c", "prompt__replace__w_8c.html", "prompt__replace__w_8c" ],
-    [ "test.h", "test_8h_source.html", null ]
+    [ "test.h", "test_8h_source.html", null ],
+    [ "tkn_list.h", "tkn__list_8h_source.html", null ],
+    [ "tkn_list_create.c", "tkn__list__create_8c.html", "tkn__list__create_8c" ],
+    [ "tkn_list_delete.c", "tkn__list__delete_8c.html", "tkn__list__delete_8c" ],
+    [ "tkn_list_search.c", "tkn__list__search_8c.html", "tkn__list__search_8c" ]
 ];

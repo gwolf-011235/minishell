@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Minishell: s_checks Struct Reference</title>
+<title>Minishell: s_track Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('structs__checks.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('structs__track.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -91,30 +91,42 @@ $(document).ready(function(){initNavTree('structs__checks.html',''); initResizab
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">s_checks Struct Reference</div>  </div>
+<div class="title">s_track Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Flags which can be set to store some info.  
- <a href="structs__checks.html#details">More...</a></p>
+<p>Tracker struct.  
+ <a href="structs__track.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="minishell__struct_8h_source.html">minishell_struct.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="mod__expand_8h_source.html">mod_expand.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a3dc36cba16547cc3c63fca887138cecb"><td class="memItemLeft" align="right" valign="top"><a id="a3dc36cba16547cc3c63fca887138cecb"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>no_env</b></td></tr>
-<tr class="separator:a3dc36cba16547cc3c63fca887138cecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af314dc7c8d072da180a9433e78335b4a"><td class="memItemLeft" align="right" valign="top"><a id="af314dc7c8d072da180a9433e78335b4a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>no_pwd</b></td></tr>
-<tr class="separator:af314dc7c8d072da180a9433e78335b4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab50d783982593ef993ea0b68f7ad8b80"><td class="memItemLeft" align="right" valign="top"><a id="ab50d783982593ef993ea0b68f7ad8b80"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><b>str</b></td></tr>
+<tr class="separator:ab50d783982593ef993ea0b68f7ad8b80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5438a597ee291f523ae04a9fe355924f"><td class="memItemLeft" align="right" valign="top"><a id="a5438a597ee291f523ae04a9fe355924f"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>pos</b></td></tr>
+<tr class="separator:a5438a597ee291f523ae04a9fe355924f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d1ca0934fbcd65975742949a31cc8a1"><td class="memItemLeft" align="right" valign="top"><a id="a9d1ca0934fbcd65975742949a31cc8a1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>quoted</b></td></tr>
+<tr class="separator:a9d1ca0934fbcd65975742949a31cc8a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08660470b9a1877bfd1f15650bf567f6"><td class="memItemLeft" align="right" valign="top"><a id="a08660470b9a1877bfd1f15650bf567f6"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>last_expand_len</b></td></tr>
+<tr class="separator:a08660470b9a1877bfd1f15650bf567f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bffebe172b330fe66b80edb7335e0c0"><td class="memItemLeft" align="right" valign="top"><a id="a5bffebe172b330fe66b80edb7335e0c0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>found_quote</b></td></tr>
+<tr class="separator:a5bffebe172b330fe66b80edb7335e0c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Flags which can be set to store some info. </p>
-<p>In this struct some flags can be stored to be set and then be checked later on. </p><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>Tracker struct. </p>
+<p>Track current position of input string. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">no_env</td><td>Environ was empty. </td></tr>
-    <tr><td class="paramname">no_pwd</td><td>Environ wasn't empty but didn't contain a PWD variable. </td></tr>
+    <tr><td class="paramname">str</td><td>Pointer to string. </td></tr>
+    <tr><td class="paramname">pos</td><td>Current position of the input string. </td></tr>
+    <tr><td class="paramname">quoted</td><td>True if string is currently inside double quotes. </td></tr>
+    <tr><td class="paramname">last_expand_len</td><td>Last expansion which was inserted. </td></tr>
+    <tr><td class="paramname">found_quote</td><td>At least one single or double quoted part was found </td></tr>
   </table>
   </dd>
 </dl>
@@ -123,7 +135,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>no_pwd</b></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="structs__checks.html">s_checks</a></li>
+    <li class="navelem"><a class="el" href="structs__track.html">s_track</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

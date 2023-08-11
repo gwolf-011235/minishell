@@ -95,6 +95,9 @@ $(document).ready(function(){initNavTree('dir_68267d1309a1af8e8297ef4c3efbcdba.h
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
 Files</h2></td></tr>
+<tr class="memitem:buffer_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="buffer_8c.html">buffer.c</a></td></tr>
+<tr class="memdesc:buffer_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functions for handling the buffer. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:builtin__cd_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__cd_8c.html">builtin_cd.c</a></td></tr>
 <tr class="memdesc:builtin__cd_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation of builtin cd. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,13 +168,16 @@ Files</h2></td></tr>
 <tr class="memdesc:exit__failure_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains failure function to cleanup. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:expand_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand_8c.html">expand.c</a></td></tr>
-<tr class="memdesc:expand_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains driver function to handle expansion and quote removal. <br /></td></tr>
+<tr class="memdesc:expand_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functions to exec different expansions depending on token type. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:expand__field__split_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand__field__split_8c.html">expand_field_split.c</a></td></tr>
+<tr class="memdesc:expand__field__split_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functions to perform field splitting on expanded parts of str. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:expand__tilde_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand__tilde_8c.html">expand_tilde.c</a></td></tr>
 <tr class="memdesc:expand__tilde_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functions to handle expansion of tilde. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:expand__var_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand__var_8c.html">expand_var.c</a></td></tr>
-<tr class="memdesc:expand__var_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functions to handle expansion of variables. <br /></td></tr>
+<tr class="memitem:expand__utils_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand__utils_8c.html">expand_utils.c</a></td></tr>
+<tr class="memdesc:expand__utils_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functions for tracker and creating a new string with replacement. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:handle__input_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="handle__input_8c.html">handle_input.c</a></td></tr>
 <tr class="memdesc:handle__input_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver function for input handling. <br /></td></tr>
@@ -223,6 +229,15 @@ Files</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:prompt__replace__w_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prompt__replace__w_8c.html">prompt_replace_w.c</a></td></tr>
 <tr class="memdesc:prompt__replace__w_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create replacement for token w = PWD. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:tkn__list__create_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tkn__list__create_8c.html">tkn_list_create.c</a></td></tr>
+<tr class="memdesc:tkn__list__create_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create new nodes. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:tkn__list__delete_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tkn__list__delete_8c.html">tkn_list_delete.c</a></td></tr>
+<tr class="memdesc:tkn__list__delete_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletion of nodes. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:tkn__list__search_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tkn__list__search_8c.html">tkn_list_search.c</a></td></tr>
+<tr class="memdesc:tkn__list__search_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for specific nodes. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

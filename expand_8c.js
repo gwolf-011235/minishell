@@ -1,8 +1,8 @@
 var expand_8c =
 [
-    [ "ft_eat_char", "expand_8c.html#ada999d5922c81fc6832ca8760fb860cc", null ],
-    [ "ft_expand_expr", "expand_8c.html#a7353b3c94f80fe5c8e7637229adaedf8", null ],
-    [ "ft_handle_double_quote", "expand_8c.html#af7ad8465d462dd84508f4bf67144e7b9", null ],
-    [ "ft_handle_single_quote", "expand_8c.html#a571ae371086b17fbfb80f4f9d02b1daf", null ],
-    [ "ft_insert_replace", "expand_8c.html#aef23d275d3576325a15b4521e3b49660", null ]
+    [ "ft_expand_arg", "expand_8c.html#a875af7e7ea1982bdfa1348c6e9bd18f3", null ],
+    [ "ft_expand_assign", "expand_8c.html#a4c2c89b39c0215462ac4a74d6a64157c", null ],
+    [ "ft_expand_heredoc", "expand_8c.html#adb2447ad6a136698d6b3e2263a43f5dc", null ],
+    [ "ft_expand_redirect", "expand_8c.html#aaf5f537f5f5bd1e0b0cdbf41973f5611", null ],
+    [ "ft_expand_tkn_lst", "expand_8c.html#a4a83d590024458dea353002fd66de930", null ]
 ];

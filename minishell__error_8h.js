@@ -17,7 +17,6 @@ var minishell__error_8h =
       [ "ERR_SYNTAX", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aeed16f7745959d523aed6190f839dea8", null ],
       [ "ERR_NOT_FOUND", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a3cfe3eff41c31f8283d57f835269a958", null ],
       [ "ERR_NOEXPAND", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a3da755970fe3ecf3630c15029f5b0517", null ],
-      [ "ERR_BAD_FD", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a240d5e7db94dfe5927cbe79cf35aa580", null ],
       [ "ERR_CLOSE", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a15e26636fe4beda2e309e7bfae4bf96f", null ],
       [ "ERR_ARGCOUNT", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aac585c0b955a636ff9af3785999da72a", null ],
       [ "ERR_CHDIR_FAIL", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a1147eede29e1c66a62ffb9a5c1511d0c", null ],
@@ -30,6 +29,8 @@ var minishell__error_8h =
       [ "ERR_FORK", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a7a452b77377c48b3d7b8972797c2e947", null ],
       [ "ERR_DUPL", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a0f1fe4aab5ceed5326ba77029eac8486", null ],
       [ "ERR_EXECVE", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8ab086742b46c3edfe3be4630ac91a7a5e", null ],
-      [ "ERR_WAIT", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8ac025b10ac82551c2969c1f859082553d", null ]
+      [ "ERR_WAIT", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8ac025b10ac82551c2969c1f859082553d", null ],
+      [ "ERR_NOSPLIT", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8ad16411fc4ce1bddd2edec88005b32ff2", null ],
+      [ "ERR_OPEN", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a7235954be32cd0166432c3f7a5d61bb5", null ]
     ] ]
 ];
