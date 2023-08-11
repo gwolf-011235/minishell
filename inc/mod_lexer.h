@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:38 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/28 18:12:57 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/07 12:37:38 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 /* ====== Structs ====== */
 
 # define INIT_SRC_POS -2
-
 
 /**
  * @brief Source structure.
@@ -36,7 +35,6 @@ typedef struct s_src
 	int		cur_pos;	
 }	t_src;
 
-
 /**
  * @brief Token structure.
  *
@@ -49,7 +47,6 @@ typedef struct s_tok
 	char	*str;
 	int		size;
 }	t_tok;
-
 
 /**
  * @brief Buffer structure.

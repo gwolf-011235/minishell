@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:38:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/31 10:42:34 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 10:01:26 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_info {
  * This struct will be passed around to give access to several needed
  * var in different programm stages.
  * @param env_table Pointer to the env hashtable.
+ * @param envp String array containing the environment.
  * @param checks Struct with some flags.
  * @param err Can hold an error code if data is available - maybe del.
  * @param token Struct containing the current token and its size.
@@ -52,6 +53,7 @@ typedef struct s_info {
  */
 typedef struct s_data {
 	t_hashtable	*env_table;
+	char		**envp;
 	t_checks	checks;
 	t_err		err;
 	char		*prompt1;

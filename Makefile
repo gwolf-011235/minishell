@@ -6,7 +6,7 @@
 #    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/07/31 10:41:31 by sqiu             ###   ########.fr        #
+#    Updated: 2023/08/08 12:33:06 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,16 @@ SRC :=	utils_memory.c \
 		builtin_export.c \
 		builtin_unset.c \
 		builtin_env.c \
-		builtin_exit.c
+		builtin_exit.c \
+		executor.c \
+		executor_create_child.c \
+		executor_child.c \
+		executor_cleanup.c \
+		executor_utils.c \
+		executor_utils2.c \
+		executor_heredoc.c \
+		executor_builtin.c \
+		cleanup.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # ******************************
@@ -139,7 +148,9 @@ TEST_SRC := test_replace_token.c \
 			test_builtin_export.c \
 			test_builtin_unset.c \
 			test_builtin_env.c \
-			test_builtin_exit.c
+			test_builtin_exit.c \
+			test_executor.c
+# test_executor.c
 TEST_SRCS := $(addprefix $(TEST_DIR)/, $(TEST_SRC))
 TEST_OBJ := $(TEST_SRC:.c=.o)
 TEST_OBJS := $(addprefix $(TEST_DIR)/, $(TEST_OBJ))

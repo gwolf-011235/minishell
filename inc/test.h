@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:32:12 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/30 14:58:55 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/06 23:05:44 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "mod_prompt.h"
 # include "mod_syntax.h"
 # include "mod_builtin.h"
+# include "mod_executor.h"
 
 # define RESET "\033[0m"
 # define BOLD "\033[1m"
@@ -51,5 +52,6 @@ void	test_builtin_export(void);
 void	test_builtin_unset(void);
 void	test_builtin_env(void);
 void	test_builtin_exit(void);
+void	test_executor(void);
 
 #endif

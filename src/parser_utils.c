@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/30 18:59:15 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/09 23:30:10 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim)
 			lst = lst->next;
 		else if (lst->type == APPEND)
 			lst = lst->next;
-		else if (lst->type == NEWLINE)
+		else if (lst->type == NEWL)
 			;
 		else if (lst->type == ARG)
 			(*count_arg)++;
@@ -103,4 +103,28 @@ t_err	ft_create_str_arr(t_cmd *tmp, int count_arg, int count_delim)
 	else
 		tmp->delims = NULL;
 	return (SUCCESS);
+}
+
+/**
+ * @brief Initialise cmd values.
+ * 
+ * @param tmp Cmd being initialised.
+ */
+void	ft_init_cmd(t_cmd *tmp)
+{
+	tmp->arg_pos = 0;
+	tmp->delim_pos = 0;
+	tmp->append = false;
+	tmp->fd_in = -1;
+	tmp->fd_out = -1;
+	tmp->fd_pipe[0] = -1;
+	tmp->fd_pipe[1] = -1;
+	tmp->fd_prev_pipe[0] = -1;
+	tmp->fd_prev_pipe[1] = -1;
+	tmp->infile = false;
+	tmp->outfile = false;
+	tmp->index = -1;
+	tmp->cmd_num = 0;
+	tmp->heredoc = NULL;
+	tmp->next = NULL;
 }

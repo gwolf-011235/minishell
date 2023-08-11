@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/28 18:06:43 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/11 10:02:46 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include "minishell_error.h"
 # include "minishell_struct.h"
 # include "libft.h"
+# include <fcntl.h>			        /* required for opening files */
+# include <sys/wait.h>				/* required for wait calls */
+# include "stdbool.h"				/* required for booleans */
 
 /* ====== Structs ====== */
 
@@ -30,7 +33,7 @@
  * @param OUTFILE	Redirect evoking an outfile.
  * @param APPEND	Redirect evoking an outfile in append mode.
  * @param PIPE		Char indicating piping of commands.
- * @param Newline	Char indicating end of a command.
+ * @param NEWL		Char indicating end of a command.
  */
 typedef enum e_type
 {
@@ -40,7 +43,7 @@ typedef enum e_type
 	OUTFILE,
 	APPEND,
 	PIPE,
-	NEWLINE
+	NEWL
 }	t_type;
 
 /**
@@ -58,7 +61,6 @@ typedef struct s_tkn_list
 	struct s_tkn_list	*prev;
 	struct s_tkn_list	*next;
 }	t_tkn_list;
-
 
 /**
  * @brief Linked list of simple commands existing of token extracted from input.
@@ -79,12 +81,17 @@ typedef struct s_cmd
 	int				arg_pos;
 	int				fd_in;
 	int				fd_out;
+	int				fd_pipe[2];
+	int				fd_prev_pipe[2];
 	char			**delims;
 	int				delim_pos;
+	char			*heredoc;
 	bool			append;
 	bool			infile;
 	bool			outfile;
 	int				index;
+	int				cmd_num;
+	pid_t			pid;
 	struct s_cmd	*next;
 }	t_cmd;
 
@@ -103,5 +110,11 @@ t_err	ft_expand_expr(char **expr, t_hashtable *symtab, t_info *info);
 
 // parser
 t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd);
+
+// heredoc
+t_err	ft_handle_heredoc(t_cmd *cmd);
+
+// executor
+t_err	ft_executor(t_cmd *cmd, t_data *data);
 
 #endif

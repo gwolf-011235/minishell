@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/28 14:51:22 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/06 23:18:47 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 		if (close(new->fd_in) < 0)
 			return (ERR_CLOSE);
 	fd_in = open(tmp->content, O_RDONLY);
-/* 	if (fd_in == -1)
-		return (ERR_BAD_FD); */
+	if (fd_in == -1)
+		return (ERR_BAD_FD);
 	new->fd_in = fd_in;
 	*lst = tmp;
 	return (SUCCESS);
@@ -46,6 +46,8 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 /**
  * @brief Save token as delimiter string.
  * 
+ * If no memory space is allocated for delimiters, return.
+ * In case an infile has been opened before, close the fd.
  * @param lst 		List of token.
  * @param new 		New cmd to be filled.
  * @return t_err 	ERR_MALLOC, SUCCESS
@@ -58,6 +60,12 @@ t_err	ft_save_heredoc(t_tkn_list **lst, t_cmd *new)
 	tmp = tmp->next;
 	if (!new->delims)
 		return (SUCCESS);
+	if (new->fd_in > -1)
+	{
+		if (close(new->fd_in) < 0)
+			return (ERR_CLOSE);
+		new->fd_in = -1;
+	}
 	new->delims[new->delim_pos] = ft_strdup(tmp->content);
 	if (!new->delims[new->delim_pos])
 		return (ERR_MALLOC);
