@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:20 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 23:46:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 18:05:12 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ t_err	ft_envp_destroy(char ***envp);
 //utils.c
 t_err	ft_get_array_size(char **array, size_t *size);
 t_err	ft_get_env_keylen(char *str, size_t *len);
-t_err	ft_update_env_var(t_hashtable *env_tab, char *env_str, size_t keylen);
+t_err	ft_update_env_var(t_hashtable *env_tab,
+			char *env_str, size_t keylen, bool has_value);
 void	ft_swap(char **str1, char **str2);
 void	ft_quicksort_strings(char **arr, int low, int high);
 
