@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:20 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 23:46:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/11 20:34:34 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define MOD_BUILTIN_H
 
 # include "hashtable.h"
+
+extern __sig_atomic_t	g_status;
 
 //IMPORT MOD_ENV
 t_err	ft_create_pwd_value(char **pwd_value);
