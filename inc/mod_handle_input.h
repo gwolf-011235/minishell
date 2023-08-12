@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 21:49:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 00:08:33 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include <sys/wait.h>				/* required for wait calls */
 # include "stdbool.h"				/* required for booleans */
 # include <signal.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+
 
 /* ====== Structs ====== */
 
@@ -62,19 +65,16 @@ typedef struct s_cmd
 /* ====== Functions ====== */
 
 // syntax
-t_err		ft_check_syntax(const char *input);
+t_err	ft_check_syntax(const char *input);
 
 // lexer
-t_err		ft_lex_input(t_tkn_list	**lst_head, char *input);
+t_err	ft_lex_input(t_tkn_list	**lst_head, char *input);
 
 // expand
-t_err		ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table);
+t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table);
 
 // parser
 t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd);
-
-// heredoc
-t_err	ft_handle_heredoc(t_cmd *cmd);
 
 // executor
 t_err	ft_executor(t_cmd *cmd, t_data *data);

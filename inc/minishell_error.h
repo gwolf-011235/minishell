@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 23:09:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 00:24:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ typedef enum e_error {
 	ERR_NOSPLIT, ///< ft_field_split() didnt split.
 	ERR_OPEN, ///< open() failed.
 	ERR_SIGNAL, ///< Setup of signal handler failed.
-	ERR_NO_INPUT ///< Input is empty.
+	ERR_NO_INPUT, ///< Input is empty.
+	ERR_ABORT ///< Abort pipe.
 }	t_err;
 
 
