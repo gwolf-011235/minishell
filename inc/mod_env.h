@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:41:48 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 17:56:09 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 21:36:49 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ t_err	ft_create_env_shlvl(char **shlvl, int val);
 t_err	ft_increment_shlvl(t_hashtable *env_table);
 
 //env_envp.c
-t_err	ft_envp_fill(t_hashtable *ht, char **envp);
+t_err	ft_envp_fill(t_hashtable *ht, char **envp, bool all);
 t_err	ft_envp_create(t_hashtable *ht, char ***envp);
+t_err	ft_envp_create_all(t_hashtable *ht, char ***envp);
 t_err	ft_envp_destroy(char ***envp);
 
 //Import from mod_builtin

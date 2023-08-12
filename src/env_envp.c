@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 18:09:38 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 20:26:45 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 21:42:20 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
  * @param envp Where to save pointers.
  * @return t_err SUCCESS
  */
-t_err	ft_envp_fill(t_hashtable *ht, char **envp)
+t_err	ft_envp_fill(t_hashtable *ht, char **envp, bool all)
 {
 	uint32_t	i;
 	t_env_var	*tmp;
@@ -41,7 +41,7 @@ t_err	ft_envp_fill(t_hashtable *ht, char **envp)
 			tmp = ht->elements[i];
 			while (tmp != NULL)
 			{
-				if (tmp->has_value)
+				if (all || tmp->has_value)
 					*envp++ = tmp->env_string;
 				tmp = tmp->next;
 			}
@@ -56,7 +56,7 @@ t_err	ft_envp_fill(t_hashtable *ht, char **envp)
  * @brief Create a NULL-terminated environment pointer (envp)
  *
  * Malloc char array of num_values of hashtable plus 1 for terminator.
- * Fetch all elements with ft_envp_fill().
+ * Fetch all elements with ft_envp_fill() with switch set to false.
  * @param ht Environment from which to copy.
  * @param envp Pointer to char**, where to save.
  * @return t_err ERR_EMPTY, ERR_MALLOC, SUCCESS
@@ -68,10 +68,31 @@ t_err	ft_envp_create(t_hashtable *ht, char ***envp)
 	*envp = malloc(sizeof(char *) * (ht->num_values + 1));
 	if (!*envp)
 		return (ERR_MALLOC);
-	ft_envp_fill(ht, *envp);
+	ft_envp_fill(ht, *envp, false);
 	return (SUCCESS);
 }
 
+/**
+ * @brief Create envp of all elements
+ *
+ * See also ft_envp_create().
+ * Difference: includes all elements of hashtable.
+ * Malloc char array of num_elements of hashtable plus 1 for terminator.
+ * Fetch all elements with ft_envp_fill() with switch set to true.
+ * @param ht Environment from which to copy.
+ * @param envp Pointer to char**, where to save.
+ * @return t_err ERR_EMPTY, ERR_MALLOC, SUCCESS
+ */
+t_err	ft_envp_create_all(t_hashtable *ht, char ***envp)
+{
+	if (!ht || !envp)
+		return (ERR_EMPTY);
+	*envp = malloc(sizeof(char *) * (ht->num_elements + 1));
+	if (!*envp)
+		return (ERR_MALLOC);
+	ft_envp_fill(ht, *envp, true);
+	return (SUCCESS);
+}
 /**
  * @brief Destroy envp.
  *

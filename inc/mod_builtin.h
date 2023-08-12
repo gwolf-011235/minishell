@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:20 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 18:05:12 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 21:39:26 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 //IMPORT MOD_ENV
 t_err	ft_create_pwd_value(char **pwd_value);
 t_err	ft_create_env_pwd(char **pwd);
-t_err	ft_envp_create(t_hashtable *ht, char ***envp);
+t_err	ft_envp_create_all(t_hashtable *ht, char ***envp);
 t_err	ft_envp_destroy(char ***envp);
 
 //utils.c
