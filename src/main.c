@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 15:45:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 01:28:44 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ __sig_atomic_t	g_status;
 int	main(int argc, char **argv)
 {
 	t_data		*data;
-	char 		*input;
+	char		*input;
 
 	(void)argc;
 	(void)argv;
+	signal(SIGINT, SIG_IGN);
 	ft_signal_setup_std();
 	data = malloc(sizeof(*data));
 	if (!data)
@@ -51,9 +52,9 @@ int	main(int argc, char **argv)
 			break ;
 		add_history(input);
 		data->err = ft_handle_input(input, data);
-		if (data->err != SUCCESS)
+/* 		if (data->err != SUCCESS && data->err != ERR_NO_INPUT)
 			ft_exit_failure(data, data->err);
-		//do stuff
+		//do stuff */
 		free(input);
 		free(data->prompt1);
 		free(data->prompt2);

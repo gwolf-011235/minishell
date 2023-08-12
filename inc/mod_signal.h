@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:59:36 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 16:09:00 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 01:50:23 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef enum e_state {
 }	t_state;
 
 t_err	ft_signal_setup_std(void);
+t_err	ft_signal_setup_heredoc(void);
 void	ft_sighandler_std(int signum);
+void	ft_sighandler_heredoc(int signum);
 
 #endif
