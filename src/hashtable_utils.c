@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:17:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 17:01:15 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 18:01:26 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,8 @@ t_err	ft_hashtable_delete(
  * @param keylen Length of the key.
  * @return t_err ERR_EMPTY, ERR_HT_NO_SWAP, SUCCESS
  */
-t_err	ft_hashtable_swap(t_hashtable *ht, char *string, size_t keylen)
+t_err	ft_hashtable_swap(t_hashtable *ht,
+		char *string, size_t keylen, bool has_value)
 {
 	t_env_var	*env_var;
 
@@ -170,6 +171,10 @@ t_err	ft_hashtable_swap(t_hashtable *ht, char *string, size_t keylen)
 		return (ERR_HT_NO_SWAP);
 	free(env_var->env_string);
 	env_var->env_string = string;
-	env_var->value = string + keylen + 1;
+	env_var->has_value = has_value;
+	if (env_var->has_value)
+		env_var->value = string + keylen + 1;
+	else
+		env_var->value = "";
 	return (SUCCESS);
 }
