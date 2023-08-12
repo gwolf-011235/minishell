@@ -6,12 +6,13 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:29:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 21:00:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 19:48:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
+extern t_hashtable	*g_symtab;
 /**
  * @brief Pretty print all elements.
  *
@@ -49,19 +50,30 @@ void	test_hashtable_pretty_print(t_hashtable *ht)
 	printf("End Table\n");
 }
 
-void	test_hashtable(void)
+void	test_insert_one(char *name, char *env_str, size_t keylen, bool has_value)
 {
-	t_hashtable	*sym_tab;
 	t_env_var	*env_var;
 
-	sym_tab = ft_hashtable_create(100, ft_hash_fnv1);
-
-	ft_hashtable_insert(sym_tab, ft_strdup("TEST=Ima testing"), 4);
-	env_var = ft_hashtable_lookup(sym_tab, "TEST", 4);
+ 	printf("TEST: %s\n", name);
+	ft_hashtable_insert(g_symtab, ft_strdup(env_str), keylen, has_value);
+	env_var = ft_hashtable_lookup(g_symtab, env_str, keylen);
 	if (env_var == NULL)
-		printf("not found\n");
+		printf("Var was not found\n");
 	else
-		printf("TEST was found\n");
-	ft_hashtable_delete(sym_tab, "TEST", 4);
-	ft_hashtable_destroy(sym_tab);
+	{
+		printf("Var was found!\n");
+		printf("String:\t%s\nValue:\t%s\n", env_var->env_string, env_var->value);
+	}
+	ft_hashtable_delete(g_symtab, env_str, keylen);
+}
+
+void	test_hashtable(void)
+{
+
+	g_symtab = ft_hashtable_create(100, ft_hash_fnv1);
+	test_insert_one("Simple insert", "TEST=I am test", 4, true);
+	test_insert_one("No value", "NOVAL=", 5, true);
+	test_insert_one("No equals", "OHNO", 4, false);
+
+	ft_hashtable_destroy(g_symtab);
 }

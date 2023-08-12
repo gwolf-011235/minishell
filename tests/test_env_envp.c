@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 08:17:46 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/18 03:12:05 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 19:57:00 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	test_env_envp_two(void)
 {
 	size_t		i;
 
-	ft_hashtable_insert(g_symtab, "TEST=This is a value", 4);
-	ft_hashtable_insert(g_symtab, "TEST2=Another value", 5);
+	ft_hashtable_insert(g_symtab, "TEST=This is a value", 4, true);
+	ft_hashtable_insert(g_symtab, "TEST2=Another value", 5, true);
 	ft_envp_create(g_symtab, &g_envp);
 	printf("This is envp[0]: %p\n", g_envp[0]);
 	printf("This is envp[1]: %p\n", g_envp[1]);
