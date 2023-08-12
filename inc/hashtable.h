@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:07:23 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 18:01:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 20:15:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef uint64_t			t_hashfunction (const char *, size_t);
  * This node saves one env variable.
  * @param env_string The whole env string (e.g. PWD=path/to/pwd).
  * @param keylen The length of the env variable name.
+ * @param has_value Saves if the variable was assigned a value (with '=')
  * @param value Pointer to the start of the env value.
  * @param next Pointer to the next node in this hashtable bucket.
  */
@@ -70,12 +71,15 @@ typedef struct s_env_var {
  *
  * @param size How many buckets hashtable has.
  * @param hash The used hash function.
+ * @param num_elements How many elements are save in hashtable.
+ * @param num_values How many of the saved elements have a value saved.
  * @param elements Pointer to the individual buckets.
  */
 typedef struct s_hashtable {
 	uint32_t		size;
 	t_hashfunction	*hash;
 	uint32_t		num_elements;
+	uint32_t		num_values;
 	t_env_var		**elements;
 }	t_hashtable;
 

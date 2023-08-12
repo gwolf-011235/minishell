@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:17:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 18:01:26 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 20:20:46 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ t_err	ft_hashtable_insert(t_hashtable *ht,
 	env_var->next = ht->elements[index];
 	ht->elements[index] = env_var;
 	ht->num_elements++;
+	if (env_var->has_value)
+		ht->num_values++;
 	return (SUCCESS);
 }
 
@@ -145,6 +147,8 @@ t_err	ft_hashtable_delete(
 	free(tmp->env_string);
 	free(tmp);
 	ht->num_elements--;
+	if (tmp->has_value)
+		ht->num_values--;
 	return (SUCCESS);
 }
 
@@ -163,6 +167,7 @@ t_err	ft_hashtable_swap(t_hashtable *ht,
 		char *string, size_t keylen, bool has_value)
 {
 	t_env_var	*env_var;
+	bool		had_value;
 
 	if (!ht || !string || !keylen)
 		return (ERR_EMPTY);
@@ -171,10 +176,15 @@ t_err	ft_hashtable_swap(t_hashtable *ht,
 		return (ERR_HT_NO_SWAP);
 	free(env_var->env_string);
 	env_var->env_string = string;
+	had_value = env_var->has_value;
 	env_var->has_value = has_value;
 	if (env_var->has_value)
 		env_var->value = string + keylen + 1;
 	else
 		env_var->value = "";
+	if (had_value != has_value && has_value == true)
+		ht->num_values++;
+	else if (had_value != has_value && has_value == false)
+		ht->num_values--;
 	return (SUCCESS);
 }
