@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:17:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/28 17:55:29 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 17:01:15 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
  * @brief Utils functions to use with env hashtable
  */
 
-#include "minishell.h"
+#include "hashtable.h"
 
 /**
  * @brief Generate index in hashtable of given string via hashfunction.
@@ -46,7 +46,8 @@ size_t	ft_hashtable_index(t_hashtable *ht, const char *key, size_t keylen)
  * @param keylen Length of env_var (everything before =)
  * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_HT_NO_INSERT
  */
-t_err	ft_hashtable_insert(t_hashtable *ht, char *string, size_t keylen)
+t_err	ft_hashtable_insert(t_hashtable *ht,
+		char *string, size_t keylen, bool has_value)
 {
 	size_t		index;
 	t_env_var	*env_var;
@@ -61,7 +62,11 @@ t_err	ft_hashtable_insert(t_hashtable *ht, char *string, size_t keylen)
 		return (ERR_MALLOC);
 	env_var->env_string = string;
 	env_var->keylen = keylen;
-	env_var->value = string + keylen + 1;
+	env_var->has_value = has_value;
+	if (env_var->has_value)
+		env_var->value = string + keylen + 1;
+	else
+		env_var->value = "";
 	env_var->next = ht->elements[index];
 	ht->elements[index] = env_var;
 	ht->num_elements++;

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:07:23 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/30 14:55:22 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 17:00:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef uint64_t			t_hashfunction (const char *, size_t);
 typedef struct s_env_var {
 	char				*env_string;
 	size_t				keylen;
+	bool				has_value;
 	char				*value;
 	struct s_env_var	*next;
 }	t_env_var;
@@ -86,7 +87,7 @@ void		ft_hashtable_destroy(t_hashtable *ht);
 //hashtable_utils.c
 size_t		ft_hashtable_index(t_hashtable *ht, const char *key, size_t keylen);
 t_err		ft_hashtable_insert(
-				t_hashtable *ht, char *string, size_t keylen);
+				t_hashtable *ht, char *string, size_t keylen, bool has_value);
 t_env_var	*ft_hashtable_lookup(
 				t_hashtable *ht, const char *string, size_t keylen);
 t_err		ft_hashtable_delete(
