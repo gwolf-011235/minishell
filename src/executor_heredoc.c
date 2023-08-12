@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/12 15:56:42 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/12 17:28:42 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,38 +61,17 @@ t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim,
 	int		fd;
 	char	*name;
 	t_err	err;
-	pid_t	pid;
-	int		status;
 
 	name = NULL;
 	err = ft_initiate_heredoc(cmd->index, &name, &fd);
 	if (err != SUCCESS)
 		return (err);
 	g_status = 0;
-	pid = fork();
-	if (pid < 0)
-		return (ERR_FORK);
-	else if (pid == 0)
-		err = ft_read_heredoc(delim, prompt2, fd, &name);
-	signal(SIGINT, SIG_IGN);
-	if (waitpid(pid, &status, 0) < 0)
-		return (ERR_WAIT);
-	if (WIFEXITED(status))
-		g_status = WEXITSTATUS(status);
-	else
-		ft_signal_setup(SIG_WSHIT);
+	err = ft_read_heredoc(delim, prompt2, fd, &name);
+	if (err != SUCCESS)
+		return (err);
 	err = ft_heredoc_fate(cmd, &name, fd, curr_delim);
 	return (err);
-}
-
-t_err	ft_restore_unlink(int fd_stdin, char **name)
-{
-	//t_err	err;
-	(void)fd_stdin;
-	//err = ft_signal_setup(SIG_WSHIT);
-	//dup2(fd_stdin, 0);
-	//close (fd_stdin);
-	return (ft_unlink_heredoc(name, ERR_ABORT));
 }
 
 /**
@@ -120,7 +99,7 @@ t_err	ft_read_heredoc(char *delim, char *prompt2, int fd, char **name)
 	{
 		buf = readline(prompt2);
 		if (g_status == 130)
-			return (ft_restore_unlink(fd_stdin, name));
+			return (ft_unlink_heredoc(name, ERR_ABORT));
 		if (!buf)
 			return (ft_print_warning(delim, prompt2));
 		if (ft_strncmp(delim, buf, len + 1) == 0)
