@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:11:47 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 19:46:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 20:07:55 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@ void	exec_prompt_create(char *name, char *env_str, int num, char *expect)
 
 	prompt = NULL;
 	printf("TEST: %s\n", name);
-	printf("env_str: %s\n", env_str);
-	ft_hashtable_insert(g_symtab, env_str, 3, true);
+	printf("VAR:\t%s\n", env_str);
+	ft_hashtable_insert(g_symtab, ft_strdup(env_str), 3, true);
 	if (num == 1)
 		ft_prompt_create(g_symtab, &prompt, "PS1", PS1_STD);
 	else
 		ft_prompt_create(g_symtab, &prompt, "PS2", PS2_STD);
-	printf("Prompt: %s\n", prompt);
+	printf("Prompt:\t%s\n\n", prompt);
 	free(prompt);
+	ft_hashtable_delete(g_symtab, env_str, 3);
 }
 
 void	test_prompt(void)
