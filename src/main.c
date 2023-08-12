@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 01:28:44 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 03:13:25 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	signal(SIGINT, SIG_IGN);
-	ft_signal_setup_std();
+	signal(SIGQUIT, SIG_IGN);
+	ft_signal_setup(SIG_INIT);
 	data = malloc(sizeof(*data));
 	if (!data)
 		ft_exit_failure(data, ERR_MALLOC);
@@ -41,6 +42,7 @@ int	main(int argc, char **argv)
 	//ft_hashtable_insert(data->env_table, "PS1=\\u@\\h:\\w$ ", 3);
 	while (1)
 	{
+		ft_signal_setup(SIG_STD);
 		data->err = ft_prompt_create(data->env_table, &data->prompt1, "PS1", PS1_STD);
 		if (data->err != SUCCESS)
 			ft_exit_failure(data, data->err);

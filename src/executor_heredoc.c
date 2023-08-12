@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/12 02:03:06 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 04:15:19 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim,
 
 t_err	ft_restore_unlink(int fd_stdin, char **name)
 {
-	t_err	err;
-
-	err = ft_signal_setup_std();
-	dup2(fd_stdin, 0);
-	close (fd_stdin);
+	//t_err	err;
+	(void)fd_stdin;
+	//err = ft_signal_setup(SIG_WSHIT);
+	//dup2(fd_stdin, 0);
+	//close (fd_stdin);
 	return (ft_unlink_heredoc(name, ERR_ABORT));
 }
 
@@ -95,7 +95,7 @@ t_err	ft_read_heredoc(char *delim, char *prompt2, int fd, char **name)
 	int		fd_stdin;
 	t_err	err;
 
-	err = ft_signal_setup_heredoc();
+	err = ft_signal_setup(SIG_HEREDOC);
 	if (err != SUCCESS)
 		return (err);
 	fd_stdin = dup(0);

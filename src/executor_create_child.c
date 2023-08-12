@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_create_child.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 10:16:40 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/12 02:25:25 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 #include "mod_executor.h"
 
 /**
- * @brief Distinguishes between the position of the command 
+ * @brief Distinguishes between the position of the command
  * to be executed and creates the pertinent child.
- * 
+ *
  * @param cmd 		Current cmd to be processed.
  * @param data		Data struct containing the env.
  * @param builtin	Bool indicating if cmd is a builtin.
@@ -42,7 +42,7 @@ t_err	ft_create_child(t_cmd *cmd, t_data *data, bool builtin)
 /**
  * @brief Creates a child by forking and calls the pertinent
  * function which is to be executed by the first cmd of the pipe.
- * 
+ *
  * The parent closes the write end fd of the pipe (fd_pipe[1]).
  * @param cmd 		Current cmd to be processed.
  * @param data		Data struct containing the env.
@@ -63,6 +63,7 @@ t_err	ft_raise_first(t_cmd *cmd, t_data *data, bool builtin)
 	}
 	else if (cmd->pid == 0)
 		ft_firstborn(cmd, data, builtin);
+	signal(SIGINT, SIG_IGN);
 	err = ft_close(cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);
@@ -72,7 +73,7 @@ t_err	ft_raise_first(t_cmd *cmd, t_data *data, bool builtin)
 /**
  * @brief Creates a child by forking and calls the pertinent
  * function which is to be executed by the last cmd of the pipe.
- * 
+ *
  * @param cmd 		Current cmd to be processed.
  * @param data		Data struct containing the env.
  * @param builtin	Bool indicating if cmd is a builtin.
@@ -92,6 +93,7 @@ t_err	ft_raise_last(t_cmd *cmd, t_data *data, bool builtin)
 	}
 	else if (cmd->pid == 0)
 		ft_lastborn(cmd, data, builtin);
+	signal(SIGINT, SIG_IGN);
 	return (SUCCESS);
 }
 
@@ -99,7 +101,7 @@ t_err	ft_raise_last(t_cmd *cmd, t_data *data, bool builtin)
  * @brief Creates a child by forking and calls the pertinent
  * function which is to be executed by a cmd between the first
  * and last cmd of the pipe.
- * 
+ *
  * The parent closes the write end fd of the pipe (fd_pipe[1]).
  * @param cmd 	Current cmd to be processed.
  * @param data		Data struct containing the env.
@@ -120,6 +122,7 @@ t_err	ft_raise_middle(t_cmd *cmd, t_data *data, bool builtin)
 	}
 	else if (cmd->pid == 0)
 		ft_middle_child(cmd, data, builtin);
+	signal(SIGINT, SIG_IGN);
 	err = ft_close(cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);
