@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_heredoc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/12 04:15:19 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 15:56:42 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ t_err	ft_handle_heredoc(t_cmd *cmd, char *prompt2)
 
 	while (cmd)
 	{
+		err = ft_signal_setup(SIG_STD);
+		if (err != SUCCESS)
+			return (err);
 		i = -1;
 		while (++i < cmd->delim_pos)
 		{
@@ -58,13 +61,26 @@ t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim,
 	int		fd;
 	char	*name;
 	t_err	err;
+	pid_t	pid;
+	int		status;
 
 	name = NULL;
 	err = ft_initiate_heredoc(cmd->index, &name, &fd);
 	if (err != SUCCESS)
 		return (err);
 	g_status = 0;
-	err = ft_read_heredoc(delim, prompt2, fd, &name);
+	pid = fork();
+	if (pid < 0)
+		return (ERR_FORK);
+	else if (pid == 0)
+		err = ft_read_heredoc(delim, prompt2, fd, &name);
+	signal(SIGINT, SIG_IGN);
+	if (waitpid(pid, &status, 0) < 0)
+		return (ERR_WAIT);
+	if (WIFEXITED(status))
+		g_status = WEXITSTATUS(status);
+	else
+		ft_signal_setup(SIG_WSHIT);
 	err = ft_heredoc_fate(cmd, &name, fd, curr_delim);
 	return (err);
 }

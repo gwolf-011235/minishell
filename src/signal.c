@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:59:08 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 04:14:14 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 16:26:45 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	ft_sighandler_heredoc(int signum)
 	if (signum == SIGINT)
 	{
 		g_status = 130;
-		ioctl(0, TIOCSTI, "\n");
+		ioctl(STDIN_FILENO, TIOCSTI, "\n");
+		rl_on_new_line();
 		//close(0);
-
 	}
 }
 
