@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:17:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 10:55:56 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/13 15:28:14 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	test_heredoc_wrapper(char *testname, char *test)
 	ft_lex_input(&lst, test);
 	ft_parser(lst, &cmd);
 	ft_init_exec(cmd);
-	ft_handle_heredoc(cmd);
+	ft_handle_heredoc(cmd, "<3 ");
 	while (cmd)
 	{
 		printf(GREEN"\ndelimiters:\n"RESET);
