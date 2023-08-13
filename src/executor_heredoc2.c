@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_heredoc2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:20:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 00:47:07 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/13 23:52:57 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,13 @@ t_err	ft_initiate_heredoc(int index, char **name, int *fd)
  * Then print the warning message with
  * expected the delimiter.
  * @param delim		Delimiter string of heredoc.
- * @param prompt2	Heredoc prompt.
- * @return t_err	SUCCESS
+ * @return t_err	ERR_HEREDOC_QUIT
  */
-t_err	ft_print_warning(char *delim, char *prompt2)
+t_err	ft_print_warning(char *delim)
 {
-	//ft_putendl_fd(prompt2, 1);
-	(void)prompt2;
 	ft_putstr_fd("minishell: warning: here-document at line 42 \
 delimited by end-of-file (wanted `", 2);
 	ft_putstr_fd(delim, 2);
 	ft_putstr_fd("')\n", 2);
-	return (SUCCESS);
+	return (ERR_HEREDOC_QUIT);
 }

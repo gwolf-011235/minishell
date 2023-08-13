@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/13 16:29:23 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/13 23:54:39 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim,
 		return (err);
 	g_status = 0;
 	err = ft_read_heredoc(delim, prompt2, fd, &name);
-	if (err != SUCCESS)
+	if (err != SUCCESS && err != ERR_HEREDOC_QUIT)
 		return (err);
 	err = ft_heredoc_fate(cmd, &name, fd, curr_delim);
 	return (err);
@@ -99,7 +99,7 @@ t_err	ft_read_heredoc(char *delim, char *prompt2, int fd, char **name)
 		if (g_status == 130)
 			return (ft_unlink_heredoc(name, ERR_ABORT));
 		if (!buf)
-			return (ft_print_warning(delim, prompt2));
+			return (ft_print_warning(delim));
 		if (ft_strncmp(delim, buf, len + 1) == 0)
 			break ;
 		write(fd, buf, ft_strlen(buf));
