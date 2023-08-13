@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_create_child.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/12 02:25:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/13 15:40:57 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_err	ft_create_child(t_cmd *cmd, t_data *data, bool builtin)
  * @param cmd 		Current cmd to be processed.
  * @param data		Data struct containing the env.
  * @param builtin	Bool indicating if cmd is a builtin.
- * @return t_err	ERR_CLOSE, ERR_FORK, SUCCESS
+ * @return t_err	ERR_CLOSE, ERR_FORK, ERR_SIGNAL SUCCESS
  */
 t_err	ft_raise_first(t_cmd *cmd, t_data *data, bool builtin)
 {
@@ -63,7 +63,8 @@ t_err	ft_raise_first(t_cmd *cmd, t_data *data, bool builtin)
 	}
 	else if (cmd->pid == 0)
 		ft_firstborn(cmd, data, builtin);
-	signal(SIGINT, SIG_IGN);
+	if (signal(SIGINT, SIG_IGN) == SIG_ERR)
+		return (ERR_SIGNAL);
 	err = ft_close(cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);
@@ -77,7 +78,7 @@ t_err	ft_raise_first(t_cmd *cmd, t_data *data, bool builtin)
  * @param cmd 		Current cmd to be processed.
  * @param data		Data struct containing the env.
  * @param builtin	Bool indicating if cmd is a builtin.
- * @return t_err	ERR_CLOSE, ERR_FORK, SUCCESS
+ * @return t_err	ERR_CLOSE, ERR_FORK, ERR_SIGNAL, SUCCESS
  */
 t_err	ft_raise_last(t_cmd *cmd, t_data *data, bool builtin)
 {
@@ -93,7 +94,8 @@ t_err	ft_raise_last(t_cmd *cmd, t_data *data, bool builtin)
 	}
 	else if (cmd->pid == 0)
 		ft_lastborn(cmd, data, builtin);
-	signal(SIGINT, SIG_IGN);
+	if (signal(SIGINT, SIG_IGN) == SIG_ERR)
+		return (ERR_SIGNAL);
 	return (SUCCESS);
 }
 
@@ -106,7 +108,7 @@ t_err	ft_raise_last(t_cmd *cmd, t_data *data, bool builtin)
  * @param cmd 	Current cmd to be processed.
  * @param data		Data struct containing the env.
  * @param builtin	Bool indicating if cmd is a builtin.
- * @return t_err	ERR_CLOSE, ERR_FORK, SUCCESS
+ * @return t_err	ERR_CLOSE, ERR_FORK, ERR_SIGNAL, SUCCESS
  */
 t_err	ft_raise_middle(t_cmd *cmd, t_data *data, bool builtin)
 {
@@ -122,7 +124,8 @@ t_err	ft_raise_middle(t_cmd *cmd, t_data *data, bool builtin)
 	}
 	else if (cmd->pid == 0)
 		ft_middle_child(cmd, data, builtin);
-	signal(SIGINT, SIG_IGN);
+	if (signal(SIGINT, SIG_IGN) == SIG_ERR)
+		return (ERR_SIGNAL);
 	err = ft_close(cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);
