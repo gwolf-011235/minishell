@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:50:54 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 17:58:23 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,17 @@ t_err	ft_env_setup(t_hashtable **env_table)
  * @brief Import env_vars from global environ.
  *
  * Check if environ is not null, else return.
- * Loop trhough the environ array. Environ is NULL-terminated.
- * Strdup the strings and save them in env_table
- * @param data Pointer to data struct
- * @return t_err SUCCESS if environ not empty and mallocs ok.
- * @todo Check if valid env_str
+ * Loop through the environ array. Environ is NULL-terminated.
+ * Copy the string into environment with ft_copy_envion_str().
+ * If ERR_HT_NO_INSERT continue looping. This ensures, that there
+ * are no duplicates in environment.
+ * If ERR_INVALID_NAME is breaks out of loop (corrupted environ?)
+ * @param env_table Environment.
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_EMPTY, ERR_INVALID_NAME.
  */
 t_err	ft_import_environ(t_hashtable *env_table)
 {
 	int		i;
-	char	*env_ptr;
-	size_t	keylen;
 	t_err	err;
 
 	i = 0;
@@ -74,16 +74,46 @@ t_err	ft_import_environ(t_hashtable *env_table)
 		return (ERR_EMPTY);
 	while (environ[i] != NULL)
 	{
-		env_ptr = ft_strdup(environ[i]);
-		if (!env_ptr)
-			return (ERR_MALLOC);
-		keylen = ft_strchr(env_ptr, '=') - env_ptr;
-		err = ft_hashtable_insert(env_table, env_ptr, keylen);
-		if (err != SUCCESS)
+		err = ft_copy_environ_str(env_table, environ[i]);
+		if (err != SUCCESS && err != ERR_HT_NO_INSERT)
 			return (err);
 		i++;
 	}
 	return (SUCCESS);
+}
+
+/**
+ * @brief Copies a single string from environ into hashtable.
+ *
+ * Check if valid env_key with ft_get_env_keylen().
+ * If yes generate copy with ft_strdup().
+ * If str on pos keylen is an equals sign, the var has a value (standard case).
+ * If no equals it has no value.
+ * If insertion fails free str.
+ * @param env_table Environment.
+ * @param environ_str Single str from environ.
+ * @return t_err SUCCESS, ERR_INVALID_NAME, ERR_MALLOC, ERR_HT_NO_INSERT, ERR_EMPTY
+ */
+t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str)
+{
+	char	*env_str;
+	size_t	keylen;
+	t_err	err;
+
+	keylen = 0;
+	err = ft_get_env_keylen(environ_str, &keylen);
+	if (err == ERR_INVALID_NAME)
+		return (err);
+	env_str = ft_strdup(environ_str);
+	if (!env_str)
+		return (ERR_MALLOC);
+	if (env_str[keylen] == '=')
+		err = ft_hashtable_insert(env_table, env_str, keylen, true);
+	else
+		err = ft_hashtable_insert(env_table, env_str, keylen, false);
+	if (err != SUCCESS && err != ERR_HT_NO_INSERT)
+		free(env_str);
+	return (err);
 }
 
 /**
@@ -102,7 +132,7 @@ t_err	ft_insert_env_pwd(t_hashtable *env_table)
 	err = ft_create_env_pwd(&pwd);
 	if (err != SUCCESS)
 		return (err);
-	err = ft_hashtable_insert(env_table, pwd, 3);
+	err = ft_hashtable_insert(env_table, pwd, 3, true);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);
@@ -124,7 +154,7 @@ t_err	ft_insert_env_shlvl(t_hashtable *env_table)
 	err = ft_create_env_shlvl(&shlvl, 1);
 	if (err != SUCCESS)
 		return (err);
-	err = ft_hashtable_insert(env_table, shlvl, 5);
+	err = ft_hashtable_insert(env_table, shlvl, 5, true);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);

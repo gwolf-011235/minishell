@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/28 17:48:14 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 18:05:55 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,13 +126,13 @@ t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd)
 		err = ft_create_env_pwd(&pwd);
 		if (err != SUCCESS)
 			return (err);
-		err = ft_update_env_var(env_tab, pwd, 3);
+		err = ft_update_env_var(env_tab, pwd, 3, true);
 		if (err != SUCCESS)
 		{
 			free(pwd);
 			return (err);
 		}
-		err = ft_update_env_var(env_tab, oldpwd, 6);
+		err = ft_update_env_var(env_tab, oldpwd, 6, true);
 		if (err != SUCCESS)
 			return (err);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_envp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 18:09:38 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:50:57 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/12 21:42:20 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,16 @@
 /**
  * @brief Loop through all elements and copy the pointers.
  *
+ * The hashtable has an elements array, which are all linked lists.
+ * The function has to loop trhough the whole array.
+ * And per array it has to loop through the linked list.
+ * This function only copies the pointers in the hashtable.
+ * Only variables which have a value are copied.
  * @param ht Environment table which to copy.
  * @param envp Where to save pointers.
  * @return t_err SUCCESS
  */
-t_err	ft_envp_fill(t_hashtable *ht, char **envp)
+t_err	ft_envp_fill(t_hashtable *ht, char **envp, bool all)
 {
 	uint32_t	i;
 	t_env_var	*tmp;
@@ -36,7 +41,8 @@ t_err	ft_envp_fill(t_hashtable *ht, char **envp)
 			tmp = ht->elements[i];
 			while (tmp != NULL)
 			{
-				*envp++ = tmp->env_string;
+				if (all || tmp->has_value)
+					*envp++ = tmp->env_string;
 				tmp = tmp->next;
 			}
 		}
@@ -47,11 +53,10 @@ t_err	ft_envp_fill(t_hashtable *ht, char **envp)
 }
 
 /**
- * @brief Malloc a NULL-terminated envp
+ * @brief Create a NULL-terminated environment pointer (envp)
  *
- * Malloc num_elements of hashtable plus 1 for terminator.
- * Fetch all elements with ft_envp_fill().
- *
+ * Malloc char array of num_values of hashtable plus 1 for terminator.
+ * Fetch all elements with ft_envp_fill() with switch set to false.
  * @param ht Environment from which to copy.
  * @param envp Pointer to char**, where to save.
  * @return t_err ERR_EMPTY, ERR_MALLOC, SUCCESS
@@ -60,20 +65,40 @@ t_err	ft_envp_create(t_hashtable *ht, char ***envp)
 {
 	if (!ht || !envp)
 		return (ERR_EMPTY);
-	*envp = malloc(sizeof(char *) * (ht->num_elements + 1));
+	*envp = malloc(sizeof(char *) * (ht->num_values + 1));
 	if (!*envp)
 		return (ERR_MALLOC);
-	ft_envp_fill(ht, *envp);
+	ft_envp_fill(ht, *envp, false);
 	return (SUCCESS);
 }
 
+/**
+ * @brief Create envp of all elements
+ *
+ * See also ft_envp_create().
+ * Difference: includes all elements of hashtable.
+ * Malloc char array of num_elements of hashtable plus 1 for terminator.
+ * Fetch all elements with ft_envp_fill() with switch set to true.
+ * @param ht Environment from which to copy.
+ * @param envp Pointer to char**, where to save.
+ * @return t_err ERR_EMPTY, ERR_MALLOC, SUCCESS
+ */
+t_err	ft_envp_create_all(t_hashtable *ht, char ***envp)
+{
+	if (!ht || !envp)
+		return (ERR_EMPTY);
+	*envp = malloc(sizeof(char *) * (ht->num_elements + 1));
+	if (!*envp)
+		return (ERR_MALLOC);
+	ft_envp_fill(ht, *envp, true);
+	return (SUCCESS);
+}
 /**
  * @brief Destroy envp.
  *
  * Check if envp exists. If yes:
  * Free the envp and set to NULL.
  * Does not free elements.
- *
  * @param envp The pointer to free.
  * @return t_err SUCCESS
  */
