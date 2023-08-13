@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:59:08 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/13 16:25:10 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/13 18:11:55 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,12 @@ void	ft_sighandler_ignore(int signum)
  * 
  * @param signum 	Signal received.
  * @param state 	Indicator of signal handler.
- * @return t_err 	ERR_SIGNAL, SUCCESS
  */
-t_err	ft_signal_setup(int signum, t_state state)
+void	ft_signal_setup(int signum, t_state state)
 {
 	struct sigaction	sa;
 
+	errno = 0;
 	sigemptyset(&sa.sa_mask);
 	if (state == SIG_STD)
 		sa.sa_handler = ft_sighandler_std;
@@ -83,6 +83,5 @@ t_err	ft_signal_setup(int signum, t_state state)
 	else if (state == SIG_IGNORE)
 		sa.sa_handler = ft_sighandler_ignore;
 	if (sigaction(signum, &sa, NULL) != 0)
-		return (ERR_SIGNAL);
-	return (SUCCESS);
+		perror("Could not assign signal handler :( ");
 }

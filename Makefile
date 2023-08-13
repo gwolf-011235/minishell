@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
+#    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/12 00:44:07 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/13 18:14:38 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,7 +118,8 @@ SRC :=	utils_memory.c \
 		tkn_list_create.c \
 		tkn_list_delete.c \
 		tkn_list_search.c \
-		signal.c
+		signal.c \
+		error.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # ******************************

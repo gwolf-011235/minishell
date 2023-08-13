@@ -6,16 +6,24 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/13 17:34:45 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/13 18:15:26 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file
+ * @file  minishell_error.h
  * @brief Header to store error codes
  */
 #ifndef MINISHELL_ERROR_H
 # define MINISHELL_ERROR_H
+
+/* ====== Includes ====== */
+
+# include <stdio.h>
+# include <signal.h>
+# include <errno.h>
+
+/* ====== Typedefs ====== */
 
 /**
  * @brief Enum, which contains all error codes.
@@ -60,5 +68,8 @@ typedef enum e_error {
 	ERR_ABORT ///< Abort pipe.
 }	t_err;
 
+/* ====== Functions ====== */
+
+void	ft_err_signal(int signum, __sighandler_t sighodl);
 
 #endif

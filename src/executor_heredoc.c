@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/13 16:29:23 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/13 18:14:00 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ t_err	ft_handle_heredoc(t_cmd *cmd, char *prompt2)
 
 	while (cmd)
 	{
-		err = ft_signal_setup(SIGINT, SIG_STD);
-		if (err != SUCCESS)
-			return (err);
+		ft_signal_setup(SIGINT, SIG_STD);
 		i = -1;
 		while (++i < cmd->delim_pos)
 		{
@@ -87,11 +85,8 @@ t_err	ft_read_heredoc(char *delim, char *prompt2, int fd, char **name)
 {
 	char	*buf;
 	size_t	len;
-	t_err	err;
 
-	err = ft_signal_setup(SIGINT, SIG_HEREDOC);
-	if (err != SUCCESS)
-		return (err);
+	ft_signal_setup(SIGINT, SIG_HEREDOC);
 	len = ft_strlen(delim);
 	while (1)
 	{

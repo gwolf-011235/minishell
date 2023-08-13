@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/13 16:16:15 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/13 18:33:23 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	main(int argc, char **argv)
 	(void)argv;
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
-	err = ft_signal_setup(SIGQUIT, SIG_IGNORE);
-	if (err != SUCCESS)
-		ft_exit_failure(&data, err);
+	//ft_err_signal(SIGINT, SIG_IGN);
+	//ft_err_signal(SIGQUIT, SIG_IGN);
+	ft_signal_setup(SIGQUIT, SIG_IGNORE);
 	if (ft_env_setup(&data.env_table) != SUCCESS)
 		printf("NO\n");
 	ft_envp_create(data.env_table, &data.envp);
@@ -48,16 +48,12 @@ int	main(int argc, char **argv)
 		err = ft_prompt_create(data.env_table, &data.prompt2, "PS2", PS2_STD);
 		if (err != SUCCESS)
 			ft_exit_failure(&data, err);
-		err = ft_signal_setup(SIGINT, SIG_STD);
-		if (err != SUCCESS)
-			ft_exit_failure(&data, err);
+		ft_signal_setup(SIGINT, SIG_STD);
 		input = readline(data.prompt1);
 		if (!input)
 			break ;
 		add_history(input);
-		err = ft_signal_setup(SIGINT, SIG_IGNORE);
-		if (err != SUCCESS)
-			ft_exit_failure(&data, err);
+		ft_signal_setup(SIGINT, SIG_IGNORE);
 		err = ft_handle_input(input, &data);
 		free(input);
 		free(data.prompt1);
