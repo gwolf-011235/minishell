@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:17:27 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/05 21:00:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 20:00:01 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void	test_builtin_unset(void)
 	test_setup_argv(5);
 	g_argv[0] = "unset";
 	g_argv[4] = NULL;
-	ft_hashtable_insert(g_symtab, ft_strdup("uno=this"), 3);
-	ft_hashtable_insert(g_symtab, ft_strdup("dos=is"), 3);
-	ft_hashtable_insert(g_symtab, ft_strdup("tr3s=sparta"), 4);
-	ft_hashtable_insert(g_symtab, ft_strdup("quatro=!"), 6);
-	ft_hashtable_insert(g_symtab, ft_strdup("sneaky=boy"), 6);
+	ft_hashtable_insert(g_symtab, ft_strdup("uno=this"), 3, true);
+	ft_hashtable_insert(g_symtab, ft_strdup("dos=is"), 3, true);
+	ft_hashtable_insert(g_symtab, ft_strdup("tr3s=sparta"), 4, true);
+	ft_hashtable_insert(g_symtab, ft_strdup("quatro=!"), 6, true);
+	ft_hashtable_insert(g_symtab, ft_strdup("sneaky=boy"), 6, true);
 	test_hashtable_pretty_print(g_symtab);
 	exec_ft_unset("Unset one var", "uno", NULL, NULL);
 	exec_ft_unset("Unset three vars", "dos", "tr3s", "quatro");

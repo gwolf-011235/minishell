@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:36 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/07 11:19:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 20:16:18 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_hashtable	*ft_hashtable_create(uint32_t size, t_hashfunction *hf)
 	ht->size = size;
 	ht->hash = hf;
 	ht->num_elements = 0;
+	ht->num_values = 0;
 	ht->elements = ft_calloc(sizeof(t_env_var *), ht->size);
 	if (!ht->elements)
 	{

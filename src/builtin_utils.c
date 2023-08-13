@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:24:50 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/28 17:51:28 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 18:05:35 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,17 @@ t_err	ft_get_env_keylen(char *str, size_t *len)
  * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_HT_NO_SWAP,
  * ERR_HT_NO_INSERT.
  */
-t_err	ft_update_env_var(t_hashtable *env_tab, char *env_str, size_t keylen)
+t_err	ft_update_env_var(t_hashtable *env_tab,
+		char *env_str, size_t keylen, bool has_value)
 {
 	t_env_var	*env_var;
 	t_err		err;
 
 	env_var = ft_hashtable_lookup(env_tab, env_str, keylen);
 	if (env_var)
-		err = ft_hashtable_swap(env_tab, env_str, keylen);
+		err = ft_hashtable_swap(env_tab, env_str, keylen, has_value);
 	else
-		err = ft_hashtable_insert(env_tab, env_str, keylen);
+		err = ft_hashtable_insert(env_tab, env_str, keylen, has_value);
 	return (err);
 }
 

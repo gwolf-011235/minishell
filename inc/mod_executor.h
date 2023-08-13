@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_executor.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 10:18:03 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/12 02:04:33 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 /* ====== Includes ====== */
 
 # include "mod_handle_input.h"
+# include "mod_signal.h"
+
+/* ====== Globals ====== */
+
+extern __sig_atomic_t	g_status;
 
 /* ====== Structs ====== */
 
@@ -40,11 +45,14 @@ void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin);
 void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin);
 
 // heredoc
-t_err	ft_handle_heredoc(t_cmd *cmd);
-t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim);
+t_err	ft_handle_heredoc(t_cmd *cmd, char *prompt2);
+t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim,
+			char *prompt2);
+t_err	ft_read_heredoc(char *delim, char *prompt2, int fd, char **name);
 t_err	ft_name_heredoc(int index, char **name);
 t_err	ft_initiate_heredoc(int index, char **name, int *fd);
 t_err	ft_heredoc_fate(t_cmd *cmd, char **name, int fd, int curr_delim);
+t_err	ft_print_warning(char *delim, char *prompt2);
 
 // cleanup
 t_err	ft_cleanup_cmd(t_cmd *cmd);

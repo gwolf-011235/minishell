@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 08:11:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/28 17:49:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 21:39:10 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_err	ft_print_env_sorted(t_hashtable *env_tab)
 	t_err	err;
 
 	envp = NULL;
-	err = ft_envp_create(env_tab, &envp);
+	err = ft_envp_create_all(env_tab, &envp);
 	if (err != SUCCESS)
 		return (ft_export_error(err, NULL));
 	ft_quicksort_strings(envp, 0, env_tab->num_elements - 1);
@@ -148,11 +148,11 @@ t_err	ft_check_and_update_env(char *str, t_hashtable *env_tab)
 	temp = ft_strdup(str);
 	if (!temp)
 		return (ERR_MALLOC);
-	err = ft_update_env_var(env_tab, temp, keylen);
+	if (temp[keylen] == '=')
+		err = ft_update_env_var(env_tab, temp, keylen, true);
+	else
+		err = ft_update_env_var(env_tab, temp, keylen, false);
 	if (err != SUCCESS)
-	{
 		free(temp);
-		return (err);
-	}
-	return (SUCCESS);
+	return (err);
 }

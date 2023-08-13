@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:45:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 13:35:03 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 18:09:21 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ t_err	ft_increment_shlvl(t_hashtable *env_table)
 	if (new_val > MAX_SHLVL)
 	{
 		printf(MAX, new_val);
-		return (ft_hashtable_swap(env_table, "SHLVL=1", 5));
+		return (ft_hashtable_swap(env_table, "SHLVL=1", 5, true));
 	}
 	new_str = NULL;
 	err = ft_create_env_shlvl(&new_str, new_val);
 	if (err != SUCCESS)
 		return (err);
-	err = ft_hashtable_swap(env_table, new_str, 5);
+	err = ft_hashtable_swap(env_table, new_str, 5, true);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);

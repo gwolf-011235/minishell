@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:07:23 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/30 14:55:22 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 20:15:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ typedef uint64_t			t_hashfunction (const char *, size_t);
  * This node saves one env variable.
  * @param env_string The whole env string (e.g. PWD=path/to/pwd).
  * @param keylen The length of the env variable name.
+ * @param has_value Saves if the variable was assigned a value (with '=')
  * @param value Pointer to the start of the env value.
  * @param next Pointer to the next node in this hashtable bucket.
  */
 typedef struct s_env_var {
 	char				*env_string;
 	size_t				keylen;
+	bool				has_value;
 	char				*value;
 	struct s_env_var	*next;
 }	t_env_var;
@@ -69,12 +71,15 @@ typedef struct s_env_var {
  *
  * @param size How many buckets hashtable has.
  * @param hash The used hash function.
+ * @param num_elements How many elements are save in hashtable.
+ * @param num_values How many of the saved elements have a value saved.
  * @param elements Pointer to the individual buckets.
  */
 typedef struct s_hashtable {
 	uint32_t		size;
 	t_hashfunction	*hash;
 	uint32_t		num_elements;
+	uint32_t		num_values;
 	t_env_var		**elements;
 }	t_hashtable;
 
@@ -86,12 +91,12 @@ void		ft_hashtable_destroy(t_hashtable *ht);
 //hashtable_utils.c
 size_t		ft_hashtable_index(t_hashtable *ht, const char *key, size_t keylen);
 t_err		ft_hashtable_insert(
-				t_hashtable *ht, char *string, size_t keylen);
+				t_hashtable *ht, char *string, size_t keylen, bool has_value);
 t_env_var	*ft_hashtable_lookup(
 				t_hashtable *ht, const char *string, size_t keylen);
 t_err		ft_hashtable_delete(
 				t_hashtable *ht, char *string, size_t keylen);
 t_err		ft_hashtable_swap(
-				t_hashtable *ht, char *string, size_t keylen);
+				t_hashtable *ht, char *string, size_t keylen, bool has_value);
 
 #endif

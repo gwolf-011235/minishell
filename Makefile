@@ -6,7 +6,7 @@
 #    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/11 19:28:20 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/12 00:44:07 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,11 +112,13 @@ SRC :=	utils_memory.c \
 		executor_utils.c \
 		executor_utils2.c \
 		executor_heredoc.c \
+		executor_heredoc2.c \
 		executor_builtin.c \
 		cleanup.c \
 		tkn_list_create.c \
 		tkn_list_delete.c \
-		tkn_list_search.c
+		tkn_list_search.c \
+		signal.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # ******************************
