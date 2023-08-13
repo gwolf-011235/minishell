@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_setup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 17:58:23 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/13 19:25:42 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
  * If PWD is not available set PWD.
  * Increment SHLVL. If not found set it.
  * @param data Pointer to data struct.
- * @return t_err SUCCESS if everything went right, else it ft_exit_failures.
+ * @return t_err SUCCESS, ERR_MALLOC, 
  */
 t_err	ft_env_setup(t_hashtable **env_table)
 {
@@ -36,8 +36,8 @@ t_err	ft_env_setup(t_hashtable **env_table)
 	if (!env_table)
 		return (ERR_MALLOC);
 	err = ft_import_environ(*env_table);
-	if (err == ERR_MALLOC)
-		return (ERR_MALLOC);
+	if (err != SUCCESS && err != ERR_EMPTY)
+		return (err);
 	if (ft_hashtable_lookup(*env_table, "PWD", 3) == NULL)
 	{
 		err = ft_insert_env_pwd(*env_table);
