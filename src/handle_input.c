@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:16:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 11:10:18 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/13 16:32:34 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,20 @@
 
 #include "mod_handle_input.h"
 
+/**
+ * @brief Driver function process input.
+ * 
+ * Input is checked for syntax errors.
+ * Input is lexed, splitted into tokens which are saved
+ * in a token list.
+ * Token list is iterated and expanded if necessary.
+ * The expanded token list is parsed and the content categorised into
+ * a list of cmds.
+ * The list of cmds is processed by the executor.
+ * @param input 	Input string.
+ * @param data 		Overarching data struct containing the env.
+ * @return t_err 	ERR_EMPTY, ERR_MALLOC, ERR_SYNTAX,  ERR_PIPE, SUCCESS
+ */
 t_err	ft_handle_input(char *input, t_data *data)
 {
 	t_tkn_list	*lst;
