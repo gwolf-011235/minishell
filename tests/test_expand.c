@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 08:58:42 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 16:11:15 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 19:59:18 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	test_expand_list(void)
 
 	printf(YELLOW"*******TEST_EXPAND_TKN_LIST*******\n\n"RESET);
 	g_symtab = ft_hashtable_create(1, ft_hash_fnv1);
-	ft_hashtable_insert(g_symtab, "TEST=USER    SPACEMAN", 4);
-	ft_hashtable_insert(g_symtab, "A=at -e", 1);
-	ft_hashtable_insert(g_symtab, "LOGFILE=/usr/log/logfile.txt", 7);
-	ft_hashtable_insert(g_symtab, "HOME=/usr/home", 4);
+	ft_hashtable_insert(g_symtab, "TEST=USER    SPACEMAN", 4, true);
+	ft_hashtable_insert(g_symtab, "A=at -e", 1, true);
+	ft_hashtable_insert(g_symtab, "LOGFILE=/usr/log/logfile.txt", 7, true);
+	ft_hashtable_insert(g_symtab, "HOME=/usr/home", 4, true);
 	//HEREDOC
 	exec_expand_tkn_lst("Heredoc quote removal", "<< 'hello' cat");
 	//REDIRECT

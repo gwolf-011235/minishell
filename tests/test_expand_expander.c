@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 18:34:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/12 19:57:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	test_expand_tilde(funptr_expand_t funptr_expand)
 	printf(BLUE"**\tTILDE\t**\n\n"RESET);
 	g_err_count += exec_expand("no HOME set", "~", "~", funptr_expand);
 
-	ft_hashtable_insert(g_symtab, ft_strdup("HOME=/this/is/home"), 4);
-	ft_hashtable_insert(g_symtab, ft_strdup("PWD=/this/is/PWD"), 3);
-	ft_hashtable_insert(g_symtab, ft_strdup("OLDPWD=/this/is/OLDPWD"), 6);
+	ft_hashtable_insert(g_symtab, ft_strdup("HOME=/this/is/home"), 4, true);
+	ft_hashtable_insert(g_symtab, ft_strdup("PWD=/this/is/PWD"), 3, true);
+	ft_hashtable_insert(g_symtab, ft_strdup("OLDPWD=/this/is/OLDPWD"), 6, true);
 	g_err_count += exec_expand("expand $HOME with ~", "~", "/this/is/home", funptr_expand);
 	g_err_count += exec_expand("expand $PWD with ~+", "~+", "/this/is/PWD", funptr_expand);
 	g_err_count += exec_expand("expand $OLDPWD with ~-", "~-", "/this/is/OLDPWD", funptr_expand);
@@ -62,7 +62,7 @@ void	test_expand_tilde(funptr_expand_t funptr_expand)
 void	test_expand_var(funptr_expand_t funptr_expand)
 {
 	printf(BLUE"**\tVARS\t**\n\n"RESET);
-	ft_hashtable_insert(g_symtab, ft_strdup("TEST='I am test'"), 4);
+	ft_hashtable_insert(g_symtab, ft_strdup("TEST='I am test'"), 4, true);
 	g_err_count += exec_expand("simple var expansion", "$TEST", "'I am test'", funptr_expand);
 	g_err_count += exec_expand("double var", "$TEST$TEST", "'I am test''I am test'", funptr_expand);
 	g_err_count += exec_expand("empty var", "$NO_VAR", "", funptr_expand);

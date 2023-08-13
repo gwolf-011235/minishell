@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_executor.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:17:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 10:55:56 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/12 20:00:35 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static int	test_scmd_wrapper(char *testname, char *test)
 	test_setup_data();
 /* 	if (!ft_strncmp(test, "minishell", 9))
 		ft_hashtable_delete(g_data.env_table, "PATH", 4); */
-	ft_hashtable_swap(g_data.env_table, "PATH=:/usr/lib/", 4);
+	ft_hashtable_swap(g_data.env_table, "PATH=:/usr/lib/", 4, true);
 	ft_envp_create(g_data.env_table, &g_data.envp);
 	printf("TEST: %s\n", testname);
 	printf("Command:%s\n\n", test);
