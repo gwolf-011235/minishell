@@ -111,8 +111,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a1dd0a4fdc3f5aef6997d3b8f6d68f39d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">ft_prompt_create</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab, char **prompt, char *ps, char *std)</td></tr>
 <tr class="memdesc:a1dd0a4fdc3f5aef6997d3b8f6d68f39d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a prompt string which gets expanded.  <a href="minishell_8h.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">More...</a><br /></td></tr>
 <tr class="separator:a1dd0a4fdc3f5aef6997d3b8f6d68f39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a6a5517bc687b453a7b705f5f2bbc4a"><td class="memItemLeft" align="right" valign="top"><a id="a7a6a5517bc687b453a7b705f5f2bbc4a"></a>
-<a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ft_handle_input</b> (char *input, <a class="el" href="structs__data.html">t_data</a> *data)</td></tr>
+<tr class="memitem:a7a6a5517bc687b453a7b705f5f2bbc4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#a7a6a5517bc687b453a7b705f5f2bbc4a">ft_handle_input</a> (char *input, <a class="el" href="structs__data.html">t_data</a> *data)</td></tr>
+<tr class="memdesc:a7a6a5517bc687b453a7b705f5f2bbc4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver function process input.  <a href="minishell_8h.html#a7a6a5517bc687b453a7b705f5f2bbc4a">More...</a><br /></td></tr>
 <tr class="separator:a7a6a5517bc687b453a7b705f5f2bbc4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0940feb466ce10b2c7432c1cce66692"><td class="memItemLeft" align="right" valign="top"><a id="aa0940feb466ce10b2c7432c1cce66692"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ft_exit_failure</b> (<a class="el" href="structs__data.html">t_data</a> *data, <a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> exit_code)</td></tr>
@@ -183,6 +183,44 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ft_exit_failure</b> (
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>t_err ERR_EMPTY, ERR_MALLOC, SUCCESS </dd></dl>
+
+</div>
+</div>
+<a id="a7a6a5517bc687b453a7b705f5f2bbc4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a6a5517bc687b453a7b705f5f2bbc4a">&#9670;&nbsp;</a></span>ft_handle_input()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_handle_input </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structs__data.html">t_data</a> *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Driver function process input. </p>
+<p>Input is checked for syntax errors. Input is lexed, splitted into tokens which are saved in a token list. Token list is iterated and expanded if necessary. The expanded token list is parsed and the content categorised into a list of cmds. The list of cmds is processed by the executor. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>Input string. </td></tr>
+    <tr><td class="paramname">data</td><td>Overarching data struct containing the env. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_EMPTY, ERR_MALLOC, ERR_SYNTAX, ERR_PIPE, SUCCESS </dd></dl>
 
 </div>
 </div>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Minishell: handle_input.c File Reference</title>
+<title>Minishell: executor_heredoc2.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('handle__input_8c.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('executor__heredoc2_8c.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -91,39 +91,48 @@ $(document).ready(function(){initNavTree('handle__input_8c.html',''); initResiza
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">handle_input.c File Reference</div>  </div>
+<div class="title">executor_heredoc2.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Driver function for input handling.  
+<p>Functions to handle heredoc feature.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a7a6a5517bc687b453a7b705f5f2bbc4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="handle__input_8c.html#a7a6a5517bc687b453a7b705f5f2bbc4a">ft_handle_input</a> (char *input, <a class="el" href="structs__data.html">t_data</a> *data)</td></tr>
-<tr class="memdesc:a7a6a5517bc687b453a7b705f5f2bbc4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver function process input.  <a href="handle__input_8c.html#a7a6a5517bc687b453a7b705f5f2bbc4a">More...</a><br /></td></tr>
-<tr class="separator:a7a6a5517bc687b453a7b705f5f2bbc4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac2606006de366e42af5a8977fc9ac4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__heredoc2_8c.html#aac2606006de366e42af5a8977fc9ac4c">ft_initiate_heredoc</a> (int index, char **name, int *fd)</td></tr>
+<tr class="memdesc:aac2606006de366e42af5a8977fc9ac4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set heredoc name and open it.  <a href="executor__heredoc2_8c.html#aac2606006de366e42af5a8977fc9ac4c">More...</a><br /></td></tr>
+<tr class="separator:aac2606006de366e42af5a8977fc9ac4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36f11ca9b3bfa12dafa51c02cdfa8fea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__heredoc2_8c.html#a36f11ca9b3bfa12dafa51c02cdfa8fea">ft_print_warning</a> (char *delim, char *prompt2)</td></tr>
+<tr class="memdesc:a36f11ca9b3bfa12dafa51c02cdfa8fea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print warning message when EOF is encountered while heredoc is reading from STDIN.  <a href="executor__heredoc2_8c.html#a36f11ca9b3bfa12dafa51c02cdfa8fea">More...</a><br /></td></tr>
+<tr class="separator:a36f11ca9b3bfa12dafa51c02cdfa8fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Driver function for input handling. </p>
+<div class="textblock"><p>Functions to handle heredoc feature. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a7a6a5517bc687b453a7b705f5f2bbc4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a6a5517bc687b453a7b705f5f2bbc4a">&#9670;&nbsp;</a></span>ft_handle_input()</h2>
+<a id="aac2606006de366e42af5a8977fc9ac4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac2606006de366e42af5a8977fc9ac4c">&#9670;&nbsp;</a></span>ft_initiate_heredoc()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_handle_input </td>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_initiate_heredoc </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>input</em>, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structs__data.html">t_data</a> *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>fd</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -133,15 +142,54 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Driver function process input. </p>
-<p>Input is checked for syntax errors. Input is lexed, splitted into tokens which are saved in a token list. Token list is iterated and expanded if necessary. The expanded token list is parsed and the content categorised into a list of cmds. The list of cmds is processed by the executor. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Set heredoc name and open it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">input</td><td>Input string. </td></tr>
-    <tr><td class="paramname">data</td><td>Overarching data struct containing the env. </td></tr>
+    <tr><td class="paramname">index</td><td>Index of current cmd. </td></tr>
+    <tr><td class="paramname">name</td><td>Pointer to name of heredoc to be created. </td></tr>
+    <tr><td class="paramname">fd</td><td>File descriptor for heredoc. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_EMPTY, ERR_MALLOC, ERR_SYNTAX, ERR_PIPE, SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, ERR_OPEN, SUCCESS </dd></dl>
+
+</div>
+</div>
+<a id="a36f11ca9b3bfa12dafa51c02cdfa8fea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36f11ca9b3bfa12dafa51c02cdfa8fea">&#9670;&nbsp;</a></span>ft_print_warning()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_print_warning </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>delim</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>prompt2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Print warning message when EOF is encountered while heredoc is reading from STDIN. </p>
+<p>Print prompt2. Then print the warning message with expected the delimiter. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delim</td><td>Delimiter string of heredoc. </td></tr>
+    <tr><td class="paramname">prompt2</td><td>Heredoc prompt. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS </dd></dl>
 
 </div>
 </div>
@@ -150,7 +198,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="handle__input_8c.html">handle_input.c</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="executor__heredoc2_8c.html">executor_heredoc2.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

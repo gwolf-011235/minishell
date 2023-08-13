@@ -306,7 +306,7 @@ fd 1 (for system stdoutput) with output_fd
 </div><div class="memdoc">
 
 <p>Wait for child processes. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>If child exits normally, the global status is set to the exit status of the child. If child is killed by a signal, the global status is set to 128 (POSIX requirement) + signal number. In case of a core dump triggered by SIGQUIT, an error message is displayed. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cmd</td><td>List of cmds. </td></tr>
   </table>
