@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/10 00:05:50 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/13 22:40:48 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,80 +41,29 @@ t_err	ft_cleanup_cmd(t_cmd *cmd)
 		return (err);
 	if (cmd->heredoc)
 		ft_unlink_heredoc(&cmd->heredoc, err);
+	if (cmd->delims)
+		ft_free_str_arr(cmd->delims);
+	if (cmd->args)
+		ft_free_str_arr(cmd->args);
+	if (cmd->outfiles)
+		ft_remove_outfiles(cmd->outfiles);
 	return (SUCCESS);
 }
 
-/* This function terminates the program and displays an error message 
-according to the point in the program where the error happened. */
-
-/* void	terminate(char *s)
-{
-	if (errno == 0)
-		ft_putendl_fd(s, 2);
-	else
-		perror(s);
-	exit(1);
-} */
-
-/* This function closes all open file descriptors, frees allocated memory
-space in the heap and unlinks any files at the current point. It then
-gives out an error message and terminates the program. */
-
-/* void	abort_mission(t_meta *meta, char *s)
-{
-	if (meta->here_doc)
-		unlink(".tmp_heredoc");
-	ft_close(meta->fd_in);
-	ft_close(meta->fd_out);
-	free(meta->cmds);
-	terminate(s);
-} */
-
-/* This function frees the cmd_paths and calls 'abort_mission' upon an
-error. */
-
-/* void	no_senor(t_meta *meta, char *s)
+/**
+ * @brief Unlink outfiles and free the str array. 
+ * 
+ * @param outfiles Pointer to string array of outfiles.
+ */
+void	ft_remove_outfiles(char **outfiles)
 {
 	int	i;
 
 	i = -1;
-	while (meta->cmd_paths[++i])
-		free(meta->cmd_paths[i]);
-	free(meta->cmd_paths);
-	abort_mission(meta, s);
-} */
-
-/* This function frees the arguments in the current command and 
-calls 'no senor' upon an error. */
-
-/* void	mamma_mia(t_meta *meta, char *s)
-{
-	int	i;
-
-	i = -1;
-	while (meta->cmds[meta->i].arg[++i])
-		free(meta->cmds[meta->i].arg[i]);
-	free(meta->cmds[meta->i].arg);
-	no_senor(meta, s);
-} */
-
-/* This function closes remaining file descriptors and frees allocated 
-memory space. */
-
-/* void	cleanup(t_meta *meta)
-{
-	int	i;
-
-	if (meta->here_doc)
-		unlink(".tmp_heredoc");
-	ft_close(meta->fd_in);
-	ft_close(meta->fd_out);
-	i = -1;
-	while (meta->cmd_paths[++i])
-		free(meta->cmd_paths[i]);
-	free(meta->cmd_paths);
-	free(meta->cmds);
-} */
+	while (outfiles[++i])
+		unlink(outfiles[i]);
+	ft_free_str_arr(outfiles);
+}
 
 /**
  * @brief Unlinks the temporary heredoc file created.
@@ -150,23 +99,6 @@ t_err	ft_close(int fd)
 	}
 	return (SUCCESS);
 }
-
-/* This function closes all pipes which have been created. 
-It executes the closing for all pipes created in previous
-and including the current loop except if the the current
-loop is the last loop. */
-/* 
-void	pipinator(t_meta *meta)
-{
-	int	j;
-
-	j = -1;
-	while (++j <= meta->i)
-	{
-		if (j < meta->cmd_num - 1)
-			ft_plug_pipe(meta, j);
-	}
-} */
 
 /**
  * @brief Closes pipe ends (= file descriptors) of the

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_executor.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/12 02:04:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/13 22:41:06 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_err	ft_print_warning(char *delim, char *prompt2);
 
 // cleanup
 t_err	ft_cleanup_cmd(t_cmd *cmd);
+void	ft_remove_outfiles(char **outfiles);
 t_err	ft_unlink_heredoc(char **name, t_err err);
 t_err	ft_close(int fd);
 t_err	ft_plug_pipe(t_cmd *cmd);
