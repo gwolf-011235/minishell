@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_error.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 19:07:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/13 17:34:45 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ typedef enum e_error {
 	ERR_EXECVE, ///< Execve encountered an error.
 	ERR_WAIT, ///< Error while waiting for exit status of child process.
 	ERR_NOSPLIT, ///< ft_field_split() didnt split.
-	ERR_OPEN ///< open() failed.
+	ERR_OPEN, ///< open() failed.
+	ERR_SIGNAL, ///< Setup of signal handler failed.
+	ERR_NO_INPUT, ///< Input is empty.
+	ERR_ABORT ///< Abort pipe.
 }	t_err;
+
 
 #endif

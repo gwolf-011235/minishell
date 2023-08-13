@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/10 23:19:16 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/13 15:38:19 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,15 +142,36 @@ t_err	ft_replace_fd(int input_fd, int output_fd)
 /**
  * @brief Wait for child processes
  * 
+ * If child exits normally, the global status is set to
+ * the exit status of the child.
+ * If child is killed by a signal, the global status
+ * is set to 128 (POSIX requirement) + signal number.
+ * In case of a core dump triggered by SIGQUIT, an error
+ * message is displayed.
  * @param cmd 		List of cmds.
  * @return t_err 	ERR_WAIT, SUCCESS
  */
 t_err	ft_wait_for_babies(t_cmd *cmd)
 {
+	int	status;
+
 	while (cmd)
 	{
-		if (waitpid(cmd->pid, NULL, 0) < 0) // retrieve exit status
+		if (waitpid(cmd->pid, &status, 0) < 0)
 			return (ERR_WAIT);
+		if (WIFEXITED(status))
+			g_status = WEXITSTATUS(status);
+		else
+		{
+			if (WIFSIGNALED(status))
+			{
+				g_status = 128 + WTERMSIG(status);
+				if (__WCOREDUMP(status))
+					ft_putendl_fd("Quit (core dumped)", 2);
+				else
+					ft_putchar_fd('\n', 2);
+			}
+		}
 		cmd = cmd->next;
 	}
 	return (SUCCESS);
