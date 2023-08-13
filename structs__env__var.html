@@ -108,6 +108,9 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><b>env_string</b></td>
 <tr class="memitem:af347fae5dae0b613448c54f3dea76ad2"><td class="memItemLeft" align="right" valign="top"><a id="af347fae5dae0b613448c54f3dea76ad2"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>keylen</b></td></tr>
 <tr class="separator:af347fae5dae0b613448c54f3dea76ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dfa744f0c79dc3f439d054cc3878eaa"><td class="memItemLeft" align="right" valign="top"><a id="a9dfa744f0c79dc3f439d054cc3878eaa"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>has_value</b></td></tr>
+<tr class="separator:a9dfa744f0c79dc3f439d054cc3878eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e9aec275e566b978a3ccb4e043d8c61"><td class="memItemLeft" align="right" valign="top"><a id="a4e9aec275e566b978a3ccb4e043d8c61"></a>
 char *&#160;</td><td class="memItemRight" valign="bottom"><b>value</b></td></tr>
 <tr class="separator:a4e9aec275e566b978a3ccb4e043d8c61"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,6 +124,7 @@ struct <a class="el" href="structs__env__var.html">s_env_var</a> *&#160;</td><td
   <table class="params">
     <tr><td class="paramname">env_string</td><td>The whole env string (e.g. PWD=path/to/pwd). </td></tr>
     <tr><td class="paramname">keylen</td><td>The length of the env variable name. </td></tr>
+    <tr><td class="paramname">has_value</td><td>Saves if the variable was assigned a value (with '=') </td></tr>
     <tr><td class="paramname">value</td><td>Pointer to the start of the env value. </td></tr>
     <tr><td class="paramname">next</td><td>Pointer to the next node in this hashtable bucket. </td></tr>
   </table>

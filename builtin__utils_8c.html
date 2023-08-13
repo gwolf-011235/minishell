@@ -106,9 +106,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a2c16593ceab13f7fd70d26679c0d32b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__utils_8c.html#a2c16593ceab13f7fd70d26679c0d32b3">ft_get_env_keylen</a> (char *str, size_t *len)</td></tr>
 <tr class="memdesc:a2c16593ceab13f7fd70d26679c0d32b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calc the keylen of an environment var.  <a href="builtin__utils_8c.html#a2c16593ceab13f7fd70d26679c0d32b3">More...</a><br /></td></tr>
 <tr class="separator:a2c16593ceab13f7fd70d26679c0d32b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a548d2d08321de54eda700863336b16f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__utils_8c.html#a548d2d08321de54eda700863336b16f2">ft_update_env_var</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_tab, char *env_str, size_t keylen)</td></tr>
-<tr class="memdesc:a548d2d08321de54eda700863336b16f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert or swap the given env_str.  <a href="builtin__utils_8c.html#a548d2d08321de54eda700863336b16f2">More...</a><br /></td></tr>
-<tr class="separator:a548d2d08321de54eda700863336b16f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a279181773bbdea6fbec8d214f8868951"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__utils_8c.html#a279181773bbdea6fbec8d214f8868951">ft_update_env_var</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_tab, char *env_str, size_t keylen, bool has_value)</td></tr>
+<tr class="memdesc:a279181773bbdea6fbec8d214f8868951"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert or swap the given env_str.  <a href="builtin__utils_8c.html#a279181773bbdea6fbec8d214f8868951">More...</a><br /></td></tr>
+<tr class="separator:a279181773bbdea6fbec8d214f8868951"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd235c8d5f95d8eec30bae4bb200a044"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__utils_8c.html#acd235c8d5f95d8eec30bae4bb200a044">ft_swap</a> (char **str1, char **str2)</td></tr>
 <tr class="memdesc:acd235c8d5f95d8eec30bae4bb200a044"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap two string pointers.  <a href="builtin__utils_8c.html#acd235c8d5f95d8eec30bae4bb200a044">More...</a><br /></td></tr>
 <tr class="separator:acd235c8d5f95d8eec30bae4bb200a044"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -276,8 +276,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a548d2d08321de54eda700863336b16f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a548d2d08321de54eda700863336b16f2">&#9670;&nbsp;</a></span>ft_update_env_var()</h2>
+<a id="a279181773bbdea6fbec8d214f8868951"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a279181773bbdea6fbec8d214f8868951">&#9670;&nbsp;</a></span>ft_update_env_var()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -298,7 +298,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>keylen</em>&#160;</td>
+          <td class="paramname"><em>keylen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>has_value</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

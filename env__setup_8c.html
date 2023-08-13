@@ -106,6 +106,9 @@ Functions</h2></td></tr>
 <tr class="memitem:abb93d044e7c1b23f9818493c386983ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__setup_8c.html#abb93d044e7c1b23f9818493c386983ac">ft_import_environ</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table)</td></tr>
 <tr class="memdesc:abb93d044e7c1b23f9818493c386983ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Import env_vars from global environ.  <a href="env__setup_8c.html#abb93d044e7c1b23f9818493c386983ac">More...</a><br /></td></tr>
 <tr class="separator:abb93d044e7c1b23f9818493c386983ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36065c9fa7040f17778c479e9527c94f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__setup_8c.html#a36065c9fa7040f17778c479e9527c94f">ft_copy_environ_str</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table, char *environ_str)</td></tr>
+<tr class="memdesc:a36065c9fa7040f17778c479e9527c94f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies a single string from environ into hashtable.  <a href="env__setup_8c.html#a36065c9fa7040f17778c479e9527c94f">More...</a><br /></td></tr>
+<tr class="separator:a36065c9fa7040f17778c479e9527c94f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a229e8b9407ecd87f8bd9124a20e607c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__setup_8c.html#a229e8b9407ecd87f8bd9124a20e607c0">ft_insert_env_pwd</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table)</td></tr>
 <tr class="memdesc:a229e8b9407ecd87f8bd9124a20e607c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts the env_var PWD.  <a href="env__setup_8c.html#a229e8b9407ecd87f8bd9124a20e607c0">More...</a><br /></td></tr>
 <tr class="separator:a229e8b9407ecd87f8bd9124a20e607c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -116,6 +119,44 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Copy env and generate missing envs. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a36065c9fa7040f17778c479e9527c94f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36065c9fa7040f17778c479e9527c94f">&#9670;&nbsp;</a></span>ft_copy_environ_str()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_copy_environ_str </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
+          <td class="paramname"><em>env_table</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>environ_str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies a single string from environ into hashtable. </p>
+<p>Check if valid env_key with <a class="el" href="builtin__utils_8c.html#a2c16593ceab13f7fd70d26679c0d32b3" title="Calc the keylen of an environment var.">ft_get_env_keylen()</a>. If yes generate copy with ft_strdup(). If str on pos keylen is an equals sign, the var has a value (standard case). If no equals it has no value. If insertion fails free str. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">env_table</td><td>Environment. </td></tr>
+    <tr><td class="paramname">environ_str</td><td>Single str from environ. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_INVALID_NAME, ERR_MALLOC, ERR_HT_NO_INSERT, ERR_EMPTY </dd></dl>
+
+</div>
+</div>
 <a id="abf61e420e8151a3154214b266499b6b9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abf61e420e8151a3154214b266499b6b9">&#9670;&nbsp;</a></span>ft_env_setup()</h2>
 
@@ -160,13 +201,13 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Import env_vars from global environ. </p>
-<p>Check if environ is not null, else return. Loop trhough the environ array. Environ is NULL-terminated. Strdup the strings and save them in env_table </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Check if environ is not null, else return. Loop through the environ array. Environ is NULL-terminated. Copy the string into environment with ft_copy_envion_str(). If ERR_HT_NO_INSERT continue looping. This ensures, that there are no duplicates in environment. If ERR_INVALID_NAME is breaks out of loop (corrupted environ?) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">data</td><td>Pointer to data struct </td></tr>
+    <tr><td class="paramname">env_table</td><td>Environment. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS if environ not empty and mallocs ok. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC, ERR_EMPTY, ERR_INVALID_NAME. </dd></dl>
 
 </div>
 </div>

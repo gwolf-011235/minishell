@@ -143,7 +143,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Check env_str for valid key. If so update environment. </p>
-<p>Check key with <a class="el" href="builtin__utils_8c.html#a2c16593ceab13f7fd70d26679c0d32b3" title="Calc the keylen of an environment var.">ft_get_env_keylen()</a>. If valid ft_strdup() the given env_str. Then update environment with <a class="el" href="builtin__utils_8c.html#a548d2d08321de54eda700863336b16f2" title="Insert or swap the given env_str.">ft_update_env_var()</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Check key with <a class="el" href="builtin__utils_8c.html#a2c16593ceab13f7fd70d26679c0d32b3" title="Calc the keylen of an environment var.">ft_get_env_keylen()</a>. If valid ft_strdup() the given env_str. Then update environment with <a class="el" href="builtin__utils_8c.html#a279181773bbdea6fbec8d214f8868951" title="Insert or swap the given env_str.">ft_update_env_var()</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">str</td><td>Env_str to check. </td></tr>
     <tr><td class="paramname">env_tab</td><td>Environment. </td></tr>
@@ -247,7 +247,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Print ASCII sorted environment. </p>
-<p>Create envp with <a class="el" href="minishell_8h.html#a855a4925df79141d067f1dac75b2a0e3" title="Malloc a NULL-terminated envp.">ft_envp_create()</a>. If error print with <a class="el" href="builtin__error_8c.html#a9eb2836d5650ecf25c3b86bdcc348007" title="Handle error of ft_export().">ft_export_error()</a>. Use ft_quicksort_string() to sort envp. Print env_strings with <a class="el" href="builtin__export_8c.html#aaa80cb411c0643fc8fddc05e0950901b" title="Print env_str in pretty from.">ft_pretty_print_envp()</a>. Destroy envp with <a class="el" href="env__envp_8c.html#a119c93151620b9c8ee199daaee94bde6" title="Destroy envp.">ft_envp_destroy()</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Create envp with <a class="el" href="minishell_8h.html#a855a4925df79141d067f1dac75b2a0e3" title="Create a NULL-terminated environment pointer (envp)">ft_envp_create()</a>. If error print with <a class="el" href="builtin__error_8c.html#a9eb2836d5650ecf25c3b86bdcc348007" title="Handle error of ft_export().">ft_export_error()</a>. Use ft_quicksort_string() to sort envp. Print env_strings with <a class="el" href="builtin__export_8c.html#aaa80cb411c0643fc8fddc05e0950901b" title="Print env_str in pretty from.">ft_pretty_print_envp()</a>. Destroy envp with <a class="el" href="env__envp_8c.html#a119c93151620b9c8ee199daaee94bde6" title="Destroy envp.">ft_envp_destroy()</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">env_tab</td><td>Environment. </td></tr>
   </table>
