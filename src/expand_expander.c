@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 19:27:38 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/13 17:10:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ t_err	ft_expander_arg(t_track *input, t_hashtable *symtab, t_type type)
 	while (input->str[input->pos])
 	{
 		input->last_expand_len = 0;
-		if (input->str[input->pos] == '\'' && !input->quoted)
+		if (type != HEREDOC && input->str[input->pos] == '\'' && !input->quoted)
 			err = ft_rm_single_quote(input);
-		else if (input->str[input->pos] == '"')
+		else if (type != HEREDOC && input->str[input->pos] == '"')
 			err = ft_rm_double_quote(input);
-		else if (input->str[input->pos] == '~' && (input->pos == 0
-				|| (type == ASSIGN && ft_strchr(input->str, '=')
+		else if (type != HEREDOC && input->str[input->pos] == '~'
+			&& (input->pos == 0 || (type == ASSIGN && ft_strchr(input->str, '=')
 					== input->str + input->pos -1)))
 			err = ft_expand_tilde(input, symtab);
 		else if (input->str[input->pos] == '$')
