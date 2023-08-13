@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/13 18:15:26 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/13 19:05:34 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 /* ====== Includes ====== */
 
 # include <stdio.h>
-# include <signal.h>
 # include <errno.h>
 
 /* ====== Typedefs ====== */
@@ -70,6 +69,5 @@ typedef enum e_error {
 
 /* ====== Functions ====== */
 
-void	ft_err_signal(int signum, __sighandler_t sighodl);
 
 #endif

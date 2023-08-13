@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:59:08 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/13 18:11:55 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/13 19:00:06 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ void	ft_sighandler_ignore(int signum)
 /**
  * @brief Assign signalhandler to signal 'signum'.
  * 
+ * Add flag SA_RESTART to ensure interrupted sys calls
+ * are restarted anew. Necessary for background readline
+ * processes.
  * @param signum 	Signal received.
  * @param state 	Indicator of signal handler.
  */
@@ -76,6 +79,7 @@ void	ft_signal_setup(int signum, t_state state)
 
 	errno = 0;
 	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_RESTART;
 	if (state == SIG_STD)
 		sa.sa_handler = ft_sighandler_std;
 	else if (state == SIG_HEREDOC)
