@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/14 20:29:53 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/14 20:35:30 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
  * @param type Type of the expanded node.
  * @return t_err SUCCESS, ERR_MALLOC
  */
-t_err	ft_expander_arg(t_track *input, t_hashtable *symtab, t_type type)
+t_err	ft_expander(t_track *input, t_hashtable *symtab, t_type type)
 {
 	t_err	err;
 
