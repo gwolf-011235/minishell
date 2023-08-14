@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/14 20:21:47 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/14 20:34:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_err	ft_expand_arg(t_tkn_list **list, t_hashtable *symtab);
 t_err	ft_expander_arg(t_track *input, t_hashtable *symtab, t_type type);
 t_err	ft_rm_single_quote(t_track *input);
 t_err	ft_rm_double_quote(t_track *input);
+t_err	ft_expander_heredoc(char *str, t_hashtable *symtab);
 
 //expand_tilde.c
 t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab);
