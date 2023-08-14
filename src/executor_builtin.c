@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:47:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 10:14:25 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 17:28:20 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,37 @@ t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data)
 			return (err);
 	}
 	else
+	{
+		err = ft_set_fd_builtin(cmd);
+		if (err != SUCCESS)
+			return (err);
 		ft_choose_builtin(cmd, data);
+	}
 	return (SUCCESS);
+}
+
+/**
+ * @brief Set the file descriptors for execution of scmd builtin.
+ * 
+ * @param cmd 		Current cmd.
+ * @return t_err 	ERR_CLOSE, SUCCESS
+ */
+t_err	ft_set_fd_builtin(t_cmd *cmd)
+{
+	t_err	err;
+
+	if (cmd->fd_out >= 0)
+	{
+		if (cmd->fd_in >= 0)
+			ft_replace_fd(cmd->fd_in, cmd->fd_out);
+		else
+			ft_replace_fd(0, cmd->fd_out);
+		err = ft_close(&cmd->fd_out);
+		if (err != SUCCESS)
+			return (err);
+	}
+	err = ft_close(&cmd->fd_in);
+	return (err);
 }
 
 /**
