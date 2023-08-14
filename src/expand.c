@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/14 20:44:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/14 21:19:56 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table)
  * Move forward a node.
  * Init tracker with ft_init_tracker().
  * Remove quotes of heredoc delim.
+ * If quotes were found in delim, set type prev node to QUOTEDOC.
  * @param node Pointer to HEREDOC node.
  * @return t_err SUCCESS
  */
@@ -84,6 +85,8 @@ t_err	ft_expand_heredoc(t_tkn_list **node)
 		else
 			ft_move_tracker(&input);
 	}
+	if (input.found_quote)
+		(*node)->prev->type = QUOTEDOC;
 	return (SUCCESS);
 }
 

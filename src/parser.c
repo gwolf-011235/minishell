@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 11:11:50 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/14 21:20:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ t_err	ft_categorise(t_tkn_list **lst, t_cmd *new, bool *cmd_complete)
 
 	err = SUCCESS;
 	tmp = *lst;
-	if (tmp->type == HEREDOC)
+	if (tmp->type == HEREDOC || tmp->type == QUOTEDOC)
 		err = ft_save_heredoc(&tmp, new);
 	else if (tmp->type == INFILE)
 		err = ft_save_infile(&tmp, new);
