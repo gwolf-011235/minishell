@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 14:55:01 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 17:06:08 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,8 @@ t_err	ft_cleanup_cmd(t_cmd *cmd)
 	if (cmd->args)
 		ft_free_str_arr(cmd->args);
 	if (cmd->outfiles)
-		ft_remove_outfiles(cmd->outfiles);
+		ft_free_str_arr(cmd->outfiles);
 	return (SUCCESS);
-}
-
-/**
- * @brief Unlink outfiles and free the str array. 
- * 
- * @param outfiles Pointer to string array of outfiles.
- */
-void	ft_remove_outfiles(char **outfiles)
-{
-	int	i;
-
-	i = -1;
-	while (outfiles[++i])
-		unlink(outfiles[i]);
-	ft_free_str_arr(outfiles);
 }
 
 /**
