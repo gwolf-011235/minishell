@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/13 23:57:50 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 11:31:30 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
  * and take input from stdin. In case a heredoc is the
  * last infile redirect, its fd is given to the cmd.
  * Differentiate between ERR_ABORT (Cancel whole executor)
- * and ERR_HEREDOC_QUIT (Continue executor).
+ * and ERR_HEREDOC_EOF (Continue executor).
  * 
  * All necessary pipes are created in advance to ensure
  * definite fd assignment to all pipe ends.
@@ -49,7 +49,7 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
 	empty_path = false;
 	ft_init_exec(cmd);
 	err = ft_handle_heredoc(cmd, data->prompt2);
-	if (err != SUCCESS && err != ERR_HEREDOC_QUIT)
+	if (err != SUCCESS && err != ERR_HEREDOC_EOF)
 		return (err);
 	err = ft_create_pipes(cmd);
 	if (err != SUCCESS)

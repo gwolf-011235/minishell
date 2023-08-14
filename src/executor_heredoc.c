@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/13 23:54:39 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 11:31:30 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim,
 		return (err);
 	g_status = 0;
 	err = ft_read_heredoc(delim, prompt2, fd, &name);
-	if (err != SUCCESS && err != ERR_HEREDOC_QUIT)
+	if (err != SUCCESS && err != ERR_HEREDOC_EOF)
 		return (err);
 	err = ft_heredoc_fate(cmd, &name, fd, curr_delim);
 	return (err);

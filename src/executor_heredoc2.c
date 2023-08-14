@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:20:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/13 23:52:57 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 11:31:30 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_err	ft_initiate_heredoc(int index, char **name, int *fd)
  * Then print the warning message with
  * expected the delimiter.
  * @param delim		Delimiter string of heredoc.
- * @return t_err	ERR_HEREDOC_QUIT
+ * @return t_err	ERR_HEREDOC_EOF
  */
 t_err	ft_print_warning(char *delim)
 {
@@ -55,5 +55,5 @@ t_err	ft_print_warning(char *delim)
 delimited by end-of-file (wanted `", 2);
 	ft_putstr_fd(delim, 2);
 	ft_putstr_fd("')\n", 2);
-	return (ERR_HEREDOC_QUIT);
+	return (ERR_HEREDOC_EOF);
 }
