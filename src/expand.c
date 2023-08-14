@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/14 20:26:04 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/14 20:44:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,16 @@
 /**
  * @brief Loop through token list and expand content.
  *
- * If a heredoc token is encountered, jump over the token and the next one.
- * Else pass the token content to ft_expand_expr() which handles expansion.
- *
- * @param list List of tokens.
- * @param data Overarching struct.
+ * Depending on type of token perform expansions:
+ * Redirect: tilde and dollar expand, quote removal, flag if AMBIGUOUS.
+ * Heredoc: quote removal.
+ * Assign: tilde after = and dollar expand, quote removal, set type to ARG.
+ * Arg: tilde and dollar expand, field split, quote removal, flag if DELETE.
+ * Loop through with tmp. Since the list itself can change (new nodes added after
+ * field split) the head pointer needs to be updated after loop.
+ * At the end deletes all nodes of type DELETE.
+ * @param head Pointer pointer to head of list.
+ * @param env_table Environment.
  * @return t_err SUCCESS, ERR_MALLOC.
  */
 t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table)
@@ -60,16 +65,16 @@ t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table)
  *
  * Move forward a node.
  * Init tracker with ft_init_tracker().
- * Removes quotes of heredoc delim.
- * @param list Pointer to HEREDOC node.
+ * Remove quotes of heredoc delim.
+ * @param node Pointer to HEREDOC node.
  * @return t_err SUCCESS
  */
-t_err	ft_expand_heredoc(t_tkn_list **list)
+t_err	ft_expand_heredoc(t_tkn_list **node)
 {
 	t_track	input;
 
-	*list = (*list)->next;
-	ft_init_tracker(&input, (*list)->content, HEREDOC);
+	*node = (*node)->next;
+	ft_init_tracker(&input, (*node)->content, HEREDOC);
 	while (input.str[input.pos])
 	{
 		if (input.str[input.pos] == '\'' && !input.quoted)
@@ -87,26 +92,26 @@ t_err	ft_expand_heredoc(t_tkn_list **list)
  *
  * Move forward a node.
  * Init tracker with ft_init_tracker().
- * Expand and quote removal with ft_expander_full().
- * If expanded token is nothing and was not quoted, change type of the
- * redirect node (previous one) to AMBIGUOUS.
- * @param list Pointer to REDIRECT node.
+ * Expand and quote removal with ft_expander().
+ * If expanded token is empty and was not quoted, change type of previous node
+ * (containing redirect symbol) to AMBIGUOUS.
+ * @param node Pointer to REDIRECT node.
  * @param symtab Environment.
  * @return t_err SUCCESS, ERR_MALLOC
  */
-t_err	ft_expand_redirect(t_tkn_list **list, t_hashtable *symtab)
+t_err	ft_expand_redirect(t_tkn_list **node, t_hashtable *symtab)
 {
 	t_track	input;
 	t_err	err;
 
-	*list = (*list)->next;
-	ft_init_tracker(&input, (*list)->content, INFILE);
-	err = ft_expander_arg(&input, symtab, input.type);
+	*node = (*node)->next;
+	ft_init_tracker(&input, (*node)->content, INFILE);
+	err = ft_expander(&input, symtab, input.type);
 	if (err != SUCCESS)
 		return (err);
-	(*list)->content = input.str;
-	if ((*list)->content[0] == '\0' && !input.found_quote)
-		(*list)->prev->type = AMBIGUOUS;
+	(*node)->content = input.str;
+	if ((*node)->content[0] == '\0' && !input.found_quote)
+		(*node)->prev->type = AMBIGUOUS;
 	return (err);
 }
 
@@ -114,23 +119,23 @@ t_err	ft_expand_redirect(t_tkn_list **list, t_hashtable *symtab)
  * @brief Expands ASSIGN token.
  *
  * Init tracker with ft_init_tracker().
- * Expand and quote removal with ft_expander_full().
+ * Expand and quote removal with ft_expander().
  * Set type to ARG to not coonfuse parser.
  * @param list Pointer to ASSIGN node.
  * @param symtab Environment.
  * @return t_err SUCCESS, ERR_MALLOC
  */
-t_err	ft_expand_assign(t_tkn_list **list, t_hashtable *symtab)
+t_err	ft_expand_assign(t_tkn_list **node, t_hashtable *symtab)
 {
 	t_track	input;
 	t_err	err;
 
-	ft_init_tracker(&input, (*list)->content, ASSIGN);
-	err = ft_expander_arg(&input, symtab, input.type);
+	ft_init_tracker(&input, (*node)->content, ASSIGN);
+	err = ft_expander(&input, symtab, input.type);
 	if (err != SUCCESS)
 		return (err);
-	(*list)->content = input.str;
-	(*list)->type = ARG;
+	(*node)->content = input.str;
+	(*node)->type = ARG;
 	return (err);
 }
 
@@ -138,37 +143,37 @@ t_err	ft_expand_assign(t_tkn_list **list, t_hashtable *symtab)
  * @brief Expands ARG token.
  *
  * Init tracker with ft_init_tracker().
- * Expand and quote removal with special ft_expander_arg().
- * If expansion on unquoted var: check with ft_field_split() if node
+ * Expand and quote removal with ft_expander().
+ * If expansion on unquoted dollar: check with ft_field_split() if node
  * has to be split. If ft_field_split() fires it resets the tracker to the last
  * node of the split to continue expansion.
- * If expanded node is empty, and was no quotes found mark it as DELETE.
- * @param list Pointer to ARG token.
+ * If expanded node is empty, and no quotes found set type to DELETE.
+ * @param node Pointer to ARG token.
  * @param symtab Environment.
  * @return t_err SUCCESS, ERR_MALLOC
  */
-t_err	ft_expand_arg(t_tkn_list **list, t_hashtable *symtab)
+t_err	ft_expand_arg(t_tkn_list **node, t_hashtable *symtab)
 {
 	t_track	input;
 	t_err	err;
 
-	ft_init_tracker(&input, (*list)->content, ARG);
+	ft_init_tracker(&input, (*node)->content, ARG);
 	while (input.str[input.pos])
 	{
-		err = ft_expander_arg(&input, symtab, input.type);
+		err = ft_expander(&input, symtab, input.type);
 		if (err != SUCCESS)
 			return (err);
-		(*list)->content = input.str;
+		(*node)->content = input.str;
 		if (input.last_expand_len > 0 && !input.quoted)
 		{
-			err = ft_field_split(&input, list);
+			err = ft_field_split(&input, node);
 			if (err != SUCCESS && err != ERR_NOSPLIT)
 				return (err);
 			if (err == SUCCESS)
-				ft_init_tracker(&input, (*list)->content, ARG);
+				ft_init_tracker(&input, (*node)->content, ARG);
 		}
 	}
-	if (ft_strlen((*list)->content) == 0 && !input.found_quote)
-		(*list)->type = DELETE;
+	if (ft_strlen((*node)->content) == 0 && !input.found_quote)
+		(*node)->type = DELETE;
 	return (SUCCESS);
 }
