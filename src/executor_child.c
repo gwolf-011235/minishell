@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 12:03:42 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 14:57:00 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,14 @@
  */
 void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin)
 {
-	ft_close(cmd->fd_pipe[0]);
-	ft_open_outfile(cmd);
+	ft_close(&cmd->fd_pipe[0]);
 	if (cmd->fd_out >= 0)
 	{
 		if (cmd->fd_in >= 0)
 			ft_replace_fd(cmd->fd_in, cmd->fd_out);
 		else
 			ft_replace_fd(0, cmd->fd_out);
-		ft_close(cmd->fd_out);
+		ft_close(&cmd->fd_out);
 	}
 	else
 	{
@@ -49,9 +48,9 @@ void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin)
 			ft_replace_fd(cmd->fd_in, cmd->fd_pipe[1]);
 		else
 			ft_replace_fd(0, cmd->fd_pipe[1]);
-		ft_close(cmd->fd_pipe[1]);
+		ft_close(&cmd->fd_pipe[1]);
 	}
-	ft_close(cmd->fd_in);
+	ft_close(&cmd->fd_in);
 	if (builtin)
 		ft_choose_builtin(cmd, data);
 	else
@@ -76,15 +75,14 @@ void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin)
  */
 void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin)
 {
-	ft_close(cmd->fd_prev_pipe[1]);
-	ft_open_outfile(cmd);
+	ft_close(&cmd->fd_prev_pipe[1]);
 	if (cmd->fd_out >= 0)
 	{
 		if (cmd->fd_in >= 0)
 			ft_replace_fd(cmd->fd_in, cmd->fd_out);
 		else
 			ft_replace_fd(cmd->fd_prev_pipe[0], cmd->fd_out);
-		ft_close(cmd->fd_out);
+		ft_close(&cmd->fd_out);
 	}
 	else
 	{
@@ -93,8 +91,8 @@ void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin)
 		else
 			ft_replace_fd(cmd->fd_prev_pipe[0], 1);
 	}
-	ft_close(cmd->fd_prev_pipe[0]);
-	ft_close(cmd->fd_in);
+	ft_close(&cmd->fd_prev_pipe[0]);
+	ft_close(&cmd->fd_in);
 	if (builtin)
 		ft_choose_builtin(cmd, data);
 	else
@@ -120,16 +118,15 @@ void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin)
  */
 void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin)
 {
-	ft_close(cmd->fd_prev_pipe[1]);
-	ft_close(cmd->fd_pipe[0]);
-	ft_open_outfile(cmd);
+	ft_close(&cmd->fd_prev_pipe[1]);
+	ft_close(&cmd->fd_pipe[0]);
 	if (cmd->fd_out >= 0)
 	{
 		if (cmd->fd_in >= 0)
 			ft_replace_fd(cmd->fd_in, cmd->fd_out);
 		else
 			ft_replace_fd(cmd->fd_prev_pipe[0], cmd->fd_out);
-		ft_close(cmd->fd_out);
+		ft_close(&cmd->fd_out);
 	}
 	else
 	{
@@ -138,9 +135,9 @@ void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin)
 		else
 			ft_replace_fd(cmd->fd_prev_pipe[0], cmd->fd_pipe[1]);
 	}
-	ft_close(cmd->fd_prev_pipe[0]);
-	ft_close(cmd->fd_pipe[1]);
-	ft_close(cmd->fd_in);
+	ft_close(&cmd->fd_prev_pipe[0]);
+	ft_close(&cmd->fd_pipe[1]);
+	ft_close(&cmd->fd_in);
 	if (builtin)
 		ft_choose_builtin(cmd, data);
 	else

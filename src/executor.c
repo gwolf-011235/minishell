@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 11:31:30 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 14:58:05 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 {
 	t_err	err;
 
+	err = ft_open_outfile(cmd);
+	if (err != SUCCESS)
+		return (err);
 	if (ft_check_builtin(cmd->args[0]))
 		return (ft_execute_builtin(0, cmd, data));
 	err = ft_check_cmd_access(cmd->args, paths, empty_path);
@@ -112,8 +115,17 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 {
 	t_err	err;
 	t_cmd	*tmp;
+	t_cmd	*tmp2;
 
 	tmp = cmd;
+	tmp2 = cmd;
+	while (tmp)
+	{
+		err = ft_open_outfile(tmp);
+		if (err != SUCCESS)
+			return (err);
+		tmp = tmp->next;
+	}
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
 		if (ft_check_builtin(cmd->args[0]))
@@ -130,7 +142,7 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 			return (err);
 		cmd = cmd->next;
 	}
-	err = ft_wait_for_babies(tmp);
+	err = ft_wait_for_babies(tmp2);
 	return (err);
 }
 
@@ -153,7 +165,7 @@ t_err	ft_process_cmd(t_cmd *cmd, t_err err, t_data *data)
 		write(2, "minishell: ", 11);
 		ft_putstr_fd(cmd->args[0], 2);
 		write(2, ": command not found\n", 20);
-		err = ft_close(cmd->fd_pipe[1]);
+		err = ft_close(&cmd->fd_pipe[1]);
 	}
 	else if (err == SUCCESS)
 		err = ft_create_child(cmd, data, false);

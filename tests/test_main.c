@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/13 17:33:51 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/14 12:11:58 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,14 +111,14 @@ int	main(void)
 	//test_replace_token();
 	//test_prompt();
 	//test_check_syntax();
-	test_env_envp();
+	//test_env_envp();
 	//test_lexer();
 	//test_expand_list();
 	//test_expand_expander();
 	//test_expand_field_split();
 	//test_expand_handler();
 	//test_parser();
-	//test_executor();
+	test_executor();
 	//test_builtin_echo();
 	//test_builtin_cd();
 	//test_builtin_pwd();

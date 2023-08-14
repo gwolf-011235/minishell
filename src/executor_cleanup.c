@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/13 22:40:48 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 14:55:01 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ t_err	ft_cleanup_cmd(t_cmd *cmd)
 {
 	t_err	err;
 
-	err = ft_close(cmd->fd_in);
+	err = ft_close(&cmd->fd_in);
 	if (err != SUCCESS)
 		return (err);
-	err = ft_close(cmd->fd_out);
+	err = ft_close(&cmd->fd_out);
 	if (err != SUCCESS)
 		return (err);
 	err = ft_plug_pipe(cmd);
@@ -86,16 +86,16 @@ t_err	ft_unlink_heredoc(char **name, t_err err)
  * 
  * Returns an error if the closing failed.
  * On success set fd value to -1. 
- * @param fd 		File descriptor to be closed.
+ * @param fd 		Pointer to file descriptor to be closed.
  * @return t_err 	ERR_CLOSE, SUCCESS
  */
-t_err	ft_close(int fd)
+t_err	ft_close(int *fd)
 {
-	if (fd >= 0)
+	if (*fd >= 0)
 	{
-		if (close(fd) < 0)
+		if (close(*fd) < 0)
 			return (ERR_CLOSE);
-		fd = -1;
+		*fd = -1;
 	}
 	return (SUCCESS);
 }
@@ -114,8 +114,8 @@ t_err	ft_plug_pipe(t_cmd *cmd)
 	t_err	err;
 	t_err	err2;
 
-	err = ft_close(cmd->fd_pipe[0]);
-	err2 = ft_close(cmd->fd_pipe[1]);
+	err = ft_close(&cmd->fd_pipe[0]);
+	err2 = ft_close(&cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);
 	return (err2);

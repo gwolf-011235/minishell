@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/13 15:40:57 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 14:55:58 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_err	ft_raise_first(t_cmd *cmd, t_data *data, bool builtin)
 	cmd->pid = fork();
 	if (cmd->pid < 0)
 	{
-		err = ft_close(cmd->fd_pipe[1]);
+		err = ft_close(&cmd->fd_pipe[1]);
 		if (err != SUCCESS)
 			return (err);
 		return (ERR_FORK);
@@ -65,7 +65,8 @@ t_err	ft_raise_first(t_cmd *cmd, t_data *data, bool builtin)
 		ft_firstborn(cmd, data, builtin);
 	if (signal(SIGINT, SIG_IGN) == SIG_ERR)
 		return (ERR_SIGNAL);
-	err = ft_close(cmd->fd_pipe[1]);
+	err = ft_close(&cmd->fd_pipe[1]);
+	err = ft_close(&cmd->fd_out);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);
@@ -87,7 +88,7 @@ t_err	ft_raise_last(t_cmd *cmd, t_data *data, bool builtin)
 	cmd->pid = fork();
 	if (cmd->pid < 0)
 	{
-		err = ft_close(cmd->fd_pipe[1]);
+		err = ft_close(&cmd->fd_pipe[1]);
 		if (err != SUCCESS)
 			return (err);
 		return (ERR_FORK);
@@ -117,7 +118,7 @@ t_err	ft_raise_middle(t_cmd *cmd, t_data *data, bool builtin)
 	cmd->pid = fork();
 	if (cmd->pid < 0)
 	{
-		err = ft_close(cmd->fd_pipe[1]);
+		err = ft_close(&cmd->fd_pipe[1]);
 		if (err != SUCCESS)
 			return (err);
 		return (ERR_FORK);
@@ -126,7 +127,7 @@ t_err	ft_raise_middle(t_cmd *cmd, t_data *data, bool builtin)
 		ft_middle_child(cmd, data, builtin);
 	if (signal(SIGINT, SIG_IGN) == SIG_ERR)
 		return (ERR_SIGNAL);
-	err = ft_close(cmd->fd_pipe[1]);
+	err = ft_close(&cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);

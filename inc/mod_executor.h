@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 12:02:30 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 14:57:18 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_cleanup_cmd_list(t_cmd *cmd);
 t_err	ft_cleanup_cmd(t_cmd *cmd);
 void	ft_remove_outfiles(char **outfiles);
 t_err	ft_unlink_heredoc(char **name, t_err err);
-t_err	ft_close(int fd);
+t_err	ft_close(int *fd);
 t_err	ft_plug_pipe(t_cmd *cmd);
 
 // utils
