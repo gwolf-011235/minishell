@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 14:57:00 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 17:41:46 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin)
 	}
 	ft_close(&cmd->fd_in);
 	if (builtin)
+	{
 		ft_choose_builtin(cmd, data);
+		exit(0);
+	}
 	else
 		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
 			printf("\nexecve encountered an error\n");
@@ -94,7 +97,10 @@ void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin)
 	ft_close(&cmd->fd_prev_pipe[0]);
 	ft_close(&cmd->fd_in);
 	if (builtin)
+	{
 		ft_choose_builtin(cmd, data);
+		exit(0);
+	}
 	else
 		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
 			printf("\nexecve encountered an error\n");
@@ -139,7 +145,10 @@ void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin)
 	ft_close(&cmd->fd_pipe[1]);
 	ft_close(&cmd->fd_in);
 	if (builtin)
+	{
 		ft_choose_builtin(cmd, data);
+		exit(0);
+	}
 	else
 		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
 			printf("\nexecve encountered an error\n");
