@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/13 14:52:10 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 12:03:42 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin)
 {
 	ft_close(cmd->fd_pipe[0]);
+	ft_open_outfile(cmd);
 	if (cmd->fd_out >= 0)
 	{
 		if (cmd->fd_in >= 0)
@@ -76,6 +77,7 @@ void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin)
 void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin)
 {
 	ft_close(cmd->fd_prev_pipe[1]);
+	ft_open_outfile(cmd);
 	if (cmd->fd_out >= 0)
 	{
 		if (cmd->fd_in >= 0)
@@ -120,6 +122,7 @@ void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin)
 {
 	ft_close(cmd->fd_prev_pipe[1]);
 	ft_close(cmd->fd_pipe[0]);
+	ft_open_outfile(cmd);
 	if (cmd->fd_out >= 0)
 	{
 		if (cmd->fd_in >= 0)

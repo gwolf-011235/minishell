@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/13 23:26:45 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 12:07:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,23 +91,20 @@ t_err	ft_save_outfile(t_tkn_list **lst, t_cmd *new, bool append)
 	tmp = *lst;
 	tmp = tmp->next;
 	new->outfile = 1;
-	if (new->fd_out > -1)
-		if (close(new->fd_out) < 0)
-			return (ERR_CLOSE);
-	if (append)
-		new->fd_out = open(tmp->content, O_WRONLY | O_APPEND | O_CREAT, 0644);
-	else
-		new->fd_out = open(tmp->content, O_RDWR | O_TRUNC | O_CREAT, 0644);
-	if (new->fd_out == -1)
-		return (ERR_OPEN);
 	new->outfiles[new->out_pos] = ft_strdup(tmp->content);
 	if (!new->outfiles[new->out_pos])
 		return (ERR_MALLOC);
-	new->out_pos++;
 	if (append)
+	{
+		new->append_switches[new->out_pos] = true;
 		new->append = 1;
+	}
 	else
+	{
+		new->append_switches[new->out_pos] = false;
 		new->append = 0;
+	}
+	new->out_pos++;
 	*lst = tmp;
 	return (SUCCESS);
 }

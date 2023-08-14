@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/13 23:55:45 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 12:02:30 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ t_err	ft_get_path(char **envp, char ***paths, bool *empty_path);
 t_err	ft_replace_fd(int input_fd, int output_fd);
 t_err	ft_wait_for_babies(t_cmd *cmd);
 bool	ft_check_empty_path(char *path_str);
+t_err	ft_open_outfile(t_cmd *cmd);
 
 // builtins
 bool	ft_check_builtin(char *arg);

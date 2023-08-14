@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/13 23:17:17 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 11:48:51 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,15 @@ t_err	ft_create_str_arr2(t_cmd *tmp, int count_out)
 		if (!tmp->outfiles)
 			return (ERR_MALLOC);
 		tmp->outfiles[count_out] = NULL;
+		tmp->append_switches = malloc(sizeof(bool) * count_out);
+		if (!tmp->append_switches)
+			return (ERR_MALLOC);
 	}
 	else
+	{
 		tmp->outfiles = NULL;
+		tmp->append_switches = NULL;
+	}
 	return (SUCCESS);
 }
 

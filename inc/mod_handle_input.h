@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/13 22:59:40 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 11:42:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_cmd
 	char			*heredoc;
 	char			**outfiles;
 	int				out_pos;
+	bool			*append_switches;
 	int				fd_in;
 	int				fd_out;
 	int				fd_pipe[2];
