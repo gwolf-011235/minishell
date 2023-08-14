@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/14 20:35:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/14 20:49:46 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,12 @@ t_err	ft_rm_double_quote(t_track *input)
 	return (SUCCESS);
 }
 
-t_err	ft_expander_heredoc(char *str, t_hashtable *symtab)
+t_err	ft_expander_heredoc(char **str, t_hashtable *symtab)
 {
 	t_track	input;
 	t_err	err;
 
-	ft_init_tracker(&input, str, HEREDOC);
+	ft_init_tracker(&input, *str, HEREDOC);
 	while (input.str[input.pos])
 	{
 		if (input.str[input.pos] == '$')
@@ -120,5 +120,6 @@ t_err	ft_expander_heredoc(char *str, t_hashtable *symtab)
 		if (err != SUCCESS && err != ERR_NOEXPAND)
 			return (err);
 	}
+	*str = input.str;
 	return (SUCCESS);
 }
