@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:47:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 17:28:20 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 19:09:56 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ bool	ft_check_builtin(char *arg)
  * @brief Handle built-in execution.
  * 
  * Direct built-in call when it is a single cmd.
+ * Set file descriptors if fd_in/fd_out are given.
+ * Reset file desriptors after built-in execution.
+ * 
  * Creation of child process when part of a pipe.
  * @param piped 	Bool to differentiate if part of pipe.
  * @param cmd 		Cmd to be processed which is a built-in.
@@ -49,7 +52,11 @@ bool	ft_check_builtin(char *arg)
 t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data)
 {
 	t_err	err;
+	int		old_stdin;
+	int		old_stdout;
 
+	old_stdin = 0;
+	old_stdout = 0;
 	if (piped)
 	{
 		err = ft_create_child(cmd, data, true);
@@ -58,10 +65,11 @@ t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data)
 	}
 	else
 	{
-		err = ft_set_fd_builtin(cmd);
+		err = ft_set_fd_scmd(cmd, old_stdin, old_stdout);
 		if (err != SUCCESS)
 			return (err);
 		ft_choose_builtin(cmd, data);
+		ft_reset_fd_scmd(old_stdin, old_stdout);
 	}
 	return (SUCCESS);
 }
@@ -72,10 +80,12 @@ t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data)
  * @param cmd 		Current cmd.
  * @return t_err 	ERR_CLOSE, SUCCESS
  */
-t_err	ft_set_fd_builtin(t_cmd *cmd)
+t_err	ft_set_fd_scmd(t_cmd *cmd, int old_stdin, int old_stdout)
 {
 	t_err	err;
 
+	old_stdin = dup(STDIN_FILENO);
+	old_stdout = dup (STDOUT_FILENO);
 	if (cmd->fd_out >= 0)
 	{
 		if (cmd->fd_in >= 0)
@@ -88,6 +98,19 @@ t_err	ft_set_fd_builtin(t_cmd *cmd)
 	}
 	err = ft_close(&cmd->fd_in);
 	return (err);
+}
+
+/**
+ * @brief Reset STDIN_FILENO and STDOUT_FILENO.
+ * 
+ * Stdin and Stdout have been replaced by other fds.
+ * They are reset to STDIN_FILENO and STDOUT_FILENO with backup.
+ * @return t_err 	ERR_CLOSE, SUCCESS
+ */
+t_err	ft_reset_fd_scmd(int old_stdin, int old_stdout)
+{
+	ft_replace_fd(old_stdin, old_stdout);
+	return (SUCCESS);
 }
 
 /**
