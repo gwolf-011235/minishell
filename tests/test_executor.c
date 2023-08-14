@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:17:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 12:11:36 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 19:34:00 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,8 @@ static void	test_pipe(void)
 	//test_pipe_wrapper("pipe with built-in exit", "ls -la | exit | touch bogaloo");
 	//test_pipe_wrapper("pipe with built-in echo", "ls -la | echo call me daddy | touch bogaloo");
 	//test_pipe_wrapper("pipe with wrong built-in", "ls -la | echowe call me daddy | touch bogaloo");
-	test_pipe_wrapper("pipe with plural outfiles", "echo ewrwer >rrrrrrrr| ls >ouou");
+	//test_pipe_wrapper("pipe with plural outfiles", "echo ewrwer >rrrrrrrr| ls >ouou");
+	test_pipe_wrapper("pipe with plural outfiles and append", "echo ewrwer >rrr| ls >ouou | echo hi boi >>rrr | echo mimim >ouou");
 }
 
 void	test_executor(void)
