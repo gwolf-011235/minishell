@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 14:58:05 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 16:49:31 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,12 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 	tmp2 = cmd;
 	while (tmp)
 	{
-		err = ft_open_outfile(tmp);
-		if (err != SUCCESS)
-			return (err);
+		if (tmp->outfiles)
+		{
+			err = ft_open_outfile(tmp);
+			if (err != SUCCESS)
+				return (err);
+		}
 		tmp = tmp->next;
 	}
 	while (cmd && cmd->index < cmd->cmd_num)
