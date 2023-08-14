@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/14 20:49:46 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/14 21:07:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,16 @@ t_err	ft_rm_double_quote(t_track *input)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Expand a single heredoc line.
+ *
+ * See also ft_expander().
+ * Check for $ in str. If found expand. Else move forward.
+ * No quote removal is performed.
+ * @param str The line read from user.
+ * @param symtab Environment.
+ * @return t_err SUCCESS, ERR_MALLOC
+ */
 t_err	ft_expander_heredoc(char **str, t_hashtable *symtab)
 {
 	t_track	input;
