@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:43:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/14 18:27:43 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/14 20:26:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	exec_expand(char *testname, char *test, char *expect, t_type type)
 
 	printf("TEST: %s\n", testname);
 	printf("String:\t|%s|\n", test);
-	ft_init_tracker(&input, ft_strdup(test));
+	ft_init_tracker(&input, ft_strdup(test), type);
 	ft_expander_arg(&input, g_symtab, type);
 	printf("Result:\t|%s|\n", input.str);
 	if (!ft_strncmp(input.str, expect, ft_strlen(input.str)))
