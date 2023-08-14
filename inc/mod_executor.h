@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 17:26:20 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/14 18:15:08 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_err	ft_raise_middle(t_cmd *cmd, t_data *data, bool builtin);
 void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin);
 void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin);
 void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin);
+void	ft_close_mid_child_fds(t_cmd *cmd);
 
 // heredoc
 t_err	ft_handle_heredoc(t_cmd *cmd, char *prompt2);
