@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 12:06:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/13 23:19:57 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 13:46:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ t_err	ft_create_str_arr(t_cmd *tmp, int count_arg, int count_delim,
 			int count_out);
 t_err	ft_create_str_arr2(t_cmd *tmp, int count_out);
 void	ft_init_cmd(t_cmd *tmp);
+t_err	ft_malloc_arr(char ***str, bool **b_arr, int count);
 
 #endif

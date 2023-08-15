@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 11:44:00 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 13:50:38 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,51 +91,35 @@ t_err	ft_create_str_arr(t_cmd *tmp, int count_arg, int count_delim,
 {
 	t_err	err;
 
-	if (count_arg)
-	{
-		tmp->args = malloc(sizeof(char *) * (count_arg + 1));
-		if (!tmp->args)
-			return (ERR_MALLOC);
-		tmp->args[count_arg] = NULL;
-	}
-	else
-		tmp->args = NULL;
-	if (count_delim)
-	{
-		tmp->delims = malloc(sizeof(char *) * (count_delim + 1));
-		if (!tmp->delims)
-			return (ERR_MALLOC);
-		tmp->delims[count_delim] = NULL;
-	}
-	else
-		tmp->delims = NULL;
-	err = ft_create_str_arr2(tmp, count_out);
+	err = SUCCESS;
+	if (count_arg && err == SUCCESS)
+		err = ft_malloc_arr(&tmp->args, NULL, count_arg);
+	if (count_delim && err == SUCCESS)
+		err = ft_malloc_arr(&tmp->delims, NULL, count_delim);
+	if (count_out && err == SUCCESS)
+		err = ft_malloc_arr(&tmp->outfiles, &tmp->append_switches, count_out);
 	return (err);
 }
 
 /**
- * @brief Reserve memory space for outfiles string array.
+ * @brief Malloc string array and if required boolean array.
  * 
- * @param tmp 		New cmd struct to be created.
- * @param count_out Amount of outfiles.
+ * @param str 		Address of string array.
+ * @param b_arr 	Adress of boolean array.
+ * @param count 	Size of array.
  * @return t_err 	ERR_MALLOC, SUCCESS
  */
-t_err	ft_create_str_arr2(t_cmd *tmp, int count_out)
+t_err	ft_malloc_arr(char ***str, bool **b_arr, int count)
 {
-	if (count_out)
+	*str = malloc(sizeof(char *) * (count + 1));
+	if (!*str)
+		return (ERR_MALLOC);
+	(*str)[count] = NULL;
+	if (b_arr)
 	{
-		tmp->outfiles = malloc(sizeof(char *) * (count_out + 1));
-		if (!tmp->outfiles)
+		*b_arr = malloc(sizeof(bool) * count);
+		if (!*b_arr)
 			return (ERR_MALLOC);
-		tmp->outfiles[count_out] = NULL;
-		tmp->append_switches = malloc(sizeof(bool) * count_out);
-		if (!tmp->append_switches)
-			return (ERR_MALLOC);
-	}
-	else
-	{
-		tmp->outfiles = NULL;
-		tmp->append_switches = NULL;
 	}
 	return (SUCCESS);
 }
@@ -150,7 +134,7 @@ void	ft_init_cmd(t_cmd *tmp)
 	tmp->arg_pos = 0;
 	tmp->delim_pos = 0;
 	tmp->out_pos = 0;
-	tmp->fd_in = -1;
+	tmp->fd_in = -1;	
 	tmp->fd_out = -1;
 	tmp->fd_pipe[0] = -1;
 	tmp->fd_pipe[1] = -1;
@@ -161,5 +145,9 @@ void	ft_init_cmd(t_cmd *tmp)
 	tmp->index = -1;
 	tmp->cmd_num = 0;
 	tmp->heredoc = NULL;
+	tmp->args = NULL;
+	tmp->delims = NULL;
+	tmp->outfiles = NULL;
+	tmp->append_switches = NULL;
 	tmp->next = NULL;
 }
