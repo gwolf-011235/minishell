@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 14:12:18 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 16:22:59 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim,
 {
 	while (lst)
 	{
-		if (lst->type == HEREDOC)
+		if (lst->type == HEREDOC || lst->type == QUOTEDOC)
 		{
 			lst = lst->next;
 			(*count_delim)++;
