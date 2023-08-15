@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:20 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 10:49:28 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 17:06:55 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_err	ft_unset(char **argv, t_hashtable *env_tab);
 t_err	ft_env(t_hashtable *env_tab);
 
 //exit.c
-t_err	ft_exit(char **argv, bool *loop, bool piped);
+t_err	ft_exit(char **argv, bool *loop, bool forked);
 t_err	ft_is_number(char *str);
 
 #endif
