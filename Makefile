@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
+#    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/12 00:44:07 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/13 22:49:18 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,6 +109,7 @@ SRC :=	utils_memory.c \
 		executor_create_child.c \
 		executor_child.c \
 		executor_cleanup.c \
+		executor_cleanup2.c \
 		executor_utils.c \
 		executor_utils2.c \
 		executor_heredoc.c \
