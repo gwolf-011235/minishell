@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 09:52:50 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 16:43:33 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ typedef enum e_error {
 	ERR_OPEN, ///< open() failed.
 	ERR_SIGNAL, ///< Setup of signal handler failed.
 	ERR_NO_INPUT, ///< Input is empty.
-	ERR_ABORT, ///< Abort pipe.
+	ERR_ABORT, ///< Abort pipeline.
+	ERR_HEREDOC_EOF, ///< Heredoc stopped by Ctrl+D
 	ERR_WRITE ///< Syscall write failed.
 }	t_err;
 

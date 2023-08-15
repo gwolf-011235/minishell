@@ -6,7 +6,7 @@
 #    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/15 09:45:45 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/15 16:42:17 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,6 +109,7 @@ SRC :=	utils_memory.c \
 		executor_create_child.c \
 		executor_child.c \
 		executor_cleanup.c \
+		executor_cleanup2.c \
 		executor_utils.c \
 		executor_utils2.c \
 		executor_heredoc.c \
