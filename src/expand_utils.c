@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 18:19:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 18:35:47 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/14 20:23:30 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@
  * @param str String which shall be tracked.
  * @return t_err SUCCESS
  */
-t_err	ft_init_tracker(t_track *input, char *str)
+t_err	ft_init_tracker(t_track *input, char *str, t_type type)
 {
 	input->str = str;
 	input->pos = 0;
 	input->quoted = false;
 	input->last_expand_len = 0;
 	input->found_quote = false;
+	input->type = type;
 	return (SUCCESS);
 }
 

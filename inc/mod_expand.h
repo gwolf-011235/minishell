@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 19:27:56 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/14 20:49:58 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_track {
 	bool	quoted;
 	int		last_expand_len;
 	bool	found_quote;
+	t_type	type;
 }	t_track;
 
 //expand.c
@@ -58,9 +59,10 @@ t_err	ft_expand_assign(t_tkn_list **list, t_hashtable *symtab);
 t_err	ft_expand_arg(t_tkn_list **list, t_hashtable *symtab);
 
 //expand_expander.c
-t_err	ft_expander_arg(t_track *input, t_hashtable *symtab, t_type type);
+t_err	ft_expander(t_track *input, t_hashtable *symtab, t_type type);
 t_err	ft_rm_single_quote(t_track *input);
 t_err	ft_rm_double_quote(t_track *input);
+t_err	ft_expander_heredoc(char **str, t_hashtable *symtab);
 
 //expand_tilde.c
 t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab);
@@ -82,7 +84,7 @@ t_err	ft_tokenise_fs(t_src *src, t_tok *token, t_buf *buf, t_track *input);
 t_err	ft_partition_fs(t_src *src, t_buf *buf);
 
 //expand_utils.c
-t_err	ft_init_tracker(t_track *input, char *str);
+t_err	ft_init_tracker(t_track *input, char *str, t_type type);
 t_err	ft_move_tracker(t_track *input);
 t_err	ft_eat_char(t_track *input);
 t_err	ft_insert_replace(t_track *input, t_str token, t_str replace);

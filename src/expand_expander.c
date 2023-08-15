@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 19:27:38 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 18:03:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
  * @param type Type of the expanded node.
  * @return t_err SUCCESS, ERR_MALLOC
  */
-t_err	ft_expander_arg(t_track *input, t_hashtable *symtab, t_type type)
+t_err	ft_expander(t_track *input, t_hashtable *symtab, t_type type)
 {
 	t_err	err;
 
@@ -50,9 +50,9 @@ t_err	ft_expander_arg(t_track *input, t_hashtable *symtab, t_type type)
 			err = ft_rm_single_quote(input);
 		else if (input->str[input->pos] == '"')
 			err = ft_rm_double_quote(input);
-		else if (input->str[input->pos] == '~' && (input->pos == 0
-				|| (type == ASSIGN && ft_strchr(input->str, '=')
-					== input->str + input->pos -1)))
+		else if (input->str[input->pos] == '~'
+			&& (input->pos == 0 || (type == ASSIGN && ft_strchr(input->str, '=')
+					== input->str + input->pos - 1)))
 			err = ft_expand_tilde(input, symtab);
 		else if (input->str[input->pos] == '$')
 		{
@@ -102,5 +102,34 @@ t_err	ft_rm_double_quote(t_track *input)
 	ft_eat_char(input);
 	input->quoted = !(input->quoted);
 	input->found_quote = true;
+	return (SUCCESS);
+}
+
+/**
+ * @brief Expand a single heredoc line.
+ *
+ * See also ft_expander().
+ * Check for $ in str. If found expand. Else move forward.
+ * No quote removal is performed.
+ * @param str The line read from user.
+ * @param symtab Environment.
+ * @return t_err SUCCESS, ERR_MALLOC
+ */
+t_err	ft_expander_heredoc(char **str, t_hashtable *symtab)
+{
+	t_track	input;
+	t_err	err;
+
+	ft_init_tracker(&input, *str, HEREDOC);
+	while (input.str[input.pos])
+	{
+		if (input.str[input.pos] == '$')
+			err = ft_expand_dollar(&input, symtab);
+		else
+			err = ft_move_tracker(&input);
+		if (err != SUCCESS && err != ERR_NOEXPAND)
+			return (err);
+	}
+	*str = input.str;
 	return (SUCCESS);
 }

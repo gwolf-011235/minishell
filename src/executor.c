@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 11:59:17 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 15:59:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@
  * @brief Driver function to execute list of cmds.
  *
  * Index the list of cmds.
- * 
+ *
  * If heredocs are present in cmd, they are opened
  * and take input from stdin. In case a heredoc is the
  * last infile redirect, its fd is given to the cmd.
  * Differentiate between ERR_ABORT (Cancel whole executor)
  * and ERR_HEREDOC_EOF (Continue executor).
- * 
+ *
  * All necessary pipes are created in advance to ensure
  * definite fd assignment to all pipe ends.
- * 
+ *
  * Get PATH from envp and save it into paths.
  * If no path is found (ERR_NOPATH), try to execute
  * cmd nonetheless in the current directory.
@@ -48,7 +48,7 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
 	paths = NULL;
 	empty_path = false;
 	ft_init_exec(cmd);
-	err = ft_handle_heredoc(cmd, data->prompt2);
+	err = ft_handle_heredoc(cmd, data->env_table, data->prompt2);
 	if (err != SUCCESS && err != ERR_HEREDOC_EOF)
 		return (err);
 	err = ft_create_pipes(cmd);
