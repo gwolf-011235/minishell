@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_fill_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 13:09:44 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 14:15:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
  */
 t_err	ft_save_heredoc(t_tkn_list **lst, t_cmd *new)
 {
+	t_type	type;
 
+	type = (*lst)->type;
 	*lst = (*lst)->next;
 	if (!new->delims)
 		return (SUCCESS);
@@ -64,6 +66,10 @@ t_err	ft_save_heredoc(t_tkn_list **lst, t_cmd *new)
 	new->delims[new->delim_pos] = ft_strdup((*lst)->content);
 	if (!new->delims[new->delim_pos])
 		return (ERR_MALLOC);
+	if (type == QUOTEDOC)
+		new->hdoc_quoted[new->delim_pos] = true;
+	else
+		new->hdoc_quoted[new->delim_pos] = false;
 	new->delim_pos++;
 	return (SUCCESS);
 }
