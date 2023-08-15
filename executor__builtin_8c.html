@@ -106,6 +106,12 @@ Functions</h2></td></tr>
 <tr class="memitem:aeb151e62617e173b78fa41ec6fe7c4c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__builtin_8c.html#aeb151e62617e173b78fa41ec6fe7c4c0">ft_execute_builtin</a> (bool piped, <a class="el" href="structs__cmd.html">t_cmd</a> *cmd, <a class="el" href="structs__data.html">t_data</a> *data)</td></tr>
 <tr class="memdesc:aeb151e62617e173b78fa41ec6fe7c4c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle built-in execution.  <a href="executor__builtin_8c.html#aeb151e62617e173b78fa41ec6fe7c4c0">More...</a><br /></td></tr>
 <tr class="separator:aeb151e62617e173b78fa41ec6fe7c4c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a410611340e5724c7ce761ec18d8bcfab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__builtin_8c.html#a410611340e5724c7ce761ec18d8bcfab">ft_set_fd_scmd</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd)</td></tr>
+<tr class="memdesc:a410611340e5724c7ce761ec18d8bcfab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the file descriptors for execution of scmd builtin.  <a href="executor__builtin_8c.html#a410611340e5724c7ce761ec18d8bcfab">More...</a><br /></td></tr>
+<tr class="separator:a410611340e5724c7ce761ec18d8bcfab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3523c2e792d23cde7763fc5af2eacff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__builtin_8c.html#ae3523c2e792d23cde7763fc5af2eacff">ft_reset_fd_scmd</a> (int old_stdin, int old_stdout)</td></tr>
+<tr class="memdesc:ae3523c2e792d23cde7763fc5af2eacff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset STDIN_FILENO and STDOUT_FILENO.  <a href="executor__builtin_8c.html#ae3523c2e792d23cde7763fc5af2eacff">More...</a><br /></td></tr>
+<tr class="separator:ae3523c2e792d23cde7763fc5af2eacff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e48a950e0b7f67c0522bcdfc642916a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__builtin_8c.html#a3e48a950e0b7f67c0522bcdfc642916a">ft_choose_builtin</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd, <a class="el" href="structs__data.html">t_data</a> *data)</td></tr>
 <tr class="memdesc:a3e48a950e0b7f67c0522bcdfc642916a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call suitable built-in.  <a href="executor__builtin_8c.html#a3e48a950e0b7f67c0522bcdfc642916a">More...</a><br /></td></tr>
 <tr class="separator:a3e48a950e0b7f67c0522bcdfc642916a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,7 +218,8 @@ false Built-in not found. </dd></dl>
 </div><div class="memdoc">
 
 <p>Handle built-in execution. </p>
-<p>Direct built-in call when it is a single cmd. Creation of child process when part of a pipe. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Direct built-in call when it is a single cmd. Set file descriptors if fd_in/fd_out are given. Reset file desriptors after built-in execution.</p>
+<p>Creation of child process when part of a pipe. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">piped</td><td>Bool to differentiate if part of pipe. </td></tr>
     <tr><td class="paramname">cmd</td><td>Cmd to be processed which is a built-in. </td></tr>
@@ -221,6 +228,64 @@ false Built-in not found. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>t_err ERR_CLOSE, ERR_FORK, SUCCESS </dd></dl>
+
+</div>
+</div>
+<a id="ae3523c2e792d23cde7763fc5af2eacff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3523c2e792d23cde7763fc5af2eacff">&#9670;&nbsp;</a></span>ft_reset_fd_scmd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_reset_fd_scmd </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>old_stdin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>old_stdout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset STDIN_FILENO and STDOUT_FILENO. </p>
+<p>Stdin and Stdout have been replaced by other fds. They are reset to STDIN_FILENO and STDOUT_FILENO with backup. </p><dl class="section return"><dt>Returns</dt><dd>t_err ERR_CLOSE, SUCCESS </dd></dl>
+
+</div>
+</div>
+<a id="a410611340e5724c7ce761ec18d8bcfab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a410611340e5724c7ce761ec18d8bcfab">&#9670;&nbsp;</a></span>ft_set_fd_scmd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_set_fd_scmd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
+          <td class="paramname"><em>cmd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the file descriptors for execution of scmd builtin. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>Current cmd. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_CLOSE, SUCCESS </dd></dl>
 
 </div>
 </div>

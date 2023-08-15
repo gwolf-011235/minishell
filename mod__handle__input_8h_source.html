@@ -97,10 +97,10 @@ $(document).ready(function(){initNavTree('mod__handle__input_8h_source.html','')
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*                                                        :::      ::::::::   */</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*   mod_handle_input.h                                 :+:      :+:    :+:   */</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*                                                    +:+ +:+         +:+     */</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*   By: gwolf &lt;gwolf@student.42vienna.com&gt;         +#+  +:+       +#+        */</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*   By: sqiu &lt;sqiu@student.42vienna.com&gt;           +#+  +:+       +#+        */</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">/*                                                +#+#+#+#+#+   +#+           */</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">/*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/08/12 00:08:33 by gwolf            ###   ########.fr       */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/08/15 11:36:00 by sqiu             ###   ########.fr       */</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/*                                                                            */</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* ************************************************************************** */</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
@@ -123,50 +123,54 @@ $(document).ready(function(){initNavTree('mod__handle__input_8h_source.html','')
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">/* ====== Structs ====== */</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structs__cmd.html">   45</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structs__cmd.html">s_cmd</a></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">char</span>            **args;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">int</span>             arg_pos;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">int</span>             fd_in;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">int</span>             fd_out;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">int</span>             fd_pipe[2];</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">int</span>             fd_prev_pipe[2];</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">char</span>            **delims;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">int</span>             delim_pos;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">char</span>            *heredoc;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">bool</span>            append;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">bool</span>            infile;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">bool</span>            outfile;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">int</span>             index;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">int</span>             cmd_num;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    pid_t           pid;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">struct </span><a class="code" href="structs__cmd.html">s_cmd</a>    *next;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}   <a class="code" href="structs__cmd.html">t_cmd</a>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">/* ====== Functions ====== */</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">// syntax</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_check_syntax(<span class="keyword">const</span> <span class="keywordtype">char</span> *input);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">// lexer</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_lex_input(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> **lst_head, <span class="keywordtype">char</span> *input);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">// expand</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="expand_8c.html#a4a83d590024458dea353002fd66de930">ft_expand_tkn_lst</a>(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> **head, <a class="code" href="structs__hashtable.html">t_hashtable</a> *env_table);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">// parser</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="parser_8c.html#a3b3a3511d07169beb9d38bb2db1f401d">ft_parser</a>(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> *lst, <a class="code" href="structs__cmd.html">t_cmd</a> **cmd);</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="structs__cmd.html">   57</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structs__cmd.html">s_cmd</a></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">char</span>            **args;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">int</span>             arg_pos;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">char</span>            **delims;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">int</span>             delim_pos;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">char</span>            *heredoc;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">char</span>            **outfiles;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">int</span>             out_pos;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">bool</span>            *append_switches;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">int</span>             fd_in;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">int</span>             fd_out;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">int</span>             fd_pipe[2];</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">int</span>             fd_prev_pipe[2];</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">bool</span>            infile;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">bool</span>            outfile;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">int</span>             index;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">int</span>             cmd_num;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    pid_t           pid;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">struct </span><a class="code" href="structs__cmd.html">s_cmd</a>    *next;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}   <a class="code" href="structs__cmd.html">t_cmd</a>;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">// executor</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="executor_8c.html#a7693f5d2efe1c6b61c5469a75e9d519a">ft_executor</a>(<a class="code" href="structs__cmd.html">t_cmd</a> *cmd, <a class="code" href="structs__data.html">t_data</a> *data);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aexecutor_8c_html_a7693f5d2efe1c6b61c5469a75e9d519a"><div class="ttname"><a href="executor_8c.html#a7693f5d2efe1c6b61c5469a75e9d519a">ft_executor</a></div><div class="ttdeci">t_err ft_executor(t_cmd *cmd, t_data *data)</div><div class="ttdoc">Driver function to execute list of cmds.</div><div class="ttdef"><b>Definition:</b> executor.c:37</div></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">/* ====== Functions ====== */</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">// syntax</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_check_syntax(<span class="keyword">const</span> <span class="keywordtype">char</span> *input);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">// lexer</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_lex_input(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> **lst_head, <span class="keywordtype">char</span> *input);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">// expand</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="expand_8c.html#a4a83d590024458dea353002fd66de930">ft_expand_tkn_lst</a>(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> **head, <a class="code" href="structs__hashtable.html">t_hashtable</a> *env_table);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">// parser</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="parser_8c.html#a3b3a3511d07169beb9d38bb2db1f401d">ft_parser</a>(<a class="code" href="structs__tkn__list.html">t_tkn_list</a> *lst, <a class="code" href="structs__cmd.html">t_cmd</a> **cmd);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">// executor</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="executor_8c.html#a7693f5d2efe1c6b61c5469a75e9d519a">ft_executor</a>(<a class="code" href="structs__cmd.html">t_cmd</a> *cmd, <a class="code" href="structs__data.html">t_data</a> *data);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">void</span>    <a class="code" href="executor__cleanup2_8c.html#a55a304f6e4ff4d636817002d3cbf8b63">ft_cleanup_cmd_list</a>(<a class="code" href="structs__cmd.html">t_cmd</a> *cmd);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aexecutor_8c_html_a7693f5d2efe1c6b61c5469a75e9d519a"><div class="ttname"><a href="executor_8c.html#a7693f5d2efe1c6b61c5469a75e9d519a">ft_executor</a></div><div class="ttdeci">t_err ft_executor(t_cmd *cmd, t_data *data)</div><div class="ttdoc">Driver function to execute list of cmds.</div><div class="ttdef"><b>Definition:</b> executor.c:42</div></div>
+<div class="ttc" id="aexecutor__cleanup2_8c_html_a55a304f6e4ff4d636817002d3cbf8b63"><div class="ttname"><a href="executor__cleanup2_8c.html#a55a304f6e4ff4d636817002d3cbf8b63">ft_cleanup_cmd_list</a></div><div class="ttdeci">void ft_cleanup_cmd_list(t_cmd *cmd)</div><div class="ttdoc">Iterate through cmd list and cleanup each cmd.</div><div class="ttdef"><b>Definition:</b> executor_cleanup2.c:25</div></div>
 <div class="ttc" id="aexpand_8c_html_a4a83d590024458dea353002fd66de930"><div class="ttname"><a href="expand_8c.html#a4a83d590024458dea353002fd66de930">ft_expand_tkn_lst</a></div><div class="ttdeci">t_err ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table)</div><div class="ttdoc">Loop through token list and expand content.</div><div class="ttdef"><b>Definition:</b> expand.c:29</div></div>
 <div class="ttc" id="aminishell__error_8h_html"><div class="ttname"><a href="minishell__error_8h.html">minishell_error.h</a></div><div class="ttdoc">Header to store error codes.</div></div>
 <div class="ttc" id="aminishell__error_8h_html_ab40f6b0320b416162d7f6d5eed804232"><div class="ttname"><a href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a></div><div class="ttdeci">enum e_error t_err</div><div class="ttdoc">Enum, which contains all error codes.</div></div>
 <div class="ttc" id="aparser_8c_html_a3b3a3511d07169beb9d38bb2db1f401d"><div class="ttname"><a href="parser_8c.html#a3b3a3511d07169beb9d38bb2db1f401d">ft_parser</a></div><div class="ttdeci">t_err ft_parser(t_tkn_list *lst, t_cmd **cmd_head)</div><div class="ttdoc">Driver function to parse token list.</div><div class="ttdef"><b>Definition:</b> parser.c:29</div></div>
-<div class="ttc" id="astructs__cmd_html"><div class="ttname"><a href="structs__cmd.html">s_cmd</a></div><div class="ttdoc">Linked list of simple commands existing of token extracted from input.</div><div class="ttdef"><b>Definition:</b> mod_handle_input.h:46</div></div>
+<div class="ttc" id="astructs__cmd_html"><div class="ttname"><a href="structs__cmd.html">s_cmd</a></div><div class="ttdoc">Linked list of simple commands existing of token extracted from input.</div><div class="ttdef"><b>Definition:</b> mod_handle_input.h:58</div></div>
 <div class="ttc" id="astructs__data_html"><div class="ttname"><a href="structs__data.html">s_data</a></div><div class="ttdoc">Overarching struct to hold all necessarry data.</div><div class="ttdef"><b>Definition:</b> minishell_struct.h:36</div></div>
 <div class="ttc" id="astructs__hashtable_html"><div class="ttname"><a href="structs__hashtable.html">s_hashtable</a></div><div class="ttdoc">Hashtable with external chaining.</div><div class="ttdef"><b>Definition:</b> hashtable.h:78</div></div>
 <div class="ttc" id="astructs__tkn__list_html"><div class="ttname"><a href="structs__tkn__list.html">s_tkn_list</a></div><div class="ttdoc">List of token.</div><div class="ttdef"><b>Definition:</b> tkn_list.h:61</div></div>

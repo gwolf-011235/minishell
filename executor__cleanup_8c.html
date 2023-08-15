@@ -106,9 +106,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a704f2dd231283f917ff32d07ebdc85d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup_8c.html#a704f2dd231283f917ff32d07ebdc85d6">ft_unlink_heredoc</a> (char **name, <a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> err)</td></tr>
 <tr class="memdesc:a704f2dd231283f917ff32d07ebdc85d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlinks the temporary heredoc file created.  <a href="executor__cleanup_8c.html#a704f2dd231283f917ff32d07ebdc85d6">More...</a><br /></td></tr>
 <tr class="separator:a704f2dd231283f917ff32d07ebdc85d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8be725a4aa7e37ddc004c18c587e8818"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup_8c.html#a8be725a4aa7e37ddc004c18c587e8818">ft_close</a> (int fd)</td></tr>
-<tr class="memdesc:a8be725a4aa7e37ddc004c18c587e8818"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the closing of a file.  <a href="executor__cleanup_8c.html#a8be725a4aa7e37ddc004c18c587e8818">More...</a><br /></td></tr>
-<tr class="separator:a8be725a4aa7e37ddc004c18c587e8818"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5188eeb83614386e57d9cd1446dbb948"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup_8c.html#a5188eeb83614386e57d9cd1446dbb948">ft_close</a> (int *fd)</td></tr>
+<tr class="memdesc:a5188eeb83614386e57d9cd1446dbb948"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the closing of a file.  <a href="executor__cleanup_8c.html#a5188eeb83614386e57d9cd1446dbb948">More...</a><br /></td></tr>
+<tr class="separator:a5188eeb83614386e57d9cd1446dbb948"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee816fc19b106d7994fc55e60632b2c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup_8c.html#aee816fc19b106d7994fc55e60632b2c2">ft_plug_pipe</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd)</td></tr>
 <tr class="memdesc:aee816fc19b106d7994fc55e60632b2c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes pipe ends (= file descriptors) of the specified cmd.  <a href="executor__cleanup_8c.html#aee816fc19b106d7994fc55e60632b2c2">More...</a><br /></td></tr>
 <tr class="separator:aee816fc19b106d7994fc55e60632b2c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,8 +143,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a8be725a4aa7e37ddc004c18c587e8818"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8be725a4aa7e37ddc004c18c587e8818">&#9670;&nbsp;</a></span>ft_close()</h2>
+<a id="a5188eeb83614386e57d9cd1446dbb948"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5188eeb83614386e57d9cd1446dbb948">&#9670;&nbsp;</a></span>ft_close()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -152,7 +152,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_close </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">int *&#160;</td>
           <td class="paramname"><em>fd</em></td><td>)</td>
           <td></td>
         </tr>
@@ -162,7 +162,7 @@ Functions</h2></td></tr>
 <p>Performs the closing of a file. </p>
 <p>Returns an error if the closing failed. On success set fd value to -1. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fd</td><td>File descriptor to be closed. </td></tr>
+    <tr><td class="paramname">fd</td><td>Pointer to file descriptor to be closed. </td></tr>
   </table>
   </dd>
 </dl>

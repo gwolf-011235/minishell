@@ -34,6 +34,7 @@ var minishell__error_8h =
       [ "ERR_OPEN", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a7235954be32cd0166432c3f7a5d61bb5", null ],
       [ "ERR_SIGNAL", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a886ecaf98793b7ca7be8030d16cf943f", null ],
       [ "ERR_NO_INPUT", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aea0f5f1d09f241d4a2a964870926c19d", null ],
-      [ "ERR_ABORT", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a79cf6f047175e478c013c50c3c4e0187", null ]
+      [ "ERR_ABORT", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a79cf6f047175e478c013c50c3c4e0187", null ],
+      [ "ERR_HEREDOC_EOF", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aaf3f761a6f7b92944f6506f91d5d96c5", null ]
     ] ]
 ];

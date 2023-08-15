@@ -109,6 +109,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a990ed4560a78b275bd27a572857ef9dd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__utils2_8c.html#a990ed4560a78b275bd27a572857ef9dd">ft_check_empty_path</a> (char *path_str)</td></tr>
 <tr class="memdesc:a990ed4560a78b275bd27a572857ef9dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if PATH contains empty paths.  <a href="executor__utils2_8c.html#a990ed4560a78b275bd27a572857ef9dd">More...</a><br /></td></tr>
 <tr class="separator:a990ed4560a78b275bd27a572857ef9dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b91966f38e079fe64c5dd6fff4b71db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__utils2_8c.html#a1b91966f38e079fe64c5dd6fff4b71db">ft_open_outfile</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd)</td></tr>
+<tr class="memdesc:a1b91966f38e079fe64c5dd6fff4b71db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens all saved outfiles of the cmd.  <a href="executor__utils2_8c.html#a1b91966f38e079fe64c5dd6fff4b71db">More...</a><br /></td></tr>
+<tr class="separator:a1b91966f38e079fe64c5dd6fff4b71db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9ca94bd2d052125ff7119267b8b9a22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__utils2_8c.html#ab9ca94bd2d052125ff7119267b8b9a22">ft_loop_thru_outfiles</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd)</td></tr>
+<tr class="memdesc:ab9ca94bd2d052125ff7119267b8b9a22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens all outfiles of pipeline.  <a href="executor__utils2_8c.html#ab9ca94bd2d052125ff7119267b8b9a22">More...</a><br /></td></tr>
+<tr class="separator:ab9ca94bd2d052125ff7119267b8b9a22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Helper functions for executor. </p>
@@ -193,6 +199,60 @@ false No empty paths found. </dd></dl>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ab9ca94bd2d052125ff7119267b8b9a22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9ca94bd2d052125ff7119267b8b9a22">&#9670;&nbsp;</a></span>ft_loop_thru_outfiles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_loop_thru_outfiles </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
+          <td class="paramname"><em>cmd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Opens all outfiles of pipeline. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>List of cmds in pipeline. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_OPEN, SUCCESS </dd></dl>
+
+</div>
+</div>
+<a id="a1b91966f38e079fe64c5dd6fff4b71db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b91966f38e079fe64c5dd6fff4b71db">&#9670;&nbsp;</a></span>ft_open_outfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_open_outfile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
+          <td class="paramname"><em>cmd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Opens all saved outfiles of the cmd. </p>
+<p>Previous outfiles are closed again. Only the last outfile is preserved. Differentiates each outfile regarding append mode. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>Current cmd. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_CLOSE, ERR_OPEN, SUCCESS </dd></dl>
 
 </div>
 </div>

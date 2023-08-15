@@ -107,7 +107,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:aa574ce389d1f1ed68270ae8bea687ecf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a heredoc file.  <a href="executor__heredoc_8c.html#aa574ce389d1f1ed68270ae8bea687ecf">More...</a><br /></td></tr>
 <tr class="separator:aa574ce389d1f1ed68270ae8bea687ecf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0f17f3fbf259f7868e3b87287c56e42"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__heredoc_8c.html#ad0f17f3fbf259f7868e3b87287c56e42">ft_read_heredoc</a> (char *delim, char *prompt2, int fd, char **name)</td></tr>
-<tr class="memdesc:ad0f17f3fbf259f7868e3b87287c56e42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read.  <a href="executor__heredoc_8c.html#ad0f17f3fbf259f7868e3b87287c56e42">More...</a><br /></td></tr>
+<tr class="memdesc:ad0f17f3fbf259f7868e3b87287c56e42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read input for heredoc.  <a href="executor__heredoc_8c.html#ad0f17f3fbf259f7868e3b87287c56e42">More...</a><br /></td></tr>
 <tr class="separator:ad0f17f3fbf259f7868e3b87287c56e42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01f2ee3dfc9428db442ee0c29d3aaee6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__heredoc_8c.html#a01f2ee3dfc9428db442ee0c29d3aaee6">ft_name_heredoc</a> (int index, char **name)</td></tr>
 <tr class="memdesc:a01f2ee3dfc9428db442ee0c29d3aaee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the name of the heredoc file to be created.  <a href="executor__heredoc_8c.html#a01f2ee3dfc9428db442ee0c29d3aaee6">More...</a><br /></td></tr>
@@ -335,17 +335,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Read. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Read input for heredoc. </p>
+<p>Special signal handler set for SIGINT. SIGINT -&gt; g_status set to 130. Causes Heredoc deletion and return of ERR_ABORT. CTRL+D -&gt; Buf is empty. Causes error message and return of ERR_HEREDOC_EOF. Breaks out of loop if delim string is given. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">delim</td><td></td></tr>
-    <tr><td class="paramname">prompt2</td><td></td></tr>
-    <tr><td class="paramname">fd</td><td></td></tr>
-    <tr><td class="paramname">name</td><td></td></tr>
+    <tr><td class="paramname">delim</td><td>Delimiter string. </td></tr>
+    <tr><td class="paramname">prompt2</td><td>Heredoc prompt string. </td></tr>
+    <tr><td class="paramname">fd</td><td>Heredoc file descriptor. </td></tr>
+    <tr><td class="paramname">name</td><td>Name of heredoc. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_ABORT, ERR_HEREDOC_EOF, SUCCESS </dd></dl>
 
 </div>
 </div>

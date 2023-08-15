@@ -103,12 +103,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a080dddc8f44ae0c428a00f22b1397a9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser__utils_8c.html#a080dddc8f44ae0c428a00f22b1397a9e">ft_last_cmd</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd_head)</td></tr>
 <tr class="memdesc:a080dddc8f44ae0c428a00f22b1397a9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterate to last node of given list.  <a href="parser__utils_8c.html#a080dddc8f44ae0c428a00f22b1397a9e">More...</a><br /></td></tr>
 <tr class="separator:a080dddc8f44ae0c428a00f22b1397a9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6edd1a07303046258611de33cd205b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser__utils_8c.html#ae6edd1a07303046258611de33cd205b7">ft_count_str</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> *lst, int *count_arg, int *count_delim)</td></tr>
-<tr class="memdesc:ae6edd1a07303046258611de33cd205b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts the amount of arguments and, if given delimiters.  <a href="parser__utils_8c.html#ae6edd1a07303046258611de33cd205b7">More...</a><br /></td></tr>
-<tr class="separator:ae6edd1a07303046258611de33cd205b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c9170323e7e07b2a55880c27341fc96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser__utils_8c.html#a6c9170323e7e07b2a55880c27341fc96">ft_create_str_arr</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *tmp, int count_arg, int count_delim)</td></tr>
-<tr class="memdesc:a6c9170323e7e07b2a55880c27341fc96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reserve memory space for cmd struct and in case for argument and/or delimiter string arrays.  <a href="parser__utils_8c.html#a6c9170323e7e07b2a55880c27341fc96">More...</a><br /></td></tr>
-<tr class="separator:a6c9170323e7e07b2a55880c27341fc96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73020de5d229ec6e3cb234ab09a9b70b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser__utils_8c.html#a73020de5d229ec6e3cb234ab09a9b70b">ft_count_str</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> *lst, int *count_arg, int *count_delim, int *count_out)</td></tr>
+<tr class="memdesc:a73020de5d229ec6e3cb234ab09a9b70b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts the amount of arguments and, if given delimiters.  <a href="parser__utils_8c.html#a73020de5d229ec6e3cb234ab09a9b70b">More...</a><br /></td></tr>
+<tr class="separator:a73020de5d229ec6e3cb234ab09a9b70b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7be8c9b8b74b0a376fdb8bac093d07de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser__utils_8c.html#a7be8c9b8b74b0a376fdb8bac093d07de">ft_create_str_arr</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *tmp, int count_arg, int count_delim, int count_out)</td></tr>
+<tr class="memdesc:a7be8c9b8b74b0a376fdb8bac093d07de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reserve memory space for argument and/or delimiter and/or outfiles string array.  <a href="parser__utils_8c.html#a7be8c9b8b74b0a376fdb8bac093d07de">More...</a><br /></td></tr>
+<tr class="separator:a7be8c9b8b74b0a376fdb8bac093d07de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a085b0c0440e9fcd4ba161d88731c2708"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser__utils_8c.html#a085b0c0440e9fcd4ba161d88731c2708">ft_malloc_arr</a> (char ***str, bool **b_arr, int count)</td></tr>
+<tr class="memdesc:a085b0c0440e9fcd4ba161d88731c2708"><td class="mdescLeft">&#160;</td><td class="mdescRight">Malloc string array and if required boolean array.  <a href="parser__utils_8c.html#a085b0c0440e9fcd4ba161d88731c2708">More...</a><br /></td></tr>
+<tr class="separator:a085b0c0440e9fcd4ba161d88731c2708"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf4a69d569463440a9d034a5ec69b857"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser__utils_8c.html#aaf4a69d569463440a9d034a5ec69b857">ft_init_cmd</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *tmp)</td></tr>
 <tr class="memdesc:aaf4a69d569463440a9d034a5ec69b857"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise cmd values.  <a href="parser__utils_8c.html#aaf4a69d569463440a9d034a5ec69b857">More...</a><br /></td></tr>
 <tr class="separator:aaf4a69d569463440a9d034a5ec69b857"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -116,8 +119,8 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Helper functions for parser. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ae6edd1a07303046258611de33cd205b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6edd1a07303046258611de33cd205b7">&#9670;&nbsp;</a></span>ft_count_str()</h2>
+<a id="a73020de5d229ec6e3cb234ab09a9b70b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73020de5d229ec6e3cb234ab09a9b70b">&#9670;&nbsp;</a></span>ft_count_str()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -138,7 +141,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>count_delim</em>&#160;</td>
+          <td class="paramname"><em>count_delim</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>count_out</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -154,6 +163,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">lst</td><td>List of tokens. </td></tr>
     <tr><td class="paramname">count_arg</td><td>Argument counter. </td></tr>
     <tr><td class="paramname">count_delim</td><td>Delimiter counter. </td></tr>
+    <tr><td class="paramname">count_out</td><td>Outfile counter. </td></tr>
   </table>
   </dd>
 </dl>
@@ -161,8 +171,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6c9170323e7e07b2a55880c27341fc96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c9170323e7e07b2a55880c27341fc96">&#9670;&nbsp;</a></span>ft_create_str_arr()</h2>
+<a id="a7be8c9b8b74b0a376fdb8bac093d07de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7be8c9b8b74b0a376fdb8bac093d07de">&#9670;&nbsp;</a></span>ft_create_str_arr()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,7 +193,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>count_delim</em>&#160;</td>
+          <td class="paramname"><em>count_delim</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count_out</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -193,12 +209,13 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Reserve memory space for cmd struct and in case for argument and/or delimiter string arrays. </p>
+<p>Reserve memory space for argument and/or delimiter and/or outfiles string array. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">new</td><td>New cmd struct to be created. </td></tr>
     <tr><td class="paramname">count_arg</td><td>Amount of arguments. </td></tr>
     <tr><td class="paramname">count_delim</td><td>Amount of delimiters. </td></tr>
+    <tr><td class="paramname">count_out</td><td>Amount of outfiles. </td></tr>
   </table>
   </dd>
 </dl>
@@ -256,6 +273,51 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>t_cmd* </dd></dl>
+
+</div>
+</div>
+<a id="a085b0c0440e9fcd4ba161d88731c2708"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a085b0c0440e9fcd4ba161d88731c2708">&#9670;&nbsp;</a></span>ft_malloc_arr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_malloc_arr </td>
+          <td>(</td>
+          <td class="paramtype">char ***&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool **&#160;</td>
+          <td class="paramname"><em>b_arr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Malloc string array and if required boolean array. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>Address of string array. </td></tr>
+    <tr><td class="paramname">b_arr</td><td>Adress of boolean array. </td></tr>
+    <tr><td class="paramname">count</td><td>Size of array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, SUCCESS </dd></dl>
 
 </div>
 </div>

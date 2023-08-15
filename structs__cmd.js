@@ -1,6 +1,6 @@
 var structs__cmd =
 [
-    [ "append", "structs__cmd.html#ac0eb542d03dfa7043233613c54e10043", null ],
+    [ "append_switches", "structs__cmd.html#a0b9e894af2492a4a0460f894b712d2ea", null ],
     [ "arg_pos", "structs__cmd.html#ae1a15c6d8b279b3d0089c95d1014e76b", null ],
     [ "args", "structs__cmd.html#aa24f72e6a4d6a997528142211b375496", null ],
     [ "cmd_num", "structs__cmd.html#a6b4890cf65db1751ed2f95c2102d57a3", null ],
@@ -14,6 +14,8 @@ var structs__cmd =
     [ "index", "structs__cmd.html#a750b5d744c39a06bfb13e6eb010e35d0", null ],
     [ "infile", "structs__cmd.html#a0147307181f9fc2955d12887e25169a4", null ],
     [ "next", "structs__cmd.html#aadb06044d2e679ed4395a2680dc6962a", null ],
+    [ "out_pos", "structs__cmd.html#aa2298e702cfd12ae1cbebcb523196e7c", null ],
     [ "outfile", "structs__cmd.html#a4282e4db334f8faf27ebb21e8b56d6b1", null ],
+    [ "outfiles", "structs__cmd.html#a56782f36e0ec27562ddf4883ecb4bedd", null ],
     [ "pid", "structs__cmd.html#ae0d46a978d5cd6707411f276ad869b9c", null ]
 ];

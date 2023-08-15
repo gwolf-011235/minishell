@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Minishell: executor_heredoc2.c File Reference</title>
+<title>Minishell: executor_cleanup2.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('executor__heredoc2_8c.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('executor__cleanup2_8c.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -91,94 +91,45 @@ $(document).ready(function(){initNavTree('executor__heredoc2_8c.html',''); initR
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">executor_heredoc2.c File Reference</div>  </div>
+<div class="title">executor_cleanup2.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Functions to handle heredoc feature.  
+<p>Functions to clean up the cmd list.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aac2606006de366e42af5a8977fc9ac4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__heredoc2_8c.html#aac2606006de366e42af5a8977fc9ac4c">ft_initiate_heredoc</a> (int index, char **name, int *fd)</td></tr>
-<tr class="memdesc:aac2606006de366e42af5a8977fc9ac4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set heredoc name and open it.  <a href="executor__heredoc2_8c.html#aac2606006de366e42af5a8977fc9ac4c">More...</a><br /></td></tr>
-<tr class="separator:aac2606006de366e42af5a8977fc9ac4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1b66ad72fb1e9229780f7ce40abdc02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__heredoc2_8c.html#af1b66ad72fb1e9229780f7ce40abdc02">ft_print_warning</a> (char *delim)</td></tr>
-<tr class="memdesc:af1b66ad72fb1e9229780f7ce40abdc02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print warning message when EOF is encountered while heredoc is reading from STDIN.  <a href="executor__heredoc2_8c.html#af1b66ad72fb1e9229780f7ce40abdc02">More...</a><br /></td></tr>
-<tr class="separator:af1b66ad72fb1e9229780f7ce40abdc02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55a304f6e4ff4d636817002d3cbf8b63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup2_8c.html#a55a304f6e4ff4d636817002d3cbf8b63">ft_cleanup_cmd_list</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd)</td></tr>
+<tr class="memdesc:a55a304f6e4ff4d636817002d3cbf8b63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterate through cmd list and cleanup each cmd.  <a href="executor__cleanup2_8c.html#a55a304f6e4ff4d636817002d3cbf8b63">More...</a><br /></td></tr>
+<tr class="separator:a55a304f6e4ff4d636817002d3cbf8b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Functions to handle heredoc feature. </p>
+<div class="textblock"><p>Functions to clean up the cmd list. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="aac2606006de366e42af5a8977fc9ac4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac2606006de366e42af5a8977fc9ac4c">&#9670;&nbsp;</a></span>ft_initiate_heredoc()</h2>
+<a id="a55a304f6e4ff4d636817002d3cbf8b63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55a304f6e4ff4d636817002d3cbf8b63">&#9670;&nbsp;</a></span>ft_cleanup_cmd_list()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_initiate_heredoc </td>
+          <td class="memname">void ft_cleanup_cmd_list </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
+          <td class="paramname"><em>cmd</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>fd</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Set heredoc name and open it. </p>
+<p>Iterate through cmd list and cleanup each cmd. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">index</td><td>Index of current cmd. </td></tr>
-    <tr><td class="paramname">name</td><td>Pointer to name of heredoc to be created. </td></tr>
-    <tr><td class="paramname">fd</td><td>File descriptor for heredoc. </td></tr>
+    <tr><td class="paramname">cmd</td><td>List of cmds. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, ERR_OPEN, SUCCESS </dd></dl>
-
-</div>
-</div>
-<a id="af1b66ad72fb1e9229780f7ce40abdc02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1b66ad72fb1e9229780f7ce40abdc02">&#9670;&nbsp;</a></span>ft_print_warning()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_print_warning </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>delim</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Print warning message when EOF is encountered while heredoc is reading from STDIN. </p>
-<p>Print prompt2. Then print the warning message with expected the delimiter. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">delim</td><td>Delimiter string of heredoc. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_HEREDOC_EOF </dd></dl>
 
 </div>
 </div>
@@ -187,7 +138,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="executor__heredoc2_8c.html">executor_heredoc2.c</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="executor__cleanup2_8c.html">executor_cleanup2.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

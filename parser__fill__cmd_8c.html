@@ -107,7 +107,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a436b3fd1c22f313c78cd839df882ac70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save token as delimiter string.  <a href="parser__fill__cmd_8c.html#a436b3fd1c22f313c78cd839df882ac70">More...</a><br /></td></tr>
 <tr class="separator:a436b3fd1c22f313c78cd839df882ac70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c5fcc2204494ac1451850d0553a3c31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser__fill__cmd_8c.html#a5c5fcc2204494ac1451850d0553a3c31">ft_save_outfile</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> **lst, <a class="el" href="structs__cmd.html">t_cmd</a> *new, bool append)</td></tr>
-<tr class="memdesc:a5c5fcc2204494ac1451850d0553a3c31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open file and save fd as fd_out.  <a href="parser__fill__cmd_8c.html#a5c5fcc2204494ac1451850d0553a3c31">More...</a><br /></td></tr>
+<tr class="memdesc:a5c5fcc2204494ac1451850d0553a3c31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save outfile name and info if append mode is set.  <a href="parser__fill__cmd_8c.html#a5c5fcc2204494ac1451850d0553a3c31">More...</a><br /></td></tr>
 <tr class="separator:a5c5fcc2204494ac1451850d0553a3c31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaae5b21f08e29f974ae77be60e89cbaf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser__fill__cmd_8c.html#aaae5b21f08e29f974ae77be60e89cbaf">ft_save_arg</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> *lst, <a class="el" href="structs__cmd.html">t_cmd</a> *new)</td></tr>
 <tr class="memdesc:aaae5b21f08e29f974ae77be60e89cbaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save token into args string array.  <a href="parser__fill__cmd_8c.html#aaae5b21f08e29f974ae77be60e89cbaf">More...</a><br /></td></tr>
@@ -262,8 +262,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Open file and save fd as fd_out. </p>
-<p>If append bool is true, open file in append mode. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Save outfile name and info if append mode is set. </p>
+<p>Names of outfiles are saved in string array. Append information is saved in bool array. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lst</td><td>List of token. </td></tr>
     <tr><td class="paramname">new</td><td>New cmd to be filled. </td></tr>
@@ -271,7 +271,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_OPEN, SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, SUCCESS </dd></dl>
 
 </div>
 </div>

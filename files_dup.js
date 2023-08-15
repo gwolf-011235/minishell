@@ -20,6 +20,7 @@ var files_dup =
     [ "executor_builtin.c", "executor__builtin_8c.html", "executor__builtin_8c" ],
     [ "executor_child.c", "executor__child_8c.html", "executor__child_8c" ],
     [ "executor_cleanup.c", "executor__cleanup_8c.html", "executor__cleanup_8c" ],
+    [ "executor_cleanup2.c", "executor__cleanup2_8c.html", "executor__cleanup2_8c" ],
     [ "executor_create_child.c", "executor__create__child_8c.html", "executor__create__child_8c" ],
     [ "executor_heredoc.c", "executor__heredoc_8c.html", "executor__heredoc_8c" ],
     [ "executor_heredoc2.c", "executor__heredoc2_8c.html", "executor__heredoc2_8c" ],

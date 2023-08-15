@@ -247,7 +247,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Driver function to execute list of cmds. </p>
-<p>Index the list of cmds. If heredocs are present in cmd, they are opened and take input from stdin. In case a heredoc is the last infile redirect, its fd is given to the cmd. All necessary pipes are created in advance to ensure definite fd assignment to all pipe ends. Get PATH from envp and save it into paths. If no path is found (ERR_NOPATH), try to execute cmd nonetheless in the current directory. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Index the list of cmds.</p>
+<p>If heredocs are present in cmd, they are opened and take input from stdin. In case a heredoc is the last infile redirect, its fd is given to the cmd. Differentiate between ERR_ABORT (Cancel whole executor) and ERR_HEREDOC_EOF (Continue executor).</p>
+<p>All necessary pipes are created in advance to ensure definite fd assignment to all pipe ends.</p>
+<p>Get PATH from envp and save it into paths. If no path is found (ERR_NOPATH), try to execute cmd nonetheless in the current directory. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cmd</td><td>List of cmds. </td></tr>
     <tr><td class="paramname">envp</td><td>String array with env variables. </td></tr>
