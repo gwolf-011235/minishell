@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:47:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 19:09:56 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 12:11:25 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data)
 	int		old_stdin;
 	int		old_stdout;
 
-	old_stdin = 0;
-	old_stdout = 0;
 	if (piped)
 	{
 		err = ft_create_child(cmd, data, true);
@@ -65,7 +63,9 @@ t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data)
 	}
 	else
 	{
-		err = ft_set_fd_scmd(cmd, old_stdin, old_stdout);
+		old_stdin = dup(STDIN_FILENO);
+		old_stdout = dup (STDOUT_FILENO);
+		err = ft_set_fd_scmd(cmd);
 		if (err != SUCCESS)
 			return (err);
 		ft_choose_builtin(cmd, data);
@@ -80,12 +80,10 @@ t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data)
  * @param cmd 		Current cmd.
  * @return t_err 	ERR_CLOSE, SUCCESS
  */
-t_err	ft_set_fd_scmd(t_cmd *cmd, int old_stdin, int old_stdout)
+t_err	ft_set_fd_scmd(t_cmd *cmd)
 {
 	t_err	err;
 
-	old_stdin = dup(STDIN_FILENO);
-	old_stdout = dup (STDOUT_FILENO);
 	if (cmd->fd_out >= 0)
 	{
 		if (cmd->fd_in >= 0)

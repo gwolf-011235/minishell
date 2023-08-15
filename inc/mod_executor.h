@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 11:58:05 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 12:12:10 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_err	ft_loop_thru_outfiles(t_cmd *cmd);
 bool	ft_check_builtin(char *arg);
 t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data);
 void	ft_choose_builtin(t_cmd *cmd, t_data *data);
-t_err	ft_set_fd_scmd(t_cmd *cmd, int old_stdin, int old_stdout);
+t_err	ft_set_fd_scmd(t_cmd *cmd);
 t_err	ft_reset_fd_scmd(int old_stdin, int old_stdout);
 
 // include from mod_cleanup
