@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:20 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/13 17:32:51 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 09:31:32 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_err	ft_envp_create_all(t_hashtable *ht, char ***envp);
 t_err	ft_envp_destroy(char ***envp);
 
 //utils.c
-t_err	ft_get_array_size(char **array, size_t *size);
+void	ft_get_array_size(char **array, size_t *size);
 t_err	ft_get_env_keylen(char *str, size_t *len);
 t_err	ft_update_env_var(t_hashtable *env_tab,
 			char *env_str, size_t keylen, bool has_value);
@@ -39,7 +39,7 @@ t_err	ft_exit_error(t_err err, char *arg);
 
 //echo.c
 t_err	ft_echo(char **argv);
-t_err	ft_skip_n_flags(char **argv, size_t *i, bool *newline);
+void	ft_skip_n_flags(char **argv, size_t *i, bool *newline);
 t_err	ft_write_args(char **argv, size_t *i);
 
 //cd.c

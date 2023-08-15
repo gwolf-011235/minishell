@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:43:10 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/28 17:49:10 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 09:32:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ t_err	ft_exit(char **argv, t_hashtable *env_tab)
 	int		ret_code;
 
 	size = 0;
+	err = SUCCESS;
 	ret_code = 0;
-	err = ft_get_array_size(argv, &size);
+	ft_get_array_size(argv, &size);
 	ft_putendl_fd("exit", 2);
 	if (size >= 2)
 		err = ft_is_number(argv[1]);
