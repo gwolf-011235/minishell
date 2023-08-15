@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:24:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 11:57:53 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 13:00:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ t_err	ft_open_outfile(t_cmd *cmd)
 	while (cmd->outfiles[++i])
 	{
 		if (cmd->fd_out > -1)
-			if (close(cmd->fd_out) < 0)
+			if (close(cmd->fd_out) == -1)
 				return (ERR_CLOSE);
 		if (cmd->append_switches[i])
 			cmd->fd_out = open(cmd->outfiles[i], O_WRONLY | O_APPEND | O_CREAT,
