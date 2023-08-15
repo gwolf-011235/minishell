@@ -6,7 +6,7 @@
 #    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/13 22:49:18 by sqiu             ###   ########.fr        #
+#    Updated: 2023/08/15 16:10:45 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,7 +119,8 @@ SRC :=	utils_memory.c \
 		tkn_list_create.c \
 		tkn_list_delete.c \
 		tkn_list_search.c \
-		signal.c
+		signal.c \
+		error_temp.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # ******************************

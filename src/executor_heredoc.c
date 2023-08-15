@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_heredoc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 18:01:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 22:51:50 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ t_err	ft_read_heredoc(t_hdoc *heredoc, t_hashtable *symtab, char *prompt2)
 		if (g_status == 130)
 			return (ERR_ABORT);
 		if (!buf)
-			return (ft_print_warning(heredoc->delim));
+			return (ft_print_warning("heredoc", heredoc->delim));
 		if (ft_strncmp(buf, heredoc->delim, heredoc->delim_len + 1) == 0)
 			break ;
 		if (heredoc->quoted == false)
