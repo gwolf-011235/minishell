@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 19:03:22 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 11:59:17 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,20 +117,11 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 {
 	t_err	err;
 	t_cmd	*tmp;
-	t_cmd	*tmp2;
 
 	tmp = cmd;
-	tmp2 = cmd;
-	while (tmp)
-	{
-		if (tmp->outfiles)
-		{
-			err = ft_open_outfile(tmp);
-			if (err != SUCCESS)
-				return (err);
-		}
-		tmp = tmp->next;
-	}
+	err = ft_loop_thru_outfiles(cmd);
+	if (err != SUCCESS)
+		return (err);
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
 		if (ft_check_builtin(cmd->args[0]))
@@ -147,9 +138,11 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 			return (err);
 		cmd = cmd->next;
 	}
-	err = ft_wait_for_babies(tmp2);
+	err = ft_wait_for_babies(tmp);
 	return (err);
 }
+
+
 
 /**
  * @brief Decide program behaviour depending on err.

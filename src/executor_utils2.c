@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:24:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 12:01:01 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 11:57:53 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,29 @@ t_err	ft_open_outfile(t_cmd *cmd)
 					0644);
 		if (cmd->fd_out == -1)
 			return (ERR_OPEN);
+	}
+	return (SUCCESS);
+}
+
+/**
+ * @brief Opens all outfiles of pipeline.
+ * 
+ * @param cmd 		List of cmds in pipeline.
+ * @return t_err 	ERR_OPEN, SUCCESS
+ */
+t_err	ft_loop_thru_outfiles(t_cmd *cmd)
+{
+	t_err	err;
+
+	while (cmd)
+	{
+		if (cmd->outfiles)
+		{
+			err = ft_open_outfile(cmd);
+			if (err != SUCCESS)
+				return (err);
+		}
+		cmd = cmd->next;
 	}
 	return (SUCCESS);
 }
