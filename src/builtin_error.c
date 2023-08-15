@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:40:34 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/28 17:48:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 10:03:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ t_err	ft_pwd_error(t_err err)
  */
 t_err	ft_cd_error(t_err err, char *oldpwd, char *path)
 {
+	g_status = 1;
 	if (oldpwd)
 		free(oldpwd);
 	if (err == ERR_ARGCOUNT)
@@ -101,10 +102,5 @@ t_err	ft_cd_error(t_err err, char *oldpwd, char *path)
 		ft_putendl_fd("minishell: cd: HOME not set", 2);
 	else if (err == ERR_MALLOC)
 		ft_putendl_fd("minishell: cd: malloc() failed", 2);
-	else if (err == ERR_CHDIR_FAIL)
-	{
-		ft_putstr_fd("minishell: cd: ", 2);
-		perror(path);
-	}
 	return (err);
 }
