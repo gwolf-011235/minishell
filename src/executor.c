@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 11:59:17 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 17:04:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,14 +158,36 @@ t_err	ft_process_cmd(t_cmd *cmd, t_err err, t_data *data)
 {
 	if (err == ERR_MALLOC)
 		return (err);
+	else if (err == ERR_DIR)
+		return (SUCCESS);
 	else if (err == ERR_UNKNOWN_CMD)
 	{
-		write(2, "minishell: ", 11);
-		ft_putstr_fd(cmd->args[0], 2);
-		write(2, ": command not found\n", 20);
+		ft_print_warning("nocmd", cmd->args[0]);
 		err = ft_close(&cmd->fd_pipe[1]);
 	}
 	else if (err == SUCCESS)
 		err = ft_create_child(cmd, data, false);
 	return (err);
+}
+
+/**
+ * @brief Check whether the argument is a directory.
+ * 
+ * Stat() returns 0 if a directory was found, else -1.
+ * @param args 		Argument array containing the cmd.
+ * @return t_err 	ERR_DIR, SUCCESS
+ */
+t_err	ft_check_dir(char **args)
+{
+	struct stat	buf;
+
+	stat(args[0], &buf);
+	if (ft_strchr(args[0], '/'))
+	{
+		if (S_ISDIR(buf.st_mode))
+			return (ERR_DIR);
+		return (ERR_NO_DIR);
+	}
+	else
+		return (SUCCESS);
 }

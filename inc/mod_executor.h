@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 12:32:50 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 16:24:23 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 
 # include "mod_handle_input.h"
 # include "mod_signal.h"
+
+# include <sys/types.h>
+# include <sys/stat.h>
 
 /* ====== Globals ====== */
 
@@ -53,7 +56,6 @@ t_err	ft_read_heredoc(char *delim, char *prompt2, int fd, char **name);
 t_err	ft_name_heredoc(int index, char **name);
 t_err	ft_initiate_heredoc(int index, char **name, int *fd);
 t_err	ft_heredoc_fate(t_cmd *cmd, char **name, int fd, int curr_delim);
-t_err	ft_print_warning(char *delim);
 
 // cleanup
 void	ft_cleanup_cmd_list(t_cmd *cmd);
@@ -73,6 +75,7 @@ t_err	ft_wait_for_babies(t_cmd *cmd);
 bool	ft_check_empty_path(char *path_str);
 t_err	ft_open_outfile(t_cmd *cmd);
 t_err	ft_loop_thru_outfiles(t_cmd *cmd);
+t_err	ft_check_dir(char **args);
 
 // builtins
 bool	ft_check_builtin(char *arg);

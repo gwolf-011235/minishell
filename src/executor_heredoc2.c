@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:20:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/14 11:31:30 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 16:10:02 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,4 @@ t_err	ft_initiate_heredoc(int index, char **name, int *fd)
 	if (*fd < 0)
 		return (ERR_OPEN);
 	return (SUCCESS);
-}
-
-/**
- * @brief Print warning message when EOF is
- * encountered while heredoc is reading from STDIN.
- *
- * Print prompt2.
- * Then print the warning message with
- * expected the delimiter.
- * @param delim		Delimiter string of heredoc.
- * @return t_err	ERR_HEREDOC_EOF
- */
-t_err	ft_print_warning(char *delim)
-{
-	ft_putstr_fd("minishell: warning: here-document at line 42 \
-delimited by end-of-file (wanted `", 2);
-	ft_putstr_fd(delim, 2);
-	ft_putstr_fd("')\n", 2);
-	return (ERR_HEREDOC_EOF);
 }
