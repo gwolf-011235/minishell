@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 16:55:06 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 17:09:31 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,5 @@ int	main(int argc, char **argv)
 		free(data.prompt1);
 		free(data.prompt2);
 	}
-	return (0);
+	exit(g_status);
 }

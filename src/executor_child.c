@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 17:06:14 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 17:09:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin)
 	else
 		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
 			printf("\nexecve encountered an error\n");
-	exit(0);
+	data->loop = false;
 }
 
 /**
@@ -103,7 +103,7 @@ void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin)
 	else
 		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
 			printf("\nexecve encountered an error\n"); //perror
-	exit(0);
+	data->loop = false;
 }
 
 /**
@@ -149,7 +149,7 @@ void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin)
 	else
 		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
 			printf("\nexecve encountered an error\n");
-	exit(0);
+	data->loop = false;
 }
 
 /**
