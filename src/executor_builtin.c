@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:47:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 12:11:25 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 12:34:21 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data)
 		if (err != SUCCESS)
 			return (err);
 		ft_choose_builtin(cmd, data);
-		ft_reset_fd_scmd(old_stdin, old_stdout);
+		err = ft_reset_fd_scmd(old_stdin, old_stdout);
+		if (err != SUCCESS)
+			return (err);
 	}
 	return (SUCCESS);
 }
@@ -107,7 +109,15 @@ t_err	ft_set_fd_scmd(t_cmd *cmd)
  */
 t_err	ft_reset_fd_scmd(int old_stdin, int old_stdout)
 {
+	t_err	err;
+
 	ft_replace_fd(old_stdin, old_stdout);
+	err = ft_close(&old_stdin);
+	if (err != SUCCESS)
+		return (err);
+	err = ft_close(&old_stdout);
+	if (err != SUCCESS)
+		return (err);
 	return (SUCCESS);
 }
 
