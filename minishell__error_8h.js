@@ -35,6 +35,10 @@ var minishell__error_8h =
       [ "ERR_SIGNAL", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a886ecaf98793b7ca7be8030d16cf943f", null ],
       [ "ERR_NO_INPUT", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aea0f5f1d09f241d4a2a964870926c19d", null ],
       [ "ERR_ABORT", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a79cf6f047175e478c013c50c3c4e0187", null ],
-      [ "ERR_HEREDOC_EOF", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aaf3f761a6f7b92944f6506f91d5d96c5", null ]
-    ] ]
+      [ "ERR_HEREDOC_EOF", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aaf3f761a6f7b92944f6506f91d5d96c5", null ],
+      [ "ERR_DIR", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a9f6ee0d9db810ec95b6a6ed6ecec2a70", null ],
+      [ "ERR_NO_DIR", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8ace01473f49d90913c679a35b340b5f6b", null ]
+    ] ],
+    [ "ft_print_warning", "minishell__error_8h.html#a3fe28600b7547058bea7f00c9a33a757", null ],
+    [ "ft_print_warning2", "minishell__error_8h.html#a92584c1cd47aa3c5b504c7fa1784caf0", null ]
 ];

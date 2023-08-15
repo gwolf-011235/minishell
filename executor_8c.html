@@ -112,10 +112,40 @@ Functions</h2></td></tr>
 <tr class="memitem:ad9927302496e8c6c67aeb9c708c67cff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor_8c.html#ad9927302496e8c6c67aeb9c708c67cff">ft_process_cmd</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd, <a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> err, <a class="el" href="structs__data.html">t_data</a> *data)</td></tr>
 <tr class="memdesc:ad9927302496e8c6c67aeb9c708c67cff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decide program behaviour depending on err.  <a href="executor_8c.html#ad9927302496e8c6c67aeb9c708c67cff">More...</a><br /></td></tr>
 <tr class="separator:ad9927302496e8c6c67aeb9c708c67cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a848e0748bf7d2b9ddee63e69bf3cbf55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor_8c.html#a848e0748bf7d2b9ddee63e69bf3cbf55">ft_check_dir</a> (char **args)</td></tr>
+<tr class="memdesc:a848e0748bf7d2b9ddee63e69bf3cbf55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the argument is a directory.  <a href="executor_8c.html#a848e0748bf7d2b9ddee63e69bf3cbf55">More...</a><br /></td></tr>
+<tr class="separator:a848e0748bf7d2b9ddee63e69bf3cbf55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions to execute the list of cmds. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a848e0748bf7d2b9ddee63e69bf3cbf55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a848e0748bf7d2b9ddee63e69bf3cbf55">&#9670;&nbsp;</a></span>ft_check_dir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_check_dir </td>
+          <td>(</td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check whether the argument is a directory. </p>
+<p>Stat() returns 0 if a directory was found, else -1. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">args</td><td>Argument array containing the cmd. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_DIR, SUCCESS </dd></dl>
+
+</div>
+</div>
 <a id="a36119e3027eba3c838e3bbf93d55b9f5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a36119e3027eba3c838e3bbf93d55b9f5">&#9670;&nbsp;</a></span>ft_execute_pcmds()</h2>
 
