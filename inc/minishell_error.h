@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 09:24:50 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 09:52:50 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,7 @@ typedef enum e_error {
 	ERR_WRITE ///< Syscall write failed.
 }	t_err;
 
+t_err	ft_err_write(int fd, char *str, char *msg);
+t_err	ft_err_chdir(char *path, char *msg);
 
 #endif
