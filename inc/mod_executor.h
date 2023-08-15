@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_executor.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 12:32:50 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 15:55:32 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@
 extern __sig_atomic_t	g_status;
 
 /* ====== Structs ====== */
+
+typedef struct s_hdoc
+{
+	char	*name;
+	int		fd;
+	char	*delim;
+	size_t	delim_len;
+	bool	quoted;
+}	t_hdoc;
 
 /* ====== Functions ====== */
 
@@ -46,13 +55,13 @@ void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin);
 void	ft_close_mid_child_fds(t_cmd *cmd);
 
 // heredoc
-t_err	ft_handle_heredoc(t_cmd *cmd, char *prompt2);
-t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim,
-			char *prompt2);
-t_err	ft_read_heredoc(char *delim, char *prompt2, int fd, char **name);
+t_err	ft_handle_heredoc(t_cmd *cmd, t_hashtable *symtab, char *prompt2);
+t_err	ft_create_heredoc(t_cmd *cmd, int curr_delim,
+			t_hashtable *symtab, char *prompt2);
+t_err	ft_read_heredoc(t_hdoc *heredoc, t_hashtable *symtab, char *prompt2);
 t_err	ft_name_heredoc(int index, char **name);
-t_err	ft_initiate_heredoc(int index, char **name, int *fd);
-t_err	ft_heredoc_fate(t_cmd *cmd, char **name, int fd, int curr_delim);
+t_err	ft_init_heredoc(t_hdoc *heredoc, int index, bool quoted, char *delim);
+t_err	ft_heredoc_fate(t_cmd *cmd, int curr_delim, t_hdoc *heredoc);
 t_err	ft_print_warning(char *delim);
 
 // cleanup
