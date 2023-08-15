@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 14:55:58 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 12:41:31 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ t_err	ft_raise_first(t_cmd *cmd, t_data *data, bool builtin)
 	}
 	else if (cmd->pid == 0)
 		ft_firstborn(cmd, data, builtin);
-	if (signal(SIGINT, SIG_IGN) == SIG_ERR)
-		return (ERR_SIGNAL);
+	ft_signal_setup(SIGINT, SIG_IGNORE);
 	err = ft_close(&cmd->fd_pipe[1]);
 	err = ft_close(&cmd->fd_out);
 	if (err != SUCCESS)
@@ -95,8 +94,7 @@ t_err	ft_raise_last(t_cmd *cmd, t_data *data, bool builtin)
 	}
 	else if (cmd->pid == 0)
 		ft_lastborn(cmd, data, builtin);
-	if (signal(SIGINT, SIG_IGN) == SIG_ERR)
-		return (ERR_SIGNAL);
+	ft_signal_setup(SIGINT, SIG_IGNORE);
 	return (SUCCESS);
 }
 
@@ -125,8 +123,7 @@ t_err	ft_raise_middle(t_cmd *cmd, t_data *data, bool builtin)
 	}
 	else if (cmd->pid == 0)
 		ft_middle_child(cmd, data, builtin);
-	if (signal(SIGINT, SIG_IGN) == SIG_ERR)
-		return (ERR_SIGNAL);
+	ft_signal_setup(SIGINT, SIG_IGNORE);
 	err = ft_close(&cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);
