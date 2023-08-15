@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 17:02:31 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 23:05:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef enum e_error {
 	ERR_ABORT, ///< Abort pipeline.
 	ERR_HEREDOC_EOF, ///< Heredoc stopped by Ctrl+D
 	ERR_DIR, ///< Cmd is a directory.
-	ERR_NO_DIR ///< Directory of file not found
+	ERR_NO_DIR ///< Directory or file not found
 }	t_err;
 
 t_err	ft_print_warning(char *indic, char *trigger);
