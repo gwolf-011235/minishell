@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 11:48:51 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 11:44:00 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,6 @@ void	ft_init_cmd(t_cmd *tmp)
 	tmp->arg_pos = 0;
 	tmp->delim_pos = 0;
 	tmp->out_pos = 0;
-	tmp->append = false;
 	tmp->fd_in = -1;
 	tmp->fd_out = -1;
 	tmp->fd_pipe[0] = -1;

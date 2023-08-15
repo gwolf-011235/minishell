@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 11:42:40 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 11:36:00 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct s_cmd
 	int				fd_out;
 	int				fd_pipe[2];
 	int				fd_prev_pipe[2];
-	bool			append;
 	bool			infile;
 	bool			outfile;
 	int				index;
