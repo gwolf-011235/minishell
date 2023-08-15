@@ -10,6 +10,7 @@ var structs__cmd =
     [ "fd_out", "structs__cmd.html#a4d637057db9ca396d66529aeb27bb3b7", null ],
     [ "fd_pipe", "structs__cmd.html#ada06d1d76e8ddd8d64a0251a286b4d6e", null ],
     [ "fd_prev_pipe", "structs__cmd.html#a7ba1e2dc4f439d0e12f8edede6c6d533", null ],
+    [ "hdoc_quoted", "structs__cmd.html#acaef53ec88edb61b59582e1b4e958495", null ],
     [ "heredoc", "structs__cmd.html#a2a9dea5f266288422699330be966c19a", null ],
     [ "index", "structs__cmd.html#a750b5d744c39a06bfb13e6eb010e35d0", null ],
     [ "infile", "structs__cmd.html#a0147307181f9fc2955d12887e25169a4", null ],

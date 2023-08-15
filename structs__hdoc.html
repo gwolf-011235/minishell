@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Minishell: Data Structures</title>
+<title>Minishell: s_hdoc Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('annotated.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('structs__hdoc.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -88,30 +88,37 @@ $(document).ready(function(){initNavTree('annotated.html',''); initResizable(); 
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">Data Structures</div>  </div>
+<div class="title">s_hdoc Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">Here are the data structures with brief descriptions:</div><div class="directory">
-<table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structs__buf.html" target="_self">s_buf</a></td><td class="desc">Buffer structure </td></tr>
-<tr id="row_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structs__cmd.html" target="_self">s_cmd</a></td><td class="desc">Linked list of simple commands existing of token extracted from input </td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structs__data.html" target="_self">s_data</a></td><td class="desc">Overarching struct to hold all necessarry data </td></tr>
-<tr id="row_3_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structs__env__var.html" target="_self">s_env_var</a></td><td class="desc">Node to store env_strings </td></tr>
-<tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structs__hashtable.html" target="_self">s_hashtable</a></td><td class="desc">Hashtable with external chaining </td></tr>
-<tr id="row_5_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structs__hdoc.html" target="_self">s_hdoc</a></td><td class="desc"></td></tr>
-<tr id="row_6_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structs__src.html" target="_self">s_src</a></td><td class="desc">Source structure </td></tr>
-<tr id="row_7_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structs__str__info.html" target="_self">s_str_info</a></td><td class="desc">String struct </td></tr>
-<tr id="row_8_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structs__tkn__list.html" target="_self">s_tkn_list</a></td><td class="desc">List of token </td></tr>
-<tr id="row_9_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structs__tok.html" target="_self">s_tok</a></td><td class="desc">Token structure </td></tr>
-<tr id="row_10_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structs__track.html" target="_self">s_track</a></td><td class="desc">Tracker struct </td></tr>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a5ac083a645d964373f022d03df4849c8"><td class="memItemLeft" align="right" valign="top"><a id="a5ac083a645d964373f022d03df4849c8"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+<tr class="separator:a5ac083a645d964373f022d03df4849c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f8059414f0228f0256115e024eeed4b"><td class="memItemLeft" align="right" valign="top"><a id="a6f8059414f0228f0256115e024eeed4b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>fd</b></td></tr>
+<tr class="separator:a6f8059414f0228f0256115e024eeed4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab10d9e7c1b85980bbbd8d04575c1279b"><td class="memItemLeft" align="right" valign="top"><a id="ab10d9e7c1b85980bbbd8d04575c1279b"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><b>delim</b></td></tr>
+<tr class="separator:ab10d9e7c1b85980bbbd8d04575c1279b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18e9df603c1802f551792dea8f09a837"><td class="memItemLeft" align="right" valign="top"><a id="a18e9df603c1802f551792dea8f09a837"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>delim_len</b></td></tr>
+<tr class="separator:a18e9df603c1802f551792dea8f09a837"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d1ca0934fbcd65975742949a31cc8a1"><td class="memItemLeft" align="right" valign="top"><a id="a9d1ca0934fbcd65975742949a31cc8a1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>quoted</b></td></tr>
+<tr class="separator:a9d1ca0934fbcd65975742949a31cc8a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- directory -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="structs__hdoc.html">s_hdoc</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

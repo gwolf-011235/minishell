@@ -4,5 +4,6 @@ var structs__track =
     [ "last_expand_len", "structs__track.html#a08660470b9a1877bfd1f15650bf567f6", null ],
     [ "pos", "structs__track.html#a5438a597ee291f523ae04a9fe355924f", null ],
     [ "quoted", "structs__track.html#a9d1ca0934fbcd65975742949a31cc8a1", null ],
-    [ "str", "structs__track.html#ab50d783982593ef993ea0b68f7ad8b80", null ]
+    [ "str", "structs__track.html#ab50d783982593ef993ea0b68f7ad8b80", null ],
+    [ "type", "structs__track.html#aab17f2f3d2a1849cc867d31899d451c8", null ]
 ];
