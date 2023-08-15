@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_executor.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/12 02:04:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 12:32:50 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_err	ft_raise_middle(t_cmd *cmd, t_data *data, bool builtin);
 void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin);
 void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin);
 void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin);
+void	ft_close_mid_child_fds(t_cmd *cmd);
 
 // heredoc
 t_err	ft_handle_heredoc(t_cmd *cmd, char *prompt2);
@@ -52,12 +53,13 @@ t_err	ft_read_heredoc(char *delim, char *prompt2, int fd, char **name);
 t_err	ft_name_heredoc(int index, char **name);
 t_err	ft_initiate_heredoc(int index, char **name, int *fd);
 t_err	ft_heredoc_fate(t_cmd *cmd, char **name, int fd, int curr_delim);
-t_err	ft_print_warning(char *delim, char *prompt2);
+t_err	ft_print_warning(char *delim);
 
 // cleanup
+void	ft_cleanup_cmd_list(t_cmd *cmd);
 t_err	ft_cleanup_cmd(t_cmd *cmd);
 t_err	ft_unlink_heredoc(char **name, t_err err);
-t_err	ft_close(int fd);
+t_err	ft_close(int *fd);
 t_err	ft_plug_pipe(t_cmd *cmd);
 
 // utils
@@ -69,11 +71,15 @@ t_err	ft_get_path(char **envp, char ***paths, bool *empty_path);
 t_err	ft_replace_fd(int input_fd, int output_fd);
 t_err	ft_wait_for_babies(t_cmd *cmd);
 bool	ft_check_empty_path(char *path_str);
+t_err	ft_open_outfile(t_cmd *cmd);
+t_err	ft_loop_thru_outfiles(t_cmd *cmd);
 
 // builtins
 bool	ft_check_builtin(char *arg);
 t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data);
 void	ft_choose_builtin(t_cmd *cmd, t_data *data);
+t_err	ft_set_fd_scmd(t_cmd *cmd);
+t_err	ft_reset_fd_scmd(int old_stdin, int old_stdout);
 
 // include from mod_cleanup
 void	ft_free_str_arr(char **arr);

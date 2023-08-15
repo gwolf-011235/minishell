@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/13 16:29:23 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 12:53:30 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,30 +68,33 @@ t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim,
 		return (err);
 	g_status = 0;
 	err = ft_read_heredoc(delim, prompt2, fd, &name);
-	if (err != SUCCESS)
+	if (err != SUCCESS && err != ERR_HEREDOC_EOF)
 		return (err);
 	err = ft_heredoc_fate(cmd, &name, fd, curr_delim);
 	return (err);
 }
 
 /**
- * @brief Read
- *
- * @param delim
- * @param prompt2
- * @param fd
- * @param name
- * @return t_err
+ * @brief Read input for heredoc.
+ * 
+ * Special signal handler set for SIGINT.
+ * SIGINT -> g_status set to 130. Causes Heredoc deletion
+ * and return of ERR_ABORT.
+ * CTRL+D -> Buf is empty. Causes error message and return
+ * of ERR_HEREDOC_EOF.
+ * Breaks out of loop if delim string is given.
+ * @param delim		Delimiter string.
+ * @param prompt2	Heredoc prompt string.
+ * @param fd		Heredoc file descriptor.
+ * @param name		Name of heredoc.
+ * @return t_err	ERR_ABORT, ERR_HEREDOC_EOF, SUCCESS
  */
 t_err	ft_read_heredoc(char *delim, char *prompt2, int fd, char **name)
 {
 	char	*buf;
 	size_t	len;
-	t_err	err;
 
-	err = ft_signal_setup(SIGINT, SIG_HEREDOC);
-	if (err != SUCCESS)
-		return (err);
+	ft_signal_setup(SIGINT, SIG_HEREDOC);
 	len = ft_strlen(delim);
 	while (1)
 	{
@@ -99,10 +102,11 @@ t_err	ft_read_heredoc(char *delim, char *prompt2, int fd, char **name)
 		if (g_status == 130)
 			return (ft_unlink_heredoc(name, ERR_ABORT));
 		if (!buf)
-			return (ft_print_warning(delim, prompt2));
+			return (ft_print_warning(delim));
 		if (ft_strncmp(delim, buf, len + 1) == 0)
 			break ;
 		write(fd, buf, ft_strlen(buf));
+		write(fd, "\n", 1); 
 		free(buf);
 		buf = NULL;
 	}
@@ -149,7 +153,7 @@ t_err	ft_heredoc_fate(t_cmd *cmd, char **name, int fd, int curr_delim)
 {
 	t_err	err;
 
-	err = ft_close(fd);
+	err = ft_close(&fd);
 	if (err != SUCCESS)
 		return (err);
 	if (cmd->fd_in == -1 && curr_delim == cmd->delim_pos - 1)

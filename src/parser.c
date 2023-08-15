@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 21:20:17 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 13:58:11 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,19 @@ t_err	ft_create_cmd(t_cmd **new, t_tkn_list *lst)
 	t_err	err;
 	int		count_arg;
 	int		count_delim;
+	int		count_out;
 
 	count_arg = 0;
 	count_delim = 0;
+	count_out = 0;
 	tmp = malloc(sizeof(t_cmd));
 	if (!tmp)
 		return (ERR_MALLOC);
-	ft_count_str(lst, &count_arg, &count_delim);
-	err = ft_create_str_arr(tmp, count_arg, count_delim);
+	ft_init_cmd(tmp);
+	ft_count_str(lst, &count_arg, &count_delim, &count_out);
+	err = ft_create_str_arr(tmp, count_arg, count_delim, count_out);
 	if (err != SUCCESS)
 		return (err);
-	ft_init_cmd(tmp);
 	*new = tmp;
 	return (SUCCESS);
 }

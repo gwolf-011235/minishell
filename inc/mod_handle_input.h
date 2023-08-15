@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_handle_input.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/12 00:08:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 11:36:00 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,40 @@
  *
  * Each node of the list contains information about the respective token. Not
  * all variables necessarily need to be populated.
- * @param exe Pointer to executable string.
  * @param args Pointer to argument string array.
+ * @param arg_pos Position of arg in arg array.
  * @param fd_in File descriptor of infile.
  * @param fd_out File descriptor of outfile.
- * @param delim Pointer to delimiter string.
- * @param append Boole value to indicate append mode.
+ * @param fd_pipe Integer array containing the read/write end of the pipe
+ * connecting this cmd to the next one.
+ * @param fd_prev_pipe Integer array containing the read/write end of the
+ * previous pipe.
+ * @param delims Pointer to delimiter string array.
+ * @param delim_pos Position of delimiter in delim array.
+ * @param heredoc Pointer to Heredoc name string.
+ * @param outfiles Pointer to outfile name string array.
+ * @param append Boolean value to indicate append mode.
+ * @param infile Boolean value to indicate infile(s) have been found.
+ * @param outfile Boolean value to indicate outfile(s) have been found.
  * @param index Index indicating position of command in the pipeline.
+ * @param cmd_num Total number of cmds in list.
+ * @param pid Process identifier for forking the cmd execution.
+ * @param next Pointer to next cmd.
  */
 typedef struct s_cmd
 {
 	char			**args;
 	int				arg_pos;
+	char			**delims;
+	int				delim_pos;
+	char			*heredoc;
+	char			**outfiles;
+	int				out_pos;
+	bool			*append_switches;
 	int				fd_in;
 	int				fd_out;
 	int				fd_pipe[2];
 	int				fd_prev_pipe[2];
-	char			**delims;
-	int				delim_pos;
-	char			*heredoc;
-	bool			append;
 	bool			infile;
 	bool			outfile;
 	int				index;
@@ -78,5 +92,6 @@ t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd);
 
 // executor
 t_err	ft_executor(t_cmd *cmd, t_data *data);
+void	ft_cleanup_cmd_list(t_cmd *cmd);
 
 #endif

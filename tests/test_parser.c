@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:41:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/07/28 13:28:56 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 11:46:31 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,16 @@ static int	test_wrapper(char *testname, char *test, bool heredoc, bool append)
 		}
 		if (append)
 		{
-			if (cmd->append)
-				printf(GREEN"append mode set: %d\n"RESET, (int)cmd->append);
-			else
+			int i = -1;
+			while (++i < cmd->out_pos)
 			{
-				printf(RED"error: no append mode\n"RESET);
-				local_err_count++;
+				if (cmd->append_switches[i])
+					printf(GREEN"append mode set: %d\n"RESET, (int)cmd->append_switches[i]);
+				else
+				{
+					printf(RED"error: no append mode\n"RESET);
+					local_err_count++;
+				}
 			}
 		}
 		cmd = cmd->next;
