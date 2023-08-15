@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/14 21:07:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 18:03:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_err	ft_expander(t_track *input, t_hashtable *symtab, t_type type)
 			err = ft_rm_double_quote(input);
 		else if (input->str[input->pos] == '~'
 			&& (input->pos == 0 || (type == ASSIGN && ft_strchr(input->str, '=')
-					== input->str + input->pos -1)))
+					== input->str + input->pos - 1)))
 			err = ft_expand_tilde(input, symtab);
 		else if (input->str[input->pos] == '$')
 		{
