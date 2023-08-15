@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 10:05:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 10:48:33 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,19 @@ t_err	ft_cd(char **argv, t_hashtable *env_tab)
 	oldpwd = NULL;
 	ft_get_array_size(argv, &size);
 	if (size > 2)
-		return (ft_cd_error(ERR_ARGCOUNT, oldpwd, NULL));
+		return (ft_cd_error(ERR_ARGCOUNT, oldpwd));
 	err = ft_save_cur_pwd(&oldpwd, env_tab);
 	if (err != SUCCESS)
-		return (ft_cd_error(err, oldpwd, NULL));
+		return (ft_cd_error(err, oldpwd));
 	if (size == 1)
 	{
 		err = ft_set_path_to_home(&argv[1], env_tab);
 		if (err != SUCCESS)
-			return (ft_cd_error(err, oldpwd, NULL));
+			return (ft_cd_error(err, oldpwd));
 	}
 	err = ft_change_dir(argv[1], env_tab, oldpwd);
 	if (err != SUCCESS)
-		return (ft_cd_error(err, oldpwd, NULL));
+		return (ft_cd_error(err, oldpwd));
 	g_status = 0;
 	return (SUCCESS);
 }
