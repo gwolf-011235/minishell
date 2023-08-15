@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 17:06:08 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 13:53:24 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ t_err	ft_cleanup_cmd(t_cmd *cmd)
 		ft_free_str_arr(cmd->args);
 	if (cmd->outfiles)
 		ft_free_str_arr(cmd->outfiles);
+	if (cmd->append_switches)
+		free(cmd->append_switches);
 	return (SUCCESS);
 }
 
