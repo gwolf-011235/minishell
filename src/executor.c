@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 22:57:22 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 23:43:31 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,10 @@ t_err	ft_process_cmd(t_cmd *cmd, t_err err, t_data *data)
 	{
 		ft_print_warning("nocmd", cmd->args[0]);
 		err = ft_close(&cmd->fd_pipe[1]);
+		if (err != SUCCESS)
+			return (err);
+		else
+			return (ERR_UNKNOWN_CMD);
 	}
 	else if (err == SUCCESS)
 		err = ft_create_child(cmd, data, false);
