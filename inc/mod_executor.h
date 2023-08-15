@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 15:55:32 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 16:04:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,8 @@ t_err	ft_export(char **argv, t_hashtable *env_tab);
 t_err	ft_unset(char **argv, t_hashtable *env_tab);
 t_err	ft_env(t_hashtable *env_tab);
 t_err	ft_exit(char **argv, t_hashtable *env_tab);
+
+//include from mod_expand
+t_err	ft_expander_heredoc(char **str, t_hashtable *symtab);
 
 #endif

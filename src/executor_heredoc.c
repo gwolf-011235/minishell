@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 15:59:54 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 16:17:34 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ t_err	ft_create_heredoc(t_cmd *cmd, int curr_delim,
 t_err	ft_read_heredoc(t_hdoc *heredoc, t_hashtable *symtab, char *prompt2)
 {
 	char	*buf;
+	t_err	err;
 
 	ft_signal_setup(SIGINT, SIG_HEREDOC);
-	(void)symtab;
 	while (1)
 	{
 		buf = readline(prompt2);
@@ -104,8 +104,11 @@ t_err	ft_read_heredoc(t_hdoc *heredoc, t_hashtable *symtab, char *prompt2)
 			return (ft_print_warning(heredoc->delim));
 		if (ft_strncmp(buf, heredoc->delim, heredoc->delim_len + 1) == 0)
 			break ;
-		write(heredoc->fd, buf, ft_strlen(buf));
-		write(heredoc->fd, "\n", 1);
+		if (heredoc->quoted == false)
+			err = ft_expander_heredoc(&buf, symtab);
+		if (err != SUCCESS)
+			break ;
+		ft_putendl_fd(buf, heredoc->fd);
 		free(buf);
 		buf = NULL;
 	}
