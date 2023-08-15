@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 16:22:59 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 23:47:20 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,5 +149,6 @@ void	ft_init_cmd(t_cmd *tmp)
 	tmp->delims = NULL;
 	tmp->outfiles = NULL;
 	tmp->append_switches = NULL;
+	tmp->pid = 0;
 	tmp->next = NULL;
 }
