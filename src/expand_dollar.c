@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/14 20:33:54 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 18:49:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,9 @@ t_err	ft_get_dollar_var(t_track *input, t_str *var)
 	}
 	if (var->len == 0)
 	{
-		if (input->type != HEREDOC
-			&& !input->quoted && ft_strchr("\"'", input->str[input->pos + 1]))
+		if (input->type != HEREDOC && !input->quoted
+			&& (input->str[input->pos + 1] == '\''
+				|| input->str[input->pos + 1] == '"'))
 			ft_eat_char(input);
 		else
 			input->pos++;
