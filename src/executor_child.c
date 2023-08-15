@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 18:15:23 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 12:37:55 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin)
 		ft_choose_builtin(cmd, data);
 	else
 		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
-			printf("\nexecve encountered an error\n");
+			printf("\nexecve encountered an error\n"); //perror
 	exit(0);
 }
 
