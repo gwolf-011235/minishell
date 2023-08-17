@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/17 09:45:44 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/17 10:13:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,10 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
 	err = ft_get_path(data->envp, &paths, &empty_path);
 	if (err == ERR_MALLOC)
 		return (err);
-	if (cmd->args)
-	{
-		if (cmd->next == NULL)
-			err = ft_execute_scmd(cmd, paths, data, empty_path);
-		else
-			err = ft_execute_pcmds(cmd, paths, data, empty_path);
-	}
+	if (cmd->next == NULL)
+		err = ft_execute_scmd(cmd, paths, data, empty_path);
+	else
+		err = ft_execute_pcmds(cmd, paths, data, empty_path);
 	return (err);
 }
 
@@ -85,13 +82,16 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 		err = ft_open_outfile(cmd);
 	if (err != SUCCESS)
 		return (err);
-	if (ft_check_builtin(cmd->args[0]))
-		return (ft_execute_builtin(0, cmd, data));
-	err = ft_check_cmd_access(cmd->args, paths, empty_path);
-	err = ft_process_cmd(cmd, err, data);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_wait_for_babies(cmd);
+	if (cmd->args)
+	{
+		if (ft_check_builtin(cmd->args[0]))
+			return (ft_execute_builtin(0, cmd, data));
+		err = ft_check_cmd_access(cmd->args, paths, empty_path);
+		err = ft_process_cmd(cmd, err, data);
+		if (err != SUCCESS)
+			return (err);
+		err = ft_wait_for_babies(cmd);
+	}
 	return (err);
 }
 
@@ -124,18 +124,22 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 		return (err);
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
-		if (ft_check_builtin(cmd->args[0]))
+		if (cmd->args)
 		{
-			err = ft_execute_builtin(1, cmd, data);
-			if (err != SUCCESS)
-				return (err);
-			cmd = cmd->next;
-			continue ;
+			if (ft_check_builtin(cmd->args[0]))
+			{
+				err = ft_execute_builtin(1, cmd, data);
+				if (err != SUCCESS)
+					return (err);
+			}
+			else
+			{
+				err = ft_check_cmd_access(cmd->args, paths, empty_path);
+				err = ft_process_cmd(cmd, err, data);
+				if (err != SUCCESS)
+					return (err);
+			}
 		}
-		err = ft_check_cmd_access(cmd->args, paths, empty_path);
-		err = ft_process_cmd(cmd, err, data);
-		if (err != SUCCESS)
-			return (err);
 		cmd = cmd->next;
 	}
 	err = ft_wait_for_babies(tmp);
