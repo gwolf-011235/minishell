@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 10:05:10 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/17 14:04:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 //MODULE ENV
 t_err	ft_env_setup(t_hashtable **env_table);
 t_err	ft_envp_create(t_hashtable *ht, char ***envp);
+t_err	ft_envp_destroy(char ***envp);
 
 //MODULE PROMPT
 t_err	ft_prompt_create(t_hashtable *sym_tab,
