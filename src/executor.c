@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 23:43:31 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/17 09:45:44 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,22 +176,21 @@ t_err	ft_process_cmd(t_cmd *cmd, t_err err, t_data *data)
 
 /**
  * @brief Check whether the argument is a directory.
- * 
+ *
  * Stat() returns 0 if a directory was found, else -1.
  * @param args 		Argument array containing the cmd.
- * @return t_err 	ERR_DIR, SUCCESS
+ * @return t_err 	ERR_DIR, ERR_NO_DIR, ERR_STAT, SUCCESS
  */
 t_err	ft_check_dir(char **args)
 {
 	struct stat	buf;
+	t_err		err;
 
-	stat(args[0], &buf);
-	if (ft_strchr(args[0], '/'))
-	{
-		if (S_ISDIR(buf.st_mode))
-			return (ERR_DIR);
-		return (ERR_NO_DIR);
-	}
+	err = ft_err_stat(args[0], &buf, "minishell: stat");
+	if (err != SUCCESS)
+		return (err);
+	if (S_ISDIR(buf.st_mode))
+		return (ERR_DIR);
 	else
 		return (SUCCESS);
 }
