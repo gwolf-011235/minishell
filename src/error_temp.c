@@ -1,9 +1,4 @@
 #include "minishell_error.h"
-#include "mod_executor.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <errno.h>
 
 /**
  * @brief Print warning messages depending on

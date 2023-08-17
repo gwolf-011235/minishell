@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/17 09:42:23 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/17 10:01:24 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,18 @@
  */
 #ifndef MINISHELL_ERROR_H
 # define MINISHELL_ERROR_H
+
+# include <stdio.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <unistd.h>
+# include <errno.h>
+
+# include "libft.h"
+
+/* ====== Globals ====== */
+
+extern __sig_atomic_t	g_status;
 
 /**
  * @brief Enum, which contains all error codes.
