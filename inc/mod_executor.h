@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 17:05:37 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/17 07:51:35 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@
 extern __sig_atomic_t	g_status;
 
 /* ====== Structs ====== */
+
+typedef struct s_hdoc
+{
+	char	*name;
+	int		fd;
+	char	*delim;
+	size_t	delim_len;
+	bool	quoted;
+}	t_hdoc;
 
 /* ====== Functions ====== */
 
@@ -46,14 +55,13 @@ void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin);
 void	ft_close_mid_child_fds(t_cmd *cmd);
 
 // heredoc
-t_err	ft_handle_heredoc(t_cmd *cmd, char *prompt2);
-t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim,
-			char *prompt2);
-t_err	ft_read_heredoc(char *delim, char *prompt2, int fd, char **name);
+t_err	ft_handle_heredoc(t_cmd *cmd, t_hashtable *symtab, char *prompt2);
+t_err	ft_create_heredoc(t_cmd *cmd, int curr_delim,
+			t_hashtable *symtab, char *prompt2);
+t_err	ft_read_heredoc(t_hdoc *heredoc, t_hashtable *symtab, char *prompt2);
 t_err	ft_name_heredoc(int index, char **name);
-t_err	ft_initiate_heredoc(int index, char **name, int *fd);
-t_err	ft_heredoc_fate(t_cmd *cmd, char **name, int fd, int curr_delim);
-t_err	ft_print_warning(char *delim);
+t_err	ft_init_heredoc(t_hdoc *heredoc, int index, bool quoted, char *delim);
+t_err	ft_heredoc_fate(t_cmd *cmd, int curr_delim, t_hdoc *heredoc);
 
 // cleanup
 void	ft_cleanup_cmd_list(t_cmd *cmd);
@@ -73,6 +81,7 @@ t_err	ft_wait_for_babies(t_cmd *cmd);
 bool	ft_check_empty_path(char *path_str);
 t_err	ft_open_outfile(t_cmd *cmd);
 t_err	ft_loop_thru_outfiles(t_cmd *cmd);
+t_err	ft_check_dir(char **args);
 
 // builtins
 bool	ft_check_builtin(char *arg);
@@ -92,5 +101,8 @@ t_err	ft_export(char **argv, t_hashtable *env_tab);
 t_err	ft_unset(char **argv, t_hashtable *env_tab);
 t_err	ft_env(t_hashtable *env_tab);
 t_err	ft_exit(char **argv, bool *loop, bool piped);
+
+// include from mod_expander
+t_err	ft_expander_heredoc(char **str, t_hashtable *symtab);
 
 #endif

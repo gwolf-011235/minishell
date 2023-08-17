@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:57 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 19:21:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 18:28:07 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ t_err	ft_count_expand_words(t_track *input, size_t *words,
 	if (input->pos != 0)
 	{
 		*words = 1;
-		while (input->str[input->pos] && input->str[input->pos] != ' ')
+		while (input->str[input->pos] && input->str[input->pos] != ' '
+			&& last_expand_len)
 		{
 			(input->pos)++;
 			last_expand_len--;

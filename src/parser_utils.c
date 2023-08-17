@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 13:50:38 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 23:47:20 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim,
 {
 	while (lst)
 	{
-		if (lst->type == HEREDOC)
+		if (lst->type == HEREDOC || lst->type == QUOTEDOC)
 		{
 			lst = lst->next;
 			(*count_delim)++;
@@ -95,7 +95,7 @@ t_err	ft_create_str_arr(t_cmd *tmp, int count_arg, int count_delim,
 	if (count_arg && err == SUCCESS)
 		err = ft_malloc_arr(&tmp->args, NULL, count_arg);
 	if (count_delim && err == SUCCESS)
-		err = ft_malloc_arr(&tmp->delims, NULL, count_delim);
+		err = ft_malloc_arr(&tmp->delims, &tmp->hdoc_quoted, count_delim);
 	if (count_out && err == SUCCESS)
 		err = ft_malloc_arr(&tmp->outfiles, &tmp->append_switches, count_out);
 	return (err);
@@ -103,7 +103,7 @@ t_err	ft_create_str_arr(t_cmd *tmp, int count_arg, int count_delim,
 
 /**
  * @brief Malloc string array and if required boolean array.
- * 
+ *
  * @param str 		Address of string array.
  * @param b_arr 	Adress of boolean array.
  * @param count 	Size of array.
@@ -134,7 +134,7 @@ void	ft_init_cmd(t_cmd *tmp)
 	tmp->arg_pos = 0;
 	tmp->delim_pos = 0;
 	tmp->out_pos = 0;
-	tmp->fd_in = -1;	
+	tmp->fd_in = -1;
 	tmp->fd_out = -1;
 	tmp->fd_pipe[0] = -1;
 	tmp->fd_pipe[1] = -1;
@@ -149,5 +149,6 @@ void	ft_init_cmd(t_cmd *tmp)
 	tmp->delims = NULL;
 	tmp->outfiles = NULL;
 	tmp->append_switches = NULL;
+	tmp->pid = 0;
 	tmp->next = NULL;
 }

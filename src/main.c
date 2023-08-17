@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 17:09:31 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/17 07:56:47 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,13 @@ int	main(int argc, char **argv)
 		err = ft_signal_setup(SIGINT, SIG_STD);
 		if (err != SUCCESS)
 			ft_exit_failure(&data, err);
-		input = readline(data.prompt1);
+		if (isatty(fileno(stdin)))
+			input = readline(data.prompt1);
+		else
+		{
+			input = get_next_line(fileno(stdin));
+			input = ft_strtrim(input, "\n");
+		}
 		if (!input)
 			break ;
 		add_history(input);

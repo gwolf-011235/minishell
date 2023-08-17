@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/13 15:38:19 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 17:09:04 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 /**
  * @brief Check given args executable.
  * 
- * Iterate through cmd_paths. If one or more paths are empty (""),
+ * First check if cmd is a directory/a non-existing directory. If so, 
+ * exit the function.
+ * If not iterate through cmd_paths. If one or more paths are empty (""),
  * boolean "empty_path" is set to true.
  * If args executable contains an absolute path (starts with /),
  * a relative path (starts with ./ or ../), no paths are given or empty_path
@@ -39,6 +41,10 @@ t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path)
 {
 	t_err	err;
 
+	if (ft_check_dir(args) == ERR_DIR)
+		return (ft_print_warning("dir", args[0]));
+	else if (ft_check_dir(args) == ERR_NO_DIR)
+		return (ft_print_warning("nodir", args[0]));
 	err = ERR_UNKNOWN_CMD;
 	if ((*args)[0] == '/' || !ft_strncmp(*args, "./", 2)
 		|| !ft_strncmp(*args, "../", 3) || !cmd_paths || empty_path)

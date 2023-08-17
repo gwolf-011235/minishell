@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 18:38:17 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 18:49:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ t_err	ft_special_dollar(t_str *var, t_str *replace)
  * As first char after $ only underscore and alphabetic are allowed.
  * After that underscore and alphanumeric are allowed.
  * In case of var.len 0: if a quote follows after $, $ is removed.
+ * This is not the case for HEREDOC expansion which is checked with input.type.
  * Else $ is skipped.
  * @param input Pointer to tracker.
  * @param var Pointer to var struct.
@@ -98,7 +99,9 @@ t_err	ft_get_dollar_var(t_track *input, t_str *var)
 	}
 	if (var->len == 0)
 	{
-		if (!input->quoted && ft_strchr("\"'", input->str[input->pos + 1]))
+		if (input->type != HEREDOC && !input->quoted
+			&& (input->str[input->pos + 1] == '\''
+				|| input->str[input->pos + 1] == '"'))
 			ft_eat_char(input);
 		else
 			input->pos++;

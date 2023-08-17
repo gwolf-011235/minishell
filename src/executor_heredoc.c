@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 12:53:30 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 22:51:50 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,18 @@
  * @param cmd 		Current cmd being processed.
  * @return t_err 	ERR_MALLOC, ERR_CLOSE, ERR_OPEN, SUCCESS
  */
-t_err	ft_handle_heredoc(t_cmd *cmd, char *prompt2)
+t_err	ft_handle_heredoc(t_cmd *cmd, t_hashtable *symtab, char *prompt2)
 {
 	int		i;
 	t_err	err;
 
 	while (cmd)
 	{
-		err = ft_signal_setup(SIGINT, SIG_STD);
-		if (err != SUCCESS)
-			return (err);
+		ft_signal_setup(SIGINT, SIG_STD);
 		i = -1;
 		while (++i < cmd->delim_pos)
 		{
-			err = ft_create_heredoc(cmd, cmd->delims[i], i, prompt2);
+			err = ft_create_heredoc(cmd, i, symtab, prompt2);
 			if (err != SUCCESS)
 				return (err);
 		}
@@ -55,28 +53,30 @@ t_err	ft_handle_heredoc(t_cmd *cmd, char *prompt2)
  * @param curr_delim 	Current delimiter index.
  * @param t_err			ERR_MALLOC, ERR_CLOSE, ERR_OPEN, SUCCESS
  */
-t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim,
-		char *prompt2)
+t_err	ft_create_heredoc(t_cmd *cmd, int curr_delim,
+		t_hashtable *symtab, char *prompt2)
 {
-	int		fd;
-	char	*name;
+	t_hdoc	heredoc;
 	t_err	err;
 
-	name = NULL;
-	err = ft_initiate_heredoc(cmd->index, &name, &fd);
+	err = ft_init_heredoc(&heredoc, cmd->index, cmd->hdoc_quoted[curr_delim],
+			cmd->delims[curr_delim]);
 	if (err != SUCCESS)
 		return (err);
 	g_status = 0;
-	err = ft_read_heredoc(delim, prompt2, fd, &name);
-	if (err != SUCCESS && err != ERR_HEREDOC_EOF)
-		return (err);
-	err = ft_heredoc_fate(cmd, &name, fd, curr_delim);
+	err = ft_read_heredoc(&heredoc, symtab, prompt2);
+	if (err == ERR_ABORT)
+	{
+		ft_close(&heredoc.fd);
+		return (ft_unlink_heredoc(&heredoc.name, ERR_ABORT));
+	}
+	err = ft_heredoc_fate(cmd, curr_delim, &heredoc);
 	return (err);
 }
 
 /**
  * @brief Read input for heredoc.
- * 
+ *
  * Special signal handler set for SIGINT.
  * SIGINT -> g_status set to 130. Causes Heredoc deletion
  * and return of ERR_ABORT.
@@ -89,29 +89,32 @@ t_err	ft_create_heredoc(t_cmd *cmd, char *delim, int curr_delim,
  * @param name		Name of heredoc.
  * @return t_err	ERR_ABORT, ERR_HEREDOC_EOF, SUCCESS
  */
-t_err	ft_read_heredoc(char *delim, char *prompt2, int fd, char **name)
+t_err	ft_read_heredoc(t_hdoc *heredoc, t_hashtable *symtab, char *prompt2)
 {
 	char	*buf;
-	size_t	len;
+	t_err	err;
 
+	err = SUCCESS;
 	ft_signal_setup(SIGINT, SIG_HEREDOC);
-	len = ft_strlen(delim);
 	while (1)
 	{
 		buf = readline(prompt2);
 		if (g_status == 130)
-			return (ft_unlink_heredoc(name, ERR_ABORT));
+			return (ERR_ABORT);
 		if (!buf)
-			return (ft_print_warning(delim));
-		if (ft_strncmp(delim, buf, len + 1) == 0)
+			return (ft_print_warning("heredoc", heredoc->delim));
+		if (ft_strncmp(buf, heredoc->delim, heredoc->delim_len + 1) == 0)
 			break ;
-		write(fd, buf, ft_strlen(buf));
-		write(fd, "\n", 1); 
+		if (heredoc->quoted == false)
+			err = ft_expander_heredoc(&buf, symtab);
+		if (err != SUCCESS)
+			break ;
+		ft_putendl_fd(buf, heredoc->fd);
 		free(buf);
 		buf = NULL;
 	}
 	free(buf);
-	return (SUCCESS);
+	return (err);
 }
 
 /**
@@ -149,21 +152,21 @@ t_err	ft_name_heredoc(int index, char **name)
  * @param curr_delim 	Current delimiter index.
  * @return t_err 		ERR_CLOSE, ERR_OPEN, SUCCESS
  */
-t_err	ft_heredoc_fate(t_cmd *cmd, char **name, int fd, int curr_delim)
+t_err	ft_heredoc_fate(t_cmd *cmd, int curr_delim, t_hdoc *heredoc)
 {
 	t_err	err;
 
-	err = ft_close(&fd);
+	err = ft_close(&heredoc->fd);
 	if (err != SUCCESS)
 		return (err);
 	if (cmd->fd_in == -1 && curr_delim == cmd->delim_pos - 1)
 	{
-		cmd->fd_in = open(*name, O_RDONLY);
-		if (cmd->fd_in < 0)
-			return (ft_unlink_heredoc(name, ERR_OPEN));
-		cmd->heredoc = *name;
+		cmd->fd_in = open(heredoc->name, O_RDONLY);
+		if (cmd->fd_in == -1)
+			return (ft_unlink_heredoc(&heredoc->name, ERR_OPEN));
+		cmd->heredoc = heredoc->name;
 	}
 	else
-		ft_unlink_heredoc(name, SUCCESS);
+		ft_unlink_heredoc(&heredoc->name, SUCCESS);
 	return (SUCCESS);
 }
