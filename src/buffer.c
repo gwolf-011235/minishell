@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 22:34:19 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/17 14:08:00 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,17 @@ t_err	ft_buf_init(t_buf *buf)
 		return (ERR_MALLOC);
 	ft_buf_clear(buf);
 	return (SUCCESS);
+}
+
+/**
+ * @brief Destroy the buffer.
+ *
+ * @param buf Pointer to buffer.
+ */
+void	ft_buf_destroy(t_buf *buf)
+{
+	free(buf->str);
+	buf->str = NULL;
 }
 
 /**
