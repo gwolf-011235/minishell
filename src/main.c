@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 18:10:10 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/17 10:45:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,14 @@ int	main(int argc, char **argv)
 		}
 		if (!input)
 			break ;
-		add_history(input);
-		err = ft_signal_setup(SIGINT, SIG_IGNORE);
-		if (err != SUCCESS)
-			ft_exit_failure(&data, err);
-		err = ft_handle_input(input, &data);
+		if (!ft_isempty_str(input))
+		{
+			add_history(input);
+			err = ft_signal_setup(SIGINT, SIG_IGNORE);
+			if (err != SUCCESS)
+				ft_exit_failure(&data, err);
+			err = ft_handle_input(input, &data);
+		}
 		free(input);
 		free(data.prompt1);
 		free(data.prompt2);
