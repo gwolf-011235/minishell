@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:43:24 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 23:14:02 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/17 11:45:35 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,29 @@ int	ft_is_space(char c)
 		return (0);
 }
 
+t_err	ft_syntax_error(t_syntax syntax_err, char c)
+{
+	g_status = 2;
+	if (syntax_err == QUOTE)
+	{
+		ft_putstr_fd("minishell: syntax error unclosed ", 2);
+		if (c == '\'')
+			ft_putendl_fd("single quotes: `'`", 2);
+		else if (c == '"')
+			ft_putendl_fd("double quotes: `\"`", 2);
+		return (ERR_SYNTAX);
+	}
+	ft_putstr_fd("minishell: syntax error near unexpected token `", 2);
+	if (syntax_err == TOKEN)
+	{
+		ft_putchar_fd(c, 2);
+		ft_putendl_fd("'", 2);
+	}
+	else if (syntax_err == NEWLINE)
+		ft_putendl_fd("newline'", 2);
+	return (ERR_SYNTAX);
+}
+
 /**
  * @brief Jump over a quoted part of input.
  *
@@ -48,10 +71,7 @@ t_err	ft_quote_skipper(const char *quote_start, size_t *i, char target)
 
 	quote_end = ft_strchr((quote_start + 1), target);
 	if (!quote_end)
-	{
-		printf(SYNTAX_QUOTE, target);
-		return (ERR_SYNTAX);
-	}
+		return (ft_syntax_error(QUOTE, target));
 	*i += quote_end - quote_start;
 	return (SUCCESS);
 }
@@ -75,23 +95,14 @@ t_err	ft_check_pipe(const char *input, size_t pos)
 	while (ft_is_space(input[i]))
 		i++;
 	if (i == pos)
-	{
-		printf(SYNTAX_TOKEN, input[pos]);
-		return (ERR_SYNTAX);
-	}
+		return (ft_syntax_error(TOKEN, input[pos]));
 	i = pos + 1;
 	if (input[i] == '|')
-	{
-		printf(SYNTAX_TOKEN, input[pos]);
-		return (ERR_SYNTAX);
-	}
+		return (ft_syntax_error(TOKEN, input[pos]));
 	while (ft_is_space(input[pos]))
 		i++;
 	if (input[i] == '\0')
-	{
-		printf(SYNTAX_TOKEN, input[pos]);
-		return (ERR_SYNTAX);
-	}
+		return (ft_syntax_error(TOKEN, input[pos]));
 	return (SUCCESS);
 }
 
@@ -117,15 +128,9 @@ t_err	ft_check_redirect(const char *input, size_t pos, char symbol)
 	while (ft_is_space(input[i]))
 		i++;
 	if (input[i] == '\0')
-	{
-		printf(SYNTAX_NL);
-		return (ERR_SYNTAX);
-	}
+		return (ft_syntax_error(NEWLINE, '\n'));
 	if (input[i] == '|' || input[i] == '<' || input[i] == '>')
-	{
-		printf(SYNTAX_TOKEN, input[i]);
-		return (ERR_SYNTAX);
-	}
+		return (ft_syntax_error(TOKEN, input[i]));
 	return (SUCCESS);
 }
 
@@ -160,7 +165,5 @@ t_err	ft_check_syntax(const char *input)
 			return (err);
 		i++;
 	}
-	if (i == 0)
-		return (ERR_NO_INPUT);
 	return (SUCCESS);
 }
