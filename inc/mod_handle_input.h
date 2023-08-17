@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 14:10:59 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/17 13:43:49 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct s_cmd
 t_err	ft_check_syntax(const char *input);
 
 // lexer
-t_err	ft_lex_input(t_tkn_list	**lst_head, char *input);
+t_err	ft_lex_input(t_tkn_list	**lst_head, char *input, t_buf *buf);
 
 // expand
 t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table);
