@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/14 20:49:58 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/17 14:14:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,10 @@ typedef struct s_track {
 }	t_track;
 
 //expand.c
-t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table);
 t_err	ft_expand_heredoc(t_tkn_list **list);
 t_err	ft_expand_redirect(t_tkn_list **list, t_hashtable *symtab);
 t_err	ft_expand_assign(t_tkn_list **list, t_hashtable *symtab);
-t_err	ft_expand_arg(t_tkn_list **list, t_hashtable *symtab);
+t_err	ft_expand_arg(t_tkn_list **list, t_hashtable *symtab, t_buf *buf);
 
 //expand_expander.c
 t_err	ft_expander(t_track *input, t_hashtable *symtab, t_type type);
@@ -77,7 +76,7 @@ t_err	ft_get_dollar_var(t_track *input, t_str *token);
 t_err	ft_get_dollar_replace(t_str *token, t_hashtable *symtab, t_str *replace);
 
 //expand_field_split.c
-t_err	ft_field_split(t_track *input, t_tkn_list **list);
+t_err	ft_field_split(t_track *input, t_tkn_list **list, t_buf *buf);
 t_err	ft_count_expand_words(t_track *input, size_t *words, int last_expand_len);
 t_err	ft_split_node(t_track *input, t_tkn_list **cur_node, t_buf *buf);
 t_err	ft_tokenise_fs(t_src *src, t_tok *token, t_buf *buf, t_track *input);
