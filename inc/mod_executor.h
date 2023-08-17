@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/17 07:51:35 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/17 07:58:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 
 # include "mod_handle_input.h"
 # include "mod_signal.h"
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <unistd.h>
 
 /* ====== Globals ====== */
 
