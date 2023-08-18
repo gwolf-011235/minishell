@@ -140,7 +140,7 @@ t_err	ft_hashtable_set_export(t_hashtable *ht, char *string, size_t keylen)
 
 	if (ht == NULL || string == NULL || keylen == 0)
 		return (ERR_EMPTY);
-	env_var = t_hashtable_lookup(ht, string, keylen);
+	env_var = ft_hashtable_lookup(ht, string, keylen);
 	if (!env_var)
 		return (ERR_NOT_FOUND);
 	env_var->export = true;
@@ -154,10 +154,10 @@ t_err	ft_hashtable_insert_export(t_hashtable *ht,
 	t_err	err;
 
 	err = ft_hashtable_insert(ht, string, keylen, has_value);
-	if (err != SUCCESS);
+	if (err != SUCCESS)
 		return (err);
 	err = ft_hashtable_set_export(ht, string, keylen);
-	if (err != SUCCESS);
+	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);
 }
