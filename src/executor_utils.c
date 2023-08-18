@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/17 09:47:35 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 17:12:55 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path)
 {
 	t_err	err;
 
-	if (ft_strchr(*args, '/'))
+	if (ft_strchr(args[0], '/'))
 	{
 		err = ft_check_dir(args);
 		if (err == ERR_DIR)
@@ -51,8 +51,8 @@ t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path)
 		else if (err == ERR_STAT)
 			return (ERR_STAT);
 	}
-	if ((*args)[0] == '/' || !ft_strncmp(*args, "./", 2)
-		|| !ft_strncmp(*args, "../", 3) || !cmd_paths || empty_path)
+	if (args[0][0] == '/' || !ft_strncmp(args[0], "./", 2)
+		|| !ft_strncmp(args[0], "../", 3) || !cmd_paths || empty_path)
 	{
 		if (access(*args, F_OK | X_OK) == 0)
 			return (SUCCESS);
