@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:22:18 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/17 10:43:46 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 17:14:53 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ char	*ft_strncat(char *dst, const char *src, size_t n)
  */
 bool	ft_isspace(char c)
 {
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r'
-		|| c == '\t' || c == '\v')
+	if (c == '\0')
+		return (false);
+	if (ft_strchr(" \f\n\r\t\v", c))
 		return (true);
 	else
 		return (false);
