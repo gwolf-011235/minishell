@@ -18,9 +18,11 @@
  * Check if any param is empty and if key is already inserted.
  * Generate index and malloc new element.
  * Set new element as head of the list pointed to by index.
+ * Status export is init to false.
  * @param ht Hashtable in which to insert
  * @param string env_string which should be inserted
  * @param keylen Length of env_var (everything before =)
+ * @param has_value Tells if inserted string has a value.
  * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_HT_NO_INSERT
  */
 t_err	ft_hashtable_insert(t_hashtable *ht,
@@ -134,6 +136,15 @@ t_err	ft_hashtable_delete(
 	return (SUCCESS);
 }
 
+/**
+ * @brief Sets export status of an env var to true.
+ *
+ *
+ * @param ht Hashtable with the variabele
+ * @param string Variable string.
+ * @param keylen Len of the key in variable string.
+ * @return t_err ERR_EMPTY, ERR_NOT_FOUND, SUCCESS.
+ */
 t_err	ft_hashtable_set_export(t_hashtable *ht, char *string, size_t keylen)
 {
 	t_env_var	*env_var;
@@ -148,6 +159,19 @@ t_err	ft_hashtable_set_export(t_hashtable *ht, char *string, size_t keylen)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Inserts variable and sets export status to true.
+ *
+ * ft_hashtable_insert() to insert.
+ * ft_hashtable_set_export() to set status.
+ *
+ * @param ht Hashtable where to insert.
+ * @param string Variable string.
+ * @param keylen Len of key in variable string.
+ * @param has_value If inserted variable has value
+ * @return t_err ERR_HT_NO_INSERT, ERR_MALLOC, ERR_EMPTY, ERR_NOT_FOUND,
+ * SUCCESS
+ */
 t_err	ft_hashtable_insert_export(t_hashtable *ht,
 		char *string, size_t keylen, bool has_value)
 {

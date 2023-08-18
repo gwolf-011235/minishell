@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 11:17:06 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 14:18:32 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 23:57:55 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,13 @@ t_env_var	*ft_hashtable_lookup(
 	return (tmp);
 }
 
+/**
+ * @brief Increase or decrease element numbers in hashtable.
+ *
+ * @param ht Hashtable which gets updated.
+ * @param tmp Inserted / deleted element
+ * @param num Value to add to element numbers (neagtive to decrease).
+ */
 void	ft_hashtable_vary_nums(t_hashtable *ht, t_env_var *tmp, int num)
 {
 	ht->num_elements += num;

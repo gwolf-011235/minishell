@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:07:23 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 14:42:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 23:46:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_env_var {
  * @param size How many buckets hashtable has.
  * @param hash The used hash function.
  * @param num_elements How many elements are save in hashtable.
+ * @param num_exports How many elements have status export.
  * @param num_values How many of the saved elements have a value saved.
  * @param elements Pointer to the individual buckets.
  */
