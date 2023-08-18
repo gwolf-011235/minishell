@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 23:43:31 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/17 10:13:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,10 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
 	err = ft_get_path(data->envp, &paths, &empty_path);
 	if (err == ERR_MALLOC)
 		return (err);
-	if (cmd->args)
-	{
-		if (cmd->next == NULL)
-			err = ft_execute_scmd(cmd, paths, data, empty_path);
-		else
-			err = ft_execute_pcmds(cmd, paths, data, empty_path);
-	}
+	if (cmd->next == NULL)
+		err = ft_execute_scmd(cmd, paths, data, empty_path);
+	else
+		err = ft_execute_pcmds(cmd, paths, data, empty_path);
 	return (err);
 }
 
@@ -85,13 +82,16 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 		err = ft_open_outfile(cmd);
 	if (err != SUCCESS)
 		return (err);
-	if (ft_check_builtin(cmd->args[0]))
-		return (ft_execute_builtin(0, cmd, data));
-	err = ft_check_cmd_access(cmd->args, paths, empty_path);
-	err = ft_process_cmd(cmd, err, data);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_wait_for_babies(cmd);
+	if (cmd->args)
+	{
+		if (ft_check_builtin(cmd->args[0]))
+			return (ft_execute_builtin(0, cmd, data));
+		err = ft_check_cmd_access(cmd->args, paths, empty_path);
+		err = ft_process_cmd(cmd, err, data);
+		if (err != SUCCESS)
+			return (err);
+		err = ft_wait_for_babies(cmd);
+	}
 	return (err);
 }
 
@@ -124,18 +124,22 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 		return (err);
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
-		if (ft_check_builtin(cmd->args[0]))
+		if (cmd->args)
 		{
-			err = ft_execute_builtin(1, cmd, data);
-			if (err != SUCCESS)
-				return (err);
-			cmd = cmd->next;
-			continue ;
+			if (ft_check_builtin(cmd->args[0]))
+			{
+				err = ft_execute_builtin(1, cmd, data);
+				if (err != SUCCESS)
+					return (err);
+			}
+			else
+			{
+				err = ft_check_cmd_access(cmd->args, paths, empty_path);
+				err = ft_process_cmd(cmd, err, data);
+				if (err != SUCCESS)
+					return (err);
+			}
 		}
-		err = ft_check_cmd_access(cmd->args, paths, empty_path);
-		err = ft_process_cmd(cmd, err, data);
-		if (err != SUCCESS)
-			return (err);
 		cmd = cmd->next;
 	}
 	err = ft_wait_for_babies(tmp);
@@ -176,22 +180,21 @@ t_err	ft_process_cmd(t_cmd *cmd, t_err err, t_data *data)
 
 /**
  * @brief Check whether the argument is a directory.
- * 
+ *
  * Stat() returns 0 if a directory was found, else -1.
  * @param args 		Argument array containing the cmd.
- * @return t_err 	ERR_DIR, SUCCESS
+ * @return t_err 	ERR_DIR, ERR_NO_DIR, ERR_STAT, SUCCESS
  */
 t_err	ft_check_dir(char **args)
 {
 	struct stat	buf;
+	t_err		err;
 
-	stat(args[0], &buf);
-	if (ft_strchr(args[0], '/'))
-	{
-		if (S_ISDIR(buf.st_mode))
-			return (ERR_DIR);
-		return (ERR_NO_DIR);
-	}
+	err = ft_err_stat(args[0], &buf, "minishell: stat");
+	if (err != SUCCESS)
+		return (err);
+	if (S_ISDIR(buf.st_mode))
+		return (ERR_DIR);
 	else
 		return (SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_child.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 12:37:55 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 17:09:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin)
 	}
 	ft_close(&cmd->fd_in);
 	if (builtin)
-		ft_choose_builtin(cmd, data);
+		ft_choose_builtin(cmd, data, true);
 	else
 		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
 			printf("\nexecve encountered an error\n");
-	exit(0);
+	data->loop = false;
 }
 
 /**
@@ -99,11 +99,11 @@ void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin)
 	ft_close(&cmd->fd_prev_pipe[0]);
 	ft_close(&cmd->fd_in);
 	if (builtin)
-		ft_choose_builtin(cmd, data);
+		ft_choose_builtin(cmd, data, true);
 	else
 		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
 			printf("\nexecve encountered an error\n"); //perror
-	exit(0);
+	data->loop = false;
 }
 
 /**
@@ -145,16 +145,16 @@ void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin)
 	}
 	ft_close_mid_child_fds(cmd);
 	if (builtin)
-		ft_choose_builtin(cmd, data);
+		ft_choose_builtin(cmd, data, true);
 	else
 		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
 			printf("\nexecve encountered an error\n");
-	exit(0);
+	data->loop = false;
 }
 
 /**
  * @brief Close file descriptors after duplication.
- * 
+ *
  * @param cmd Current cmd.
  */
 void	ft_close_mid_child_fds(t_cmd *cmd)
