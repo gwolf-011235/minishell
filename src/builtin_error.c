@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:40:34 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/28 17:48:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 10:47:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,16 @@ t_err	ft_exit_error(t_err err, char *arg)
 {
 	if (err == ERR_NONUM)
 	{
+		g_status = 2;
 		ft_putstr_fd("minishell: exit: ", 2);
 		ft_putstr_fd(arg, 2);
 		ft_putendl_fd(": numeric argument required", 2);
 	}
 	else if (err == ERR_EXIT)
+	{
+		g_status = 1;
 		ft_putendl_fd("minishell: exit: too many arguments", 2);
+	}
 	return (err);
 }
 
@@ -49,6 +53,7 @@ t_err	ft_exit_error(t_err err, char *arg)
  */
 t_err	ft_export_error(t_err err, char *arg)
 {
+	g_status = 1;
 	if (err == ERR_INVALID_NAME)
 	{
 		ft_putstr_fd("minishell: export: `", STDERR_FILENO);
@@ -91,8 +96,9 @@ t_err	ft_pwd_error(t_err err)
  * @param path Arg given to chdir.
  * @return t_err ERR_ARGCOUNT, ERR_NOT_FOUND, ERR_MALLOC, ERR_CHDIR_FAIL
  */
-t_err	ft_cd_error(t_err err, char *oldpwd, char *path)
+t_err	ft_cd_error(t_err err, char *oldpwd)
 {
+	g_status = 1;
 	if (oldpwd)
 		free(oldpwd);
 	if (err == ERR_ARGCOUNT)
@@ -101,10 +107,5 @@ t_err	ft_cd_error(t_err err, char *oldpwd, char *path)
 		ft_putendl_fd("minishell: cd: HOME not set", 2);
 	else if (err == ERR_MALLOC)
 		ft_putendl_fd("minishell: cd: malloc() failed", 2);
-	else if (err == ERR_CHDIR_FAIL)
-	{
-		ft_putstr_fd("minishell: cd: ", 2);
-		perror(path);
-	}
 	return (err);
 }

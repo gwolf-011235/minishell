@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_executor.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 22:57:09 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/17 08:49:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 # include "mod_handle_input.h"
 # include "mod_signal.h"
-
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <unistd.h>
 
 /* ====== Globals ====== */
 
@@ -89,7 +89,7 @@ t_err	ft_check_dir(char **args);
 // builtins
 bool	ft_check_builtin(char *arg);
 t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data);
-void	ft_choose_builtin(t_cmd *cmd, t_data *data);
+void	ft_choose_builtin(t_cmd *cmd, t_data *data, bool forked);
 t_err	ft_set_fd_scmd(t_cmd *cmd);
 t_err	ft_reset_fd_scmd(int old_stdin, int old_stdout);
 
@@ -103,9 +103,9 @@ t_err	ft_pwd(void);
 t_err	ft_export(char **argv, t_hashtable *env_tab);
 t_err	ft_unset(char **argv, t_hashtable *env_tab);
 t_err	ft_env(t_hashtable *env_tab);
-t_err	ft_exit(char **argv, t_hashtable *env_tab);
+t_err	ft_exit(char **argv, bool *loop, bool forked);
 
-//include from mod_expand
+// include from mod_expander
 t_err	ft_expander_heredoc(char **str, t_hashtable *symtab);
 
 #endif
