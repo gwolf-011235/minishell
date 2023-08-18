@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 18:49:36 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 18:40:23 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ t_err	ft_expand_dollar(t_track *input, t_hashtable *symtab)
 	t_str	var;
 	t_str	replace;
 	t_err	err;
+	char	next;
 
-	if (input->str[input->pos + 1] == '?')
-		err = ft_special_dollar(&var, &replace);
+	next = input->str[input->pos +1];
+	if (next == '?' || next == '$')
+		err = ft_special_dollar(&var, &replace, symtab, next);
 	else
 	{
 		err = ft_get_dollar_var(input, &var);
@@ -63,13 +65,28 @@ t_err	ft_expand_dollar(t_track *input, t_hashtable *symtab)
  * @param replace Where to save replace string.
  * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_err	ft_special_dollar(t_str *var, t_str *replace)
+t_err	ft_special_dollar(t_str *var, t_str *replace, t_hashtable *symtab, char c)
 {
+	t_env_var	*env_var;
+
 	var->len = 1;
-	replace->ptr = ft_itoa(g_status);
-	if (!replace->ptr)
-		return (ERR_MALLOC);
-	replace->len = ft_strlen(replace->ptr);
+	if (c == '?')
+	{
+		replace->ptr = ft_itoa(g_status);
+		if (!replace->ptr)
+			return (ERR_MALLOC);
+		replace->len = ft_strlen(replace->ptr);
+	}
+	else if (c == '$')
+	{
+		env_var = ft_hashtable_lookup(symtab, "$$", 2);
+		if (!env_var)
+			return (ERR_NOEXPAND);
+		replace->ptr = ft_strdup(env_var->value);
+		if (!replace->ptr)
+			return (ERR_MALLOC);
+		replace->len = ft_strlen(replace->ptr);
+	}
 	return (SUCCESS);
 }
 
