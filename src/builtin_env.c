@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:57:58 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 21:22:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 16:08:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_err	ft_env(t_hashtable *env_tab)
 			tmp = env_tab->elements[i];
 			while (tmp != NULL)
 			{
-				if (tmp->has_value)
+				if (tmp->export && tmp->has_value)
 					printf("%s\n", tmp->env_string);
 				tmp = tmp->next;
 			}

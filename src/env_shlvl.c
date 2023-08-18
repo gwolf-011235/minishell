@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:45:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 13:55:37 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 14:47:43 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ t_err	ft_insert_env_shlvl(t_hashtable *env_table)
 	err = ft_create_env_shlvl(&shlvl, 1);
 	if (err != SUCCESS)
 		return (err);
-	err = ft_hashtable_insert(env_table, shlvl, 5, true);
+	err = ft_hashtable_insert_export(env_table, shlvl, 5, true);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 13:55:27 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 14:46:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_err	ft_env_setup(t_hashtable **env_table)
 	err = ft_increment_shlvl(*env_table);
 	if (err == ERR_NO_SHLVL)
 		err = ft_insert_env_shlvl(*env_table);
+	err = ft_insert_env_pid(*env_table);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);
@@ -88,11 +89,12 @@ t_err	ft_import_environ(t_hashtable *env_table)
  * Check if valid env_key with ft_get_env_keylen().
  * If yes generate copy with ft_strdup().
  * If str on pos keylen is an equals sign, the var has a value (standard case).
- * If no equals it has no value.
+ * If no equals it has no value, and will not be inserted.
  * If insertion fails free str.
  * @param env_table Environment.
  * @param environ_str Single str from environ.
- * @return t_err SUCCESS, ERR_INVALID_NAME, ERR_MALLOC, ERR_HT_NO_INSERT, ERR_EMPTY
+ * @return t_err SUCCESS, ERR_INVALID_NAME, ERR_MALLOC,
+ * ERR_HT_NO_INSERT, ERR_EMPTY
  */
 t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str)
 {
@@ -108,12 +110,8 @@ t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str)
 	if (!env_str)
 		return (ERR_MALLOC);
 	if (env_str[keylen] == '=')
-		err = ft_hashtable_insert(env_table, env_str, keylen, true);
-	else
-		err = ft_hashtable_insert(env_table, env_str, keylen, false);
+		err = ft_hashtable_insert_export(env_table, env_str, keylen, true);
 	if (err != SUCCESS && err != ERR_HT_NO_INSERT)
 		free(env_str);
 	return (err);
 }
-
-

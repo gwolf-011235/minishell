@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:15:11 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 13:55:04 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 14:47:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ t_err	ft_insert_env_pwd(t_hashtable *env_table)
 	err = ft_create_env_pwd(&pwd);
 	if (err != SUCCESS)
 		return (err);
-	err = ft_hashtable_insert(env_table, pwd, 3, true);
+	err = ft_hashtable_insert_export(env_table, pwd, 3, true);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);
