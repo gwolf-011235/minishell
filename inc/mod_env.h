@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:41:48 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 13:58:24 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 18:53:19 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ extern char	**environ;
 t_err	ft_env_setup(t_hashtable **env_table);
 t_err	ft_import_environ(t_hashtable *env_table);
 t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str);
+t_err	ft_insert_env_prompt(t_hashtable *env_table);
 
 //env_pwd.c
 t_err	ft_create_pwd_value(char **pwd_value);

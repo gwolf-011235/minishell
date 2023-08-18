@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 14:46:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 18:53:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,10 @@ t_err	ft_env_setup(t_hashtable **env_table)
 	err = ft_increment_shlvl(*env_table);
 	if (err == ERR_NO_SHLVL)
 		err = ft_insert_env_shlvl(*env_table);
-	err = ft_insert_env_pid(*env_table);
 	if (err != SUCCESS)
 		return (err);
+	err = ft_insert_env_pid(*env_table);
+	err = ft_insert_env_prompt(*env_table);
 	return (SUCCESS);
 }
 
@@ -114,4 +115,30 @@ t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str)
 	if (err != SUCCESS && err != ERR_HT_NO_INSERT)
 		free(env_str);
 	return (err);
+}
+
+/**
+ * @brief Creates and inserts PS1 and PS2.
+ *
+ * @param env_table Environment
+ * @return t_err SUCCESS, ERR_MALLOC
+ */
+t_err	ft_insert_env_prompt(t_hashtable *env_table)
+{
+	char	*prompt;
+	t_err	err;
+
+	prompt = ft_strdup(PS1);
+	if (!prompt)
+		return (ERR_MALLOC);
+	err = ft_hashtable_insert(env_table, prompt, 3, true);
+	if (err != SUCCESS)
+		return (err);
+	prompt = ft_strdup(PS2);
+	if (!prompt)
+		return (ERR_MALLOC);
+	err = ft_hashtable_insert(env_table, prompt, 3, true);
+	if (err != SUCCESS)
+		return (err);
+	return (SUCCESS);
 }
