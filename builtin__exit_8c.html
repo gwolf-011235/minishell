@@ -100,9 +100,9 @@ $(document).ready(function(){initNavTree('builtin__exit_8c.html',''); initResiza
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9e6528bb69d7be6c060b7a8a512b0de2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__exit_8c.html#a9e6528bb69d7be6c060b7a8a512b0de2">ft_exit</a> (char **argv, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_tab)</td></tr>
-<tr class="memdesc:a9e6528bb69d7be6c060b7a8a512b0de2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit the current shell instance.  <a href="builtin__exit_8c.html#a9e6528bb69d7be6c060b7a8a512b0de2">More...</a><br /></td></tr>
-<tr class="separator:a9e6528bb69d7be6c060b7a8a512b0de2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4354937e66fb221805638d074bdf4109"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__exit_8c.html#a4354937e66fb221805638d074bdf4109">ft_exit</a> (char **argv, bool *loop, bool forked)</td></tr>
+<tr class="memdesc:a4354937e66fb221805638d074bdf4109"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit the current shell instance.  <a href="builtin__exit_8c.html#a4354937e66fb221805638d074bdf4109">More...</a><br /></td></tr>
+<tr class="separator:a4354937e66fb221805638d074bdf4109"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5e722ed0c19c5ea55c08d5073769f44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__exit_8c.html#ac5e722ed0c19c5ea55c08d5073769f44">ft_is_number</a> (char *str)</td></tr>
 <tr class="memdesc:ac5e722ed0c19c5ea55c08d5073769f44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if provided str is number.  <a href="builtin__exit_8c.html#ac5e722ed0c19c5ea55c08d5073769f44">More...</a><br /></td></tr>
 <tr class="separator:ac5e722ed0c19c5ea55c08d5073769f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,8 +110,8 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of builtin exit. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a9e6528bb69d7be6c060b7a8a512b0de2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e6528bb69d7be6c060b7a8a512b0de2">&#9670;&nbsp;</a></span>ft_exit()</h2>
+<a id="a4354937e66fb221805638d074bdf4109"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4354937e66fb221805638d074bdf4109">&#9670;&nbsp;</a></span>ft_exit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -125,8 +125,14 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>env_tab</em>&#160;</td>
+          <td class="paramtype">bool *&#160;</td>
+          <td class="paramname"><em>loop</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>forked</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

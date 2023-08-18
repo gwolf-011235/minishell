@@ -1,5 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"mod__lexer_8h_source.html":[1,0,51],
+"mod__parser_8h_source.html":[1,0,52],
+"mod__prompt_8h_source.html":[1,0,53],
 "mod__signal_8h_source.html":[1,0,54],
 "mod__syntax_8h_source.html":[1,0,55],
 "pages.html":[],
@@ -74,10 +77,11 @@ var NAVTREEINDEX1 =
 "structs__cmd.html#aec543a35682353d0d73d67192077e157":[0,0,1,5],
 "structs__data.html":[0,0,2],
 "structs__data.html#a19734b3262e10565eaf5ceb779a2af0f":[0,0,2,1],
+"structs__data.html#a5ed2b25d9f2f070cb0ee764aa0985308":[0,0,2,3],
 "structs__data.html#a620d7cca305e87ced02de1ebe2d1658a":[0,0,2,0],
 "structs__data.html#a84de6566daefc9cf594f1e0cd3009660":[0,0,2,2],
-"structs__data.html#aac347c0c2870bc29e171377983ad23cc":[0,0,2,3],
-"structs__data.html#ac811868441df47ffc5a798a9f7dfec8d":[0,0,2,4],
+"structs__data.html#aac347c0c2870bc29e171377983ad23cc":[0,0,2,4],
+"structs__data.html#ac811868441df47ffc5a798a9f7dfec8d":[0,0,2,5],
 "structs__env__var.html":[0,0,3],
 "structs__env__var.html#a4e9aec275e566b978a3ccb4e043d8c61":[0,0,3,4],
 "structs__env__var.html#a7dd796c657aa57a81c2217523dca18a7":[0,0,3,0],

@@ -153,8 +153,10 @@ Enumerations</h2></td></tr>
 , <br />
 &#160;&#160;<a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a79cf6f047175e478c013c50c3c4e0187">ERR_ABORT</a>
 , <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aaf3f761a6f7b92944f6506f91d5d96c5">ERR_HEREDOC_EOF</a>
+, <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a7b2c2fd2edcf9479181e72ee6ef6fffc">ERR_WRITE</a>
 , <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a9f6ee0d9db810ec95b6a6ed6ecec2a70">ERR_DIR</a>
-, <a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8ace01473f49d90913c679a35b340b5f6b">ERR_NO_DIR</a>
+, <br />
+&#160;&#160;<a class="el" href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8ace01473f49d90913c679a35b340b5f6b">ERR_NO_DIR</a>
 <br />
  }</td></tr>
 <tr class="memdesc:ad8acf3cd529715d9fa841ce2b860bad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum, which contains all error codes.  <a href="minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8">More...</a><br /></td></tr>
@@ -162,6 +164,12 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a83233d106b1754ee16759ed0a392841c"><td class="memItemLeft" align="right" valign="top"><a id="a83233d106b1754ee16759ed0a392841c"></a>
+<a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ft_err_write</b> (int fd, char *str, char *msg)</td></tr>
+<tr class="separator:a83233d106b1754ee16759ed0a392841c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a690a06b3a769d17cc3dfdff79f836224"><td class="memItemLeft" align="right" valign="top"><a id="a690a06b3a769d17cc3dfdff79f836224"></a>
+<a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ft_err_chdir</b> (char *path, char *msg)</td></tr>
+<tr class="separator:a690a06b3a769d17cc3dfdff79f836224"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fe28600b7547058bea7f00c9a33a757"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell__error_8h.html#a3fe28600b7547058bea7f00c9a33a757">ft_print_warning</a> (char *indic, char *trigger)</td></tr>
 <tr class="memdesc:a3fe28600b7547058bea7f00c9a33a757"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print warning messages depending on received indicator and trigger string.  <a href="minishell__error_8h.html#a3fe28600b7547058bea7f00c9a33a757">More...</a><br /></td></tr>
 <tr class="separator:a3fe28600b7547058bea7f00c9a33a757"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -243,7 +251,7 @@ Functions</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8a4488b85575df5d5fd846dc13029e64e4"></a>ERR_NONUM&#160;</td><td class="fielddoc"><p>The string doesn't represent a number. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8a5a0d2a6d70b1942e50b5cc6a083ca42d"></a>ERR_EXIT&#160;</td><td class="fielddoc"><p><a class="el" href="builtin__exit_8c.html#a9e6528bb69d7be6c060b7a8a512b0de2" title="Exit the current shell instance.">ft_exit()</a> failed because of too many args. </p>
+<tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8a5a0d2a6d70b1942e50b5cc6a083ca42d"></a>ERR_EXIT&#160;</td><td class="fielddoc"><p><a class="el" href="builtin__exit_8c.html#a4354937e66fb221805638d074bdf4109" title="Exit the current shell instance.">ft_exit()</a> failed because of too many args. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8a17164a529be409c5366d770826404d78"></a>ERR_PIPE&#160;</td><td class="fielddoc"><p>Piping failed. </p>
 </td></tr>
@@ -270,6 +278,8 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8a79cf6f047175e478c013c50c3c4e0187"></a>ERR_ABORT&#160;</td><td class="fielddoc"><p>Abort pipeline. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8aaf3f761a6f7b92944f6506f91d5d96c5"></a>ERR_HEREDOC_EOF&#160;</td><td class="fielddoc"><p>Heredoc stopped by Ctrl+D. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8a7b2c2fd2edcf9479181e72ee6ef6fffc"></a>ERR_WRITE&#160;</td><td class="fielddoc"><p>Syscall write failed. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ad8acf3cd529715d9fa841ce2b860bad8a9f6ee0d9db810ec95b6a6ed6ecec2a70"></a>ERR_DIR&#160;</td><td class="fielddoc"><p>Cmd is a directory. </p>
 </td></tr>

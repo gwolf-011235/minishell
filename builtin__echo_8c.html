@@ -103,9 +103,9 @@ Functions</h2></td></tr>
 <tr class="memitem:abe4a8bbf59a847ed1a22af4b6be06c2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__echo_8c.html#abe4a8bbf59a847ed1a22af4b6be06c2b">ft_echo</a> (char **argv)</td></tr>
 <tr class="memdesc:abe4a8bbf59a847ed1a22af4b6be06c2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the given args on standard output.  <a href="builtin__echo_8c.html#abe4a8bbf59a847ed1a22af4b6be06c2b">More...</a><br /></td></tr>
 <tr class="separator:abe4a8bbf59a847ed1a22af4b6be06c2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab885905797dfc8c63db922edd84f2c3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__echo_8c.html#ab885905797dfc8c63db922edd84f2c3a">ft_skip_n_flags</a> (char **argv, size_t *i, bool *newline)</td></tr>
-<tr class="memdesc:ab885905797dfc8c63db922edd84f2c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skip over all -n flags.  <a href="builtin__echo_8c.html#ab885905797dfc8c63db922edd84f2c3a">More...</a><br /></td></tr>
-<tr class="separator:ab885905797dfc8c63db922edd84f2c3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61574cb3d7f625900efb2ed05b829f7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__echo_8c.html#a61574cb3d7f625900efb2ed05b829f7a">ft_skip_n_flags</a> (char **argv, size_t *i, bool *newline)</td></tr>
+<tr class="memdesc:a61574cb3d7f625900efb2ed05b829f7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skip over all -n flags.  <a href="builtin__echo_8c.html#a61574cb3d7f625900efb2ed05b829f7a">More...</a><br /></td></tr>
+<tr class="separator:a61574cb3d7f625900efb2ed05b829f7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a748ebcdefa436bb8fb9aa7b81a007550"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__echo_8c.html#a748ebcdefa436bb8fb9aa7b81a007550">ft_write_args</a> (char **argv, size_t *i)</td></tr>
 <tr class="memdesc:a748ebcdefa436bb8fb9aa7b81a007550"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all args in array.  <a href="builtin__echo_8c.html#a748ebcdefa436bb8fb9aa7b81a007550">More...</a><br /></td></tr>
 <tr class="separator:a748ebcdefa436bb8fb9aa7b81a007550"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,24 +130,24 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Print the given args on standard output. </p>
-<p>Check the size with <a class="el" href="builtin__utils_8c.html#a9c40f138fcd22918b3928172e37ba0af" title="Calc the size of an NULL terminated array.">ft_get_array_size()</a>. Skip over -n flags with <a class="el" href="builtin__echo_8c.html#ab885905797dfc8c63db922edd84f2c3a" title="Skip over all -n flags.">ft_skip_n_flags()</a>. Write all remaining args with <a class="el" href="builtin__echo_8c.html#a748ebcdefa436bb8fb9aa7b81a007550" title="Write all args in array.">ft_write_args()</a>. Only print newline if no -n flags was encountered. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Check the size with <a class="el" href="builtin__utils_8c.html#adf565e56eb570140d2d580cc09a8eaa4" title="Calc the size of an NULL terminated array.">ft_get_array_size()</a>. Skip over -n flags with <a class="el" href="builtin__echo_8c.html#a61574cb3d7f625900efb2ed05b829f7a" title="Skip over all -n flags.">ft_skip_n_flags()</a>. Write all remaining args with <a class="el" href="builtin__echo_8c.html#a748ebcdefa436bb8fb9aa7b81a007550" title="Write all args in array.">ft_write_args()</a>. Only print newline if no -n flags was encountered. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">argv</td><td>NULL terminated args. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_EMPTY </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_WRITE </dd></dl>
 
 </div>
 </div>
-<a id="ab885905797dfc8c63db922edd84f2c3a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab885905797dfc8c63db922edd84f2c3a">&#9670;&nbsp;</a></span>ft_skip_n_flags()</h2>
+<a id="a61574cb3d7f625900efb2ed05b829f7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61574cb3d7f625900efb2ed05b829f7a">&#9670;&nbsp;</a></span>ft_skip_n_flags()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_skip_n_flags </td>
+          <td class="memname">void ft_skip_n_flags </td>
           <td>(</td>
           <td class="paramtype">char **&#160;</td>
           <td class="paramname"><em>argv</em>, </td>
@@ -181,7 +181,6 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS </dd></dl>
 
 </div>
 </div>
@@ -212,14 +211,14 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Write all args in array. </p>
-<p>Write arg at index i. If there is another arg, write a space. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Write arg at index i. If there is another arg, write a space. If a write call fails, print error and set status </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">argv</td><td>NULL temrinated args. </td></tr>
     <tr><td class="paramname">i</td><td>Pointer to current index of array. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_WRITE </dd></dl>
 
 </div>
 </div>

@@ -112,9 +112,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ae3523c2e792d23cde7763fc5af2eacff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__builtin_8c.html#ae3523c2e792d23cde7763fc5af2eacff">ft_reset_fd_scmd</a> (int old_stdin, int old_stdout)</td></tr>
 <tr class="memdesc:ae3523c2e792d23cde7763fc5af2eacff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset STDIN_FILENO and STDOUT_FILENO.  <a href="executor__builtin_8c.html#ae3523c2e792d23cde7763fc5af2eacff">More...</a><br /></td></tr>
 <tr class="separator:ae3523c2e792d23cde7763fc5af2eacff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e48a950e0b7f67c0522bcdfc642916a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__builtin_8c.html#a3e48a950e0b7f67c0522bcdfc642916a">ft_choose_builtin</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd, <a class="el" href="structs__data.html">t_data</a> *data)</td></tr>
-<tr class="memdesc:a3e48a950e0b7f67c0522bcdfc642916a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call suitable built-in.  <a href="executor__builtin_8c.html#a3e48a950e0b7f67c0522bcdfc642916a">More...</a><br /></td></tr>
-<tr class="separator:a3e48a950e0b7f67c0522bcdfc642916a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1d71320889e691800866e69eefeb168"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__builtin_8c.html#ac1d71320889e691800866e69eefeb168">ft_choose_builtin</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd, <a class="el" href="structs__data.html">t_data</a> *data, bool forked)</td></tr>
+<tr class="memdesc:ac1d71320889e691800866e69eefeb168"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call suitable built-in.  <a href="executor__builtin_8c.html#ac1d71320889e691800866e69eefeb168">More...</a><br /></td></tr>
+<tr class="separator:ac1d71320889e691800866e69eefeb168"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions to handle execution of built-ins. </p>
@@ -148,8 +148,8 @@ false Built-in not found. </dd></dl>
 
 </div>
 </div>
-<a id="a3e48a950e0b7f67c0522bcdfc642916a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e48a950e0b7f67c0522bcdfc642916a">&#9670;&nbsp;</a></span>ft_choose_builtin()</h2>
+<a id="ac1d71320889e691800866e69eefeb168"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1d71320889e691800866e69eefeb168">&#9670;&nbsp;</a></span>ft_choose_builtin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -164,7 +164,13 @@ false Built-in not found. </dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structs__data.html">t_data</a> *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>forked</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
