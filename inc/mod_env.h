@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:41:48 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 13:55:53 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 13:58:24 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_err	ft_insert_env_shlvl(t_hashtable *env_table);
 //env_pid.c
 t_err	ft_get_pid(int *pid);
 t_err	ft_create_env_pid(char **env_pid);
+t_err	ft_insert_env_pid(t_hashtable *env_table);
 
 //env_envp.c
 t_err	ft_envp_fill(t_hashtable *ht, char **envp, bool all);
