@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
+#    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/15 16:10:45 by sqiu             ###   ########.fr        #
+#    Updated: 2023/08/18 13:52:49 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRC :=	utils_memory.c \
 		env_setup.c \
 		env_pwd.c \
 		env_shlvl.c \
+		env_pid.c \
 		env_envp.c \
 		prompt.c \
 		prompt_replace_token.c \
