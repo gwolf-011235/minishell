@@ -6,18 +6,34 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:39:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 14:01:00 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 00:14:12 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file env_pid.c
+ * @brief Functions relating to env_var $$
+ */
 #include "mod_env.h"
 
-t_err	ft_get_pid(int *pid)
+/**
+ * @brief Retrieve pid for current process.
+ *
+ * /proc/self/stat provides status information about the process.
+ * /self/ is a magic link pointing to the calling process.
+ * Open, read with get_next_line().
+ * First number corresponds to pid. Convert with ft_atoi().
+ * @param pid Pointer to int where to save.
+ * @return t_err SUCCESS, ERR_OPEN, ERR_MALLOC
+ */
+t_err	ft_get_pid_value(int *pid)
 {
 	int		fd;
 	char	*line;
 
 	fd = open("/proc/self/stat", O_RDONLY);
+	if (fd == -1)
+		return (ERR_OPEN);
 	line = get_next_line(fd);
 	if (!line)
 		return (ERR_MALLOC);
@@ -26,6 +42,12 @@ t_err	ft_get_pid(int *pid)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Creates env_var $$=PID.
+ *
+ * @param env_pid Where to save env_str
+ * @return t_err SUCCESS, ERR_OPEN, ERR_MALLOC
+ */
 t_err	ft_create_env_pid(char **env_pid)
 {
 	t_err	err;
@@ -33,7 +55,7 @@ t_err	ft_create_env_pid(char **env_pid)
 	char	*tmp;
 
 	pid = 0;
-	err = ft_get_pid(&pid);
+	err = ft_get_pid_value(&pid);
 	if (err != SUCCESS)
 		return (err);
 	tmp = ft_itoa(pid);

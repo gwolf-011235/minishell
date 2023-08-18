@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 18:53:02 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 00:15:11 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str)
 /**
  * @brief Creates and inserts PS1 and PS2.
  *
+ * Gets the prompts from minishell_config.h.
  * @param env_table Environment
  * @return t_err SUCCESS, ERR_MALLOC
  */
