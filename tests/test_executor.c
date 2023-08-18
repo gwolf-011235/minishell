@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_executor.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:17:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 13:36:29 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/18 23:19:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	test_heredoc_wrapper(char *testname, char *test)
 	ft_lex_input(&lst, test);
 	ft_parser(lst, &cmd);
 	ft_init_exec(cmd);
-	ft_handle_heredoc(cmd, "<3 ");
+	ft_handle_heredoc(cmd, &g_symtab, "<3 ");
 	while (cmd)
 	{
 		printf(GREEN"\ndelimiters:\n"RESET);
