@@ -6,19 +6,18 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:45:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/17 11:49:24 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 00:38:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MOD_SYNTAX_H
 # define MOD_SYNTAX_H
 
-/* ====== Includes ====== */
-
 # include <stddef.h>
 
 # include "libft.h"
 # include "minishell_error.h"
+# include "minishell_utils.h"
 
 /* ====== Globals ====== */
 

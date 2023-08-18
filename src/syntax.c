@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:43:24 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/17 11:45:35 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 00:31:00 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_err	ft_check_pipe(const char *input, size_t pos)
 	size_t	i;
 
 	i = 0;
-	while (ft_is_space(input[i]))
+	while (ft_isspace(input[i]))
 		i++;
 	if (i == pos)
 		return (ft_syntax_error(TOKEN, input[pos]));
@@ -125,7 +125,7 @@ t_err	ft_check_redirect(const char *input, size_t pos, char symbol)
 	i = pos + 1;
 	if (input[i] == symbol && input[i + 1] != symbol)
 		i++;
-	while (ft_is_space(input[i]))
+	while (ft_isspace(input[i]))
 		i++;
 	if (input[i] == '\0')
 		return (ft_syntax_error(NEWLINE, '\n'));
@@ -153,7 +153,7 @@ t_err	ft_check_syntax(const char *input)
 	i = 0;
 	while (input[i])
 	{
-		while (ft_is_space(input[i]))
+		while (ft_isspace(input[i]))
 			i++;
 		if (input[i] == '"' || input[i] == '\'')
 			err = ft_quote_skipper(&input[i], &i, input[i]);

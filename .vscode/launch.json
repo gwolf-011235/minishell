@@ -5,7 +5,44 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "(gdb) Attach",
+			"name": "follow child process",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/minishell",
+			"args": [],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{
+					"description": "Set Disassembly Flavor to Intel",
+					"text": "-gdb-set disassembly-flavor intel",
+					"ignoreFailures": true
+				},
+				{
+					// https://sourceware.org/gdb/onlinedocs/gdb/Forks.html
+					"description": "Fork follows Child process",
+					"text": "set follow-fork-mode child",
+					"ignoreFailures": true
+				},
+				{
+					// https://sourceware.org/gdb/onlinedocs/gdb/Forks.html
+					"description": "Fork will keep the other process attached to debugger",
+					"text": "set detach-on-fork off",
+					"ignoreFailures": true
+				}
+			],
+			"preLaunchTask": "make test"
+		},
+		{
+			"name": "attach minishell",
 			"type": "cppdbg",
 			"request": "attach",
 			"program": "${workspaceFolder}/minishell",
@@ -72,30 +109,6 @@
 				}
 			],
 			"preLaunchTask": "make"
-		},
-		{
-			"name": "split",
-			"type": "cppdbg",
-			"request": "launch",
-			"program": "${workspaceFolder}/lib/libft/a.out",
-			"args": [],
-			"stopAtEntry": true,
-			"cwd": "${workspaceFolder}/lib/libft",
-			"environment": [],
-			"externalConsole": false,
-			"MIMode": "gdb",
-			"setupCommands": [
-				{
-					"description": "Enable pretty-printing for gdb",
-					"text": "-enable-pretty-printing",
-					"ignoreFailures": true
-				},
-				{
-					"description": "Set Disassembly Flavor to Intel",
-					"text": "-gdb-set disassembly-flavor intel",
-					"ignoreFailures": true
-				}
-			]
 		}
 	]
 }
