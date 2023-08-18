@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:46:44 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/18 17:24:03 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 18:28:44 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_add_to_buf(char c, t_buf *buf)
 {
 	buf->str[buf->cur_pos] = c;
 	buf->cur_pos++;
-	return (SUCCESS);
 }
 
 /**
