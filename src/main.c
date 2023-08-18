@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 18:10:10 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/17 07:56:47 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	main(int argc, char **argv)
 		printf("NO\n");
 	ft_envp_create(data.env_table, &data.envp);
 	//ft_hashtable_insert(data->env_table, "PS1=\\u@\\h:\\w$ ", 3);
-	while (1)
+	data.loop = true;
+	while (data.loop)
 	{
 		err = ft_prompt_create(data.env_table, &data.prompt1, "PS1", PS1_STD);
 		if (err != SUCCESS)
@@ -69,5 +70,5 @@ int	main(int argc, char **argv)
 		free(data.prompt1);
 		free(data.prompt2);
 	}
-	return (0);
+	exit(g_status);
 }

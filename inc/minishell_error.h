@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_error.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 23:05:59 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/17 07:41:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
  */
 #ifndef MINISHELL_ERROR_H
 # define MINISHELL_ERROR_H
+
+# include <errno.h>
 
 /**
  * @brief Enum, which contains all error codes.
@@ -59,10 +61,13 @@ typedef enum e_error {
 	ERR_NO_INPUT, ///< Input is empty.
 	ERR_ABORT, ///< Abort pipeline.
 	ERR_HEREDOC_EOF, ///< Heredoc stopped by Ctrl+D
+	ERR_WRITE, ///< Syscall write failed.
 	ERR_DIR, ///< Cmd is a directory.
 	ERR_NO_DIR ///< Directory or file not found
 }	t_err;
 
+t_err	ft_err_write(int fd, char *str, char *msg);
+t_err	ft_err_chdir(char *path, char *msg);
 t_err	ft_print_warning(char *indic, char *trigger);
 t_err	ft_print_warning2(char *indic, char *trigger);
 
