@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:46:44 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/17 13:56:40 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 17:24:03 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ void	ft_free_tok(t_tok *token)
  * In case the buffer string is not long enough, its size is doubled.
  * @param c 		Character to be added.
  * @param buf 		Temporary buffer to save as token.
- * @return t_err 	SUCCESS
  */
-t_err	ft_add_to_buf(char c, t_buf *buf)
+void	ft_add_to_buf(char c, t_buf *buf)
 {
 	buf->str[buf->cur_pos] = c;
 	buf->cur_pos++;

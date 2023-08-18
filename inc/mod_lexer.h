@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:38 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/17 13:45:48 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 17:23:38 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_err		ft_peek_char(t_src *src, char *c);
 t_err		ft_partition(t_src *src, t_buf *tmp);
 t_err		ft_init_partition(t_src *src, char *c);
 void		ft_add_quoted_str(char quote, t_src *src, t_buf *tmp);
-t_err		ft_add_to_buf(char c, t_buf *tmp);
+void		ft_add_to_buf(char c, t_buf *tmp);
 t_err		ft_check_double_redirect(t_src *src, char *c, t_buf *tmp);
 
 // token handling
