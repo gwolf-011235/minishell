@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:24:50 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 16:13:43 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 18:57:53 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,12 @@ t_err	ft_update_env_var(t_hashtable *env_tab,
 	t_env_var	*env_var;
 	t_err		err;
 
+	err = SUCCESS;
 	env_var = ft_hashtable_lookup(env_tab, env_str, keylen);
 	if (env_var && has_value)
 		err = ft_hashtable_swap(env_tab, env_str, keylen, has_value);
+	else if (env_var && !has_value)
+		env_var->export = true;
 	else
 		err = ft_hashtable_insert_export(env_tab, env_str, keylen, has_value);
 	return (err);
