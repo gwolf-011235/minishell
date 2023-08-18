@@ -39,7 +39,7 @@ t_err	ft_print_warning(char *indic, char *trigger)
  *
  * @param indic 	Indicator string for error message.
  * @param trigger 	Trigger string causing the error.
- * @return t_err 	ERR_DIR, SUCCESS
+ * @return t_err 	ERR_NO_DIR, SUCCESS
  */
 t_err	ft_print_warning2(char *indic, char *trigger)
 {
@@ -49,7 +49,7 @@ t_err	ft_print_warning2(char *indic, char *trigger)
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(trigger, 2);
 		ft_putendl_fd(": No such file or directory", 2);
-		return (ERR_DIR);
+		return (ERR_NO_DIR);
 	}
 	if (!ft_strncmp(indic, "nocmd", 6))
 	{
