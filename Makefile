@@ -6,7 +6,7 @@
 #    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/18 13:52:49 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/18 14:21:28 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ SRC :=	utils_memory.c \
 		utils_string.c \
 		buffer.c \
 		hashtable_generate.c \
+		hashtable_ops.c \
 		hashtable_utils.c \
 		exit_failure.c \
 		env_setup.c \
