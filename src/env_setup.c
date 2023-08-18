@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 17:58:23 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 13:55:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,46 +116,4 @@ t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str)
 	return (err);
 }
 
-/**
- * @brief Creates and inserts the env_var PWD.
- *
- * If no PWD is present in env_table, this function inserts.
- * @param data
- * @return t_err If SUCCESS it exits
- */
-t_err	ft_insert_env_pwd(t_hashtable *env_table)
-{
-	char	*pwd;
-	t_err	err;
 
-	pwd = NULL;
-	err = ft_create_env_pwd(&pwd);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_hashtable_insert(env_table, pwd, 3, true);
-	if (err != SUCCESS)
-		return (err);
-	return (SUCCESS);
-}
-
-/**
- * @brief Creates and inserts the env_var SHLVL.
- *
- * If no SHLVL is present in env_table, this function inserts.
- * @param data
- * @return t_err If SUCCESS it exits
- */
-t_err	ft_insert_env_shlvl(t_hashtable *env_table)
-{
-	char	*shlvl;
-	t_err	err;
-
-	shlvl = NULL;
-	err = ft_create_env_shlvl(&shlvl, 1);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_hashtable_insert(env_table, shlvl, 5, true);
-	if (err != SUCCESS)
-		return (err);
-	return (SUCCESS);
-}

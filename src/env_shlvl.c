@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:45:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 18:09:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 13:55:37 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,28 @@ t_err	ft_increment_shlvl(t_hashtable *env_table)
 	if (err != SUCCESS)
 		return (err);
 	err = ft_hashtable_swap(env_table, new_str, 5, true);
+	if (err != SUCCESS)
+		return (err);
+	return (SUCCESS);
+}
+
+/**
+ * @brief Creates and inserts the env_var SHLVL.
+ *
+ * If no SHLVL is present in env_table, this function inserts.
+ * @param data
+ * @return t_err If SUCCESS it exits
+ */
+t_err	ft_insert_env_shlvl(t_hashtable *env_table)
+{
+	char	*shlvl;
+	t_err	err;
+
+	shlvl = NULL;
+	err = ft_create_env_shlvl(&shlvl, 1);
+	if (err != SUCCESS)
+		return (err);
+	err = ft_hashtable_insert(env_table, shlvl, 5, true);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);
