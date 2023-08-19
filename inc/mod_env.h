@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:41:48 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 00:15:22 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 19:22:29 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ extern char	**environ;
 # define MAX "minishell: warning: shell level (%d) too high, resetting to 1\n"
 
 //env_setup.c
-t_err	ft_env_setup(t_hashtable **env_table);
+t_err	ft_env_setup(t_hashtable **env_table, char *argv_zero);
 t_err	ft_import_environ(t_hashtable *env_table);
 t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str);
 t_err	ft_insert_env_prompt(t_hashtable *env_table);
+t_err	ft_insert_env_zero(t_hashtable *env_table, char *argv_zero);
 
 //env_pwd.c
 t_err	ft_create_pwd_value(char **pwd_value);

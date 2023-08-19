@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 00:15:11 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 19:30:05 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
  * @param data Pointer to data struct.
  * @return t_err SUCCESS if everything went right, else it ft_exit_failures.
  */
-t_err	ft_env_setup(t_hashtable **env_table)
+t_err	ft_env_setup(t_hashtable **env_table, char *argv_zero)
 {
 	t_err	err;
 
@@ -51,6 +51,7 @@ t_err	ft_env_setup(t_hashtable **env_table)
 		return (err);
 	err = ft_insert_env_pid(*env_table);
 	err = ft_insert_env_prompt(*env_table);
+	err = ft_insert_env_zero(*env_table, argv_zero);
 	return (SUCCESS);
 }
 
@@ -139,6 +140,20 @@ t_err	ft_insert_env_prompt(t_hashtable *env_table)
 	if (!prompt)
 		return (ERR_MALLOC);
 	err = ft_hashtable_insert(env_table, prompt, 3, true);
+	if (err != SUCCESS)
+		return (err);
+	return (SUCCESS);
+}
+
+t_err	ft_insert_env_zero(t_hashtable *env_table, char *argv_zero)
+{
+	t_err	err;
+	char	*env_zero;
+
+	env_zero = ft_strjoin("0=", argv_zero);
+	if (!env_zero)
+		return (ERR_MALLOC);
+	err = ft_hashtable_insert(env_table, env_zero, 1, true);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);

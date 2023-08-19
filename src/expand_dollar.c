@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 00:17:50 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 19:33:11 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ t_err	ft_expand_dollar(t_track *input, t_hashtable *symtab)
 	t_err	err;
 	char	next;
 
-	next = input->str[input->pos +1];
-	if (next == '?' || next == '$')
+	next = input->str[input->pos + 1];
+	if (next == '?' || next == '$' || next == '0')
 		err = ft_special_dollar(&var, &replace, symtab, next);
 	else
 	{
@@ -78,17 +78,20 @@ t_err	ft_special_dollar(t_str *var, t_str *replace, t_hashtable *symtab, char c)
 		if (!replace->ptr)
 			return (ERR_MALLOC);
 		replace->len = ft_strlen(replace->ptr);
+		return (SUCCESS);
 	}
-	else if (c == '$')
-	{
-		env_var = ft_hashtable_lookup(symtab, "$$", 2);
-		if (!env_var)
-			return (ERR_NOEXPAND);
-		replace->ptr = ft_strdup(env_var->value);
-		if (!replace->ptr)
-			return (ERR_MALLOC);
-		replace->len = ft_strlen(replace->ptr);
-	}
+	if (c == '$')
+		env_var = ft_hashtable_lookup(symtab, "$", 1);
+	else if (c == '0')
+		env_var = ft_hashtable_lookup(symtab, "0", 1);
+	else
+		return (ERR_NOEXPAND);
+	if (!env_var)
+		return (ERR_NOEXPAND);
+	replace->ptr = ft_strdup(env_var->value);
+	if (!replace->ptr)
+		return (ERR_MALLOC);
+	replace->len = ft_strlen(replace->ptr);
 	return (SUCCESS);
 }
 
