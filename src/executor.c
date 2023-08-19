@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/17 10:13:06 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 20:48:00 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,8 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 				err = ft_execute_builtin(1, cmd, data);
 				if (err != SUCCESS)
 					return (err);
+				if (cmd->pid == 0)
+					break ;
 			}
 			else
 			{
