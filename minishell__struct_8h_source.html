@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('minishell__struct_8h_source.html','');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*   By: gwolf &lt;gwolf@student.42vienna.com&gt;         +#+  +:+       +#+        */</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">/*                                                +#+#+#+#+#+   +#+           */</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">/*   Created: 2023/07/21 11:38:37 by gwolf             #+#    #+#             */</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/08/15 10:32:19 by gwolf            ###   ########.fr       */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/08/19 00:45:21 by gwolf            ###   ########.fr       */</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/*                                                                            */</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* ************************************************************************** */</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
@@ -111,23 +111,26 @@ $(document).ready(function(){initNavTree('minishell__struct_8h_source.html','');
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="hashtable_8h.html">hashtable.h</a>&quot;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="minishell__error_8h.html">minishell_error.h</a>&quot;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">/* ====== STRUCTS ====== */</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structs__data.html">   36</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structs__data.html">s_data</a> {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="structs__hashtable.html">t_hashtable</a> *env_table;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">char</span>        **envp;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>       err;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">char</span>        *prompt1;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">char</span>        *prompt2;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">bool</span>        loop;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}   <a class="code" href="structs__data.html">t_data</a>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"># include &quot;buffer.h&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">/* ====== STRUCTS ====== */</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="structs__data.html">   37</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structs__data.html">s_data</a> {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="structs__hashtable.html">t_hashtable</a> *env_table;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">char</span>        **envp;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>       err;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">char</span>        *prompt1;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">char</span>        *prompt2;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="structs__buf.html">t_buf</a>       buf;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">bool</span>        loop;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}   <a class="code" href="structs__data.html">t_data</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="ahashtable_8h_html"><div class="ttname"><a href="hashtable_8h.html">hashtable.h</a></div><div class="ttdoc">Header for hashtable stuff.</div></div>
 <div class="ttc" id="aminishell__error_8h_html"><div class="ttname"><a href="minishell__error_8h.html">minishell_error.h</a></div><div class="ttdoc">Header to store error codes.</div></div>
 <div class="ttc" id="aminishell__error_8h_html_ab40f6b0320b416162d7f6d5eed804232"><div class="ttname"><a href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a></div><div class="ttdeci">enum e_error t_err</div><div class="ttdoc">Enum, which contains all error codes.</div></div>
-<div class="ttc" id="astructs__data_html"><div class="ttname"><a href="structs__data.html">s_data</a></div><div class="ttdoc">Overarching struct to hold all necessarry data.</div><div class="ttdef"><b>Definition:</b> minishell_struct.h:36</div></div>
+<div class="ttc" id="astructs__buf_html"><div class="ttname"><a href="structs__buf.html">s_buf</a></div><div class="ttdoc">Buffer structure.</div><div class="ttdef"><b>Definition:</b> buffer.h:33</div></div>
+<div class="ttc" id="astructs__data_html"><div class="ttname"><a href="structs__data.html">s_data</a></div><div class="ttdoc">Overarching struct to hold all necessarry data.</div><div class="ttdef"><b>Definition:</b> minishell_struct.h:37</div></div>
 <div class="ttc" id="astructs__hashtable_html"><div class="ttname"><a href="structs__hashtable.html">s_hashtable</a></div><div class="ttdoc">Hashtable with external chaining.</div><div class="ttdef"><b>Definition:</b> hashtable.h:78</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

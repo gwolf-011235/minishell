@@ -108,6 +108,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a855a4925df79141d067f1dac75b2a0e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#a855a4925df79141d067f1dac75b2a0e3">ft_envp_create</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *ht, char ***envp)</td></tr>
 <tr class="memdesc:a855a4925df79141d067f1dac75b2a0e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a NULL-terminated environment pointer (envp)  <a href="minishell_8h.html#a855a4925df79141d067f1dac75b2a0e3">More...</a><br /></td></tr>
 <tr class="separator:a855a4925df79141d067f1dac75b2a0e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a119c93151620b9c8ee199daaee94bde6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#a119c93151620b9c8ee199daaee94bde6">ft_envp_destroy</a> (char ***envp)</td></tr>
+<tr class="memdesc:a119c93151620b9c8ee199daaee94bde6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy envp.  <a href="minishell_8h.html#a119c93151620b9c8ee199daaee94bde6">More...</a><br /></td></tr>
+<tr class="separator:a119c93151620b9c8ee199daaee94bde6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1dd0a4fdc3f5aef6997d3b8f6d68f39d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell_8h.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">ft_prompt_create</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *sym_tab, char **prompt, char *ps, char *std)</td></tr>
 <tr class="memdesc:a1dd0a4fdc3f5aef6997d3b8f6d68f39d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a prompt string which gets expanded.  <a href="minishell_8h.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">More...</a><br /></td></tr>
 <tr class="separator:a1dd0a4fdc3f5aef6997d3b8f6d68f39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -183,6 +186,33 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ft_exit_failure</b> (
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>t_err ERR_EMPTY, ERR_MALLOC, SUCCESS </dd></dl>
+
+</div>
+</div>
+<a id="a119c93151620b9c8ee199daaee94bde6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a119c93151620b9c8ee199daaee94bde6">&#9670;&nbsp;</a></span>ft_envp_destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_envp_destroy </td>
+          <td>(</td>
+          <td class="paramtype">char ***&#160;</td>
+          <td class="paramname"><em>envp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destroy envp. </p>
+<p>Check if envp exists. If yes: Free the envp and set to NULL. Does not free elements. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">envp</td><td>The pointer to free. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS </dd></dl>
 
 </div>
 </div>
