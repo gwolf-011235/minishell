@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 19:30:05 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 19:59:10 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_err	ft_env_setup(t_hashtable **env_table, char *argv_zero)
 	if (err != SUCCESS)
 		return (err);
 	err = ft_insert_env_pid(*env_table);
-	err = ft_insert_env_prompt(*env_table);
+	err = ft_insert_env_prompt(*env_table, 2);
 	err = ft_insert_env_zero(*env_table, argv_zero);
 	return (SUCCESS);
 }
@@ -121,30 +121,45 @@ t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str)
 /**
  * @brief Creates and inserts PS1 and PS2.
  *
+ * If only one or both should be inserted is managed by opt.
  * Gets the prompts from minishell_config.h.
  * @param env_table Environment
- * @return t_err SUCCESS, ERR_MALLOC
+ * @param opt 0 = PS1; 1 = PS2; 2 = both
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_HT_NO_INSERT
  */
-t_err	ft_insert_env_prompt(t_hashtable *env_table)
+t_err	ft_insert_env_prompt(t_hashtable *env_table, char opt)
 {
 	char	*prompt;
 	t_err	err;
 
-	prompt = ft_strdup(PS1);
-	if (!prompt)
-		return (ERR_MALLOC);
-	err = ft_hashtable_insert(env_table, prompt, 3, true);
-	if (err != SUCCESS)
-		return (err);
-	prompt = ft_strdup(PS2);
-	if (!prompt)
-		return (ERR_MALLOC);
-	err = ft_hashtable_insert(env_table, prompt, 3, true);
-	if (err != SUCCESS)
-		return (err);
+	if (opt == 0 || opt == 2)
+	{
+		prompt = ft_strdup(PS1);
+		if (!prompt)
+			return (ERR_MALLOC);
+		err = ft_hashtable_insert(env_table, prompt, 3, true);
+		if (err != SUCCESS)
+			return (err);
+	}
+	if (opt == 1 || opt == 2)
+	{
+		prompt = ft_strdup(PS2);
+		if (!prompt)
+			return (ERR_MALLOC);
+		err = ft_hashtable_insert(env_table, prompt, 3, true);
+		if (err != SUCCESS)
+			return (err);
+	}
 	return (SUCCESS);
 }
 
+/**
+ * @brief Creates and inserts special $0
+ *
+ * @param env_table Environment.
+ * @param argv_zero Argv on pos 0
+ * @return t_err SUCCES, ERR_MALLOC, ERR_HT_NO_INSERT
+ */
 t_err	ft_insert_env_zero(t_hashtable *env_table, char *argv_zero)
 {
 	t_err	err;
