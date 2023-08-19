@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:41:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 11:46:31 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/19 12:50:15 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 extern t_data		g_data;
 extern int			g_err_count;
 
-static int	test_wrapper(char *testname, char *test, bool heredoc, bool append)
+static int	test_wrapper(char *testname, char *test, bool heredoc, bool append, t_buf *buf)
 {
 	int			local_err_count;
 	int			i;
@@ -28,7 +28,7 @@ static int	test_wrapper(char *testname, char *test, bool heredoc, bool append)
 	cmd = NULL;
 	printf("TEST: %s\n", testname);
 	printf("Command:%s\n", test);
-	ft_lex_input(&lst, test);
+	ft_lex_input(&lst, test, buf);
 	ft_parser(lst, &cmd);
 	while (cmd)
 	{
@@ -109,56 +109,60 @@ static int	test_wrapper(char *testname, char *test, bool heredoc, bool append)
 }
 
 
-void	test_one_cmd(void)
+void	test_one_cmd(t_buf *buf)
 {
-	test_wrapper("One simple cmd", "< infile grep he -i > outfile", 0, 0);
+	test_wrapper("One simple cmd", "< infile grep he -i > outfile", 0, 0, buf);
 	//test_wrapper("One simple cmd", "ls < infile  > outfile -la", 0, 0);
 }
 
-void	test_two_cmds(void)
+void	test_two_cmds(t_buf *buf)
 {
-	test_wrapper("Two simple cmds", "ls <infile -la|>outfile wc -l ", 0, 0);
+	test_wrapper("Two simple cmds", "ls <infile -la|>outfile wc -l ", 0, 0, buf);
 }
 
-void	test_five_cmds(void)
+void	test_five_cmds(t_buf *buf)
 {
-	test_wrapper("Five simple cmds", "<   infile ls -la | grep chtulu | wc -m | cmd4 -weeee -o -asa| >outfile cmd5 ww 235", 0, 0);
+	test_wrapper("Five simple cmds", "<   infile ls -la | grep chtulu | wc -m | cmd4 -weeee -o -asa| >outfile cmd5 ww 235", 0, 0, buf);
 }
 
-void	test_three_infiles(void)
+void	test_three_infiles(t_buf *buf)
 {
-	test_wrapper("Three infiles", "grep <infile < infile2 mammmmamia <infile3", 0, 0);
+	test_wrapper("Three infiles", "grep <infile < infile2 mammmmamia <infile3", 0, 0, buf);
 }
 
-void	test_heredoc(void)
+void	test_heredoc(t_buf *buf)
 {
-	test_wrapper("Heredoc", "<< EOF wc -l >outfile", 1, 0);
+	test_wrapper("Heredoc", "<< EOF wc -l >outfile", 1, 0, buf);
 }
 
-void	test_three_heredocs(void)
+void	test_three_heredocs(t_buf *buf)
 {
-	test_wrapper("Three heredocs", "<< EOF wc <<mimi -l << siuuu >outfile", 1, 0);
+	test_wrapper("Three heredocs", "<< EOF wc <<mimi -l << siuuu >outfile", 1, 0, buf);
 }
 
-void	test_three_outfiles(void)
+void	test_three_outfiles(t_buf *buf)
 {
-	test_wrapper("Three outfiles", "echo >outfile > outfile2 mammmmamia >outfile3", 0, 0);
+	test_wrapper("Three outfiles", "echo >outfile > outfile2 mammmmamia >outfile3", 0, 0, buf);
 }
 
-void	test_append(void)
+void	test_append(t_buf *buf)
 {
-	test_wrapper("Append", "<infile wc -l >>outfile", 0, 1);
+	test_wrapper("Append", "<infile wc -l >>outfile", 0, 1, buf);
 }
 
 void	test_parser(void)
 {
+	t_buf	buf;
+
+	ft_buf_init(&buf);
 	printf(YELLOW"*******TEST_PARSER*******\n\n"RESET);
-	test_one_cmd();
-	test_two_cmds();
-	test_five_cmds();
-	test_three_infiles();
-	test_heredoc();
-	test_three_heredocs();
-	test_three_outfiles();
-	test_append();
+	test_one_cmd(&buf);
+	test_two_cmds(&buf);
+	test_five_cmds(&buf);
+	test_three_infiles(&buf);
+	test_heredoc(&buf);
+	test_three_heredocs(&buf);
+	test_three_outfiles(&buf);
+	test_append(&buf);
+	ft_buf_destroy(&buf);
 }

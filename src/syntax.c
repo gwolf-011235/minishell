@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:43:24 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 00:31:00 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 12:18:25 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_err	ft_syntax_error(t_syntax syntax_err, char c)
 		ft_putchar_fd(c, 2);
 		ft_putendl_fd("'", 2);
 	}
-	else if (syntax_err == NEWLINE)
+	else if (syntax_err == NEW_LINE)
 		ft_putendl_fd("newline'", 2);
 	return (ERR_SYNTAX);
 }
@@ -128,7 +128,7 @@ t_err	ft_check_redirect(const char *input, size_t pos, char symbol)
 	while (ft_isspace(input[i]))
 		i++;
 	if (input[i] == '\0')
-		return (ft_syntax_error(NEWLINE, '\n'));
+		return (ft_syntax_error(NEW_LINE, '\n'));
 	if (input[i] == '|' || input[i] == '<' || input[i] == '>')
 		return (ft_syntax_error(TOKEN, input[i]));
 	return (SUCCESS);
