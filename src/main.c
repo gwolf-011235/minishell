@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 17:08:27 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 00:45:41 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ int	main(int argc, char **argv)
 	err = ft_signal_setup(SIGQUIT, SIG_IGNORE);
 	if (err != SUCCESS)
 		ft_exit_failure(&data, err);
+	err = ft_buf_init(&data.buf);
 	if (ft_env_setup(&data.env_table) != SUCCESS)
 		printf("NO\n");
-	ft_envp_create(data.env_table, &data.envp);
 	//ft_hashtable_insert(data->env_table, "PS1=\\u@\\h:\\w$ ", 3);
 	data.loop = true;
 	while (data.loop)
 	{
+		ft_envp_create(data.env_table, &data.envp);
 		err = ft_prompt_create(data.env_table, &data.prompt1, "PS1", PS1_STD);
 		if (err != SUCCESS)
 			ft_exit_failure(&data, err);
@@ -72,6 +73,9 @@ int	main(int argc, char **argv)
 		free(input);
 		free(data.prompt1);
 		free(data.prompt2);
+		ft_envp_destroy(&data.envp);
 	}
+	ft_hashtable_destroy(data.env_table);
+	ft_buf_destroy(&data.buf);
 	exit(g_status);
 }
