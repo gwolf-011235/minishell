@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:24:50 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 18:57:53 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 12:10:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,12 @@
  *
  * @param array NULL terminated array.
  * @param size Where to save the size.
- * @return t_err SUCCESS, ERR_EMPTY
+ * @return t_err SUCCESS
  */
-t_err	ft_get_array_size(char **array, size_t *size)
+void	ft_get_array_size(char **array, size_t *size)
 {
-	if (!array || !size)
-		return (ERR_EMPTY);
 	while (array[*size])
 		(*size)++;
-	return (SUCCESS);
 }
 
 /**

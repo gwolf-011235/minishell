@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/14 21:19:56 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/17 14:14:26 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
  * @param env_table Environment.
  * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table)
+t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table, t_buf *buf)
 {
 	t_tkn_list	*tmp;
 	t_err		err;
@@ -48,7 +48,7 @@ t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table)
 		else if (tmp->type == PIPE || tmp->type == NEWL)
 			err = SUCCESS;
 		else
-			err = ft_expand_arg(&tmp, env_table);
+			err = ft_expand_arg(&tmp, env_table, buf);
 		if (err != SUCCESS)
 			return (err);
 		if (tmp->next == NULL)
@@ -155,7 +155,7 @@ t_err	ft_expand_assign(t_tkn_list **node, t_hashtable *symtab)
  * @param symtab Environment.
  * @return t_err SUCCESS, ERR_MALLOC
  */
-t_err	ft_expand_arg(t_tkn_list **node, t_hashtable *symtab)
+t_err	ft_expand_arg(t_tkn_list **node, t_hashtable *symtab, t_buf *buf)
 {
 	t_track	input;
 	t_err	err;
@@ -169,7 +169,7 @@ t_err	ft_expand_arg(t_tkn_list **node, t_hashtable *symtab)
 		(*node)->content = input.str;
 		if (input.last_expand_len > 0 && !input.quoted)
 		{
-			err = ft_field_split(&input, node);
+			err = ft_field_split(&input, node, buf);
 			if (err != SUCCESS && err != ERR_NOSPLIT)
 				return (err);
 			if (err == SUCCESS)

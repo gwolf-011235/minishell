@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:45:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:06:37 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 00:38:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,29 @@
 
 # include "libft.h"
 # include "minishell_error.h"
+# include "minishell_utils.h"
 
-# define SYNTAX_QUOTE "minishell: syntax error after unclosed quotes: %c\n"
-# define SYNTAX_TOKEN "minishell: syntax error near unexpected token `%c'\n"
-# define SYNTAX_NL "minishell: syntax error near unexpected token `newline'\n"
+/* ====== Globals ====== */
 
+extern __sig_atomic_t	g_status;
+
+/* ====== Typedef ====== */
+
+typedef enum s_syntax
+{
+	QUOTE,
+	NEWLINE,
+	TOKEN
+}	t_syntax;
+
+/* ====== Functions ====== */
+
+//syntax.c
 t_err	ft_check_syntax(const char *input);
 t_err	ft_check_redirect(const char *input, size_t pos, char symbol);
 t_err	ft_check_pipe(const char *input, size_t pos);
 t_err	ft_quote_skipper(const char *quote_start, size_t *i, char target);
 int		ft_is_space(char c);
+t_err	ft_syntax_error(t_syntax syntax_err, char c);
 
 #endif

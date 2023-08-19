@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 18:37:37 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/17 13:49:55 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,23 @@ t_err	ft_create_tok(t_tok *token, char *s)
  * @param token 	Token to be created.
  * @return t_err* ERR_EMPTY, ERR_MALLOC, SUCCESS
  */
-t_err	ft_tokenise(t_src *src, t_tok *token)
+t_err	ft_tokenise(t_src *src, t_tok *token, t_buf *buf)
 {
-	t_buf	buf;
 	t_err	err;
 
 	if (!src || !src->buf || !src->buf_size)
 		return (ERR_EMPTY);
-	buf.size = 2048;
-	buf.str = malloc(buf.size);
-	if (!buf.str)
-		return (ERR_MALLOC);
-	buf.cur_pos = 0;
-	buf.str[0] = '\0';
-	err = ft_partition(src, &buf);
-	if (buf.cur_pos >= buf.size)
-		buf.cur_pos--;
-	buf.str[buf.cur_pos] = '\0';
-	err = ft_create_tok(token, buf.str);
-	free(buf.str);
+	buf->cur_pos = 0;
+	buf->str[0] = '\0';
+	err = ft_partition(src, buf);
+	if (buf->cur_pos >= buf->size)
+	{
+		err = ft_buf_double(buf);
+		if (err != SUCCESS)
+			return (err);
+	}
+	buf->str[buf->cur_pos] = '\0';
+	err = ft_create_tok(token, buf->str);
 	return (err);
 }
 

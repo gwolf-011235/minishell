@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:07:27 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 18:44:18 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 12:10:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ t_err	ft_unset(char **argv, t_hashtable *env_tab)
 			ft_hashtable_delete(env_tab, argv[i], ft_strlen(argv[i]));
 		i++;
 	}
+	g_status = 0;
 	return (SUCCESS);
 }

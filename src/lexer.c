@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/10 19:50:42 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/17 13:53:42 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,17 @@
  * @param input 	Input string to be tokenised.
  * @return t_err 	ERR_EMPTY, ERR_MALLOC, SUCCESS
  */
-t_err	ft_lex_input(t_tkn_list	**lst_head, char *input)
+t_err	ft_lex_input(t_tkn_list	**lst_head, char *input, t_buf *buf)
 {
 	t_src	src;
 	t_err	err;
 	t_tok	token;
 
 	ft_init_lexer(&src, input, ft_strlen(input));
-	err = ft_tokenise(&src, &token);
+	ft_buf_clear(buf);
+	err = ft_tokenise(&src, &token, buf);
+	if (err == ERR_MALLOC)
+		return (err);
 	while (err != ERR_EOF || !*lst_head)
 	{
 		err = ft_new_node(lst_head, token.str);
@@ -47,7 +50,9 @@ t_err	ft_lex_input(t_tkn_list	**lst_head, char *input)
 			ft_free_tok(&token);
 			return (err);
 		}
-		err = ft_tokenise(&src, &token);
+		err = ft_tokenise(&src, &token, buf);
+		if (err == ERR_MALLOC)
+			return (err);
 	}
 	ft_assign_type(*lst_head);
 	return (SUCCESS);
