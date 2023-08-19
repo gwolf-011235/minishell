@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('mod__syntax_8h_source.html',''); initR
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*   By: gwolf &lt;gwolf@student.42vienna.com&gt;         +#+  +:+       +#+        */</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">/*                                                +#+#+#+#+#+   +#+           */</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">/*   Created: 2023/06/23 12:45:02 by gwolf             #+#    #+#             */</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/07/21 16:06:37 by gwolf            ###   ########.fr       */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/08/18 17:09:09 by gwolf            ###   ########.fr       */</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/*                                                                            */</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* ************************************************************************** */</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
@@ -111,16 +111,16 @@ $(document).ready(function(){initNavTree('mod__syntax_8h_source.html',''); initR
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"># include &quot;libft.h&quot;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="minishell__error_8h.html">minishell_error.h</a>&quot;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"># define SYNTAX_QUOTE &quot;minishell: syntax error after unclosed quotes: %c\n&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"># define SYNTAX_TOKEN &quot;minishell: syntax error near unexpected token `%c&#39;\n&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"># define SYNTAX_NL &quot;minishell: syntax error near unexpected token `newline&#39;\n&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_check_syntax(<span class="keyword">const</span> <span class="keywordtype">char</span> *input);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_check_redirect(<span class="keyword">const</span> <span class="keywordtype">char</span> *input, <span class="keywordtype">size_t</span> pos, <span class="keywordtype">char</span> symbol);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_check_pipe(<span class="keyword">const</span> <span class="keywordtype">char</span> *input, <span class="keywordtype">size_t</span> pos);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_quote_skipper(<span class="keyword">const</span> <span class="keywordtype">char</span> *quote_start, <span class="keywordtype">size_t</span> *i, <span class="keywordtype">char</span> target);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">int</span>     ft_is_space(<span class="keywordtype">char</span> c);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"># include &quot;minishell_utils.h&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"># define SYNTAX_QUOTE &quot;minishell: syntax error after unclosed quotes: %c\n&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"># define SYNTAX_TOKEN &quot;minishell: syntax error near unexpected token `%c&#39;\n&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"># define SYNTAX_NL &quot;minishell: syntax error near unexpected token `newline&#39;\n&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_check_syntax(<span class="keyword">const</span> <span class="keywordtype">char</span> *input);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_check_redirect(<span class="keyword">const</span> <span class="keywordtype">char</span> *input, <span class="keywordtype">size_t</span> pos, <span class="keywordtype">char</span> symbol);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_check_pipe(<span class="keyword">const</span> <span class="keywordtype">char</span> *input, <span class="keywordtype">size_t</span> pos);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   ft_quote_skipper(<span class="keyword">const</span> <span class="keywordtype">char</span> *quote_start, <span class="keywordtype">size_t</span> *i, <span class="keywordtype">char</span> target);</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aminishell__error_8h_html"><div class="ttname"><a href="minishell__error_8h.html">minishell_error.h</a></div><div class="ttdoc">Header to store error codes.</div></div>

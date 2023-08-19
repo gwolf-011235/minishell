@@ -153,8 +153,7 @@ Functions</h2></td></tr>
 
 <p>Check given args executable. </p>
 <p>First check if cmd is a directory/a non-existing directory. If so, exit the function. If not iterate through cmd_paths. If one or more paths are empty (""), boolean "empty_path" is set to true. If args executable contains an absolute path (starts with /), a relative path (starts with ./ or ../), no paths are given or empty_path is true, its validity is checked in the current directory. If not successfully, ERR_UNKNOWN_CMD is returned. In case of empty_path, additionally the right path is searched for.</p>
-<p>If none of the above is applicable solely an attempt to find and assign the right path is started. If not successfully, ERR_UNKNOWN_CMD is returned. <br  />
- </p><dl class="params"><dt>Parameters</dt><dd>
+<p>If none of the above is applicable solely an attempt to find and assign the right path is started. If not successfully, ERR_UNKNOWN_CMD is returned. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">args</td><td>String array containing executable in first position. </td></tr>
     <tr><td class="paramname">cmd_paths</td><td>String array of paths. </td></tr>
