@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:39:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 00:14:12 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 19:19:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_err	ft_create_env_pid(char **env_pid)
 	tmp = ft_itoa(pid);
 	if (!tmp)
 		return (ERR_MALLOC);
-	*env_pid = ft_strjoin("$$=", tmp);
+	*env_pid = ft_strjoin("$=", tmp);
 	free(tmp);
 	if (!(*env_pid))
 		return (ERR_MALLOC);
@@ -83,7 +83,7 @@ t_err	ft_insert_env_pid(t_hashtable *env_table)
 	err = ft_create_env_pid(&pid);
 	if (err != SUCCESS)
 		return (err);
-	err = ft_hashtable_insert(env_table, pid, 2, true);
+	err = ft_hashtable_insert(env_table, pid, 1, true);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);
