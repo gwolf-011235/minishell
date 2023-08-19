@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:45:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 00:38:54 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 12:17:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ extern __sig_atomic_t	g_status;
 typedef enum s_syntax
 {
 	QUOTE,
-	NEWLINE,
+	NEW_LINE,
 	TOKEN
 }	t_syntax;
 
