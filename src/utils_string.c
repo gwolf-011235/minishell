@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:22:18 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:18:42 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 17:14:53 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,35 @@ char	*ft_strncat(char *dst, const char *src, size_t n)
 	}
 	*ptr = '\0';
 	return (dst);
+}
+
+/**
+ * @brief Check if char is white-space character
+ *
+ * In the "C" and "POSIX" locales, these are: space, form-feed ('\f'),
+ * newline ('\n'), carriage return ('\r'), horizontal tab ('\t'), and
+ * vertical tab ('\v').
+ * @param c Char to check
+ * @return true Is white-space
+ * @return false Not white-space
+ */
+bool	ft_isspace(char c)
+{
+	if (c == '\0')
+		return (false);
+	if (ft_strchr(" \f\n\r\t\v", c))
+		return (true);
+	else
+		return (false);
+}
+
+bool	ft_isempty_str(const char *s)
+{
+	while (*s)
+	{
+		if (!ft_isspace(*s))
+			return (false);
+		s++;
+	}
+	return (true);
 }

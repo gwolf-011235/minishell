@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 17:09:04 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/18 17:12:55 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 /**
  * @brief Check given args executable.
- * 
- * First check if cmd is a directory/a non-existing directory. If so, 
+ *
+ * First check if cmd is a directory/a non-existing directory. If so,
  * exit the function.
  * If not iterate through cmd_paths. If one or more paths are empty (""),
  * boolean "empty_path" is set to true.
@@ -29,9 +29,9 @@
  * is true, its validity is checked in the current directory.
  * If not successfully, ERR_UNKNOWN_CMD is returned. In case of empty_path,
  * additionally the right path is searched for.
- * 
+ *
  * If none of the above is applicable solely an attempt to find and assign
- * the right path is started. If not successfully, ERR_UNKNOWN_CMD is returned.  
+ * the right path is started. If not successfully, ERR_UNKNOWN_CMD is returned.
  * @param args 			String array containing executable in first position.
  * @param cmd_paths 	String array of paths.
  * @param empty_path	Boolean to determine if PATH contained empty paths.
@@ -41,13 +41,18 @@ t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path)
 {
 	t_err	err;
 
-	if (ft_check_dir(args) == ERR_DIR)
-		return (ft_print_warning("dir", args[0]));
-	else if (ft_check_dir(args) == ERR_NO_DIR)
-		return (ft_print_warning("nodir", args[0]));
-	err = ERR_UNKNOWN_CMD;
-	if ((*args)[0] == '/' || !ft_strncmp(*args, "./", 2)
-		|| !ft_strncmp(*args, "../", 3) || !cmd_paths || empty_path)
+	if (ft_strchr(args[0], '/'))
+	{
+		err = ft_check_dir(args);
+		if (err == ERR_DIR)
+			return (ft_print_warning("dir", args[0]));
+		else if (err == ERR_NO_DIR)
+			return (ft_print_warning("nodir", args[0]));
+		else if (err == ERR_STAT)
+			return (ERR_STAT);
+	}
+	if (args[0][0] == '/' || !ft_strncmp(args[0], "./", 2)
+		|| !ft_strncmp(args[0], "../", 3) || !cmd_paths || empty_path)
 	{
 		if (access(*args, F_OK | X_OK) == 0)
 			return (SUCCESS);
@@ -61,7 +66,7 @@ t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path)
 
 /**
  * @brief Prefix the correct path before the executable.
- * 
+ *
  * Rotate through all paths and checks whether the combination
  * with the executable is correct. If unsucessful, ERR_UNKNOWN_CMD is
  * returned.
@@ -95,7 +100,7 @@ t_err	ft_prefix_path(char **args, char **cmd_paths)
 
 /**
  * @brief Get the path object from envp str array.
- * 
+ *
  * Loop through the envp string array.
  * If envp str is PATH, then 0 || 0 -> exit while loop.
  * If envp str is PATH2, then 0 || 1 -> stay in while loop.
@@ -125,7 +130,7 @@ t_err	ft_get_path(char **envp, char ***paths, bool *empty_path)
 
 /**
  * @brief Replace the standard file descriptors
- * 
+ *
  * 	fd 0 (for system stdinput) with input_fd
  * 	fd 1 (for system stdoutput) with output_fd
  *
@@ -147,7 +152,7 @@ t_err	ft_replace_fd(int input_fd, int output_fd)
 
 /**
  * @brief Wait for child processes
- * 
+ *
  * If child exits normally, the global status is set to
  * the exit status of the child.
  * If child is killed by a signal, the global status

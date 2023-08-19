@@ -1,4 +1,5 @@
 #include "minishell_error.h"
+#include "minishell_error.h"
 #include "libft.h"
 #include <unistd.h>
 #include "mod_executor.h"
@@ -38,7 +39,7 @@ t_err	ft_print_warning(char *indic, char *trigger)
  *
  * @param indic 	Indicator string for error message.
  * @param trigger 	Trigger string causing the error.
- * @return t_err 	ERR_DIR, SUCCESS
+ * @return t_err 	ERR_NO_DIR, SUCCESS
  */
 t_err	ft_print_warning2(char *indic, char *trigger)
 {
@@ -48,7 +49,7 @@ t_err	ft_print_warning2(char *indic, char *trigger)
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(trigger, 2);
 		ft_putendl_fd(": No such file or directory", 2);
-		return (ERR_DIR);
+		return (ERR_NO_DIR);
 	}
 	if (!ft_strncmp(indic, "nocmd", 6))
 	{
@@ -86,6 +87,25 @@ t_err	ft_err_chdir(char *path, char *msg)
 		ft_putstr_fd(msg, 2);
 		perror(path);
 		return (ERR_CHDIR_FAIL);
+	}
+	return (SUCCESS);
+}
+
+t_err	ft_err_stat(const char *pathname, struct stat *statbuf, char *msg)
+{
+	int	ret;
+
+	errno = 0;
+	ret = stat(pathname, statbuf);
+	if (ret == -1)
+	{
+		if (errno == ENOENT)
+			return (ERR_NO_DIR);
+		else
+		{
+			perror(msg);
+			return (ERR_STAT);
+		}
 	}
 	return (SUCCESS);
 }
