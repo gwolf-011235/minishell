@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 11:11:17 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 23:47:20 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,15 @@ t_cmd	*ft_last_cmd(t_cmd *cmd_head)
  * @param lst 			List of tokens.
  * @param count_arg 	Argument counter.
  * @param count_delim 	Delimiter counter.
+ * @param count_out 	Outfile counter.
  * @return t_err 		SUCCESS
  */
-t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim)
+t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim,
+			int *count_out)
 {
 	while (lst)
 	{
-		if (lst->type == HEREDOC)
+		if (lst->type == HEREDOC || lst->type == QUOTEDOC)
 		{
 			lst = lst->next;
 			(*count_delim)++;
@@ -60,10 +62,11 @@ t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim)
 			return (SUCCESS);
 		else if (lst->type == INFILE)
 			lst = lst->next;
-		else if (lst->type == OUTFILE)
+		else if (lst->type == OUTFILE || lst->type == APPEND)
+		{
 			lst = lst->next;
-		else if (lst->type == APPEND)
-			lst = lst->next;
+			(*count_out)++;
+		}
 		else if (lst->type == NEWL)
 			;
 		else if (lst->type == ARG)
@@ -74,34 +77,50 @@ t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim)
 }
 
 /**
- * @brief Reserve memory space for cmd struct and in case
- * for argument and/or delimiter string arrays.
+ * @brief Reserve memory space for argument and/or delimiter
+ * and/or outfiles string array.
  *
  * @param new 			New cmd struct to be created.
  * @param count_arg 	Amount of arguments.
  * @param count_delim 	Amount of delimiters.
+ * @param count_out 	Amount of outfiles.
  * @return t_err 		ERR_MALLOC, SUCCESS
  */
-t_err	ft_create_str_arr(t_cmd *tmp, int count_arg, int count_delim)
+t_err	ft_create_str_arr(t_cmd *tmp, int count_arg, int count_delim,
+			int count_out)
 {
-	if (count_arg)
+	t_err	err;
+
+	err = SUCCESS;
+	if (count_arg && err == SUCCESS)
+		err = ft_malloc_arr(&tmp->args, NULL, count_arg);
+	if (count_delim && err == SUCCESS)
+		err = ft_malloc_arr(&tmp->delims, &tmp->hdoc_quoted, count_delim);
+	if (count_out && err == SUCCESS)
+		err = ft_malloc_arr(&tmp->outfiles, &tmp->append_switches, count_out);
+	return (err);
+}
+
+/**
+ * @brief Malloc string array and if required boolean array.
+ *
+ * @param str 		Address of string array.
+ * @param b_arr 	Adress of boolean array.
+ * @param count 	Size of array.
+ * @return t_err 	ERR_MALLOC, SUCCESS
+ */
+t_err	ft_malloc_arr(char ***str, bool **b_arr, int count)
+{
+	*str = malloc(sizeof(char *) * (count + 1));
+	if (!*str)
+		return (ERR_MALLOC);
+	(*str)[count] = NULL;
+	if (b_arr)
 	{
-		tmp->args = malloc(sizeof(char *) * (count_arg + 1));
-		if (!tmp->args)
+		*b_arr = malloc(sizeof(bool) * count);
+		if (!*b_arr)
 			return (ERR_MALLOC);
-		tmp->args[count_arg] = NULL;
 	}
-	else
-		tmp->args = NULL;
-	if (count_delim)
-	{
-		tmp->delims = malloc(sizeof(char *) * (count_delim + 1));
-		if (!tmp->delims)
-			return (ERR_MALLOC);
-		tmp->delims[count_delim] = NULL;
-	}
-	else
-		tmp->delims = NULL;
 	return (SUCCESS);
 }
 
@@ -114,7 +133,7 @@ void	ft_init_cmd(t_cmd *tmp)
 {
 	tmp->arg_pos = 0;
 	tmp->delim_pos = 0;
-	tmp->append = false;
+	tmp->out_pos = 0;
 	tmp->fd_in = -1;
 	tmp->fd_out = -1;
 	tmp->fd_pipe[0] = -1;
@@ -126,5 +145,10 @@ void	ft_init_cmd(t_cmd *tmp)
 	tmp->index = -1;
 	tmp->cmd_num = 0;
 	tmp->heredoc = NULL;
+	tmp->args = NULL;
+	tmp->delims = NULL;
+	tmp->outfiles = NULL;
+	tmp->append_switches = NULL;
+	tmp->pid = 0;
 	tmp->next = NULL;
 }

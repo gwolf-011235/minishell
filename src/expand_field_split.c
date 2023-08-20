@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:57 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 19:21:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 17:23:46 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,16 @@
  * Count the words with ft_count_expand_words().
  * If one word return.
  * If more words:
- * Setup buffer with ft_buf_init().
+ * Clear buffer with ft_buf_clear().
  * Split into several words with ft_split_node().
  * Del old node with ft_del_prev_n() and update list pointer.
  * @param input Pointer to tracker.
  * @param cur_node Pointer pointer to the current node.
  * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_err	ft_field_split(t_track *input, t_tkn_list **cur_node)
+t_err	ft_field_split(t_track *input, t_tkn_list **cur_node, t_buf *buf)
 {
 	t_tkn_list	*tmp;
-	t_buf		buf;
 	t_err		err;
 	size_t		words;
 
@@ -43,11 +42,8 @@ t_err	ft_field_split(t_track *input, t_tkn_list **cur_node)
 		return (ERR_NOSPLIT);
 	else
 	{
-		err = ft_buf_init(&buf);
-		if (err != SUCCESS)
-			return (err);
-		err = ft_split_node(input, &tmp, &buf);
-		free(buf.str);
+		ft_buf_clear(buf);
+		err = ft_split_node(input, &tmp, buf);
 		if (err != SUCCESS)
 			return (err);
 		ft_del_prev_n(tmp, words);
@@ -77,7 +73,8 @@ t_err	ft_count_expand_words(t_track *input, size_t *words,
 	if (input->pos != 0)
 	{
 		*words = 1;
-		while (input->str[input->pos] && input->str[input->pos] != ' ')
+		while (input->str[input->pos] && input->str[input->pos] != ' '
+			&& last_expand_len)
 		{
 			(input->pos)++;
 			last_expand_len--;
@@ -124,6 +121,8 @@ t_err	ft_split_node(t_track *input, t_tkn_list **cur_node, t_buf *buf)
 		ft_buf_strlcpy(buf, input->str, old_pos + 1);
 	ft_init_lexer(&src, &(input->str[old_pos]), input->last_expand_len);
 	err = ft_tokenise_fs(&src, &token, buf, input);
+	if (err != SUCCESS && err != ERR_EOF)
+		return (err);
 	while (err != ERR_EOF || !*cur_node)
 	{
 		err = ft_new_node_mid(cur_node, token.str);
@@ -134,6 +133,8 @@ t_err	ft_split_node(t_track *input, t_tkn_list **cur_node, t_buf *buf)
 		}
 		buf->cur_pos = 0;
 		err = ft_tokenise_fs(&src, &token, buf, input);
+		if (err != SUCCESS && err != ERR_EOF)
+			return (err);
 	}
 	return (SUCCESS);
 }
@@ -142,11 +143,11 @@ t_err	ft_split_node(t_track *input, t_tkn_list **cur_node, t_buf *buf)
  * @brief Tokenise a string while field split.
  *
  * Based on ft_tokenise(), adapted for field split.
+ * Does not set buffer->cur_pos to zero, something could already be in there.
  * Uses partition_fs() to fill buffer.
- * Creates a new token with ft_create_tok().
  * If field splitting is at end of expand_len (src_>cur_pos == src_buf_size) and
- * after the expansion are chars, it gets copied into buffer with ft_buf_strlcpy()
- * before last token is created.
+ * after the expansion are still chars, they get copied into buffer with ft_buf_strlcpy().
+ * Creates a new token with ft_create_tok().
  * @param src The string to tokenize.
  * @param token Where to save the token.
  * @param buf A pre malloced buffer.
@@ -160,7 +161,11 @@ t_err	ft_tokenise_fs(t_src *src, t_tok *token, t_buf *buf, t_track *input)
 		return (ERR_EMPTY);
 	err = ft_partition_fs(src, buf);
 	if (buf->cur_pos >= buf->size)
-		buf->cur_pos--;
+	{
+		err = ft_buf_double(buf);
+		if (err != SUCCESS)
+			return (err);
+	}
 	buf->str[buf->cur_pos] = '\0';
 	if (src->cur_pos == src->buf_size && input->str[input->pos])
 		ft_buf_strlcpy(buf, (input->str + input->pos), ft_strlen(input->str + input->pos) + 1);
@@ -176,7 +181,7 @@ t_err	ft_tokenise_fs(t_src *src, t_tok *token, t_buf *buf, t_track *input)
  * special meaning anymore.
  * @param src The tokenized string.
  * @param buf Pointer to pre malloced buffer.
- * @return t_err SUCCESS, ERR_MALLOC, ERR_EOF
+ * @return t_err SUCCESS, ERR_EOF
  */
 t_err	ft_partition_fs(t_src *src, t_buf *buf)
 {
@@ -189,11 +194,7 @@ t_err	ft_partition_fs(t_src *src, t_buf *buf)
 		if ((c == ' ' || c == '\t') && buf->cur_pos > 0)
 			break ;
 		else
-		{
-			err = ft_add_to_buf(c, buf);
-			if (err != SUCCESS)
-				return (err);
-		}
+			ft_add_to_buf(c, buf);
 		err = ft_next_char(src, &c);
 	}
 	return (err);

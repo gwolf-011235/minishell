@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 18:05:55 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 10:48:33 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,22 @@ t_err	ft_cd(char **argv, t_hashtable *env_tab)
 
 	size = 0;
 	oldpwd = NULL;
-	err = ft_get_array_size(argv, &size);
-	if (err != SUCCESS)
-		return (err);
+	ft_get_array_size(argv, &size);
 	if (size > 2)
-		return (ft_cd_error(ERR_ARGCOUNT, oldpwd, NULL));
+		return (ft_cd_error(ERR_ARGCOUNT, oldpwd));
 	err = ft_save_cur_pwd(&oldpwd, env_tab);
 	if (err != SUCCESS)
-		return (ft_cd_error(err, oldpwd, NULL));
+		return (ft_cd_error(err, oldpwd));
 	if (size == 1)
 	{
 		err = ft_set_path_to_home(&argv[1], env_tab);
 		if (err != SUCCESS)
-			return (ft_cd_error(err, oldpwd, NULL));
+			return (ft_cd_error(err, oldpwd));
 	}
 	err = ft_change_dir(argv[1], env_tab, oldpwd);
 	if (err != SUCCESS)
-		return (ft_cd_error(err, oldpwd, NULL));
+		return (ft_cd_error(err, oldpwd));
+	g_status = 0;
 	return (SUCCESS);
 }
 
@@ -120,23 +119,21 @@ t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd)
 	char		*pwd;
 	t_err		err;
 
-	if (chdir(path) == 0)
+	err = ft_err_chdir(path, "minishell: cd");
+	if (err != SUCCESS)
+		return (err);
+	pwd = NULL;
+	err = ft_create_env_pwd(&pwd);
+	if (err != SUCCESS)
+		return (err);
+	err = ft_update_env_var(env_tab, pwd, 3, true);
+	if (err != SUCCESS)
 	{
-		pwd = NULL;
-		err = ft_create_env_pwd(&pwd);
-		if (err != SUCCESS)
-			return (err);
-		err = ft_update_env_var(env_tab, pwd, 3, true);
-		if (err != SUCCESS)
-		{
-			free(pwd);
-			return (err);
-		}
-		err = ft_update_env_var(env_tab, oldpwd, 6, true);
-		if (err != SUCCESS)
-			return (err);
+		free(pwd);
+		return (err);
 	}
-	else
-		return (ERR_CHDIR_FAIL);
+	err = ft_update_env_var(env_tab, oldpwd, 6, true);
+	if (err != SUCCESS)
+		return (err);
 	return (SUCCESS);
 }

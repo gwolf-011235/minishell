@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 15:35:24 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/25 15:47:44 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 19:03:32 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ extern t_hashtable	*g_symtab;
 
 void	test_builtin_exit(void)
 {
+	bool	loop;
+
+	loop = true;
 	printf(YELLOW"**\tTEST BUILTIN EXIT\t**\n"RESET);
 	printf("\n");
 	g_symtab = ft_hashtable_create(1, ft_hash_fnv1);
@@ -25,7 +28,7 @@ void	test_builtin_exit(void)
 	g_argv[1] = "+178";
 	g_argv[2] = "too much";
 	g_argv[4] = NULL;
-	ft_exit(g_argv, g_symtab);
+	ft_exit(g_argv, &loop, false);
 	ft_hashtable_destroy(g_symtab);
 	test_teardown_argv();
 }

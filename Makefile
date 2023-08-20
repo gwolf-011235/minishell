@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
+#    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/13 18:14:38 by sqiu             ###   ########.fr        #
+#    Updated: 2023/08/20 17:33:50 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,6 +109,7 @@ SRC :=	utils_memory.c \
 		executor_create_child.c \
 		executor_child.c \
 		executor_cleanup.c \
+		executor_cleanup2.c \
 		executor_utils.c \
 		executor_utils2.c \
 		executor_heredoc.c \
@@ -119,7 +120,8 @@ SRC :=	utils_memory.c \
 		tkn_list_delete.c \
 		tkn_list_search.c \
 		signal.c \
-		error.c
+		error.c \
+		error_temp.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # ******************************

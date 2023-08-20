@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/13 20:10:16 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/20 17:37:39 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 	char	*input;
-	t_err	err;	
+	t_err	err;
 
 	(void)argc;
 	(void)argv;
@@ -35,7 +35,8 @@ int	main(int argc, char **argv)
 	if (ft_env_setup(&data.env_table) != SUCCESS)
 		printf("NO\n");
 	//ft_hashtable_insert(data->env_table, "PS1=\\u@\\h:\\w$ ", 3);
-	while (1)
+	data.loop = true;
+	while (data.loop)
 	{
 		err = ft_envp_create(data.env_table, &data.envp);
 		if (err != SUCCESS)
@@ -45,18 +46,33 @@ int	main(int argc, char **argv)
 			perror("Standard prompt creation failed.");
 		err = ft_prompt_create(data.env_table, &data.prompt2, "PS2", PS2_STD);
 		if (err != SUCCESS)
-			perror("Heredoc prompt creation failed.");
-		ft_signal_setup(SIGINT, SIG_STD);
-		input = readline(data.prompt1);
+			ft_exit_failure(&data, err);
+		err = ft_signal_setup(SIGINT, SIG_STD);
+		if (err != SUCCESS)
+			ft_exit_failure(&data, err);
+		if (isatty(fileno(stdin)))
+			input = readline(data.prompt1);
+		else
+		{
+			input = get_next_line(fileno(stdin));
+			input = ft_strtrim(input, "\n");
+		}
 		if (!input)
 			break ;
-		add_history(input);
-		ft_signal_setup(SIGINT, SIG_IGNORE);
-		err = ft_handle_input(input, &data);
+		if (!ft_isempty_str(input))
+		{
+			add_history(input);
+			err = ft_signal_setup(SIGINT, SIG_IGNORE);
+			if (err != SUCCESS)
+				ft_exit_failure(&data, err);
+			err = ft_handle_input(input, &data);
+		}
 		free(input);
 		free(data.prompt1);
 		free(data.prompt2);
 		ft_envp_destroy(&data.envp);
 	}
-	return (0);
+	ft_hashtable_destroy(data.env_table);
+	ft_buf_destroy(&data.buf);
+	exit(g_status);
 }

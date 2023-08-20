@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:16:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/13 16:32:34 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/17 14:12:46 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 /**
  * @brief Driver function process input.
- * 
+ *
  * Input is checked for syntax errors.
  * Input is lexed, splitted into tokens which are saved
  * in a token list.
@@ -42,10 +42,10 @@ t_err	ft_handle_input(char *input, t_data *data)
 	err = ft_check_syntax(input);
 	if (err != SUCCESS)
 		return (err);
-	err = ft_lex_input(&lst, input);
+	err = ft_lex_input(&lst, input, &data->buf);
 	if (err != SUCCESS)
 		return (err);
-	err = ft_expand_tkn_lst(&lst, data->env_table);
+	err = ft_expand_tkn_lst(&lst, data->env_table, &data->buf);
 	if (err != SUCCESS)
 		return (err);
 	err = ft_parser(lst, &cmd);
@@ -54,6 +54,6 @@ t_err	ft_handle_input(char *input, t_data *data)
 	ft_free_lst(&lst);
 	err = ft_executor(cmd, data);
 	if (err != SUCCESS)
-		return (err);
+		ft_cleanup_cmd_list(cmd);
 	return (SUCCESS);
 }

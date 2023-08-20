@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 21:45:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 14:41:45 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/14 21:17:03 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
  * @param ASSIGN	A variable assignment with valid key name.
  * @param INFILE	Redirect evoking an infile.
  * @param HEREDOC	Redirect evoking a heredoc.
+ * @param QUOTEDOC	A heredoc whose delimiter is quoted.
  * @param OUTFILE	Redirect evoking an outfile.
  * @param APPEND	Redirect evoking an outfile in append mode.
  * @param PIPE		Char indicating piping of commands.
@@ -41,6 +42,7 @@ typedef enum e_type
 	ASSIGN,
 	INFILE,
 	HEREDOC,
+	QUOTEDOC,
 	OUTFILE,
 	APPEND,
 	PIPE,

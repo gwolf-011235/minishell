@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 19:07:42 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 14:15:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,16 @@
 t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 {
 	int			fd_in;
-	t_tkn_list	*tmp;
 
-	tmp = *lst;
-	tmp = tmp->next;
+	*lst = (*lst)->next;
 	new->infile = 1;
 	if (new->fd_in > -1)
 		if (close(new->fd_in) < 0)
 			return (ERR_CLOSE);
-	fd_in = open(tmp->content, O_RDONLY);
+	fd_in = open((*lst)->content, O_RDONLY);
 	if (fd_in == -1)
 		return (ERR_OPEN);
 	new->fd_in = fd_in;
-	*lst = tmp;
 	return (SUCCESS);
 }
 
@@ -54,10 +51,10 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
  */
 t_err	ft_save_heredoc(t_tkn_list **lst, t_cmd *new)
 {
-	t_tkn_list	*tmp;
+	t_type	type;
 
-	tmp = *lst;
-	tmp = tmp->next;
+	type = (*lst)->type;
+	*lst = (*lst)->next;
 	if (!new->delims)
 		return (SUCCESS);
 	if (new->fd_in > -1)
@@ -66,46 +63,39 @@ t_err	ft_save_heredoc(t_tkn_list **lst, t_cmd *new)
 			return (ERR_CLOSE);
 		new->fd_in = -1;
 	}
-	new->delims[new->delim_pos] = ft_strdup(tmp->content);
+	new->delims[new->delim_pos] = ft_strdup((*lst)->content);
 	if (!new->delims[new->delim_pos])
 		return (ERR_MALLOC);
+	if (type == QUOTEDOC)
+		new->hdoc_quoted[new->delim_pos] = true;
+	else
+		new->hdoc_quoted[new->delim_pos] = false;
 	new->delim_pos++;
-	*lst = tmp;
 	return (SUCCESS);
 }
 
 /**
- * @brief Open file and save fd as fd_out.
+ * @brief Save outfile name and info if append mode is set.
  *
- * If append bool is true, open file in append mode.
+ * Names of outfiles are saved in string array.
+ * Append information is saved in bool array.
  * @param lst 		List of token.
  * @param new 		New cmd to be filled.
  * @param append	Bool to indicate if append mode is required.
- * @return t_err 	ERR_OPEN, SUCCESS
+ * @return t_err 	ERR_MALLOC, SUCCESS
  */
 t_err	ft_save_outfile(t_tkn_list **lst, t_cmd *new, bool append)
 {
-	int			fd_out;
-	t_tkn_list	*tmp;
-
-	tmp = *lst;
-	tmp = tmp->next;
+	*lst = (*lst)->next;
 	new->outfile = 1;
-	if (new->fd_out > -1)
-		if (close(new->fd_out) < 0)
-			return (ERR_CLOSE);
+	new->outfiles[new->out_pos] = ft_strdup((*lst)->content);
+	if (!new->outfiles[new->out_pos])
+		return (ERR_MALLOC);
 	if (append)
-		fd_out = open(tmp->content, O_WRONLY | O_APPEND | O_CREAT, 0644);
+		new->append_switches[new->out_pos] = true;
 	else
-		fd_out = open(tmp->content, O_RDWR | O_TRUNC | O_CREAT, 0644);
-	if (fd_out == -1)
-		return (ERR_OPEN);
-	new->fd_out = fd_out;
-	if (append)
-		new->append = 1;
-	else
-		new->append = 0;
-	*lst = tmp;
+		new->append_switches[new->out_pos] = false;
+	new->out_pos++;
 	return (SUCCESS);
 }
 

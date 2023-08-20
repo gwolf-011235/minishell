@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_heredoc2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:20:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 00:47:07 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/15 22:52:12 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,37 +26,18 @@
  * @param fd 		File descriptor for heredoc.
  * @return t_err 	ERR_MALLOC, ERR_OPEN, SUCCESS
  */
-t_err	ft_initiate_heredoc(int index, char **name, int *fd)
+t_err	ft_init_heredoc(t_hdoc *heredoc, int index, bool quoted, char *delim)
 {
 	t_err	err;
 
-	err = ft_name_heredoc(index, name);
+	err = ft_name_heredoc(index, &heredoc->name);
 	if (err == ERR_MALLOC)
 		return (err);
-	*fd = open(*name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if (*fd < 0)
+	heredoc->fd = open(heredoc->name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (heredoc->fd == -1)
 		return (ERR_OPEN);
-	return (SUCCESS);
-}
-
-/**
- * @brief Print warning message when EOF is
- * encountered while heredoc is reading from STDIN.
- *
- * Print prompt2.
- * Then print the warning message with
- * expected the delimiter.
- * @param delim		Delimiter string of heredoc.
- * @param prompt2	Heredoc prompt.
- * @return t_err	SUCCESS
- */
-t_err	ft_print_warning(char *delim, char *prompt2)
-{
-	//ft_putendl_fd(prompt2, 1);
-	(void)prompt2;
-	ft_putstr_fd("minishell: warning: here-document at line 42 \
-delimited by end-of-file (wanted `", 2);
-	ft_putstr_fd(delim, 2);
-	ft_putstr_fd("')\n", 2);
+	heredoc->delim = delim;
+	heredoc->delim_len = ft_strlen(delim);
+	heredoc->quoted = quoted;
 	return (SUCCESS);
 }

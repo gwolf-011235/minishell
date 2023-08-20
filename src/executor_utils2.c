@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:24:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 10:47:41 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/15 13:00:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,58 @@ bool	ft_check_empty_path(char *path_str)
 			return (true);
 	}
 	return (false); 
+}
+
+/**
+ * @brief Opens all saved outfiles of the cmd.
+ * 
+ * Previous outfiles are closed again. Only the
+ * last outfile is preserved.
+ * Differentiates each outfile regarding append mode.
+ * @param cmd 		Current cmd.
+ * @return t_err 	ERR_CLOSE, ERR_OPEN, SUCCESS
+ */
+t_err	ft_open_outfile(t_cmd *cmd)
+{
+	int	i;
+
+	i = -1;
+	while (cmd->outfiles[++i])
+	{
+		if (cmd->fd_out > -1)
+			if (close(cmd->fd_out) == -1)
+				return (ERR_CLOSE);
+		if (cmd->append_switches[i])
+			cmd->fd_out = open(cmd->outfiles[i], O_WRONLY | O_APPEND | O_CREAT,
+					0644);
+		else
+			cmd->fd_out = open(cmd->outfiles[i], O_RDWR | O_TRUNC | O_CREAT,
+					0644);
+		if (cmd->fd_out == -1)
+			return (ERR_OPEN);
+	}
+	return (SUCCESS);
+}
+
+/**
+ * @brief Opens all outfiles of pipeline.
+ * 
+ * @param cmd 		List of cmds in pipeline.
+ * @return t_err 	ERR_OPEN, SUCCESS
+ */
+t_err	ft_loop_thru_outfiles(t_cmd *cmd)
+{
+	t_err	err;
+
+	while (cmd)
+	{
+		if (cmd->outfiles)
+		{
+			err = ft_open_outfile(cmd);
+			if (err != SUCCESS)
+				return (err);
+		}
+		cmd = cmd->next;
+	}
+	return (SUCCESS);
 }
