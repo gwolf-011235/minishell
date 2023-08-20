@@ -1,4 +1,15 @@
-#include "minishell_error.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_temp.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/20 17:40:16 by gwolf             #+#    #+#             */
+/*   Updated: 2023/08/20 17:40:21 by gwolf            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell_error.h"
 #include "libft.h"
 #include <unistd.h>
@@ -58,54 +69,6 @@ t_err	ft_print_warning2(char *indic, char *trigger)
 		ft_putstr_fd(trigger, 2);
 		ft_putendl_fd(": command not found", 2);
 		return (SUCCESS);
-	}
-	return (SUCCESS);
-}
-
-t_err	ft_err_write(int fd, char *str, char *msg)
-{
-	int	ret;
-
-	errno = 0;
-	ret = write(fd, str, ft_strlen(str));
-	if (ret == -1)
-	{
-		perror(msg);
-		return (ERR_WRITE);
-	}
-	return (SUCCESS);
-}
-
-t_err	ft_err_chdir(char *path, char *msg)
-{
-	int	ret;
-
-	errno = 0;
-	ret = chdir(path);
-	if (ret == -1)
-	{
-		ft_putstr_fd(msg, 2);
-		perror(path);
-		return (ERR_CHDIR_FAIL);
-	}
-	return (SUCCESS);
-}
-
-t_err	ft_err_stat(const char *pathname, struct stat *statbuf, char *msg)
-{
-	int	ret;
-
-	errno = 0;
-	ret = stat(pathname, statbuf);
-	if (ret == -1)
-	{
-		if (errno == ENOENT)
-			return (ERR_NO_DIR);
-		else
-		{
-			perror(msg);
-			return (ERR_STAT);
-		}
 	}
 	return (SUCCESS);
 }
