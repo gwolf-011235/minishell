@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/18 17:12:55 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 20:50:20 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,8 @@ t_err	ft_wait_for_babies(t_cmd *cmd)
 {
 	int	status;
 
+	if (cmd->pid == 0)
+		return (SUCCESS);
 	while (cmd)
 	{
 		if (waitpid(cmd->pid, &status, 0) < 0)
