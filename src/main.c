@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/20 17:37:39 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/20 17:43:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 		err = ft_prompt_create(data.env_table, &data.prompt2, "PS2", PS2_STD);
 		if (err != SUCCESS)
 			ft_exit_failure(&data, err);
-		err = ft_signal_setup(SIGINT, SIG_STD);
+		ft_signal_setup(SIGINT, SIG_STD);
 		if (err != SUCCESS)
 			ft_exit_failure(&data, err);
 		if (isatty(fileno(stdin)))
@@ -62,7 +62,7 @@ int	main(int argc, char **argv)
 		if (!ft_isempty_str(input))
 		{
 			add_history(input);
-			err = ft_signal_setup(SIGINT, SIG_IGNORE);
+			ft_signal_setup(SIGINT, SIG_IGNORE);
 			if (err != SUCCESS)
 				ft_exit_failure(&data, err);
 			err = ft_handle_input(input, &data);
