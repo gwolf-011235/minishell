@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/20 17:35:19 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/20 17:42:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 /* ====== Globals ====== */
 
 extern __sig_atomic_t	g_status;
+
+/* ====== Typedefs ====== */
 
 /**
  * @brief Enum, which contains all error codes.
@@ -78,6 +80,17 @@ typedef enum e_error {
 	ERR_NO_DIR, ///< Directory or file not found
 	ERR_STAT ///< stat() failed.
 }	t_err;
+
+/* ====== Functions ====== */
+
+//error.c
+t_err	ft_err_write(int fd, char *str, char *msg);
+t_err	ft_err_chdir(char *path, char *msg);
+t_err	ft_err_stat(const char *pathname, struct stat *statbuf, char *msg);
+
+//error_msg.c
+t_err	ft_print_warning(char *indic, char *trigger);
+t_err	ft_print_warning2(char *indic, char *trigger);
 
 
 #endif
