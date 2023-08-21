@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 17:57:23 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/21 17:16:37 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/21 18:14:59 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,26 @@ t_err	ft_err_malloc(void **ptr, size_t size, char *msg)
 		return (ERR_MALLOC);
 	}
 	return (SUCCESS);
+}
+
+t_err	ft_err_getcwd(char *buf, size_t size, char *msg)
+{
+	errno = 0;
+	if (getcwd(*buf, size) == NULL)
+	{
+		if (errno == ERANGE)
+			return (ERR_CWD_BUF);
+		else
+		{
+			perror(msg);
+			return (ERR_CWD_FAIL);
+		}
+	}
+	return (SUCCESS);
+}
+
+
+
+
+
 }

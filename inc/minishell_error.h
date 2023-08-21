@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/21 17:16:51 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/21 18:15:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef enum e_error {
 	ERR_HT_NO_DELETE, ///< ft_hashtable_delete() could not delete.
 	ERR_HT_NO_SWAP, ///< ft_hashtable_swap() didn't find element.
 	ERR_EMPTY, ///< One or more passed params are empty.
+	ERR_CWD_BUF, ///< Buffer size for cwd was too small.
 	ERR_CWD_FAIL, ///< function getcwd failed.
 	ERR_NO_SHLVL, ///< ft_increment_shlvl didn't find SHLVL.
 	ERR_OUT_OF_BOUNDS, ///< A parameter has exceeded the allowed range.
@@ -88,6 +89,7 @@ t_err	ft_err_write(int fd, char *str, char *msg);
 t_err	ft_err_chdir(char *path, char *msg);
 t_err	ft_err_stat(const char *pathname, struct stat *statbuf, char *msg);
 t_err	ft_err_malloc(void **ptr, size_t size, char *msg);
+t_err	ft_err_getcwd(char *buf, size_t size, char *msg);
 
 //error_msg.c
 t_err	ft_print_warning(char *indic, char *trigger);
