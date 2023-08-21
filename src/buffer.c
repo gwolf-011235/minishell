@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/17 14:08:00 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/21 17:23:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@
  */
 t_err	ft_buf_init(t_buf *buf)
 {
+	t_err	err;
+
 	buf->size = BUF_SIZE;
-	buf->str = malloc(buf->size);
-	if (!buf->str)
-		return (ERR_MALLOC);
+	err = ft_err_malloc((void **)&buf->str, buf->size,
+			"minishell: ft_buf_init");
+	if (err != SUCCESS)
+		return (err);
 	ft_buf_clear(buf);
 	return (SUCCESS);
 }
