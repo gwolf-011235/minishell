@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/21 17:23:27 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/21 18:22:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,13 @@ t_err	ft_buf_double(t_buf *buf)
 {
 	char	*temp;
 
+	errno = 0;
 	temp = ft_realloc(buf->str, (buf->size * 2), buf->size);
 	if (!temp)
+	{
+		perror("minishell: ft_buf_double");
 		return (ERR_MALLOC);
+	}
 	buf->str = temp;
 	buf->size *= 2;
 	return (SUCCESS);
