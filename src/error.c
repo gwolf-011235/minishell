@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 17:57:23 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/20 17:39:38 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/21 17:16:37 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,18 @@ t_err	ft_err_stat(const char *pathname, struct stat *statbuf, char *msg)
 			perror(msg);
 			return (ERR_STAT);
 		}
+	}
+	return (SUCCESS);
+}
+
+t_err	ft_err_malloc(void **ptr, size_t size, char *msg)
+{
+	errno = 0;
+	*ptr = malloc(size);
+	if (*ptr == NULL)
+	{
+		perror(msg);
+		return (ERR_MALLOC);
 	}
 	return (SUCCESS);
 }
