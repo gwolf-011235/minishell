@@ -103,67 +103,16 @@ Functions</h2></td></tr>
 <tr class="memitem:a2a3c7ee74c7a9df01dd0cf92c9d1991b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashtable__utils_8c.html#a2a3c7ee74c7a9df01dd0cf92c9d1991b">ft_hashtable_index</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *ht, const char *key, size_t keylen)</td></tr>
 <tr class="memdesc:a2a3c7ee74c7a9df01dd0cf92c9d1991b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate index in hashtable of given string via hashfunction.  <a href="hashtable__utils_8c.html#a2a3c7ee74c7a9df01dd0cf92c9d1991b">More...</a><br /></td></tr>
 <tr class="separator:a2a3c7ee74c7a9df01dd0cf92c9d1991b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af52db5ab8ccabf95bebaa286eef096de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashtable__utils_8c.html#af52db5ab8ccabf95bebaa286eef096de">ft_hashtable_insert</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *ht, char *string, size_t keylen, bool has_value)</td></tr>
-<tr class="memdesc:af52db5ab8ccabf95bebaa286eef096de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert an env-string into hashtable.  <a href="hashtable__utils_8c.html#af52db5ab8ccabf95bebaa286eef096de">More...</a><br /></td></tr>
-<tr class="separator:af52db5ab8ccabf95bebaa286eef096de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47451b021c36ef99c300d76ad458aceb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashtable_8h.html#acf492e955776c85b7354a3f5ee5f3215">t_env_var</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashtable__utils_8c.html#a47451b021c36ef99c300d76ad458aceb">ft_hashtable_lookup</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *ht, const char *string, size_t keylen)</td></tr>
 <tr class="memdesc:a47451b021c36ef99c300d76ad458aceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for env_var in hashtable.  <a href="hashtable__utils_8c.html#a47451b021c36ef99c300d76ad458aceb">More...</a><br /></td></tr>
 <tr class="separator:a47451b021c36ef99c300d76ad458aceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c91a2ec393664b5d7c0d79e563ff33c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashtable__utils_8c.html#a7c91a2ec393664b5d7c0d79e563ff33c">ft_hashtable_delete</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *ht, char *string, size_t keylen)</td></tr>
-<tr class="memdesc:a7c91a2ec393664b5d7c0d79e563ff33c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete one element of hashtable.  <a href="hashtable__utils_8c.html#a7c91a2ec393664b5d7c0d79e563ff33c">More...</a><br /></td></tr>
-<tr class="separator:a7c91a2ec393664b5d7c0d79e563ff33c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87dfa182524abe2c23869012c032f777"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashtable__utils_8c.html#a87dfa182524abe2c23869012c032f777">ft_hashtable_swap</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *ht, char *string, size_t keylen, bool has_value)</td></tr>
-<tr class="memdesc:a87dfa182524abe2c23869012c032f777"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap an env_string in hashtable.  <a href="hashtable__utils_8c.html#a87dfa182524abe2c23869012c032f777">More...</a><br /></td></tr>
-<tr class="separator:a87dfa182524abe2c23869012c032f777"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9c2bffe4d68c74be8a6d2906a6e0fc0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashtable__utils_8c.html#ac9c2bffe4d68c74be8a6d2906a6e0fc0">ft_hashtable_vary_nums</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *ht, <a class="el" href="hashtable_8h.html#acf492e955776c85b7354a3f5ee5f3215">t_env_var</a> *tmp, int num)</td></tr>
+<tr class="memdesc:ac9c2bffe4d68c74be8a6d2906a6e0fc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increase or decrease element numbers in hashtable.  <a href="hashtable__utils_8c.html#ac9c2bffe4d68c74be8a6d2906a6e0fc0">More...</a><br /></td></tr>
+<tr class="separator:ac9c2bffe4d68c74be8a6d2906a6e0fc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Utils functions to use with env hashtable. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a7c91a2ec393664b5d7c0d79e563ff33c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c91a2ec393664b5d7c0d79e563ff33c">&#9670;&nbsp;</a></span>ft_hashtable_delete()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_hashtable_delete </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>ht</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>string</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>keylen</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Delete one element of hashtable. </p>
-<p>Check if params are empty. Generate index and set tmp pointer to start of list. Set prev pointer to NULL. Loop through the list and update tmp and prev pointers. If tmp == NULL no element was found. If prev == NULL element is at start of list. If element is found free. Then free element and update next pointer. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ht</td><td>Hashtable in which to delete one element </td></tr>
-    <tr><td class="paramname">string</td><td>env_string which should be deleted </td></tr>
-    <tr><td class="paramname">keylen</td><td>length of env_var (everthing before =) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_EMPTY, ERR_HT_NO_DELETE </dd></dl>
-
-</div>
-</div>
 <a id="a2a3c7ee74c7a9df01dd0cf92c9d1991b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2a3c7ee74c7a9df01dd0cf92c9d1991b">&#9670;&nbsp;</a></span>ft_hashtable_index()</h2>
 
@@ -206,57 +155,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>size_t Index of the given string </dd></dl>
-
-</div>
-</div>
-<a id="af52db5ab8ccabf95bebaa286eef096de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af52db5ab8ccabf95bebaa286eef096de">&#9670;&nbsp;</a></span>ft_hashtable_insert()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_hashtable_insert </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>ht</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>string</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>keylen</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>has_value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Insert an env-string into hashtable. </p>
-<p>Check if any param is empty and if key is already inserted. Generate index and malloc new element. Set new element as head of the list pointed to by index. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ht</td><td>Hashtable in which to insert </td></tr>
-    <tr><td class="paramname">string</td><td>env_string which should be inserted </td></tr>
-    <tr><td class="paramname">keylen</td><td>Length of env_var (everything before =) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_HT_NO_INSERT </dd></dl>
 
 </div>
 </div>
@@ -305,14 +203,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a87dfa182524abe2c23869012c032f777"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87dfa182524abe2c23869012c032f777">&#9670;&nbsp;</a></span>ft_hashtable_swap()</h2>
+<a id="ac9c2bffe4d68c74be8a6d2906a6e0fc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9c2bffe4d68c74be8a6d2906a6e0fc0">&#9670;&nbsp;</a></span>ft_hashtable_vary_nums()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_hashtable_swap </td>
+          <td class="memname">void ft_hashtable_vary_nums </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
           <td class="paramname"><em>ht</em>, </td>
@@ -320,20 +218,14 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>string</em>, </td>
+          <td class="paramtype"><a class="el" href="hashtable_8h.html#acf492e955776c85b7354a3f5ee5f3215">t_env_var</a> *&#160;</td>
+          <td class="paramname"><em>tmp</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>keylen</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>has_value</em>&#160;</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -343,16 +235,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Swap an env_string in hashtable. </p>
-<p>Search for key of given string, if not found return. Free the old env_str. Set the passed string and adjust value. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Increase or decrease element numbers in hashtable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ht</td><td>Hashtable where to insert. </td></tr>
-    <tr><td class="paramname">string</td><td>Env_string which should be inserted </td></tr>
-    <tr><td class="paramname">keylen</td><td>Length of the key. </td></tr>
+    <tr><td class="paramname">ht</td><td>Hashtable which gets updated. </td></tr>
+    <tr><td class="paramname">tmp</td><td>Inserted / deleted element </td></tr>
+    <tr><td class="paramname">num</td><td>Value to add to element numbers (neagtive to decrease). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_EMPTY, ERR_HT_NO_SWAP, SUCCESS </dd></dl>
 
 </div>
 </div>

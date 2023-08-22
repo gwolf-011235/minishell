@@ -44,7 +44,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"mod__cleanup_8h_source.html"
+"minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aeeff5ceb398b3bd6b8ce179c47fb917f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

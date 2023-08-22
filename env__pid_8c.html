@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Minishell: env_pwd.c File Reference</title>
+<title>Minishell: env_pid.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('env__pwd_8c.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('env__pid_8c.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -91,92 +91,90 @@ $(document).ready(function(){initNavTree('env__pwd_8c.html',''); initResizable()
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">env_pwd.c File Reference</div>  </div>
+<div class="title">env_pid.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Functions relating to env_var $PWD.  
+<p>Functions relating to env_var $$.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a90aa40452a5af9eec0b7f887cee48b94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__pwd_8c.html#a90aa40452a5af9eec0b7f887cee48b94">ft_create_pwd_value</a> (char **pwd_value)</td></tr>
-<tr class="memdesc:a90aa40452a5af9eec0b7f887cee48b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create string with the present working directory.  <a href="env__pwd_8c.html#a90aa40452a5af9eec0b7f887cee48b94">More...</a><br /></td></tr>
-<tr class="separator:a90aa40452a5af9eec0b7f887cee48b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0208d01b53cc9eb1fac5531e37b8a007"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__pwd_8c.html#a0208d01b53cc9eb1fac5531e37b8a007">ft_create_env_pwd</a> (char **pwd)</td></tr>
-<tr class="memdesc:a0208d01b53cc9eb1fac5531e37b8a007"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new env_var PWD=path/to/pwd.  <a href="env__pwd_8c.html#a0208d01b53cc9eb1fac5531e37b8a007">More...</a><br /></td></tr>
-<tr class="separator:a0208d01b53cc9eb1fac5531e37b8a007"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a229e8b9407ecd87f8bd9124a20e607c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__pwd_8c.html#a229e8b9407ecd87f8bd9124a20e607c0">ft_insert_env_pwd</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table)</td></tr>
-<tr class="memdesc:a229e8b9407ecd87f8bd9124a20e607c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts the env_var PWD.  <a href="env__pwd_8c.html#a229e8b9407ecd87f8bd9124a20e607c0">More...</a><br /></td></tr>
-<tr class="separator:a229e8b9407ecd87f8bd9124a20e607c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a224a2e7895a34c9afc64004aaffec0c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__pid_8c.html#a224a2e7895a34c9afc64004aaffec0c2">ft_get_pid_value</a> (pid_t *pid)</td></tr>
+<tr class="memdesc:a224a2e7895a34c9afc64004aaffec0c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve pid for current process.  <a href="env__pid_8c.html#a224a2e7895a34c9afc64004aaffec0c2">More...</a><br /></td></tr>
+<tr class="separator:a224a2e7895a34c9afc64004aaffec0c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a364efaec7abb9e253fb4c3f1caf07eec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__pid_8c.html#a364efaec7abb9e253fb4c3f1caf07eec">ft_create_env_pid</a> (char **env_pid)</td></tr>
+<tr class="memdesc:a364efaec7abb9e253fb4c3f1caf07eec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates env_var $$=PID.  <a href="env__pid_8c.html#a364efaec7abb9e253fb4c3f1caf07eec">More...</a><br /></td></tr>
+<tr class="separator:a364efaec7abb9e253fb4c3f1caf07eec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a533b2e764b5e629cae53f9aabf89d95d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__pid_8c.html#a533b2e764b5e629cae53f9aabf89d95d">ft_insert_env_pid</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table)</td></tr>
+<tr class="memdesc:a533b2e764b5e629cae53f9aabf89d95d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts the env_var $$.  <a href="env__pid_8c.html#a533b2e764b5e629cae53f9aabf89d95d">More...</a><br /></td></tr>
+<tr class="separator:a533b2e764b5e629cae53f9aabf89d95d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Functions relating to env_var $PWD. </p>
+<div class="textblock"><p>Functions relating to env_var $$. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a0208d01b53cc9eb1fac5531e37b8a007"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0208d01b53cc9eb1fac5531e37b8a007">&#9670;&nbsp;</a></span>ft_create_env_pwd()</h2>
+<a id="a364efaec7abb9e253fb4c3f1caf07eec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a364efaec7abb9e253fb4c3f1caf07eec">&#9670;&nbsp;</a></span>ft_create_env_pid()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_create_env_pwd </td>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_create_env_pid </td>
           <td>(</td>
           <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>pwd</em></td><td>)</td>
+          <td class="paramname"><em>env_pid</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates a new env_var PWD=path/to/pwd. </p>
-<p>Receives pointer to pointer to change value outside of function. Return is t_err, so it can't return pointer itself. Call ft_create_pwd_value to get right side of env_var. If error passes on the error. If success strjoin with left side.</p>
+<p>Creates env_var $$=PID. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pwd</td><td>Pointer to pointer where to save string. </td></tr>
+    <tr><td class="paramname">env_pid</td><td>Where to save env_str </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_OPEN, ERR_MALLOC </dd></dl>
 
 </div>
 </div>
-<a id="a90aa40452a5af9eec0b7f887cee48b94"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90aa40452a5af9eec0b7f887cee48b94">&#9670;&nbsp;</a></span>ft_create_pwd_value()</h2>
+<a id="a224a2e7895a34c9afc64004aaffec0c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a224a2e7895a34c9afc64004aaffec0c2">&#9670;&nbsp;</a></span>ft_get_pid_value()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_create_pwd_value </td>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_get_pid_value </td>
           <td>(</td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>pwd_value</em></td><td>)</td>
+          <td class="paramtype">pid_t *&#160;</td>
+          <td class="paramname"><em>pid</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Create string with the present working directory. </p>
-<p>Receives pointer to pointer to change value outside of function. Return is t_err, so it can't return pointer itself. Malloc string with 4096 and call getcwd for pwd. If path is longer than size, free and malloc twice the size. Repeat until path fits in array.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Retrieve pid for current process. </p>
+<p>/proc/self/stat provides status information about the process. /self/ is a magic link pointing to the calling process. Open, read with get_next_line(). First number corresponds to pid. Convert with ft_atoi(). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pwd_value</td><td>Pointer to pointer where to save string </td></tr>
+    <tr><td class="paramname">pid</td><td>Pointer to int where to save. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_OPEN, ERR_MALLOC </dd></dl>
 
 </div>
 </div>
-<a id="a229e8b9407ecd87f8bd9124a20e607c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a229e8b9407ecd87f8bd9124a20e607c0">&#9670;&nbsp;</a></span>ft_insert_env_pwd()</h2>
+<a id="a533b2e764b5e629cae53f9aabf89d95d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a533b2e764b5e629cae53f9aabf89d95d">&#9670;&nbsp;</a></span>ft_insert_env_pid()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_insert_env_pwd </td>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_insert_env_pid </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
           <td class="paramname"><em>env_table</em></td><td>)</td>
@@ -185,14 +183,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates and inserts the env_var PWD. </p>
-<p>If no PWD is present in env_table, this function inserts. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Creates and inserts the env_var $$. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">data</td><td></td></tr>
+    <tr><td class="paramname">env_table</td><td>Environment. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL, ERR_HT_NO_INSERT, ERR_EMPTY, ERR_NOT_FOUND </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>SUCCESS, ERR_MALLOC, ERR_OPEN </dd></dl>
 
 </div>
 </div>
@@ -201,7 +199,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="env__pwd_8c.html">env_pwd.c</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="env__pid_8c.html">env_pid.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

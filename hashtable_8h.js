@@ -11,6 +11,9 @@ var hashtable_8h =
     [ "ft_hashtable_destroy", "hashtable_8h.html#a73387b5064ffe2aee0755ef13824885c", null ],
     [ "ft_hashtable_index", "hashtable_8h.html#a2a3c7ee74c7a9df01dd0cf92c9d1991b", null ],
     [ "ft_hashtable_insert", "hashtable_8h.html#af52db5ab8ccabf95bebaa286eef096de", null ],
+    [ "ft_hashtable_insert_export", "hashtable_8h.html#ab9dd9119950711c9d7653048ffbba9c5", null ],
     [ "ft_hashtable_lookup", "hashtable_8h.html#a47451b021c36ef99c300d76ad458aceb", null ],
-    [ "ft_hashtable_swap", "hashtable_8h.html#a87dfa182524abe2c23869012c032f777", null ]
+    [ "ft_hashtable_set_export", "hashtable_8h.html#a39cbe29595148186ed4cdbe574a938d8", null ],
+    [ "ft_hashtable_swap", "hashtable_8h.html#a87dfa182524abe2c23869012c032f777", null ],
+    [ "ft_hashtable_vary_nums", "hashtable_8h.html#ac9c2bffe4d68c74be8a6d2906a6e0fc0", null ]
 ];

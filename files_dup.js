@@ -13,6 +13,7 @@ var files_dup =
     [ "builtin_utils.c", "builtin__utils_8c.html", "builtin__utils_8c" ],
     [ "cleanup.c", "cleanup_8c.html", "cleanup_8c" ],
     [ "env_envp.c", "env__envp_8c.html", "env__envp_8c" ],
+    [ "env_pid.c", "env__pid_8c.html", "env__pid_8c" ],
     [ "env_pwd.c", "env__pwd_8c.html", "env__pwd_8c" ],
     [ "env_setup.c", "env__setup_8c.html", "env__setup_8c" ],
     [ "env_shlvl.c", "env__shlvl_8c.html", "env__shlvl_8c" ],
