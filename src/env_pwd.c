@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:15:11 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 14:47:27 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/22 18:44:07 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ t_err	ft_create_env_pwd(char **pwd)
  *
  * If no PWD is present in env_table, this function inserts.
  * @param data
- * @return t_err If SUCCESS it exits
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL, ERR_HT_NO_INSERT,
+ * ERR_EMPTY, ERR_NOT_FOUND
  */
 t_err	ft_insert_env_pwd(t_hashtable *env_table)
 {

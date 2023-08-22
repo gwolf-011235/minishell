@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:39:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/22 18:38:48 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/22 18:42:45 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_err	ft_create_env_pid(char **env_pid)
  * @brief Creates and inserts the env_var $$.
  *
  * @param env_table Environment.
- * @return SUCCESS, ERR_MALLOC
+ * @return SUCCESS, ERR_MALLOC, ERR_OPEN
  */
 t_err	ft_insert_env_pid(t_hashtable *env_table)
 {
