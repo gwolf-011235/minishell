@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 22:45:56 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/14 14:49:06 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/22 17:28:54 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	ft_cleanup_cmd_list(t_cmd *cmd)
 	while (cmd)
 	{
 		err = ft_cleanup_cmd(cmd);
-		if (err != SUCCESS)
-			perror("Closing of fd failed.");
+/* 		if (err != SUCCESS)
+			perror("Closing of fd failed."); */
 		cmd = cmd->next;
 	}
 }

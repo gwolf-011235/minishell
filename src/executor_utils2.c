@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:24:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 13:00:40 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/22 17:11:41 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ t_err	ft_open_outfile(t_cmd *cmd)
 			cmd->fd_out = open(cmd->outfiles[i], O_RDWR | O_TRUNC | O_CREAT,
 					0644);
 		if (cmd->fd_out == -1)
-			return (ERR_OPEN);
+			ft_print_warning("nodir", cmd->outfiles[i]);
 	}
 	return (SUCCESS);
 }
