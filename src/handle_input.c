@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:16:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/17 14:12:46 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/22 18:43:14 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_err	ft_handle_input(char *input, t_data *data)
 		return (err);
 	ft_free_lst(&lst);
 	err = ft_executor(cmd, data);
-	if (err != SUCCESS)
-		ft_cleanup_cmd_list(cmd);
+	ft_cleanup_cmd_list(cmd);
 	return (SUCCESS);
 }
