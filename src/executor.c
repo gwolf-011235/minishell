@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/19 20:48:00 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/22 19:35:08 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 		err = ft_open_outfile(cmd);
 	if (err != SUCCESS)
 		return (err);
-	if (cmd->args)
+	if (cmd->args && cmd->execute)
 	{
 		if (ft_check_builtin(cmd->args[0]))
 			return (ft_execute_builtin(0, cmd, data));
@@ -124,7 +124,7 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 		return (err);
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
-		if (cmd->args)
+		if (cmd->args && cmd->execute)
 		{
 			if (ft_check_builtin(cmd->args[0]))
 			{
@@ -141,6 +141,12 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 				if (err != SUCCESS)
 					return (err);
 			}
+		}
+		else
+		{
+			ft_plug_pipe(cmd);
+			ft_close(&cmd->fd_in);
+			ft_close(&cmd->fd_out);
 		}
 		cmd = cmd->next;
 	}

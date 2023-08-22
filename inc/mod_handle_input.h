@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_handle_input.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/17 14:13:02 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/22 18:08:48 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
  */
 typedef struct s_cmd
 {
+	bool			execute;
 	char			**args;
 	int				arg_pos;
 	char			**delims;
