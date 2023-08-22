@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/17 14:14:48 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 12:09:33 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_err	ft_get_tilde_var(t_track *input, t_str *token);
 
 //expand_dollar.c
 t_err	ft_expand_dollar(t_track *input, t_hashtable *symtab);
-t_err	ft_special_dollar(t_str *token, t_str *replace);
+t_err	ft_special_dollar(t_str *token, t_str *replace, t_hashtable *symtab, char c);
 t_err	ft_get_dollar_var(t_track *input, t_str *token);
 t_err	ft_get_dollar_replace(t_str *token, t_hashtable *symtab, t_str *replace);
 
