@@ -59,6 +59,14 @@ t_err	ft_print_warning2(char *indic, char *trigger)
 		ft_putendl_fd(": command not found", 2);
 		return (SUCCESS);
 	}
+	if (!ft_strncmp(indic, "ambiguous", 10))
+	{
+		g_status = 1;
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(trigger, 2);
+		ft_putendl_fd(": ambiguous redirect", 2);
+		return (SUCCESS);
+	}
 	return (SUCCESS);
 }
 
