@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:39:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 19:19:09 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/22 18:38:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
  * @param pid Pointer to int where to save.
  * @return t_err SUCCESS, ERR_OPEN, ERR_MALLOC
  */
-t_err	ft_get_pid_value(int *pid)
+t_err	ft_get_pid_value(pid_t *pid)
 {
 	int		fd;
 	char	*line;
@@ -51,7 +51,7 @@ t_err	ft_get_pid_value(int *pid)
 t_err	ft_create_env_pid(char **env_pid)
 {
 	t_err	err;
-	int		pid;
+	pid_t	pid;
 	char	*tmp;
 
 	pid = 0;
