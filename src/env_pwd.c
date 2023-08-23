@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:15:11 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/23 09:26:47 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 12:26:42 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,11 @@ t_err	ft_insert_env_pwd(t_hashtable *env_table, t_buf *buf)
 	err = ft_create_env_pwd(&pwd, buf);
 	if (err != SUCCESS)
 		return (err);
+	errno = 0;
 	err = ft_hashtable_insert_export(env_table, pwd, 3, true);
-	if (err != SUCCESS)
-		return (err);
-	return (SUCCESS);
+	if (err == ERR_MALLOC)
+		perror("minishell: startup");
+	if (err == ERR_MALLOC || err == ERR_HT_NO_INSERT)
+		free(pwd);
+	return (err);
 }
