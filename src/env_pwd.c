@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:15:11 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/22 18:44:07 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 09:26:47 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,24 @@
  * @param pwd_value Pointer to pointer where to save string
  * @return t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL.
  */
-t_err	ft_create_pwd_value(char **pwd_value)
+t_err	ft_create_pwd_value(t_buf *buf)
 {
-	size_t	size;
+	t_err	err;
 
-	size = 4096;
 	while (1)
 	{
-		*pwd_value = malloc(size);
-		if (*pwd_value == NULL)
-			return (ERR_MALLOC);
-		if (getcwd(*pwd_value, size) != NULL)
+		err = ft_err_getcwd(buf->str, buf->size,
+				"minishell: ft_create_pwd_value");
+		if (err == SUCCESS)
 			break ;
-		else
+		else if (err == ERR_CWD_BUF)
 		{
-			free(*pwd_value);
-			if (errno == ERANGE)
-			{
-				size *= 2;
-				continue ;
-			}
-			else
-				return (ERR_CWD_FAIL);
+			err = ft_buf_double(buf);
+			if (err == ERR_MALLOC)
+				return (ERR_MALLOC);
 		}
+		else
+			return (ERR_CWD_FAIL);
 	}
 	return (SUCCESS);
 }
@@ -68,19 +63,21 @@ t_err	ft_create_pwd_value(char **pwd_value)
  * @param pwd Pointer to pointer where to save string.
  * @return t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL
  */
-t_err	ft_create_env_pwd(char **pwd)
+t_err	ft_create_env_pwd(char **pwd, t_buf *buf)
 {
 	t_err	err;
-	char	*pwd_value;
 
-	pwd_value = NULL;
-	err = ft_create_pwd_value(&pwd_value);
+	ft_buf_clear(buf);
+	err = ft_create_pwd_value(buf);
 	if (err != SUCCESS)
 		return (err);
-	*pwd = ft_strjoin("PWD=", pwd_value);
-	free(pwd_value);
+	errno = 0;
+	*pwd = ft_strjoin("PWD=", buf->str);
 	if (*pwd == NULL)
+	{
+		perror("minishell: ft_create_env_pwd");
 		return (ERR_MALLOC);
+	}
 	return (SUCCESS);
 }
 
@@ -92,13 +89,13 @@ t_err	ft_create_env_pwd(char **pwd)
  * @return t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL, ERR_HT_NO_INSERT,
  * ERR_EMPTY, ERR_NOT_FOUND
  */
-t_err	ft_insert_env_pwd(t_hashtable *env_table)
+t_err	ft_insert_env_pwd(t_hashtable *env_table, t_buf *buf)
 {
 	char	*pwd;
 	t_err	err;
 
 	pwd = NULL;
-	err = ft_create_env_pwd(&pwd);
+	err = ft_create_env_pwd(&pwd, buf);
 	if (err != SUCCESS)
 		return (err);
 	err = ft_hashtable_insert_export(env_table, pwd, 3, true);
