@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/23 09:28:48 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 10:49:08 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include "hashtable.h"
 # include "minishell_struct.h"
 # include "minishell_config.h"
+# include "mod_signal.h"
 
 //init.c
 t_err	ft_startup(t_data *data);
