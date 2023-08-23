@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:41:48 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/23 11:58:27 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 21:18:03 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,11 @@
  */
 extern char	**environ;
 
-# define MAX "minishell: warning: shell level (%d) too high, resetting to 1\n"
-
 //env_setup.c
 t_err	ft_env_setup(t_hashtable **env_table, char *argv_zero, t_buf *buf);
 t_err	ft_import_environ(t_hashtable *env_table);
 t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str);
-t_err	ft_insert_env_prompt(t_hashtable *env_table, char opt);
+t_err	ft_insert_env_prompt(t_hashtable *env_table);
 
 //env_pwd.c
 t_err	ft_create_pwd_value(t_buf *buf);
@@ -45,6 +43,7 @@ t_err	ft_insert_env_pwd(t_hashtable *env_table, t_buf *buf);
 t_err	ft_create_env_shlvl(char **shlvl, int val);
 t_err	ft_increment_shlvl(t_hashtable *env_table);
 t_err	ft_insert_env_shlvl(t_hashtable *env_table);
+void	ft_print_warning_shlvl(int new_val);
 
 //env_pid.c
 t_err	ft_get_pid_value(pid_t *pid);
