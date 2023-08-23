@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/23 09:27:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 11:11:21 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,21 +105,25 @@ t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str)
 	t_err	err;
 
 	keylen = 0;
-	err = ft_get_env_keylen(environ_str, &keylen);
-	if (err == ERR_INVALID_NAME)
-		return (err);
-	errno = 0;
-	env_str = ft_strdup(environ_str);
-	if (!env_str)
-	{
-		perror("minishell: ft_copy_environ_str");
+	if (ft_get_env_keylen(environ_str, &keylen) == ERR_INVALID_NAME)
+		return (ERR_INVALID_NAME);
+	env_str = NULL;
+	if (ft_err_strdup(environ_str, &env_str,
+			"minishell: startup") == ERR_MALLOC)
 		return (ERR_MALLOC);
-	}
 	if (env_str[keylen] == '=')
+	{
+		errno = 0;
 		err = ft_hashtable_insert_export(env_table, env_str, keylen, true);
-	if (err != SUCCESS && err != ERR_HT_NO_INSERT)
+		if (err == ERR_MALLOC)
+			perror("minishell: startup");
+		if (err == ERR_MALLOC || err == ERR_HT_NO_INSERT)
+			free(env_str);
+		return (err);
+	}
+	else
 		free(env_str);
-	return (err);
+	return (SUCCESS);
 }
 
 /**
