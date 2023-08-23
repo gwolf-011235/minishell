@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:47:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 17:06:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 09:34:45 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ t_err	ft_reset_fd_scmd(int old_stdin, int old_stdout)
 void	ft_choose_builtin(t_cmd *cmd, t_data *data, bool forked)
 {
 	if (!ft_strncmp(cmd->args[0], "cd", 3))
-		ft_cd(cmd->args, data->env_table);
+		ft_cd(cmd->args, data->env_table, &data->buf);
 	else if (!ft_strncmp(cmd->args[0], "echo", 5))
 		ft_echo(cmd->args);
 	else if (!ft_strncmp(cmd->args[0], "env", 4))
@@ -140,7 +140,7 @@ void	ft_choose_builtin(t_cmd *cmd, t_data *data, bool forked)
 	else if (!ft_strncmp(cmd->args[0], "export", 7))
 		ft_export(cmd->args, data->env_table);
 	else if (!ft_strncmp(cmd->args[0], "pwd", 4))
-		ft_pwd();
+		ft_pwd(&data->buf);
 	else if (!ft_strncmp(cmd->args[0], "unset", 6))
 		ft_unset(cmd->args, data->env_table);
 }

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/17 08:49:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 09:34:01 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,9 @@ t_err	ft_reset_fd_scmd(int old_stdin, int old_stdout);
 void	ft_free_str_arr(char **arr);
 
 // include from mod_builtin
-t_err	ft_cd(char **argv, t_hashtable *env_tab);
+t_err	ft_cd(char **argv, t_hashtable *env_tab, t_buf *buf);
 t_err	ft_echo(char **argv);
-t_err	ft_pwd(void);
+t_err	ft_pwd(t_buf *buf);
 t_err	ft_export(char **argv, t_hashtable *env_tab);
 t_err	ft_unset(char **argv, t_hashtable *env_tab);
 t_err	ft_env(t_hashtable *env_tab);

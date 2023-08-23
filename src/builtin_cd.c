@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 10:48:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 09:24:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
  * @param env_tab Environment.
  * @return t_err SUCCESS, ERR_EMPTY, ERR_ARGCOUNT, ERR_MALLOC, ERR_NOT_FOUND
  */
-t_err	ft_cd(char **argv, t_hashtable *env_tab)
+t_err	ft_cd(char **argv, t_hashtable *env_tab, t_buf *buf)
 {
 	size_t		size;
 	char		*oldpwd;
@@ -51,7 +51,7 @@ t_err	ft_cd(char **argv, t_hashtable *env_tab)
 		if (err != SUCCESS)
 			return (ft_cd_error(err, oldpwd));
 	}
-	err = ft_change_dir(argv[1], env_tab, oldpwd);
+	err = ft_change_dir(argv[1], env_tab, oldpwd, buf);
 	if (err != SUCCESS)
 		return (ft_cd_error(err, oldpwd));
 	g_status = 0;
@@ -111,10 +111,11 @@ t_err	ft_set_path_to_home(char **path, t_hashtable *env_tab)
  * @param path Where to change to.
  * @param env_tab Environment.
  * @param oldpwd Saved pwd env_str to update $OLDPWD.
- * @return t_err SUCCESS, ERR_MALLOC, ERR_EMPTY, ERR_HT_NO_INSERT, ERR_HT_NO_SWAP,
- * ERR_CHDIR_FAIL
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_EMPTY, ERR_HT_NO_INSERT,
+ * ERR_HT_NO_SWAP, ERR_CHDIR_FAIL
  */
-t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd)
+t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd,
+			t_buf *buf)
 {
 	char		*pwd;
 	t_err		err;
@@ -123,7 +124,7 @@ t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd)
 	if (err != SUCCESS)
 		return (err);
 	pwd = NULL;
-	err = ft_create_env_pwd(&pwd);
+	err = ft_create_env_pwd(&pwd, buf);
 	if (err != SUCCESS)
 		return (err);
 	err = ft_update_env_var(env_tab, pwd, 3, true);

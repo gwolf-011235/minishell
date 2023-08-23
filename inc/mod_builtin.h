@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:20 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/17 08:50:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 09:23:27 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 # define MOD_BUILTIN_H
 
 # include "hashtable.h"
+# include "buffer.h"
 
 extern __sig_atomic_t	g_status;
 
 //IMPORT MOD_ENV
-t_err	ft_create_pwd_value(char **pwd_value);
-t_err	ft_create_env_pwd(char **pwd);
+t_err	ft_create_pwd_value(t_buf *buf);
+t_err	ft_create_env_pwd(char **pwd, t_buf *buf);
 t_err	ft_envp_create_all(t_hashtable *ht, char ***envp);
 t_err	ft_envp_destroy(char ***envp);
 
@@ -43,13 +44,13 @@ void	ft_skip_n_flags(char **argv, size_t *i, bool *newline);
 t_err	ft_write_args(char **argv, size_t *i);
 
 //cd.c
-t_err	ft_cd(char **argv, t_hashtable *env_tab);
+t_err	ft_cd(char **argv, t_hashtable *env_tab, t_buf *buf);
 t_err	ft_save_cur_pwd(char **oldpwd, t_hashtable *env_tab);
 t_err	ft_set_path_to_home(char **path, t_hashtable *env_tab);
-t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd);
+t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd, t_buf *buf);
 
 //pwd.c
-t_err	ft_pwd(void);
+t_err	ft_pwd(t_buf *buf);
 
 //export.c
 t_err	ft_export(char **argv, t_hashtable *env_tab);
