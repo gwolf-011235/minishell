@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:04:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/21 17:47:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 11:12:45 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ t_err	ft_startup(t_data *data)
 {
 	t_err	err;
 
+	ft_signal_setup(SIGINT, SIG_IGNORE);
+	ft_signal_setup(SIGQUIT, SIG_IGNORE);
 	ft_init_data(data);
 
 }
