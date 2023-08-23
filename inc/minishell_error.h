@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/21 18:15:22 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 11:02:42 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ t_err	ft_err_chdir(char *path, char *msg);
 t_err	ft_err_stat(const char *pathname, struct stat *statbuf, char *msg);
 t_err	ft_err_malloc(void **ptr, size_t size, char *msg);
 t_err	ft_err_getcwd(char *buf, size_t size, char *msg);
+
+//error2.c
+t_err	ft_err_strdup(const char *src, char **dst, char *msg);
 
 //error_msg.c
 t_err	ft_print_warning(char *indic, char *trigger);
