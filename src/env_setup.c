@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_setup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/13 19:25:42 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/23 09:04:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
  * If PWD is not available set PWD.
  * Increment SHLVL. If not found set it.
  * @param data Pointer to data struct.
- * @return t_err SUCCESS, ERR_MALLOC, 
+ * @return t_err SUCCESS, ERR_MALLOC,
  */
-t_err	ft_env_setup(t_hashtable **env_table)
+t_err	ft_env_setup(t_hashtable **env_table, char *argv_zero)
 {
 	t_err	err;
 
@@ -49,6 +49,9 @@ t_err	ft_env_setup(t_hashtable **env_table)
 		err = ft_insert_env_shlvl(*env_table);
 	if (err != SUCCESS)
 		return (err);
+	err = ft_insert_env_pid(*env_table);
+	err = ft_insert_env_prompt(*env_table, 2);
+	err = ft_insert_env_zero(*env_table, argv_zero);
 	return (SUCCESS);
 }
 
@@ -88,11 +91,12 @@ t_err	ft_import_environ(t_hashtable *env_table)
  * Check if valid env_key with ft_get_env_keylen().
  * If yes generate copy with ft_strdup().
  * If str on pos keylen is an equals sign, the var has a value (standard case).
- * If no equals it has no value.
+ * If no equals it has no value, and will not be inserted.
  * If insertion fails free str.
  * @param env_table Environment.
  * @param environ_str Single str from environ.
- * @return t_err SUCCESS, ERR_INVALID_NAME, ERR_MALLOC, ERR_HT_NO_INSERT, ERR_EMPTY
+ * @return t_err SUCCESS, ERR_INVALID_NAME, ERR_MALLOC,
+ * ERR_HT_NO_INSERT, ERR_EMPTY
  */
 t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str)
 {
@@ -108,53 +112,63 @@ t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str)
 	if (!env_str)
 		return (ERR_MALLOC);
 	if (env_str[keylen] == '=')
-		err = ft_hashtable_insert(env_table, env_str, keylen, true);
-	else
-		err = ft_hashtable_insert(env_table, env_str, keylen, false);
+		err = ft_hashtable_insert_export(env_table, env_str, keylen, true);
 	if (err != SUCCESS && err != ERR_HT_NO_INSERT)
 		free(env_str);
 	return (err);
 }
 
 /**
- * @brief Creates and inserts the env_var PWD.
+ * @brief Creates and inserts PS1 and PS2.
  *
- * If no PWD is present in env_table, this function inserts.
- * @param data
- * @return t_err If SUCCESS it exits
+ * If only one or both should be inserted is managed by opt.
+ * Gets the prompts from minishell_config.h.
+ * @param env_table Environment
+ * @param opt 0 = PS1; 1 = PS2; 2 = both
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_HT_NO_INSERT
  */
-t_err	ft_insert_env_pwd(t_hashtable *env_table)
+t_err	ft_insert_env_prompt(t_hashtable *env_table, char opt)
 {
-	char	*pwd;
+	char	*prompt;
 	t_err	err;
 
-	pwd = NULL;
-	err = ft_create_env_pwd(&pwd);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_hashtable_insert(env_table, pwd, 3, true);
-	if (err != SUCCESS)
-		return (err);
+	if (opt == 0 || opt == 2)
+	{
+		prompt = ft_strdup(PS1);
+		if (!prompt)
+			return (ERR_MALLOC);
+		err = ft_hashtable_insert(env_table, prompt, 3, true);
+		if (err != SUCCESS)
+			return (err);
+	}
+	if (opt == 1 || opt == 2)
+	{
+		prompt = ft_strdup(PS2);
+		if (!prompt)
+			return (ERR_MALLOC);
+		err = ft_hashtable_insert(env_table, prompt, 3, true);
+		if (err != SUCCESS)
+			return (err);
+	}
 	return (SUCCESS);
 }
 
 /**
- * @brief Creates and inserts the env_var SHLVL.
+ * @brief Creates and inserts special $0
  *
- * If no SHLVL is present in env_table, this function inserts.
- * @param data
- * @return t_err If SUCCESS it exits
+ * @param env_table Environment.
+ * @param argv_zero Argv on pos 0
+ * @return t_err SUCCES, ERR_MALLOC, ERR_HT_NO_INSERT
  */
-t_err	ft_insert_env_shlvl(t_hashtable *env_table)
+t_err	ft_insert_env_zero(t_hashtable *env_table, char *argv_zero)
 {
-	char	*shlvl;
 	t_err	err;
+	char	*env_zero;
 
-	shlvl = NULL;
-	err = ft_create_env_shlvl(&shlvl, 1);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_hashtable_insert(env_table, shlvl, 5, true);
+	env_zero = ft_strjoin("0=", argv_zero);
+	if (!env_zero)
+		return (ERR_MALLOC);
+	err = ft_hashtable_insert(env_table, env_zero, 1, true);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);

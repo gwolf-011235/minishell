@@ -6,7 +6,7 @@
 #    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/20 17:43:18 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/23 09:04:14 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,11 +68,13 @@ SRC :=	utils_memory.c \
 		utils_string.c \
 		buffer.c \
 		hashtable_generate.c \
+		hashtable_ops.c \
 		hashtable_utils.c \
 		exit_failure.c \
 		env_setup.c \
 		env_pwd.c \
 		env_shlvl.c \
+		env_pid.c \
 		env_envp.c \
 		prompt.c \
 		prompt_replace_token.c \

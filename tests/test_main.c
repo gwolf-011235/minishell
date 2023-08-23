@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:40:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 13:58:19 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 19:52:29 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ __sig_atomic_t	g_status;
 
 void	test_setup_data(void)
 {
-	ft_env_setup(&g_data.env_table);
+	ft_env_setup(&g_data.env_table, "test");
 	g_head = NULL;
 }
 

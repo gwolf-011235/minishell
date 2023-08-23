@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/20 17:43:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 09:04:46 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	main(int argc, char **argv)
 	ft_signal_setup(SIGQUIT, SIG_IGNORE);
 	if (ft_env_setup(&data.env_table) != SUCCESS)
 		printf("NO\n");
-	//ft_hashtable_insert(data->env_table, "PS1=\\u@\\h:\\w$ ", 3);
 	data.loop = true;
 	while (data.loop)
 	{
