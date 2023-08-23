@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/23 11:11:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 12:26:59 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 #include "mod_env.h"
 
 /**
- * @brief Creates a env_table and imports env. If no PWD it creates one.
+ * @brief Imports environ. Sets some env vars if not present.
  *
- * Create hashtable env_table with HASHTABLE_SIZE.
- * Call ft_import_environ to fill env_table.
+ * Call ft_import_environ() to fill env_table.
+ * Handle errors from this function.
  * If env was empty set PWD and SHLVL.
  * If PWD is not available set PWD.
  * Increment SHLVL. If not found set it.
@@ -32,27 +32,33 @@ t_err	ft_env_setup(t_hashtable **env_table, char *argv_zero, t_buf *buf)
 {
 	t_err	err;
 
-	*env_table = ft_hashtable_create(HASHTABLE_SIZE, ft_hash_fnv1);
-	if (!env_table)
-		return (ERR_MALLOC);
 	err = ft_import_environ(*env_table);
-	if (err != SUCCESS && err != ERR_EMPTY)
-		return (err);
-	if (ft_hashtable_lookup(*env_table, "PWD", 3) == NULL)
-	{
-		err = ft_insert_env_pwd(*env_table, buf);
-		if (err != SUCCESS)
-			return (err);
-	}
-	err = ft_increment_shlvl(*env_table);
-	if (err == ERR_NO_SHLVL)
-		err = ft_insert_env_shlvl(*env_table);
-	if (err != SUCCESS)
-		return (err);
+	if (err == ERR_INVALID_NAME)
+		ft_putendl_fd("minishell: warning: possible corrupted environ", 2);
+	if (err == ERR_MALLOC)
+		ft_putendl_fd("minishell: warning: malloc error while parsing environ", 2);
 	err = ft_insert_env_pid(*env_table);
 	err = ft_insert_env_prompt(*env_table, 2);
 	err = ft_insert_env_zero(*env_table, argv_zero);
 	return (SUCCESS);
+}
+
+t_err	ft_check_imported_env(t_hashtable *env_table, t_buf *buf)
+{
+	t_err	err;
+
+	if (ft_hashtable_lookup(env_table, "PWD", 3) == NULL)
+	{
+		err = ft_insert_env_pwd(env_table, buf);
+		if (err != SUCCESS)
+			ft_putendl_fd("minishell: warning: PWD not created", 2);
+	}
+	err = ft_increment_shlvl(env_table);
+	if (err == ERR_NO_SHLVL)
+		err = ft_insert_env_shlvl(*env_table);
+	if (err != SUCCESS)
+		return (err);
+
 }
 
 /**
@@ -161,23 +167,3 @@ t_err	ft_insert_env_prompt(t_hashtable *env_table, char opt)
 	return (SUCCESS);
 }
 
-/**
- * @brief Creates and inserts special $0
- *
- * @param env_table Environment.
- * @param argv_zero Argv on pos 0
- * @return t_err SUCCES, ERR_MALLOC, ERR_HT_NO_INSERT
- */
-t_err	ft_insert_env_zero(t_hashtable *env_table, char *argv_zero)
-{
-	t_err	err;
-	char	*env_zero;
-
-	env_zero = ft_strjoin("0=", argv_zero);
-	if (!env_zero)
-		return (ERR_MALLOC);
-	err = ft_hashtable_insert(env_table, env_zero, 1, true);
-	if (err != SUCCESS)
-		return (err);
-	return (SUCCESS);
-}
