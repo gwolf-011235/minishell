@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/23 09:07:15 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 09:30:12 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	main(int argc, char **argv)
 	(void)argv;
 	ft_signal_setup(SIGINT, SIG_IGNORE);
 	ft_signal_setup(SIGQUIT, SIG_IGNORE);
-	if (ft_env_setup(&data.env_table, argv[0]) != SUCCESS)
+	ft_buf_init(&data.buf);
+	if (ft_env_setup(&data.env_table, argv[0], &data.buf) != SUCCESS)
 		printf("NO\n");
 	data.loop = true;
 	while (data.loop)
