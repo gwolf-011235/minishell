@@ -6,13 +6,13 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:39:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/22 18:42:45 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 11:57:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file env_pid.c
- * @brief Functions relating to env_var $$
+ * @brief Functions relating special params $ and 0.
  */
 #include "mod_env.h"
 
@@ -84,6 +84,27 @@ t_err	ft_insert_env_pid(t_hashtable *env_table)
 	if (err != SUCCESS)
 		return (err);
 	err = ft_hashtable_insert(env_table, pid, 1, true);
+	if (err != SUCCESS)
+		return (err);
+	return (SUCCESS);
+}
+
+/**
+ * @brief Creates and inserts special $0
+ *
+ * @param env_table Environment.
+ * @param argv_zero Argv on pos 0
+ * @return t_err SUCCES, ERR_MALLOC, ERR_HT_NO_INSERT
+ */
+t_err	ft_insert_env_zero(t_hashtable *env_table, char *argv_zero)
+{
+	t_err	err;
+	char	*env_zero;
+
+	env_zero = ft_strjoin("0=", argv_zero);
+	if (!env_zero)
+		return (ERR_MALLOC);
+	err = ft_hashtable_insert(env_table, env_zero, 1, true);
 	if (err != SUCCESS)
 		return (err);
 	return (SUCCESS);
