@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 19:23:46 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 09:28:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,12 @@
 # include "minishell_struct.h"
 # include "minishell_config.h"
 
+//init.c
+t_err	ft_startup(t_data *data);
+void	ft_init_data(t_data *data);
+
 //MODULE ENV
-t_err	ft_env_setup(t_hashtable **env_table, char *argv_zero);
+t_err	ft_env_setup(t_hashtable **env_table, char *argv_zero, t_buf *buf);
 t_err	ft_envp_create(t_hashtable *ht, char ***envp);
 t_err	ft_envp_destroy(char ***envp);
 
@@ -45,6 +49,6 @@ t_err	ft_prompt_create(t_hashtable *sym_tab,
 t_err	ft_handle_input(char *input, t_data *data);
 
 //exit_failure.c
-void	ft_exit_failure(t_data *data, t_err exit_code);
+t_err	ft_exit_failure(t_data *data, t_err exit_code);
 
 #endif
