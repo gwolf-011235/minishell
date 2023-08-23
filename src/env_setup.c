@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/23 09:04:22 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 09:27:41 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
  * @param data Pointer to data struct.
  * @return t_err SUCCESS, ERR_MALLOC,
  */
-t_err	ft_env_setup(t_hashtable **env_table, char *argv_zero)
+t_err	ft_env_setup(t_hashtable **env_table, char *argv_zero, t_buf *buf)
 {
 	t_err	err;
 
@@ -40,7 +40,7 @@ t_err	ft_env_setup(t_hashtable **env_table, char *argv_zero)
 		return (err);
 	if (ft_hashtable_lookup(*env_table, "PWD", 3) == NULL)
 	{
-		err = ft_insert_env_pwd(*env_table);
+		err = ft_insert_env_pwd(*env_table, buf);
 		if (err != SUCCESS)
 			return (err);
 	}
@@ -108,9 +108,13 @@ t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str)
 	err = ft_get_env_keylen(environ_str, &keylen);
 	if (err == ERR_INVALID_NAME)
 		return (err);
+	errno = 0;
 	env_str = ft_strdup(environ_str);
 	if (!env_str)
+	{
+		perror("minishell: ft_copy_environ_str");
 		return (ERR_MALLOC);
+	}
 	if (env_str[keylen] == '=')
 		err = ft_hashtable_insert_export(env_table, env_str, keylen, true);
 	if (err != SUCCESS && err != ERR_HT_NO_INSERT)
