@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/23 11:02:42 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 20:40:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ t_err	ft_err_getcwd(char *buf, size_t size, char *msg);
 
 //error2.c
 t_err	ft_err_strdup(const char *src, char **dst, char *msg);
+t_err	ft_err_itoa(int n, char **dst, char *msg);
+t_err	ft_err_strjoin(const char s1, const char s2, char **dst, char *msg);
 
 //error_msg.c
 t_err	ft_print_warning(char *indic, char *trigger);
