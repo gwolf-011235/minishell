@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_failure.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:57:29 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 11:51:37 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/23 09:13:05 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "minishell.h"
 
-void	ft_exit_failure(t_data *data, t_err exit_code)
+t_err	ft_exit_failure(t_data *data, t_err exit_code)
 {
 	(void)exit_code;
 	ft_hashtable_destroy(data->env_table);
