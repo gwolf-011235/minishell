@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:45:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 14:47:43 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/23 21:09:37 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,31 @@
  */
 t_err	ft_create_env_shlvl(char **shlvl, int val)
 {
+	t_err	err;
 	char	*val_str;
 
+	val_str = NULL;
 	if (val == 1)
 	{
-		*shlvl = ft_strdup("SHLVL=1");
-		if (*shlvl == NULL)
+
+		if (ft_err_strdup("SHLVL=1", shlvl,
+				"minishell: ft_create_env_shlvl") == ERR_MALLOC)
 			return (ERR_MALLOC);
-		return (SUCCESS);
 	}
-	val_str = ft_itoa(val);
-	if (!val_str)
+	else if (val == 0)
+	{
+		if (ft_err_strdup("SHLVL=0", shlvl,
+				"minishell: ft_create_env_shlvl") == ERR_MALLOC)
+			return (ERR_MALLOC);
+	}
+	else
+		err = ft_err_itoa(val, &val_str, "minishell: ft_create_env_shlvl");
+	if (err == ERR_MALLOC)
 		return (ERR_MALLOC);
-	*shlvl = ft_strjoin("SHLVL=", val_str);
+	err = ft_err_strjoin("SHLVL=", val_str, shlvl,
+			"minishell: ft_create_env_shlvl");
 	free(val_str);
-	if (!*shlvl)
-		return (ERR_MALLOC);
-	return (SUCCESS);
+	return (err);
 }
 
 /**
@@ -59,7 +67,7 @@ t_err	ft_create_env_shlvl(char **shlvl, int val)
  * Update $SHLVL with ft_hashtable_swap().
  *
  * @param env_table Environment.
- * @return t_error SUCCESS, ERR_NO_SHLVL, ERR_MALLOC, ERR_EMPTY, ERR_HT_NO_SWAP.
+ * @return t_error SUCCESS, ERR_MALLOC, ERR_EMPTY, ERR_HT_NO_SWAP.
  */
 t_err	ft_increment_shlvl(t_hashtable *env_table)
 {
@@ -68,14 +76,13 @@ t_err	ft_increment_shlvl(t_hashtable *env_table)
 	char		*new_str;
 	t_err		err;
 
-	env_shlvl = ft_hashtable_lookup(env_table, "SHLVL", 5);
-	if (!env_shlvl)
-		return (ERR_NO_SHLVL);
 	new_val = ft_atoi(env_shlvl->value) + 1;
+	if (new_val < 0)
+		new_val = 0;
 	if (new_val > MAX_SHLVL)
 	{
-		printf(MAX, new_val);
-		return (ft_hashtable_swap(env_table, "SHLVL=1", 5, true));
+		ft_print_warning_shlvl(new_val);
+		new_val = 1;
 	}
 	new_str = NULL;
 	err = ft_create_env_shlvl(&new_str, new_val);
@@ -92,7 +99,7 @@ t_err	ft_increment_shlvl(t_hashtable *env_table)
  *
  * If no SHLVL is present in env_table, this function inserts.
  * @param data
- * @return t_err If SUCCESS it exits
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_HT_NO_INSERT, ERR_NOT_FOUND, ERR_EMPTY
  */
 t_err	ft_insert_env_shlvl(t_hashtable *env_table)
 {
@@ -103,8 +110,18 @@ t_err	ft_insert_env_shlvl(t_hashtable *env_table)
 	err = ft_create_env_shlvl(&shlvl, 1);
 	if (err != SUCCESS)
 		return (err);
+	errno = 0;
 	err = ft_hashtable_insert_export(env_table, shlvl, 5, true);
-	if (err != SUCCESS)
-		return (err);
-	return (SUCCESS);
+	if (err == ERR_MALLOC)
+		perror("minishell: startup");
+	if (err == ERR_MALLOC || err == ERR_HT_NO_INSERT)
+		free(shlvl);
+	return (err);
+}
+
+void	ft_print_warning_shlvl(int new_val)
+{
+	ft_putstr_fd("minishell: warning: shell level (", 2);
+	ft_putnbr_fd(new_val, 2);
+	ft_putendl_fd(") too high, resetting to 1", 2);
 }
