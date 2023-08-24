@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 19:54:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 15:44:28 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ t_err	ft_expand_dollar(t_track *input, t_hashtable *symtab)
  * @param replace Where to save replace string.
  * @return t_err SUCCESS, ERR_MALLOC.
  */
-t_err	ft_special_dollar(t_str *var, t_str *replace, t_hashtable *symtab, char c)
+t_err	ft_special_dollar(t_str *var, t_str *replace,
+			t_hashtable *symtab, char c)
 {
 	t_env_var	*env_var;
 

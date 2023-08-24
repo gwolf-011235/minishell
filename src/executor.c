@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/19 20:48:00 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 15:46:23 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,8 +147,6 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 	err = ft_wait_for_babies(tmp);
 	return (err);
 }
-
-
 
 /**
  * @brief Decide program behaviour depending on err.

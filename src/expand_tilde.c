@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/11 17:17:44 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 15:44:41 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ t_err	ft_get_tilde_var(t_track *input, t_str *var)
  * @param pos Current position.
  * @return t_err SUCCESS, ERR_NOT_FOUND, ERR_MALLOC
  */
-t_err	ft_get_tilde_replace(t_str var, t_hashtable *symtab, t_str *replace, size_t *pos)
+t_err	ft_get_tilde_replace(t_str var, t_hashtable *symtab,
+			t_str *replace, size_t *pos)
 {
 	char		*target;
 	t_env_var	*env_var;

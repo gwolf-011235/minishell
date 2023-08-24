@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 18:09:38 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 16:27:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 15:45:01 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ t_err	ft_envp_create(t_hashtable *ht, char ***envp)
  */
 t_err	ft_envp_create_all(t_hashtable *ht, char ***envp)
 {
-
 	if (!ht || !envp)
 		return (ERR_EMPTY);
 	*envp = malloc(sizeof(char *) * (ht->num_exports + 1));

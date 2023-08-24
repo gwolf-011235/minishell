@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:43:24 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 12:18:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 15:41:31 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,6 @@
  * @brief Check input string for correct syntax
  */
 #include "mod_syntax.h"
-
-/**
- * @brief Check if char is Space (ASCII=33)
- *
- * @param c Char to check
- * @return int 1 if true, 0 if not
- */
-int	ft_is_space(char c)
-{
-	if (c == ' ')
-		return (1);
-	else
-		return (0);
-}
 
 t_err	ft_syntax_error(t_syntax syntax_err, char c)
 {

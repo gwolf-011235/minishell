@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:04:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 15:37:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 15:44:00 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ void	ft_init_data(t_data *data)
  * @param prompt2 Where to save prompt PS2.
  * @param free_prompt Bool to set if prompt needs to be freed.
  */
-void	ft_create_prompts(t_hashtable *env_table, char **prompt1, char **prompt2, bool *free_prompt)
+void	ft_create_prompts(t_hashtable *env_table, char **prompt1,
+			char **prompt2, bool *free_prompt)
 {
 	t_err	err;
 

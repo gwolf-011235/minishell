@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:56:55 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 08:47:58 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 15:46:30 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,3 @@ t_err	ft_err_strjoin(const char *s1, const char *s2, char **dst, char *msg)
 	}
 	return (SUCCESS);
 }
-

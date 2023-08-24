@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/20 17:36:32 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 15:28:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_err	ft_handle_heredoc(t_cmd *cmd, t_hashtable *symtab, char *prompt2)
 
 	while (cmd)
 	{
-		ft_signal_setup(SIGINT, SIG_STD);
+		//ft_signal_setup(SIGINT, SIG_STD);
 		i = -1;
 		while (++i < cmd->delim_pos)
 		{
