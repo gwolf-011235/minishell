@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:59:08 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/13 19:00:06 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/24 09:00:38 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 /**
  * @brief Standard signal handler for readline.
- * 
+ *
  * When SIGINT is received, a newline is printed.
  * Readline goes to the newline and display an
  * empty prompt.
@@ -39,7 +39,7 @@ void	ft_sighandler_std(int signum)
 
 /**
  * @brief Standard signal handler for readline inside of heredocs.
- * 
+ *
  * When SIGINT is received, a newline is faked.
  * Readline goes to the newline.
  * @param signum 	Signal received.
@@ -56,7 +56,7 @@ void	ft_sighandler_heredoc(int signum)
 
 /**
  * @brief Signal handler that does nothing.
- * 
+ *
  * @param signum 	Signal received.
  */
 void	ft_sighandler_ignore(int signum)
@@ -66,7 +66,7 @@ void	ft_sighandler_ignore(int signum)
 
 /**
  * @brief Assign signalhandler to signal 'signum'.
- * 
+ *
  * Add flag SA_RESTART to ensure interrupted sys calls
  * are restarted anew. Necessary for background readline
  * processes.
@@ -77,9 +77,9 @@ void	ft_signal_setup(int signum, t_state state)
 {
 	struct sigaction	sa;
 
-	errno = 0;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_RESTART;
+	errno = 0;
 	if (state == SIG_STD)
 		sa.sa_handler = ft_sighandler_std;
 	else if (state == SIG_HEREDOC)
