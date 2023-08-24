@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:39:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 09:06:36 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 12:49:07 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,14 @@ t_err	ft_insert_env_zero(t_hashtable *env_table, char *argv_zero)
 	return (err);
 }
 
+/**
+ * @brief Inserts parameters $0 and $$ into environment.
+ *
+ * $0 = shell name.
+ * $$ = pid of shell instance.
+ * @param env_table Environment.
+ * @param argv_zero First arg of argv.
+ */
 void	ft_set_special_params(t_hashtable *env_table, char *argv_zero)
 {
 	if (ft_insert_env_zero(env_table, argv_zero) != SUCCESS)

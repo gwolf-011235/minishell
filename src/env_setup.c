@@ -6,73 +6,34 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 08:47:20 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 12:47:41 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file env_setup.c
- * @brief Copy env and generate missing envs.
+ * @brief Import environment and set specific variables if missing.
  */
 
 #include "mod_env.h"
 
 /**
- * @brief Imports environ. Sets some env vars if not present.
+ * @brief Impot environment and sets some specific vars.
  *
- * Call ft_import_environ() to fill env_table.
- * Handle errors from this function.
- * If env was empty set PWD and SHLVL.
- * If PWD is not available set PWD.
- * Increment SHLVL. If not found set it.
- * @param data Pointer to data struct.
- * @return t_err SUCCESS, ERR_MALLOC,
+ * ft_import_environ() to fill env_table.
+ * Check for missing PWD, SHLVL, PS1, PS2.
+ * Insert if necessary.
+ * Increment SHLVL.
+ * Set special parameter $$ and $0.
+ * @param env_table Environment.
+ * @param argv_zero First argument of argv.
+ * @param buf Pointer to buffer
  */
 void	ft_env_setup(t_hashtable *env_table, char *argv_zero, t_buf *buf)
 {
 	ft_import_environ(env_table);
 	ft_check_missing_env(env_table, buf);
 	ft_set_special_params(env_table, argv_zero);
-}
-
-/**
- * @brief Checks env variables PWD, SHLVL, PS1, PS2.
- *
- * If PWD not found create and insert it.
- * If SHLVL not found create and insert it.
- * If SHLVL found increment it.
- * If PS1 and/or PS2 not found create and insert it.
- * Handles all errors.
- * @param env_table Environment.
- * @param buf Buffer.
- */
-void	ft_check_missing_env(t_hashtable *env_table, t_buf *buf)
-{
-	if (ft_hashtable_lookup(env_table, "PWD", 3) == NULL)
-	{
-		if (ft_insert_env_pwd(env_table, buf) != SUCCESS)
-			ft_putendl_fd("minishell: warning: PWD not created", 2);
-	}
-	if (ft_hashtable_lookup(env_table, "SHLVL", 5) == NULL)
-	{
-		if (ft_insert_env_shlvl(env_table) != SUCCESS)
-			ft_putendl_fd("minishell: warning: SHLVL not created", 2);
-	}
-	else
-	{
-		if (ft_increment_shlvl(env_table) != SUCCESS)
-			ft_putendl_fd("minishell: warning: SHLVL not updated", 2);
-	}
-	if (ft_hashtable_lookup(env_table, "PS1", 3) == NULL)
-	{
-		if (ft_insert_env_prompt(env_table, PS1) != SUCCESS)
-			ft_putendl_fd("minishell: warning: PS1 not created", 2);
-	}
-	if (ft_hashtable_lookup(env_table, "PS2", 3) == NULL)
-	{
-		if (ft_insert_env_prompt(env_table, PS2) != SUCCESS)
-			ft_putendl_fd("minishell: warning: PS2 not created", 2);
-	}
 }
 
 /**
@@ -151,10 +112,50 @@ t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str)
 }
 
 /**
+ * @brief Checks env variables PWD, SHLVL, PS1, PS2.
+ *
+ * If PWD not found create and insert it.
+ * If SHLVL not found create and insert it.
+ * If SHLVL found increment it.
+ * If PS1 and/or PS2 not found create and insert it.
+ * Handles all errors.
+ * @param env_table Environment.
+ * @param buf Buffer.
+ */
+void	ft_check_missing_env(t_hashtable *env_table, t_buf *buf)
+{
+	if (ft_hashtable_lookup(env_table, "PWD", 3) == NULL)
+	{
+		if (ft_insert_env_pwd(env_table, buf) != SUCCESS)
+			ft_putendl_fd("minishell: warning: PWD not created", 2);
+	}
+	if (ft_hashtable_lookup(env_table, "SHLVL", 5) == NULL)
+	{
+		if (ft_insert_env_shlvl(env_table) != SUCCESS)
+			ft_putendl_fd("minishell: warning: SHLVL not created", 2);
+	}
+	else
+	{
+		if (ft_increment_shlvl(env_table) != SUCCESS)
+			ft_putendl_fd("minishell: warning: SHLVL not updated", 2);
+	}
+	if (ft_hashtable_lookup(env_table, "PS1", 3) == NULL)
+	{
+		if (ft_insert_env_prompt(env_table, PS1) != SUCCESS)
+			ft_putendl_fd("minishell: warning: PS1 not created", 2);
+	}
+	if (ft_hashtable_lookup(env_table, "PS2", 3) == NULL)
+	{
+		if (ft_insert_env_prompt(env_table, PS2) != SUCCESS)
+			ft_putendl_fd("minishell: warning: PS2 not created", 2);
+	}
+}
+
+/**
  * @brief Copies and inserts prompt string.
  *
  * @param env_table Environment
- * @param std Prompt string to be copied.
+ * @param prompt Prompt string to be copied.
  * @return t_err SUCCESS, ERR_MALLOC, ERR_HT_NO_INSERT
  */
 t_err	ft_insert_env_prompt(t_hashtable *env_table, char *prompt)

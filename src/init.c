@@ -6,12 +6,21 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:04:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 08:56:10 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 12:42:21 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Initializes shell.
+ *
+ * Sets signal handlers.
+ * Initialize data struct.
+ * Import and check environment.
+ * @param data Pointer to data struct.
+ * @param argv_zero First argument of argv.
+ */
 void	ft_startup(t_data *data, char *argv_zero)
 {
 	ft_signal_setup(SIGINT, SIG_IGNORE);
@@ -20,6 +29,15 @@ void	ft_startup(t_data *data, char *argv_zero)
 	ft_env_setup(data->env_table, argv_zero, &data->buf);
 }
 
+/**
+ * @brief Initilize data struct.
+ *
+ * Create hashtable.
+ * Create buffer.
+ * Init all other variables.
+ * Handles all errors.
+ * @param data Pointer to data struct.
+ */
 void	ft_init_data(t_data *data)
 {
 	errno = 0;

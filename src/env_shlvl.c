@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:45:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 09:05:06 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 12:39:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,11 @@ t_err	ft_insert_env_shlvl(t_hashtable *env_table)
 	return (err);
 }
 
+/**
+ * @brief Prints error msg if SHLVL to high.
+ *
+ * @param new_val New value to be for SHLVL
+ */
 void	ft_print_warning_shlvl(int new_val)
 {
 	ft_putstr_fd("minishell: warning: shell level (", 2);

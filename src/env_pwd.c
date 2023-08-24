@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:15:11 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/23 12:26:42 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 12:50:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
  * If path is longer than size, free and malloc twice the size.
  * Repeat until path fits in array.
  *
- * @param pwd_value Pointer to pointer where to save string
+ * @param buf Pointer to buffer.
  * @return t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL.
  */
 t_err	ft_create_pwd_value(t_buf *buf)
@@ -61,6 +61,7 @@ t_err	ft_create_pwd_value(t_buf *buf)
  * If success strjoin with left side.
  *
  * @param pwd Pointer to pointer where to save string.
+ * @param buf Pointer to buffer.
  * @return t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL
  */
 t_err	ft_create_env_pwd(char **pwd, t_buf *buf)
@@ -84,8 +85,8 @@ t_err	ft_create_env_pwd(char **pwd, t_buf *buf)
 /**
  * @brief Creates and inserts the env_var PWD.
  *
- * If no PWD is present in env_table, this function inserts.
- * @param data
+ * @param env_table Environment.
+ * @param buf Pointer to buffer.
  * @return t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL, ERR_HT_NO_INSERT,
  * ERR_EMPTY, ERR_NOT_FOUND
  */
