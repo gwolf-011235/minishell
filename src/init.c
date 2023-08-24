@@ -6,20 +6,18 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:04:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/23 11:12:45 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 08:56:10 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_err	ft_startup(t_data *data)
+void	ft_startup(t_data *data, char *argv_zero)
 {
-	t_err	err;
-
 	ft_signal_setup(SIGINT, SIG_IGNORE);
 	ft_signal_setup(SIGQUIT, SIG_IGNORE);
 	ft_init_data(data);
-
+	ft_env_setup(data->env_table, argv_zero, &data->buf);
 }
 
 void	ft_init_data(t_data *data)
@@ -39,4 +37,6 @@ void	ft_init_data(t_data *data)
 		exit(1);
 	}
 	data->loop = true;
+	data->prompt1 = NULL;
+	data->prompt2 = NULL;
 }
