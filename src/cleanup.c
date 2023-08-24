@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 17:32:57 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/09 00:04:20 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/24 13:29:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 /**
  * @brief Frees a NULL-terminated string array and its strings.
- * 
+ *
  * @param arr String array to be freed.
  */
 void	ft_free_str_arr(char **arr)
@@ -30,4 +30,17 @@ void	ft_free_str_arr(char **arr)
 	while (arr[++i])
 		free(arr[i]);
 	free(arr);
+}
+
+void	ft_clean_after_loop(char *input, t_data *data)
+{
+	free(input);
+	if (data->free_prompt)
+	{
+		free(data->prompt1);
+		data->prompt1 = NULL;
+		free(data->prompt1);
+		data->prompt2 = NULL;
+	}
+	ft_envp_destroy(&data->envp);
 }
