@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/23 09:24:36 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 13:56:37 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd,
 	char		*pwd;
 	t_err		err;
 
-	err = ft_err_chdir(path, "minishell: cd");
+	err = ft_err_chdir(path, "minishell: cd: ");
 	if (err != SUCCESS)
 		return (err);
 	pwd = NULL;
