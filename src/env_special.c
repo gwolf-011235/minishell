@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:39:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 08:46:55 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 09:06:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_err	ft_get_pid_value(pid_t *pid)
 	if (!line)
 	{
 		perror("minishell: startup");
-		close(fd);
+		(void)ft_err_close(fd, "Could not close /proc/self/status");
 		return (ERR_MALLOC);
 	}
 	(void)ft_err_close(fd, "Could not close /proc/self/status");
