@@ -16,10 +16,10 @@
 		"mod_prompt.h": "c",
 		"mod_env.h": "c",
 		"mod_builtin.h": "c",
-		"mod_builtin.h": "c",
 		"mod_executor.h": "c",
 		"signal.h": "c",
 		"minishell_struct.h": "c",
-		"mod_signal.h": "c"
+		"mod_signal.h": "c",
+		"mod_cleanup.h": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 08:25:28 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 13:31:24 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,18 @@ void	ft_init_data(t_data *data);
 //MODULE ENV
 void	ft_env_setup(t_hashtable *env_table, char *argv_zero, t_buf *buf);
 t_err	ft_envp_create(t_hashtable *ht, char ***envp);
-t_err	ft_envp_destroy(char ***envp);
 
 //MODULE PROMPT
+void	ft_create_prompts(t_hashtable *env_table, char **prompt1, char **prompt2,
+			bool *free_prompt);
 t_err	ft_prompt_create(t_hashtable *sym_tab,
 			char **prompt, char *ps, char *std);
 
 // MODULE HANDLE INPUT
 t_err	ft_handle_input(char *input, t_data *data);
+
+//cleanup.c
+void	ft_clean_after_loop(char *input, t_data *data);
 
 //exit_failure.c
 t_err	ft_exit_failure(t_data *data, t_err exit_code);
