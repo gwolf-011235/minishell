@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:04:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 12:42:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 13:17:15 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,36 @@ void	ft_init_data(t_data *data)
 		ft_putendl_fd("minishell: fata error at startup. I'm giving up.", 2);
 		exit(1);
 	}
-	data->loop = true;
 	data->prompt1 = NULL;
 	data->prompt2 = NULL;
+	data->loop = true;
+	data->free_prompt = true;
+}
+
+/**
+ * @brief Creates prompt string PS1 and PS2
+ *
+ * Create prompt with ft_prompt_create().
+ * If any of the two prompt creation fails, set free_prompt to false.
+ * Handles all errors.
+ * @param env_table Environment.
+ * @param prompt1 Where to save prompt PS1.
+ * @param prompt2 Where to save prompt PS2.
+ * @param free_prompt Bool to set if prompt needs to be freed.
+ */
+void	ft_create_prompts(t_hashtable *env_table, char **prompt1, char **prompt2, bool *free_prompt)
+{
+	*free_prompt = true;
+	if (ft_prompt_create(env_table, prompt1, "PS1", PS1_STD) != SUCCESS)
+	{
+		ft_putendl_fd("minishell: warning: could not create prompts.", 2);
+		*free_prompt = false;
+	}
+	if (free_prompt
+		&& ft_prompt_create(env_table, prompt2, "PS2", PS2_STD) != SUCCESS)
+	{
+		ft_putendl_fd("minishell: warning: could not create prompts.", 2);
+		free(prompt1);
+		*free_prompt = false;
+	}
 }

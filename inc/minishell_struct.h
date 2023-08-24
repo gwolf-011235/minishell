@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:38:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 00:45:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 12:58:50 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_data {
 	char		*prompt2;
 	t_buf		buf;
 	bool		loop;
+	bool		free_prompt;
 }	t_data;
 
 #endif
