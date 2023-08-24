@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 13:32:31 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 15:51:10 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	{
 		if (ft_envp_create(data.env_table, &data.envp) != SUCCESS)
 			ft_putendl_fd("minishell: warning: could not create environment.", 2);
-		ft_create_prompts(data.env_table, &data.prompt1, &data.prompt2, &data.free_prompt);
+		ft_create_prompts(&data);
 		ft_signal_setup(SIGINT, SIG_STD);
 		if (isatty(fileno(stdin)))
 			input = readline(data.prompt1);

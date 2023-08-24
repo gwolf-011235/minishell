@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:04:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 15:44:00 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 15:52:04 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,26 +71,25 @@ void	ft_init_data(t_data *data)
  * @param prompt2 Where to save prompt PS2.
  * @param free_prompt Bool to set if prompt needs to be freed.
  */
-void	ft_create_prompts(t_hashtable *env_table, char **prompt1,
-			char **prompt2, bool *free_prompt)
+void	ft_create_prompts(t_data *data)
 {
 	t_err	err;
 
-	*free_prompt = true;
-	err = ft_prompt_create(env_table, prompt1, "PS1", PS1_STD);
+	data->free_prompt = true;
+	err = ft_prompt_create(data->env_table, &data->prompt1, "PS1", PS1_STD);
 	if (err != SUCCESS)
-		*free_prompt = false;
+		data->free_prompt = false;
 	if (err == ERR_MALLOC)
 		ft_putendl_fd("minishell: warning: could not create prompts.", 2);
-	if (free_prompt)
+	if (data->free_prompt)
 	{
-		err = ft_prompt_create(env_table, prompt2, "PS2", PS2_STD);
+		err = ft_prompt_create(data->env_table, &data->prompt2, "PS2", PS2_STD);
 		if (err != SUCCESS)
-			*free_prompt = false;
+			data->free_prompt = false;
 		if (err == ERR_MALLOC)
 		{
 			ft_putendl_fd("minishell: warning: could not create prompts.", 2);
-			free(prompt1);
+			free(data->prompt1);
 		}
 	}
 }
