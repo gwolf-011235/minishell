@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:40:34 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 10:47:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 15:07:31 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,10 @@ t_err	ft_cd_error(t_err err, char *oldpwd)
 		free(oldpwd);
 	if (err == ERR_ARGCOUNT)
 		ft_putendl_fd("minishell: cd: too many arguments", 2);
-	else if (err == ERR_NOT_FOUND)
+	else if (err == ERR_NO_HOME)
 		ft_putendl_fd("minishell: cd: HOME not set", 2);
+	else if (err == ERR_NO_OLDPWD)
+		ft_putendl_fd("minishell: cd: OLDPWD not set", 2);
 	else if (err == ERR_MALLOC)
 		ft_putendl_fd("minishell: cd: malloc() failed", 2);
 	return (err);

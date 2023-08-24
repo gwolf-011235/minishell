@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 13:56:37 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 15:07:00 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,8 @@ t_err	ft_cd(char **argv, t_hashtable *env_tab, t_buf *buf)
 		return (ft_cd_error(err, oldpwd));
 	if (size == 1)
 	{
-		err = ft_set_path_to_home(&argv[1], env_tab);
-		if (err != SUCCESS)
-			return (ft_cd_error(err, oldpwd));
+		if (ft_redirect_path(&argv[1], env_tab, "HOME") != SUCCESS)
+			return (ft_cd_error(ERR_NO_HOME, oldpwd));
 	}
 	err = ft_change_dir(argv[1], env_tab, oldpwd, buf);
 	if (err != SUCCESS)
@@ -83,17 +82,20 @@ t_err	ft_save_cur_pwd(char **oldpwd, t_hashtable *env_tab)
 }
 
 /**
- * @brief Look for $HOME and set path to it's value.
+ * @brief Look for environment variable and set path to it's value.
  *
  * @param path Pointer which should be changed.
  * @param env_tab Environment.
+ * @param name Name of env var.
  * @return t_err SUCCESS, ERR_NOT_FOUND
  */
-t_err	ft_set_path_to_home(char **path, t_hashtable *env_tab)
+t_err	ft_redirect_path(char **path, t_hashtable *env_tab, char *name)
 {
 	t_env_var	*env_home;
+	size_t		len;
 
-	env_home = ft_hashtable_lookup(env_tab, "HOME", 4);
+	len = ft_strlen(name);
+	env_home = ft_hashtable_lookup(env_tab, name, len);
 	if (!env_home)
 		return (ERR_NOT_FOUND);
 	*path = env_home->value;
@@ -120,6 +122,11 @@ t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd,
 	char		*pwd;
 	t_err		err;
 
+	if (!strncmp(path, "-", 2))
+	{
+		if (ft_redirect_path(&path, env_tab, "OLDPWD") != SUCCESS)
+			return (ERR_NO_OLDPWD);
+	}
 	err = ft_err_chdir(path, "minishell: cd: ");
 	if (err != SUCCESS)
 		return (err);
