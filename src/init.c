@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:04:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 13:17:15 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 15:37:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,23 @@ void	ft_init_data(t_data *data)
  */
 void	ft_create_prompts(t_hashtable *env_table, char **prompt1, char **prompt2, bool *free_prompt)
 {
+	t_err	err;
+
 	*free_prompt = true;
-	if (ft_prompt_create(env_table, prompt1, "PS1", PS1_STD) != SUCCESS)
-	{
-		ft_putendl_fd("minishell: warning: could not create prompts.", 2);
+	err = ft_prompt_create(env_table, prompt1, "PS1", PS1_STD);
+	if (err != SUCCESS)
 		*free_prompt = false;
-	}
-	if (free_prompt
-		&& ft_prompt_create(env_table, prompt2, "PS2", PS2_STD) != SUCCESS)
-	{
+	if (err == ERR_MALLOC)
 		ft_putendl_fd("minishell: warning: could not create prompts.", 2);
-		free(prompt1);
-		*free_prompt = false;
+	if (free_prompt)
+	{
+		err = ft_prompt_create(env_table, prompt2, "PS2", PS2_STD);
+		if (err != SUCCESS)
+			*free_prompt = false;
+		if (err == ERR_MALLOC)
+		{
+			ft_putendl_fd("minishell: warning: could not create prompts.", 2);
+			free(prompt1);
+		}
 	}
 }
