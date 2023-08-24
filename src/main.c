@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/23 10:48:34 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 08:55:21 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ int	main(int argc, char **argv)
 	t_err	err;
 
 	(void)argc;
-	if (ft_env_setup(&data.env_table, argv[0], &data.buf) != SUCCESS)
-		printf("NO\n");
-	data.loop = true;
+	ft_startup(&data, argv[0]);
 	while (data.loop)
 	{
 		err = ft_envp_create(data.env_table, &data.envp);
