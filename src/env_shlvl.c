@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:45:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 08:52:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 09:05:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ t_err	ft_increment_shlvl(t_hashtable *env_table)
 	if (err != SUCCESS)
 		return (err);
 	err = ft_hashtable_swap(env_table, new_str, 5, true);
-	if (err != SUCCESS)
-		return (err);
-	return (SUCCESS);
+	if (err == ERR_HT_NO_SWAP)
+		free(new_str);
+	return (err);
 }
 
 /**
