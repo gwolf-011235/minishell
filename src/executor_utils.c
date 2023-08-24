@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/24 14:50:35 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 17:50:39 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_err	ft_prefix_path(char **args, char **cmd_paths)
 	char	*tmp;
 	char	*rtrn;
 
-	if (!strncmp(*args, ".", 2) || !strncmp(*args, "..", 3))
+	if (args[0][0] == '\0' || !strncmp(*args, ".", 2) || !strncmp(*args, "..", 3))
 		return (ERR_UNKNOWN_CMD);
 	while (*cmd_paths)
 	{
