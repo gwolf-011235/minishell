@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 15:07:00 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 17:57:45 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd,
 	char		*pwd;
 	t_err		err;
 
-	if (!strncmp(path, "-", 2))
+	if (!strncmp(path, "-", 2) || !strncmp(path, "--", 3))
 	{
 		if (ft_redirect_path(&path, env_tab, "OLDPWD") != SUCCESS)
 			return (ERR_NO_OLDPWD);
