@@ -1,50 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error2.c                                           :+:      :+:    :+:   */
+/*   error3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 10:56:55 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 08:47:58 by gwolf            ###   ########.fr       */
+/*   Created: 2023/08/24 08:32:02 by gwolf             #+#    #+#             */
+/*   Updated: 2023/08/24 08:41:07 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_error.h"
 
-t_err	ft_err_strdup(const char *src, char **dst, char *msg)
+t_err	ft_err_open(const char *path, int flag, int *fd, char *msg)
 {
 	errno = 0;
-	*dst = ft_strdup(src);
-	if (*dst == NULL)
+	*fd = open(path, flag);
+	if (*fd == -1)
 	{
 		perror(msg);
-		return (ERR_MALLOC);
+		return (ERR_OPEN);
 	}
 	return (SUCCESS);
 }
 
-t_err	ft_err_itoa(int n, char **dst, char *msg)
+t_err	ft_err_close(int fd, char *msg)
 {
+	int	ret;
+
 	errno = 0;
-	*dst = ft_itoa(n);
-	if (*dst == NULL)
+	ret = close(fd);
+	if (ret == -1)
 	{
 		perror(msg);
-		return (ERR_MALLOC);
+		return (ERR_CLOSE);
 	}
 	return (SUCCESS);
 }
-
-t_err	ft_err_strjoin(const char *s1, const char *s2, char **dst, char *msg)
-{
-	errno = 0;
-	*dst = ft_strjoin(s1, s2);
-	if (*dst == NULL)
-	{
-		perror(msg);
-		return (ERR_MALLOC);
-	}
-	return (SUCCESS);
-}
-

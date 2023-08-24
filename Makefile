@@ -6,7 +6,7 @@
 #    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/23 11:58:51 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/24 08:55:51 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,7 +123,10 @@ SRC :=	utils_memory.c \
 		tkn_list_search.c \
 		signal.c \
 		error.c \
-		error_msg.c
+		error2.c \
+		error3.c \
+		error_msg.c \
+		init.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # ******************************
