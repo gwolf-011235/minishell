@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:45:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/23 21:09:37 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 08:52:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_err	ft_create_env_shlvl(char **shlvl, int val)
 	val_str = NULL;
 	if (val == 1)
 	{
-
 		if (ft_err_strdup("SHLVL=1", shlvl,
 				"minishell: ft_create_env_shlvl") == ERR_MALLOC)
 			return (ERR_MALLOC);
@@ -47,8 +46,7 @@ t_err	ft_create_env_shlvl(char **shlvl, int val)
 				"minishell: ft_create_env_shlvl") == ERR_MALLOC)
 			return (ERR_MALLOC);
 	}
-	else
-		err = ft_err_itoa(val, &val_str, "minishell: ft_create_env_shlvl");
+	err = ft_err_itoa(val, &val_str, "minishell: ft_create_env_shlvl");
 	if (err == ERR_MALLOC)
 		return (ERR_MALLOC);
 	err = ft_err_strjoin("SHLVL=", val_str, shlvl,
@@ -76,6 +74,9 @@ t_err	ft_increment_shlvl(t_hashtable *env_table)
 	char		*new_str;
 	t_err		err;
 
+	env_shlvl = ft_hashtable_lookup(env_table, "SHLVL", 5);
+	if (!env_shlvl)
+		return (ERR_EMPTY);
 	new_val = ft_atoi(env_shlvl->value) + 1;
 	if (new_val < 0)
 		new_val = 0;
