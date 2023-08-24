@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/23 10:49:08 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 08:25:28 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@
 # include "mod_signal.h"
 
 //init.c
-t_err	ft_startup(t_data *data);
+void	ft_startup(t_data *data, char *argv_zero);
 void	ft_init_data(t_data *data);
 
 //MODULE ENV
-t_err	ft_env_setup(t_hashtable **env_table, char *argv_zero, t_buf *buf);
+void	ft_env_setup(t_hashtable *env_table, char *argv_zero, t_buf *buf);
 t_err	ft_envp_create(t_hashtable *ht, char ***envp);
 t_err	ft_envp_destroy(char ***envp);
 
