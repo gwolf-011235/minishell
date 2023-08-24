@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 17:05:07 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 17:21:38 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table, t_buf *buf)
 			err = ft_expand_arg(&tmp, env_table, buf);
 		if (err != SUCCESS)
 			return (err);
+		*head = ft_list_first(tmp);
 		if (tmp->next == NULL)
 			break ;
-		*head = ft_list_first(tmp);
 		tmp = tmp->next;
 	}
 	ft_del_target_type(head, DELETE);
