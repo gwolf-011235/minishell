@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:15:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 15:44:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 17:54:01 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,14 @@ t_err	ft_expand_tilde(t_track *input, t_hashtable *symtab)
 	if (input->pos != 0 && input->str[input->pos - 1] != '=')
 		return (ERR_NOEXPAND);
 	var.ptr = NULL;
-	err = ft_get_tilde_var(input, &var);
-	if (err != SUCCESS)
-		return (err);
+	if (ft_get_tilde_var(input, &var) == ERR_NOEXPAND)
+		return (ERR_NOEXPAND);
 	replace.ptr = NULL;
 	err = ft_get_tilde_replace(var, symtab, &replace, &input->pos);
 	if (err == ERR_NOT_FOUND)
 		return (ERR_NOEXPAND);
-	if (err != SUCCESS)
-		return (err);
+	else if (err == ERR_MALLOC)
+		return (ERR_MALLOC);
 	err = ft_insert_replace(input, var, replace);
 	free(replace.ptr);
 	if (err != SUCCESS)

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 17:21:38 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 18:03:43 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,15 @@ t_err	ft_expand_heredoc(t_tkn_list **node)
 t_err	ft_expand_redirect(t_tkn_list **node, t_hashtable *symtab)
 {
 	t_track	input;
-	t_err	err;
 
 	*node = (*node)->next;
 	ft_init_tracker(&input, (*node)->content, INFILE);
-	err = ft_expander(&input, symtab, input.type);
-	if (err != SUCCESS)
-		return (err);
+	if (ft_expander(&input, symtab, input.type) == ERR_MALLOC)
+		return (ERR_MALLOC);
 	(*node)->content = input.str;
 	if ((*node)->content[0] == '\0' && !input.found_quote)
 		(*node)->prev->type = AMBIGUOUS;
-	return (err);
+	return (SUCCESS);
 }
 
 /**
@@ -131,15 +129,13 @@ t_err	ft_expand_redirect(t_tkn_list **node, t_hashtable *symtab)
 t_err	ft_expand_assign(t_tkn_list **node, t_hashtable *symtab)
 {
 	t_track	input;
-	t_err	err;
 
 	ft_init_tracker(&input, (*node)->content, ASSIGN);
-	err = ft_expander(&input, symtab, input.type);
-	if (err != SUCCESS)
-		return (err);
+	if (ft_expander(&input, symtab, input.type) == ERR_MALLOC)
+		return (ERR_MALLOC);
 	(*node)->content = input.str;
 	(*node)->type = ARG;
-	return (err);
+	return (SUCCESS);
 }
 
 /**
