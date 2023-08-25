@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:46:44 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/18 18:28:44 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 16:58:39 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,18 @@ void	ft_free_tok(t_tok *token)
  * In case the buffer string is not long enough, its size is doubled.
  * @param c 		Character to be added.
  * @param buf 		Temporary buffer to save as token.
+ * @return SUCCESS, ERR_MALLOC
  */
-void	ft_add_to_buf(char c, t_buf *buf)
+t_err	ft_add_to_buf(char c, t_buf *buf)
 {
 	buf->str[buf->cur_pos] = c;
 	buf->cur_pos++;
+	if (buf->cur_pos >= buf->size - 1)
+	{
+		if (ft_buf_double(buf) == ERR_MALLOC)
+			return (ERR_MALLOC);
+	}
+	return (SUCCESS);
 }
 
 /**
@@ -64,7 +71,8 @@ t_err	ft_check_double_redirect(t_src *src, char *c, t_buf *buf)
 	if (ft_strchr("<>", *c) && next == *c)
 	{
 		ft_next_char(src, c);
-		ft_add_to_buf(*c, buf);
+		if (ft_add_to_buf(*c, buf) == ERR_MALLOC)
+			return (ERR_MALLOC);
 	}
 	return (SUCCESS);
 }

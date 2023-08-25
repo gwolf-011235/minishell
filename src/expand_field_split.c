@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:57 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 17:23:46 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 17:07:04 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,16 +159,12 @@ t_err	ft_tokenise_fs(t_src *src, t_tok *token, t_buf *buf, t_track *input)
 
 	if (!src || !src->buf || !src->buf_size)
 		return (ERR_EMPTY);
-	err = ft_partition_fs(src, buf);
-	if (buf->cur_pos >= buf->size)
-	{
-		err = ft_buf_double(buf);
-		if (err != SUCCESS)
-			return (err);
-	}
+	if (ft_partition_fs(src, buf) == ERR_MALLOC)
+		return (ERR_MALLOC);
 	buf->str[buf->cur_pos] = '\0';
 	if (src->cur_pos == src->buf_size && input->str[input->pos])
-		ft_buf_strlcpy(buf, (input->str + input->pos), ft_strlen(input->str + input->pos) + 1);
+		ft_buf_strlcpy(buf, (input->str + input->pos),
+			ft_strlen(input->str + input->pos) + 1);
 	err = ft_create_tok(token, buf->str);
 	return (err);
 }
@@ -194,7 +190,8 @@ t_err	ft_partition_fs(t_src *src, t_buf *buf)
 		if ((c == ' ' || c == '\t') && buf->cur_pos > 0)
 			break ;
 		else
-			ft_add_to_buf(c, buf);
+			if (ft_add_to_buf(c, buf) == ERR_MALLOC)
+				return (ERR_MALLOC);
 		err = ft_next_char(src, &c);
 	}
 	return (err);
