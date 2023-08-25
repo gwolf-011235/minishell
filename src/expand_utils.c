@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 18:19:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 17:50:36 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 18:51:29 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,16 @@ t_err	ft_insert_replace(t_track *input, t_str token, t_str replace)
 	free(old_str);
 	input->str = new_str;
 	return (SUCCESS);
+}
+
+/**
+ * @brief On error while creating node frees token string.
+ *
+ * @param token		Current token handled.
+ * @return t_err	ERR_MALLOC
+ */
+t_err	ft_err_node(t_tok *token)
+{
+	ft_free_tok(token);
+	return (ERR_MALLOC);
 }

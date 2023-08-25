@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 16:16:14 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 18:34:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,14 @@ t_err	ft_buf_double(t_buf *buf)
  * @param buf Pointer to buffer.
  * @param str String to copy.
  * @param len Len of string accounted with zero terminator.
- * @return t_err
+ * @return t_err ERR_MALLOC, SUCCESS
  */
 t_err	ft_buf_strlcpy(t_buf *buf, char *str, size_t len)
 {
-	t_err	err;
-
 	if ((int)len + buf->cur_pos > buf->size)
 	{
-		err = ft_buf_double(buf);
-		if (err != SUCCESS)
-			return (err);
+		if (ft_buf_double(buf) == ERR_MALLOC)
+			return (ERR_MALLOC);
 	}
 	ft_strlcpy(&buf->str[buf->cur_pos], str, len);
 	buf->cur_pos += len - 1;

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:07:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 18:03:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 18:26:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ t_err	ft_expander(t_track *input, t_hashtable *symtab, t_type type)
 		}
 		else
 			err = ft_move_tracker(input);
-		if (err != SUCCESS && err != ERR_NOEXPAND)
-			return (err);
+		if (err == ERR_MALLOC)
+			return (ERR_MALLOC);
 	}
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 18:03:43 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 18:27:34 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,9 +159,8 @@ t_err	ft_expand_arg(t_tkn_list **node, t_hashtable *symtab, t_buf *buf)
 	ft_init_tracker(&input, (*node)->content, ARG);
 	while (input.str[input.pos])
 	{
-		err = ft_expander(&input, symtab, input.type);
-		if (err != SUCCESS)
-			return (err);
+		if (ft_expander(&input, symtab, input.type) == ERR_MALLOC)
+			return (ERR_MALLOC);
 		(*node)->content = input.str;
 		if (input.last_expand_len > 0 && !input.quoted)
 		{
