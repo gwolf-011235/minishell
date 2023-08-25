@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 15:06:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 17:20:05 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ typedef enum e_error {
 	ERR_WRITE, ///< Syscall write failed.
 	ERR_DIR, ///< Cmd is a directory.
 	ERR_NO_DIR, ///< Directory or file not found
-	ERR_STAT ///< stat() failed.
+	ERR_STAT, ///< stat() failed.
+	ERR_LEXER ///< Error while lexing.
 }	t_err;
 
 /* ====== Functions ====== */
@@ -106,6 +107,7 @@ t_err	ft_err_close(int fd, char *msg);
 //error_msg.c
 t_err	ft_print_warning(char *indic, char *trigger);
 t_err	ft_print_warning2(char *indic, char *trigger);
+t_err	ft_print_error(t_err err);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:16:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 16:30:01 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 17:21:28 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ void	ft_handle_input(char *input, t_data *data)
 	cmd = NULL;
 	if (ft_check_syntax(input) == ERR_SYNTAX)
 		return ;
-	err = ft_lex_input(&lst, input, &data->buf);
-	if (err != SUCCESS)
+	if (ft_lex_input(&lst, input, &data->buf) == ERR_LEXER)
 		return ;
 	err = ft_expand_tkn_lst(&lst, data->env_table, &data->buf);
 	if (err != SUCCESS)

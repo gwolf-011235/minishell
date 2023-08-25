@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_temp.c                                       :+:      :+:    :+:   */
+/*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 17:40:16 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/20 17:40:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 17:20:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,17 @@ t_err	ft_print_warning2(char *indic, char *trigger)
 		return (SUCCESS);
 	}
 	return (SUCCESS);
+}
+
+/**
+ * @brief Prints error message depending on passed error code.
+ *
+ * @param err Passed error code.
+ * @return Passed error code.
+ */
+t_err	ft_print_error(t_err err)
+{
+	if (err == ERR_LEXER)
+		ft_putendl_fd("minishell: error: lexer has the sad", 2);
+	return (err);
 }

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/17 13:53:42 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 17:24:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
  * Loops through input, creates token until no more
  * chars are found and returns ERR_EOF which breaks the loop.
  * Creates initial node even if first token ends directly with ERR_EOF.
+ * Handles errors.
  * @param lst_head	Head node of token list.
  * @param input 	Input string to be tokenised.
  * @return t_err 	ERR_EMPTY, ERR_MALLOC, SUCCESS
@@ -40,19 +41,20 @@ t_err	ft_lex_input(t_tkn_list	**lst_head, char *input, t_buf *buf)
 	ft_buf_clear(buf);
 	err = ft_tokenise(&src, &token, buf);
 	if (err == ERR_MALLOC)
-		return (err);
+		return (ft_print_error(ERR_LEXER));
 	while (err != ERR_EOF || !*lst_head)
 	{
-		err = ft_new_node(lst_head, token.str);
-		if (err != SUCCESS)
+		if (ft_new_node(lst_head, token.str) == ERR_MALLOC)
 		{
 			ft_free_lst(lst_head);
 			ft_free_tok(&token);
-			return (err);
+			return (ft_print_error(ERR_LEXER));
 		}
-		err = ft_tokenise(&src, &token, buf);
-		if (err == ERR_MALLOC)
-			return (err);
+		if (ft_tokenise(&src, &token, buf) == ERR_MALLOC)
+		{
+			ft_free_lst(lst_head);
+			return (ft_print_error(ERR_LEXER));
+		}
 	}
 	ft_assign_type(*lst_head);
 	return (SUCCESS);
