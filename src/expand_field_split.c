@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:57 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 18:52:26 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 19:03:44 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 t_err	ft_field_split(t_track *input, t_tkn_list **cur_node, t_buf *buf)
 {
 	t_tkn_list	*tmp;
-	t_err		err;
 	size_t		words;
 
 	tmp = *cur_node;
@@ -43,9 +42,8 @@ t_err	ft_field_split(t_track *input, t_tkn_list **cur_node, t_buf *buf)
 	else
 	{
 		ft_buf_clear(buf);
-		err = ft_split_node(input, &tmp, buf);
-		if (err != SUCCESS)
-			return (err);
+		if (ft_split_node(input, &tmp, buf) == ERR_MALLOC)
+			return (ERR_MALLOC);
 		ft_del_prev_n(tmp, words);
 	}
 	*cur_node = tmp;

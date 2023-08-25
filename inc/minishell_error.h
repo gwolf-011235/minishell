@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 17:20:05 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 19:01:29 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ typedef enum e_error {
 	ERR_DIR, ///< Cmd is a directory.
 	ERR_NO_DIR, ///< Directory or file not found
 	ERR_STAT, ///< stat() failed.
-	ERR_LEXER ///< Error while lexing.
+	ERR_LEXER, ///< Error while lexing.
+	ERR_EXPANDER ///< Error while expanding.
 }	t_err;
 
 /* ====== Functions ====== */
