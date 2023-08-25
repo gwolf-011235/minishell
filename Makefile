@@ -6,7 +6,7 @@
 #    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/25 14:39:54 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/25 15:44:49 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -209,6 +209,7 @@ valgr: $(NAME)
 			--show-leak-kinds=all\
 			--trace-children=yes\
 			--track-fds=yes\
+			-s --suppressions=./minishell.supp\
 			./$(NAME)
 #			--log-file=valgrind-out.txt\
 
@@ -248,6 +249,7 @@ tvalgr: $(TEST)
 			--trace-children=no\
 			--track-fds=no\
 			--log-file=valgrind-out.txt\
+			--suppressions=./minishell.supp
 			./$(TEST)
 	@less ./valgrind-out.txt
 
