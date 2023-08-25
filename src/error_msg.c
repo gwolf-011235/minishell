@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 17:40:16 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 20:59:34 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 21:04:37 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_err	ft_print_warning3(t_err err, char *trigger)
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(trigger, 2);
 		ft_putendl_fd(": could not create heredoc", 2);
-		return (SUCCESS);
+		return (ERR_HEREDOC_OPEN);
 	}
 	return (SUCCESS);
 }

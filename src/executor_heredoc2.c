@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:20:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 20:59:08 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 21:05:49 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * @param index 	Index of current cmd.
  * @param name 		Pointer to name of heredoc to be created.
  * @param fd 		File descriptor for heredoc.
- * @return t_err 	ERR_MALLOC, ERR_OPEN, SUCCESS
+ * @return t_err 	ERR_MALLOC, ERR_HEREDOC_OPEN, SUCCESS
  */
 t_err	ft_init_heredoc(t_hdoc *heredoc, t_cmd *cmd, int curr_delim)
 {
@@ -36,7 +36,7 @@ t_err	ft_init_heredoc(t_hdoc *heredoc, t_cmd *cmd, int curr_delim)
 	if (heredoc->fd == -1)
 	{
 		cmd->execute = false;
-		ft_print_warning(ERR_HEREDOC_OPEN, heredoc->name);
+		return (ft_print_warning(ERR_HEREDOC_OPEN, heredoc->name));
 	}
 	else
 		cmd->execute = true;
