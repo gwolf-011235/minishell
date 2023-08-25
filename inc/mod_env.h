@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:41:48 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 08:20:37 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 15:56:05 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_set_special_params(t_hashtable *env_table, char *argv_zero);
 
 //env_envp.c
 t_err	ft_envp_fill(t_hashtable *ht, char **envp, bool all);
-t_err	ft_envp_create(t_hashtable *ht, char ***envp);
+void	ft_envp_create(t_hashtable *ht, char ***envp);
 t_err	ft_envp_create_all(t_hashtable *ht, char ***envp);
 t_err	ft_envp_destroy(char ***envp);
 

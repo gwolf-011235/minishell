@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 15:50:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 15:56:18 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_init_data(t_data *data);
 
 //MODULE ENV
 void	ft_env_setup(t_hashtable *env_table, char *argv_zero, t_buf *buf);
-t_err	ft_envp_create(t_hashtable *ht, char ***envp);
+void	ft_envp_create(t_hashtable *ht, char ***envp);
 
 //MODULE PROMPT
 void	ft_create_prompts(t_data *data);
