@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
+#    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/17 07:40:27 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/25 10:43:26 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -201,8 +201,8 @@ address: clean $(NAME)
 valgr: $(NAME)
 	@valgrind --leak-check=full\
 			--show-leak-kinds=all\
-			--trace-children=no\
-			--track-fds=no\
+			--trace-children=yes\
+			--track-fds=yes\
 			--log-file=valgrind-out.txt\
 			./$(NAME)
 	@less ./valgrind-out.txt
