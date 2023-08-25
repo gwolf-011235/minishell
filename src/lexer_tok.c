@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 17:04:54 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 17:10:59 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@
  * Token contains the token string and its length.
  * @param token 	Created token.
  * @param s 		Token string.
- * @return t_err 	ERR_MALLOC, ERR_EMPTY, ERR_EOF, SUCCESS
+ * @return t_err 	ERR_MALLOC, ERR_EOF, SUCCESS
  */
 t_err	ft_create_tok(t_tok *token, char *s)
 {
-	if (!token || !s)
-		return (ERR_EMPTY);
 	token->size = ft_strlen(s);
 	if (!token->size)
 		return (ERR_EOF);
@@ -46,14 +44,12 @@ t_err	ft_create_tok(t_tok *token, char *s)
  * @param src 		Struct containing the input string,
  * 					its length and current position.
  * @param token 	Token to be created.
- * @return t_err* ERR_EMPTY, ERR_MALLOC, SUCCESS
+ * @return t_err* ERR_MALLOC, SUCCESS
  */
 t_err	ft_tokenise(t_src *src, t_tok *token, t_buf *buf)
 {
 	t_err	err;
 
-	if (!src || !src->buf || !src->buf_size)
-		return (ERR_EMPTY);
 	buf->cur_pos = 0;
 	buf->str[0] = '\0';
 	if (ft_partition(src, buf) == ERR_MALLOC)
@@ -71,7 +67,7 @@ t_err	ft_tokenise(t_src *src, t_tok *token, t_buf *buf)
  * @param src 		Struct containing the input string,
  * 					its length and current position.
  * @param buf 		Temporary buffer to save as token.
- * @return t_err 	ERR_EMPTY, ERR_EOF, SUCCESS
+ * @return t_err 	ERR_EOF, SUCCESS
  */
 t_err	ft_partition(t_src *src, t_buf *buf)
 {
