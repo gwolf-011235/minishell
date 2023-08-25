@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 12:42:04 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/25 12:48:33 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 	fd_in = open((*lst)->content, O_RDONLY);
 	if (fd_in == -1)
 	{
-		g_status = 127;
 		new->execute = false;
 		ft_print_warning("nodir", (*lst)->content);
 	}

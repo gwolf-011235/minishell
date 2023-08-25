@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 12:25:08 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/25 13:01:16 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,12 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 		if (err != SUCCESS)
 			return (err);
 		err = ft_wait_for_babies(cmd);
+	}
+	else
+	{
+		g_status = 1;
+		ft_close(&cmd->fd_in);
+		ft_close(&cmd->fd_out);
 	}
 	return (err);
 }

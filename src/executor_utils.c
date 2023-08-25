@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/22 19:50:11 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/25 13:00:46 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,8 @@ t_err	ft_wait_for_babies(t_cmd *cmd)
 				}
 			}
 		}
+		else
+			g_status = 1;
 		cmd = cmd->next;
 	}
 	return (SUCCESS);
