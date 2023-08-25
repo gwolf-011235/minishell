@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:46:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 18:51:17 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 14:46:15 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define MAX_SHLVL 10
 # define BUF_SIZE 2048
 
-# define PS1 "PS1=\\u@\\h:\\w$ "
+# define PS1 "PS1=\\u@\\h$ "
 # define PS2 "PS2=tell me more> "
 # define PS1_STD "$ "
 # define PS2_STD "> "
