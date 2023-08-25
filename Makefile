@@ -6,7 +6,7 @@
 #    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/25 15:44:49 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/25 19:53:44 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,6 +98,7 @@ SRC :=	utils_memory.c \
 		parser.c \
 		parser_utils.c \
 		parser_fill_cmd.c \
+		parser_cleanup.c \
 		builtin_utils.c \
 		builtin_error.c \
 		builtin_echo.c \
