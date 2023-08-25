@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/21 18:22:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 16:16:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,11 @@ void	ft_buf_destroy(t_buf *buf)
  * @brief Set the buffer to zero.
  *
  * @param buf Pointer to buffer.
- * @return t_err SUCCESS
  */
-t_err	ft_buf_clear(t_buf *buf)
+void	ft_buf_clear(t_buf *buf)
 {
 	ft_memset(buf->str, '\0', buf->size);
 	buf->cur_pos = 0;
-	return (SUCCESS);
 }
 
 /**
