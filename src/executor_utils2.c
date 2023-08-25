@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:24:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 13:00:40 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/25 10:18:45 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ bool	ft_check_empty_path(char *path_str)
  * last outfile is preserved.
  * Differentiates each outfile regarding append mode.
  * @param cmd 		Current cmd.
- * @return t_err 	ERR_CLOSE, ERR_OPEN, SUCCESS
+ * @return t_err 	ERR_CLOSE, SUCCESS
  */
 t_err	ft_open_outfile(t_cmd *cmd)
 {
@@ -135,7 +135,11 @@ t_err	ft_open_outfile(t_cmd *cmd)
 			cmd->fd_out = open(cmd->outfiles[i], O_RDWR | O_TRUNC | O_CREAT,
 					0644);
 		if (cmd->fd_out == -1)
-			return (ERR_OPEN);
+		{
+			cmd->execute = false;
+			ft_print_warning("nodir", cmd->outfiles[i]);
+			break ;
+		}
 	}
 	return (SUCCESS);
 }

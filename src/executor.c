@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/19 20:48:00 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 13:01:16 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 		err = ft_open_outfile(cmd);
 	if (err != SUCCESS)
 		return (err);
-	if (cmd->args)
+	if (cmd->args && cmd->execute)
 	{
 		if (ft_check_builtin(cmd->args[0]))
 			return (ft_execute_builtin(0, cmd, data));
@@ -91,6 +91,12 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 		if (err != SUCCESS)
 			return (err);
 		err = ft_wait_for_babies(cmd);
+	}
+	else
+	{
+		g_status = 1;
+		ft_close(&cmd->fd_in);
+		ft_close(&cmd->fd_out);
 	}
 	return (err);
 }
@@ -117,14 +123,16 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 {
 	t_err	err;
 	t_cmd	*tmp;
+	bool	child;
 
 	tmp = cmd;
+	child = false;
 	err = ft_loop_thru_outfiles(cmd);
 	if (err != SUCCESS)
 		return (err);
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
-		if (cmd->args)
+		if (cmd->args && cmd->execute)
 		{
 			if (ft_check_builtin(cmd->args[0]))
 			{
@@ -132,7 +140,10 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 				if (err != SUCCESS)
 					return (err);
 				if (cmd->pid == 0)
+				{
+					child = true;
 					break ;
+				}
 			}
 			else
 			{
@@ -142,9 +153,16 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 					return (err);
 			}
 		}
+		else
+		{
+			ft_plug_pipe(&cmd->fd_prev_pipe[0], &cmd->fd_prev_pipe[1]);
+			ft_close(&cmd->fd_in);
+			ft_close(&cmd->fd_out);
+		}
 		cmd = cmd->next;
 	}
-	err = ft_wait_for_babies(tmp);
+	if (!child)
+		err = ft_wait_for_babies(tmp);
 	return (err);
 }
 
