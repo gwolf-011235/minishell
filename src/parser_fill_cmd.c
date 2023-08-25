@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_fill_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 14:15:02 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 12:42:04 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,11 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 			return (ERR_CLOSE);
 	fd_in = open((*lst)->content, O_RDONLY);
 	if (fd_in == -1)
-		return (ERR_OPEN);
+	{
+		g_status = 127;
+		new->execute = false;
+		ft_print_warning("nodir", (*lst)->content);
+	}
 	new->fd_in = fd_in;
 	return (SUCCESS);
 }
