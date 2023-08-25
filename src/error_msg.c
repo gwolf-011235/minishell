@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 17:40:16 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 19:48:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 20:59:34 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
  * @brief Print warning messages depending on
  * received indicator and trigger string.
  *
- * @param indic		Indicator string for error message.
+ * @param err		Indicator t_err for error message.
  * @param trigger	Trigger string causing the error.
  * @return t_err	ERR_HEREDOC_EOF, ERR_DIR, SUCCESS
  */
-t_err	ft_print_warning(char *indic, char *trigger)
+t_err	ft_print_warning(t_err err, char *trigger)
 {
-	if (!ft_strncmp(indic, "heredoc", 8))
+	if (err == ERR_HEREDOC_EOF)
 	{
 		ft_putstr_fd("minishell: warning: here-document at line 42 \
 	delimited by end-of-file (wanted `", 2);
@@ -33,7 +33,7 @@ t_err	ft_print_warning(char *indic, char *trigger)
 		ft_putendl_fd("')", 2);
 		return (ERR_HEREDOC_EOF);
 	}
-	else if (!ft_strncmp(indic, "dir", 4))
+	else if (err == ERR_DIR)
 	{
 		g_status = 126;
 		ft_putstr_fd("minishell: ", 2);
@@ -42,7 +42,7 @@ t_err	ft_print_warning(char *indic, char *trigger)
 		return (ERR_DIR);
 	}
 	else
-		return (ft_print_warning2(indic, trigger));
+		return (ft_print_warning2(err, trigger));
 }
 
 /**
@@ -52,9 +52,9 @@ t_err	ft_print_warning(char *indic, char *trigger)
  * @param trigger 	Trigger string causing the error.
  * @return t_err 	ERR_NO_DIR, SUCCESS
  */
-t_err	ft_print_warning2(char *indic, char *trigger)
+t_err	ft_print_warning2(t_err err, char *trigger)
 {
-	if (!ft_strncmp(indic, "nodir", 6))
+	if (err == ERR_NO_DIR)
 	{
 		g_status = 127;
 		ft_putstr_fd("minishell: ", 2);
@@ -62,7 +62,7 @@ t_err	ft_print_warning2(char *indic, char *trigger)
 		ft_putendl_fd(": No such file or directory", 2);
 		return (ERR_NO_DIR);
 	}
-	if (!ft_strncmp(indic, "nocmd", 6))
+	else if (err == ERR_UNKNOWN_CMD)
 	{
 		g_status = 127;
 		ft_putstr_fd("minishell: ", 2);
@@ -70,12 +70,33 @@ t_err	ft_print_warning2(char *indic, char *trigger)
 		ft_putendl_fd(": command not found", 2);
 		return (SUCCESS);
 	}
-	if (!ft_strncmp(indic, "ambiguous", 10))
+	else
+		return (ft_print_warning3(err, trigger));
+}
+
+/**
+ * @brief Continuation of ft_print_warning()
+ *
+ * @param indic 	Indicator string for error message.
+ * @param trigger 	Trigger string causing the error.
+ * @return t_err 	SUCCESS
+ */
+t_err	ft_print_warning3(t_err err, char *trigger)
+{
+	if (err == ERR_AMBIGUOUS)
 	{
 		g_status = 1;
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(trigger, 2);
 		ft_putendl_fd(": ambiguous redirect", 2);
+		return (SUCCESS);
+	}
+	else if (err == ERR_HEREDOC_OPEN)
+	{
+		g_status = 1;
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(trigger, 2);
+		ft_putendl_fd(": could not create heredoc", 2);
 		return (SUCCESS);
 	}
 	return (SUCCESS);

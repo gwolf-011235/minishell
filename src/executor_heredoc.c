@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/24 15:28:14 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 20:55:54 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_err	ft_handle_heredoc(t_cmd *cmd, t_hashtable *symtab, char *prompt2)
 
 	while (cmd)
 	{
-		//ft_signal_setup(SIGINT, SIG_STD);
 		i = -1;
 		while (++i < cmd->delim_pos)
 		{
@@ -59,8 +58,7 @@ t_err	ft_create_heredoc(t_cmd *cmd, int curr_delim,
 	t_hdoc	heredoc;
 	t_err	err;
 
-	err = ft_init_heredoc(&heredoc, cmd->index, cmd->hdoc_quoted[curr_delim],
-			cmd->delims[curr_delim]);
+	err = ft_init_heredoc(&heredoc, cmd, curr_delim);
 	if (err != SUCCESS)
 		return (err);
 	g_status = 0;
@@ -102,7 +100,7 @@ t_err	ft_read_heredoc(t_hdoc *heredoc, t_hashtable *symtab, char *prompt2)
 		if (g_status == 130)
 			return (ERR_ABORT);
 		if (!buf)
-			return (ft_print_warning("heredoc", heredoc->delim));
+			return (ft_print_warning(ERR_HEREDOC_EOF, heredoc->delim));
 		if (ft_strncmp(buf, heredoc->delim, heredoc->delim_len + 1) == 0)
 			break ;
 		if (heredoc->quoted == false)

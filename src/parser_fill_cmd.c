@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 20:02:32 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 20:46:58 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 	if (fd_in == -1)
 	{
 		new->execute = false;
-		ft_print_warning("nodir", (*lst)->content);
+		ft_print_warning(ERR_NO_DIR, (*lst)->content);
 	}
 	new->fd_in = fd_in;
 	return (SUCCESS);

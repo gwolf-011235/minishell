@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 14:40:03 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 20:55:39 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_hdoc
 	char	*delim;
 	size_t	delim_len;
 	bool	quoted;
+	t_cmd	*cmd;
 }	t_hdoc;
 
 /* ====== Functions ====== */
@@ -63,7 +64,7 @@ t_err	ft_create_heredoc(t_cmd *cmd, int curr_delim,
 			t_hashtable *symtab, char *prompt2);
 t_err	ft_read_heredoc(t_hdoc *heredoc, t_hashtable *symtab, char *prompt2);
 t_err	ft_name_heredoc(int index, char **name);
-t_err	ft_init_heredoc(t_hdoc *heredoc, int index, bool quoted, char *delim);
+t_err	ft_init_heredoc(t_hdoc *heredoc, t_cmd *cmd, int curr_delim);
 t_err	ft_heredoc_fate(t_cmd *cmd, int curr_delim, t_hdoc *heredoc);
 
 // cleanup

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 14:40:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 20:45:53 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path)
 	{
 		err = ft_check_dir(args);
 		if (err == ERR_DIR)
-			return (ft_print_warning("dir", args[0]));
+			return (ft_print_warning(err, args[0]));
 		else if (err == ERR_NO_DIR)
-			return (ft_print_warning("nodir", args[0]));
+			return (ft_print_warning(err, args[0]));
 		else if (err == ERR_STAT)
 			return (ERR_STAT);
 	}
