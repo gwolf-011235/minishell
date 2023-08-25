@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 11:51:43 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/25 13:44:17 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ t_err	ft_raise_first(t_cmd *cmd, t_data *data, bool builtin)
 		err = ft_close(&cmd->fd_out);
 		if (err != SUCCESS)
 			return (err);
-
 	}
 	return (SUCCESS);
 }
