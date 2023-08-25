@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:16:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 14:40:32 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 16:30:01 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
  * @param data 		Overarching data struct containing the env.
  * @return t_err 	ERR_EMPTY, ERR_MALLOC, ERR_SYNTAX,  ERR_PIPE, SUCCESS
  */
-t_err	ft_handle_input(char *input, t_data *data)
+void	ft_handle_input(char *input, t_data *data)
 {
 	t_tkn_list	*lst;
 	t_err		err;
@@ -39,23 +39,22 @@ t_err	ft_handle_input(char *input, t_data *data)
 
 	lst = NULL;
 	cmd = NULL;
-	err = ft_check_syntax(input);
-	if (err != SUCCESS)
-		return (err);
+	if (ft_check_syntax(input) == ERR_SYNTAX)
+		return ;
 	err = ft_lex_input(&lst, input, &data->buf);
 	if (err != SUCCESS)
-		return (err);
+		return ;
 	err = ft_expand_tkn_lst(&lst, data->env_table, &data->buf);
 	if (err != SUCCESS)
 	{
 		ft_free_lst(&lst);
-		return (err);
+		return ;
 	}
 	err = ft_parser(lst, &cmd);
 	if (err != SUCCESS)
-		return (err);
+		return ;
 	ft_free_lst(&lst);
 	err = ft_executor(cmd, data);
 	ft_cleanup_cmd_list(cmd);
-	return (SUCCESS);
+	return ;
 }
