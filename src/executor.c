@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/22 19:35:08 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/25 10:36:32 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,10 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 {
 	t_err	err;
 	t_cmd	*tmp;
+	bool	child;
 
 	tmp = cmd;
+	child = false;
 	err = ft_loop_thru_outfiles(cmd);
 	if (err != SUCCESS)
 		return (err);
@@ -132,7 +134,10 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 				if (err != SUCCESS)
 					return (err);
 				if (cmd->pid == 0)
+				{
+					child = true;
 					break ;
+				}
 			}
 			else
 			{
@@ -150,7 +155,8 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 		}
 		cmd = cmd->next;
 	}
-	err = ft_wait_for_babies(tmp);
+	if (!child)
+		err = ft_wait_for_babies(tmp);
 	return (err);
 }
 
