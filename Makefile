@@ -6,7 +6,7 @@
 #    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/25 10:43:26 by sqiu             ###   ########.fr        #
+#    Updated: 2023/08/25 12:06:27 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -203,9 +203,10 @@ valgr: $(NAME)
 			--show-leak-kinds=all\
 			--trace-children=yes\
 			--track-fds=yes\
-			--log-file=valgrind-out.txt\
 			./$(NAME)
-	@less ./valgrind-out.txt
+#			--log-file=valgrind-out.txt\
+			
+#	@less ./valgrind-out.txt
 
 # ******************************
 # *     TEST linkage           *
