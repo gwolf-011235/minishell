@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:07:27 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 10:22:53 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 12:10:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,14 @@
 t_err	ft_unset(char **argv, t_hashtable *env_tab)
 {
 	size_t		i;
+	t_env_var	*env_var;
 
 	i = 1;
 	while (argv[i])
 	{
-		ft_hashtable_delete(env_tab, argv[i], ft_strlen(argv[i]));
+		env_var = ft_hashtable_lookup(env_tab, argv[i], ft_strlen(argv[i]));
+		if (env_var && env_var->export)
+			ft_hashtable_delete(env_tab, argv[i], ft_strlen(argv[i]));
 		i++;
 	}
 	g_status = 0;

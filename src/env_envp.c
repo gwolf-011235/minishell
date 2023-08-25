@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 18:09:38 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/12 21:42:20 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/18 16:27:30 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_err	ft_envp_fill(t_hashtable *ht, char **envp, bool all)
 			tmp = ht->elements[i];
 			while (tmp != NULL)
 			{
-				if (all || tmp->has_value)
+				if (tmp->export && (all || tmp->has_value))
 					*envp++ = tmp->env_string;
 				tmp = tmp->next;
 			}
@@ -63,9 +63,12 @@ t_err	ft_envp_fill(t_hashtable *ht, char **envp, bool all)
  */
 t_err	ft_envp_create(t_hashtable *ht, char ***envp)
 {
+	size_t	size;
+
+	size = ht->num_values - (ht->num_elements - ht->num_exports) + 1;
 	if (!ht || !envp)
 		return (ERR_EMPTY);
-	*envp = malloc(sizeof(char *) * (ht->num_values + 1));
+	*envp = malloc(sizeof(char *) * size);
 	if (!*envp)
 		return (ERR_MALLOC);
 	ft_envp_fill(ht, *envp, false);
@@ -85,14 +88,16 @@ t_err	ft_envp_create(t_hashtable *ht, char ***envp)
  */
 t_err	ft_envp_create_all(t_hashtable *ht, char ***envp)
 {
+
 	if (!ht || !envp)
 		return (ERR_EMPTY);
-	*envp = malloc(sizeof(char *) * (ht->num_elements + 1));
+	*envp = malloc(sizeof(char *) * (ht->num_exports + 1));
 	if (!*envp)
 		return (ERR_MALLOC);
 	ft_envp_fill(ht, *envp, true);
 	return (SUCCESS);
 }
+
 /**
  * @brief Destroy envp.
  *

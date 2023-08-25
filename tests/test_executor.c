@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:17:27 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/19 19:02:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/19 19:51:58 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	test_wrapper(char *testname, char *test, t_buf *buf)
 	i = 0;
 	lst = NULL;
 	cmd = NULL;
-	ft_env_setup(&g_symtab);
+	ft_env_setup(&g_symtab, "test");
 	ft_envp_create(g_symtab, &g_data.envp);
 	printf("TEST: %s\n", testname);
 	printf("Command:%s\n", test);
@@ -59,7 +59,7 @@ static int	test_heredoc_wrapper(char *testname, char *test, t_buf *buf)
 	i = 0;
 	lst = NULL;
 	cmd = NULL;
-	ft_env_setup(&g_symtab);
+	ft_env_setup(&g_symtab, "test");
 	ft_envp_create(g_symtab, &envp);
 	printf("TEST: %s\n", testname);
 	printf("Command:%s\n", test);
@@ -139,7 +139,7 @@ static int	test_pipe_wrapper(char *testname, char *test, t_buf *buf)
 	i = 0;
 	lst = NULL;
 	cmd = NULL;
-	ft_env_setup(&g_symtab);
+	ft_env_setup(&g_symtab, "test");
 	ft_envp_create(g_symtab, &g_data.envp);
 	printf("TEST: %s\n", testname);
 	printf("Command:%s\n\n", test);
