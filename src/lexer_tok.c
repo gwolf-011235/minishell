@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 17:10:59 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 18:38:44 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_err	ft_tokenise(t_src *src, t_tok *token, t_buf *buf)
  * @param src 		Struct containing the input string,
  * 					its length and current position.
  * @param buf 		Temporary buffer to save as token.
- * @return t_err 	ERR_EOF, SUCCESS
+ * @return t_err 	ERR_EOF, SUCCESS, ERR_OUT_OF_BOUNDS
  */
 t_err	ft_partition(t_src *src, t_buf *buf)
 {
@@ -105,7 +105,7 @@ t_err	ft_partition(t_src *src, t_buf *buf)
  * Retrieve the first character.
  * @param src 		Struct containing the source string.
  * @param c 		Character retrieved.
- * @return t_err 	ERR_EMPTY, ERR_MALLOC, SUCCESS
+ * @return t_err 	ERR_EOF, SUCCESS
  */
 t_err	ft_init_partition(t_src *src, char *c)
 {
