@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 18:21:51 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 20:07:42 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	ft_init_lexer(t_src *src, char *input, int len)
  */
 t_err	ft_lex_err(t_tkn_list **lst_head, t_tok *token)
 {
+	g_status = 1;
 	ft_free_lst(lst_head);
 	ft_free_tok(token);
 	return (ft_print_error(ERR_LEXER));

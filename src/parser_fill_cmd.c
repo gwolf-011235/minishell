@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_fill_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 12:48:33 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/25 20:02:32 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  *
  * @param lst 		List of token.
  * @param new 		New cmd to be filled.
- * @return t_err 	ERR_OPEN, ERR_CLOSE, SUCCESS
+ * @return t_err 	SUCCESS
  */
 t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 {
@@ -31,8 +31,7 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 	*lst = (*lst)->next;
 	new->infile = 1;
 	if (new->fd_in > -1)
-		if (close(new->fd_in) < 0)
-			return (ERR_CLOSE);
+		ft_err_close(new->fd_in, "minishell: parsing");
 	fd_in = open((*lst)->content, O_RDONLY);
 	if (fd_in == -1)
 	{
@@ -62,8 +61,7 @@ t_err	ft_save_heredoc(t_tkn_list **lst, t_cmd *new)
 		return (SUCCESS);
 	if (new->fd_in > -1)
 	{
-		if (close(new->fd_in) < 0)
-			return (ERR_CLOSE);
+		ft_err_close(new->fd_in, "minishell: parsing");
 		new->fd_in = -1;
 	}
 	new->delims[new->delim_pos] = ft_strdup((*lst)->content);
