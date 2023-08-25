@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 17:24:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 18:21:51 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
  * @param input 	Input string to be tokenised.
  * @return t_err 	ERR_EMPTY, ERR_MALLOC, SUCCESS
  */
-t_err	ft_lex_input(t_tkn_list	**lst_head, char *input, t_buf *buf)
+t_err	ft_lex_input(t_tkn_list **lst_head, char *input, t_buf *buf)
 {
 	t_src	src;
 	t_err	err;
@@ -45,16 +45,10 @@ t_err	ft_lex_input(t_tkn_list	**lst_head, char *input, t_buf *buf)
 	while (err != ERR_EOF || !*lst_head)
 	{
 		if (ft_new_node(lst_head, token.str) == ERR_MALLOC)
-		{
-			ft_free_lst(lst_head);
-			ft_free_tok(&token);
-			return (ft_print_error(ERR_LEXER));
-		}
-		if (ft_tokenise(&src, &token, buf) == ERR_MALLOC)
-		{
-			ft_free_lst(lst_head);
-			return (ft_print_error(ERR_LEXER));
-		}
+			ft_lex_err(lst_head, &token);
+		err = ft_tokenise(&src, &token, buf);
+		if (err == ERR_MALLOC)
+			ft_lex_err(lst_head, &token);
 	}
 	ft_assign_type(*lst_head);
 	return (SUCCESS);
@@ -72,4 +66,21 @@ void	ft_init_lexer(t_src *src, char *input, int len)
 	src->buf = input;
 	src->buf_size = len;
 	src->cur_pos = INIT_SRC_POS;
+}
+
+/**
+ * @brief	Handle ERR_MALLOC in lexer.
+ *
+ * Clears token list.
+ * Frees token, if token string malloced.
+ * Return err message.
+ * @param lst_head		Head of token list.
+ * @param token			Current malloced token.
+ * @return t_err		ERR_LEXER
+ */
+t_err	ft_lex_err(t_tkn_list **lst_head, t_tok *token)
+{
+	ft_free_lst(lst_head);
+	ft_free_tok(token);
+	return (ft_print_error(ERR_LEXER));
 }

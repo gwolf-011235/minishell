@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:46:44 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 16:58:39 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 18:14:47 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@
 void	ft_free_tok(t_tok *token)
 {
 	if (token->str)
+	{
 		free(token->str);
+		token->str = NULL;
+	}
 }
 
 /**
