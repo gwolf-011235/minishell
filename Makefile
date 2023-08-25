@@ -6,7 +6,7 @@
 #    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/24 08:55:51 by gwolf            ###   ########.fr        #
+#    Updated: 2023/08/25 14:39:54 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -207,11 +207,12 @@ address: clean $(NAME)
 valgr: $(NAME)
 	@valgrind --leak-check=full\
 			--show-leak-kinds=all\
-			--trace-children=no\
-			--track-fds=no\
-			--log-file=valgrind-out.txt\
+			--trace-children=yes\
+			--track-fds=yes\
 			./$(NAME)
-	@less ./valgrind-out.txt
+#			--log-file=valgrind-out.txt\
+
+#	@less ./valgrind-out.txt
 
 # ******************************
 # *     TEST linkage           *

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_child.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 17:09:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 12:00:45 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin)
 		ft_close(&cmd->fd_pipe[1]);
 	}
 	ft_close(&cmd->fd_in);
+	ft_plug_all_pipes(cmd);
 	if (builtin)
 		ft_choose_builtin(cmd, data, true);
 	else
@@ -162,4 +163,5 @@ void	ft_close_mid_child_fds(t_cmd *cmd)
 	ft_close(&cmd->fd_prev_pipe[0]);
 	ft_close(&cmd->fd_pipe[1]);
 	ft_close(&cmd->fd_in);
+	ft_plug_all_pipes(cmd);
 }

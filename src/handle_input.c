@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:16:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/24 17:08:15 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 14:40:32 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ t_err	ft_handle_input(char *input, t_data *data)
 		return (err);
 	ft_free_lst(&lst);
 	err = ft_executor(cmd, data);
-	if (err != SUCCESS)
-		ft_cleanup_cmd_list(cmd);
+	ft_cleanup_cmd_list(cmd);
 	return (SUCCESS);
 }

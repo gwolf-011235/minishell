@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/24 17:50:39 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 14:40:21 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,25 +168,28 @@ t_err	ft_wait_for_babies(t_cmd *cmd)
 {
 	int	status;
 
-	if (cmd->pid == 0)
-		return (SUCCESS);
 	while (cmd)
 	{
-		if (waitpid(cmd->pid, &status, 0) < 0)
-			return (ERR_WAIT);
-		if (WIFEXITED(status))
-			g_status = WEXITSTATUS(status);
-		else
+		if (cmd->pid > 0)
 		{
-			if (WIFSIGNALED(status))
+			if (waitpid(cmd->pid, &status, 0) < 0)
+				return (ERR_WAIT);
+			if (WIFEXITED(status))
+				g_status = WEXITSTATUS(status);
+			else
 			{
-				g_status = 128 + WTERMSIG(status);
-				if (__WCOREDUMP(status))
-					ft_putendl_fd("Quit (core dumped)", 2);
-				else
-					ft_putchar_fd('\n', 2);
+				if (WIFSIGNALED(status))
+				{
+					g_status = 128 + WTERMSIG(status);
+					if (__WCOREDUMP(status))
+						ft_putendl_fd("Quit (core dumped)", 2);
+					else
+						ft_putchar_fd('\n', 2);
+				}
 			}
 		}
+		else
+			g_status = 1;
 		cmd = cmd->next;
 	}
 	return (SUCCESS);

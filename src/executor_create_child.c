@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/24 15:44:15 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 14:40:12 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,10 @@ t_err	ft_raise_last(t_cmd *cmd, t_data *data, bool builtin)
 	else if (cmd->pid == 0)
 		ft_lastborn(cmd, data, builtin);
 	else
+	{
 		ft_signal_setup(SIGINT, SIG_IGNORE);
+		err = ft_plug_pipe(&cmd->fd_prev_pipe[0], &cmd->fd_prev_pipe[1]);
+	}
 	return (SUCCESS);
 }
 
@@ -130,6 +133,7 @@ t_err	ft_raise_middle(t_cmd *cmd, t_data *data, bool builtin)
 	else
 	{
 		ft_signal_setup(SIGINT, SIG_IGNORE);
+		err = ft_plug_pipe(&cmd->fd_prev_pipe[0], &cmd->fd_prev_pipe[1]);
 		err = ft_close(&cmd->fd_pipe[1]);
 		if (err != SUCCESS)
 			return (err);
