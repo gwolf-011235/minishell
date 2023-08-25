@@ -109,9 +109,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a5188eeb83614386e57d9cd1446dbb948"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup_8c.html#a5188eeb83614386e57d9cd1446dbb948">ft_close</a> (int *fd)</td></tr>
 <tr class="memdesc:a5188eeb83614386e57d9cd1446dbb948"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the closing of a file.  <a href="executor__cleanup_8c.html#a5188eeb83614386e57d9cd1446dbb948">More...</a><br /></td></tr>
 <tr class="separator:a5188eeb83614386e57d9cd1446dbb948"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee816fc19b106d7994fc55e60632b2c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup_8c.html#aee816fc19b106d7994fc55e60632b2c2">ft_plug_pipe</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd)</td></tr>
-<tr class="memdesc:aee816fc19b106d7994fc55e60632b2c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes pipe ends (= file descriptors) of the specified cmd.  <a href="executor__cleanup_8c.html#aee816fc19b106d7994fc55e60632b2c2">More...</a><br /></td></tr>
-<tr class="separator:aee816fc19b106d7994fc55e60632b2c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab02846c94b7b3010317ee59d9f624f62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup_8c.html#ab02846c94b7b3010317ee59d9f624f62">ft_plug_pipe</a> (int *pipe_in, int *pipe_out)</td></tr>
+<tr class="memdesc:ab02846c94b7b3010317ee59d9f624f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes pipe ends (= file descriptors) of the specified cmd.  <a href="executor__cleanup_8c.html#ab02846c94b7b3010317ee59d9f624f62">More...</a><br /></td></tr>
+<tr class="separator:ab02846c94b7b3010317ee59d9f624f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b9deef37e57fd801e2a0219e3426631"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup_8c.html#a2b9deef37e57fd801e2a0219e3426631">ft_plug_all_pipes</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd)</td></tr>
+<tr class="separator:a2b9deef37e57fd801e2a0219e3426631"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions to clean up executor module after planned/unplanned abort. </p>
@@ -170,8 +172,32 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aee816fc19b106d7994fc55e60632b2c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee816fc19b106d7994fc55e60632b2c2">&#9670;&nbsp;</a></span>ft_plug_pipe()</h2>
+<a id="a2b9deef37e57fd801e2a0219e3426631"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b9deef37e57fd801e2a0219e3426631">&#9670;&nbsp;</a></span>ft_plug_all_pipes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ft_plug_all_pipes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
+          <td class="paramname"><em>cmd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab02846c94b7b3010317ee59d9f624f62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab02846c94b7b3010317ee59d9f624f62">&#9670;&nbsp;</a></span>ft_plug_pipe()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -179,9 +205,19 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_plug_pipe </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
-          <td class="paramname"><em>cmd</em></td><td>)</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>pipe_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>pipe_out</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

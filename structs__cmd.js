@@ -6,6 +6,7 @@ var structs__cmd =
     [ "cmd_num", "structs__cmd.html#a6b4890cf65db1751ed2f95c2102d57a3", null ],
     [ "delim_pos", "structs__cmd.html#a4e0dbd38c24f2019444fa2449cdf2c52", null ],
     [ "delims", "structs__cmd.html#aec543a35682353d0d73d67192077e157", null ],
+    [ "execute", "structs__cmd.html#a253e08d8b620206d485babf8a40d53db", null ],
     [ "fd_in", "structs__cmd.html#aa99784c5e39bc01a4eb26b588d24170e", null ],
     [ "fd_out", "structs__cmd.html#a4d637057db9ca396d66529aeb27bb3b7", null ],
     [ "fd_pipe", "structs__cmd.html#ada06d1d76e8ddd8d64a0251a286b4d6e", null ],
