@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 10:36:32 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/25 12:25:08 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 		}
 		else
 		{
-			ft_plug_pipe(cmd);
+			ft_plug_pipe(&cmd->fd_prev_pipe[0], &cmd->fd_prev_pipe[1]);
 			ft_close(&cmd->fd_in);
 			ft_close(&cmd->fd_out);
 		}

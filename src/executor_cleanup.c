@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 13:53:24 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/25 11:59:18 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_err	ft_cleanup_cmd(t_cmd *cmd)
 	err = ft_close(&cmd->fd_out);
 	if (err != SUCCESS)
 		return (err);
-	err = ft_plug_pipe(cmd);
+	err = ft_plug_pipe(&cmd->fd_pipe[0], &cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);
 	if (cmd->heredoc)
@@ -96,14 +96,30 @@ t_err	ft_close(int *fd)
  * @param cmd		Current cmd.
  * @return t_err	ERR_CLOSE, SUCCESS
  */
-t_err	ft_plug_pipe(t_cmd *cmd)
+t_err	ft_plug_pipe(int *pipe_in, int *pipe_out)
 {
 	t_err	err;
 	t_err	err2;
 
-	err = ft_close(&cmd->fd_pipe[0]);
-	err2 = ft_close(&cmd->fd_pipe[1]);
+	err = ft_close(pipe_in);
+	err2 = ft_close(pipe_out);
 	if (err != SUCCESS)
 		return (err);
 	return (err2);
 }
+
+/**
+ * @brief 
+ * 
+ * @param cmd 
+ */
+void	ft_plug_all_pipes(t_cmd *cmd)
+{
+	cmd = cmd->next;
+	while (cmd)
+	{
+		ft_plug_pipe(&cmd->fd_pipe[0], &cmd->fd_pipe[1]);
+		cmd = cmd->next;
+	}
+}
+
