@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_cleanup.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 11:59:18 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/25 20:31:33 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 /**
  * @brief Cleans cmd after its processing.
- * 
+ *
  * Close all fds.
  * If present, unlink heredoc.
  * Free all malloced variables.
@@ -34,9 +34,6 @@ t_err	ft_cleanup_cmd(t_cmd *cmd)
 	if (err != SUCCESS)
 		return (err);
 	err = ft_close(&cmd->fd_out);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_plug_pipe(&cmd->fd_pipe[0], &cmd->fd_pipe[1]);
 	if (err != SUCCESS)
 		return (err);
 	if (cmd->heredoc)
@@ -54,7 +51,7 @@ t_err	ft_cleanup_cmd(t_cmd *cmd)
 
 /**
  * @brief Unlinks the temporary heredoc file created.
- * 
+ *
  * Returns provided error code.
  * @param name 		Name of heredoc to be unlinked and freed.
  * @param err 		Provided error code.
@@ -70,9 +67,9 @@ t_err	ft_unlink_heredoc(char **name, t_err err)
 
 /**
  * @brief Performs the closing of a file.
- * 
+ *
  * Returns an error if the closing failed.
- * On success set fd value to -1. 
+ * On success set fd value to -1.
  * @param fd 		Pointer to file descriptor to be closed.
  * @return t_err 	ERR_CLOSE, SUCCESS
  */
@@ -90,7 +87,7 @@ t_err	ft_close(int *fd)
 /**
  * @brief Closes pipe ends (= file descriptors) of the
  * specified cmd.
- * 
+ *
  * fd_pipe[0] refers to the read end of the pipe.
  * fd_pipe[1] refers to the write end of the pipe.
  * @param cmd		Current cmd.
@@ -109,9 +106,9 @@ t_err	ft_plug_pipe(int *pipe_in, int *pipe_out)
 }
 
 /**
- * @brief 
- * 
- * @param cmd 
+ * @brief
+ *
+ * @param cmd
  */
 void	ft_plug_all_pipes(t_cmd *cmd)
 {
