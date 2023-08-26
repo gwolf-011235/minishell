@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 22:45:56 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 19:56:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 20:36:30 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,16 @@
  */
 void	ft_cleanup_cmd_list(t_cmd *cmd, char **paths)
 {
+	t_cmd	*tmp;
+
 	if (paths)
 		ft_free_str_arr(paths);
 	while (cmd)
 	{
 		ft_cleanup_cmd(cmd);
+		tmp = cmd;
 		cmd = cmd->next;
+		free(tmp);
 	}
 }
 
