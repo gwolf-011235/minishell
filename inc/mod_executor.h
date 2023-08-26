@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 20:55:39 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 11:32:44 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_err	ft_check_dir(char **args);
 // builtins
 bool	ft_check_builtin(char *arg);
 t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data);
-void	ft_choose_builtin(t_cmd *cmd, t_data *data, bool forked);
+void	ft_choose_builtin(t_cmd *cmd, t_data *data);
 t_err	ft_set_fd_scmd(t_cmd *cmd);
 t_err	ft_reset_fd_scmd(int old_stdin, int old_stdout);
 
@@ -105,7 +105,7 @@ t_err	ft_pwd(t_buf *buf);
 t_err	ft_export(char **argv, t_hashtable *env_tab);
 t_err	ft_unset(char **argv, t_hashtable *env_tab);
 t_err	ft_env(t_hashtable *env_tab);
-t_err	ft_exit(char **argv, bool *loop, bool forked);
+t_err	ft_exit(char **argv, bool *loop);
 
 // include from mod_expander
 t_err	ft_expander_heredoc(char **str, t_hashtable *symtab);
