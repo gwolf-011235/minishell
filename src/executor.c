@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 18:16:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 19:22:58 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,45 +121,61 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 {
 	t_err	err;
 	t_cmd	*tmp;
-	bool	child;
 
 	tmp = cmd;
-	child = false;
+	err = SUCCESS;
 	ft_loop_thru_outfiles(cmd);
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
 		if (cmd->args && cmd->execute)
 		{
-			if (ft_check_builtin(cmd->args[0]))
-			{
-				err = ft_execute_builtin(1, cmd, data);
-				if (err != SUCCESS)
-					return (err);
-				if (cmd->pid == 0)
-				{
-					child = true;
-					break ;
-				}
-			}
+			err = ft_execute_cmd(cmd, data, empty_path, paths);
+			if (err == ERR_MALLOC || err == ERR_STAT || err == ERR_FORK)
+				return (err);
+			else if (err == ERR_IS_CHILD)
+				break ;
 			else
-			{
-				err = ft_check_cmd_access(cmd->args, paths, empty_path);
-				if (err != SUCCESS)
-					return (err);
-				err = ft_create_child(cmd, data, false);
-			}
+				ft_close_iopp(cmd);
 		}
 		else
-		{
-			ft_plug_pipe(&cmd->fd_prev_pipe[0], &cmd->fd_prev_pipe[1]);
-			ft_close(&cmd->fd_in);
-			ft_close(&cmd->fd_out);
-		}
+			ft_close_iopp(cmd);
 		cmd = cmd->next;
 	}
-	if (!child)
+	if (err != ERR_IS_CHILD)
 		ft_wait_for_babies(tmp);
 	return (err);
+}
+
+/**
+ * @brief Differentiates between builtins and system calls and executes.
+ *
+ * @param cmd			Current cmd.
+ * @param data			Overarching data struct.
+ * @param empty_path	Boolean to determine if PATH contained empty paths.
+ * @param paths			String array of all system bin paths.
+ * @return t_err		ERR_FORK, ERR_IS_CHILD, ERR_UNKNOWN_CMD,
+ *						ERR_MALLOC, SUCCESS, ERR_STAT, ERR_DIR, ERR_NO_DIR
+ */
+t_err	ft_execute_cmd(t_cmd *cmd, t_data *data, bool empty_path, char **paths)
+{
+	t_err	err;
+
+	if (ft_check_builtin(cmd->args[0]))
+	{
+		if (ft_execute_builtin(1, cmd, data) == ERR_FORK)
+			return (ERR_FORK);
+		if (cmd->pid == 0)
+			return (ERR_IS_CHILD);
+	}
+	else
+	{
+		err = ft_check_cmd_access(cmd->args, paths, empty_path);
+		if (err != SUCCESS)
+			return (err);
+		if (ft_create_child(cmd, data, false) == ERR_FORK)
+			return (ERR_FORK);
+	}
+	return (SUCCESS);
 }
 
 /**

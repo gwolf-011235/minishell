@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 14:59:47 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:54:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ typedef enum e_error {
 	ERR_PARSER, ///< Error while parsing.
 	ERR_AMBIGUOUS, ///< Ambiguous redirect after expand.
 	ERR_HEREDOC_OPEN, ///< Error while opening heredoc.
-	ERR_EXECUTOR ///< Error while executing.
+	ERR_EXECUTOR, ///< Error while executing.
+	ERR_IS_CHILD ///< Process is a child.
 }	t_err;
 
 /* ====== Functions ====== */

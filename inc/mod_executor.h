@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 18:22:29 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 19:09:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_err	ft_execute_scmd(t_cmd *cmd,
 			char **paths, t_data *data, bool empty_path);
 t_err	ft_execute_pcmds(t_cmd *cmd,
 			char **paths, t_data *data, bool empty_path);
+t_err	ft_execute_cmd(t_cmd *cmd, t_data *data, bool empty_path, char **paths);
 
 // create child processes
 t_err	ft_create_child(t_cmd *cmd, t_data *data, bool builtin);
@@ -74,6 +75,7 @@ t_err	ft_close(int *fd);
 t_err	ft_plug_pipe(int *pipe_in, int *pipe_out);
 void	ft_plug_all_pipes(t_cmd *cmd);
 t_err	ft_err_executor(t_cmd *cmd_head);
+void	ft_close_iopp(t_cmd *cmd);
 
 // utils
 void	ft_init_exec(t_cmd *cmd);

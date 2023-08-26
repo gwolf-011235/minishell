@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 22:45:56 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 14:48:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 19:09:03 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,16 @@ t_err	ft_err_executor(t_cmd *cmd_head)
 	g_status = 1;
 	ft_cleanup_cmd_list(cmd_head);
 	return (ft_print_error(ERR_EXECUTOR));
+}
+
+/**
+ * @brief Closes fd_in, fd_out and previous pipe of cmd.
+ *
+ * @param cmd	Current cmd.
+ */
+void	ft_close_iopp(t_cmd *cmd)
+{
+	ft_plug_pipe(&cmd->fd_prev_pipe[0], &cmd->fd_prev_pipe[1]);
+	ft_close(&cmd->fd_in);
+	ft_close(&cmd->fd_out);
 }
