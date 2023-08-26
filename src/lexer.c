@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 20:07:42 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 13:23:51 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ t_err	ft_lex_input(t_tkn_list **lst_head, char *input, t_buf *buf)
 	while (err != ERR_EOF || !*lst_head)
 	{
 		if (ft_new_node(lst_head, token.str) == ERR_MALLOC)
-			ft_lex_err(lst_head, &token);
+			return (ft_lex_err(lst_head, &token));
 		err = ft_tokenise(&src, &token, buf);
 		if (err == ERR_MALLOC)
-			ft_lex_err(lst_head, &token);
+			return (ft_lex_err(lst_head, &token));
 	}
 	ft_assign_type(*lst_head);
 	return (SUCCESS);
