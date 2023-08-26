@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 17:57:23 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/23 09:06:38 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 17:13:29 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@ t_err	ft_err_chdir(char *path, char *msg)
 	return (SUCCESS);
 }
 
+/**
+ * @brief
+ *
+ * @param pathname
+ * @param statbuf
+ * @param msg
+ * @return t_err		ERR_NO_DIR, ERR_STAT; SUCCESS
+ */
 t_err	ft_err_stat(const char *pathname, struct stat *statbuf, char *msg)
 {
 	int	ret;
