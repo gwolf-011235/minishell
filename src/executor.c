@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 14:49:39 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 16:27:53 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,10 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
 	err = ft_handle_heredoc(cmd, data->env_table, data->prompt2);
 	if (err != SUCCESS)
 		return (ft_err_executor(cmd));
-	err = ft_create_pipes(cmd);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_get_path(data->envp, &paths, &empty_path);
-	if (err == ERR_MALLOC)
-		return (err);
+	if (ft_create_pipes(cmd) == ERR_PIPE)
+		return (ft_err_executor(cmd));
+	if (ft_get_path(data->envp, &paths, &empty_path) == ERR_MALLOC)
+		return (ft_err_executor(cmd));
 	if (cmd->next == NULL)
 		err = ft_execute_scmd(cmd, paths, data, empty_path);
 	else
@@ -79,9 +77,7 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 
 	err = SUCCESS;
 	if (cmd->outfiles)
-		err = ft_open_outfile(cmd);
-	if (err != SUCCESS)
-		return (err);
+		ft_open_outfile(cmd);
 	if (cmd->args && cmd->execute)
 	{
 		if (ft_check_builtin(cmd->args[0]))
@@ -127,9 +123,7 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 
 	tmp = cmd;
 	child = false;
-	err = ft_loop_thru_outfiles(cmd);
-	if (err != SUCCESS)
-		return (err);
+	ft_loop_thru_outfiles(cmd);
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
 		if (cmd->args && cmd->execute)

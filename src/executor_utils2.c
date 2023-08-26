@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:24:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 14:57:24 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 16:27:20 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,8 @@ bool	ft_check_empty_path(char *path_str)
  * last outfile is preserved.
  * Differentiates each outfile regarding append mode.
  * @param cmd 		Current cmd.
- * @return t_err 	ERR_CLOSE, SUCCESS
  */
-t_err	ft_open_outfile(t_cmd *cmd)
+void	ft_open_outfile(t_cmd *cmd)
 {
 	int	i;
 
@@ -126,14 +125,13 @@ t_err	ft_open_outfile(t_cmd *cmd)
 	while (cmd->outfiles[++i])
 	{
 		if (cmd->fd_out > -1)
-			if (close(cmd->fd_out) == -1)
-				return (ERR_CLOSE);
+			ft_err_close(cmd->fd_out, "minishell: outfile");
 		if (cmd->append_switches[i])
 			cmd->fd_out = open(cmd->outfiles[i],
-					O_WRONLY | O_APPEND | O_CREAT | FD_CLOEXEC, 0644);
+					O_WRONLY | O_APPEND | O_CREAT, 0644);
 		else
 			cmd->fd_out = open(cmd->outfiles[i],
-					O_RDWR | O_TRUNC | O_CREAT | FD_CLOEXEC, 0644);
+					O_RDWR | O_TRUNC | O_CREAT, 0644);
 		if (cmd->fd_out == -1)
 		{
 			cmd->execute = false;
@@ -141,28 +139,19 @@ t_err	ft_open_outfile(t_cmd *cmd)
 			break ;
 		}
 	}
-	return (SUCCESS);
 }
 
 /**
  * @brief Opens all outfiles of pipeline.
  *
  * @param cmd 		List of cmds in pipeline.
- * @return t_err 	ERR_OPEN, SUCCESS
  */
-t_err	ft_loop_thru_outfiles(t_cmd *cmd)
+void	ft_loop_thru_outfiles(t_cmd *cmd)
 {
-	t_err	err;
-
 	while (cmd)
 	{
 		if (cmd->outfiles)
-		{
-			err = ft_open_outfile(cmd);
-			if (err != SUCCESS)
-				return (err);
-		}
+			ft_open_outfile(cmd);
 		cmd = cmd->next;
 	}
-	return (SUCCESS);
 }
