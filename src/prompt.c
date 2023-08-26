@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 08:07:40 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 13:15:03 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 20:11:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,27 +92,27 @@ t_err	ft_get_token(char **token, unsigned char target)
  *
  * @param ps_string The prompt string which gets searched.
  * @param token Here the token string is assigned to.
- * @return t_err SUCCESS, ERR_EMPTY, ERR_OUT_OF_BOUNDS, ERR_WRONG_TOKEN
+ * @return t_err SUCCESS, ERR_OUT_OF_BOUNDS, ERR_WRONG_TOKEN
  */
 t_err	ft_search_token(const char *ps_string, char **token)
 {
 	char	*target;
 	t_err	err;
 
-	if (!ps_string || !token)
-		return (ERR_EMPTY);
 	target = ft_strchr(ps_string, '\\');
 	if (!target)
 		return (SUCCESS);
 	target++;
 	if (!*target)
 	{
-		printf("Prompt: Empty backslash\n");
+		ft_putendl_fd("Prompt: Empty backslash", 2);
 		err = ft_get_token(token, 0);
 	}
 	else if (!ft_strchr(PROMPT_EXPAND_SUPPORTED, *target))
 	{
-		printf("Prompt: Not recognised: \\%c\n", *target);
+		ft_putstr_fd("Prompt: Not recognised: \\", 2);
+		ft_putchar_fd(*target, 2);
+		ft_putchar_fd('\n', 2);
 		err = ft_get_token(token, 0);
 	}
 	else
@@ -133,7 +133,7 @@ t_err	ft_search_token(const char *ps_string, char **token)
  *
  * @param prompt This gets searched and expanded.
  * @param sym_tab Symbols which can are used to expand.
- * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC
+ * @return t_err SUCCESS, ERR_MALLOC
  */
 t_err	ft_expand_prompt_str(char **prompt, t_hashtable *sym_tab)
 {
@@ -141,8 +141,6 @@ t_err	ft_expand_prompt_str(char **prompt, t_hashtable *sym_tab)
 	char	*token;
 	char	*replacement;
 
-	if (!prompt || !sym_tab)
-		return (ERR_EMPTY);
 	token = NULL;
 	replacement = NULL;
 	while (1)
