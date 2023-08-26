@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 12:44:58 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 13:01:53 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@
 #include "minishell.h"
 
 __sig_atomic_t	g_status;
+
+void	ft_prep_new_loop(t_data *data, char **input)
+{
+	ft_envp_create(data->env_table, &data->envp);
+	ft_create_prompts(data);
+	*input = NULL;
+	ft_signal_setup(SIGINT, SIG_STD);
+
+}
 
 void	ft_read_input(char **input, char *prompt1)
 {
@@ -51,10 +60,7 @@ int	main(int argc, char **argv)
 	ft_startup(&data, argv[0]);
 	while (data.loop)
 	{
-		ft_envp_create(data.env_table, &data.envp);
-		ft_create_prompts(&data);
-		ft_signal_setup(SIGINT, SIG_STD);
-		input = NULL;
+		ft_prep_new_loop(&data, &input);
 		ft_read_input(&input, data.prompt1);
 		ft_signal_setup(SIGINT, SIG_IGNORE);
 		if (!input)
