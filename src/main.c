@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 16:29:11 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 11:27:26 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@ __sig_atomic_t	g_status;
 
 void	ft_read_input(char **input, char *prompt1)
 {
-	if (isatty(STDIN_FILENO))
+	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO) && isatty(STDERR_FILENO))
 		*input = readline(prompt1);
 	else
+	{
+		if (isatty(STDIN_FILENO))
+			ft_putstr_fd(prompt1, 0);
 		*input = get_next_line(STDIN_FILENO);
+	}
 }
 
 int	main(int argc, char **argv)
@@ -43,16 +47,11 @@ int	main(int argc, char **argv)
 		ft_read_input(&input, data.prompt1);
 		ft_signal_setup(SIGINT, SIG_IGNORE);
 		if (!input)
-		{
-			if (isatty(STDIN_FILENO))
-				ft_putendl_fd("exit", 1);
 			break ;
-		}
-		if (!ft_isempty_str(input))
+		else if (!ft_isempty_str(input))
 			ft_handle_input(input, &data);
 		ft_clean_after_loop(input, &data);
 	}
-	ft_hashtable_destroy(data.env_table);
-	ft_buf_destroy(&data.buf);
+	ft_clean_on_exit(&data);
 	exit(g_status);
 }
