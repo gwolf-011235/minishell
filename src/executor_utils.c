@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 20:45:53 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 16:12:01 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,13 @@ t_err	ft_get_path(char **envp, char ***paths, bool *empty_path)
 		return (ERR_NOPATH);
 	path_str = *envp + 5;
 	*empty_path = ft_check_empty_path(path_str);
+	errno = 0;
 	*paths = ft_split(path_str, ':');
 	if (!*paths)
+	{
+		perror("minishell: malloc");
 		return (ERR_MALLOC);
+	}
 	return (SUCCESS);
 }
 
