@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 15:42:17 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 22:03:42 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
  * Hostname is searched for the first '.' which is replaced by '\0'.
  * If no '.' is found hostname is delimited by newline:
  * Search for '\n' and replace with '\0'
+ * Last get_next_line() call to empty buffer.
  * @param replacement Pointer pointer where to save string.
  * @return t_err SUCCESS, ERR_OPEN, ERR_MALLOC
  */
@@ -46,6 +47,7 @@ t_err	ft_retrieve_hostname(char **replacement)
 		delim = ft_strrchr(*replacement, '\n');
 	if (delim)
 		*delim = '\0';
+	(void)get_next_line(fd);
 	close(fd);
 	return (SUCCESS);
 }
