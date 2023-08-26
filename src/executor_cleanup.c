@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 19:38:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 20:48:25 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	ft_cleanup_cmd(t_cmd *cmd)
 		ft_free_str_arr(cmd->outfiles);
 	if (cmd->append_switches)
 		free(cmd->append_switches);
+	if (cmd->hdoc_quoted)
+		free(cmd->hdoc_quoted);
 }
 
 /**
