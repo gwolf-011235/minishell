@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 11:27:26 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 11:49:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,13 @@ __sig_atomic_t	g_status;
 
 void	ft_read_input(char **input, char *prompt1)
 {
+	bool	tty;
+
 	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO) && isatty(STDERR_FILENO))
+		tty = true;
+	else
+		tty = false;
+	if (tty)
 		*input = readline(prompt1);
 	else
 	{
