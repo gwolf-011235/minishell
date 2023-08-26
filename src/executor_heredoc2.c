@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:20:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 13:47:06 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 13:59:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@
  */
 t_err	ft_init_heredoc(t_hdoc *heredoc, t_cmd *cmd, int curr_delim)
 {
-	t_err	err;
-
 	if (ft_name_heredoc(cmd->index, &heredoc->name) == ERR_MALLOC)
 		return (ERR_MALLOC);
 	heredoc->fd = open(heredoc->name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
@@ -37,8 +35,6 @@ t_err	ft_init_heredoc(t_hdoc *heredoc, t_cmd *cmd, int curr_delim)
 		cmd->execute = false;
 		return (ft_print_warning(ERR_HEREDOC_OPEN, heredoc->name));
 	}
-	else
-		cmd->execute = true;
 	heredoc->delim = cmd->delims[curr_delim];
 	heredoc->delim_len = ft_strlen(cmd->delims[curr_delim]);
 	heredoc->quoted = cmd->hdoc_quoted[curr_delim];

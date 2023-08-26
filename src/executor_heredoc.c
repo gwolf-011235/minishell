@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 13:47:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 14:00:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ t_err	ft_handle_heredoc(t_cmd *cmd, t_hashtable *symtab, char *prompt2)
 		while (++i < cmd->delim_pos)
 		{
 			err = ft_create_heredoc(cmd, i, symtab, prompt2);
-			if (err != SUCCESS)
+			if (err == ERR_MALLOC)
 				return (err);
+			else if (err == ERR_HEREDOC_OPEN)
+				break ;
 		}
 		cmd = cmd->next;
 	}
