@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 17:32:57 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 11:21:19 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 11:30:39 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	ft_clean_on_exit(t_data *data)
 {
 	ft_hashtable_destroy(data->env_table);
 	ft_buf_destroy(&data->buf);
+	clear_history();
 	if (isatty(STDIN_FILENO) && isatty(STDERR_FILENO))
 		ft_putendl_fd("exit", 2);
 }

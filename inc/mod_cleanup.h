@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 17:33:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 11:21:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 11:33:15 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /* ====== Includes ====== */
 
 # include <stdbool.h>
+# include <readline/history.h>
 # include "minishell_error.h"
 # include "libft.h"
 # include "minishell_struct.h"
