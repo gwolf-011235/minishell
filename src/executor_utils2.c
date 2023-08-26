@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:24:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 20:46:48 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 13:48:44 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,11 +129,11 @@ t_err	ft_open_outfile(t_cmd *cmd)
 			if (close(cmd->fd_out) == -1)
 				return (ERR_CLOSE);
 		if (cmd->append_switches[i])
-			cmd->fd_out = open(cmd->outfiles[i], O_WRONLY | O_APPEND | O_CREAT,
-					0644);
+			cmd->fd_out = open(cmd->outfiles[i],
+					O_WRONLY | O_APPEND | O_CREAT | FD_CLOEXEC, 0644);
 		else
-			cmd->fd_out = open(cmd->outfiles[i], O_RDWR | O_TRUNC | O_CREAT,
-					0644);
+			cmd->fd_out = open(cmd->outfiles[i],
+					O_RDWR | O_TRUNC | O_CREAT | FD_CLOEXEC, 0644);
 		if (cmd->fd_out == -1)
 		{
 			cmd->execute = false;

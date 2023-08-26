@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 20:55:54 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 13:47:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,11 @@ t_err	ft_name_heredoc(int index, char **name)
 {
 	char	*index_str;
 
-	index_str = ft_itoa(index);
-	*name = ft_strjoin(".tmp_heredoc_v", index_str);
-	if (!*name)
+	index_str = NULL;
+	if (ft_err_itoa(index, &index_str, "minishell: malloc") == ERR_MALLOC)
+		return (ERR_MALLOC);
+	if (ft_err_strjoin(".tmp_heredoc_v", index_str, name, "minishell: malloc")
+		== ERR_MALLOC)
 	{
 		free(index_str);
 		return (ERR_MALLOC);
@@ -159,7 +161,7 @@ t_err	ft_heredoc_fate(t_cmd *cmd, int curr_delim, t_hdoc *heredoc)
 		return (err);
 	if (cmd->fd_in == -1 && curr_delim == cmd->delim_pos - 1)
 	{
-		cmd->fd_in = open(heredoc->name, O_RDONLY);
+		cmd->fd_in = open(heredoc->name, O_RDONLY | FD_CLOEXEC);
 		if (cmd->fd_in == -1)
 			return (ft_unlink_heredoc(&heredoc->name, ERR_OPEN));
 		cmd->heredoc = heredoc->name;

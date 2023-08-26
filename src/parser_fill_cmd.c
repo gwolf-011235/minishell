@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 20:46:58 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 13:48:58 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new)
 	new->infile = 1;
 	if (new->fd_in > -1)
 		ft_err_close(new->fd_in, "minishell: parsing");
-	fd_in = open((*lst)->content, O_RDONLY);
+	fd_in = open((*lst)->content, O_RDONLY | FD_CLOEXEC);
 	if (fd_in == -1)
 	{
 		new->execute = false;
