@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 17:11:02 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 17:56:35 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,7 @@ t_err	ft_cleanup_cmd(t_cmd *cmd)
 {
 	t_err	err;
 
-	err = ft_close(&cmd->fd_in);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_close(&cmd->fd_out);
-	if (err != SUCCESS)
-		return (err);
+	err = SUCCESS;
 	if (cmd->heredoc)
 		ft_unlink_heredoc(&cmd->heredoc, err);
 	if (cmd->delims)
