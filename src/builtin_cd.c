@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 11:09:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 12:55:26 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ t_err	ft_cd(char **argv, t_hashtable *env_tab, t_buf *buf)
 		return (ft_cd_error(ERR_ARGCOUNT, oldpwd));
 	if (ft_save_cur_pwd(&oldpwd, env_tab) == ERR_MALLOC)
 		return (ft_cd_error(ERR_MALLOC, oldpwd));
-	if (size == 1)
+	if (size == 1 || !strncmp(argv[1], "--", 3))
 		err = ft_redirect_path(env_tab, "HOME", buf);
-	else if (!strncmp(argv[1], "-", 2) || !strncmp(argv[1], "--", 3))
+	else if (!strncmp(argv[1], "-", 2))
 		err = ft_redirect_path(env_tab, "OLDPWD", buf);
 	else
 		err = ft_change_dir(argv[1], env_tab, buf, false);
