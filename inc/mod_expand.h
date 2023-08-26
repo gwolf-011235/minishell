@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 18:51:39 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 13:25:22 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ typedef struct s_track {
 }	t_track;
 
 //expand.c
+t_err	ft_expand_router(t_tkn_list **tmp, t_type type, t_hashtable *env_table, t_buf *buf);
+t_err	ft_expand_err(t_tkn_list **lst_head);
+
+//expand_types.c
 t_err	ft_expand_heredoc(t_tkn_list **list);
 t_err	ft_expand_redirect(t_tkn_list **list, t_hashtable *symtab);
 t_err	ft_expand_assign(t_tkn_list **list, t_hashtable *symtab);
