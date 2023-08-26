@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 20:56:32 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 14:59:47 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ typedef enum e_error {
 	ERR_EXPANDER, ///< Error while expanding.
 	ERR_PARSER, ///< Error while parsing.
 	ERR_AMBIGUOUS, ///< Ambiguous redirect after expand.
-	ERR_HEREDOC_OPEN ///< Error while opening heredoc.
+	ERR_HEREDOC_OPEN, ///< Error while opening heredoc.
+	ERR_EXECUTOR ///< Error while executing.
 }	t_err;
 
 /* ====== Functions ====== */
@@ -107,6 +108,7 @@ t_err	ft_err_strjoin(const char *s1, const char *s2, char **dst, char *msg);
 //error3.c
 t_err	ft_err_open(const char *path, int flag, int *fd, char *msg);
 t_err	ft_err_close(int fd, char *msg);
+t_err	ft_err_pipe(int pipes[2], char *msg);
 
 //error_msg.c
 t_err	ft_print_warning(t_err err, char *trigger);

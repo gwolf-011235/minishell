@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:24:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 13:48:44 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 14:57:24 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_err	ft_create_pipes(t_cmd *cmd)
 	{
 		if (cmd->index < cmd->cmd_num - 1)
 		{
-			if (pipe(cmd->fd_pipe) < 0)
+			if (ft_err_pipe(cmd->fd_pipe, "minishell: pipe") == ERR_PIPE)
 				return (ERR_PIPE);
 			cmd->next->fd_prev_pipe[0] = cmd->fd_pipe[0];
 			cmd->next->fd_prev_pipe[1] = cmd->fd_pipe[1];

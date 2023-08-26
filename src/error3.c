@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 08:32:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 08:41:07 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 14:59:50 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,20 @@ t_err	ft_err_close(int fd, char *msg)
 	{
 		perror(msg);
 		return (ERR_CLOSE);
+	}
+	return (SUCCESS);
+}
+
+t_err	ft_err_pipe(int pipes[2], char *msg)
+{
+	int	ret;
+
+	errno = 0;
+	ret = pipe(pipes);
+	if (ret == -1)
+	{
+		perror(msg);
+		return (ERR_PIPE);
 	}
 	return (SUCCESS);
 }
