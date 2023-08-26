@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:20:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 11:22:10 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 20:21:01 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ t_err	ft_prompt_create(t_hashtable *sym_tab,
 void	ft_handle_input(char *input, t_data *data);
 
 //cleanup.c
-void	ft_clean_after_loop(char *input, t_data *data);
-void	ft_clean_on_exit(t_data *data);
+void	ft_clean_after_loop(char **input, t_data *data);
+void	ft_clean_on_exit(char **input, t_data *data);
 
 //exit_failure.c
 t_err	ft_exit_failure(t_data *data, t_err exit_code);

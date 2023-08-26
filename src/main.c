@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 16:00:10 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 20:20:24 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int	main(int argc, char **argv)
 			break ;
 		else if (!ft_isempty_str(input))
 			ft_handle_input(input, &data);
-		ft_clean_after_loop(input, &data);
+		ft_clean_after_loop(&input, &data);
 	}
-	ft_clean_on_exit(&data);
+	ft_clean_on_exit(&input, &data);
 	exit(g_status);
 }

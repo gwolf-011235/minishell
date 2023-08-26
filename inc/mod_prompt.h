@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:45:35 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 22:30:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 20:03:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_err	ft_get_replace(char **replacement, unsigned char target,
 			t_hashtable *sym_tab);
 
 //prompt_replace_token.c
-t_err	ft_calc_replace_len(const char *str, const char *token,
+void	ft_calc_replace_len(const char *str, const char *token,
 			const char *replacement, size_t *expanded_len);
 t_err	ft_expand_str(char **expanded_str, const char *str,
 			const char *token, const char *replacement);
