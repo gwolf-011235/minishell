@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 17:40:16 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 21:04:37 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 14:44:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,7 @@ t_err	ft_print_error(t_err err)
 		ft_putendl_fd("minishell: error: expander has the sad", 2);
 	else if (err == ERR_PARSER)
 		ft_putendl_fd("minishell: error: parser has the sad", 2);
+	else if (err == ERR_EXECUTOR)
+		ft_putendl_fd("minishell: error: executor has the sad", 2);
 	return (err);
 }

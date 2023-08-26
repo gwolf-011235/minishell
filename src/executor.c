@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 11:44:09 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 14:49:39 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
 	empty_path = false;
 	ft_init_exec(cmd);
 	err = ft_handle_heredoc(cmd, data->env_table, data->prompt2);
-	if (err != SUCCESS && err != ERR_HEREDOC_EOF)
-		return (err);
+	if (err != SUCCESS)
+		return (ft_err_executor(cmd));
 	err = ft_create_pipes(cmd);
 	if (err != SUCCESS)
 		return (err);
