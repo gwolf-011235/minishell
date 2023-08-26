@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 17:58:55 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:20:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  * @param cmd 		Current cmd to be processed.
  * @param data		Data struct containing the env.
  * @param builtin	Bool indicating if cmd is a builtin.
- * @return t_err	ERR_CLOSE, ERR_FORK, SUCCESS
+ * @return t_err	ERR_FORK, SUCCESS
  */
 t_err	ft_create_child(t_cmd *cmd, t_data *data, bool builtin)
 {

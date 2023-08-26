@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:47:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 17:05:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:22:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,17 @@ bool	ft_check_builtin(char *arg)
  * @param piped 	Bool to differentiate if part of pipe.
  * @param cmd 		Cmd to be processed which is a built-in.
  * @param data 		Data struct containing env.
- * @return t_err 	ERR_CLOSE, ERR_FORK, SUCCESS
+ * @return t_err 	ERR_FORK, SUCCESS
  */
 t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data)
 {
-	t_err	err;
 	int		old_stdin;
 	int		old_stdout;
 
 	if (piped)
 	{
-		err = ft_create_child(cmd, data, true);
-		if (err != SUCCESS)
-			return (err);
+		if (ft_create_child(cmd, data, true) == ERR_FORK)
+			return (ERR_FORK);
 	}
 	else
 	{
@@ -67,9 +65,7 @@ t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data)
 		old_stdout = dup (STDOUT_FILENO);
 		ft_set_fd_scmd(cmd);
 		ft_choose_builtin(cmd, data);
-		err = ft_reset_fd_scmd(old_stdin, old_stdout);
-		if (err != SUCCESS)
-			return (err);
+		ft_reset_fd_scmd(old_stdin, old_stdout);
 	}
 	return (SUCCESS);
 }
@@ -97,20 +93,13 @@ void	ft_set_fd_scmd(t_cmd *cmd)
  *
  * Stdin and Stdout have been replaced by other fds.
  * They are reset to STDIN_FILENO and STDOUT_FILENO with backup.
- * @return t_err 	ERR_CLOSE, SUCCESS
+ * @return t_err 	SUCCESS
  */
-t_err	ft_reset_fd_scmd(int old_stdin, int old_stdout)
+void	ft_reset_fd_scmd(int old_stdin, int old_stdout)
 {
-	t_err	err;
-
 	ft_replace_fd(old_stdin, old_stdout);
-	err = ft_close(&old_stdin);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_close(&old_stdout);
-	if (err != SUCCESS)
-		return (err);
-	return (SUCCESS);
+	ft_close(&old_stdin);
+	ft_close(&old_stdout);
 }
 
 /**
