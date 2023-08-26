@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 16:40:05 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 17:45:26 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ t_err	ft_execute_scmd(t_cmd *cmd,
 			char **paths, t_data *data, bool empty_path);
 t_err	ft_execute_pcmds(t_cmd *cmd,
 			char **paths, t_data *data, bool empty_path);
-t_err	ft_process_cmd(t_cmd *cmd, t_err err, t_data *data);
 
 // create child processes
 t_err	ft_create_child(t_cmd *cmd, t_data *data, bool builtin);
@@ -93,7 +92,7 @@ t_err	ft_check_dir(char **args);
 bool	ft_check_builtin(char *arg);
 t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data);
 void	ft_choose_builtin(t_cmd *cmd, t_data *data);
-t_err	ft_set_fd_scmd(t_cmd *cmd);
+void	ft_set_fd_scmd(t_cmd *cmd);
 t_err	ft_reset_fd_scmd(int old_stdin, int old_stdout);
 
 // include from mod_cleanup

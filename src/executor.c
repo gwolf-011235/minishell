@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 16:27:53 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 17:45:56 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 		if (ft_check_builtin(cmd->args[0]))
 			return (ft_execute_builtin(0, cmd, data));
 		err = ft_check_cmd_access(cmd->args, paths, empty_path);
-		err = ft_process_cmd(cmd, err, data);
 		if (err != SUCCESS)
 			return (err);
+		err = ft_create_child(cmd, data, false);
 		err = ft_wait_for_babies(cmd);
 	}
 	else
@@ -142,9 +142,9 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 			else
 			{
 				err = ft_check_cmd_access(cmd->args, paths, empty_path);
-				err = ft_process_cmd(cmd, err, data);
 				if (err != SUCCESS)
 					return (err);
+				err = ft_create_child(cmd, data, false);
 			}
 		}
 		else
@@ -157,36 +157,6 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 	}
 	if (!child)
 		err = ft_wait_for_babies(tmp);
-	return (err);
-}
-
-/**
- * @brief Decide program behaviour depending on err.
- *
- * Output error message if command was not found.
- * On success, create child process to execute cmd.
- * @param cmd 		Current cmd being processed.
- * @param err 		Error code of cmd access check.
- * @param data		Data struct containing the env.
- * @return t_err 	ERR_MALLOC, ERR_CLOSE, SUCCESS
- */
-t_err	ft_process_cmd(t_cmd *cmd, t_err err, t_data *data)
-{
-	if (err == ERR_MALLOC)
-		return (err);
-	else if (err == ERR_DIR)
-		return (ERR_DIR);
-	else if (err == ERR_UNKNOWN_CMD)
-	{
-		ft_print_warning(err, cmd->args[0]);
-		err = ft_close(&cmd->fd_pipe[1]);
-		if (err != SUCCESS)
-			return (err);
-		else
-			return (ERR_UNKNOWN_CMD);
-	}
-	else if (err == SUCCESS)
-		err = ft_create_child(cmd, data, false);
 	return (err);
 }
 
