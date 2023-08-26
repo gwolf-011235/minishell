@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/22 17:46:17 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/25 20:09:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,28 @@
  * @param cmd_head 	Pointer pointer to first node of cmd list.
  * @return t_err 	ERR_MALLOC, SUCCESS
  */
-t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd_head)
+t_err	ft_parser(t_tkn_list **lst_head, t_cmd **cmd_head)
 {
-	t_err	err;
-	t_cmd	*new;
-	bool	cmd_complete;
+	t_cmd		*new;
+	t_tkn_list	*lst;
+	bool		cmd_complete;
 
-	cmd_complete = 0;
+	cmd_complete = false;
 	new = NULL;
-	err = ft_create_cmd(&new, lst);
-	if (err != SUCCESS)
-		return (err);
+	lst = *lst_head;
+	if (ft_create_cmd(&new, lst, cmd_head) == ERR_MALLOC)
+		return (ft_err_parser(lst_head, *cmd_head));
 	while (lst)
 	{
-		err = ft_categorise(&lst, new, &cmd_complete);
-		if (err != SUCCESS)
-			return (err);
+		if (ft_categorise(&lst, new, &cmd_complete) == ERR_MALLOC)
+			return (ft_err_parser(lst_head, *cmd_head));
 		if (cmd_complete)
-			new = ft_lock_and_load_cmd(lst, new, cmd_head, &cmd_complete);
+			new = ft_lock_and_load_cmd(lst, cmd_head, &cmd_complete);
 		if (!new)
-			return (ERR_MALLOC);
+			return (ft_err_parser(lst_head, *cmd_head));
 		lst = lst->next;
 	}
-	ft_add_cmd(new, cmd_head);
+	ft_free_lst(lst_head);
 	return (SUCCESS);
 }
 
@@ -61,19 +60,16 @@ t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd_head)
  * @param cmd_complete 	Bool to indicate if cmd ist complete.
  * @return t_cmd*
  */
-t_cmd	*ft_lock_and_load_cmd(t_tkn_list *lst, t_cmd *curr, t_cmd **cmd_head,
+t_cmd	*ft_lock_and_load_cmd(t_tkn_list *lst, t_cmd **cmd_head,
 		bool *cmd_complete)
 {
 	t_cmd	*new;
-	t_err	err;
 
 	new = NULL;
-	ft_add_cmd(curr, cmd_head);
 	lst = lst->next;
-	err = ft_create_cmd(&new, lst);
-	if (err != SUCCESS)
+	if (ft_create_cmd(&new, lst, cmd_head) == ERR_MALLOC)
 		return (NULL);
-	*cmd_complete = 0;
+	*cmd_complete = false;
 	return (new);
 }
 
@@ -84,10 +80,9 @@ t_cmd	*ft_lock_and_load_cmd(t_tkn_list *lst, t_cmd *curr, t_cmd **cmd_head,
  * @param lst		List of tokens at current position.
  * @return t_err 	ERR_MALLOC, SUCCESS
  */
-t_err	ft_create_cmd(t_cmd **new, t_tkn_list *lst)
+t_err	ft_create_cmd(t_cmd **new, t_tkn_list *lst, t_cmd **cmd_head)
 {
 	t_cmd	*tmp;
-	t_err	err;
 	int		count_arg;
 	int		count_delim;
 	int		count_out;
@@ -100,10 +95,10 @@ t_err	ft_create_cmd(t_cmd **new, t_tkn_list *lst)
 		return (ERR_MALLOC);
 	ft_init_cmd(tmp);
 	ft_count_str(lst, &count_arg, &count_delim, &count_out);
-	err = ft_create_str_arr(tmp, count_arg, count_delim, count_out);
-	if (err != SUCCESS)
-		return (err);
+	if (ft_create_str_arr(tmp, count_arg, count_delim, count_out) == ERR_MALLOC)
+		return (ERR_MALLOC);
 	*new = tmp;
+	ft_add_cmd(*new, cmd_head);
 	return (SUCCESS);
 }
 
@@ -114,7 +109,7 @@ t_err	ft_create_cmd(t_cmd **new, t_tkn_list *lst)
  * @param lst 			Pointer to current token in the list.
  * @param new 			Pointer to cmd structure.
  * @param cmd_complete 	Bool to indicate if cmd ist complete.
- * @return t_err 		SUCCESS
+ * @return t_err 		SUCCESS, ERR_MALLOC
  */
 t_err	ft_categorise(t_tkn_list **lst, t_cmd *new, bool *cmd_complete)
 {
@@ -128,11 +123,11 @@ t_err	ft_categorise(t_tkn_list **lst, t_cmd *new, bool *cmd_complete)
 	else if (tmp->type == INFILE)
 		err = ft_save_infile(&tmp, new);
 	else if (tmp->type == OUTFILE)
-		err = ft_save_outfile(&tmp, new, 0);
+		err = ft_save_outfile(&tmp, new, false);
 	else if (tmp->type == APPEND)
-		err = ft_save_outfile(&tmp, new, 1);
+		err = ft_save_outfile(&tmp, new, true);
 	else if (tmp->type == PIPE)
-		*cmd_complete = 1;
+		*cmd_complete = true;
 	else if (tmp->type == NEWL)
 		return (SUCCESS);
 	else if (tmp->type == ARG)

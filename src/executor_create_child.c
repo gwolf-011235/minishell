@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_create_child.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 13:44:17 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/26 19:16:32 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@
  * @param cmd 		Current cmd to be processed.
  * @param data		Data struct containing the env.
  * @param builtin	Bool indicating if cmd is a builtin.
- * @return t_err	ERR_CLOSE, ERR_FORK, SUCCESS
+ * @return t_err	ERR_FORK, SUCCESS
  */
 t_err	ft_create_child(t_cmd *cmd, t_data *data, bool builtin)
 {
 	t_err	err;
 
+	ft_signal_setup(SIGINT, SIG_STD);
+	ft_signal_setup(SIGQUIT, SIG_STD);
 	if (cmd->index == 0)
 		err = ft_raise_first(cmd, data, builtin);
 	else if (cmd->index == cmd->cmd_num - 1)
@@ -47,29 +49,23 @@ t_err	ft_create_child(t_cmd *cmd, t_data *data, bool builtin)
  * @param cmd 		Current cmd to be processed.
  * @param data		Data struct containing the env.
  * @param builtin	Bool indicating if cmd is a builtin.
- * @return t_err	ERR_CLOSE, ERR_FORK, ERR_SIGNAL SUCCESS
+ * @return t_err	ERR_FORK, SUCCESS
  */
 t_err	ft_raise_first(t_cmd *cmd, t_data *data, bool builtin)
 {
-	t_err	err;
-
 	cmd->pid = fork();
 	if (cmd->pid < 0)
 	{
-		err = ft_close(&cmd->fd_pipe[1]);
-		if (err != SUCCESS)
-			return (err);
+		ft_close(&cmd->fd_pipe[1]);
 		return (ERR_FORK);
 	}
 	else if (cmd->pid == 0)
 		ft_firstborn(cmd, data, builtin);
 	else
 	{
-		ft_signal_setup(SIGINT, SIG_IGNORE);
-		err = ft_close(&cmd->fd_pipe[1]);
-		err = ft_close(&cmd->fd_out);
-		if (err != SUCCESS)
-			return (err);
+		ft_close(&cmd->fd_pipe[1]);
+		ft_close(&cmd->fd_out);
+		ft_close(&cmd->fd_in);
 	}
 	return (SUCCESS);
 }
@@ -81,27 +77,20 @@ t_err	ft_raise_first(t_cmd *cmd, t_data *data, bool builtin)
  * @param cmd 		Current cmd to be processed.
  * @param data		Data struct containing the env.
  * @param builtin	Bool indicating if cmd is a builtin.
- * @return t_err	ERR_CLOSE, ERR_FORK, ERR_SIGNAL, SUCCESS
+ * @return t_err	ERR_FORK, SUCCESS
  */
 t_err	ft_raise_last(t_cmd *cmd, t_data *data, bool builtin)
 {
-	t_err	err;
-
 	cmd->pid = fork();
 	if (cmd->pid < 0)
 	{
-		err = ft_close(&cmd->fd_pipe[1]);
-		if (err != SUCCESS)
-			return (err);
+		ft_close(&cmd->fd_pipe[1]);
 		return (ERR_FORK);
 	}
 	else if (cmd->pid == 0)
 		ft_lastborn(cmd, data, builtin);
 	else
-	{
-		ft_signal_setup(SIGINT, SIG_IGNORE);
-		err = ft_plug_pipe(&cmd->fd_prev_pipe[0], &cmd->fd_prev_pipe[1]);
-	}
+		ft_close_iopp(cmd);
 	return (SUCCESS);
 }
 
@@ -114,29 +103,22 @@ t_err	ft_raise_last(t_cmd *cmd, t_data *data, bool builtin)
  * @param cmd 	Current cmd to be processed.
  * @param data		Data struct containing the env.
  * @param builtin	Bool indicating if cmd is a builtin.
- * @return t_err	ERR_CLOSE, ERR_FORK, ERR_SIGNAL, SUCCESS
+ * @return t_err	ERR_FORK, SUCCESS
  */
 t_err	ft_raise_middle(t_cmd *cmd, t_data *data, bool builtin)
 {
-	t_err	err;
-
 	cmd->pid = fork();
 	if (cmd->pid < 0)
 	{
-		err = ft_close(&cmd->fd_pipe[1]);
-		if (err != SUCCESS)
-			return (err);
+		ft_close(&cmd->fd_pipe[1]);
 		return (ERR_FORK);
 	}
 	else if (cmd->pid == 0)
 		ft_middle_child(cmd, data, builtin);
 	else
 	{
-		ft_signal_setup(SIGINT, SIG_IGNORE);
-		err = ft_plug_pipe(&cmd->fd_prev_pipe[0], &cmd->fd_prev_pipe[1]);
-		err = ft_close(&cmd->fd_pipe[1]);
-		if (err != SUCCESS)
-			return (err);
+		ft_close(&cmd->fd_pipe[1]);
+		ft_close_iopp(cmd);
 	}
 	return (SUCCESS);
 }

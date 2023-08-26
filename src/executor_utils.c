@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 13:00:46 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/26 19:31:23 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
  * @param args 			String array containing executable in first position.
  * @param cmd_paths 	String array of paths.
  * @param empty_path	Boolean to determine if PATH contained empty paths.
- * @return t_err 		ERR_UNKNOWN_CMD, ERR_MALLOC, SUCCESS
+ * @return t_err 		ERR_MALLOC, ERR_STAT, ERR_UNKNOWN_CMD, ERR_DIR, ERR_NO_DIR, SUCCESS
  */
 t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path)
 {
@@ -45,9 +45,9 @@ t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path)
 	{
 		err = ft_check_dir(args);
 		if (err == ERR_DIR)
-			return (ft_print_warning("dir", args[0]));
+			return (ft_print_warning(err, args[0]));
 		else if (err == ERR_NO_DIR)
-			return (ft_print_warning("nodir", args[0]));
+			return (ft_print_warning(err, args[0]));
 		else if (err == ERR_STAT)
 			return (ERR_STAT);
 	}
@@ -79,6 +79,9 @@ t_err	ft_prefix_path(char **args, char **cmd_paths)
 	char	*tmp;
 	char	*rtrn;
 
+	if (args[0][0] == '\0' || !strncmp(*args, ".", 2)
+		|| !strncmp(*args, "..", 3))
+		return (ft_print_warning(ERR_UNKNOWN_CMD, args[0]));
 	while (*cmd_paths)
 	{
 		tmp = ft_strjoin(*cmd_paths, "/");
@@ -95,7 +98,7 @@ t_err	ft_prefix_path(char **args, char **cmd_paths)
 		free(rtrn);
 		cmd_paths++;
 	}
-	return (ERR_UNKNOWN_CMD);
+	return (ft_print_warning(ERR_UNKNOWN_CMD, args[0]));
 }
 
 /**
@@ -122,9 +125,13 @@ t_err	ft_get_path(char **envp, char ***paths, bool *empty_path)
 		return (ERR_NOPATH);
 	path_str = *envp + 5;
 	*empty_path = ft_check_empty_path(path_str);
+	errno = 0;
 	*paths = ft_split(path_str, ':');
 	if (!*paths)
+	{
+		perror("minishell: malloc");
 		return (ERR_MALLOC);
+	}
 	return (SUCCESS);
 }
 
@@ -160,9 +167,8 @@ t_err	ft_replace_fd(int input_fd, int output_fd)
  * In case of a core dump triggered by SIGQUIT, an error
  * message is displayed.
  * @param cmd 		List of cmds.
- * @return t_err 	ERR_WAIT, SUCCESS
  */
-t_err	ft_wait_for_babies(t_cmd *cmd)
+void	ft_wait_for_babies(t_cmd *cmd)
 {
 	int	status;
 
@@ -170,8 +176,7 @@ t_err	ft_wait_for_babies(t_cmd *cmd)
 	{
 		if (cmd->pid > 0)
 		{
-			if (waitpid(cmd->pid, &status, 0) < 0)
-				return (ERR_WAIT);
+			(void)waitpid(cmd->pid, &status, 0);
 			if (WIFEXITED(status))
 				g_status = WEXITSTATUS(status);
 			else
@@ -190,5 +195,4 @@ t_err	ft_wait_for_babies(t_cmd *cmd)
 			g_status = 1;
 		cmd = cmd->next;
 	}
-	return (SUCCESS);
 }

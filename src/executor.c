@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 13:01:16 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/26 19:36:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,20 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
 	empty_path = false;
 	ft_init_exec(cmd);
 	err = ft_handle_heredoc(cmd, data->env_table, data->prompt2);
-	if (err != SUCCESS && err != ERR_HEREDOC_EOF)
-		return (err);
-	err = ft_create_pipes(cmd);
 	if (err != SUCCESS)
-		return (err);
-	err = ft_get_path(data->envp, &paths, &empty_path);
-	if (err == ERR_MALLOC)
-		return (err);
+		return (ft_err_executor(cmd));
+	if (ft_create_pipes(cmd) == ERR_PIPE)
+		return (ft_err_executor(cmd));
+	if (ft_get_path(data->envp, &paths, &empty_path) == ERR_MALLOC)
+		return (ft_err_executor(cmd));
 	if (cmd->next == NULL)
 		err = ft_execute_scmd(cmd, paths, data, empty_path);
 	else
 		err = ft_execute_pcmds(cmd, paths, data, empty_path);
-	return (err);
+	if (err == ERR_FORK || err == ERR_STAT || err == ERR_MALLOC)
+		return (ft_err_executor(cmd));
+	ft_cleanup_cmd_list(cmd);
+	return (SUCCESS);
 }
 
 /**
@@ -71,26 +72,25 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
  * @param paths			String array of all system bin paths.
  * @param data			Data struct containing the env.
  * @param empty_path	Boolean to determine if PATH contained empty paths.
- * @return t_err 		ERR_MALLOC, ERR_PIPE, ERR_CLOSE, SUCCESS
+ * @return t_err 		ERR_FORK, ERR_MALLOC, ERR_STAT,
+ * 						ERR_UNKNOWN_CMD, ERR_DIR, ERR_NO_DIR, SUCCESS
  */
 t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 {
 	t_err	err;
 
-	err = SUCCESS;
 	if (cmd->outfiles)
-		err = ft_open_outfile(cmd);
-	if (err != SUCCESS)
-		return (err);
+		ft_open_outfile(cmd);
 	if (cmd->args && cmd->execute)
 	{
 		if (ft_check_builtin(cmd->args[0]))
 			return (ft_execute_builtin(0, cmd, data));
 		err = ft_check_cmd_access(cmd->args, paths, empty_path);
-		err = ft_process_cmd(cmd, err, data);
 		if (err != SUCCESS)
 			return (err);
-		err = ft_wait_for_babies(cmd);
+		if (ft_create_child(cmd, data, false) == ERR_FORK)
+			return (ERR_FORK);
+		ft_wait_for_babies(cmd);
 	}
 	else
 	{
@@ -98,7 +98,7 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 		ft_close(&cmd->fd_in);
 		ft_close(&cmd->fd_out);
 	}
-	return (err);
+	return (SUCCESS);
 }
 
 /**
@@ -116,86 +116,69 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
  * @param paths			String array of all system bin paths.
  * @param data			Data struct containing the env.
  * @param empty_path	Boolean to determine if PATH contained empty paths.
- * @return t_err 		ERR_MALLOC, ERR_PIPE, ERR_CLOSE, SUCCESS
+ * @return t_err 		ERR_MALLOC, ERR_STAT, ERR_FORK,
+ * 						ERR_UNKNOWN_CMD, ERR_DIR, ERR_NO_DIR, SUCCESS
  */
 t_err	ft_execute_pcmds(t_cmd *cmd,
 	char **paths, t_data *data, bool empty_path)
 {
 	t_err	err;
 	t_cmd	*tmp;
-	bool	child;
 
 	tmp = cmd;
-	child = false;
-	err = ft_loop_thru_outfiles(cmd);
-	if (err != SUCCESS)
-		return (err);
+	err = SUCCESS;
+	ft_loop_thru_outfiles(cmd);
 	while (cmd && cmd->index < cmd->cmd_num)
 	{
 		if (cmd->args && cmd->execute)
 		{
-			if (ft_check_builtin(cmd->args[0]))
-			{
-				err = ft_execute_builtin(1, cmd, data);
-				if (err != SUCCESS)
-					return (err);
-				if (cmd->pid == 0)
-				{
-					child = true;
-					break ;
-				}
-			}
+			err = ft_execute_cmd(cmd, data, empty_path, paths);
+			if (err == ERR_MALLOC || err == ERR_STAT || err == ERR_FORK)
+				return (err);
+			else if (err == ERR_IS_CHILD)
+				break ;
 			else
-			{
-				err = ft_check_cmd_access(cmd->args, paths, empty_path);
-				err = ft_process_cmd(cmd, err, data);
-				if (err != SUCCESS)
-					return (err);
-			}
+				ft_close_iopp(cmd);
 		}
 		else
-		{
-			ft_plug_pipe(&cmd->fd_prev_pipe[0], &cmd->fd_prev_pipe[1]);
-			ft_close(&cmd->fd_in);
-			ft_close(&cmd->fd_out);
-		}
+			ft_close_iopp(cmd);
 		cmd = cmd->next;
 	}
-	if (!child)
-		err = ft_wait_for_babies(tmp);
+	if (err != ERR_IS_CHILD)
+		ft_wait_for_babies(tmp);
 	return (err);
 }
 
-
-
 /**
- * @brief Decide program behaviour depending on err.
+ * @brief Differentiates between builtins and system calls and executes.
  *
- * Output error message if command was not found.
- * On success, create child process to execute cmd.
- * @param cmd 		Current cmd being processed.
- * @param err 		Error code of cmd access check.
- * @param data		Data struct containing the env.
- * @return t_err 	ERR_MALLOC, ERR_CLOSE, SUCCESS
+ * @param cmd			Current cmd.
+ * @param data			Overarching data struct.
+ * @param empty_path	Boolean to determine if PATH contained empty paths.
+ * @param paths			String array of all system bin paths.
+ * @return t_err		ERR_FORK, ERR_IS_CHILD, ERR_UNKNOWN_CMD,
+ *						ERR_MALLOC, SUCCESS, ERR_STAT, ERR_DIR, ERR_NO_DIR
  */
-t_err	ft_process_cmd(t_cmd *cmd, t_err err, t_data *data)
+t_err	ft_execute_cmd(t_cmd *cmd, t_data *data, bool empty_path, char **paths)
 {
-	if (err == ERR_MALLOC)
-		return (err);
-	else if (err == ERR_DIR)
-		return (SUCCESS);
-	else if (err == ERR_UNKNOWN_CMD)
+	t_err	err;
+
+	if (ft_check_builtin(cmd->args[0]))
 	{
-		ft_print_warning("nocmd", cmd->args[0]);
-		err = ft_close(&cmd->fd_pipe[1]);
+		if (ft_execute_builtin(1, cmd, data) == ERR_FORK)
+			return (ERR_FORK);
+		if (cmd->pid == 0)
+			return (ERR_IS_CHILD);
+	}
+	else
+	{
+		err = ft_check_cmd_access(cmd->args, paths, empty_path);
 		if (err != SUCCESS)
 			return (err);
-		else
-			return (ERR_UNKNOWN_CMD);
+		if (ft_create_child(cmd, data, false) == ERR_FORK)
+			return (ERR_FORK);
 	}
-	else if (err == SUCCESS)
-		err = ft_create_child(cmd, data, false);
-	return (err);
+	return (SUCCESS);
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:14 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/17 14:08:00 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 18:34:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@
  */
 t_err	ft_buf_init(t_buf *buf)
 {
+	t_err	err;
+
 	buf->size = BUF_SIZE;
-	buf->str = malloc(buf->size);
-	if (!buf->str)
-		return (ERR_MALLOC);
+	err = ft_err_malloc((void **)&buf->str, buf->size,
+			"minishell: ft_buf_init");
+	if (err != SUCCESS)
+		return (err);
 	ft_buf_clear(buf);
 	return (SUCCESS);
 }
@@ -47,13 +50,11 @@ void	ft_buf_destroy(t_buf *buf)
  * @brief Set the buffer to zero.
  *
  * @param buf Pointer to buffer.
- * @return t_err SUCCESS
  */
-t_err	ft_buf_clear(t_buf *buf)
+void	ft_buf_clear(t_buf *buf)
 {
 	ft_memset(buf->str, '\0', buf->size);
 	buf->cur_pos = 0;
-	return (SUCCESS);
 }
 
 /**
@@ -66,9 +67,13 @@ t_err	ft_buf_double(t_buf *buf)
 {
 	char	*temp;
 
+	errno = 0;
 	temp = ft_realloc(buf->str, (buf->size * 2), buf->size);
 	if (!temp)
+	{
+		perror("minishell: ft_buf_double");
 		return (ERR_MALLOC);
+	}
 	buf->str = temp;
 	buf->size *= 2;
 	return (SUCCESS);
@@ -83,17 +88,14 @@ t_err	ft_buf_double(t_buf *buf)
  * @param buf Pointer to buffer.
  * @param str String to copy.
  * @param len Len of string accounted with zero terminator.
- * @return t_err
+ * @return t_err ERR_MALLOC, SUCCESS
  */
 t_err	ft_buf_strlcpy(t_buf *buf, char *str, size_t len)
 {
-	t_err	err;
-
 	if ((int)len + buf->cur_pos > buf->size)
 	{
-		err = ft_buf_double(buf);
-		if (err != SUCCESS)
-			return (err);
+		if (ft_buf_double(buf) == ERR_MALLOC)
+			return (ERR_MALLOC);
 	}
 	ft_strlcpy(&buf->str[buf->cur_pos], str, len);
 	buf->cur_pos += len - 1;

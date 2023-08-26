@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_pid.c                                          :+:      :+:    :+:   */
+/*   env_special.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:39:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/22 18:42:45 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 12:49:07 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file env_pid.c
- * @brief Functions relating to env_var $$
+ * @brief Functions relating special params $ and 0.
  */
 #include "mod_env.h"
 
@@ -31,12 +31,18 @@ t_err	ft_get_pid_value(pid_t *pid)
 	int		fd;
 	char	*line;
 
-	fd = open("/proc/self/stat", O_RDONLY);
-	if (fd == -1)
+	if (ft_err_open("/proc/self/stat", O_RDONLY, &fd,
+			"Could not open /proc/self/stat") != SUCCESS)
 		return (ERR_OPEN);
+	errno = 0;
 	line = get_next_line(fd);
 	if (!line)
+	{
+		perror("minishell: startup");
+		(void)ft_err_close(fd, "Could not close /proc/self/status");
 		return (ERR_MALLOC);
+	}
+	(void)ft_err_close(fd, "Could not close /proc/self/status");
 	*pid = ft_atoi(line);
 	free(line);
 	return (SUCCESS);
@@ -58,14 +64,12 @@ t_err	ft_create_env_pid(char **env_pid)
 	err = ft_get_pid_value(&pid);
 	if (err != SUCCESS)
 		return (err);
-	tmp = ft_itoa(pid);
-	if (!tmp)
+	tmp = NULL;
+	if (ft_err_itoa(pid, &tmp, "minishell: startup") == ERR_MALLOC)
 		return (ERR_MALLOC);
-	*env_pid = ft_strjoin("$=", tmp);
+	err = ft_err_strjoin("$=", tmp, env_pid, "minishell: startup");
 	free(tmp);
-	if (!(*env_pid))
-		return (ERR_MALLOC);
-	return (SUCCESS);
+	return (err);
 }
 
 /**
@@ -83,8 +87,52 @@ t_err	ft_insert_env_pid(t_hashtable *env_table)
 	err = ft_create_env_pid(&pid);
 	if (err != SUCCESS)
 		return (err);
+	errno = 0;
 	err = ft_hashtable_insert(env_table, pid, 1, true);
-	if (err != SUCCESS)
-		return (err);
-	return (SUCCESS);
+	if (err == ERR_MALLOC)
+		perror("minishell: startup");
+	if (err == ERR_MALLOC || err == ERR_HT_NO_INSERT)
+		free(pid);
+	return (err);
+}
+
+/**
+ * @brief Creates and inserts special $0
+ *
+ * @param env_table Environment.
+ * @param argv_zero Argv on pos 0
+ * @return t_err SUCCES, ERR_MALLOC, ERR_HT_NO_INSERT
+ */
+t_err	ft_insert_env_zero(t_hashtable *env_table, char *argv_zero)
+{
+	t_err	err;
+	char	*env_zero;
+
+	env_zero = NULL;
+	if (ft_err_strjoin("0=", argv_zero, &env_zero,
+			"minishell: startup") == ERR_MALLOC)
+		return (ERR_MALLOC);
+	errno = 0;
+	err = ft_hashtable_insert(env_table, env_zero, 1, true);
+	if (err == ERR_MALLOC)
+		perror("minishell: startup");
+	if (err == ERR_MALLOC || err == ERR_HT_NO_INSERT)
+		free(env_zero);
+	return (err);
+}
+
+/**
+ * @brief Inserts parameters $0 and $$ into environment.
+ *
+ * $0 = shell name.
+ * $$ = pid of shell instance.
+ * @param env_table Environment.
+ * @param argv_zero First arg of argv.
+ */
+void	ft_set_special_params(t_hashtable *env_table, char *argv_zero)
+{
+	if (ft_insert_env_zero(env_table, argv_zero) != SUCCESS)
+		ft_putendl_fd("minishell: warning: $0 not created", 2);
+	if (ft_insert_env_pid(env_table) != SUCCESS)
+		ft_putendl_fd("minishell: warning: $0 not created", 2);
 }

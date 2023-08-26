@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 18:19:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/14 20:23:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 18:51:29 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@
  *
  * @param input Pointer to tracker.
  * @param str String which shall be tracked.
- * @return t_err SUCCESS
  */
-t_err	ft_init_tracker(t_track *input, char *str, t_type type)
+void	ft_init_tracker(t_track *input, char *str, t_type type)
 {
 	input->str = str;
 	input->pos = 0;
@@ -31,7 +30,6 @@ t_err	ft_init_tracker(t_track *input, char *str, t_type type)
 	input->last_expand_len = 0;
 	input->found_quote = false;
 	input->type = type;
-	return (SUCCESS);
 }
 
 /**
@@ -50,9 +48,8 @@ t_err	ft_move_tracker(t_track *input)
  * @brief Remove single char from string. Doesn't realloc.
  *
  * @param input Pointer to tracker.
- * @return t_err SUCCESS
  */
-t_err	ft_eat_char(t_track *input)
+void	ft_eat_char(t_track *input)
 {
 	char	*str1;
 	char	*str2;
@@ -61,7 +58,6 @@ t_err	ft_eat_char(t_track *input)
 	str2 = str1 + 1;
 	while (*str1)
 		*str1++ = *str2++;
-	return (SUCCESS);
 }
 
 /**
@@ -97,4 +93,16 @@ t_err	ft_insert_replace(t_track *input, t_str token, t_str replace)
 	free(old_str);
 	input->str = new_str;
 	return (SUCCESS);
+}
+
+/**
+ * @brief On error while creating node frees token string.
+ *
+ * @param token		Current token handled.
+ * @return t_err	ERR_MALLOC
+ */
+t_err	ft_err_node(t_tok *token)
+{
+	ft_free_tok(token);
+	return (ERR_MALLOC);
 }

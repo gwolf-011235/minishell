@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 18:51:59 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/17 13:49:55 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 18:38:44 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
  * @brief Contains functions to create tokens.
  */
 #include "mod_lexer.h"
-/* #include "lexer_src.h"
-#include "lexer_tok.h"
-#include "lexer_utils.h"
-#include "lexer_tok_utils.h"
-#include "minishell_error.h" */
 
 /**
  * @brief Create a token.
@@ -27,20 +22,16 @@
  * Token contains the token string and its length.
  * @param token 	Created token.
  * @param s 		Token string.
- * @return t_err 	ERR_MALLOC, ERR_EMPTY, ERR_EOF, SUCCESS
+ * @return t_err 	ERR_MALLOC, ERR_EOF, SUCCESS
  */
 t_err	ft_create_tok(t_tok *token, char *s)
 {
-	if (!token || !s)
-		return (ERR_EMPTY);
 	token->size = ft_strlen(s);
 	if (!token->size)
 		return (ERR_EOF);
-	token->str = malloc(token->size + 1);
-	if (!token->str)
+	if (ft_err_strdup(s, &token->str, "minishell: malloc")
+		== ERR_MALLOC)
 		return (ERR_MALLOC);
-	ft_memcpy(token->str, s, token->size);
-	token->str[token->size] = '\0';
 	return (SUCCESS);
 }
 
@@ -53,23 +44,16 @@ t_err	ft_create_tok(t_tok *token, char *s)
  * @param src 		Struct containing the input string,
  * 					its length and current position.
  * @param token 	Token to be created.
- * @return t_err* ERR_EMPTY, ERR_MALLOC, SUCCESS
+ * @return t_err* ERR_MALLOC, SUCCESS
  */
 t_err	ft_tokenise(t_src *src, t_tok *token, t_buf *buf)
 {
 	t_err	err;
 
-	if (!src || !src->buf || !src->buf_size)
-		return (ERR_EMPTY);
 	buf->cur_pos = 0;
 	buf->str[0] = '\0';
-	err = ft_partition(src, buf);
-	if (buf->cur_pos >= buf->size)
-	{
-		err = ft_buf_double(buf);
-		if (err != SUCCESS)
-			return (err);
-	}
+	if (ft_partition(src, buf) == ERR_MALLOC)
+		return (ERR_MALLOC);
 	buf->str[buf->cur_pos] = '\0';
 	err = ft_create_tok(token, buf->str);
 	return (err);
@@ -83,7 +67,7 @@ t_err	ft_tokenise(t_src *src, t_tok *token, t_buf *buf)
  * @param src 		Struct containing the input string,
  * 					its length and current position.
  * @param buf 		Temporary buffer to save as token.
- * @return t_err 	ERR_EMPTY, ERR_EOF, SUCCESS
+ * @return t_err 	ERR_EOF, SUCCESS, ERR_OUT_OF_BOUNDS
  */
 t_err	ft_partition(t_src *src, t_buf *buf)
 {
@@ -94,14 +78,18 @@ t_err	ft_partition(t_src *src, t_buf *buf)
 	while (err != ERR_EOF)
 	{
 		if (c == '"' || c == '\'')
-			ft_add_quoted_str(c, src, buf);
+		{
+			if (ft_add_quoted_str(c, src, buf) == ERR_MALLOC)
+				return (ERR_MALLOC);
+		}
 		else if ((c == ' ' || c == '\t') && buf->cur_pos > 0)
 			break ;
 		else if (ft_strchr("\n|<>", c) && buf->cur_pos > 0)
 			return (ft_unget_char(src));
 		else
 		{
-			ft_add_to_buf(c, buf);
+			if (ft_add_to_buf(c, buf) == ERR_MALLOC)
+				return (ERR_MALLOC);
 			if (ft_strchr("\n|<>", c))
 				return (ft_check_double_redirect(src, &c, buf));
 		}
@@ -117,7 +105,7 @@ t_err	ft_partition(t_src *src, t_buf *buf)
  * Retrieve the first character.
  * @param src 		Struct containing the source string.
  * @param c 		Character retrieved.
- * @return t_err 	ERR_EMPTY, ERR_MALLOC, SUCCESS
+ * @return t_err 	ERR_EOF, SUCCESS
  */
 t_err	ft_init_partition(t_src *src, char *c)
 {
@@ -136,8 +124,9 @@ t_err	ft_init_partition(t_src *src, char *c)
  * @param quote Either ' or "
  * @param src 	Struct containing the source string.
  * @param buf 	Temporary buffer to save as token.
+ * @return SUCCESS, ERR_MALLOC
  */
-void	ft_add_quoted_str(char quote, t_src *src, t_buf *buf)
+t_err	ft_add_quoted_str(char quote, t_src *src, t_buf *buf)
 {
 	char	c;
 	bool	first_loop;
@@ -146,9 +135,12 @@ void	ft_add_quoted_str(char quote, t_src *src, t_buf *buf)
 	first_loop = 1;
 	while (c != quote || first_loop == 1)
 	{
-		ft_add_to_buf(c, buf);
+		if (ft_add_to_buf(c, buf) == ERR_MALLOC)
+			return (ERR_MALLOC);
 		ft_next_char(src, &c);
 		first_loop = 0;
 	}
-	ft_add_to_buf(c, buf);
+	if (ft_add_to_buf(c, buf) == ERR_MALLOC)
+		return (ERR_MALLOC);
+	return (SUCCESS);
 }

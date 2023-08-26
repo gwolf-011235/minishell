@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/22 18:12:27 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/25 19:06:38 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,8 @@ t_cmd	*ft_last_cmd(t_cmd *cmd_head)
  * @param count_arg 	Argument counter.
  * @param count_delim 	Delimiter counter.
  * @param count_out 	Outfile counter.
- * @return t_err 		SUCCESS
  */
-t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim,
+void	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim,
 			int *count_out)
 {
 	while (lst)
@@ -59,7 +58,7 @@ t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim,
 			(*count_delim)++;
 		}
 		else if (lst->type == PIPE)
-			return (SUCCESS);
+			return ;
 		else if (lst->type == INFILE)
 			lst = lst->next;
 		else if (lst->type == OUTFILE || lst->type == APPEND)
@@ -73,7 +72,6 @@ t_err	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim,
 			(*count_arg)++;
 		lst = lst->next;
 	}
-	return (SUCCESS);
 }
 
 /**

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_child.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 12:00:45 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/26 11:32:29 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin)
 	ft_close(&cmd->fd_in);
 	ft_plug_all_pipes(cmd);
 	if (builtin)
-		ft_choose_builtin(cmd, data, true);
+		ft_choose_builtin(cmd, data);
 	else
 		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
 			printf("\nexecve encountered an error\n");
@@ -100,7 +100,7 @@ void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin)
 	ft_close(&cmd->fd_prev_pipe[0]);
 	ft_close(&cmd->fd_in);
 	if (builtin)
-		ft_choose_builtin(cmd, data, true);
+		ft_choose_builtin(cmd, data);
 	else
 		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
 			printf("\nexecve encountered an error\n"); //perror
@@ -146,7 +146,7 @@ void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin)
 	}
 	ft_close_mid_child_fds(cmd);
 	if (builtin)
-		ft_choose_builtin(cmd, data, true);
+		ft_choose_builtin(cmd, data);
 	else
 		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
 			printf("\nexecve encountered an error\n");

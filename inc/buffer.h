@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 21:36:37 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/17 14:35:05 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 16:16:21 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_buf
 }	t_buf;
 
 t_err	ft_buf_init(t_buf *buf);
-t_err	ft_buf_clear(t_buf *buf);
+void	ft_buf_clear(t_buf *buf);
 t_err	ft_buf_double(t_buf *buf);
 t_err	ft_buf_strlcpy(t_buf *buf, char *str, size_t len);
 void	ft_buf_destroy(t_buf *buf);

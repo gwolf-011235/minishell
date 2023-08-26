@@ -6,83 +6,68 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 19:59:10 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 12:47:41 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file env_setup.c
- * @brief Copy env and generate missing envs.
+ * @brief Import environment and set specific variables if missing.
  */
 
 #include "mod_env.h"
 
 /**
- * @brief Creates a env_table and imports env. If no PWD it creates one.
+ * @brief Impot environment and sets some specific vars.
  *
- * Create hashtable env_table with HASHTABLE_SIZE.
- * Call ft_import_environ to fill env_table.
- * If env was empty set PWD and SHLVL.
- * If PWD is not available set PWD.
- * Increment SHLVL. If not found set it.
- * @param data Pointer to data struct.
- * @return t_err SUCCESS if everything went right, else it ft_exit_failures.
+ * ft_import_environ() to fill env_table.
+ * Check for missing PWD, SHLVL, PS1, PS2.
+ * Insert if necessary.
+ * Increment SHLVL.
+ * Set special parameter $$ and $0.
+ * @param env_table Environment.
+ * @param argv_zero First argument of argv.
+ * @param buf Pointer to buffer
  */
-t_err	ft_env_setup(t_hashtable **env_table, char *argv_zero)
+void	ft_env_setup(t_hashtable *env_table, char *argv_zero, t_buf *buf)
 {
-	t_err	err;
-
-	*env_table = ft_hashtable_create(HASHTABLE_SIZE, ft_hash_fnv1);
-	if (!env_table)
-		return (ERR_MALLOC);
-	err = ft_import_environ(*env_table);
-	if (err == ERR_MALLOC)
-		return (ERR_MALLOC);
-	if (ft_hashtable_lookup(*env_table, "PWD", 3) == NULL)
-	{
-		err = ft_insert_env_pwd(*env_table);
-		if (err != SUCCESS)
-			return (err);
-	}
-	err = ft_increment_shlvl(*env_table);
-	if (err == ERR_NO_SHLVL)
-		err = ft_insert_env_shlvl(*env_table);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_insert_env_pid(*env_table);
-	err = ft_insert_env_prompt(*env_table, 2);
-	err = ft_insert_env_zero(*env_table, argv_zero);
-	return (SUCCESS);
+	ft_import_environ(env_table);
+	ft_check_missing_env(env_table, buf);
+	ft_set_special_params(env_table, argv_zero);
 }
 
 /**
  * @brief Import env_vars from global environ.
  *
- * Check if environ is not null, else return.
+ * If environ is null do nothing.
  * Loop through the environ array. Environ is NULL-terminated.
  * Copy the string into environment with ft_copy_envion_str().
  * If ERR_HT_NO_INSERT continue looping. This ensures, that there
  * are no duplicates in environment.
- * If ERR_INVALID_NAME is breaks out of loop (corrupted environ?)
+ * If ERR_INVALID_NAME break out of loop (corrupted environ?)
+ * If ERR_MALLOC break out of loop - no memory to continue.
+ * Handles all errors.
  * @param env_table Environment.
- * @return t_err SUCCESS, ERR_MALLOC, ERR_EMPTY, ERR_INVALID_NAME.
  */
-t_err	ft_import_environ(t_hashtable *env_table)
+void	ft_import_environ(t_hashtable *env_table)
 {
 	int		i;
 	t_err	err;
 
 	i = 0;
 	if (environ[i] == NULL)
-		return (ERR_EMPTY);
+		return ;
 	while (environ[i] != NULL)
 	{
 		err = ft_copy_environ_str(env_table, environ[i]);
 		if (err != SUCCESS && err != ERR_HT_NO_INSERT)
-			return (err);
+			break ;
 		i++;
 	}
-	return (SUCCESS);
+	if (err == ERR_INVALID_NAME)
+		ft_putendl_fd("minishell: warning: possible corrupted environ", 2);
+	else if (err == ERR_MALLOC)
+		ft_putendl_fd("minishell: warning: error while parsing environ", 2);
 }
 
 /**
@@ -105,71 +90,87 @@ t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str)
 	t_err	err;
 
 	keylen = 0;
-	err = ft_get_env_keylen(environ_str, &keylen);
-	if (err == ERR_INVALID_NAME)
-		return (err);
-	env_str = ft_strdup(environ_str);
-	if (!env_str)
+	if (ft_get_env_keylen(environ_str, &keylen) == ERR_INVALID_NAME)
+		return (ERR_INVALID_NAME);
+	env_str = NULL;
+	if (ft_err_strdup(environ_str, &env_str,
+			"minishell: startup") == ERR_MALLOC)
 		return (ERR_MALLOC);
 	if (env_str[keylen] == '=')
+	{
+		errno = 0;
 		err = ft_hashtable_insert_export(env_table, env_str, keylen, true);
-	if (err != SUCCESS && err != ERR_HT_NO_INSERT)
+		if (err == ERR_MALLOC)
+			perror("minishell: startup");
+		if (err == ERR_MALLOC || err == ERR_HT_NO_INSERT)
+			free(env_str);
+		return (err);
+	}
+	else
 		free(env_str);
-	return (err);
+	return (SUCCESS);
 }
 
 /**
- * @brief Creates and inserts PS1 and PS2.
+ * @brief Checks env variables PWD, SHLVL, PS1, PS2.
  *
- * If only one or both should be inserted is managed by opt.
- * Gets the prompts from minishell_config.h.
+ * If PWD not found create and insert it.
+ * If SHLVL not found create and insert it.
+ * If SHLVL found increment it.
+ * If PS1 and/or PS2 not found create and insert it.
+ * Handles all errors.
+ * @param env_table Environment.
+ * @param buf Buffer.
+ */
+void	ft_check_missing_env(t_hashtable *env_table, t_buf *buf)
+{
+	if (ft_hashtable_lookup(env_table, "PWD", 3) == NULL)
+	{
+		if (ft_insert_env_pwd(env_table, buf) != SUCCESS)
+			ft_putendl_fd("minishell: warning: PWD not created", 2);
+	}
+	if (ft_hashtable_lookup(env_table, "SHLVL", 5) == NULL)
+	{
+		if (ft_insert_env_shlvl(env_table) != SUCCESS)
+			ft_putendl_fd("minishell: warning: SHLVL not created", 2);
+	}
+	else
+	{
+		if (ft_increment_shlvl(env_table) != SUCCESS)
+			ft_putendl_fd("minishell: warning: SHLVL not updated", 2);
+	}
+	if (ft_hashtable_lookup(env_table, "PS1", 3) == NULL)
+	{
+		if (ft_insert_env_prompt(env_table, PS1) != SUCCESS)
+			ft_putendl_fd("minishell: warning: PS1 not created", 2);
+	}
+	if (ft_hashtable_lookup(env_table, "PS2", 3) == NULL)
+	{
+		if (ft_insert_env_prompt(env_table, PS2) != SUCCESS)
+			ft_putendl_fd("minishell: warning: PS2 not created", 2);
+	}
+}
+
+/**
+ * @brief Copies and inserts prompt string.
+ *
  * @param env_table Environment
- * @param opt 0 = PS1; 1 = PS2; 2 = both
+ * @param prompt Prompt string to be copied.
  * @return t_err SUCCESS, ERR_MALLOC, ERR_HT_NO_INSERT
  */
-t_err	ft_insert_env_prompt(t_hashtable *env_table, char opt)
+t_err	ft_insert_env_prompt(t_hashtable *env_table, char *prompt)
 {
-	char	*prompt;
+	char	*env_prompt;
 	t_err	err;
 
-	if (opt == 0 || opt == 2)
-	{
-		prompt = ft_strdup(PS1);
-		if (!prompt)
-			return (ERR_MALLOC);
-		err = ft_hashtable_insert(env_table, prompt, 3, true);
-		if (err != SUCCESS)
-			return (err);
-	}
-	if (opt == 1 || opt == 2)
-	{
-		prompt = ft_strdup(PS2);
-		if (!prompt)
-			return (ERR_MALLOC);
-		err = ft_hashtable_insert(env_table, prompt, 3, true);
-		if (err != SUCCESS)
-			return (err);
-	}
-	return (SUCCESS);
-}
-
-/**
- * @brief Creates and inserts special $0
- *
- * @param env_table Environment.
- * @param argv_zero Argv on pos 0
- * @return t_err SUCCES, ERR_MALLOC, ERR_HT_NO_INSERT
- */
-t_err	ft_insert_env_zero(t_hashtable *env_table, char *argv_zero)
-{
-	t_err	err;
-	char	*env_zero;
-
-	env_zero = ft_strjoin("0=", argv_zero);
-	if (!env_zero)
+	env_prompt = NULL;
+	if (ft_err_strdup(prompt, &env_prompt, "minishell: startup") == ERR_MALLOC)
 		return (ERR_MALLOC);
-	err = ft_hashtable_insert(env_table, env_zero, 1, true);
-	if (err != SUCCESS)
-		return (err);
-	return (SUCCESS);
+	errno = 0;
+	err = ft_hashtable_insert(env_table, env_prompt, 3, true);
+	if (err == ERR_MALLOC)
+		perror("minishell: startup");
+	if (err == ERR_MALLOC || err == ERR_HT_NO_INSERT)
+		free(env_prompt);
+	return (err);
 }

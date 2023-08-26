@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:18:54 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 19:54:21 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 18:02:37 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ t_err	ft_expand_dollar(t_track *input, t_hashtable *symtab)
 		return (err);
 	var.len++;
 	err = ft_insert_replace(input, var, replace);
-	if (replace.len > 0)
-		free (replace.ptr);
+	free (replace.ptr);
 	input->pos += replace.len;
 	input->last_expand_len = replace.len;
 	return (err);
@@ -66,9 +65,10 @@ t_err	ft_expand_dollar(t_track *input, t_hashtable *symtab)
  * Both are inserted at startup.
  * @param var Used for var.len
  * @param replace Where to save replace string.
- * @return t_err SUCCESS, ERR_MALLOC.
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_NOEXPAND
  */
-t_err	ft_special_dollar(t_str *var, t_str *replace, t_hashtable *symtab, char c)
+t_err	ft_special_dollar(t_str *var, t_str *replace,
+			t_hashtable *symtab, char c)
 {
 	t_env_var	*env_var;
 

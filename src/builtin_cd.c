@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 10:48:33 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:27:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@
  * In case of error call ft_cd_error().
  * @param argv NULL terminated args.
  * @param env_tab Environment.
- * @return t_err SUCCESS, ERR_EMPTY, ERR_ARGCOUNT, ERR_MALLOC, ERR_NOT_FOUND
  */
-t_err	ft_cd(char **argv, t_hashtable *env_tab)
+void	ft_cd(char **argv, t_hashtable *env_tab, t_buf *buf)
 {
 	size_t		size;
 	char		*oldpwd;
@@ -42,20 +41,20 @@ t_err	ft_cd(char **argv, t_hashtable *env_tab)
 	ft_get_array_size(argv, &size);
 	if (size > 2)
 		return (ft_cd_error(ERR_ARGCOUNT, oldpwd));
-	err = ft_save_cur_pwd(&oldpwd, env_tab);
+	if (ft_save_cur_pwd(&oldpwd, env_tab) == ERR_MALLOC)
+		return (ft_cd_error(ERR_MALLOC, oldpwd));
+	if (size == 1 || !strncmp(argv[1], "--", 3))
+		err = ft_redirect_path(env_tab, "HOME", buf);
+	else if (!strncmp(argv[1], "-", 2))
+		err = ft_redirect_path(env_tab, "OLDPWD", buf);
+	else
+		err = ft_change_dir(argv[1], env_tab, buf, false);
 	if (err != SUCCESS)
 		return (ft_cd_error(err, oldpwd));
-	if (size == 1)
-	{
-		err = ft_set_path_to_home(&argv[1], env_tab);
-		if (err != SUCCESS)
-			return (ft_cd_error(err, oldpwd));
-	}
-	err = ft_change_dir(argv[1], env_tab, oldpwd);
+	err = ft_update_env_var(env_tab, oldpwd, 6, true);
 	if (err != SUCCESS)
 		return (ft_cd_error(err, oldpwd));
 	g_status = 0;
-	return (SUCCESS);
 }
 
 /**
@@ -83,21 +82,37 @@ t_err	ft_save_cur_pwd(char **oldpwd, t_hashtable *env_tab)
 }
 
 /**
- * @brief Look for $HOME and set path to it's value.
+ * @brief Look for environment variable and set path to it's value.
  *
  * @param path Pointer which should be changed.
  * @param env_tab Environment.
+ * @param name Name of env var.
  * @return t_err SUCCESS, ERR_NOT_FOUND
  */
-t_err	ft_set_path_to_home(char **path, t_hashtable *env_tab)
+t_err	ft_redirect_path(t_hashtable *env_tab, char *name, t_buf *buf)
 {
-	t_env_var	*env_home;
+	size_t		len;
+	t_env_var	*env;
+	char		*path;
+	bool		print;
 
-	env_home = ft_hashtable_lookup(env_tab, "HOME", 4);
-	if (!env_home)
-		return (ERR_NOT_FOUND);
-	*path = env_home->value;
-	return (SUCCESS);
+	len = ft_strlen(name);
+	env = ft_hashtable_lookup(env_tab, name, len);
+	if (!ft_strncmp(name, "OLDPWD", 6))
+		print = true;
+	else
+		print = false;
+	if (!env)
+	{
+		if (!ft_strncmp(name, "HOME", 4))
+			return (ERR_NO_HOME);
+		else if (print)
+			return (ERR_NO_OLDPWD);
+		else
+			return (ERR_NOT_FOUND);
+	}
+	path = env->value;
+	return (ft_change_dir(path, env_tab, buf, print));
 }
 
 /**
@@ -111,19 +126,19 @@ t_err	ft_set_path_to_home(char **path, t_hashtable *env_tab)
  * @param path Where to change to.
  * @param env_tab Environment.
  * @param oldpwd Saved pwd env_str to update $OLDPWD.
- * @return t_err SUCCESS, ERR_MALLOC, ERR_EMPTY, ERR_HT_NO_INSERT, ERR_HT_NO_SWAP,
- * ERR_CHDIR_FAIL
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_EMPTY, ERR_HT_NO_INSERT,
+ * ERR_HT_NO_SWAP, ERR_CHDIR_FAIL
  */
-t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd)
+t_err	ft_change_dir(char *path, t_hashtable *env_tab, t_buf *buf, bool print)
 {
 	char		*pwd;
 	t_err		err;
 
-	err = ft_err_chdir(path, "minishell: cd");
+	err = ft_err_chdir(path, "minishell: cd: ");
 	if (err != SUCCESS)
 		return (err);
 	pwd = NULL;
-	err = ft_create_env_pwd(&pwd);
+	err = ft_create_env_pwd(&pwd, buf);
 	if (err != SUCCESS)
 		return (err);
 	err = ft_update_env_var(env_tab, pwd, 3, true);
@@ -132,8 +147,7 @@ t_err	ft_change_dir(char *path, t_hashtable *env_tab, char *oldpwd)
 		free(pwd);
 		return (err);
 	}
-	err = ft_update_env_var(env_tab, oldpwd, 6, true);
-	if (err != SUCCESS)
-		return (err);
+	if (print)
+		ft_putendl_fd(path, 1);
 	return (SUCCESS);
 }

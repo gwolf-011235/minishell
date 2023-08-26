@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_handle_input.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/22 18:08:48 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/26 11:35:28 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "tkn_list.h"
 # include <fcntl.h>			        /* required for opening files */
 # include <sys/wait.h>				/* required for wait calls */
-# include "stdbool.h"				/* required for booleans */
+# include <stdbool.h>				/* required for booleans */
 # include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -90,7 +90,7 @@ t_err	ft_lex_input(t_tkn_list	**lst_head, char *input, t_buf *buf);
 t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table, t_buf *buf);
 
 // parser
-t_err	ft_parser(t_tkn_list *lst, t_cmd **cmd);
+t_err	ft_parser(t_tkn_list **lst_head, t_cmd **cmd_head);
 
 // executor
 t_err	ft_executor(t_cmd *cmd, t_data *data);

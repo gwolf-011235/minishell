@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 08:11:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 12:09:54 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:43:51 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,26 @@
  * At the end return saved error
  * @param argv NULL terminated args.
  * @param env_tab Environment.
- * @return t_err SUCCESS, ERR_EMPTY, ERR_INVALID_NAME
  */
-t_err	ft_export(char **argv, t_hashtable *env_tab)
+void	ft_export(char **argv, t_hashtable *env_tab)
 {
 	size_t	size;
 	t_err	err;
-	t_err	save_err;
 	size_t	i;
 
 	size = 0;
+	g_status = 0;
 	ft_get_array_size(argv, &size);
 	if (size == 1)
 		return (ft_print_env_sorted(env_tab));
 	i = 1;
-	save_err = SUCCESS;
 	while (argv[i])
 	{
 		err = ft_check_and_update_env(argv[i], env_tab);
 		if (err != SUCCESS)
-			save_err = ft_export_error(err, argv[i]);
+			ft_export_error(err, argv[i]);
 		i++;
 	}
-	if (save_err != SUCCESS)
-		g_status = 1;
-	else
-		g_status = 0;
-	return (save_err);
 }
 
 /**
@@ -65,9 +58,8 @@ t_err	ft_export(char **argv, t_hashtable *env_tab)
  * Print env_strings with ft_pretty_print_envp().
  * Destroy envp with ft_envp_destroy().
  * @param env_tab Environment.
- * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_INVALID_NAME.
  */
-t_err	ft_print_env_sorted(t_hashtable *env_tab)
+void	ft_print_env_sorted(t_hashtable *env_tab)
 {
 	char	**envp;
 	t_err	err;
@@ -80,8 +72,7 @@ t_err	ft_print_env_sorted(t_hashtable *env_tab)
 	err = ft_pretty_print_envp(envp, env_tab->num_exports);
 	if (err != SUCCESS)
 		return (ft_export_error(err, NULL));
-	err = ft_envp_destroy(&envp);
-	return (err);
+	ft_envp_destroy(&envp);
 }
 
 /**

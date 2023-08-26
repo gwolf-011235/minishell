@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:47:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/15 17:06:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:22:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,25 @@ bool	ft_check_builtin(char *arg)
  * @param piped 	Bool to differentiate if part of pipe.
  * @param cmd 		Cmd to be processed which is a built-in.
  * @param data 		Data struct containing env.
- * @return t_err 	ERR_CLOSE, ERR_FORK, SUCCESS
+ * @return t_err 	ERR_FORK, SUCCESS
  */
 t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data)
 {
-	t_err	err;
 	int		old_stdin;
 	int		old_stdout;
 
 	if (piped)
 	{
-		err = ft_create_child(cmd, data, true);
-		if (err != SUCCESS)
-			return (err);
+		if (ft_create_child(cmd, data, true) == ERR_FORK)
+			return (ERR_FORK);
 	}
 	else
 	{
 		old_stdin = dup(STDIN_FILENO);
 		old_stdout = dup (STDOUT_FILENO);
-		err = ft_set_fd_scmd(cmd);
-		if (err != SUCCESS)
-			return (err);
-		ft_choose_builtin(cmd, data, false);
-		err = ft_reset_fd_scmd(old_stdin, old_stdout);
-		if (err != SUCCESS)
-			return (err);
+		ft_set_fd_scmd(cmd);
+		ft_choose_builtin(cmd, data);
+		ft_reset_fd_scmd(old_stdin, old_stdout);
 	}
 	return (SUCCESS);
 }
@@ -80,24 +74,18 @@ t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data)
  * @brief Set the file descriptors for execution of scmd builtin.
  *
  * @param cmd 		Current cmd.
- * @return t_err 	ERR_CLOSE, SUCCESS
  */
-t_err	ft_set_fd_scmd(t_cmd *cmd)
+void	ft_set_fd_scmd(t_cmd *cmd)
 {
-	t_err	err;
-
 	if (cmd->fd_out >= 0)
 	{
 		if (cmd->fd_in >= 0)
 			ft_replace_fd(cmd->fd_in, cmd->fd_out);
 		else
 			ft_replace_fd(0, cmd->fd_out);
-		err = ft_close(&cmd->fd_out);
-		if (err != SUCCESS)
-			return (err);
+		ft_close(&cmd->fd_out);
 	}
-	err = ft_close(&cmd->fd_in);
-	return (err);
+	ft_close(&cmd->fd_in);
 }
 
 /**
@@ -105,20 +93,13 @@ t_err	ft_set_fd_scmd(t_cmd *cmd)
  *
  * Stdin and Stdout have been replaced by other fds.
  * They are reset to STDIN_FILENO and STDOUT_FILENO with backup.
- * @return t_err 	ERR_CLOSE, SUCCESS
+ * @return t_err 	SUCCESS
  */
-t_err	ft_reset_fd_scmd(int old_stdin, int old_stdout)
+void	ft_reset_fd_scmd(int old_stdin, int old_stdout)
 {
-	t_err	err;
-
 	ft_replace_fd(old_stdin, old_stdout);
-	err = ft_close(&old_stdin);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_close(&old_stdout);
-	if (err != SUCCESS)
-		return (err);
-	return (SUCCESS);
+	ft_close(&old_stdin);
+	ft_close(&old_stdout);
 }
 
 /**
@@ -127,20 +108,20 @@ t_err	ft_reset_fd_scmd(int old_stdin, int old_stdout)
  * @param cmd 	Cmd containing built-in call and its args.
  * @param data 	Data struct containing env.
  */
-void	ft_choose_builtin(t_cmd *cmd, t_data *data, bool forked)
+void	ft_choose_builtin(t_cmd *cmd, t_data *data)
 {
 	if (!ft_strncmp(cmd->args[0], "cd", 3))
-		ft_cd(cmd->args, data->env_table);
+		ft_cd(cmd->args, data->env_table, &data->buf);
 	else if (!ft_strncmp(cmd->args[0], "echo", 5))
 		ft_echo(cmd->args);
 	else if (!ft_strncmp(cmd->args[0], "env", 4))
 		ft_env(data->env_table);
 	else if (!ft_strncmp(cmd->args[0], "exit", 5))
-		ft_exit(cmd->args, &data->loop, forked);
+		ft_exit(cmd->args, &data->loop);
 	else if (!ft_strncmp(cmd->args[0], "export", 7))
 		ft_export(cmd->args, data->env_table);
 	else if (!ft_strncmp(cmd->args[0], "pwd", 4))
-		ft_pwd();
+		ft_pwd(&data->buf);
 	else if (!ft_strncmp(cmd->args[0], "unset", 6))
 		ft_unset(cmd->args, data->env_table);
 }

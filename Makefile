@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
+#    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/25 14:04:15 by sqiu             ###   ########.fr        #
+#    Updated: 2023/08/26 13:06:29 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ SRC :=	utils_memory.c \
 		env_setup.c \
 		env_pwd.c \
 		env_shlvl.c \
-		env_pid.c \
+		env_special.c \
 		env_envp.c \
 		prompt.c \
 		prompt_replace_token.c \
@@ -93,11 +93,13 @@ SRC :=	utils_memory.c \
 		expand_tilde.c \
 		expand_utils.c \
 		expand_dollar.c \
+		expand_types.c \
 		expand.c \
 		handle_input.c \
 		parser.c \
 		parser_utils.c \
 		parser_fill_cmd.c \
+		parser_cleanup.c \
 		builtin_utils.c \
 		builtin_error.c \
 		builtin_echo.c \
@@ -122,7 +124,11 @@ SRC :=	utils_memory.c \
 		tkn_list_delete.c \
 		tkn_list_search.c \
 		signal.c \
-		error_temp.c
+		error.c \
+		error2.c \
+		error3.c \
+		error_msg.c \
+		init.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 
 # ******************************
@@ -205,9 +211,10 @@ valgr: $(NAME)
 			--show-leak-kinds=all\
 			--trace-children=yes\
 			--track-fds=yes\
+			-s --suppressions=./minishell.supp\
 			./$(NAME)
 #			--log-file=valgrind-out.txt\
-			
+
 #	@less ./valgrind-out.txt
 
 # ******************************
@@ -244,6 +251,7 @@ tvalgr: $(TEST)
 			--trace-children=no\
 			--track-fds=no\
 			--log-file=valgrind-out.txt\
+			--suppressions=./minishell.supp
 			./$(TEST)
 	@less ./valgrind-out.txt
 

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 19:24:11 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 16:00:10 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,64 +16,59 @@
  */
 
 #include "minishell.h"
-#include "mod_lexer.h"
-#include "mod_signal.h"
-/* #include "lexer_list.h"
-#include "lexer_tok_utils.h" */
 
 __sig_atomic_t	g_status;
+
+void	ft_prep_new_loop(t_data *data, char **input)
+{
+	ft_signal_setup(SIGQUIT, SIG_IGNORE);
+	ft_envp_create(data->env_table, &data->envp);
+	ft_create_prompts(data);
+	*input = NULL;
+}
+
+void	ft_read_input(char **input, char *prompt1, t_state state)
+{
+	bool	tty;
+
+	ft_signal_setup(SIGINT, state);
+	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO) && isatty(STDERR_FILENO))
+		tty = true;
+	else
+		tty = false;
+	if (tty)
+		*input = readline(prompt1);
+	else
+	{
+		if (isatty(STDIN_FILENO))
+			ft_putstr_fd(prompt1, 0);
+		*input = get_next_line(STDIN_FILENO);
+		if (*input)
+		{
+			if ((*input)[ft_strlen(*input) - 1] == '\n')
+				(*input)[ft_strlen(*input) - 1] = '\0';
+		}
+	}
+	ft_signal_setup(SIGINT, SIG_IGNORE);
+}
 
 int	main(int argc, char **argv)
 {
 	t_data	data;
 	char	*input;
-	t_err	err;
 
 	(void)argc;
-	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
-	err = ft_signal_setup(SIGQUIT, SIG_IGNORE);
-	if (err != SUCCESS)
-		ft_exit_failure(&data, err);
-	err = ft_buf_init(&data.buf);
-	if (ft_env_setup(&data.env_table, argv[0]) != SUCCESS)
-		printf("NO\n");
-	data.loop = true;
+	ft_startup(&data, argv[0]);
 	while (data.loop)
 	{
-		ft_envp_create(data.env_table, &data.envp);
-		err = ft_prompt_create(data.env_table, &data.prompt1, "PS1", PS1_STD);
-		if (err != SUCCESS)
-			ft_exit_failure(&data, err);
-		err = ft_prompt_create(data.env_table, &data.prompt2, "PS2", PS2_STD);
-		if (err != SUCCESS)
-			ft_exit_failure(&data, err);
-		err = ft_signal_setup(SIGINT, SIG_STD);
-		if (err != SUCCESS)
-			ft_exit_failure(&data, err);
-		if (isatty(fileno(stdin)))
-			input = readline(data.prompt1);
-		else
-		{
-			input = get_next_line(fileno(stdin));
-			input = ft_strtrim(input, "\n");
-		}
+		ft_prep_new_loop(&data, &input);
+		ft_read_input(&input, data.prompt1, SIG_STD);
 		if (!input)
 			break ;
-		if (!ft_isempty_str(input))
-		{
-			add_history(input);
-			err = ft_signal_setup(SIGINT, SIG_IGNORE);
-			if (err != SUCCESS)
-				ft_exit_failure(&data, err);
-			err = ft_handle_input(input, &data);
-		}
-		free(input);
-		free(data.prompt1);
-		free(data.prompt2);
-		ft_envp_destroy(&data.envp);
+		else if (!ft_isempty_str(input))
+			ft_handle_input(input, &data);
+		ft_clean_after_loop(input, &data);
 	}
-	ft_hashtable_destroy(data.env_table);
-	ft_buf_destroy(&data.buf);
+	ft_clean_on_exit(&data);
 	exit(g_status);
 }

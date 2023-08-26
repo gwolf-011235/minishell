@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 18:09:38 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 16:27:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 16:00:24 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,23 @@ t_err	ft_envp_fill(t_hashtable *ht, char **envp, bool all)
  *
  * Malloc char array of num_values of hashtable plus 1 for terminator.
  * Fetch all elements with ft_envp_fill() with switch set to false.
+ * Handles errors.
  * @param ht Environment from which to copy.
  * @param envp Pointer to char**, where to save.
- * @return t_err ERR_EMPTY, ERR_MALLOC, SUCCESS
  */
-t_err	ft_envp_create(t_hashtable *ht, char ***envp)
+void	ft_envp_create(t_hashtable *ht, char ***envp)
 {
 	size_t	size;
 
 	size = ht->num_values - (ht->num_elements - ht->num_exports) + 1;
-	if (!ht || !envp)
-		return (ERR_EMPTY);
-	*envp = malloc(sizeof(char *) * size);
-	if (!*envp)
-		return (ERR_MALLOC);
+	*envp = NULL;
+	if (ft_err_malloc((void **)envp, sizeof(char *) * size, "minishell: malloc")
+		== ERR_MALLOC)
+	{
+		ft_putendl_fd("minishell: warning: could not create environment.", 2);
+		return ;
+	}
 	ft_envp_fill(ht, *envp, false);
-	return (SUCCESS);
 }
 
 /**
@@ -88,7 +89,6 @@ t_err	ft_envp_create(t_hashtable *ht, char ***envp)
  */
 t_err	ft_envp_create_all(t_hashtable *ht, char ***envp)
 {
-
 	if (!ht || !envp)
 		return (ERR_EMPTY);
 	*envp = malloc(sizeof(char *) * (ht->num_exports + 1));

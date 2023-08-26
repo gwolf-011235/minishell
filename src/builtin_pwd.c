@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:59:29 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/15 10:22:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:45:49 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,25 @@
  *
  * Create str of working directory with ft_create_pwd_value().
  * Print it and free str.
- * @return t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL.
  */
-t_err	ft_pwd(void)
+void	ft_pwd(t_buf *buf)
 {
-	char	*pwd;
 	t_err	err;
 
-	pwd = NULL;
-	err = ft_create_pwd_value(&pwd);
+	err = ft_create_pwd_value(buf);
 	if (err != SUCCESS)
 	{
 		g_status = 1;
-		return (err);
+		return ;
 	}
 	errno = 0;
-	ft_putendl_fd(pwd, 1);
+	ft_putendl_fd(buf->str, 1);
 	if (errno != 0)
 	{
 		perror("minishell: pwd");
 		g_status = 1;
 		err = ERR_WRITE;
 	}
-	free(pwd);
 	if (err == SUCCESS)
 		g_status = 0;
-	return (SUCCESS);
 }

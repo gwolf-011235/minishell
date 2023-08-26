@@ -39,7 +39,7 @@
 					"ignoreFailures": true
 				}
 			],
-			"preLaunchTask": "make test"
+			"preLaunchTask": "make"
 		},
 		{
 			"name": "attach minishell",

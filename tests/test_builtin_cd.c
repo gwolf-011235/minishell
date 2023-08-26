@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 19:50:48 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/23 23:20:09 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 14:36:29 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ void	execute_cd_test(char *name, char *path)
 
 	printf("TEST: %s\n", name);
 	pwd = NULL;
-	ft_create_pwd_value(&pwd);
-	printf("Current pwd: %s\n", pwd);
-	free(pwd);
+	ft_create_pwd_value(&g_data.buf);
+	printf("Current pwd: %s\n", g_data.buf);
 	g_argv[1] = path;
-	ft_cd(g_argv, g_data.env_table);
-	ft_create_pwd_value(&pwd);
-	printf("After change: %s\n\n", pwd);
+	ft_cd(g_argv, g_data.env_table, &g_data.buf);
+	ft_create_pwd_value(&g_data.buf);
+	printf("After change: %s\n\n", g_data.buf);
 	free(pwd);
 }
 

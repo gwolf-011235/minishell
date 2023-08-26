@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:39:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/10 11:20:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 15:42:17 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
  * The current hostname is saved in /proc/sys/kernel/hostname.
  * Open this file and retrieve hostname via get_next_line().
  * Hostname is searched for the first '.' which is replaced by '\0'.
- * If no '.' is found hostname is delimited by newline. Search for '\n' and replace with '\0'
+ * If no '.' is found hostname is delimited by newline:
+ * Search for '\n' and replace with '\0'
  * @param replacement Pointer pointer where to save string.
  * @return t_err SUCCESS, ERR_OPEN, ERR_MALLOC
  */

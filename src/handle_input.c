@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:16:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/22 18:43:14 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/26 19:36:18 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,23 @@
  * @param data 		Overarching data struct containing the env.
  * @return t_err 	ERR_EMPTY, ERR_MALLOC, ERR_SYNTAX,  ERR_PIPE, SUCCESS
  */
-t_err	ft_handle_input(char *input, t_data *data)
+void	ft_handle_input(char *input, t_data *data)
 {
 	t_tkn_list	*lst;
-	t_err		err;
 	t_cmd		*cmd;
 
 	lst = NULL;
 	cmd = NULL;
-	err = ft_check_syntax(input);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_lex_input(&lst, input, &data->buf);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_expand_tkn_lst(&lst, data->env_table, &data->buf);
-	if (err != SUCCESS)
-		return (err);
-	err = ft_parser(lst, &cmd);
-	if (err != SUCCESS)
-		return (err);
-	ft_free_lst(&lst);
-	err = ft_executor(cmd, data);
-	ft_cleanup_cmd_list(cmd);
-	return (SUCCESS);
+	add_history(input);
+	if (ft_check_syntax(input) == ERR_SYNTAX)
+		return ;
+	if (ft_lex_input(&lst, input, &data->buf) == ERR_LEXER)
+		return ;
+	if (ft_expand_tkn_lst(&lst, data->env_table, &data->buf) == ERR_EXPANDER)
+		return ;
+	if (ft_parser(&lst, &cmd) == ERR_PARSER)
+		return ;
+	if (ft_executor(cmd, data) == ERR_EXECUTOR)
+		return ;
+	return ;
 }

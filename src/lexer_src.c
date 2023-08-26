@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 15:27:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/05 18:39:38 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 17:10:04 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,10 @@
  * and the current position looked at.
  * @param src Source structure.
  * @param c Character looked at.
- * @return t_err SUCCESS, ERR_EMPTY, ERR_EOF
+ * @return t_err SUCCESS, ERR_EOF
  */
 t_err	ft_next_char(t_src *src, char *c)
 {
-	if (!src || !src->buf)
-		return (ERR_EMPTY);
 	if (src->cur_pos == INIT_SRC_POS)
 		src->cur_pos = -1;
 	else

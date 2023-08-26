@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:57:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/17 13:53:42 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 13:23:51 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@
  * Loops through input, creates token until no more
  * chars are found and returns ERR_EOF which breaks the loop.
  * Creates initial node even if first token ends directly with ERR_EOF.
+ * Handles errors.
  * @param lst_head	Head node of token list.
  * @param input 	Input string to be tokenised.
  * @return t_err 	ERR_EMPTY, ERR_MALLOC, SUCCESS
  */
-t_err	ft_lex_input(t_tkn_list	**lst_head, char *input, t_buf *buf)
+t_err	ft_lex_input(t_tkn_list **lst_head, char *input, t_buf *buf)
 {
 	t_src	src;
 	t_err	err;
@@ -40,19 +41,14 @@ t_err	ft_lex_input(t_tkn_list	**lst_head, char *input, t_buf *buf)
 	ft_buf_clear(buf);
 	err = ft_tokenise(&src, &token, buf);
 	if (err == ERR_MALLOC)
-		return (err);
+		return (ft_print_error(ERR_LEXER));
 	while (err != ERR_EOF || !*lst_head)
 	{
-		err = ft_new_node(lst_head, token.str);
-		if (err != SUCCESS)
-		{
-			ft_free_lst(lst_head);
-			ft_free_tok(&token);
-			return (err);
-		}
+		if (ft_new_node(lst_head, token.str) == ERR_MALLOC)
+			return (ft_lex_err(lst_head, &token));
 		err = ft_tokenise(&src, &token, buf);
 		if (err == ERR_MALLOC)
-			return (err);
+			return (ft_lex_err(lst_head, &token));
 	}
 	ft_assign_type(*lst_head);
 	return (SUCCESS);
@@ -70,4 +66,22 @@ void	ft_init_lexer(t_src *src, char *input, int len)
 	src->buf = input;
 	src->buf_size = len;
 	src->cur_pos = INIT_SRC_POS;
+}
+
+/**
+ * @brief	Handle ERR_MALLOC in lexer.
+ *
+ * Clears token list.
+ * Frees token, if token string malloced.
+ * Return err message.
+ * @param lst_head		Head of token list.
+ * @param token			Current malloced token.
+ * @return t_err		ERR_LEXER
+ */
+t_err	ft_lex_err(t_tkn_list **lst_head, t_tok *token)
+{
+	g_status = 1;
+	ft_free_lst(lst_head);
+	ft_free_tok(token);
+	return (ft_print_error(ERR_LEXER));
 }

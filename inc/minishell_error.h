@@ -6,12 +6,12 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 17:07:29 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:54:57 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file
+ * @file  minishell_error.h
  * @brief Header to store error codes
  */
 #ifndef MINISHELL_ERROR_H
@@ -24,12 +24,15 @@
 # include <sys/stat.h>
 # include <unistd.h>
 # include <errno.h>
+# include <fcntl.h>
 
 # include "libft.h"
 
 /* ====== Globals ====== */
 
 extern __sig_atomic_t	g_status;
+
+/* ====== Typedefs ====== */
 
 /**
  * @brief Enum, which contains all error codes.
@@ -47,12 +50,15 @@ typedef enum e_error {
 	ERR_HT_NO_DELETE, ///< ft_hashtable_delete() could not delete.
 	ERR_HT_NO_SWAP, ///< ft_hashtable_swap() didn't find element.
 	ERR_EMPTY, ///< One or more passed params are empty.
+	ERR_CWD_BUF, ///< Buffer size for cwd was too small.
 	ERR_CWD_FAIL, ///< function getcwd failed.
 	ERR_NO_SHLVL, ///< ft_increment_shlvl didn't find SHLVL.
 	ERR_OUT_OF_BOUNDS, ///< A parameter has exceeded the allowed range.
 	ERR_WRONG_TOKEN, ///< A prompt substitution was not recognized.
 	ERR_SYNTAX = 2, ///< Syntax error with quotes, pipes or redirect.
 	ERR_NOT_FOUND, ///< If a search failed.
+	ERR_NO_HOME, /// HOME not set.
+	ERR_NO_OLDPWD, /// OLDPWD not set.
 	ERR_NOEXPAND, ///< Expansion of a token failed.
 	ERR_CLOSE, ///< Closing fd failed.
 	ERR_ARGCOUNT, ///< Too many arguments where counted.
@@ -76,13 +82,40 @@ typedef enum e_error {
 	ERR_WRITE, ///< Syscall write failed.
 	ERR_DIR, ///< Cmd is a directory.
 	ERR_NO_DIR, ///< Directory or file not found
-	ERR_STAT ///< stat() failed.
+	ERR_STAT, ///< stat() failed.
+	ERR_LEXER, ///< Error while lexing.
+	ERR_EXPANDER, ///< Error while expanding.
+	ERR_PARSER, ///< Error while parsing.
+	ERR_AMBIGUOUS, ///< Ambiguous redirect after expand.
+	ERR_HEREDOC_OPEN, ///< Error while opening heredoc.
+	ERR_EXECUTOR, ///< Error while executing.
+	ERR_IS_CHILD ///< Process is a child.
 }	t_err;
 
+/* ====== Functions ====== */
+
+//error.c
 t_err	ft_err_write(int fd, char *str, char *msg);
 t_err	ft_err_chdir(char *path, char *msg);
-t_err	ft_print_warning(char *indic, char *trigger);
-t_err	ft_print_warning2(char *indic, char *trigger);
 t_err	ft_err_stat(const char *pathname, struct stat *statbuf, char *msg);
+t_err	ft_err_malloc(void **ptr, size_t size, char *msg);
+t_err	ft_err_getcwd(char *buf, size_t size, char *msg);
+
+//error2.c
+t_err	ft_err_strdup(const char *src, char **dst, char *msg);
+t_err	ft_err_itoa(int n, char **dst, char *msg);
+t_err	ft_err_strjoin(const char *s1, const char *s2, char **dst, char *msg);
+
+//error3.c
+t_err	ft_err_open(const char *path, int flag, int *fd, char *msg);
+t_err	ft_err_close(int fd, char *msg);
+t_err	ft_err_pipe(int pipes[2], char *msg);
+
+//error_msg.c
+t_err	ft_print_warning(t_err err, char *trigger);
+t_err	ft_print_warning2(t_err err, char *trigger);
+t_err	ft_print_warning3(t_err err, char *trigger);
+t_err	ft_print_error(t_err err);
+
 
 #endif

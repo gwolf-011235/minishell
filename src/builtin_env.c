@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:57:58 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 12:09:45 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:33:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@
  * If yes print all nodes found.
  * Check next array index.
  * @param env_tab Environment.
- * @return t_err SUCCESS.
  */
-t_err	ft_env(t_hashtable *env_tab)
+void	ft_env(t_hashtable *env_tab)
 {
 	size_t		i;
 	t_env_var	*tmp;
@@ -40,12 +39,11 @@ t_err	ft_env(t_hashtable *env_tab)
 			while (tmp != NULL)
 			{
 				if (tmp->export && tmp->has_value)
-					printf("%s\n", tmp->env_string);
+					ft_printf("%s\n", tmp->env_string);
 				tmp = tmp->next;
 			}
 		}
 		i++;
 	}
 	g_status = 0;
-	return (SUCCESS);
 }

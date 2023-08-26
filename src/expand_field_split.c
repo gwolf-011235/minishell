@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:57 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 17:23:46 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/25 19:03:44 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@
  * Del old node with ft_del_prev_n() and update list pointer.
  * @param input Pointer to tracker.
  * @param cur_node Pointer pointer to the current node.
- * @return t_err SUCCESS, ERR_MALLOC.
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_NOSPLIT
  */
 t_err	ft_field_split(t_track *input, t_tkn_list **cur_node, t_buf *buf)
 {
 	t_tkn_list	*tmp;
-	t_err		err;
 	size_t		words;
 
 	tmp = *cur_node;
@@ -43,9 +42,8 @@ t_err	ft_field_split(t_track *input, t_tkn_list **cur_node, t_buf *buf)
 	else
 	{
 		ft_buf_clear(buf);
-		err = ft_split_node(input, &tmp, buf);
-		if (err != SUCCESS)
-			return (err);
+		if (ft_split_node(input, &tmp, buf) == ERR_MALLOC)
+			return (ERR_MALLOC);
 		ft_del_prev_n(tmp, words);
 	}
 	*cur_node = tmp;
@@ -64,9 +62,8 @@ t_err	ft_field_split(t_track *input, t_tkn_list **cur_node, t_buf *buf)
  * If expanded part ends with space and there is still stuff incr words.
  * @param input Pointer to tracker.
  * @param words Pointer to where to save count:
- * @return t_err SUCCESS
  */
-t_err	ft_count_expand_words(t_track *input, size_t *words,
+void	ft_count_expand_words(t_track *input, size_t *words,
 			int last_expand_len)
 {
 	input->pos = input->pos - input->last_expand_len;
@@ -92,7 +89,6 @@ t_err	ft_count_expand_words(t_track *input, size_t *words,
 	}
 	if (input->str[input->pos - 1] == ' ' && input->str[input->pos])
 		(*words)++;
-	return (SUCCESS);
 }
 
 /**
@@ -118,22 +114,19 @@ t_err	ft_split_node(t_track *input, t_tkn_list **cur_node, t_buf *buf)
 
 	old_pos = input->pos - input->last_expand_len;
 	if (old_pos != 0)
-		ft_buf_strlcpy(buf, input->str, old_pos + 1);
+		if (ft_buf_strlcpy(buf, input->str, old_pos + 1) == ERR_MALLOC)
+			return (ERR_MALLOC);
 	ft_init_lexer(&src, &(input->str[old_pos]), input->last_expand_len);
 	err = ft_tokenise_fs(&src, &token, buf, input);
-	if (err != SUCCESS && err != ERR_EOF)
+	if (err == ERR_MALLOC)
 		return (err);
 	while (err != ERR_EOF || !*cur_node)
 	{
-		err = ft_new_node_mid(cur_node, token.str);
-		if (err != SUCCESS)
-		{
-			ft_free_tok(&token);
-			return (err);
-		}
+		if (ft_new_node_mid(cur_node, token.str) == ERR_MALLOC)
+			return (ft_err_node(&token));
 		buf->cur_pos = 0;
 		err = ft_tokenise_fs(&src, &token, buf, input);
-		if (err != SUCCESS && err != ERR_EOF)
+		if (err == ERR_MALLOC)
 			return (err);
 	}
 	return (SUCCESS);
@@ -146,29 +139,25 @@ t_err	ft_split_node(t_track *input, t_tkn_list **cur_node, t_buf *buf)
  * Does not set buffer->cur_pos to zero, something could already be in there.
  * Uses partition_fs() to fill buffer.
  * If field splitting is at end of expand_len (src_>cur_pos == src_buf_size) and
- * after the expansion are still chars, they get copied into buffer with ft_buf_strlcpy().
+ * after the expansion are still chars, they get copied into buffer with
+ * ft_buf_strlcpy().
  * Creates a new token with ft_create_tok().
  * @param src The string to tokenize.
  * @param token Where to save the token.
  * @param buf A pre malloced buffer.
- * @return t_err SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_EOF
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_EOF
  */
 t_err	ft_tokenise_fs(t_src *src, t_tok *token, t_buf *buf, t_track *input)
 {
 	t_err	err;
 
-	if (!src || !src->buf || !src->buf_size)
-		return (ERR_EMPTY);
-	err = ft_partition_fs(src, buf);
-	if (buf->cur_pos >= buf->size)
-	{
-		err = ft_buf_double(buf);
-		if (err != SUCCESS)
-			return (err);
-	}
+	if (ft_partition_fs(src, buf) == ERR_MALLOC)
+		return (ERR_MALLOC);
 	buf->str[buf->cur_pos] = '\0';
 	if (src->cur_pos == src->buf_size && input->str[input->pos])
-		ft_buf_strlcpy(buf, (input->str + input->pos), ft_strlen(input->str + input->pos) + 1);
+		if (ft_buf_strlcpy(buf, (input->str + input->pos),
+				ft_strlen(input->str + input->pos) + 1) == ERR_MALLOC)
+			return (ERR_MALLOC);
 	err = ft_create_tok(token, buf->str);
 	return (err);
 }
@@ -181,7 +170,7 @@ t_err	ft_tokenise_fs(t_src *src, t_tok *token, t_buf *buf, t_track *input)
  * special meaning anymore.
  * @param src The tokenized string.
  * @param buf Pointer to pre malloced buffer.
- * @return t_err SUCCESS, ERR_EOF
+ * @return t_err ERR_EOF, ERR_MALLOC
  */
 t_err	ft_partition_fs(t_src *src, t_buf *buf)
 {
@@ -194,7 +183,8 @@ t_err	ft_partition_fs(t_src *src, t_buf *buf)
 		if ((c == ' ' || c == '\t') && buf->cur_pos > 0)
 			break ;
 		else
-			ft_add_to_buf(c, buf);
+			if (ft_add_to_buf(c, buf) == ERR_MALLOC)
+				return (ERR_MALLOC);
 		err = ft_next_char(src, &c);
 	}
 	return (err);

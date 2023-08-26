@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 08:07:40 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 16:09:06 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/24 13:15:03 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,10 +167,9 @@ t_err	ft_expand_prompt_str(char **prompt, t_hashtable *sym_tab)
  * @brief Create a prompt string which gets expanded.
  *
  * Search for provided var $PS1 or $PS2 in sym_tab.
- * If not found create prompt with provided standard.
+ * If not found set prompt to provided standard.
  * If found ft_strdup() value of var.
  * Expand the string with ft_expand_prompt_str().
- *
  * @param sym_tab Symbol table where to search.
  * @param prompt Where to save the prompt.
  * @param ps Prompt string variable $PS1 or $PS2.
@@ -186,21 +185,21 @@ t_err	ft_prompt_create(t_hashtable *sym_tab,
 	env_var = ft_hashtable_lookup(sym_tab, ps, 3);
 	if (!env_var)
 	{
-		*prompt = ft_strdup(std);
-		if (*prompt == NULL)
-			return (ERR_MALLOC);
+		*prompt = std;
+		return (ERR_NOT_FOUND);
 	}
-	else
+	*prompt = ft_strdup(env_var->value);
+	if (!*prompt)
 	{
-		*prompt = ft_strdup(env_var->value);
-		if (!*prompt)
-			return (ERR_MALLOC);
-		err = ft_expand_prompt_str(prompt, sym_tab);
-		if (err != SUCCESS)
-		{
-			free(*prompt);
-			return (err);
-		}
+		*prompt = std;
+		return (ERR_MALLOC);
+	}
+	err = ft_expand_prompt_str(prompt, sym_tab);
+	if (err != SUCCESS)
+	{
+		free(*prompt);
+		*prompt = std;
+		return (err);
 	}
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:07:27 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/19 12:10:09 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:46:37 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@
  * Returns always SUCCESS, even if var was not found.
  * @param argv NULL terminated args.
  * @param env_tab Environment.
- * @return t_err SUCCESS.
  */
-t_err	ft_unset(char **argv, t_hashtable *env_tab)
+void	ft_unset(char **argv, t_hashtable *env_tab)
 {
 	size_t		i;
 	t_env_var	*env_var;
@@ -39,5 +38,4 @@ t_err	ft_unset(char **argv, t_hashtable *env_tab)
 		i++;
 	}
 	g_status = 0;
-	return (SUCCESS);
 }
