@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 20:44:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 11:44:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ t_err	ft_process_cmd(t_cmd *cmd, t_err err, t_data *data)
 	if (err == ERR_MALLOC)
 		return (err);
 	else if (err == ERR_DIR)
-		return (SUCCESS);
+		return (ERR_DIR);
 	else if (err == ERR_UNKNOWN_CMD)
 	{
 		ft_print_warning(err, cmd->args[0]);
