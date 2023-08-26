@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 17:57:01 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 12:55:26 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:27:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@
  * In case of error call ft_cd_error().
  * @param argv NULL terminated args.
  * @param env_tab Environment.
- * @return t_err SUCCESS, ERR_EMPTY, ERR_ARGCOUNT, ERR_MALLOC, ERR_NOT_FOUND
  */
-t_err	ft_cd(char **argv, t_hashtable *env_tab, t_buf *buf)
+void	ft_cd(char **argv, t_hashtable *env_tab, t_buf *buf)
 {
 	size_t		size;
 	char		*oldpwd;
@@ -56,7 +55,6 @@ t_err	ft_cd(char **argv, t_hashtable *env_tab, t_buf *buf)
 	if (err != SUCCESS)
 		return (ft_cd_error(err, oldpwd));
 	g_status = 0;
-	return (SUCCESS);
 }
 
 /**

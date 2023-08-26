@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:59:29 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/23 09:21:28 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:45:49 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@
  *
  * Create str of working directory with ft_create_pwd_value().
  * Print it and free str.
- * @return t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL.
  */
-t_err	ft_pwd(t_buf *buf)
+void	ft_pwd(t_buf *buf)
 {
 	t_err	err;
 
@@ -31,7 +30,7 @@ t_err	ft_pwd(t_buf *buf)
 	if (err != SUCCESS)
 	{
 		g_status = 1;
-		return (err);
+		return ;
 	}
 	errno = 0;
 	ft_putendl_fd(buf->str, 1);
@@ -43,5 +42,4 @@ t_err	ft_pwd(t_buf *buf)
 	}
 	if (err == SUCCESS)
 		g_status = 0;
-	return (err);
 }

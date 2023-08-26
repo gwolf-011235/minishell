@@ -20,6 +20,7 @@
 		"signal.h": "c",
 		"minishell_struct.h": "c",
 		"mod_signal.h": "c",
-		"mod_cleanup.h": "c"
+		"mod_cleanup.h": "c",
+		"buffer.h": "c"
 	}
 }

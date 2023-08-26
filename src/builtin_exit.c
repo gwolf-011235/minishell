@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:43:10 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 11:31:22 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:35:47 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,8 @@
  * Call exit() with error code.
  * @param argv NULL terminated args.
  * @param env_tab Environment.
- * @return t_err ERR_EXIT
- * @todo Maybe restructure to not use exit() and handle t_err instead.
- * @todo If no arg is given should return exit status of last command - global?
  */
-t_err	ft_exit(char **argv, bool *loop)
+void	ft_exit(char **argv, bool *loop)
 {
 	size_t	size;
 	t_err	err;
@@ -44,14 +41,13 @@ t_err	ft_exit(char **argv, bool *loop)
 	{
 		err = ft_is_number(argv[1]);
 		if (err == ERR_NONUM)
-			err = ft_exit_error(err, argv[1]);
+			ft_exit_error(err, argv[1]);
 		else if (size == 2)
 			g_status = ft_atoi(argv[1]);
 		else if (size > 2)
 			return (ft_exit_error(ERR_EXIT, NULL));
 	}
 	*loop = false;
-	return (err);
 }
 
 /**

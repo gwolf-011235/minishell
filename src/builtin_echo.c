@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:47:19 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 17:28:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:31:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@
  * Write all remaining args with ft_write_args().
  * Only print newline if no -n flags was encountered.
  * @param argv NULL terminated args.
- * @return t_err SUCCESS, ERR_WRITE
  */
-t_err	ft_echo(char **argv)
+void	ft_echo(char **argv)
 {
 	size_t	i;
 	bool	newline;
@@ -41,9 +40,11 @@ t_err	ft_echo(char **argv)
 	if (size > 1)
 	{
 		ft_skip_n_flags(argv, &i, &newline);
-		err = ft_write_args(argv, &i);
-		if (err != SUCCESS)
-			return (err);
+		if (ft_write_args(argv, &i) == ERR_WRITE)
+		{
+			g_status = 1;
+			return ;
+		}
 	}
 	if (newline == true)
 		err = ft_err_write(1, "\n", "minishell: echo");
@@ -51,7 +52,6 @@ t_err	ft_echo(char **argv)
 		g_status = 1;
 	else
 		g_status = 0;
-	return (err);
 }
 
 /**
