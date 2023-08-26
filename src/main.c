@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 20:20:24 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 22:32:31 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ void	ft_prep_new_loop(t_data *data, char **input)
 	*input = NULL;
 }
 
+/**
+ * @brief Check if input is coming from tty and use appropriate function.
+ *
+ * If isatty() of stdin, stdout and stderr we have a terminal > use readline.
+ * Else use get_next_line().
+ * Check if atleast isatty() stdin > then print prompt.
+ * If get_next_line() returns a line, eliminate last newline with '\0'.
+ * If g_status == 2 (syntax error) and get_next_line() would be called (no tty)
+ * then return > shell script has syntax error.
+ * @param input		Where to save input.
+ * @param prompt1	PS1 to display with readline.
+ * @param state		State for signalhandler (std or heredoc).
+ */
 void	ft_read_input(char **input, char *prompt1, t_state state)
 {
 	bool	tty;
@@ -40,6 +53,8 @@ void	ft_read_input(char **input, char *prompt1, t_state state)
 		*input = readline(prompt1);
 	else
 	{
+		if (g_status == 2)
+			return ;
 		if (isatty(STDIN_FILENO))
 			ft_putstr_fd(prompt1, 0);
 		*input = get_next_line(STDIN_FILENO);
