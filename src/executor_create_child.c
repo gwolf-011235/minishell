@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 14:40:12 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 15:32:18 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_err	ft_create_child(t_cmd *cmd, t_data *data, bool builtin)
 {
 	t_err	err;
 
+	ft_signal_setup(SIGINT, SIG_STD);
+	ft_signal_setup(SIGQUIT, SIG_STD);
 	if (cmd->index == 0)
 		err = ft_raise_first(cmd, data, builtin);
 	else if (cmd->index == cmd->cmd_num - 1)

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 14:20:14 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 16:00:10 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ __sig_atomic_t	g_status;
 
 void	ft_prep_new_loop(t_data *data, char **input)
 {
+	ft_signal_setup(SIGQUIT, SIG_IGNORE);
 	ft_envp_create(data->env_table, &data->envp);
 	ft_create_prompts(data);
 	*input = NULL;
@@ -48,6 +49,7 @@ void	ft_read_input(char **input, char *prompt1, t_state state)
 				(*input)[ft_strlen(*input) - 1] = '\0';
 		}
 	}
+	ft_signal_setup(SIGINT, SIG_IGNORE);
 }
 
 int	main(int argc, char **argv)
@@ -61,7 +63,6 @@ int	main(int argc, char **argv)
 	{
 		ft_prep_new_loop(&data, &input);
 		ft_read_input(&input, data.prompt1, SIG_STD);
-		ft_signal_setup(SIGINT, SIG_IGNORE);
 		if (!input)
 			break ;
 		else if (!ft_isempty_str(input))

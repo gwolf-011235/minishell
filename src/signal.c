@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:59:08 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 09:00:38 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 16:00:47 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,6 @@ void	ft_sighandler_heredoc(int signum)
 }
 
 /**
- * @brief Signal handler that does nothing.
- *
- * @param signum 	Signal received.
- */
-void	ft_sighandler_ignore(int signum)
-{
-	(void)signum;
-}
-
-/**
  * @brief Assign signalhandler to signal 'signum'.
  *
  * Add flag SA_RESTART to ensure interrupted sys calls
@@ -85,7 +75,7 @@ void	ft_signal_setup(int signum, t_state state)
 	else if (state == SIG_HEREDOC)
 		sa.sa_handler = ft_sighandler_heredoc;
 	else if (state == SIG_IGNORE)
-		sa.sa_handler = ft_sighandler_ignore;
+		sa.sa_handler = SIG_IGN;
 	if (sigaction(signum, &sa, NULL) != 0)
 		perror("Could not assign signal handler :( ");
 }
