@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 19:44:23 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 11:35:28 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "tkn_list.h"
 # include <fcntl.h>			        /* required for opening files */
 # include <sys/wait.h>				/* required for wait calls */
-# include "stdbool.h"				/* required for booleans */
+# include <stdbool.h>				/* required for booleans */
 # include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
