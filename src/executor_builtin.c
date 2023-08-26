@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:47:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 16:23:18 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 11:32:35 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data)
 	{
 		old_stdin = dup(STDIN_FILENO);
 		old_stdout = dup (STDOUT_FILENO);
-		ft_set_fd_scmd(cmd);
+		err = ft_set_fd_scmd(cmd);
+		if (err != SUCCESS)
+			return (err);
 		ft_choose_builtin(cmd, data);
 		err = ft_reset_fd_scmd(old_stdin, old_stdout);
 		if (err != SUCCESS)
@@ -78,20 +80,24 @@ t_err	ft_execute_builtin(bool piped, t_cmd *cmd, t_data *data)
  * @brief Set the file descriptors for execution of scmd builtin.
  *
  * @param cmd 		Current cmd.
+ * @return t_err 	ERR_CLOSE, SUCCESS
  */
-void	ft_set_fd_scmd(t_cmd *cmd)
+t_err	ft_set_fd_scmd(t_cmd *cmd)
 {
+	t_err	err;
+
 	if (cmd->fd_out >= 0)
 	{
 		if (cmd->fd_in >= 0)
 			ft_replace_fd(cmd->fd_in, cmd->fd_out);
 		else
 			ft_replace_fd(0, cmd->fd_out);
-		ft_err_close(cmd->fd_out, "minishell: scmd builtin");
-		cmd->fd_out = -1;
+		err = ft_close(&cmd->fd_out);
+		if (err != SUCCESS)
+			return (err);
 	}
-	ft_err_close(cmd->fd_in, "minishell: scmd builtin");
-	cmd->fd_in = -1;
+	err = ft_close(&cmd->fd_in);
+	return (err);
 }
 
 /**
