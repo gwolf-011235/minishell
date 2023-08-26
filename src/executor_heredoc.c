@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 14:23:47 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 14:42:31 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @brief Drive creation of multiple heredocs.
  *
  * @param cmd 		Current cmd being processed.
- * @return t_err 	ERR_MALLOC, ERR_CLOSE, ERR_OPEN, SUCCESS
+ * @return t_err 	ERR_MALLOC, ERR_ABORT, SUCCESS
  */
 t_err	ft_handle_heredoc(t_cmd *cmd, t_hashtable *symtab, char *prompt2)
 {
@@ -34,7 +34,7 @@ t_err	ft_handle_heredoc(t_cmd *cmd, t_hashtable *symtab, char *prompt2)
 		while (++i < cmd->delim_pos)
 		{
 			err = ft_create_heredoc(cmd, i, symtab, prompt2);
-			if (err == ERR_MALLOC)
+			if (err == ERR_MALLOC || err == ERR_ABORT)
 				return (err);
 			else if (err == ERR_HEREDOC_OPEN)
 				break ;
@@ -52,7 +52,7 @@ t_err	ft_handle_heredoc(t_cmd *cmd, t_hashtable *symtab, char *prompt2)
  * @param cmd 			Current cmd being processed.
  * @param delim			Delimiter string.
  * @param curr_delim 	Current delimiter index.
- * @param t_err			ERR_MALLOC, ERR_CLOSE, ERR_OPEN, SUCCESS
+ * @param t_err			ERR_MALLOC, ERR_ABORT, SUCCESS, ERR_HEREDOC_OPEN
  */
 t_err	ft_create_heredoc(t_cmd *cmd, int curr_delim,
 		t_hashtable *symtab, char *prompt2)
@@ -65,7 +65,7 @@ t_err	ft_create_heredoc(t_cmd *cmd, int curr_delim,
 		return (err);
 	g_status = 0;
 	err = ft_read_heredoc(&heredoc, symtab, prompt2);
-	if (err == ERR_ABORT)
+	if (err == ERR_ABORT || err == ERR_MALLOC)
 	{
 		ft_close(&heredoc.fd);
 		return (ft_unlink_heredoc(&heredoc.name, ERR_ABORT));
@@ -87,7 +87,7 @@ t_err	ft_create_heredoc(t_cmd *cmd, int curr_delim,
  * @param prompt2	Heredoc prompt string.
  * @param fd		Heredoc file descriptor.
  * @param name		Name of heredoc.
- * @return t_err	ERR_ABORT, ERR_HEREDOC_EOF, SUCCESS
+ * @return t_err	ERR_ABORT, ERR_HEREDOC_EOF, SUCCESS, ERR_MALLOC
  */
 t_err	ft_read_heredoc(t_hdoc *heredoc, t_hashtable *symtab, char *prompt2)
 {
@@ -149,20 +149,16 @@ t_err	ft_name_heredoc(int index, char **name)
  * @param name 			Malloced name of heredoc.
  * @param fd 			File descriptor of open heredoc.
  * @param curr_delim 	Current delimiter index.
- * @return t_err 		ERR_CLOSE, ERR_OPEN, SUCCESS
+ * @return t_err 		ERR_ABORT, SUCCESS
  */
 t_err	ft_heredoc_fate(t_cmd *cmd, int curr_delim, t_hdoc *heredoc)
 {
-	t_err	err;
-
-	err = ft_close(&heredoc->fd);
-	if (err != SUCCESS)
-		return (err);
+	ft_err_close(heredoc->fd, "minishell: heredoc");
 	if (cmd->fd_in == -1 && curr_delim == cmd->delim_pos - 1)
 	{
-		cmd->fd_in = open(heredoc->name, O_RDONLY);
+		ft_err_open(heredoc->name, O_RDONLY, &cmd->fd_in, "minishell: heredoc");
 		if (cmd->fd_in == -1)
-			return (ft_unlink_heredoc(&heredoc->name, ERR_OPEN));
+			return (ft_unlink_heredoc(&heredoc->name, ERR_ABORT));
 		cmd->heredoc = heredoc->name;
 	}
 	else
