@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 17:45:26 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:14:45 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path);
 t_err	ft_prefix_path(char **args, char **cmd_paths);
 t_err	ft_get_path(char **envp, char ***paths, bool *empty_path);
 t_err	ft_replace_fd(int input_fd, int output_fd);
-t_err	ft_wait_for_babies(t_cmd *cmd);
+void	ft_wait_for_babies(t_cmd *cmd);
 bool	ft_check_empty_path(char *path_str);
 void	ft_open_outfile(t_cmd *cmd);
 void	ft_loop_thru_outfiles(t_cmd *cmd);

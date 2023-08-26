@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 17:41:47 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:14:26 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,9 +167,8 @@ t_err	ft_replace_fd(int input_fd, int output_fd)
  * In case of a core dump triggered by SIGQUIT, an error
  * message is displayed.
  * @param cmd 		List of cmds.
- * @return t_err 	ERR_WAIT, SUCCESS
  */
-t_err	ft_wait_for_babies(t_cmd *cmd)
+void	ft_wait_for_babies(t_cmd *cmd)
 {
 	int	status;
 
@@ -177,8 +176,7 @@ t_err	ft_wait_for_babies(t_cmd *cmd)
 	{
 		if (cmd->pid > 0)
 		{
-			if (waitpid(cmd->pid, &status, 0) < 0)
-				return (ERR_WAIT);
+			(void)waitpid(cmd->pid, &status, 0);
 			if (WIFEXITED(status))
 				g_status = WEXITSTATUS(status);
 			else
@@ -197,5 +195,4 @@ t_err	ft_wait_for_babies(t_cmd *cmd)
 			g_status = 1;
 		cmd = cmd->next;
 	}
-	return (SUCCESS);
 }

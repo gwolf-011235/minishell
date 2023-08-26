@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 17:45:56 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 18:16:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
 		err = ft_execute_scmd(cmd, paths, data, empty_path);
 	else
 		err = ft_execute_pcmds(cmd, paths, data, empty_path);
+/* 	if (err != SUCCESS)
+		return (ft_err_executor(cmd)); */
 	return (err);
 }
 
@@ -69,13 +71,12 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
  * @param paths			String array of all system bin paths.
  * @param data			Data struct containing the env.
  * @param empty_path	Boolean to determine if PATH contained empty paths.
- * @return t_err 		ERR_MALLOC, ERR_PIPE, ERR_CLOSE, SUCCESS
+ * @return t_err 		ERR_MALLOC, SUCCESS, ERR_FORK
  */
 t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 {
 	t_err	err;
 
-	err = SUCCESS;
 	if (cmd->outfiles)
 		ft_open_outfile(cmd);
 	if (cmd->args && cmd->execute)
@@ -85,8 +86,9 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 		err = ft_check_cmd_access(cmd->args, paths, empty_path);
 		if (err != SUCCESS)
 			return (err);
-		err = ft_create_child(cmd, data, false);
-		err = ft_wait_for_babies(cmd);
+		if (ft_create_child(cmd, data, false) == ERR_FORK)
+			return (ERR_FORK);
+		ft_wait_for_babies(cmd);
 	}
 	else
 	{
@@ -94,7 +96,7 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 		ft_close(&cmd->fd_in);
 		ft_close(&cmd->fd_out);
 	}
-	return (err);
+	return (SUCCESS);
 }
 
 /**
@@ -156,7 +158,7 @@ t_err	ft_execute_pcmds(t_cmd *cmd,
 		cmd = cmd->next;
 	}
 	if (!child)
-		err = ft_wait_for_babies(tmp);
+		ft_wait_for_babies(tmp);
 	return (err);
 }
 
