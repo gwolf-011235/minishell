@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 13:01:53 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 14:20:14 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,13 @@ void	ft_prep_new_loop(t_data *data, char **input)
 	ft_envp_create(data->env_table, &data->envp);
 	ft_create_prompts(data);
 	*input = NULL;
-	ft_signal_setup(SIGINT, SIG_STD);
-
 }
 
-void	ft_read_input(char **input, char *prompt1)
+void	ft_read_input(char **input, char *prompt1, t_state state)
 {
 	bool	tty;
 
+	ft_signal_setup(SIGINT, state);
 	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO) && isatty(STDERR_FILENO))
 		tty = true;
 	else
@@ -61,7 +60,7 @@ int	main(int argc, char **argv)
 	while (data.loop)
 	{
 		ft_prep_new_loop(&data, &input);
-		ft_read_input(&input, data.prompt1);
+		ft_read_input(&input, data.prompt1, SIG_STD);
 		ft_signal_setup(SIGINT, SIG_IGNORE);
 		if (!input)
 			break ;

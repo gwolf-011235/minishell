@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 11:32:44 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 14:19:59 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,8 @@ t_err	ft_exit(char **argv, bool *loop);
 
 // include from mod_expander
 t_err	ft_expander_heredoc(char **str, t_hashtable *symtab);
+
+// include from main
+void	ft_read_input(char **input, char *prompt1, t_state state);
 
 #endif
