@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 22:45:56 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 19:09:03 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 19:38:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,9 @@
  */
 void	ft_cleanup_cmd_list(t_cmd *cmd)
 {
-	t_err	err;
-
 	while (cmd)
 	{
-		err = ft_cleanup_cmd(cmd);
-/* 		if (err != SUCCESS)
-			perror("Closing of fd failed."); */
+		ft_cleanup_cmd(cmd);
 		cmd = cmd->next;
 	}
 }

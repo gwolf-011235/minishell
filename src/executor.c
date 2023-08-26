@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 19:22:58 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 19:36:09 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,10 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
 		err = ft_execute_scmd(cmd, paths, data, empty_path);
 	else
 		err = ft_execute_pcmds(cmd, paths, data, empty_path);
-/* 	if (err != SUCCESS)
-		return (ft_err_executor(cmd)); */
-	return (err);
+	if (err == ERR_FORK || err == ERR_STAT || err == ERR_MALLOC)
+		return (ft_err_executor(cmd));
+	ft_cleanup_cmd_list(cmd);
+	return (SUCCESS);
 }
 
 /**
@@ -71,7 +72,8 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
  * @param paths			String array of all system bin paths.
  * @param data			Data struct containing the env.
  * @param empty_path	Boolean to determine if PATH contained empty paths.
- * @return t_err 		ERR_MALLOC, SUCCESS, ERR_FORK
+ * @return t_err 		ERR_FORK, ERR_MALLOC, ERR_STAT,
+ * 						ERR_UNKNOWN_CMD, ERR_DIR, ERR_NO_DIR, SUCCESS
  */
 t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 {
@@ -114,7 +116,8 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
  * @param paths			String array of all system bin paths.
  * @param data			Data struct containing the env.
  * @param empty_path	Boolean to determine if PATH contained empty paths.
- * @return t_err 		ERR_MALLOC, ERR_PIPE, ERR_CLOSE, SUCCESS
+ * @return t_err 		ERR_MALLOC, ERR_STAT, ERR_FORK,
+ * 						ERR_UNKNOWN_CMD, ERR_DIR, ERR_NO_DIR, SUCCESS
  */
 t_err	ft_execute_pcmds(t_cmd *cmd,
 	char **paths, t_data *data, bool empty_path)

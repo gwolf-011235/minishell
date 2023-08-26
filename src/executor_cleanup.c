@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 17:56:35 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 19:38:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,11 @@
  * If present, unlink heredoc.
  * Free all malloced variables.
  * @param cmd 		Cmd to be cleaned.
- * @return t_err 	ERR_CLOSE, SUCCESS
  */
-t_err	ft_cleanup_cmd(t_cmd *cmd)
+void	ft_cleanup_cmd(t_cmd *cmd)
 {
-	t_err	err;
-
-	err = SUCCESS;
 	if (cmd->heredoc)
-		ft_unlink_heredoc(&cmd->heredoc, err);
+		ft_unlink_heredoc(&cmd->heredoc, SUCCESS);
 	if (cmd->delims)
 		ft_free_str_arr(cmd->delims);
 	if (cmd->args)
@@ -41,7 +37,6 @@ t_err	ft_cleanup_cmd(t_cmd *cmd)
 		ft_free_str_arr(cmd->outfiles);
 	if (cmd->append_switches)
 		free(cmd->append_switches);
-	return (SUCCESS);
 }
 
 /**
