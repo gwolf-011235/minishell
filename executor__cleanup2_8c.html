@@ -103,6 +103,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a55a304f6e4ff4d636817002d3cbf8b63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup2_8c.html#a55a304f6e4ff4d636817002d3cbf8b63">ft_cleanup_cmd_list</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd)</td></tr>
 <tr class="memdesc:a55a304f6e4ff4d636817002d3cbf8b63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterate through cmd list and cleanup each cmd.  <a href="executor__cleanup2_8c.html#a55a304f6e4ff4d636817002d3cbf8b63">More...</a><br /></td></tr>
 <tr class="separator:a55a304f6e4ff4d636817002d3cbf8b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bbcbcb113856868ae689c76a88f86e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup2_8c.html#a4bbcbcb113856868ae689c76a88f86e0">ft_err_executor</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd_head)</td></tr>
+<tr class="memdesc:a4bbcbcb113856868ae689c76a88f86e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean up and error output if executor encounters ERR_MALLOC or ERR_ABORT.  <a href="executor__cleanup2_8c.html#a4bbcbcb113856868ae689c76a88f86e0">More...</a><br /></td></tr>
+<tr class="separator:a4bbcbcb113856868ae689c76a88f86e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f060fe22fa774dd096b4394e2740d37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup2_8c.html#a8f060fe22fa774dd096b4394e2740d37">ft_close_iopp</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd)</td></tr>
+<tr class="memdesc:a8f060fe22fa774dd096b4394e2740d37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes fd_in, fd_out and previous pipe of cmd.  <a href="executor__cleanup2_8c.html#a8f060fe22fa774dd096b4394e2740d37">More...</a><br /></td></tr>
+<tr class="separator:a8f060fe22fa774dd096b4394e2740d37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions to clean up the cmd list. </p>
@@ -130,6 +136,59 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a8f060fe22fa774dd096b4394e2740d37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f060fe22fa774dd096b4394e2740d37">&#9670;&nbsp;</a></span>ft_close_iopp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ft_close_iopp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
+          <td class="paramname"><em>cmd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Closes fd_in, fd_out and previous pipe of cmd. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>Current cmd. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4bbcbcb113856868ae689c76a88f86e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bbcbcb113856868ae689c76a88f86e0">&#9670;&nbsp;</a></span>ft_err_executor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_err_executor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
+          <td class="paramname"><em>cmd_head</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clean up and error output if executor encounters ERR_MALLOC or ERR_ABORT. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd_head</td><td>Head of cmd list. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_EXECUTOR </dd></dl>
 
 </div>
 </div>

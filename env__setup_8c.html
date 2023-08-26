@@ -95,30 +95,67 @@ $(document).ready(function(){initNavTree('env__setup_8c.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 
-<p>Copy env and generate missing envs.  
+<p>Import environment and set specific variables if missing.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af5080151b9b8007669082fd3de52259b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__setup_8c.html#af5080151b9b8007669082fd3de52259b">ft_env_setup</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> **env_table, char *argv_zero)</td></tr>
-<tr class="memdesc:af5080151b9b8007669082fd3de52259b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a env_table and imports env. If no PWD it creates one.  <a href="env__setup_8c.html#af5080151b9b8007669082fd3de52259b">More...</a><br /></td></tr>
-<tr class="separator:af5080151b9b8007669082fd3de52259b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb93d044e7c1b23f9818493c386983ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__setup_8c.html#abb93d044e7c1b23f9818493c386983ac">ft_import_environ</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table)</td></tr>
-<tr class="memdesc:abb93d044e7c1b23f9818493c386983ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Import env_vars from global environ.  <a href="env__setup_8c.html#abb93d044e7c1b23f9818493c386983ac">More...</a><br /></td></tr>
-<tr class="separator:abb93d044e7c1b23f9818493c386983ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3393462310ec868c0cbf29828b682b01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__setup_8c.html#a3393462310ec868c0cbf29828b682b01">ft_env_setup</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table, char *argv_zero, <a class="el" href="structs__buf.html">t_buf</a> *buf)</td></tr>
+<tr class="memdesc:a3393462310ec868c0cbf29828b682b01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Impot environment and sets some specific vars.  <a href="env__setup_8c.html#a3393462310ec868c0cbf29828b682b01">More...</a><br /></td></tr>
+<tr class="separator:a3393462310ec868c0cbf29828b682b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62f71102d6e5c5702f31053b0b4819e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__setup_8c.html#a62f71102d6e5c5702f31053b0b4819e5">ft_import_environ</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table)</td></tr>
+<tr class="memdesc:a62f71102d6e5c5702f31053b0b4819e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Import env_vars from global environ.  <a href="env__setup_8c.html#a62f71102d6e5c5702f31053b0b4819e5">More...</a><br /></td></tr>
+<tr class="separator:a62f71102d6e5c5702f31053b0b4819e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36065c9fa7040f17778c479e9527c94f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__setup_8c.html#a36065c9fa7040f17778c479e9527c94f">ft_copy_environ_str</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table, char *environ_str)</td></tr>
 <tr class="memdesc:a36065c9fa7040f17778c479e9527c94f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies a single string from environ into hashtable.  <a href="env__setup_8c.html#a36065c9fa7040f17778c479e9527c94f">More...</a><br /></td></tr>
 <tr class="separator:a36065c9fa7040f17778c479e9527c94f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad29ddb16143fa8d78f00016773bb0c8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__setup_8c.html#ad29ddb16143fa8d78f00016773bb0c8b">ft_insert_env_prompt</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table, char opt)</td></tr>
-<tr class="memdesc:ad29ddb16143fa8d78f00016773bb0c8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts PS1 and PS2.  <a href="env__setup_8c.html#ad29ddb16143fa8d78f00016773bb0c8b">More...</a><br /></td></tr>
-<tr class="separator:ad29ddb16143fa8d78f00016773bb0c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae7b942aa320b41a0eeb365a08d5b42a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__setup_8c.html#aae7b942aa320b41a0eeb365a08d5b42a">ft_insert_env_zero</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table, char *argv_zero)</td></tr>
-<tr class="memdesc:aae7b942aa320b41a0eeb365a08d5b42a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts special $0.  <a href="env__setup_8c.html#aae7b942aa320b41a0eeb365a08d5b42a">More...</a><br /></td></tr>
-<tr class="separator:aae7b942aa320b41a0eeb365a08d5b42a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad05fdf98a3bfbbb522afedea6af2c7ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__setup_8c.html#ad05fdf98a3bfbbb522afedea6af2c7ec">ft_check_missing_env</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table, <a class="el" href="structs__buf.html">t_buf</a> *buf)</td></tr>
+<tr class="memdesc:ad05fdf98a3bfbbb522afedea6af2c7ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks env variables PWD, SHLVL, PS1, PS2.  <a href="env__setup_8c.html#ad05fdf98a3bfbbb522afedea6af2c7ec">More...</a><br /></td></tr>
+<tr class="separator:ad05fdf98a3bfbbb522afedea6af2c7ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2258ee83a0233ccec90cbd42df7cff2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__setup_8c.html#aa2258ee83a0233ccec90cbd42df7cff2">ft_insert_env_prompt</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table, char *prompt)</td></tr>
+<tr class="memdesc:aa2258ee83a0233ccec90cbd42df7cff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies and inserts prompt string.  <a href="env__setup_8c.html#aa2258ee83a0233ccec90cbd42df7cff2">More...</a><br /></td></tr>
+<tr class="separator:aa2258ee83a0233ccec90cbd42df7cff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Copy env and generate missing envs. </p>
+<div class="textblock"><p>Import environment and set specific variables if missing. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="ad05fdf98a3bfbbb522afedea6af2c7ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad05fdf98a3bfbbb522afedea6af2c7ec">&#9670;&nbsp;</a></span>ft_check_missing_env()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ft_check_missing_env </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
+          <td class="paramname"><em>env_table</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structs__buf.html">t_buf</a> *&#160;</td>
+          <td class="paramname"><em>buf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks env variables PWD, SHLVL, PS1, PS2. </p>
+<p>If PWD not found create and insert it. If SHLVL not found create and insert it. If SHLVL found increment it. If PS1 and/or PS2 not found create and insert it. Handles all errors. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">env_table</td><td>Environment. </td></tr>
+    <tr><td class="paramname">buf</td><td>Buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a36065c9fa7040f17778c479e9527c94f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a36065c9fa7040f17778c479e9527c94f">&#9670;&nbsp;</a></span>ft_copy_environ_str()</h2>
 
@@ -157,23 +194,29 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af5080151b9b8007669082fd3de52259b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5080151b9b8007669082fd3de52259b">&#9670;&nbsp;</a></span>ft_env_setup()</h2>
+<a id="a3393462310ec868c0cbf29828b682b01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3393462310ec868c0cbf29828b682b01">&#9670;&nbsp;</a></span>ft_env_setup()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_env_setup </td>
+          <td class="memname">void ft_env_setup </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
           <td class="paramname"><em>env_table</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>argv_zero</em>&#160;</td>
+          <td class="paramname"><em>argv_zero</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structs__buf.html">t_buf</a> *&#160;</td>
+          <td class="paramname"><em>buf</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -183,25 +226,26 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates a env_table and imports env. If no PWD it creates one. </p>
-<p>Create hashtable env_table with HASHTABLE_SIZE. Call ft_import_environ to fill env_table. If env was empty set PWD and SHLVL. If PWD is not available set PWD. Increment SHLVL. If not found set it. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Impot environment and sets some specific vars. </p>
+<p><a class="el" href="env__setup_8c.html#a62f71102d6e5c5702f31053b0b4819e5" title="Import env_vars from global environ.">ft_import_environ()</a> to fill env_table. Check for missing PWD, SHLVL, PS1, PS2. Insert if necessary. Increment SHLVL. Set special parameter $$ and $0. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">data</td><td>Pointer to data struct. </td></tr>
+    <tr><td class="paramname">env_table</td><td>Environment. </td></tr>
+    <tr><td class="paramname">argv_zero</td><td>First argument of argv. </td></tr>
+    <tr><td class="paramname">buf</td><td>Pointer to buffer </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS if everything went right, else it ft_exit_failures. </dd></dl>
 
 </div>
 </div>
-<a id="abb93d044e7c1b23f9818493c386983ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb93d044e7c1b23f9818493c386983ac">&#9670;&nbsp;</a></span>ft_import_environ()</h2>
+<a id="a62f71102d6e5c5702f31053b0b4819e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62f71102d6e5c5702f31053b0b4819e5">&#9670;&nbsp;</a></span>ft_import_environ()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_import_environ </td>
+          <td class="memname">void ft_import_environ </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
           <td class="paramname"><em>env_table</em></td><td>)</td>
@@ -211,18 +255,17 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Import env_vars from global environ. </p>
-<p>Check if environ is not null, else return. Loop through the environ array. Environ is NULL-terminated. Copy the string into environment with ft_copy_envion_str(). If ERR_HT_NO_INSERT continue looping. This ensures, that there are no duplicates in environment. If ERR_INVALID_NAME is breaks out of loop (corrupted environ?) </p><dl class="params"><dt>Parameters</dt><dd>
+<p>If environ is null do nothing. Loop through the environ array. Environ is NULL-terminated. Copy the string into environment with ft_copy_envion_str(). If ERR_HT_NO_INSERT continue looping. This ensures, that there are no duplicates in environment. If ERR_INVALID_NAME break out of loop (corrupted environ?) If ERR_MALLOC break out of loop - no memory to continue. Handles all errors. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">env_table</td><td>Environment. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC, ERR_EMPTY, ERR_INVALID_NAME. </dd></dl>
 
 </div>
 </div>
-<a id="ad29ddb16143fa8d78f00016773bb0c8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad29ddb16143fa8d78f00016773bb0c8b">&#9670;&nbsp;</a></span>ft_insert_env_prompt()</h2>
+<a id="aa2258ee83a0233ccec90cbd42df7cff2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2258ee83a0233ccec90cbd42df7cff2">&#9670;&nbsp;</a></span>ft_insert_env_prompt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -236,8 +279,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>opt</em>&#160;</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>prompt</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -247,53 +290,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates and inserts PS1 and PS2. </p>
-<p>If only one or both should be inserted is managed by opt. Gets the prompts from <a class="el" href="minishell__config_8h_source.html">minishell_config.h</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Copies and inserts prompt string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">env_table</td><td>Environment </td></tr>
-    <tr><td class="paramname">opt</td><td>0 = PS1; 1 = PS2; 2 = both </td></tr>
+    <tr><td class="paramname">prompt</td><td>Prompt string to be copied. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC, ERR_HT_NO_INSERT </dd></dl>
-
-</div>
-</div>
-<a id="aae7b942aa320b41a0eeb365a08d5b42a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae7b942aa320b41a0eeb365a08d5b42a">&#9670;&nbsp;</a></span>ft_insert_env_zero()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_insert_env_zero </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>env_table</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>argv_zero</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Creates and inserts special $0. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">env_table</td><td>Environment. </td></tr>
-    <tr><td class="paramname">argv_zero</td><td>Argv on pos 0 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCES, ERR_MALLOC, ERR_HT_NO_INSERT </dd></dl>
 
 </div>
 </div>

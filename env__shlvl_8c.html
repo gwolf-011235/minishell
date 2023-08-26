@@ -109,6 +109,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a5b455cc8e12609665c7e0025bc3fa071"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__shlvl_8c.html#a5b455cc8e12609665c7e0025bc3fa071">ft_insert_env_shlvl</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table)</td></tr>
 <tr class="memdesc:a5b455cc8e12609665c7e0025bc3fa071"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts the env_var SHLVL.  <a href="env__shlvl_8c.html#a5b455cc8e12609665c7e0025bc3fa071">More...</a><br /></td></tr>
 <tr class="separator:a5b455cc8e12609665c7e0025bc3fa071"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14e9a11dca02b5e74dd667d17c672bbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__shlvl_8c.html#a14e9a11dca02b5e74dd667d17c672bbf">ft_print_warning_shlvl</a> (int new_val)</td></tr>
+<tr class="memdesc:a14e9a11dca02b5e74dd667d17c672bbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints error msg if SHLVL to high.  <a href="env__shlvl_8c.html#a14e9a11dca02b5e74dd667d17c672bbf">More...</a><br /></td></tr>
+<tr class="separator:a14e9a11dca02b5e74dd667d17c672bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions relating to env_var SHLVL. </p>
@@ -175,7 +178,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_NO_SHLVL, ERR_MALLOC, ERR_EMPTY, ERR_HT_NO_SWAP. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_error SUCCESS, ERR_MALLOC, ERR_EMPTY, ERR_HT_NO_SWAP. </dd></dl>
 
 </div>
 </div>
@@ -202,7 +205,33 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err If SUCCESS it exits </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC, ERR_HT_NO_INSERT, ERR_NOT_FOUND, ERR_EMPTY </dd></dl>
+
+</div>
+</div>
+<a id="a14e9a11dca02b5e74dd667d17c672bbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14e9a11dca02b5e74dd667d17c672bbf">&#9670;&nbsp;</a></span>ft_print_warning_shlvl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ft_print_warning_shlvl </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>new_val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints error msg if SHLVL to high. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_val</td><td>New value to be for SHLVL </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

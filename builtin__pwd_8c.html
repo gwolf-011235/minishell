@@ -100,31 +100,31 @@ $(document).ready(function(){initNavTree('builtin__pwd_8c.html',''); initResizab
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a31d3cdbac82248cf48157c747705d37e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__pwd_8c.html#a31d3cdbac82248cf48157c747705d37e">ft_pwd</a> (void)</td></tr>
-<tr class="memdesc:a31d3cdbac82248cf48157c747705d37e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print working directory.  <a href="builtin__pwd_8c.html#a31d3cdbac82248cf48157c747705d37e">More...</a><br /></td></tr>
-<tr class="separator:a31d3cdbac82248cf48157c747705d37e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe6736b7c20f2fea3f9e2151974016c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__pwd_8c.html#afe6736b7c20f2fea3f9e2151974016c5">ft_pwd</a> (<a class="el" href="structs__buf.html">t_buf</a> *buf)</td></tr>
+<tr class="memdesc:afe6736b7c20f2fea3f9e2151974016c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print working directory.  <a href="builtin__pwd_8c.html#afe6736b7c20f2fea3f9e2151974016c5">More...</a><br /></td></tr>
+<tr class="separator:afe6736b7c20f2fea3f9e2151974016c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of builtin pwd. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a31d3cdbac82248cf48157c747705d37e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31d3cdbac82248cf48157c747705d37e">&#9670;&nbsp;</a></span>ft_pwd()</h2>
+<a id="afe6736b7c20f2fea3f9e2151974016c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe6736b7c20f2fea3f9e2151974016c5">&#9670;&nbsp;</a></span>ft_pwd()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_pwd </td>
+          <td class="memname">void ft_pwd </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structs__buf.html">t_buf</a> *&#160;</td>
+          <td class="paramname"><em>buf</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Print working directory. </p>
-<p>Create str of working directory with <a class="el" href="env__pwd_8c.html#a90aa40452a5af9eec0b7f887cee48b94" title="Create string with the present working directory.">ft_create_pwd_value()</a>. Print it and free str. </p><dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC, ERR_CWD_FAIL. </dd></dl>
+<p>Create str of working directory with <a class="el" href="env__pwd_8c.html#aed8aa1e027e16ec39e6e4d9e9681e1c5" title="Create string with the present working directory.">ft_create_pwd_value()</a>. Print it and free str. </p>
 
 </div>
 </div>

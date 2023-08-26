@@ -100,9 +100,9 @@ $(document).ready(function(){initNavTree('executor__cleanup_8c.html',''); initRe
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac5eb0f5813c93dc0833f5cf15fc2964c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup_8c.html#ac5eb0f5813c93dc0833f5cf15fc2964c">ft_cleanup_cmd</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd)</td></tr>
-<tr class="memdesc:ac5eb0f5813c93dc0833f5cf15fc2964c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleans cmd after its processing.  <a href="executor__cleanup_8c.html#ac5eb0f5813c93dc0833f5cf15fc2964c">More...</a><br /></td></tr>
-<tr class="separator:ac5eb0f5813c93dc0833f5cf15fc2964c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31707dc0309dfba166de511777a84ecc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup_8c.html#a31707dc0309dfba166de511777a84ecc">ft_cleanup_cmd</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd)</td></tr>
+<tr class="memdesc:a31707dc0309dfba166de511777a84ecc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleans cmd after its processing.  <a href="executor__cleanup_8c.html#a31707dc0309dfba166de511777a84ecc">More...</a><br /></td></tr>
+<tr class="separator:a31707dc0309dfba166de511777a84ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a704f2dd231283f917ff32d07ebdc85d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup_8c.html#a704f2dd231283f917ff32d07ebdc85d6">ft_unlink_heredoc</a> (char **name, <a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> err)</td></tr>
 <tr class="memdesc:a704f2dd231283f917ff32d07ebdc85d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlinks the temporary heredoc file created.  <a href="executor__cleanup_8c.html#a704f2dd231283f917ff32d07ebdc85d6">More...</a><br /></td></tr>
 <tr class="separator:a704f2dd231283f917ff32d07ebdc85d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,14 +118,14 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions to clean up executor module after planned/unplanned abort. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ac5eb0f5813c93dc0833f5cf15fc2964c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5eb0f5813c93dc0833f5cf15fc2964c">&#9670;&nbsp;</a></span>ft_cleanup_cmd()</h2>
+<a id="a31707dc0309dfba166de511777a84ecc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31707dc0309dfba166de511777a84ecc">&#9670;&nbsp;</a></span>ft_cleanup_cmd()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_cleanup_cmd </td>
+          <td class="memname">void ft_cleanup_cmd </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
           <td class="paramname"><em>cmd</em></td><td>)</td>
@@ -141,7 +141,6 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_CLOSE, SUCCESS </dd></dl>
 
 </div>
 </div>

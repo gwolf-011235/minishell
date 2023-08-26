@@ -103,9 +103,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aa4e7089d7f65d0a62bd25a9329e778ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__envp_8c.html#aa4e7089d7f65d0a62bd25a9329e778ad">ft_envp_fill</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *ht, char **envp, bool all)</td></tr>
 <tr class="memdesc:aa4e7089d7f65d0a62bd25a9329e778ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loop through all elements and copy the pointers.  <a href="env__envp_8c.html#aa4e7089d7f65d0a62bd25a9329e778ad">More...</a><br /></td></tr>
 <tr class="separator:aa4e7089d7f65d0a62bd25a9329e778ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a855a4925df79141d067f1dac75b2a0e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__envp_8c.html#a855a4925df79141d067f1dac75b2a0e3">ft_envp_create</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *ht, char ***envp)</td></tr>
-<tr class="memdesc:a855a4925df79141d067f1dac75b2a0e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a NULL-terminated environment pointer (envp)  <a href="env__envp_8c.html#a855a4925df79141d067f1dac75b2a0e3">More...</a><br /></td></tr>
-<tr class="separator:a855a4925df79141d067f1dac75b2a0e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c69f5f4232eb01e79f1e0edd07e5b33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__envp_8c.html#a7c69f5f4232eb01e79f1e0edd07e5b33">ft_envp_create</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *ht, char ***envp)</td></tr>
+<tr class="memdesc:a7c69f5f4232eb01e79f1e0edd07e5b33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a NULL-terminated environment pointer (envp)  <a href="env__envp_8c.html#a7c69f5f4232eb01e79f1e0edd07e5b33">More...</a><br /></td></tr>
+<tr class="separator:a7c69f5f4232eb01e79f1e0edd07e5b33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85db55868d1bdab3659d8f2793e19d98"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="env__envp_8c.html#a85db55868d1bdab3659d8f2793e19d98">ft_envp_create_all</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *ht, char ***envp)</td></tr>
 <tr class="memdesc:a85db55868d1bdab3659d8f2793e19d98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create envp of all elements.  <a href="env__envp_8c.html#a85db55868d1bdab3659d8f2793e19d98">More...</a><br /></td></tr>
 <tr class="separator:a85db55868d1bdab3659d8f2793e19d98"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -116,14 +116,14 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Create and destroy environment pointer. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a855a4925df79141d067f1dac75b2a0e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a855a4925df79141d067f1dac75b2a0e3">&#9670;&nbsp;</a></span>ft_envp_create()</h2>
+<a id="a7c69f5f4232eb01e79f1e0edd07e5b33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c69f5f4232eb01e79f1e0edd07e5b33">&#9670;&nbsp;</a></span>ft_envp_create()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_envp_create </td>
+          <td class="memname">void ft_envp_create </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
           <td class="paramname"><em>ht</em>, </td>
@@ -143,14 +143,13 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Create a NULL-terminated environment pointer (envp) </p>
-<p>Malloc char array of num_values of hashtable plus 1 for terminator. Fetch all elements with <a class="el" href="env__envp_8c.html#aa4e7089d7f65d0a62bd25a9329e778ad" title="Loop through all elements and copy the pointers.">ft_envp_fill()</a> with switch set to false. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Malloc char array of num_values of hashtable plus 1 for terminator. Fetch all elements with <a class="el" href="env__envp_8c.html#aa4e7089d7f65d0a62bd25a9329e778ad" title="Loop through all elements and copy the pointers.">ft_envp_fill()</a> with switch set to false. Handles errors. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ht</td><td>Environment from which to copy. </td></tr>
     <tr><td class="paramname">envp</td><td>Pointer to char**, where to save. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_EMPTY, ERR_MALLOC, SUCCESS </dd></dl>
 
 </div>
 </div>
@@ -181,7 +180,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Create envp of all elements. </p>
-<p>See also <a class="el" href="env__envp_8c.html#a855a4925df79141d067f1dac75b2a0e3" title="Create a NULL-terminated environment pointer (envp)">ft_envp_create()</a>. Difference: includes all elements of hashtable. Malloc char array of num_elements of hashtable plus 1 for terminator. Fetch all elements with <a class="el" href="env__envp_8c.html#aa4e7089d7f65d0a62bd25a9329e778ad" title="Loop through all elements and copy the pointers.">ft_envp_fill()</a> with switch set to true. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>See also <a class="el" href="env__envp_8c.html#a7c69f5f4232eb01e79f1e0edd07e5b33" title="Create a NULL-terminated environment pointer (envp)">ft_envp_create()</a>. Difference: includes all elements of hashtable. Malloc char array of num_elements of hashtable plus 1 for terminator. Fetch all elements with <a class="el" href="env__envp_8c.html#aa4e7089d7f65d0a62bd25a9329e778ad" title="Loop through all elements and copy the pointers.">ft_envp_fill()</a> with switch set to true. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ht</td><td>Environment from which to copy. </td></tr>
     <tr><td class="paramname">envp</td><td>Pointer to char**, where to save. </td></tr>

@@ -97,10 +97,10 @@ $(document).ready(function(){initNavTree('mod__cleanup_8h_source.html',''); init
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/*                                                        :::      ::::::::   */</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/*   mod_cleanup.h                                      :+:      :+:    :+:   */</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*                                                    +:+ +:+         +:+     */</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*   By: sqiu &lt;sqiu@student.42vienna.com&gt;           +#+  +:+       +#+        */</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*   By: gwolf &lt;gwolf@student.42vienna.com&gt;         +#+  +:+       +#+        */</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">/*                                                +#+#+#+#+#+   +#+           */</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">/*   Created: 2023/08/05 17:33:17 by sqiu              #+#    #+#             */</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/08/05 17:40:59 by sqiu             ###   ########.fr       */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/08/26 11:33:15 by gwolf            ###   ########.fr       */</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/*                                                                            */</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* ************************************************************************** */</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
@@ -109,15 +109,26 @@ $(document).ready(function(){initNavTree('mod__cleanup_8h_source.html',''); init
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/* ====== Includes ====== */</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="minishell__error_8h.html">minishell_error.h</a>&quot;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"># include &quot;libft.h&quot;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">/* ====== Functions ====== */</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">void</span>    <a class="code" href="cleanup_8c.html#a263fef06d5a379d7b7a8098c877acdc2">ft_free_str_arr</a>(<span class="keywordtype">char</span> **arr);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"># include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"># include &lt;readline/history.h&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="minishell__error_8h.html">minishell_error.h</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"># include &quot;libft.h&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"># include &quot;minishell_struct.h&quot;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">/* ====== Functions ====== */</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">void</span>    <a class="code" href="cleanup_8c.html#a263fef06d5a379d7b7a8098c877acdc2">ft_free_str_arr</a>(<span class="keywordtype">char</span> **arr);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span>    ft_clean_after_loop(<span class="keywordtype">char</span> *input, <a class="code" href="structs__data.html">t_data</a> *data);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span>    ft_clean_on_exit(<a class="code" href="structs__data.html">t_data</a> *data);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">//from MOD ENV</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="env__envp_8c.html#a119c93151620b9c8ee199daaee94bde6">ft_envp_destroy</a>(<span class="keywordtype">char</span> ***envp);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="acleanup_8c_html_a263fef06d5a379d7b7a8098c877acdc2"><div class="ttname"><a href="cleanup_8c.html#a263fef06d5a379d7b7a8098c877acdc2">ft_free_str_arr</a></div><div class="ttdeci">void ft_free_str_arr(char **arr)</div><div class="ttdoc">Frees a NULL-terminated string array and its strings.</div><div class="ttdef"><b>Definition:</b> cleanup.c:25</div></div>
+<div class="ttc" id="aenv__envp_8c_html_a119c93151620b9c8ee199daaee94bde6"><div class="ttname"><a href="env__envp_8c.html#a119c93151620b9c8ee199daaee94bde6">ft_envp_destroy</a></div><div class="ttdeci">t_err ft_envp_destroy(char ***envp)</div><div class="ttdoc">Destroy envp.</div><div class="ttdef"><b>Definition:</b> env_envp.c:110</div></div>
 <div class="ttc" id="aminishell__error_8h_html"><div class="ttname"><a href="minishell__error_8h.html">minishell_error.h</a></div><div class="ttdoc">Header to store error codes.</div></div>
+<div class="ttc" id="aminishell__error_8h_html_ab40f6b0320b416162d7f6d5eed804232"><div class="ttname"><a href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a></div><div class="ttdeci">enum e_error t_err</div><div class="ttdoc">Enum, which contains all error codes.</div></div>
+<div class="ttc" id="astructs__data_html"><div class="ttname"><a href="structs__data.html">s_data</a></div><div class="ttdoc">Overarching struct to hold all necessarry data.</div><div class="ttdef"><b>Definition:</b> minishell_struct.h:37</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

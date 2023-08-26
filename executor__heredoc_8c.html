@@ -163,7 +163,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">cmd</td><td>Current cmd being processed. </td></tr>
     <tr><td class="paramname">delim</td><td>Delimiter string. </td></tr>
     <tr><td class="paramname">curr_delim</td><td>Current delimiter index. </td></tr>
-    <tr><td class="paramname">t_err</td><td>ERR_MALLOC, ERR_CLOSE, ERR_OPEN, SUCCESS </td></tr>
+    <tr><td class="paramname">t_err</td><td>ERR_MALLOC, ERR_ABORT, SUCCESS, ERR_HEREDOC_OPEN </td></tr>
   </table>
   </dd>
 </dl>
@@ -209,7 +209,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, ERR_CLOSE, ERR_OPEN, SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, ERR_ABORT, SUCCESS </dd></dl>
 
 </div>
 </div>
@@ -255,7 +255,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_CLOSE, ERR_OPEN, SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_ABORT, SUCCESS </dd></dl>
 
 </div>
 </div>
@@ -339,7 +339,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_ABORT, ERR_HEREDOC_EOF, SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_ABORT, ERR_HEREDOC_EOF, SUCCESS, ERR_MALLOC </dd></dl>
 
 </div>
 </div>

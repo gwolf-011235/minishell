@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('mod__signal_8h_source.html',''); initR
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*   By: sqiu &lt;sqiu@student.42vienna.com&gt;           +#+  +:+       +#+        */</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">/*                                                +#+#+#+#+#+   +#+           */</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">/*   Created: 2023/07/21 16:59:36 by gwolf             #+#    #+#             */</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/08/13 16:13:55 by sqiu             ###   ########.fr       */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/*   Updated: 2023/08/13 19:06:12 by sqiu             ###   ########.fr       */</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/*                                                                            */</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* ************************************************************************** */</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
@@ -109,11 +109,11 @@ $(document).ready(function(){initNavTree('mod__signal_8h_source.html',''); initR
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"># define _XOPEN_SOURCE 700</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"># include &lt;signal.h&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"># include &lt;stddef.h&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"># include &lt;unistd.h&gt;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"># include &lt;readline/readline.h&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"># include &lt;sys/ioctl.h&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"># include &lt;stddef.h&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"># include &lt;unistd.h&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"># include &lt;readline/readline.h&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"># include &lt;sys/ioctl.h&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"># include &lt;signal.h&gt;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"># include &quot;<a class="code" href="minishell__error_8h.html">minishell_error.h</a>&quot;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"># include &quot;libft.h&quot;</span></div>
@@ -126,16 +126,15 @@ $(document).ready(function(){initNavTree('mod__signal_8h_source.html',''); initR
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    SIG_HEREDOC,</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}   t_state;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<a class="code" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>   <a class="code" href="signal_8c.html#aba3ee9a8d3a088189dc120c4689dea95">ft_signal_setup</a>(<span class="keywordtype">int</span> signum, t_state state);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span>    <a class="code" href="signal_8c.html#aefa555e95b3531f51d3e8aac3188148a">ft_signal_setup</a>(<span class="keywordtype">int</span> signum, t_state state);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">void</span>    <a class="code" href="signal_8c.html#a1ffb18e090dee42cad0addfd212d9911">ft_sighandler_std</a>(<span class="keywordtype">int</span> signum);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">void</span>    <a class="code" href="signal_8c.html#a219e7cb34bfbaf10a37a1236de288080">ft_sighandler_heredoc</a>(<span class="keywordtype">int</span> signum);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aminishell__error_8h_html"><div class="ttname"><a href="minishell__error_8h.html">minishell_error.h</a></div><div class="ttdoc">Header to store error codes.</div></div>
-<div class="ttc" id="aminishell__error_8h_html_ab40f6b0320b416162d7f6d5eed804232"><div class="ttname"><a href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a></div><div class="ttdeci">enum e_error t_err</div><div class="ttdoc">Enum, which contains all error codes.</div></div>
 <div class="ttc" id="asignal_8c_html_a1ffb18e090dee42cad0addfd212d9911"><div class="ttname"><a href="signal_8c.html#a1ffb18e090dee42cad0addfd212d9911">ft_sighandler_std</a></div><div class="ttdeci">void ft_sighandler_std(int signum)</div><div class="ttdoc">Standard signal handler for readline.</div><div class="ttdef"><b>Definition:</b> signal.c:28</div></div>
 <div class="ttc" id="asignal_8c_html_a219e7cb34bfbaf10a37a1236de288080"><div class="ttname"><a href="signal_8c.html#a219e7cb34bfbaf10a37a1236de288080">ft_sighandler_heredoc</a></div><div class="ttdeci">void ft_sighandler_heredoc(int signum)</div><div class="ttdoc">Standard signal handler for readline inside of heredocs.</div><div class="ttdef"><b>Definition:</b> signal.c:47</div></div>
-<div class="ttc" id="asignal_8c_html_aba3ee9a8d3a088189dc120c4689dea95"><div class="ttname"><a href="signal_8c.html#aba3ee9a8d3a088189dc120c4689dea95">ft_signal_setup</a></div><div class="ttdeci">t_err ft_signal_setup(int signum, t_state state)</div><div class="ttdoc">Assign signalhandler to signal 'signum'.</div><div class="ttdef"><b>Definition:</b> signal.c:74</div></div>
+<div class="ttc" id="asignal_8c_html_aefa555e95b3531f51d3e8aac3188148a"><div class="ttname"><a href="signal_8c.html#aefa555e95b3531f51d3e8aac3188148a">ft_signal_setup</a></div><div class="ttdeci">void ft_signal_setup(int signum, t_state state)</div><div class="ttdoc">Assign signalhandler to signal 'signum'.</div><div class="ttdef"><b>Definition:</b> signal.c:66</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

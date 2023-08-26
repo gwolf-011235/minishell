@@ -112,9 +112,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ab11cfdb7a4da5f9fe4dde2a799e9fac1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__utils_8c.html#ab11cfdb7a4da5f9fe4dde2a799e9fac1">ft_replace_fd</a> (int input_fd, int output_fd)</td></tr>
 <tr class="memdesc:ab11cfdb7a4da5f9fe4dde2a799e9fac1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace the standard file descriptors.  <a href="executor__utils_8c.html#ab11cfdb7a4da5f9fe4dde2a799e9fac1">More...</a><br /></td></tr>
 <tr class="separator:ab11cfdb7a4da5f9fe4dde2a799e9fac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb6def03ab4dba3883d949cd7880e459"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__utils_8c.html#aeb6def03ab4dba3883d949cd7880e459">ft_wait_for_babies</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd)</td></tr>
-<tr class="memdesc:aeb6def03ab4dba3883d949cd7880e459"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for child processes.  <a href="executor__utils_8c.html#aeb6def03ab4dba3883d949cd7880e459">More...</a><br /></td></tr>
-<tr class="separator:aeb6def03ab4dba3883d949cd7880e459"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a913ab9b8268a5683d46b023a530e1977"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__utils_8c.html#a913ab9b8268a5683d46b023a530e1977">ft_wait_for_babies</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd)</td></tr>
+<tr class="memdesc:a913ab9b8268a5683d46b023a530e1977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for child processes.  <a href="executor__utils_8c.html#a913ab9b8268a5683d46b023a530e1977">More...</a><br /></td></tr>
+<tr class="separator:a913ab9b8268a5683d46b023a530e1977"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Helper functions for executor. </p>
@@ -161,7 +161,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_UNKNOWN_CMD, ERR_MALLOC, SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, ERR_STAT, ERR_UNKNOWN_CMD, ERR_DIR, ERR_NO_DIR, SUCCESS </dd></dl>
 
 </div>
 </div>
@@ -288,14 +288,14 @@ fd 1 (for system stdoutput) with output_fd
 
 </div>
 </div>
-<a id="aeb6def03ab4dba3883d949cd7880e459"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb6def03ab4dba3883d949cd7880e459">&#9670;&nbsp;</a></span>ft_wait_for_babies()</h2>
+<a id="a913ab9b8268a5683d46b023a530e1977"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a913ab9b8268a5683d46b023a530e1977">&#9670;&nbsp;</a></span>ft_wait_for_babies()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_wait_for_babies </td>
+          <td class="memname">void ft_wait_for_babies </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
           <td class="paramname"><em>cmd</em></td><td>)</td>
@@ -311,7 +311,6 @@ fd 1 (for system stdoutput) with output_fd
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_WAIT, SUCCESS </dd></dl>
 
 </div>
 </div>

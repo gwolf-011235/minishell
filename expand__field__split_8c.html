@@ -103,9 +103,9 @@ Functions</h2></td></tr>
 <tr class="memitem:abd730b466be5a02e1859817857f989d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand__field__split_8c.html#abd730b466be5a02e1859817857f989d9">ft_field_split</a> (<a class="el" href="structs__track.html">t_track</a> *input, <a class="el" href="structs__tkn__list.html">t_tkn_list</a> **cur_node, <a class="el" href="structs__buf.html">t_buf</a> *buf)</td></tr>
 <tr class="memdesc:abd730b466be5a02e1859817857f989d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Splits an expanded node into several words.  <a href="expand__field__split_8c.html#abd730b466be5a02e1859817857f989d9">More...</a><br /></td></tr>
 <tr class="separator:abd730b466be5a02e1859817857f989d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a089bdc29cca8236d16fc0f8ec2834090"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand__field__split_8c.html#a089bdc29cca8236d16fc0f8ec2834090">ft_count_expand_words</a> (<a class="el" href="structs__track.html">t_track</a> *input, size_t *words, int last_expand_len)</td></tr>
-<tr class="memdesc:a089bdc29cca8236d16fc0f8ec2834090"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count how many words will be after splitting.  <a href="expand__field__split_8c.html#a089bdc29cca8236d16fc0f8ec2834090">More...</a><br /></td></tr>
-<tr class="separator:a089bdc29cca8236d16fc0f8ec2834090"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1abaf475109ad88c55f9dce0090c8e8d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand__field__split_8c.html#a1abaf475109ad88c55f9dce0090c8e8d">ft_count_expand_words</a> (<a class="el" href="structs__track.html">t_track</a> *input, size_t *words, int last_expand_len)</td></tr>
+<tr class="memdesc:a1abaf475109ad88c55f9dce0090c8e8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count how many words will be after splitting.  <a href="expand__field__split_8c.html#a1abaf475109ad88c55f9dce0090c8e8d">More...</a><br /></td></tr>
+<tr class="separator:a1abaf475109ad88c55f9dce0090c8e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a502cebbcb46ba6a59ed864db9e53426a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand__field__split_8c.html#a502cebbcb46ba6a59ed864db9e53426a">ft_split_node</a> (<a class="el" href="structs__track.html">t_track</a> *input, <a class="el" href="structs__tkn__list.html">t_tkn_list</a> **cur_node, <a class="el" href="structs__buf.html">t_buf</a> *buf)</td></tr>
 <tr class="memdesc:a502cebbcb46ba6a59ed864db9e53426a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split a node into words.  <a href="expand__field__split_8c.html#a502cebbcb46ba6a59ed864db9e53426a">More...</a><br /></td></tr>
 <tr class="separator:a502cebbcb46ba6a59ed864db9e53426a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,14 +119,14 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions to perform field splitting on expanded parts of str. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a089bdc29cca8236d16fc0f8ec2834090"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a089bdc29cca8236d16fc0f8ec2834090">&#9670;&nbsp;</a></span>ft_count_expand_words()</h2>
+<a id="a1abaf475109ad88c55f9dce0090c8e8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1abaf475109ad88c55f9dce0090c8e8d">&#9670;&nbsp;</a></span>ft_count_expand_words()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_count_expand_words </td>
+          <td class="memname">void ft_count_expand_words </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structs__track.html">t_track</a> *&#160;</td>
           <td class="paramname"><em>input</em>, </td>
@@ -159,7 +159,6 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS </dd></dl>
 
 </div>
 </div>
@@ -196,14 +195,14 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Splits an expanded node into several words. </p>
-<p>Count the words with <a class="el" href="expand__field__split_8c.html#a089bdc29cca8236d16fc0f8ec2834090" title="Count how many words will be after splitting.">ft_count_expand_words()</a>. If one word return. If more words: Clear buffer with <a class="el" href="buffer_8c.html#a4e1c8f4ea586ea9db06b4270ece86e4e" title="Set the buffer to zero.">ft_buf_clear()</a>. Split into several words with <a class="el" href="expand__field__split_8c.html#a502cebbcb46ba6a59ed864db9e53426a" title="Split a node into words.">ft_split_node()</a>. Del old node with <a class="el" href="tkn__list__delete_8c.html#aa5201968cffc26a3d466da70ff1ad8e4" title="Iterates n nodes back and deletes found node.">ft_del_prev_n()</a> and update list pointer. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Count the words with <a class="el" href="expand__field__split_8c.html#a1abaf475109ad88c55f9dce0090c8e8d" title="Count how many words will be after splitting.">ft_count_expand_words()</a>. If one word return. If more words: Clear buffer with <a class="el" href="buffer_8c.html#a99b094d3ffec975b672948cc9f681af9" title="Set the buffer to zero.">ft_buf_clear()</a>. Split into several words with <a class="el" href="expand__field__split_8c.html#a502cebbcb46ba6a59ed864db9e53426a" title="Split a node into words.">ft_split_node()</a>. Del old node with <a class="el" href="tkn__list__delete_8c.html#aa5201968cffc26a3d466da70ff1ad8e4" title="Iterates n nodes back and deletes found node.">ft_del_prev_n()</a> and update list pointer. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">input</td><td>Pointer to tracker. </td></tr>
     <tr><td class="paramname">cur_node</td><td>Pointer pointer to the current node. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC, ERR_NOSPLIT </dd></dl>
 
 </div>
 </div>
@@ -241,7 +240,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_EOF </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_EOF, ERR_MALLOC </dd></dl>
 
 </div>
 </div>
@@ -337,7 +336,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_EMPTY, ERR_MALLOC, ERR_EOF </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC, ERR_EOF </dd></dl>
 
 </div>
 </div>

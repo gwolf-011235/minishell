@@ -109,9 +109,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a36119e3027eba3c838e3bbf93d55b9f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor_8c.html#a36119e3027eba3c838e3bbf93d55b9f5">ft_execute_pcmds</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd, char **paths, <a class="el" href="structs__data.html">t_data</a> *data, bool empty_path)</td></tr>
 <tr class="memdesc:a36119e3027eba3c838e3bbf93d55b9f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes list of cmds provided.  <a href="executor_8c.html#a36119e3027eba3c838e3bbf93d55b9f5">More...</a><br /></td></tr>
 <tr class="separator:a36119e3027eba3c838e3bbf93d55b9f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9927302496e8c6c67aeb9c708c67cff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor_8c.html#ad9927302496e8c6c67aeb9c708c67cff">ft_process_cmd</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd, <a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> err, <a class="el" href="structs__data.html">t_data</a> *data)</td></tr>
-<tr class="memdesc:ad9927302496e8c6c67aeb9c708c67cff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decide program behaviour depending on err.  <a href="executor_8c.html#ad9927302496e8c6c67aeb9c708c67cff">More...</a><br /></td></tr>
-<tr class="separator:ad9927302496e8c6c67aeb9c708c67cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ee34fb177477ac7c462952c598ba1c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor_8c.html#a7ee34fb177477ac7c462952c598ba1c9">ft_execute_cmd</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd, <a class="el" href="structs__data.html">t_data</a> *data, bool empty_path, char **paths)</td></tr>
+<tr class="memdesc:a7ee34fb177477ac7c462952c598ba1c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Differentiates between builtins and system calls and executes.  <a href="executor_8c.html#a7ee34fb177477ac7c462952c598ba1c9">More...</a><br /></td></tr>
+<tr class="separator:a7ee34fb177477ac7c462952c598ba1c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a848e0748bf7d2b9ddee63e69bf3cbf55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor_8c.html#a848e0748bf7d2b9ddee63e69bf3cbf55">ft_check_dir</a> (char **args)</td></tr>
 <tr class="memdesc:a848e0748bf7d2b9ddee63e69bf3cbf55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the argument is a directory.  <a href="executor_8c.html#a848e0748bf7d2b9ddee63e69bf3cbf55">More...</a><br /></td></tr>
 <tr class="separator:a848e0748bf7d2b9ddee63e69bf3cbf55"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,6 +143,58 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>t_err ERR_DIR, ERR_NO_DIR, ERR_STAT, SUCCESS </dd></dl>
+
+</div>
+</div>
+<a id="a7ee34fb177477ac7c462952c598ba1c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ee34fb177477ac7c462952c598ba1c9">&#9670;&nbsp;</a></span>ft_execute_cmd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_execute_cmd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
+          <td class="paramname"><em>cmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structs__data.html">t_data</a> *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>empty_path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>paths</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Differentiates between builtins and system calls and executes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>Current cmd. </td></tr>
+    <tr><td class="paramname">data</td><td>Overarching data struct. </td></tr>
+    <tr><td class="paramname">empty_path</td><td>Boolean to determine if PATH contained empty paths. </td></tr>
+    <tr><td class="paramname">paths</td><td>String array of all system bin paths. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_FORK, ERR_IS_CHILD, ERR_UNKNOWN_CMD, ERR_MALLOC, SUCCESS, ERR_STAT, ERR_DIR, ERR_NO_DIR </dd></dl>
 
 </div>
 </div>
@@ -194,7 +246,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, ERR_PIPE, ERR_CLOSE, SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, ERR_STAT, ERR_FORK, ERR_UNKNOWN_CMD, ERR_DIR, ERR_NO_DIR, SUCCESS </dd></dl>
 
 </div>
 </div>
@@ -246,7 +298,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, ERR_PIPE, ERR_CLOSE, SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_FORK, ERR_MALLOC, ERR_STAT, ERR_UNKNOWN_CMD, ERR_DIR, ERR_NO_DIR, SUCCESS </dd></dl>
 
 </div>
 </div>
@@ -289,51 +341,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, ERR_PIPE, SUCCESS </dd></dl>
-
-</div>
-</div>
-<a id="ad9927302496e8c6c67aeb9c708c67cff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9927302496e8c6c67aeb9c708c67cff">&#9670;&nbsp;</a></span>ft_process_cmd()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_process_cmd </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
-          <td class="paramname"><em>cmd</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td>
-          <td class="paramname"><em>err</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structs__data.html">t_data</a> *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Decide program behaviour depending on err. </p>
-<p>Output error message if command was not found. On success, create child process to execute cmd. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cmd</td><td>Current cmd being processed. </td></tr>
-    <tr><td class="paramname">err</td><td>Error code of cmd access check. </td></tr>
-    <tr><td class="paramname">data</td><td>Data struct containing the env. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, ERR_CLOSE, SUCCESS </dd></dl>
 
 </div>
 </div>

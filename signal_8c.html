@@ -106,12 +106,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a219e7cb34bfbaf10a37a1236de288080"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8c.html#a219e7cb34bfbaf10a37a1236de288080">ft_sighandler_heredoc</a> (int signum)</td></tr>
 <tr class="memdesc:a219e7cb34bfbaf10a37a1236de288080"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard signal handler for readline inside of heredocs.  <a href="signal_8c.html#a219e7cb34bfbaf10a37a1236de288080">More...</a><br /></td></tr>
 <tr class="separator:a219e7cb34bfbaf10a37a1236de288080"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5337bbb5fcb7b51d03d97a53eb0f01f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8c.html#a5337bbb5fcb7b51d03d97a53eb0f01f5">ft_sighandler_ignore</a> (int signum)</td></tr>
-<tr class="memdesc:a5337bbb5fcb7b51d03d97a53eb0f01f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal handler that does nothing.  <a href="signal_8c.html#a5337bbb5fcb7b51d03d97a53eb0f01f5">More...</a><br /></td></tr>
-<tr class="separator:a5337bbb5fcb7b51d03d97a53eb0f01f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba3ee9a8d3a088189dc120c4689dea95"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8c.html#aba3ee9a8d3a088189dc120c4689dea95">ft_signal_setup</a> (int signum, t_state state)</td></tr>
-<tr class="memdesc:aba3ee9a8d3a088189dc120c4689dea95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assign signalhandler to signal 'signum'.  <a href="signal_8c.html#aba3ee9a8d3a088189dc120c4689dea95">More...</a><br /></td></tr>
-<tr class="separator:aba3ee9a8d3a088189dc120c4689dea95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefa555e95b3531f51d3e8aac3188148a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8c.html#aefa555e95b3531f51d3e8aac3188148a">ft_signal_setup</a> (int signum, t_state state)</td></tr>
+<tr class="memdesc:aefa555e95b3531f51d3e8aac3188148a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assign signalhandler to signal 'signum'.  <a href="signal_8c.html#aefa555e95b3531f51d3e8aac3188148a">More...</a><br /></td></tr>
+<tr class="separator:aefa555e95b3531f51d3e8aac3188148a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions to handle signals. </p>
@@ -134,32 +131,6 @@ Functions</h2></td></tr>
 
 <p>Standard signal handler for readline inside of heredocs. </p>
 <p>When SIGINT is received, a newline is faked. Readline goes to the newline. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">signum</td><td>Signal received. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a5337bbb5fcb7b51d03d97a53eb0f01f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5337bbb5fcb7b51d03d97a53eb0f01f5">&#9670;&nbsp;</a></span>ft_sighandler_ignore()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ft_sighandler_ignore </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>signum</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Signal handler that does nothing. </p>
-<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">signum</td><td>Signal received. </td></tr>
   </table>
@@ -194,14 +165,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aba3ee9a8d3a088189dc120c4689dea95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba3ee9a8d3a088189dc120c4689dea95">&#9670;&nbsp;</a></span>ft_signal_setup()</h2>
+<a id="aefa555e95b3531f51d3e8aac3188148a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefa555e95b3531f51d3e8aac3188148a">&#9670;&nbsp;</a></span>ft_signal_setup()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_signal_setup </td>
+          <td class="memname">void ft_signal_setup </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>signum</em>, </td>
@@ -221,14 +192,13 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Assign signalhandler to signal 'signum'. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Add flag SA_RESTART to ensure interrupted sys calls are restarted anew. Necessary for background readline processes. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">signum</td><td>Signal received. </td></tr>
     <tr><td class="paramname">state</td><td>Indicator of signal handler. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_SIGNAL, SUCCESS </dd></dl>
 
 </div>
 </div>

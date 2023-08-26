@@ -103,167 +103,41 @@ Functions</h2></td></tr>
 <tr class="memitem:a03dd1a5a308818d276b3f79fb8fde1f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand_8c.html#a03dd1a5a308818d276b3f79fb8fde1f8">ft_expand_tkn_lst</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> **head, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table, <a class="el" href="structs__buf.html">t_buf</a> *buf)</td></tr>
 <tr class="memdesc:a03dd1a5a308818d276b3f79fb8fde1f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loop through token list and expand content.  <a href="expand_8c.html#a03dd1a5a308818d276b3f79fb8fde1f8">More...</a><br /></td></tr>
 <tr class="separator:a03dd1a5a308818d276b3f79fb8fde1f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ff4210df1b12dc330e9f751b44d6352"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand_8c.html#a2ff4210df1b12dc330e9f751b44d6352">ft_expand_heredoc</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> **node)</td></tr>
-<tr class="memdesc:a2ff4210df1b12dc330e9f751b44d6352"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expands token after HEREDOC = delim.  <a href="expand_8c.html#a2ff4210df1b12dc330e9f751b44d6352">More...</a><br /></td></tr>
-<tr class="separator:a2ff4210df1b12dc330e9f751b44d6352"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab97f8fdf06c8ef87653a8c65f55fc3a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand_8c.html#ab97f8fdf06c8ef87653a8c65f55fc3a9">ft_expand_redirect</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> **node, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *symtab)</td></tr>
-<tr class="memdesc:ab97f8fdf06c8ef87653a8c65f55fc3a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expands token after REDIRECT = Infile, Outfile.  <a href="expand_8c.html#ab97f8fdf06c8ef87653a8c65f55fc3a9">More...</a><br /></td></tr>
-<tr class="separator:ab97f8fdf06c8ef87653a8c65f55fc3a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a43e57dc454cf7adb25638378a87b24"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand_8c.html#a1a43e57dc454cf7adb25638378a87b24">ft_expand_assign</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> **node, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *symtab)</td></tr>
-<tr class="memdesc:a1a43e57dc454cf7adb25638378a87b24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expands ASSIGN token.  <a href="expand_8c.html#a1a43e57dc454cf7adb25638378a87b24">More...</a><br /></td></tr>
-<tr class="separator:a1a43e57dc454cf7adb25638378a87b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a463997fa3bd2a3e48c0529b79e371fe3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand_8c.html#a463997fa3bd2a3e48c0529b79e371fe3">ft_expand_arg</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> **node, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *symtab, <a class="el" href="structs__buf.html">t_buf</a> *buf)</td></tr>
-<tr class="memdesc:a463997fa3bd2a3e48c0529b79e371fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expands ARG token.  <a href="expand_8c.html#a463997fa3bd2a3e48c0529b79e371fe3">More...</a><br /></td></tr>
-<tr class="separator:a463997fa3bd2a3e48c0529b79e371fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e3f985af2afdbe9097b9c45a53f13ca"><td class="memItemLeft" align="right" valign="top"><a id="a2e3f985af2afdbe9097b9c45a53f13ca"></a>
+<a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ft_expand_router</b> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> **tmp, t_type type, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_table, <a class="el" href="structs__buf.html">t_buf</a> *buf)</td></tr>
+<tr class="separator:a2e3f985af2afdbe9097b9c45a53f13ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97bc3ee7245dc755dafc6eb5a492a02a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand_8c.html#a97bc3ee7245dc755dafc6eb5a492a02a">ft_expand_err</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> **lst_head)</td></tr>
+<tr class="memdesc:a97bc3ee7245dc755dafc6eb5a492a02a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle ERR_MALLOC in expand.  <a href="expand_8c.html#a97bc3ee7245dc755dafc6eb5a492a02a">More...</a><br /></td></tr>
+<tr class="separator:a97bc3ee7245dc755dafc6eb5a492a02a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions to exec different expansions depending on token type. </p>
 <p>Contains driver function to handle expansion and quote removal.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a463997fa3bd2a3e48c0529b79e371fe3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a463997fa3bd2a3e48c0529b79e371fe3">&#9670;&nbsp;</a></span>ft_expand_arg()</h2>
+<a id="a97bc3ee7245dc755dafc6eb5a492a02a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97bc3ee7245dc755dafc6eb5a492a02a">&#9670;&nbsp;</a></span>ft_expand_err()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_expand_arg </td>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_expand_err </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structs__tkn__list.html">t_tkn_list</a> **&#160;</td>
-          <td class="paramname"><em>node</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>symtab</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structs__buf.html">t_buf</a> *&#160;</td>
-          <td class="paramname"><em>buf</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Expands ARG token. </p>
-<p>Init tracker with <a class="el" href="expand__utils_8c.html#ac3df1fbb0f2bc0b6dce3b82e72ef36f8" title="Initialize a tracker.">ft_init_tracker()</a>. Expand and quote removal with ft_expander(). If expansion on unquoted dollar: check with <a class="el" href="expand__field__split_8c.html#abd730b466be5a02e1859817857f989d9" title="Splits an expanded node into several words.">ft_field_split()</a> if node has to be split. If <a class="el" href="expand__field__split_8c.html#abd730b466be5a02e1859817857f989d9" title="Splits an expanded node into several words.">ft_field_split()</a> fires it resets the tracker to the last node of the split to continue expansion. If expanded node is empty, and no quotes found set type to DELETE. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">node</td><td>Pointer to ARG token. </td></tr>
-    <tr><td class="paramname">symtab</td><td>Environment. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC </dd></dl>
-
-</div>
-</div>
-<a id="a1a43e57dc454cf7adb25638378a87b24"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a43e57dc454cf7adb25638378a87b24">&#9670;&nbsp;</a></span>ft_expand_assign()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_expand_assign </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structs__tkn__list.html">t_tkn_list</a> **&#160;</td>
-          <td class="paramname"><em>node</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>symtab</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Expands ASSIGN token. </p>
-<p>Init tracker with <a class="el" href="expand__utils_8c.html#ac3df1fbb0f2bc0b6dce3b82e72ef36f8" title="Initialize a tracker.">ft_init_tracker()</a>. Expand and quote removal with ft_expander(). Set type to ARG to not coonfuse parser. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">list</td><td>Pointer to ASSIGN node. </td></tr>
-    <tr><td class="paramname">symtab</td><td>Environment. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC </dd></dl>
-
-</div>
-</div>
-<a id="a2ff4210df1b12dc330e9f751b44d6352"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ff4210df1b12dc330e9f751b44d6352">&#9670;&nbsp;</a></span>ft_expand_heredoc()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_expand_heredoc </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structs__tkn__list.html">t_tkn_list</a> **&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
+          <td class="paramname"><em>lst_head</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Expands token after HEREDOC = delim. </p>
-<p>Move forward a node. Init tracker with <a class="el" href="expand__utils_8c.html#ac3df1fbb0f2bc0b6dce3b82e72ef36f8" title="Initialize a tracker.">ft_init_tracker()</a>. Remove quotes of heredoc delim. If quotes were found in delim, set type prev node to QUOTEDOC. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Handle ERR_MALLOC in expand. </p>
+<p>Clears token list. Return err message. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">node</td><td>Pointer to HEREDOC node. </td></tr>
+    <tr><td class="paramname">lst_head</td><td>Head of token list. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS </dd></dl>
-
-</div>
-</div>
-<a id="ab97f8fdf06c8ef87653a8c65f55fc3a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab97f8fdf06c8ef87653a8c65f55fc3a9">&#9670;&nbsp;</a></span>ft_expand_redirect()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_expand_redirect </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structs__tkn__list.html">t_tkn_list</a> **&#160;</td>
-          <td class="paramname"><em>node</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>symtab</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Expands token after REDIRECT = Infile, Outfile. </p>
-<p>Move forward a node. Init tracker with <a class="el" href="expand__utils_8c.html#ac3df1fbb0f2bc0b6dce3b82e72ef36f8" title="Initialize a tracker.">ft_init_tracker()</a>. Expand and quote removal with ft_expander(). If expanded token is empty and was not quoted, change type of previous node (containing redirect symbol) to AMBIGUOUS. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">node</td><td>Pointer to REDIRECT node. </td></tr>
-    <tr><td class="paramname">symtab</td><td>Environment. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_EXPANDER </dd></dl>
 
 </div>
 </div>

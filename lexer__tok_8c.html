@@ -112,21 +112,21 @@ Functions</h2></td></tr>
 <tr class="memitem:a7d04e31225aa019b12684e6deda365fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__tok_8c.html#a7d04e31225aa019b12684e6deda365fa">ft_init_partition</a> (<a class="el" href="structs__src.html">t_src</a> *src, char *c)</td></tr>
 <tr class="memdesc:a7d04e31225aa019b12684e6deda365fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initate the partitioning.  <a href="lexer__tok_8c.html#a7d04e31225aa019b12684e6deda365fa">More...</a><br /></td></tr>
 <tr class="separator:a7d04e31225aa019b12684e6deda365fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa53a268d6714044a5832f7ed06022ecc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__tok_8c.html#aa53a268d6714044a5832f7ed06022ecc">ft_add_quoted_str</a> (char quote, <a class="el" href="structs__src.html">t_src</a> *src, <a class="el" href="structs__buf.html">t_buf</a> *buf)</td></tr>
-<tr class="memdesc:aa53a268d6714044a5832f7ed06022ecc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add anything inside of quotes.  <a href="lexer__tok_8c.html#aa53a268d6714044a5832f7ed06022ecc">More...</a><br /></td></tr>
-<tr class="separator:aa53a268d6714044a5832f7ed06022ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67b044273f6e89a3e1c3dd490ff9efda"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lexer__tok_8c.html#a67b044273f6e89a3e1c3dd490ff9efda">ft_add_quoted_str</a> (char quote, <a class="el" href="structs__src.html">t_src</a> *src, <a class="el" href="structs__buf.html">t_buf</a> *buf)</td></tr>
+<tr class="memdesc:a67b044273f6e89a3e1c3dd490ff9efda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add anything inside of quotes.  <a href="lexer__tok_8c.html#a67b044273f6e89a3e1c3dd490ff9efda">More...</a><br /></td></tr>
+<tr class="separator:a67b044273f6e89a3e1c3dd490ff9efda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains functions to create tokens. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="aa53a268d6714044a5832f7ed06022ecc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa53a268d6714044a5832f7ed06022ecc">&#9670;&nbsp;</a></span>ft_add_quoted_str()</h2>
+<a id="a67b044273f6e89a3e1c3dd490ff9efda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67b044273f6e89a3e1c3dd490ff9efda">&#9670;&nbsp;</a></span>ft_add_quoted_str()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ft_add_quoted_str </td>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_add_quoted_str </td>
           <td>(</td>
           <td class="paramtype">char&#160;</td>
           <td class="paramname"><em>quote</em>, </td>
@@ -160,6 +160,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>SUCCESS, ERR_MALLOC </dd></dl>
 
 </div>
 </div>
@@ -197,7 +198,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, ERR_EMPTY, ERR_EOF, SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, ERR_EOF, SUCCESS </dd></dl>
 
 </div>
 </div>
@@ -235,7 +236,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_EMPTY, ERR_MALLOC, SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_EOF, SUCCESS </dd></dl>
 
 </div>
 </div>
@@ -273,7 +274,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_EMPTY, ERR_EOF, SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_EOF, SUCCESS, ERR_OUT_OF_BOUNDS </dd></dl>
 
 </div>
 </div>
@@ -317,7 +318,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err* ERR_EMPTY, ERR_MALLOC, SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err* ERR_MALLOC, SUCCESS </dd></dl>
 
 </div>
 </div>

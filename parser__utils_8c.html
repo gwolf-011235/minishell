@@ -103,9 +103,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a080dddc8f44ae0c428a00f22b1397a9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser__utils_8c.html#a080dddc8f44ae0c428a00f22b1397a9e">ft_last_cmd</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd_head)</td></tr>
 <tr class="memdesc:a080dddc8f44ae0c428a00f22b1397a9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterate to last node of given list.  <a href="parser__utils_8c.html#a080dddc8f44ae0c428a00f22b1397a9e">More...</a><br /></td></tr>
 <tr class="separator:a080dddc8f44ae0c428a00f22b1397a9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73020de5d229ec6e3cb234ab09a9b70b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser__utils_8c.html#a73020de5d229ec6e3cb234ab09a9b70b">ft_count_str</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> *lst, int *count_arg, int *count_delim, int *count_out)</td></tr>
-<tr class="memdesc:a73020de5d229ec6e3cb234ab09a9b70b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts the amount of arguments and, if given delimiters.  <a href="parser__utils_8c.html#a73020de5d229ec6e3cb234ab09a9b70b">More...</a><br /></td></tr>
-<tr class="separator:a73020de5d229ec6e3cb234ab09a9b70b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78d418fda419fcd865664c00df5111a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser__utils_8c.html#a78d418fda419fcd865664c00df5111a5">ft_count_str</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> *lst, int *count_arg, int *count_delim, int *count_out)</td></tr>
+<tr class="memdesc:a78d418fda419fcd865664c00df5111a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts the amount of arguments and, if given delimiters.  <a href="parser__utils_8c.html#a78d418fda419fcd865664c00df5111a5">More...</a><br /></td></tr>
+<tr class="separator:a78d418fda419fcd865664c00df5111a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7be8c9b8b74b0a376fdb8bac093d07de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser__utils_8c.html#a7be8c9b8b74b0a376fdb8bac093d07de">ft_create_str_arr</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *tmp, int count_arg, int count_delim, int count_out)</td></tr>
 <tr class="memdesc:a7be8c9b8b74b0a376fdb8bac093d07de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reserve memory space for argument and/or delimiter and/or outfiles string array.  <a href="parser__utils_8c.html#a7be8c9b8b74b0a376fdb8bac093d07de">More...</a><br /></td></tr>
 <tr class="separator:a7be8c9b8b74b0a376fdb8bac093d07de"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,14 +119,14 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Helper functions for parser. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a73020de5d229ec6e3cb234ab09a9b70b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73020de5d229ec6e3cb234ab09a9b70b">&#9670;&nbsp;</a></span>ft_count_str()</h2>
+<a id="a78d418fda419fcd865664c00df5111a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78d418fda419fcd865664c00df5111a5">&#9670;&nbsp;</a></span>ft_count_str()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_count_str </td>
+          <td class="memname">void ft_count_str </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structs__tkn__list.html">t_tkn_list</a> *&#160;</td>
           <td class="paramname"><em>lst</em>, </td>
@@ -167,7 +167,6 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS </dd></dl>
 
 </div>
 </div>

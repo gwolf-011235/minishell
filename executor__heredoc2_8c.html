@@ -100,15 +100,15 @@ $(document).ready(function(){initNavTree('executor__heredoc2_8c.html',''); initR
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a94161c958540e17c52e0c33660f70173"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__heredoc2_8c.html#a94161c958540e17c52e0c33660f70173">ft_init_heredoc</a> (<a class="el" href="structs__hdoc.html">t_hdoc</a> *heredoc, int index, bool quoted, char *delim)</td></tr>
-<tr class="memdesc:a94161c958540e17c52e0c33660f70173"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set heredoc name and open it.  <a href="executor__heredoc2_8c.html#a94161c958540e17c52e0c33660f70173">More...</a><br /></td></tr>
-<tr class="separator:a94161c958540e17c52e0c33660f70173"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a804e00f92ab2882b7aecddae9a86e50f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__heredoc2_8c.html#a804e00f92ab2882b7aecddae9a86e50f">ft_init_heredoc</a> (<a class="el" href="structs__hdoc.html">t_hdoc</a> *heredoc, <a class="el" href="structs__cmd.html">t_cmd</a> *cmd, int curr_delim)</td></tr>
+<tr class="memdesc:a804e00f92ab2882b7aecddae9a86e50f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set heredoc name and open it.  <a href="executor__heredoc2_8c.html#a804e00f92ab2882b7aecddae9a86e50f">More...</a><br /></td></tr>
+<tr class="separator:a804e00f92ab2882b7aecddae9a86e50f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions to handle heredoc feature. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a94161c958540e17c52e0c33660f70173"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94161c958540e17c52e0c33660f70173">&#9670;&nbsp;</a></span>ft_init_heredoc()</h2>
+<a id="a804e00f92ab2882b7aecddae9a86e50f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a804e00f92ab2882b7aecddae9a86e50f">&#9670;&nbsp;</a></span>ft_init_heredoc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -122,20 +122,14 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
+          <td class="paramname"><em>cmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>quoted</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>delim</em>&#160;</td>
+          <td class="paramname"><em>curr_delim</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -154,7 +148,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, ERR_OPEN, SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, ERR_HEREDOC_OPEN, SUCCESS </dd></dl>
 
 </div>
 </div>
