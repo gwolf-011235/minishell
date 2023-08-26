@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 11:49:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 12:44:58 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ void	ft_read_input(char **input, char *prompt1)
 		if (isatty(STDIN_FILENO))
 			ft_putstr_fd(prompt1, 0);
 		*input = get_next_line(STDIN_FILENO);
+		if (*input)
+		{
+			if ((*input)[ft_strlen(*input) - 1] == '\n')
+				(*input)[ft_strlen(*input) - 1] = '\0';
+		}
 	}
 }
 
