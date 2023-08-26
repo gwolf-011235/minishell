@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 22:45:56 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 19:38:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 20:36:30 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,18 @@
  *
  * @param cmd	List of cmds.
  */
-void	ft_cleanup_cmd_list(t_cmd *cmd)
+void	ft_cleanup_cmd_list(t_cmd *cmd, char **paths)
 {
+	t_cmd	*tmp;
+
+	if (paths)
+		ft_free_str_arr(paths);
 	while (cmd)
 	{
 		ft_cleanup_cmd(cmd);
+		tmp = cmd;
 		cmd = cmd->next;
+		free(tmp);
 	}
 }
 
@@ -38,10 +44,10 @@ void	ft_cleanup_cmd_list(t_cmd *cmd)
  * @param cmd_head		Head of cmd list.
  * @return t_err		ERR_EXECUTOR
  */
-t_err	ft_err_executor(t_cmd *cmd_head)
+t_err	ft_err_executor(t_cmd *cmd_head, char **paths)
 {
 	g_status = 1;
-	ft_cleanup_cmd_list(cmd_head);
+	ft_cleanup_cmd_list(cmd_head, paths);
 	return (ft_print_error(ERR_EXECUTOR));
 }
 

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 19:38:09 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 20:06:46 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 19:56:10 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ t_err	ft_err_parser(t_tkn_list **lst_head, t_cmd *cmd_head)
 {
 	g_status = 1;
 	ft_free_lst(lst_head);
-	ft_cleanup_cmd_list(cmd_head);
+	ft_cleanup_cmd_list(cmd_head, NULL);
 	return (ft_print_error(ERR_PARSER));
 }

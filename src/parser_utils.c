@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 19:06:38 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 20:48:03 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,9 +130,15 @@ t_err	ft_malloc_arr(char ***str, bool **b_arr, int count)
 void	ft_init_cmd(t_cmd *tmp)
 {
 	tmp->execute = true;
+	tmp->args = NULL;
 	tmp->arg_pos = 0;
+	tmp->delims = NULL;
 	tmp->delim_pos = 0;
+	tmp->hdoc_quoted = NULL;
+	tmp->heredoc = NULL;
+	tmp->outfiles = NULL;
 	tmp->out_pos = 0;
+	tmp->append_switches = NULL;
 	tmp->fd_in = -1;
 	tmp->fd_out = -1;
 	tmp->fd_pipe[0] = -1;
@@ -143,11 +149,6 @@ void	ft_init_cmd(t_cmd *tmp)
 	tmp->outfile = false;
 	tmp->index = -1;
 	tmp->cmd_num = 0;
-	tmp->heredoc = NULL;
-	tmp->args = NULL;
-	tmp->delims = NULL;
-	tmp->outfiles = NULL;
-	tmp->append_switches = NULL;
 	tmp->pid = 0;
 	tmp->next = NULL;
 }

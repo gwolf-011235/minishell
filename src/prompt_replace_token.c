@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_replace_token.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:03:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/07/21 14:57:27 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/26 20:04:25 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,15 @@
  * @param str The string for which the expanded len should be calculated.
  * @param token Char string which is going to be replaced.
  * @param replacement Char string as replacement for token.
- * @param expanded_len Pointer to size_t in which to save the len.
- * @return t_err ERR_EMPTY, SUCCESS
+ * @param expanded_len Pointer to size_t in which to save the len.S
  */
-t_err	ft_calc_replace_len(const char *str, const char *token,
+void	ft_calc_replace_len(const char *str, const char *token,
 		const char *replacement, size_t *expanded_len)
 {
 	size_t	token_len;
 	size_t	replacement_len;
 	char	*pos;
 
-	if (!str || !*str || !token || !replacement || !expanded_len)
-		return (ERR_EMPTY);
 	token_len = ft_strlen(token);
 	replacement_len = ft_strlen(replacement);
 	pos = ft_strnstr(str, token, ft_strlen(str));
@@ -50,7 +47,6 @@ t_err	ft_calc_replace_len(const char *str, const char *token,
 		pos = ft_strnstr(str, token, ft_strlen(str));
 	}
 	*expanded_len += ft_strlen(str);
-	return (SUCCESS);
 }
 
 /**
@@ -65,7 +61,7 @@ t_err	ft_calc_replace_len(const char *str, const char *token,
  * @param str Pointer to str which gets copied and expanded.
  * @param token Char string which should be replaced.
  * @param replacement Char string which is inserted instead of token.
- * @return t_err SUCCESS, ERR_EMPTY
+ * @return t_err SUCCESS
  */
 t_err	ft_expand_str(char **expanded_str, const char *str,
 		const char *token, const char *replacement)
@@ -73,8 +69,7 @@ t_err	ft_expand_str(char **expanded_str, const char *str,
 	size_t	token_len;
 	char	*pos;
 
-	if (!expanded_str || !*expanded_str || !str || !token || !replacement)
-		return (ERR_EMPTY);
+
 	token_len = ft_strlen(token);
 	pos = ft_strnstr(str, token, ft_strlen(str));
 	while (pos != NULL)
@@ -108,9 +103,7 @@ t_err	ft_replace_token(char **str, const char *token, const char *replacement)
 	t_err	err;
 
 	expanded_len = 0;
-	err = ft_calc_replace_len(*str, token, replacement, &expanded_len);
-	if (err != SUCCESS)
-		return (err);
+	ft_calc_replace_len(*str, token, replacement, &expanded_len);
 	expanded_str = malloc(expanded_len * sizeof(char) + 1);
 	if (expanded_str == NULL)
 		return (ERR_MALLOC);

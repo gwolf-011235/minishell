@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:47 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 11:35:28 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 19:55:31 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,5 @@ t_err	ft_parser(t_tkn_list **lst_head, t_cmd **cmd_head);
 
 // executor
 t_err	ft_executor(t_cmd *cmd, t_data *data);
-void	ft_cleanup_cmd_list(t_cmd *cmd);
 
 #endif
