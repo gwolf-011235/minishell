@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:16:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 20:09:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 12:58:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_handle_input(char *input, t_data *data)
 
 	lst = NULL;
 	cmd = NULL;
+	add_history(input);
 	if (ft_check_syntax(input) == ERR_SYNTAX)
 		return ;
 	if (ft_lex_input(&lst, input, &data->buf) == ERR_LEXER)
