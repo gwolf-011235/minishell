@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 19:36:09 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 19:55:04 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,18 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
 	ft_init_exec(cmd);
 	err = ft_handle_heredoc(cmd, data->env_table, data->prompt2);
 	if (err != SUCCESS)
-		return (ft_err_executor(cmd));
+		return (ft_err_executor(cmd, paths));
 	if (ft_create_pipes(cmd) == ERR_PIPE)
-		return (ft_err_executor(cmd));
+		return (ft_err_executor(cmd, paths));
 	if (ft_get_path(data->envp, &paths, &empty_path) == ERR_MALLOC)
-		return (ft_err_executor(cmd));
+		return (ft_err_executor(cmd, paths));
 	if (cmd->next == NULL)
 		err = ft_execute_scmd(cmd, paths, data, empty_path);
 	else
 		err = ft_execute_pcmds(cmd, paths, data, empty_path);
 	if (err == ERR_FORK || err == ERR_STAT || err == ERR_MALLOC)
-		return (ft_err_executor(cmd));
-	ft_cleanup_cmd_list(cmd);
+		return (ft_err_executor(cmd, paths));
+	ft_cleanup_cmd_list(cmd, paths);
 	return (SUCCESS);
 }
 

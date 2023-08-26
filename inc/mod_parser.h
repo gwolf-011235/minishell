@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 12:06:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 19:50:10 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 19:57:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,8 @@ t_err	ft_malloc_arr(char ***str, bool **b_arr, int count);
 
 // cleanup
 t_err	ft_err_parser(t_tkn_list **lst_head, t_cmd *cmd_head);
+
+//mod executor
+void	ft_cleanup_cmd_list(t_cmd *cmd, char **paths);
 
 #endif
