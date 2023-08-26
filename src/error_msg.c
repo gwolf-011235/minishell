@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 17:40:16 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 14:44:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/26 17:30:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_err	ft_print_warning2(t_err err, char *trigger)
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(trigger, 2);
 		ft_putendl_fd(": command not found", 2);
-		return (SUCCESS);
+		return (ERR_UNKNOWN_CMD);
 	}
 	else
 		return (ft_print_warning3(err, trigger));
@@ -89,7 +89,7 @@ t_err	ft_print_warning3(t_err err, char *trigger)
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(trigger, 2);
 		ft_putendl_fd(": ambiguous redirect", 2);
-		return (SUCCESS);
+		return (ERR_AMBIGUOUS);
 	}
 	else if (err == ERR_HEREDOC_OPEN)
 	{
