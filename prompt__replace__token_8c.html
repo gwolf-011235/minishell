@@ -100,9 +100,9 @@ $(document).ready(function(){initNavTree('prompt__replace__token_8c.html',''); i
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aad54224f5d44f1ef35b08f3a67ef82ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prompt__replace__token_8c.html#aad54224f5d44f1ef35b08f3a67ef82ae">ft_calc_replace_len</a> (const char *str, const char *token, const char *replacement, size_t *expanded_len)</td></tr>
-<tr class="memdesc:aad54224f5d44f1ef35b08f3a67ef82ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the len of the string, where tokens have been replaced.  <a href="prompt__replace__token_8c.html#aad54224f5d44f1ef35b08f3a67ef82ae">More...</a><br /></td></tr>
-<tr class="separator:aad54224f5d44f1ef35b08f3a67ef82ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e0d2e3fa665a43f18c78bea3122b7e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prompt__replace__token_8c.html#a7e0d2e3fa665a43f18c78bea3122b7e5">ft_calc_replace_len</a> (const char *str, const char *token, const char *replacement, size_t *expanded_len)</td></tr>
+<tr class="memdesc:a7e0d2e3fa665a43f18c78bea3122b7e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the len of the string, where tokens have been replaced.  <a href="prompt__replace__token_8c.html#a7e0d2e3fa665a43f18c78bea3122b7e5">More...</a><br /></td></tr>
+<tr class="separator:a7e0d2e3fa665a43f18c78bea3122b7e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a212eed50cd6f9a49f7ee2bcdf8f128"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prompt__replace__token_8c.html#a4a212eed50cd6f9a49f7ee2bcdf8f128">ft_expand_str</a> (char **expanded_str, const char *str, const char *token, const char *replacement)</td></tr>
 <tr class="memdesc:a4a212eed50cd6f9a49f7ee2bcdf8f128"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies str into expanded_str while replacing each token.  <a href="prompt__replace__token_8c.html#a4a212eed50cd6f9a49f7ee2bcdf8f128">More...</a><br /></td></tr>
 <tr class="separator:a4a212eed50cd6f9a49f7ee2bcdf8f128"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,14 +113,14 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Replace a token with replacement in prompt string. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="aad54224f5d44f1ef35b08f3a67ef82ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad54224f5d44f1ef35b08f3a67ef82ae">&#9670;&nbsp;</a></span>ft_calc_replace_len()</h2>
+<a id="a7e0d2e3fa665a43f18c78bea3122b7e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e0d2e3fa665a43f18c78bea3122b7e5">&#9670;&nbsp;</a></span>ft_calc_replace_len()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_calc_replace_len </td>
+          <td class="memname">void ft_calc_replace_len </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>str</em>, </td>
@@ -158,11 +158,10 @@ Functions</h2></td></tr>
     <tr><td class="paramname">str</td><td>The string for which the expanded len should be calculated. </td></tr>
     <tr><td class="paramname">token</td><td>Char string which is going to be replaced. </td></tr>
     <tr><td class="paramname">replacement</td><td>Char string as replacement for token. </td></tr>
-    <tr><td class="paramname">expanded_len</td><td>Pointer to size_t in which to save the len. </td></tr>
+    <tr><td class="paramname">expanded_len</td><td>Pointer to size_t in which to save the len.S </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_EMPTY, SUCCESS </dd></dl>
 
 </div>
 </div>
@@ -215,7 +214,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_EMPTY </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS </dd></dl>
 
 </div>
 </div>

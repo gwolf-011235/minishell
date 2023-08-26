@@ -1,7 +1,7 @@
 var minishell_8h =
 [
-    [ "ft_clean_after_loop", "minishell_8h.html#a6a46510116796aff0de418b96dde761f", null ],
-    [ "ft_clean_on_exit", "minishell_8h.html#ad92f1074bd56ce3e94557ca5f70ffd95", null ],
+    [ "ft_clean_after_loop", "minishell_8h.html#ad5433abb831955af475e729daa99c829", null ],
+    [ "ft_clean_on_exit", "minishell_8h.html#a8b104a0ec3164c0921b5cb5cbfb91612", null ],
     [ "ft_create_prompts", "minishell_8h.html#affbf65fa6d6caeec12328ef773f9ac3b", null ],
     [ "ft_env_setup", "minishell_8h.html#a3393462310ec868c0cbf29828b682b01", null ],
     [ "ft_envp_create", "minishell_8h.html#a7c69f5f4232eb01e79f1e0edd07e5b33", null ],

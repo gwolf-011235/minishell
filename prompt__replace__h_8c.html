@@ -166,7 +166,7 @@ Functions</h2></td></tr>
 
 <p>Retrieve hostname and save in provided pointer. </p>
 <p>The current hostname is saved in /proc/sys/kernel/hostname. Open this file and retrieve hostname via get_next_line(). Hostname is searched for the first '.' which is replaced by '\0'. If no '.' is found hostname is delimited by newline: Search for '<br  />
-' and replace with '\0' </p><dl class="params"><dt>Parameters</dt><dd>
+' and replace with '\0' Last get_next_line() call to empty buffer. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">replacement</td><td>Pointer pointer where to save string. </td></tr>
   </table>
