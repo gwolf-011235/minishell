@@ -210,6 +210,9 @@ Functions</h2></td></tr>
 <tr class="memitem:abe70e2c4e71fe6ffa0424869f300747b"><td class="memItemLeft" align="right" valign="top"><a id="abe70e2c4e71fe6ffa0424869f300747b"></a>
 <a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ft_err_pipe</b> (int pipes[2], char *msg)</td></tr>
 <tr class="separator:abe70e2c4e71fe6ffa0424869f300747b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d8e53324b67deaa14fc12a9ff6fe85d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell__error_8h.html#a9d8e53324b67deaa14fc12a9ff6fe85d">ft_err_execve</a> (char *exec, char **args, char **envp)</td></tr>
+<tr class="memdesc:a9d8e53324b67deaa14fc12a9ff6fe85d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper function for execve to print error.  <a href="minishell__error_8h.html#a9d8e53324b67deaa14fc12a9ff6fe85d">More...</a><br /></td></tr>
+<tr class="separator:a9d8e53324b67deaa14fc12a9ff6fe85d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9639f309095f77dc367ee6b3eea99488"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minishell__error_8h.html#a9639f309095f77dc367ee6b3eea99488">ft_print_warning</a> (<a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> err, char *trigger)</td></tr>
 <tr class="memdesc:a9639f309095f77dc367ee6b3eea99488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print warning messages depending on received indicator and trigger string.  <a href="minishell__error_8h.html#a9639f309095f77dc367ee6b3eea99488">More...</a><br /></td></tr>
 <tr class="separator:a9639f309095f77dc367ee6b3eea99488"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -363,6 +366,50 @@ __sig_atomic_t&#160;</td><td class="memItemRight" valign="bottom"><b>g_status</b
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a9d8e53324b67deaa14fc12a9ff6fe85d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d8e53324b67deaa14fc12a9ff6fe85d">&#9670;&nbsp;</a></span>ft_err_execve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ft_err_execve </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>exec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>envp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wrapper function for execve to print error. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">exec</td><td>Executable string. </td></tr>
+    <tr><td class="paramname">args</td><td>Argument string array. </td></tr>
+    <tr><td class="paramname">envp</td><td>Env string array. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a681d6c9302fd1c8c6b5ef5158d9b9a03"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a681d6c9302fd1c8c6b5ef5158d9b9a03">&#9670;&nbsp;</a></span>ft_err_stat()</h2>
 

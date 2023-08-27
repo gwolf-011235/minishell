@@ -53,6 +53,7 @@ var minishell__error_8h =
     ] ],
     [ "ft_err_chdir", "minishell__error_8h.html#a690a06b3a769d17cc3dfdff79f836224", null ],
     [ "ft_err_close", "minishell__error_8h.html#aebea169892dd86f45aa6a97bab698cd5", null ],
+    [ "ft_err_execve", "minishell__error_8h.html#a9d8e53324b67deaa14fc12a9ff6fe85d", null ],
     [ "ft_err_getcwd", "minishell__error_8h.html#a57d7e4296a846dd8d019f0a549a06cbb", null ],
     [ "ft_err_itoa", "minishell__error_8h.html#af114d63effb71f171abb396df9201e4a", null ],
     [ "ft_err_malloc", "minishell__error_8h.html#a72de3b611088c681030d23630fe96466", null ],
