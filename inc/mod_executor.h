@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/27 12:18:52 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 14:08:11 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ t_err	ft_execute_cmd(t_cmd *cmd, t_data *data, bool empty_path, char **paths);
 
 // create child processes
 t_err	ft_create_child(t_cmd *cmd, t_data *data, bool builtin);
+t_err	ft_raise_single(t_cmd *cmd, t_data *data);
 t_err	ft_raise_first(t_cmd *cmd, t_data *data, bool builtin);
 t_err	ft_raise_last(t_cmd *cmd, t_data *data, bool builtin);
 t_err	ft_raise_middle(t_cmd *cmd, t_data *data, bool builtin);
 
 // child behaviour
+void	ft_onlychild(t_cmd *cmd, t_data *data);
 void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin);
 void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin);
 void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin);

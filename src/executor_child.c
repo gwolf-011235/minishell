@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/27 10:47:52 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 14:20:09 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,39 @@
  */
 
 #include "mod_executor.h"
+
+/**
+ * @brief Single cmd forked.
+ * Assign fds to stdin and stdout.
+ * 		If fd_out exists, assign stdout with fd_out, else 1.
+ * 		if fd_in exists, assign stdin with fd_in, else with 0.
+ * Close assigned fds.
+ * Execute cmd.
+ * If builtin, execute appropriate builtin, then exit to terminate child
+ * process.
+ * @param cmd 		Current cmd being processed.
+ * @param data		Data struct containing the env.
+ * @param builtin	Bool indicating if cmd is a builtin.
+ */
+void	ft_onlychild(t_cmd *cmd, t_data *data)
+{
+	if (cmd->fd_out >= 0)
+	{
+		if (cmd->fd_in >= 0)
+			ft_replace_fd(cmd->fd_in, cmd->fd_out);
+		else
+			ft_replace_fd(0, cmd->fd_out);
+		ft_close(&cmd->fd_out);
+	}
+	else
+	{
+		if (cmd->fd_in >= 0)
+			ft_replace_fd(cmd->fd_in, 1);
+	}
+	ft_close(&cmd->fd_in);
+	ft_err_execve(cmd->args[0], cmd->args, data->envp);
+	data->loop = false;
+}
 
 /**
  * @brief First cmd of pipe.
