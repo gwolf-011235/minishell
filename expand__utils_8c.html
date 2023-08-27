@@ -112,9 +112,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aef23d275d3576325a15b4521e3b49660"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand__utils_8c.html#aef23d275d3576325a15b4521e3b49660">ft_insert_replace</a> (<a class="el" href="structs__track.html">t_track</a> *input, <a class="el" href="structs__str__info.html">t_str</a> token, <a class="el" href="structs__str__info.html">t_str</a> replace)</td></tr>
 <tr class="memdesc:aef23d275d3576325a15b4521e3b49660"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for token in input string and replace with replace.  <a href="expand__utils_8c.html#aef23d275d3576325a15b4521e3b49660">More...</a><br /></td></tr>
 <tr class="separator:aef23d275d3576325a15b4521e3b49660"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a111684c414a696714e09cb8ff428d004"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand__utils_8c.html#a111684c414a696714e09cb8ff428d004">ft_err_node</a> (<a class="el" href="structs__tok.html">t_tok</a> *token)</td></tr>
-<tr class="memdesc:a111684c414a696714e09cb8ff428d004"><td class="mdescLeft">&#160;</td><td class="mdescRight">On error while creating node frees token string.  <a href="expand__utils_8c.html#a111684c414a696714e09cb8ff428d004">More...</a><br /></td></tr>
-<tr class="separator:a111684c414a696714e09cb8ff428d004"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab047bfca7998a06e640f1086df97b684"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expand__utils_8c.html#ab047bfca7998a06e640f1086df97b684">ft_trim_single_word</a> (<a class="el" href="structs__track.html">t_track</a> *input)</td></tr>
+<tr class="memdesc:ab047bfca7998a06e640f1086df97b684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trims a tracked string of spaces.  <a href="expand__utils_8c.html#ab047bfca7998a06e640f1086df97b684">More...</a><br /></td></tr>
+<tr class="separator:ab047bfca7998a06e640f1086df97b684"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions for tracker and creating a new string with replacement. </p>
@@ -142,33 +142,6 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a111684c414a696714e09cb8ff428d004"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a111684c414a696714e09cb8ff428d004">&#9670;&nbsp;</a></span>ft_err_node()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_err_node </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structs__tok.html">t_tok</a> *&#160;</td>
-          <td class="paramname"><em>token</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>On error while creating node frees token string. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">token</td><td>Current token handled. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC </dd></dl>
 
 </div>
 </div>
@@ -284,6 +257,33 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS </dd></dl>
+
+</div>
+</div>
+<a id="ab047bfca7998a06e640f1086df97b684"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab047bfca7998a06e640f1086df97b684">&#9670;&nbsp;</a></span>ft_trim_single_word()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_trim_single_word </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structs__track.html">t_track</a> *&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trims a tracked string of spaces. </p>
+<p>If after expansion only 1 word remains, it can save be trimmed of spaces. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>Tracked string </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_NOSPLIT </dd></dl>
 
 </div>
 </div>
