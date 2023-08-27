@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 08:11:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 18:43:51 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 18:25:23 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,14 @@ void	ft_export(char **argv, t_hashtable *env_tab)
 	i = 1;
 	while (argv[i])
 	{
-		err = ft_check_and_update_env(argv[i], env_tab);
+		size = 0;
+		err = ft_get_env_keylen(argv[i], &size);
+		if (err == SUCCESS)
+			err = ft_check_and_update_env(argv[i], env_tab, size);
+		else if (err == ERR_CONCAT)
+			err = ft_concatenate(argv[i], env_tab, size);
+		else if (err == ERR_INVALID_NAME)
+			ft_export_error(err, argv[i]);
 		if (err != SUCCESS)
 			ft_export_error(err, argv[i]);
 		i++;
@@ -125,24 +132,46 @@ t_err	ft_pretty_print_envp(char **envp, size_t size)
  * @return t_err SUCCESS, ERR_INVALID_NAME, ERR_MALLOC, ERR_EMPTY,
  * ERR_HT_NO_INSERT, ERR_HT_NO_SWAP.
  */
-t_err	ft_check_and_update_env(char *str, t_hashtable *env_tab)
+t_err	ft_check_and_update_env(char *str, t_hashtable *env_tab, size_t keylen)
 {
-	size_t	keylen;
 	t_err	err;
-	char	*temp;
+	char	*tmp;
 
-	keylen = 0;
-	err = ft_get_env_keylen(str, &keylen);
+	tmp = NULL;
+	if (ft_err_strdup(str, &tmp, "minishell: malloc") == ERR_MALLOC)
+		return (ERR_MALLOC);
+	if (tmp[keylen] == '=')
+		err = ft_update_env_var(env_tab, tmp, keylen, true);
+	else
+		err = ft_update_env_var(env_tab, tmp, keylen, false);
+	if (err != SUCCESS)
+		free(tmp);
+	return (err);
+}
+
+t_err	ft_concatenate(char *env_str, t_hashtable *env_tab, size_t keylen)
+{
+	char		*concat;
+	t_env_var	*env_var;
+	t_err		err;
+
+	env_var = ft_hashtable_lookup(env_tab, env_str, keylen);
+	if (!env_var)
+	{
+		ft_eat_char2(env_str, keylen);
+		return (ft_check_and_update_env(env_str, env_tab, keylen));
+	}
+	concat = NULL;
+	if (env_var->has_value)
+		err = ft_err_strjoin(env_var->env_string, ft_strchr(env_str, '=') + 1,
+				&concat, "minishell: malloc");
+	else
+		err = ft_err_strjoin(env_var->env_string, ft_strchr(env_str, '='),
+				&concat, "minishell: malloc");
 	if (err != SUCCESS)
 		return (err);
-	temp = ft_strdup(str);
-	if (!temp)
-		return (ERR_MALLOC);
-	if (temp[keylen] == '=')
-		err = ft_update_env_var(env_tab, temp, keylen, true);
-	else
-		err = ft_update_env_var(env_tab, temp, keylen, false);
+	err = ft_hashtable_swap(env_tab, concat, keylen, true);
 	if (err != SUCCESS)
-		free(temp);
+		free(concat);
 	return (err);
 }
