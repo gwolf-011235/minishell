@@ -112,10 +112,51 @@ Functions</h2></td></tr>
 <tr class="memitem:aaae5b21f08e29f974ae77be60e89cbaf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser__fill__cmd_8c.html#aaae5b21f08e29f974ae77be60e89cbaf">ft_save_arg</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> *lst, <a class="el" href="structs__cmd.html">t_cmd</a> *new)</td></tr>
 <tr class="memdesc:aaae5b21f08e29f974ae77be60e89cbaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save token into args string array.  <a href="parser__fill__cmd_8c.html#aaae5b21f08e29f974ae77be60e89cbaf">More...</a><br /></td></tr>
 <tr class="separator:aaae5b21f08e29f974ae77be60e89cbaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5eef0d6f91ed45858736a603ed9bc2b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser__fill__cmd_8c.html#a5eef0d6f91ed45858736a603ed9bc2b4">ft_handle_ambiguous</a> (<a class="el" href="structs__tkn__list.html">t_tkn_list</a> **lst, <a class="el" href="structs__cmd.html">t_cmd</a> *new)</td></tr>
+<tr class="memdesc:a5eef0d6f91ed45858736a603ed9bc2b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set cmd to no execute if ambiguous redirect.  <a href="parser__fill__cmd_8c.html#a5eef0d6f91ed45858736a603ed9bc2b4">More...</a><br /></td></tr>
+<tr class="separator:a5eef0d6f91ed45858736a603ed9bc2b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions to fill the cmd struct. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a5eef0d6f91ed45858736a603ed9bc2b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5eef0d6f91ed45858736a603ed9bc2b4">&#9670;&nbsp;</a></span>ft_handle_ambiguous()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_handle_ambiguous </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structs__tkn__list.html">t_tkn_list</a> **&#160;</td>
+          <td class="paramname"><em>lst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
+          <td class="paramname"><em>new</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set cmd to no execute if ambiguous redirect. </p>
+<p>Needs to return SUCCESS for loop in calling funciton. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lst</td><td>List of token. </td></tr>
+    <tr><td class="paramname">new</td><td>New cmd to be filled. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS. </dd></dl>
+
+</div>
+</div>
 <a id="aaae5b21f08e29f974ae77be60e89cbaf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaae5b21f08e29f974ae77be60e89cbaf">&#9670;&nbsp;</a></span>ft_save_arg()</h2>
 
