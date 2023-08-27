@@ -152,7 +152,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Count how many words will be after splitting. </p>
-<p>Set tracker-&gt;pos to beginning of expanded part. If the pos is bigger than 0, then something is before expanded part -&gt; Set words to one and skip all spaces to get to next word. Looping through the str, delimited by expand len: If pos is 0 and str is not space incr words. If str is space but the next pos isn't incr words. If expanded part ends with space and there is still stuff incr words. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Set tracker-&gt;pos to beginning of expanded part. If the pos is bigger than 0, then something is before expanded part -&gt; Set words to one and skip all spaces to get to next word. Looping through the str, delimited by expand len: If pos is 0 and str is not space incr words. If str is space but the next pos isn't incr words. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">input</td><td>Pointer to tracker. </td></tr>
     <tr><td class="paramname">words</td><td>Pointer to where to save count: </td></tr>
@@ -233,7 +233,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Fills buffer with a piece of string. </p>
-<p>Based on <a class="el" href="lexer__tok_8c.html#ab2350d638595dca0ab50e098994f7cb4" title="Iterate through input string and step out at predefined delimiters.">ft_partition()</a>, adapted for field split. Difference: has fewer break conditions since expanded chars don't have special meaning anymore. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Based on <a class="el" href="lexer__tok_8c.html#ab2350d638595dca0ab50e098994f7cb4" title="Iterate through input string and step out at predefined delimiters.">ft_partition()</a>, adapted for field split. Difference: Check if buffer has char saved (stuff before expand) and src is at INIT_POS: If next char is space (from the expansion) the token is already finished. Fewer break conditions since expanded chars don't have special meaning. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">src</td><td>The tokenized string. </td></tr>
     <tr><td class="paramname">buf</td><td>Pointer to pre malloced buffer. </td></tr>
