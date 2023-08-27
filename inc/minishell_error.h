@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_error.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 18:54:57 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 10:46:25 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ t_err	ft_err_strjoin(const char *s1, const char *s2, char **dst, char *msg);
 t_err	ft_err_open(const char *path, int flag, int *fd, char *msg);
 t_err	ft_err_close(int fd, char *msg);
 t_err	ft_err_pipe(int pipes[2], char *msg);
+void	ft_err_execve(char *exec, char **args, char **envp);
 
 //error_msg.c
 t_err	ft_print_warning(t_err err, char *trigger);

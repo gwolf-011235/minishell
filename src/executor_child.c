@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_child.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 11:32:29 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 10:47:52 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin)
 	if (builtin)
 		ft_choose_builtin(cmd, data);
 	else
-		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
-			printf("\nexecve encountered an error\n");
+		ft_err_execve(cmd->args[0], cmd->args, data->envp);
 	data->loop = false;
 }
 
@@ -102,8 +101,7 @@ void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin)
 	if (builtin)
 		ft_choose_builtin(cmd, data);
 	else
-		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
-			printf("\nexecve encountered an error\n"); //perror
+		ft_err_execve(cmd->args[0], cmd->args, data->envp);
 	data->loop = false;
 }
 
@@ -148,8 +146,7 @@ void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin)
 	if (builtin)
 		ft_choose_builtin(cmd, data);
 	else
-		if (execve(cmd->args[0], cmd->args, data->envp) < 0)
-			printf("\nexecve encountered an error\n");
+		ft_err_execve(cmd->args[0], cmd->args, data->envp);
 	data->loop = false;
 }
 
