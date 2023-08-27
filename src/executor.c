@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/27 16:24:01 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 19:48:15 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@
  * Get PATH from envp and save it into paths.
  * If no path is found (ERR_NOPATH), try to execute
  * cmd nonetheless in the current directory.
- * 
+ *
  * If cmd list only contains one entry, call ft_execute_scmd(),
  * else call ft_execute_pcmds().
- * 
+ *
  * If one of both functions returns ERR_MALLOC, ERR_STAT or ERR_FORK,
  * print err message and exit the executor.
- * 
+ *
  * If the last executed cmd of a pipeline returns with ERR_UNKNOWN_CMD,
  * ERR_NO_DIR or ERR_DIR, set the exit status to the according value
  * as it has been overwritten by ft_wait_for_babies().
@@ -107,7 +107,8 @@ t_err	ft_execute_scmd(t_cmd *cmd, char **paths, t_data *data, bool empty_path)
 	}
 	else
 	{
-		g_status = 1;
+		if (!cmd->execute)
+			g_status = 1;
 		ft_close(&cmd->fd_in);
 		ft_close(&cmd->fd_out);
 	}
