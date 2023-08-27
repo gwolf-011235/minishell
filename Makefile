@@ -6,7 +6,7 @@
 #    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/27 12:19:37 by sqiu             ###   ########.fr        #
+#    Updated: 2023/08/27 18:32:25 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,9 +125,9 @@ SRC :=	utils_memory.c \
 		tkn_list_delete.c \
 		tkn_list_search.c \
 		signal.c \
-		error.c \
-		error2.c \
-		error3.c \
+		error_libft_wrapper.c \
+		error_syscall_wrapper2.c \
+		error_syscall_wrapper.c \
 		error_msg.c \
 		init.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))

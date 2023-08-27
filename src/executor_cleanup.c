@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/27 16:52:58 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 18:40:51 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ t_err	ft_plug_pipe(int *pipe_in, int *pipe_out)
 }
 
 /**
- * @brief
+ * @brief Closes all pipes of cmd list.
  *
- * @param cmd
+ * @param cmd Head of cmd list.
  */
 void	ft_plug_all_pipes(t_cmd *cmd)
 {

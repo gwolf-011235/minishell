@@ -6,9 +6,14 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 17:40:16 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 18:03:34 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 18:21:33 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * @file error_msg.c
+ * @brief Functions to print error warnings and messages.
+ */
 
 #include "minishell_error.h"
 #include "libft.h"

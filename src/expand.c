@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 16:54:52 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 18:46:01 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,10 @@
 /**
  * @brief Loop through token list and expand content.
  *
- * Depending on type of token perform expansions:
- * Redirect: tilde and dollar expand, quote removal, flag if AMBIGUOUS.
- * Heredoc: quote removal.
- * Assign: tilde after = and dollar expand, quote removal, set type to ARG.
- * Arg: tilde and dollar expand, field split, quote removal, flag if DELETE.
- * Loop through with tmp. Since the list itself can change (new nodes added after
- * field split) the head pointer needs to be updated after loop.
+ * Loop through token list with tmp and choose expand function with
+ * ft_expand_router(). Since the list itself can change
+ * (new nodes added after field split) the head pointer needs to be 
+ * updated after each loop.
  * At the end deletes all nodes of type DELETE.
  * @param head Pointer pointer to head of list.
  * @param env_table Environment.
@@ -49,6 +46,20 @@ t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table, t_buf *buf)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Chooses correct funtion depending on type.
+ * 
+ * Depending on type of token perform expansions:
+ * Redirect: tilde and dollar expand, quote removal, flag if AMBIGUOUS.
+ * Heredoc: quote removal.
+ * Assign: tilde after = and dollar expand, quote removal, set type to ARG.
+ * Arg: tilde and dollar expand, field split, quote removal, flag if DELETE.
+ * @param tmp 			Current node.
+ * @param type 			Type of current node.
+ * @param env_table 	Env.
+ * @param buf 			Buffer.
+ * @return t_err 		ERR_MALLOC, SUCCESS
+ */
 t_err	ft_expand_router(t_tkn_list **tmp, t_type type, t_hashtable *env_table,
 	t_buf *buf)
 {

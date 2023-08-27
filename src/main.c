@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 22:32:31 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 18:48:34 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 
 __sig_atomic_t	g_status;
 
+/**
+ * @brief Prepares each new loop of shell prompt.
+ * 
+ * @param data 		Overarching struct containing env.
+ * @param input 	Input string formerly freed to be initiated to NULL.
+ */
 void	ft_prep_new_loop(t_data *data, char **input)
 {
 	ft_signal_setup(SIGQUIT, SIG_IGNORE);
