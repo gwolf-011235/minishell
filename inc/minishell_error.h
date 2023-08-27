@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 16:44:27 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 16:59:52 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,58 +39,106 @@ extern __sig_atomic_t	g_status;
  *
  * To standardize errors, all codes are stored in this enum. It can be used
  * as return type for functions to have uniform error codes.
- *
+ * @param 	SUCCESS, ///< All went well.
+ * @param	ERR_MALLOC, ///< Malloc failed.
+ * @param	ERR_UNDEFINED, ///< Something happened which shouldn't.
+ * @param	ERR_HT_NO_INSERT, ///< ft_hashtable_insert() could not insert.
+ * @param	ERR_HT_NO_DELETE, ///< ft_hashtable_delete() could not delete.
+ * @param	ERR_HT_NO_SWAP, ///< ft_hashtable_swap() didn't find element.
+ * @param	ERR_EMPTY, ///< One or more passed params are empty.
+ * @param 	ERR_CWD_BUF, ///< Buffer size for cwd was too small.
+ * @param	ERR_CWD_FAIL, ///< function getcwd failed.
+ * @param	ERR_NO_SHLVL, ///< ft_increment_shlvl didn't find SHLVL.
+ * @param	ERR_OUT_OF_BOUNDS, ///< A parameter has exceeded the allowed range.
+ * @param	ERR_WRONG_TOKEN, ///< A prompt substitution was not recognized.
+ * @param	ERR_SYNTAX = 2, ///< Syntax error with quotes, pipes or redirect.
+ * @param	ERR_NOT_FOUND, ///< If a search failed.
+ * @param	ERR_NO_HOME, /// HOME not set.
+ * @param	ERR_NO_OLDPWD, /// OLDPWD not set.
+ * @param	ERR_NOEXPAND, ///< Expansion of a token failed.
+ * @param	ERR_CLOSE, ///< Closing fd failed.
+ * @param	ERR_ARGCOUNT, ///< Too many arguments where counted.
+ * @param	ERR_CHDIR_FAIL, ///< function chdir() failed.
+ * @param	ERR_INVALID_NAME, ///< Not a valid env name.
+ * @param	ERR_NONUM, ///< The string doesn't represent a number.
+ * @param	ERR_EXIT, ///< ft_exit() failed because of too many args.
+ * @param	ERR_PIPE, ///< Piping failed.
+ * @param	ERR_UNKNOWN_CMD, ///< Command not found.
+ * @param	ERR_NOPATH, ///< No path found.
+ * @param	ERR_FORK, ///< Failure to fork.
+ * @param	ERR_DUPL, ///< Error while duplicating file descriptor.
+ * @param	ERR_EXECVE, ///< Execve encountered an error.
+ * @param	ERR_WAIT, ///< Error while waiting for exit status of child process.
+ * @param	ERR_NOSPLIT, ///< ft_field_split() didnt split.
+ * @param	ERR_OPEN, ///< open() failed.
+ * @param	ERR_SIGNAL, ///< Setup of signal handler failed.
+ * @param	ERR_NO_INPUT, ///< Input is empty.
+ * @param	ERR_ABORT, ///< Abort pipeline.
+ * @param	ERR_HEREDOC_EOF, ///< Heredoc stopped by Ctrl+D
+ * @param	ERR_WRITE, ///< Syscall write failed.
+ * @param	ERR_DIR, ///< Cmd is a directory.
+ * @param	ERR_NO_DIR, ///< Directory or file not found
+ * @param	ERR_STAT, ///< stat() failed.
+ * @param	ERR_LEXER, ///< Error while lexing.
+ * @param	ERR_EXPANDER, ///< Error while expanding.
+ * @param	ERR_PARSER, ///< Error while parsing.
+ * @param	ERR_AMBIGUOUS, ///< Ambiguous redirect after expand.
+ * @param	ERR_HEREDOC_OPEN, ///< Error while opening heredoc.
+ * @param	ERR_EXECUTOR, ///< Error while executing.
+ * @param	ERR_IS_CHILD,///< Process is a child.
+ * @param	ERR_PERM_DENIED, ///< No executable rights.
  */
+
 typedef enum e_error {
 	ERR_EOF = -1,
-	SUCCESS, ///< All went well.
-	ERR_MALLOC, ///< Malloc failed.
-	ERR_UNDEFINED, ///< Something happened which shouldn't.
-	ERR_HT_NO_INSERT, ///< ft_hashtable_insert() could not insert.
-	ERR_HT_NO_DELETE, ///< ft_hashtable_delete() could not delete.
-	ERR_HT_NO_SWAP, ///< ft_hashtable_swap() didn't find element.
-	ERR_EMPTY, ///< One or more passed params are empty.
-	ERR_CWD_BUF, ///< Buffer size for cwd was too small.
-	ERR_CWD_FAIL, ///< function getcwd failed.
-	ERR_NO_SHLVL, ///< ft_increment_shlvl didn't find SHLVL.
-	ERR_OUT_OF_BOUNDS, ///< A parameter has exceeded the allowed range.
-	ERR_WRONG_TOKEN, ///< A prompt substitution was not recognized.
-	ERR_SYNTAX = 2, ///< Syntax error with quotes, pipes or redirect.
-	ERR_NOT_FOUND, ///< If a search failed.
-	ERR_NO_HOME, /// HOME not set.
-	ERR_NO_OLDPWD, /// OLDPWD not set.
-	ERR_NOEXPAND, ///< Expansion of a token failed.
-	ERR_CLOSE, ///< Closing fd failed.
-	ERR_ARGCOUNT, ///< Too many arguments where counted.
-	ERR_CHDIR_FAIL, ///< function chdir() failed.
-	ERR_INVALID_NAME, ///< Not a valid env name.
-	ERR_NONUM, ///< The string doesn't represent a number.
-	ERR_EXIT, ///< ft_exit() failed because of too many args.
-	ERR_PIPE, ///< Piping failed.
-	ERR_UNKNOWN_CMD, ///< Command not found.
-	ERR_NOPATH, ///< No path found.
-	ERR_FORK, ///< Failure to fork.
-	ERR_DUPL, ///< Error while duplicating file descriptor.
-	ERR_EXECVE, ///< Execve encountered an error.
-	ERR_WAIT, ///< Error while waiting for exit status of child process.
-	ERR_NOSPLIT, ///< ft_field_split() didnt split.
-	ERR_OPEN, ///< open() failed.
-	ERR_SIGNAL, ///< Setup of signal handler failed.
-	ERR_NO_INPUT, ///< Input is empty.
-	ERR_ABORT, ///< Abort pipeline.
-	ERR_HEREDOC_EOF, ///< Heredoc stopped by Ctrl+D
-	ERR_WRITE, ///< Syscall write failed.
-	ERR_DIR, ///< Cmd is a directory.
-	ERR_NO_DIR, ///< Directory or file not found
-	ERR_STAT, ///< stat() failed.
-	ERR_LEXER, ///< Error while lexing.
-	ERR_EXPANDER, ///< Error while expanding.
-	ERR_PARSER, ///< Error while parsing.
-	ERR_AMBIGUOUS, ///< Ambiguous redirect after expand.
-	ERR_HEREDOC_OPEN, ///< Error while opening heredoc.
-	ERR_EXECUTOR, ///< Error while executing.
-	ERR_IS_CHILD,///< Process is a child.
-	ERR_PERM_DENIED, ///< No executable rights.
+	SUCCESS, 
+	ERR_MALLOC,
+	ERR_UNDEFINED, 
+	ERR_HT_NO_INSERT, 
+	ERR_HT_NO_DELETE,
+	ERR_HT_NO_SWAP, 
+	ERR_EMPTY, 
+	ERR_CWD_BUF, 
+	ERR_CWD_FAIL,
+	ERR_NO_SHLVL, 
+	ERR_OUT_OF_BOUNDS, 
+	ERR_WRONG_TOKEN,
+	ERR_SYNTAX = 2,
+	ERR_NOT_FOUND,
+	ERR_NO_HOME,
+	ERR_NO_OLDPWD,
+	ERR_NOEXPAND,
+	ERR_CLOSE,
+	ERR_ARGCOUNT,
+	ERR_CHDIR_FAIL,
+	ERR_INVALID_NAME,
+	ERR_NONUM, 
+	ERR_EXIT, 
+	ERR_PIPE, 
+	ERR_UNKNOWN_CMD,
+	ERR_NOPATH,
+	ERR_FORK,
+	ERR_DUPL, 
+	ERR_EXECVE, 
+	ERR_WAIT, 
+	ERR_NOSPLIT, 
+	ERR_OPEN,
+	ERR_SIGNAL,
+	ERR_NO_INPUT,
+	ERR_ABORT, 
+	ERR_HEREDOC_EOF,
+	ERR_WRITE, 
+	ERR_DIR,
+	ERR_NO_DIR, 
+	ERR_STAT,
+	ERR_LEXER,
+	ERR_EXPANDER,
+	ERR_PARSER,
+	ERR_AMBIGUOUS,
+	ERR_HEREDOC_OPEN, 
+	ERR_EXECUTOR,
+	ERR_IS_CHILD,
+	ERR_PERM_DENIED,
 }	t_err;
 
 /* ====== Functions ====== */
@@ -118,6 +166,5 @@ t_err	ft_print_warning(t_err err, char *trigger);
 t_err	ft_print_warning2(t_err err, char *trigger);
 t_err	ft_print_warning3(t_err err, char *trigger);
 t_err	ft_print_error(t_err err);
-
 
 #endif

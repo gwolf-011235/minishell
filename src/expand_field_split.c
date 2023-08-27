@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_field_split.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:57 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 12:16:29by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 16:54:20 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
  * @file expand_field_split.c
  * @brief Functions to perform field splitting on expanded parts of str.
  */
+
 #include "mod_expand.h"
 
 /**

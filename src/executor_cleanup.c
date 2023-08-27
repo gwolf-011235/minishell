@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_cleanup.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:11:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 20:48:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 16:52:58 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,3 @@ void	ft_plug_all_pipes(t_cmd *cmd)
 		cmd = cmd->next;
 	}
 }
-

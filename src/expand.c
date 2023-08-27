@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 13:25:06 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 16:54:52 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table, t_buf *buf)
 	return (SUCCESS);
 }
 
-t_err	ft_expand_router(t_tkn_list **tmp, t_type type, t_hashtable *env_table, t_buf *buf)
+t_err	ft_expand_router(t_tkn_list **tmp, t_type type, t_hashtable *env_table,
+	t_buf *buf)
 {
 	t_err	err;
 
@@ -82,4 +83,3 @@ t_err	ft_expand_err(t_tkn_list **lst_head)
 	ft_free_lst(lst_head);
 	return (ft_print_error(ERR_EXPANDER));
 }
-

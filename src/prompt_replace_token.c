@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_replace_token.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:03:52 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 20:04:25 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 16:53:26 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ t_err	ft_expand_str(char **expanded_str, const char *str,
 {
 	size_t	token_len;
 	char	*pos;
-
 
 	token_len = ft_strlen(token);
 	pos = ft_strnstr(str, token, ft_strlen(str));
