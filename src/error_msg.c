@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 17:40:16 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 17:30:48 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 16:08:51 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,14 @@ t_err	ft_print_warning3(t_err err, char *trigger)
 		ft_putstr_fd(trigger, 2);
 		ft_putendl_fd(": could not create heredoc", 2);
 		return (ERR_HEREDOC_OPEN);
+	}
+	else if (err == ERR_PERM_DENIED)
+	{
+		g_status = 126;
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(trigger, 2);
+		ft_putendl_fd(": Permission denied", 2);
+		return (ERR_PERM_DENIED);
 	}
 	return (SUCCESS);
 }

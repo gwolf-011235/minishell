@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 12:16:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/27 12:28:30 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 16:49:31 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,21 @@ void	ft_set_exit_status(t_err err)
 {
 	if (err == ERR_UNKNOWN_CMD || err == ERR_NO_DIR)
 		g_status = 127;
-	else if (err == ERR_DIR)
+	else if (err == ERR_DIR || err == ERR_PERM_DENIED)
 		g_status = 126;
+}
+
+/**
+ * @brief Checks if passed path has permission to be executed.
+ * 
+ * @param rtrn 		Passed path.
+ * @param args 		String array of args.
+ * @return t_err 	ERR_PERM_DENIED, SUCCESS
+ */
+t_err	ft_check_permission(char *path, char **args)
+{
+	if (access(path, X_OK) == 0)
+		return (SUCCESS);
+	else
+		return (ft_print_warning(ERR_PERM_DENIED, args[0]));
 }

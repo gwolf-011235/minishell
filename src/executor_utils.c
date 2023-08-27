@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/27 11:41:41 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 16:49:39 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
  * @param cmd_paths 	String array of paths.
  * @param empty_path	Boolean to determine if PATH contained empty paths.
  * @return t_err 		ERR_MALLOC, ERR_STAT, ERR_UNKNOWN_CMD, ERR_DIR, 
- * 						ERR_NO_DIR, SUCCESS
+ * 						ERR_NO_DIR, ERR_PERM_DENIED SUCCESS
  */
 t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path)
 {
@@ -55,9 +55,11 @@ t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path)
 	if (args[0][0] == '/' || !ft_strncmp(args[0], "./", 2)
 		|| !ft_strncmp(args[0], "../", 3) || !cmd_paths || empty_path)
 	{
-		if (access(*args, F_OK | X_OK) == 0)
+		if (access(*args, X_OK) == 0)
 			return (SUCCESS);
-		if (empty_path)
+		else if (!empty_path)
+			return (ft_print_warning(ERR_PERM_DENIED, *args));
+		else
 			err = ft_prefix_path(args, cmd_paths);
 	}
 	else
@@ -73,7 +75,7 @@ t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path)
  * returned.
  * @param args 			String array containing executable in first position.
  * @param cmd_paths 	String array of paths.
- * @return t_err 		ERR_UNKNOWN_CMD, ERR_MALLOC, SUCCESS
+ * @return t_err 		ERR_PERM_DENIED, ERR_UNKNOWN_CMD, ERR_MALLOC, SUCCESS
  */
 t_err	ft_prefix_path(char **args, char **cmd_paths)
 {
@@ -90,11 +92,11 @@ t_err	ft_prefix_path(char **args, char **cmd_paths)
 		free(tmp);
 		if (!rtrn)
 			return (ERR_MALLOC);
-		if (access(rtrn, F_OK | X_OK) == 0)
+		if (access(rtrn, F_OK) == 0)
 		{
 			free(*args);
 			*args = rtrn;
-			return (SUCCESS);
+			return (ft_check_permission(rtrn, args));
 		}
 		free(rtrn);
 		cmd_paths++;

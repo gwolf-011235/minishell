@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/27 12:27:30 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 16:24:01 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
 		err = ft_execute_pcmds(cmd, paths, data, empty_path);
 	if (err == ERR_FORK || err == ERR_STAT || err == ERR_MALLOC)
 		return (ft_err_executor(cmd, paths));
-	if (err == ERR_UNKNOWN_CMD || err == ERR_NO_DIR || err == ERR_DIR)
+	if (err == ERR_UNKNOWN_CMD || err == ERR_NO_DIR || err == ERR_DIR
+		|| err == ERR_PERM_DENIED)
 		ft_set_exit_status(err);
 	ft_cleanup_cmd_list(cmd, paths);
 	return (SUCCESS);

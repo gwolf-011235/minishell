@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 10:46:25 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 16:44:27 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ typedef enum e_error {
 	ERR_AMBIGUOUS, ///< Ambiguous redirect after expand.
 	ERR_HEREDOC_OPEN, ///< Error while opening heredoc.
 	ERR_EXECUTOR, ///< Error while executing.
-	ERR_IS_CHILD ///< Process is a child.
+	ERR_IS_CHILD,///< Process is a child.
+	ERR_PERM_DENIED, ///< No executable rights.
 }	t_err;
 
 /* ====== Functions ====== */

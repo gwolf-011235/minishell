@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/27 14:08:11 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 16:47:41 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	ft_open_outfile(t_cmd *cmd);
 void	ft_loop_thru_outfiles(t_cmd *cmd);
 t_err	ft_check_dir(char **args);
 void	ft_set_exit_status(t_err err);
+t_err	ft_check_permission(char *rtrn, char **args);
 
 // builtins
 bool	ft_check_builtin(char *arg);
