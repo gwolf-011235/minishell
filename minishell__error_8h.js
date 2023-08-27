@@ -68,5 +68,6 @@ var minishell__error_8h =
     [ "ft_print_warning", "minishell__error_8h.html#a9639f309095f77dc367ee6b3eea99488", null ],
     [ "ft_print_warning2", "minishell__error_8h.html#a4c79d33249b0a5068aad96937b4e32fa", null ],
     [ "ft_print_warning3", "minishell__error_8h.html#a8febab1edb3a7e77ccde0666fb2d6f49", null ],
+    [ "ft_print_warning_message", "minishell__error_8h.html#a7a8e6548146a50bc755c174558061662", null ],
     [ "g_status", "minishell__error_8h.html#ae2f3205dabe8fdecb86bf673258a2f27", null ]
 ];
