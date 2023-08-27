@@ -112,8 +112,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a351c15ba9926b6d35975d3de4f90c47c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__export_8c.html#a351c15ba9926b6d35975d3de4f90c47c">ft_check_and_update_env</a> (char *str, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_tab, size_t keylen)</td></tr>
 <tr class="memdesc:a351c15ba9926b6d35975d3de4f90c47c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check env_str for valid key. If so update environment.  <a href="builtin__export_8c.html#a351c15ba9926b6d35975d3de4f90c47c">More...</a><br /></td></tr>
 <tr class="separator:a351c15ba9926b6d35975d3de4f90c47c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade369700fe2ecd1f178328d5f6ad4772"><td class="memItemLeft" align="right" valign="top"><a id="ade369700fe2ecd1f178328d5f6ad4772"></a>
-<a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ft_concatenate</b> (char *env_str, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_tab, size_t keylen)</td></tr>
+<tr class="memitem:ade369700fe2ecd1f178328d5f6ad4772"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__export_8c.html#ade369700fe2ecd1f178328d5f6ad4772">ft_concatenate</a> (char *env_str, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_tab, size_t keylen)</td></tr>
+<tr class="memdesc:ade369700fe2ecd1f178328d5f6ad4772"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenates string to existing var.  <a href="builtin__export_8c.html#ade369700fe2ecd1f178328d5f6ad4772">More...</a><br /></td></tr>
 <tr class="separator:ade369700fe2ecd1f178328d5f6ad4772"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -163,6 +163,51 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ade369700fe2ecd1f178328d5f6ad4772"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade369700fe2ecd1f178328d5f6ad4772">&#9670;&nbsp;</a></span>ft_concatenate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_concatenate </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>env_str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
+          <td class="paramname"><em>env_tab</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>keylen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Concatenates string to existing var. </p>
+<p>Check if var exists, if not insert it. Needs to get rid of '+' in env_str. If the var exists check if it has value. If value ft_strjoin() the existing env_str with the position after the '=' If no value take position on the '='. Swap the variable with the new env_str. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">env_str</td><td>Env string which values should be concatenated. </td></tr>
+    <tr><td class="paramname">env_tab</td><td>Environment. </td></tr>
+    <tr><td class="paramname">keylen</td><td>Len of key of env </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err SUCCESS, ERR_MALLOC, ERR_HT_NO_SWAP </dd></dl>
+
+</div>
+</div>
 <a id="aaa83da0dd52b26c86b93a33eda7167db"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaa83da0dd52b26c86b93a33eda7167db">&#9670;&nbsp;</a></span>ft_export()</h2>
 
@@ -190,7 +235,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Export a variable into environment. </p>
-<p>Check arg size with <a class="el" href="builtin__utils_8c.html#adf565e56eb570140d2d580cc09a8eaa4" title="Calc the size of an NULL terminated array.">ft_get_array_size()</a>. If no arg is given <a class="el" href="builtin__export_8c.html#a089fa9ff610a4b07f4413f7006285185" title="Print ASCII sorted environment.">ft_print_env_sorted()</a>. Save_err is set to SUCCESS. For all args try to insert them into environment with <a class="el" href="builtin__export_8c.html#a351c15ba9926b6d35975d3de4f90c47c" title="Check env_str for valid key. If so update environment.">ft_check_and_update_env()</a>. If error is encountered print error with <a class="el" href="builtin__error_8c.html#a341e1968293f538afed578cb4cee1b80" title="Handle error of ft_export().">ft_export_error()</a> and save error code. Continue for all other args. At the end return saved error </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Check arg size with <a class="el" href="builtin__utils_8c.html#adf565e56eb570140d2d580cc09a8eaa4" title="Calc the size of an NULL terminated array.">ft_get_array_size()</a>. If no arg is given <a class="el" href="builtin__export_8c.html#a089fa9ff610a4b07f4413f7006285185" title="Print ASCII sorted environment.">ft_print_env_sorted()</a>. Check env keylen of the given string. If legal key insert variable. If legal key and concatenate try to concatenate. If not legal report error. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">argv</td><td>NULL terminated args. </td></tr>
     <tr><td class="paramname">env_tab</td><td>Environment. </td></tr>
