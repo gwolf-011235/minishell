@@ -32,12 +32,8 @@ var menudata={children:[
 {text:"All",url:"globals.html",children:[
 {text:"e",url:"globals.html#index_e"},
 {text:"f",url:"globals_f.html#index_f"},
-{text:"s",url:"globals_s.html#index_s"},
 {text:"t",url:"globals_t.html#index_t"}]},
 {text:"Functions",url:"globals_func.html",children:[
 {text:"f",url:"globals_func.html#index_f"}]},
 {text:"Typedefs",url:"globals_type.html"},
-{text:"Enumerations",url:"globals_enum.html"},
-{text:"Enumerator",url:"globals_eval.html",children:[
-{text:"e",url:"globals_eval.html#index_e"},
-{text:"s",url:"globals_eval.html#index_s"}]}]}]}]}
+{text:"Enumerations",url:"globals_enum.html"}]}]}]}

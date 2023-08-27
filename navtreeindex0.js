@@ -154,12 +154,10 @@ var NAVTREEINDEX0 =
 "globals.html":[1,1,0],
 "globals.html":[1,1,0,0],
 "globals_enum.html":[1,1,3],
-"globals_eval.html":[1,1,4],
 "globals_f.html":[1,1,0,1],
-"globals_func.html":[1,1,1,0],
 "globals_func.html":[1,1,1],
-"globals_s.html":[1,1,0,2],
-"globals_t.html":[1,1,0,3],
+"globals_func.html":[1,1,1,0],
+"globals_t.html":[1,1,0,2],
 "globals_type.html":[1,1,2],
 "handle__input_8c.html":[1,0,33],
 "handle__input_8c.html#afab2c43faa83f3503535f99f8404169d":[1,0,33,0],
@@ -249,5 +247,7 @@ var NAVTREEINDEX0 =
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a1eda55e3f81908b49d5643ab15db0770":[1,0,44,1,44],
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a3cfe3eff41c31f8283d57f835269a958":[1,0,44,1,14],
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a3da755970fe3ecf3630c15029f5b0517":[1,0,44,1,17],
-"minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a43f9e208f2ea10d501bd49791594abc7":[1,0,44,1,9]
+"minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a43f9e208f2ea10d501bd49791594abc7":[1,0,44,1,9],
+"minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a4488b85575df5d5fd846dc13029e64e4":[1,0,44,1,22],
+"minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a495247f86f2d33551142fd94a74eeae1":[1,0,44,1,11]
 };
