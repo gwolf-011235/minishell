@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:51:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 12:47:41 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 17:05:36 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_err	ft_copy_environ_str(t_hashtable *env_table, char *environ_str)
 	t_err	err;
 
 	keylen = 0;
-	if (ft_get_env_keylen(environ_str, &keylen) == ERR_INVALID_NAME)
+	if (ft_get_env_keylen(environ_str, &keylen) != SUCCESS)
 		return (ERR_INVALID_NAME);
 	env_str = NULL;
 	if (ft_err_strdup(environ_str, &env_str,

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:07:27 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 22:50:48 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 17:06:00 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_unset(char **argv, t_hashtable *env_tab)
 	while (argv[i])
 	{
 		size = 0;
-		if (ft_get_env_keylen(argv[i], &size) == ERR_INVALID_NAME)
+		if (ft_get_env_keylen(argv[i], &size) != SUCCESS)
 		{
 			i++;
 			continue ;

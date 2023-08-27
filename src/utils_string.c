@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:22:18 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 18:50:36 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 18:52:31 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ bool	ft_isspace(char c)
 
 /**
  * @brief Check if string is empty.
- * 
+ *
  * @param s 		String to be checked.
  * @return true 	Is empty.
  * @return false 	Is not empty.
@@ -108,4 +108,19 @@ bool	ft_isempty_str(const char *s)
 		s++;
 	}
 	return (true);
+}
+
+/**
+ * @brief Swap two string pointers.
+ *
+ * @param str1 First string.
+ * @param str2 Second string.
+ */
+void	ft_swap(char **str1, char **str2)
+{
+	char	*temp;
+
+	temp = *str1;
+	*str1 = *str2;
+	*str2 = temp;
 }

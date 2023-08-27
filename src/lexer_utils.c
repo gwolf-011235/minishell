@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:40:18 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/11 11:10:47 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 17:58:33 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ bool	ft_is_env_assign(char *str)
 		return (false);
 	while (ft_isalnum(str[i]) || str[i] == '_')
 		i++;
-	if (str[i] != '=')
-		return (false);
-	return (true);
+	if (str[i] == '=' || (str[i] == '+' && str[i + 1] == '='))
+		return (true);
+	return (false);
 }
 
 /**

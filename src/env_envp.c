@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 18:09:38 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 16:00:24 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 16:57:26 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_envp_create(t_hashtable *ht, char ***envp)
  * @brief Create envp of all elements
  *
  * See also ft_envp_create().
- * Difference: includes all elements of hashtable.
+ * Difference: includes all exported elements of hashtable.
  * Malloc char array of num_elements of hashtable plus 1 for terminator.
  * Fetch all elements with ft_envp_fill() with switch set to true.
  * @param ht Environment from which to copy.
