@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 08:11:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 18:25:23 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 19:01:02 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
  *
  * Check arg size with ft_get_array_size().
  * If no arg is given ft_print_env_sorted().
- * Save_err is set to SUCCESS. For all args try to insert them into environment
- * with ft_check_and_update_env(). If error is encountered print error with
- * ft_export_error() and save error code. Continue for all other args.
- * At the end return saved error
+ * Check env keylen of the given string.
+ * If legal key insert variable.
+ * If legal key and concatenate try to concatenate.
+ * If not legal report error.
  * @param argv NULL terminated args.
  * @param env_tab Environment.
  */
@@ -149,6 +149,19 @@ t_err	ft_check_and_update_env(char *str, t_hashtable *env_tab, size_t keylen)
 	return (err);
 }
 
+/**
+ * @brief Concatenates string to existing var.
+ *
+ * Check if var exists, if not insert it. Needs to get rid of '+' in env_str.
+ * If the var exists check if it has value.
+ * If value ft_strjoin() the existing env_str with the position after the '='
+ * If no value take position on the '='.
+ * Swap the variable with the new env_str.
+ * @param env_str Env string which values should be concatenated.
+ * @param env_tab Environment.
+ * @param keylen Len of key of env
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_HT_NO_SWAP
+ */
 t_err	ft_concatenate(char *env_str, t_hashtable *env_tab, size_t keylen)
 {
 	char		*concat;
