@@ -103,10 +103,51 @@ Functions</h2></td></tr>
 <tr class="memitem:ad22032ae67355edef1add9d713230ff0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__utils3_8c.html#ad22032ae67355edef1add9d713230ff0">ft_set_exit_status</a> (<a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> err)</td></tr>
 <tr class="memdesc:ad22032ae67355edef1add9d713230ff0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets exit status if last cmd of a pipeline exited with ERR_UNKNOWN_CMD, ERR_NO_DIR or ERR_DIR.  <a href="executor__utils3_8c.html#ad22032ae67355edef1add9d713230ff0">More...</a><br /></td></tr>
 <tr class="separator:ad22032ae67355edef1add9d713230ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b4b867c037a2f4df1a65fcafd0b1f11"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__utils3_8c.html#a7b4b867c037a2f4df1a65fcafd0b1f11">ft_check_permission</a> (char *path, char **args)</td></tr>
+<tr class="memdesc:a7b4b867c037a2f4df1a65fcafd0b1f11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if passed path has permission to be executed.  <a href="executor__utils3_8c.html#a7b4b867c037a2f4df1a65fcafd0b1f11">More...</a><br /></td></tr>
+<tr class="separator:a7b4b867c037a2f4df1a65fcafd0b1f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Helper functions for executor. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a7b4b867c037a2f4df1a65fcafd0b1f11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b4b867c037a2f4df1a65fcafd0b1f11">&#9670;&nbsp;</a></span>ft_check_permission()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_check_permission </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if passed path has permission to be executed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rtrn</td><td>Passed path. </td></tr>
+    <tr><td class="paramname">args</td><td>String array of args. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_PERM_DENIED, SUCCESS </dd></dl>
+
+</div>
+</div>
 <a id="ad22032ae67355edef1add9d713230ff0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad22032ae67355edef1add9d713230ff0">&#9670;&nbsp;</a></span>ft_set_exit_status()</h2>
 

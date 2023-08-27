@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a4488b85575df5d5fd846dc13029e64e4":[1,0,44,1,22],
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a495247f86f2d33551142fd94a74eeae1":[1,0,44,1,11],
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a5a0d2a6d70b1942e50b5cc6a083ca42d":[1,0,44,1,23],
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a5bb280b3fe12d695d5a7c158f93eb603":[1,0,44,1,3],
@@ -8,6 +9,7 @@ var NAVTREEINDEX1 =
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a7235954be32cd0166432c3f7a5d61bb5":[1,0,44,1,32],
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a73a8de1f5441887d3128f3bfdf0d16bb":[1,0,44,1,45],
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a79521b24be889f70d9195113b07bd91c":[1,0,44,1,41],
+"minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a795fe26be993da418cfa419fd7d741cb":[1,0,44,1,48],
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a79cf6f047175e478c013c50c3c4e0187":[1,0,44,1,35],
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a7a452b77377c48b3d7b8972797c2e947":[1,0,44,1,27],
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a7b2c2fd2edcf9479181e72ee6ef6fffc":[1,0,44,1,37],
