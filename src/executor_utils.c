@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/27 16:49:39 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 19:33:16 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
  * @param args 			String array containing executable in first position.
  * @param cmd_paths 	String array of paths.
  * @param empty_path	Boolean to determine if PATH contained empty paths.
- * @return t_err 		ERR_MALLOC, ERR_STAT, ERR_UNKNOWN_CMD, ERR_DIR, 
+ * @return t_err 		ERR_MALLOC, ERR_STAT, ERR_UNKNOWN_CMD, ERR_DIR,
  * 						ERR_NO_DIR, ERR_PERM_DENIED SUCCESS
  */
 t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path)
@@ -55,12 +55,12 @@ t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path)
 	if (args[0][0] == '/' || !ft_strncmp(args[0], "./", 2)
 		|| !ft_strncmp(args[0], "../", 3) || !cmd_paths || empty_path)
 	{
-		if (access(*args, X_OK) == 0)
-			return (SUCCESS);
-		else if (!empty_path)
-			return (ft_print_warning(ERR_PERM_DENIED, *args));
-		else
+		if (access(*args, F_OK) == 0)
+			return (ft_check_permission(*args, args));
+		else if (empty_path)
 			err = ft_prefix_path(args, cmd_paths);
+		else
+			return (ft_print_warning(ERR_UNKNOWN_CMD, *args));
 	}
 	else
 		err = ft_prefix_path(args, cmd_paths);
