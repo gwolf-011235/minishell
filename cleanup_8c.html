@@ -103,16 +103,90 @@ Functions</h2></td></tr>
 <tr class="memitem:a263fef06d5a379d7b7a8098c877acdc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cleanup_8c.html#a263fef06d5a379d7b7a8098c877acdc2">ft_free_str_arr</a> (char **arr)</td></tr>
 <tr class="memdesc:a263fef06d5a379d7b7a8098c877acdc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a NULL-terminated string array and its strings.  <a href="cleanup_8c.html#a263fef06d5a379d7b7a8098c877acdc2">More...</a><br /></td></tr>
 <tr class="separator:a263fef06d5a379d7b7a8098c877acdc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5433abb831955af475e729daa99c829"><td class="memItemLeft" align="right" valign="top"><a id="ad5433abb831955af475e729daa99c829"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ft_clean_after_loop</b> (char **input, <a class="el" href="structs__data.html">t_data</a> *data)</td></tr>
+<tr class="memitem:ad5433abb831955af475e729daa99c829"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cleanup_8c.html#ad5433abb831955af475e729daa99c829">ft_clean_after_loop</a> (char **input, <a class="el" href="structs__data.html">t_data</a> *data)</td></tr>
+<tr class="memdesc:ad5433abb831955af475e729daa99c829"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleans input, both prompts and env after each loop.  <a href="cleanup_8c.html#ad5433abb831955af475e729daa99c829">More...</a><br /></td></tr>
 <tr class="separator:ad5433abb831955af475e729daa99c829"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b104a0ec3164c0921b5cb5cbfb91612"><td class="memItemLeft" align="right" valign="top"><a id="a8b104a0ec3164c0921b5cb5cbfb91612"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ft_clean_on_exit</b> (char **input, <a class="el" href="structs__data.html">t_data</a> *data)</td></tr>
+<tr class="memitem:a8b104a0ec3164c0921b5cb5cbfb91612"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cleanup_8c.html#a8b104a0ec3164c0921b5cb5cbfb91612">ft_clean_on_exit</a> (char **input, <a class="el" href="structs__data.html">t_data</a> *data)</td></tr>
+<tr class="memdesc:a8b104a0ec3164c0921b5cb5cbfb91612"><td class="mdescLeft">&#160;</td><td class="mdescRight">Final cleanup on exiting.  <a href="cleanup_8c.html#a8b104a0ec3164c0921b5cb5cbfb91612">More...</a><br /></td></tr>
 <tr class="separator:a8b104a0ec3164c0921b5cb5cbfb91612"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>General functions to clean up the program. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="ad5433abb831955af475e729daa99c829"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5433abb831955af475e729daa99c829">&#9670;&nbsp;</a></span>ft_clean_after_loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ft_clean_after_loop </td>
+          <td>(</td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structs__data.html">t_data</a> *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cleans input, both prompts and env after each loop. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>Input string. </td></tr>
+    <tr><td class="paramname">data</td><td>Data struct containing env. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8b104a0ec3164c0921b5cb5cbfb91612"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b104a0ec3164c0921b5cb5cbfb91612">&#9670;&nbsp;</a></span>ft_clean_on_exit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ft_clean_on_exit </td>
+          <td>(</td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structs__data.html">t_data</a> *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Final cleanup on exiting. </p>
+<p>Frees input, both prompts and env. Frees hashtable. Frees buffer. Cleans the history of readline. Only if is a tty, print exit. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>Input string. </td></tr>
+    <tr><td class="paramname">data</td><td>Data struct containing env. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a263fef06d5a379d7b7a8098c877acdc2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a263fef06d5a379d7b7a8098c877acdc2">&#9670;&nbsp;</a></span>ft_free_str_arr()</h2>
 

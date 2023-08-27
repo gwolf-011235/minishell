@@ -166,6 +166,14 @@ $(document).ready(function(){initNavTree('globals_f.html',''); initResizable(); 
 <li>ft_choose_builtin()
 : <a class="el" href="executor__builtin_8c.html#a3e48a950e0b7f67c0522bcdfc642916a">executor_builtin.c</a>
 </li>
+<li>ft_clean_after_loop()
+: <a class="el" href="minishell_8h.html#ad5433abb831955af475e729daa99c829">minishell.h</a>
+, <a class="el" href="cleanup_8c.html#ad5433abb831955af475e729daa99c829">cleanup.c</a>
+</li>
+<li>ft_clean_on_exit()
+: <a class="el" href="minishell_8h.html#a8b104a0ec3164c0921b5cb5cbfb91612">minishell.h</a>
+, <a class="el" href="cleanup_8c.html#a8b104a0ec3164c0921b5cb5cbfb91612">cleanup.c</a>
+</li>
 <li>ft_cleanup_cmd()
 : <a class="el" href="executor__cleanup_8c.html#a31707dc0309dfba166de511777a84ecc">executor_cleanup.c</a>
 </li>
@@ -246,8 +254,8 @@ $(document).ready(function(){initNavTree('globals_f.html',''); initResizable(); 
 , <a class="el" href="env__setup_8c.html#a3393462310ec868c0cbf29828b682b01">env_setup.c</a>
 </li>
 <li>ft_envp_create()
-: <a class="el" href="env__envp_8c.html#a7c69f5f4232eb01e79f1e0edd07e5b33">env_envp.c</a>
-, <a class="el" href="minishell_8h.html#a7c69f5f4232eb01e79f1e0edd07e5b33">minishell.h</a>
+: <a class="el" href="minishell_8h.html#a7c69f5f4232eb01e79f1e0edd07e5b33">minishell.h</a>
+, <a class="el" href="env__envp_8c.html#a7c69f5f4232eb01e79f1e0edd07e5b33">env_envp.c</a>
 </li>
 <li>ft_envp_create_all()
 : <a class="el" href="env__envp_8c.html#a85db55868d1bdab3659d8f2793e19d98">env_envp.c</a>
@@ -258,20 +266,62 @@ $(document).ready(function(){initNavTree('globals_f.html',''); initResizable(); 
 <li>ft_envp_fill()
 : <a class="el" href="env__envp_8c.html#aa4e7089d7f65d0a62bd25a9329e778ad">env_envp.c</a>
 </li>
+<li>ft_err_chdir()
+: <a class="el" href="minishell__error_8h.html#a690a06b3a769d17cc3dfdff79f836224">minishell_error.h</a>
+, <a class="el" href="error__syscall__wrapper_8c.html#a690a06b3a769d17cc3dfdff79f836224">error_syscall_wrapper.c</a>
+</li>
+<li>ft_err_close()
+: <a class="el" href="minishell__error_8h.html#aebea169892dd86f45aa6a97bab698cd5">minishell_error.h</a>
+, <a class="el" href="error__syscall__wrapper2_8c.html#aebea169892dd86f45aa6a97bab698cd5">error_syscall_wrapper2.c</a>
+</li>
 <li>ft_err_executor()
 : <a class="el" href="executor__cleanup2_8c.html#a2930d469dbd1bb8ee4d5a0f55776e59c">executor_cleanup2.c</a>
 </li>
 <li>ft_err_execve()
 : <a class="el" href="minishell__error_8h.html#a9d8e53324b67deaa14fc12a9ff6fe85d">minishell_error.h</a>
+, <a class="el" href="error__syscall__wrapper2_8c.html#a9d8e53324b67deaa14fc12a9ff6fe85d">error_syscall_wrapper2.c</a>
+</li>
+<li>ft_err_getcwd()
+: <a class="el" href="minishell__error_8h.html#a57d7e4296a846dd8d019f0a549a06cbb">minishell_error.h</a>
+, <a class="el" href="error__syscall__wrapper_8c.html#a57d7e4296a846dd8d019f0a549a06cbb">error_syscall_wrapper.c</a>
+</li>
+<li>ft_err_itoa()
+: <a class="el" href="minishell__error_8h.html#af114d63effb71f171abb396df9201e4a">minishell_error.h</a>
+, <a class="el" href="error__libft__wrapper_8c.html#af114d63effb71f171abb396df9201e4a">error_libft_wrapper.c</a>
+</li>
+<li>ft_err_malloc()
+: <a class="el" href="minishell__error_8h.html#a72de3b611088c681030d23630fe96466">minishell_error.h</a>
+, <a class="el" href="error__syscall__wrapper_8c.html#a72de3b611088c681030d23630fe96466">error_syscall_wrapper.c</a>
 </li>
 <li>ft_err_node()
 : <a class="el" href="expand__utils_8c.html#a111684c414a696714e09cb8ff428d004">expand_utils.c</a>
 </li>
+<li>ft_err_open()
+: <a class="el" href="minishell__error_8h.html#ab1cba49a4dbf412775cb59fe290f4008">minishell_error.h</a>
+, <a class="el" href="error__syscall__wrapper2_8c.html#ab1cba49a4dbf412775cb59fe290f4008">error_syscall_wrapper2.c</a>
+</li>
 <li>ft_err_parser()
 : <a class="el" href="parser__cleanup_8c.html#afa88d71df64217661ba4186af4a4aedb">parser_cleanup.c</a>
 </li>
+<li>ft_err_pipe()
+: <a class="el" href="minishell__error_8h.html#abe70e2c4e71fe6ffa0424869f300747b">minishell_error.h</a>
+, <a class="el" href="error__syscall__wrapper2_8c.html#abe70e2c4e71fe6ffa0424869f300747b">error_syscall_wrapper2.c</a>
+</li>
 <li>ft_err_stat()
 : <a class="el" href="minishell__error_8h.html#a681d6c9302fd1c8c6b5ef5158d9b9a03">minishell_error.h</a>
+, <a class="el" href="error__syscall__wrapper_8c.html#a681d6c9302fd1c8c6b5ef5158d9b9a03">error_syscall_wrapper.c</a>
+</li>
+<li>ft_err_strdup()
+: <a class="el" href="minishell__error_8h.html#a5955aaa21ef0061a5177b67c889d362a">minishell_error.h</a>
+, <a class="el" href="error__libft__wrapper_8c.html#a5955aaa21ef0061a5177b67c889d362a">error_libft_wrapper.c</a>
+</li>
+<li>ft_err_strjoin()
+: <a class="el" href="minishell__error_8h.html#ad34e84e12f089f6a12ae5d992a38aff5">minishell_error.h</a>
+, <a class="el" href="error__libft__wrapper_8c.html#ad34e84e12f089f6a12ae5d992a38aff5">error_libft_wrapper.c</a>
+</li>
+<li>ft_err_write()
+: <a class="el" href="minishell__error_8h.html#a83233d106b1754ee16759ed0a392841c">minishell_error.h</a>
+, <a class="el" href="error__syscall__wrapper_8c.html#a83233d106b1754ee16759ed0a392841c">error_syscall_wrapper.c</a>
 </li>
 <li>ft_execute_builtin()
 : <a class="el" href="executor__builtin_8c.html#aeb151e62617e173b78fa41ec6fe7c4c0">executor_builtin.c</a>
@@ -311,6 +361,9 @@ $(document).ready(function(){initNavTree('globals_f.html',''); initResizable(); 
 </li>
 <li>ft_expand_redirect()
 : <a class="el" href="expand__types_8c.html#ab97f8fdf06c8ef87653a8c65f55fc3a9">expand_types.c</a>
+</li>
+<li>ft_expand_router()
+: <a class="el" href="expand_8c.html#a2e3f985af2afdbe9097b9c45a53f13ca">expand.c</a>
 </li>
 <li>ft_expand_str()
 : <a class="el" href="prompt__replace__token_8c.html#a4a212eed50cd6f9a49f7ee2bcdf8f128">prompt_replace_token.c</a>
@@ -523,6 +576,9 @@ $(document).ready(function(){initNavTree('globals_f.html',''); initResizable(); 
 <li>ft_prefix_path()
 : <a class="el" href="executor__utils_8c.html#adedf7bd06fca6787779d557424fb4c61">executor_utils.c</a>
 </li>
+<li>ft_prep_new_loop()
+: <a class="el" href="main_8c.html#a8a4eccbd439eeadcf7fbb628d7337a1f">main.c</a>
+</li>
 <li>ft_pretty_print_envp()
 : <a class="el" href="builtin__export_8c.html#aaa80cb411c0643fc8fddc05e0950901b">builtin_export.c</a>
 </li>
@@ -530,26 +586,31 @@ $(document).ready(function(){initNavTree('globals_f.html',''); initResizable(); 
 : <a class="el" href="builtin__export_8c.html#a089fa9ff610a4b07f4413f7006285185">builtin_export.c</a>
 </li>
 <li>ft_print_error()
-: <a class="el" href="minishell__error_8h.html#acf87c9c09e46d6e43c1b6749f7b1dc07">minishell_error.h</a>
+: <a class="el" href="error__msg_8c.html#acf87c9c09e46d6e43c1b6749f7b1dc07">error_msg.c</a>
+, <a class="el" href="minishell__error_8h.html#acf87c9c09e46d6e43c1b6749f7b1dc07">minishell_error.h</a>
 </li>
 <li>ft_print_warning()
-: <a class="el" href="minishell__error_8h.html#a9639f309095f77dc367ee6b3eea99488">minishell_error.h</a>
+: <a class="el" href="error__msg_8c.html#a9639f309095f77dc367ee6b3eea99488">error_msg.c</a>
+, <a class="el" href="minishell__error_8h.html#a9639f309095f77dc367ee6b3eea99488">minishell_error.h</a>
 </li>
 <li>ft_print_warning2()
 : <a class="el" href="minishell__error_8h.html#a4c79d33249b0a5068aad96937b4e32fa">minishell_error.h</a>
+, <a class="el" href="error__msg_8c.html#a4c79d33249b0a5068aad96937b4e32fa">error_msg.c</a>
 </li>
 <li>ft_print_warning3()
 : <a class="el" href="minishell__error_8h.html#a8febab1edb3a7e77ccde0666fb2d6f49">minishell_error.h</a>
+, <a class="el" href="error__msg_8c.html#a8febab1edb3a7e77ccde0666fb2d6f49">error_msg.c</a>
 </li>
 <li>ft_print_warning_message()
 : <a class="el" href="minishell__error_8h.html#a7a8e6548146a50bc755c174558061662">minishell_error.h</a>
+, <a class="el" href="error__msg_8c.html#a7a8e6548146a50bc755c174558061662">error_msg.c</a>
 </li>
 <li>ft_print_warning_shlvl()
 : <a class="el" href="env__shlvl_8c.html#a14e9a11dca02b5e74dd667d17c672bbf">env_shlvl.c</a>
 </li>
 <li>ft_prompt_create()
-: <a class="el" href="prompt_8c.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">prompt.c</a>
-, <a class="el" href="minishell_8h.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">minishell.h</a>
+: <a class="el" href="minishell_8h.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">minishell.h</a>
+, <a class="el" href="prompt_8c.html#a1dd0a4fdc3f5aef6997d3b8f6d68f39d">prompt.c</a>
 </li>
 <li>ft_pwd()
 : <a class="el" href="builtin__pwd_8c.html#afe6736b7c20f2fea3f9e2151974016c5">builtin_pwd.c</a>
