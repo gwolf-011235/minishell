@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:22:18 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 17:14:53 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 18:33:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,19 @@ bool	ft_isempty_str(const char *s)
 		s++;
 	}
 	return (true);
+}
+
+/**
+ * @brief Swap two string pointers.
+ *
+ * @param str1 First string.
+ * @param str2 Second string.
+ */
+void	ft_swap(char **str1, char **str2)
+{
+	char	*temp;
+
+	temp = *str1;
+	*str1 = *str2;
+	*str2 = temp;
 }

@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:57:48 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/18 17:08:55 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 18:33:25 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ char	*ft_strcat(char *dst, const char *src);
 char	*ft_strncat(char *dst, const char *src, size_t n);
 bool	ft_isspace(char c);
 bool	ft_isempty_str(const char *s);
+void	ft_swap(char **str1, char **str2);
 
 #endif
