@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:57 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 19:03:44 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 12:16:29by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ void	ft_count_expand_words(t_track *input, size_t *words,
 			(*words)++;
 		input->pos++;
 	}
-	if (input->str[input->pos - 1] == ' ' && input->str[input->pos])
-		(*words)++;
 }
 
 /**
@@ -166,8 +164,10 @@ t_err	ft_tokenise_fs(t_src *src, t_tok *token, t_buf *buf, t_track *input)
  * @brief Fills buffer with a piece of string.
  *
  * Based on ft_partition(), adapted for field split.
- * Difference: has fewer break conditions since expanded chars don't have
- * special meaning anymore.
+ * Difference:
+ * Check if buffer has char saved (stuff before expand) and src is at INIT_POS:
+ * If next char is space (from the expansion) the token is already finished.
+ * Fewer break conditions since expanded chars don't have special meaning.
  * @param src The tokenized string.
  * @param buf Pointer to pre malloced buffer.
  * @return t_err ERR_EOF, ERR_MALLOC
@@ -177,7 +177,15 @@ t_err	ft_partition_fs(t_src *src, t_buf *buf)
 	char	c;
 	t_err	err;
 
-	err = ft_init_partition(src, &c);
+	c = 0;
+	if (src->cur_pos == INIT_SRC_POS && buf->cur_pos != 0)
+	{
+		ft_peek_char(src, &c);
+		if (c == ' ' || c == '\t')
+			return (SUCCESS);
+	}
+	ft_skip_space(src);
+	err = ft_next_char(src, &c);
 	while (err != ERR_EOF)
 	{
 		if ((c == ' ' || c == '\t') && buf->cur_pos > 0)
