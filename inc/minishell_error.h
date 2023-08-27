@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_error.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 18:02:14 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 18:29:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,22 +86,23 @@ extern __sig_atomic_t	g_status;
  * @param	ERR_HEREDOC_OPEN, ///< Error while opening heredoc.
  * @param	ERR_EXECUTOR, ///< Error while executing.
  * @param	ERR_IS_CHILD,///< Process is a child.
- * @param	ERR_PERM_DENIED, ///< No executable rights.
+ * @param	ERR_PERM_DENIED No executable rights.
+ * @param	ERR_CONCAT Assginment is concatenation.
  */
 
 typedef enum e_error {
 	ERR_EOF = -1,
-	SUCCESS, 
+	SUCCESS,
 	ERR_MALLOC,
-	ERR_UNDEFINED, 
-	ERR_HT_NO_INSERT, 
+	ERR_UNDEFINED,
+	ERR_HT_NO_INSERT,
 	ERR_HT_NO_DELETE,
-	ERR_HT_NO_SWAP, 
-	ERR_EMPTY, 
-	ERR_CWD_BUF, 
+	ERR_HT_NO_SWAP,
+	ERR_EMPTY,
+	ERR_CWD_BUF,
 	ERR_CWD_FAIL,
-	ERR_NO_SHLVL, 
-	ERR_OUT_OF_BOUNDS, 
+	ERR_NO_SHLVL,
+	ERR_OUT_OF_BOUNDS,
 	ERR_WRONG_TOKEN,
 	ERR_SYNTAX = 2,
 	ERR_NOT_FOUND,
@@ -112,33 +113,34 @@ typedef enum e_error {
 	ERR_ARGCOUNT,
 	ERR_CHDIR_FAIL,
 	ERR_INVALID_NAME,
-	ERR_NONUM, 
-	ERR_EXIT, 
-	ERR_PIPE, 
+	ERR_NONUM,
+	ERR_EXIT,
+	ERR_PIPE,
 	ERR_UNKNOWN_CMD,
 	ERR_NOPATH,
 	ERR_FORK,
-	ERR_DUPL, 
-	ERR_EXECVE, 
-	ERR_WAIT, 
-	ERR_NOSPLIT, 
+	ERR_DUPL,
+	ERR_EXECVE,
+	ERR_WAIT,
+	ERR_NOSPLIT,
 	ERR_OPEN,
 	ERR_SIGNAL,
 	ERR_NO_INPUT,
-	ERR_ABORT, 
+	ERR_ABORT,
 	ERR_HEREDOC_EOF,
-	ERR_WRITE, 
+	ERR_WRITE,
 	ERR_DIR,
-	ERR_NO_DIR, 
+	ERR_NO_DIR,
 	ERR_STAT,
 	ERR_LEXER,
 	ERR_EXPANDER,
 	ERR_PARSER,
 	ERR_AMBIGUOUS,
-	ERR_HEREDOC_OPEN, 
+	ERR_HEREDOC_OPEN,
 	ERR_EXECUTOR,
 	ERR_IS_CHILD,
 	ERR_PERM_DENIED,
+	ERR_CONCAT
 }	t_err;
 
 /* ====== Functions ====== */
