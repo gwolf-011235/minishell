@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 17:40:16 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 16:08:51 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 18:03:34 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,14 @@ t_err	ft_print_warning(t_err err, char *trigger)
 	else if (err == ERR_DIR)
 	{
 		g_status = 126;
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(trigger, 2);
-		ft_putendl_fd(": Is a directory", 2);
+		ft_print_warning_message(trigger, ": Is a directory");
 		return (ERR_DIR);
+	}
+	else if (err == ERR_HEREDOC_OPEN)
+	{
+		g_status = 1;
+		ft_print_warning_message(trigger, ": could not create heredoc");
+		return (ERR_HEREDOC_OPEN);
 	}
 	else
 		return (ft_print_warning2(err, trigger));
@@ -57,18 +61,20 @@ t_err	ft_print_warning2(t_err err, char *trigger)
 	if (err == ERR_NO_DIR)
 	{
 		g_status = 127;
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(trigger, 2);
-		ft_putendl_fd(": No such file or directory", 2);
+		ft_print_warning_message(trigger, ": No such file or directory");
 		return (ERR_NO_DIR);
 	}
 	else if (err == ERR_UNKNOWN_CMD)
 	{
 		g_status = 127;
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(trigger, 2);
-		ft_putendl_fd(": command not found", 2);
+		ft_print_warning_message(trigger, ": command not found");
 		return (ERR_UNKNOWN_CMD);
+	}
+	else if (err == ERR_PERM_DENIED)
+	{
+		g_status = 126;
+		ft_print_warning_message(trigger, ": Permission denied");
+		return (ERR_PERM_DENIED);
 	}
 	else
 		return (ft_print_warning3(err, trigger));
@@ -86,28 +92,23 @@ t_err	ft_print_warning3(t_err err, char *trigger)
 	if (err == ERR_AMBIGUOUS)
 	{
 		g_status = 1;
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(trigger, 2);
-		ft_putendl_fd(": ambiguous redirect", 2);
+		ft_print_warning_message(trigger, ": ambiguous redirect");
 		return (ERR_AMBIGUOUS);
 	}
-	else if (err == ERR_HEREDOC_OPEN)
-	{
-		g_status = 1;
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(trigger, 2);
-		ft_putendl_fd(": could not create heredoc", 2);
-		return (ERR_HEREDOC_OPEN);
-	}
-	else if (err == ERR_PERM_DENIED)
-	{
-		g_status = 126;
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(trigger, 2);
-		ft_putendl_fd(": Permission denied", 2);
-		return (ERR_PERM_DENIED);
-	}
 	return (SUCCESS);
+}
+
+/**
+ * @brief Prints the warning message.
+ * 
+ * @param trigger 	Trigger causing the warning.
+ * @param msg 		Individual message according to warning.
+ */
+void	ft_print_warning_message(char *trigger, char *msg)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(trigger, 2);
+	ft_putendl_fd(msg, 2);
 }
 
 /**

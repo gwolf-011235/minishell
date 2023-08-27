@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:58:28 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 16:59:52 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 18:02:14 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ void	ft_err_execve(char *exec, char **args, char **envp);
 t_err	ft_print_warning(t_err err, char *trigger);
 t_err	ft_print_warning2(t_err err, char *trigger);
 t_err	ft_print_warning3(t_err err, char *trigger);
+void	ft_print_warning_message(char *trigger, char *msg);
 t_err	ft_print_error(t_err err);
 
 #endif
