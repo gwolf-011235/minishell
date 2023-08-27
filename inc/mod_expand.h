@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_expand.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:08:04 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 17:00:56 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 21:51:24 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_track {
 t_err	ft_expand_router(t_tkn_list **tmp, t_type type, t_hashtable *env_table,
 			t_buf *buf);
 t_err	ft_expand_err(t_tkn_list **lst_head);
+t_err	ft_split_err(t_tok *token);
 
 //expand_types.c
 t_err	ft_expand_heredoc(t_tkn_list **list);
@@ -79,7 +80,7 @@ t_err	ft_expand_dollar(t_track *input, t_hashtable *symtab);
 t_err	ft_special_dollar(t_str *token, t_str *replace, t_hashtable *symtab,
 			char c);
 t_err	ft_get_dollar_var(t_track *input, t_str *token);
-t_err	ft_get_dollar_replace(t_str *token, t_hashtable *symtab, 
+t_err	ft_get_dollar_replace(t_str *token, t_hashtable *symtab,
 			t_str *replace);
 
 //expand_field_split.c
@@ -95,6 +96,6 @@ void	ft_init_tracker(t_track *input, char *str, t_type type);
 t_err	ft_move_tracker(t_track *input);
 void	ft_eat_char(t_track *input);
 t_err	ft_insert_replace(t_track *input, t_str token, t_str replace);
-t_err	ft_err_node(t_tok *token);
+t_err	ft_trim_single_word(t_track *input);
 
 #endif

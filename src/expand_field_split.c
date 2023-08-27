@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_field_split.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 22:34:57 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 16:54:20 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 21:49:52 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_err	ft_field_split(t_track *input, t_tkn_list **cur_node, t_buf *buf)
 	words = 0;
 	ft_count_expand_words(input, &words, input->last_expand_len);
 	if (words == 1)
-		return (ERR_NOSPLIT);
+		return (ft_trim_single_word(input));
 	else
 	{
 		ft_buf_clear(buf);
@@ -121,7 +121,7 @@ t_err	ft_split_node(t_track *input, t_tkn_list **cur_node, t_buf *buf)
 	while (err != ERR_EOF || !*cur_node)
 	{
 		if (ft_new_node_mid(cur_node, token.str) == ERR_MALLOC)
-			return (ft_err_node(&token));
+			return (ft_split_err(&token));
 		buf->cur_pos = 0;
 		err = ft_tokenise_fs(&src, &token, buf, input);
 		if (err == ERR_MALLOC)

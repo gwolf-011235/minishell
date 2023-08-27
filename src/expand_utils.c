@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 18:19:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 18:51:29 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 21:51:13 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,25 @@ t_err	ft_insert_replace(t_track *input, t_str token, t_str replace)
 }
 
 /**
- * @brief On error while creating node frees token string.
+ * @brief Trims a tracked string of spaces.
  *
- * @param token		Current token handled.
- * @return t_err	ERR_MALLOC
+ * If after expansion only 1 word remains, it can save be trimmed of spaces.
+ * @param input Tracked string
+ * @return t_err ERR_NOSPLIT
  */
-t_err	ft_err_node(t_tok *token)
+t_err	ft_trim_single_word(t_track *input)
 {
-	ft_free_tok(token);
-	return (ERR_MALLOC);
+	size_t	last_expand;
+
+	input->pos = input->pos - input->last_expand_len;
+	last_expand = input->last_expand_len;
+	while (last_expand--)
+	{
+		if (ft_isspace(input->str[input->pos]))
+			ft_eat_char(input);
+		else
+			ft_move_tracker(input);
+	}
+	return (ERR_NOSPLIT);
 }
+

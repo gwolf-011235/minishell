@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:44:25 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 18:46:01 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/27 21:51:48 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  *
  * Loop through token list with tmp and choose expand function with
  * ft_expand_router(). Since the list itself can change
- * (new nodes added after field split) the head pointer needs to be 
+ * (new nodes added after field split) the head pointer needs to be
  * updated after each loop.
  * At the end deletes all nodes of type DELETE.
  * @param head Pointer pointer to head of list.
@@ -48,7 +48,7 @@ t_err	ft_expand_tkn_lst(t_tkn_list **head, t_hashtable *env_table, t_buf *buf)
 
 /**
  * @brief Chooses correct funtion depending on type.
- * 
+ *
  * Depending on type of token perform expansions:
  * Redirect: tilde and dollar expand, quote removal, flag if AMBIGUOUS.
  * Heredoc: quote removal.
@@ -93,4 +93,16 @@ t_err	ft_expand_err(t_tkn_list **lst_head)
 	g_status = 1;
 	ft_free_lst(lst_head);
 	return (ft_print_error(ERR_EXPANDER));
+}
+
+/**
+ * @brief On malloc error in field split frees token string.
+ *
+ * @param token		Current token handled.
+ * @return t_err	ERR_MALLOC
+ */
+t_err	ft_split_err(t_tok *token)
+{
+	ft_free_tok(token);
+	return (ERR_MALLOC);
 }
