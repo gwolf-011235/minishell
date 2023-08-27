@@ -109,15 +109,18 @@ Functions</h2></td></tr>
 <tr class="memitem:aaa80cb411c0643fc8fddc05e0950901b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__export_8c.html#aaa80cb411c0643fc8fddc05e0950901b">ft_pretty_print_envp</a> (char **envp, size_t size)</td></tr>
 <tr class="memdesc:aaa80cb411c0643fc8fddc05e0950901b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print env_str in pretty from.  <a href="builtin__export_8c.html#aaa80cb411c0643fc8fddc05e0950901b">More...</a><br /></td></tr>
 <tr class="separator:aaa80cb411c0643fc8fddc05e0950901b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adccbbe9e617944ad0407a0a1871843a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__export_8c.html#adccbbe9e617944ad0407a0a1871843a9">ft_check_and_update_env</a> (char *str, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_tab)</td></tr>
-<tr class="memdesc:adccbbe9e617944ad0407a0a1871843a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check env_str for valid key. If so update environment.  <a href="builtin__export_8c.html#adccbbe9e617944ad0407a0a1871843a9">More...</a><br /></td></tr>
-<tr class="separator:adccbbe9e617944ad0407a0a1871843a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a351c15ba9926b6d35975d3de4f90c47c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__export_8c.html#a351c15ba9926b6d35975d3de4f90c47c">ft_check_and_update_env</a> (char *str, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_tab, size_t keylen)</td></tr>
+<tr class="memdesc:a351c15ba9926b6d35975d3de4f90c47c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check env_str for valid key. If so update environment.  <a href="builtin__export_8c.html#a351c15ba9926b6d35975d3de4f90c47c">More...</a><br /></td></tr>
+<tr class="separator:a351c15ba9926b6d35975d3de4f90c47c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade369700fe2ecd1f178328d5f6ad4772"><td class="memItemLeft" align="right" valign="top"><a id="ade369700fe2ecd1f178328d5f6ad4772"></a>
+<a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ft_concatenate</b> (char *env_str, <a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_tab, size_t keylen)</td></tr>
+<tr class="separator:ade369700fe2ecd1f178328d5f6ad4772"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of builtin export. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="adccbbe9e617944ad0407a0a1871843a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adccbbe9e617944ad0407a0a1871843a9">&#9670;&nbsp;</a></span>ft_check_and_update_env()</h2>
+<a id="a351c15ba9926b6d35975d3de4f90c47c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a351c15ba9926b6d35975d3de4f90c47c">&#9670;&nbsp;</a></span>ft_check_and_update_env()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -132,7 +135,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *&#160;</td>
-          <td class="paramname"><em>env_tab</em>&#160;</td>
+          <td class="paramname"><em>env_tab</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>keylen</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -181,7 +190,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Export a variable into environment. </p>
-<p>Check arg size with <a class="el" href="builtin__utils_8c.html#adf565e56eb570140d2d580cc09a8eaa4" title="Calc the size of an NULL terminated array.">ft_get_array_size()</a>. If no arg is given <a class="el" href="builtin__export_8c.html#a089fa9ff610a4b07f4413f7006285185" title="Print ASCII sorted environment.">ft_print_env_sorted()</a>. Save_err is set to SUCCESS. For all args try to insert them into environment with <a class="el" href="builtin__export_8c.html#adccbbe9e617944ad0407a0a1871843a9" title="Check env_str for valid key. If so update environment.">ft_check_and_update_env()</a>. If error is encountered print error with <a class="el" href="builtin__error_8c.html#a341e1968293f538afed578cb4cee1b80" title="Handle error of ft_export().">ft_export_error()</a> and save error code. Continue for all other args. At the end return saved error </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Check arg size with <a class="el" href="builtin__utils_8c.html#adf565e56eb570140d2d580cc09a8eaa4" title="Calc the size of an NULL terminated array.">ft_get_array_size()</a>. If no arg is given <a class="el" href="builtin__export_8c.html#a089fa9ff610a4b07f4413f7006285185" title="Print ASCII sorted environment.">ft_print_env_sorted()</a>. Save_err is set to SUCCESS. For all args try to insert them into environment with <a class="el" href="builtin__export_8c.html#a351c15ba9926b6d35975d3de4f90c47c" title="Check env_str for valid key. If so update environment.">ft_check_and_update_env()</a>. If error is encountered print error with <a class="el" href="builtin__error_8c.html#a341e1968293f538afed578cb4cee1b80" title="Handle error of ft_export().">ft_export_error()</a> and save error code. Continue for all other args. At the end return saved error </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">argv</td><td>NULL terminated args. </td></tr>
     <tr><td class="paramname">env_tab</td><td>Environment. </td></tr>

@@ -50,7 +50,8 @@ var minishell__error_8h =
       [ "ERR_HEREDOC_OPEN", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a73a8de1f5441887d3128f3bfdf0d16bb", null ],
       [ "ERR_EXECUTOR", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8aceb6c2c8a1046465cad88634dde81245", null ],
       [ "ERR_IS_CHILD", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8ae54bf9d35f990920777082ab82b1dfd1", null ],
-      [ "ERR_PERM_DENIED", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a795fe26be993da418cfa419fd7d741cb", null ]
+      [ "ERR_PERM_DENIED", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a795fe26be993da418cfa419fd7d741cb", null ],
+      [ "ERR_CONCAT", "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a42ac2e5cddcd888b044ae8d2dc8c57e8", null ]
     ] ],
     [ "ft_err_chdir", "minishell__error_8h.html#a690a06b3a769d17cc3dfdff79f836224", null ],
     [ "ft_err_close", "minishell__error_8h.html#aebea169892dd86f45aa6a97bab698cd5", null ],

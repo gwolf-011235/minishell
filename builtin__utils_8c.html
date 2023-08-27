@@ -109,12 +109,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a279181773bbdea6fbec8d214f8868951"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__utils_8c.html#a279181773bbdea6fbec8d214f8868951">ft_update_env_var</a> (<a class="el" href="hashtable_8h.html#a8b759f1e47ce645b9b2a303343051848">t_hashtable</a> *env_tab, char *env_str, size_t keylen, bool has_value)</td></tr>
 <tr class="memdesc:a279181773bbdea6fbec8d214f8868951"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert or swap the given env_str.  <a href="builtin__utils_8c.html#a279181773bbdea6fbec8d214f8868951">More...</a><br /></td></tr>
 <tr class="separator:a279181773bbdea6fbec8d214f8868951"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd235c8d5f95d8eec30bae4bb200a044"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__utils_8c.html#acd235c8d5f95d8eec30bae4bb200a044">ft_swap</a> (char **str1, char **str2)</td></tr>
-<tr class="memdesc:acd235c8d5f95d8eec30bae4bb200a044"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap two string pointers.  <a href="builtin__utils_8c.html#acd235c8d5f95d8eec30bae4bb200a044">More...</a><br /></td></tr>
-<tr class="separator:acd235c8d5f95d8eec30bae4bb200a044"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a143c65876a247de8ba18f7024c3d326c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builtin__utils_8c.html#a143c65876a247de8ba18f7024c3d326c">ft_quicksort_strings</a> (char **arr, int low, int high)</td></tr>
 <tr class="memdesc:a143c65876a247de8ba18f7024c3d326c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quicksort a string array.  <a href="builtin__utils_8c.html#a143c65876a247de8ba18f7024c3d326c">More...</a><br /></td></tr>
 <tr class="separator:a143c65876a247de8ba18f7024c3d326c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4081e84603b93a01f958b4abe3e048"><td class="memItemLeft" align="right" valign="top"><a id="a4c4081e84603b93a01f958b4abe3e048"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ft_eat_char2</b> (char *str, size_t pos)</td></tr>
+<tr class="separator:a4c4081e84603b93a01f958b4abe3e048"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Helper functions for builtins. </p>
@@ -233,43 +233,6 @@ Functions</h2></td></tr>
     <tr><td class="paramname">arr</td><td>Array to be sorted. </td></tr>
     <tr><td class="paramname">low</td><td>Starting index. </td></tr>
     <tr><td class="paramname">high</td><td>Endinf index. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="acd235c8d5f95d8eec30bae4bb200a044"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd235c8d5f95d8eec30bae4bb200a044">&#9670;&nbsp;</a></span>ft_swap()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ft_swap </td>
-          <td>(</td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>str1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>str2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Swap two string pointers. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">str1</td><td>First string. </td></tr>
-    <tr><td class="paramname">str2</td><td>Second string. </td></tr>
   </table>
   </dd>
 </dl>
