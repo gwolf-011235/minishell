@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:04:02 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 22:30:52 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 22:37:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,11 @@ void	ft_create_prompts(t_data *data)
 	{
 		err = ft_prompt_create(data->env_table, &data->prompt2, "PS2", PS2_STD);
 		if (err == ERR_MALLOC)
-		{
 			ft_putendl_fd("minishell: warning: could not create prompts.", 2);
-			free(data->prompt1);
-		}
 		if (err != SUCCESS)
 		{
 			data->free_prompt = false;
+			free(data->prompt1);
 			data->prompt1 = PS1_STD;
 		}
 	}
