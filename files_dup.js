@@ -26,6 +26,7 @@ var files_dup =
     [ "executor_heredoc2.c", "executor__heredoc2_8c.html", "executor__heredoc2_8c" ],
     [ "executor_utils.c", "executor__utils_8c.html", "executor__utils_8c" ],
     [ "executor_utils2.c", "executor__utils2_8c.html", "executor__utils2_8c" ],
+    [ "executor_utils3.c", "executor__utils3_8c.html", "executor__utils3_8c" ],
     [ "exit_failure.c", "exit__failure_8c.html", "exit__failure_8c" ],
     [ "expand.c", "expand_8c.html", "expand_8c" ],
     [ "expand_field_split.c", "expand__field__split_8c.html", "expand__field__split_8c" ],

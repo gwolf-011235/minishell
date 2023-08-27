@@ -332,7 +332,10 @@ Functions</h2></td></tr>
 <p>Index the list of cmds.</p>
 <p>If heredocs are present in cmd, they are opened and take input from stdin. In case a heredoc is the last infile redirect, its fd is given to the cmd. Differentiate between ERR_ABORT (Cancel whole executor) and ERR_HEREDOC_EOF (Continue executor).</p>
 <p>All necessary pipes are created in advance to ensure definite fd assignment to all pipe ends.</p>
-<p>Get PATH from envp and save it into paths. If no path is found (ERR_NOPATH), try to execute cmd nonetheless in the current directory. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Get PATH from envp and save it into paths. If no path is found (ERR_NOPATH), try to execute cmd nonetheless in the current directory.</p>
+<p>If cmd list only contains one entry, call <a class="el" href="executor_8c.html#ab1c6b116f47a4c13327f4c394dd357df" title="Executes single cmd provided.">ft_execute_scmd()</a>, else call <a class="el" href="executor_8c.html#a36119e3027eba3c838e3bbf93d55b9f5" title="Executes list of cmds provided.">ft_execute_pcmds()</a>.</p>
+<p>If one of both functions returns ERR_MALLOC, ERR_STAT or ERR_FORK, print err message and exit the executor.</p>
+<p>If the last executed cmd of a pipeline returns with ERR_UNKNOWN_CMD, ERR_NO_DIR or ERR_DIR, set the exit status to the according value as it has been overwritten by <a class="el" href="executor__utils_8c.html#a913ab9b8268a5683d46b023a530e1977" title="Wait for child processes.">ft_wait_for_babies()</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cmd</td><td>List of cmds. </td></tr>
     <tr><td class="paramname">envp</td><td>String array with env variables. </td></tr>
@@ -340,7 +343,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>t_err ERR_MALLOC, ERR_PIPE, SUCCESS </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_EXECUTOR, ERR_PIPE, SUCCESS </dd></dl>
 
 </div>
 </div>
