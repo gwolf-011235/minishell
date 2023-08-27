@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:45:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/24 12:39:17 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 20:46:20 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ t_err	ft_create_env_shlvl(char **shlvl, int val)
 		if (ft_err_strdup("SHLVL=1", shlvl,
 				"minishell: ft_create_env_shlvl") == ERR_MALLOC)
 			return (ERR_MALLOC);
+		return (SUCCESS);
 	}
 	else if (val == 0)
 	{
 		if (ft_err_strdup("SHLVL=0", shlvl,
 				"minishell: ft_create_env_shlvl") == ERR_MALLOC)
 			return (ERR_MALLOC);
+		return (SUCCESS);
 	}
 	err = ft_err_itoa(val, &val_str, "minishell: ft_create_env_shlvl");
 	if (err == ERR_MALLOC)
