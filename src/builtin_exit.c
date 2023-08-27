@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:43:10 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 18:35:47 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 11:02:13 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ t_err	ft_is_number(char *str)
 
 	if (!str)
 		return (ERR_EMPTY);
+	if (str[0] == '\0')
+		return (ERR_NONUM);
 	i = 0;
 	if (str[i] == '+' || str[i] == '-')
 		i++;

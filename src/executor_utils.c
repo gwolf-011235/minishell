@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 19:31:23 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 11:41:41 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@
  * @param args 			String array containing executable in first position.
  * @param cmd_paths 	String array of paths.
  * @param empty_path	Boolean to determine if PATH contained empty paths.
- * @return t_err 		ERR_MALLOC, ERR_STAT, ERR_UNKNOWN_CMD, ERR_DIR, ERR_NO_DIR, SUCCESS
+ * @return t_err 		ERR_MALLOC, ERR_STAT, ERR_UNKNOWN_CMD, ERR_DIR, 
+ * 						ERR_NO_DIR, SUCCESS
  */
 t_err	ft_check_cmd_access(char **args, char **cmd_paths, bool empty_path)
 {
@@ -186,7 +187,7 @@ void	ft_wait_for_babies(t_cmd *cmd)
 					g_status = 128 + WTERMSIG(status);
 					if (__WCOREDUMP(status))
 						ft_putendl_fd("Quit (core dumped)", 2);
-					else
+					else if (WTERMSIG(status) == 2)
 						ft_putchar_fd('\n', 2);
 				}
 			}
