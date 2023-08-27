@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:13:28 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/25 20:09:06 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 10:53:56 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ t_err	ft_categorise(t_tkn_list **lst, t_cmd *new, bool *cmd_complete)
 		err = ft_save_infile(&tmp, new);
 	else if (tmp->type == OUTFILE)
 		err = ft_save_outfile(&tmp, new, false);
+	else if (tmp->type == AMBIGUOUS)
+		err = ft_handle_ambiguous(&tmp, new);
 	else if (tmp->type == APPEND)
 		err = ft_save_outfile(&tmp, new, true);
 	else if (tmp->type == PIPE)

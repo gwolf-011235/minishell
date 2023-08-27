@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 14:59:22 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 13:48:58 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 10:56:46 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,20 @@ t_err	ft_save_arg(t_tkn_list *lst, t_cmd *new)
 	if (!new->args[new->arg_pos])
 		return (ERR_MALLOC);
 	new->arg_pos++;
+	return (SUCCESS);
+}
+
+/**
+ * @brief Set cmd to no execute if ambiguous redirect.
+ *
+ * Needs to return SUCCESS for loop in calling funciton.
+ * @param lst		List of token.
+ * @param new		New cmd to be filled.
+ * @return t_err	SUCCESS.
+ */
+t_err	ft_handle_ambiguous(t_tkn_list **lst, t_cmd *new)
+{
+	*lst = (*lst)->next;
+	new->execute = false;
 	return (SUCCESS);
 }
