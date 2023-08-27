@@ -59,7 +59,6 @@ t_err	ft_field_split(t_track *input, t_tkn_list **cur_node, t_buf *buf)
  * Looping through the str, delimited by expand len:
  * If pos is 0 and str is not space incr words.
  * If str is space but the next pos isn't incr words.
- * If expanded part ends with space and there is still stuff incr words.
  * @param input Pointer to tracker.
  * @param words Pointer to where to save count:
  */
