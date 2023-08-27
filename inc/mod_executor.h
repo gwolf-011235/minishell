@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_executor.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 19:54:38 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 12:18:52 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ bool	ft_check_empty_path(char *path_str);
 void	ft_open_outfile(t_cmd *cmd);
 void	ft_loop_thru_outfiles(t_cmd *cmd);
 t_err	ft_check_dir(char **args);
+void	ft_set_exit_status(t_err err);
 
 // builtins
 bool	ft_check_builtin(char *arg);

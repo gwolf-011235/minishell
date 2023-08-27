@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:05 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 19:55:04 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 12:27:30 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,20 @@
  * Get PATH from envp and save it into paths.
  * If no path is found (ERR_NOPATH), try to execute
  * cmd nonetheless in the current directory.
+ * 
+ * If cmd list only contains one entry, call ft_execute_scmd(),
+ * else call ft_execute_pcmds().
+ * 
+ * If one of both functions returns ERR_MALLOC, ERR_STAT or ERR_FORK,
+ * print err message and exit the executor.
+ * 
+ * If the last executed cmd of a pipeline returns with ERR_UNKNOWN_CMD,
+ * ERR_NO_DIR or ERR_DIR, set the exit status to the according value
+ * as it has been overwritten by ft_wait_for_babies().
  * @param cmd 		List of cmds.
  * @param envp 		String array with env variables.
  * @param data		Data struct containing the env.
- * @return t_err 	ERR_MALLOC, ERR_PIPE, SUCCESS
+ * @return t_err 	ERR_EXECUTOR, ERR_PIPE, SUCCESS
  */
 t_err	ft_executor(t_cmd *cmd, t_data *data)
 {
@@ -61,6 +71,8 @@ t_err	ft_executor(t_cmd *cmd, t_data *data)
 		err = ft_execute_pcmds(cmd, paths, data, empty_path);
 	if (err == ERR_FORK || err == ERR_STAT || err == ERR_MALLOC)
 		return (ft_err_executor(cmd, paths));
+	if (err == ERR_UNKNOWN_CMD || err == ERR_NO_DIR || err == ERR_DIR)
+		ft_set_exit_status(err);
 	ft_cleanup_cmd_list(cmd, paths);
 	return (SUCCESS);
 }
