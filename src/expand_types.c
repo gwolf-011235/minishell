@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 13:05:50 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 13:08:08 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 10:42:55 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,22 @@ t_err	ft_expand_heredoc(t_tkn_list **node)
 t_err	ft_expand_redirect(t_tkn_list **node, t_hashtable *symtab)
 {
 	t_track	input;
+	char	*tmp;
 
 	*node = (*node)->next;
 	ft_init_tracker(&input, (*node)->content, INFILE);
+	tmp = NULL;
+	if (ft_err_strdup(input.str, &tmp, "minishell: malloc") == ERR_MALLOC)
+		return (ERR_MALLOC);
 	if (ft_expander(&input, symtab, input.type) == ERR_MALLOC)
 		return (ERR_MALLOC);
 	(*node)->content = input.str;
 	if ((*node)->content[0] == '\0' && !input.found_quote)
+	{
+		ft_print_warning(ERR_AMBIGUOUS, tmp);
 		(*node)->prev->type = AMBIGUOUS;
+	}
+	free (tmp);
 	return (SUCCESS);
 }
 

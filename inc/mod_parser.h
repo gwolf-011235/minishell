@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 12:06:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 19:57:02 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 10:53:38 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_err	ft_save_infile(t_tkn_list **lst, t_cmd *new);
 t_err	ft_save_heredoc(t_tkn_list **lst, t_cmd *new);
 t_err	ft_save_outfile(t_tkn_list **lst, t_cmd *new, bool append);
 t_err	ft_save_arg(t_tkn_list *lst, t_cmd *new);
+t_err	ft_handle_ambiguous(t_tkn_list **lst, t_cmd *new);
 
 // helpers
 t_cmd	*ft_last_cmd(t_cmd *cmd);
