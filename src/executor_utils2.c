@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:24:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 16:27:20 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 18:41:27 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ void	ft_open_outfile(t_cmd *cmd)
 /**
  * @brief Opens all outfiles of pipeline.
  *
- * @param cmd 		List of cmds in pipeline.
+ * @param cmd List of cmds in pipeline.
  */
 void	ft_loop_thru_outfiles(t_cmd *cmd)
 {

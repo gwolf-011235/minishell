@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:22:18 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 18:33:48 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 18:52:31 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,13 @@ bool	ft_isspace(char c)
 		return (false);
 }
 
+/**
+ * @brief Check if string is empty.
+ *
+ * @param s 		String to be checked.
+ * @return true 	Is empty.
+ * @return false 	Is not empty.
+ */
 bool	ft_isempty_str(const char *s)
 {
 	while (*s)

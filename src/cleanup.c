@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 17:32:57 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 20:29:17 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 18:19:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ void	ft_free_str_arr(char **arr)
 	free(arr);
 }
 
+/**
+ * @brief Cleans input, both prompts and env after each loop.
+ * 
+ * @param input Input string.
+ * @param data 	Data struct containing env.
+ */
 void	ft_clean_after_loop(char **input, t_data *data)
 {
 	if (*input)
@@ -49,6 +55,17 @@ void	ft_clean_after_loop(char **input, t_data *data)
 	ft_envp_destroy(&data->envp);
 }
 
+/**
+ * @brief Final cleanup on exiting.
+ * 
+ * Frees input, both prompts and env.
+ * Frees hashtable.
+ * Frees buffer.
+ * Cleans the history of readline.
+ * Only if is a tty, print exit.
+ * @param input Input string.
+ * @param data 	Data struct containing env.
+ */
 void	ft_clean_on_exit(char **input, t_data *data)
 {
 	if (*input)
