@@ -83,6 +83,7 @@ var NAVTREEINDEX0 =
 "executor__child_8c.html#a94aaa22d8b90f659927d2423ee9854f1":[1,0,18,3],
 "executor__child_8c.html#abc815b7a5ce64a976f77c0071189b24a":[1,0,18,1],
 "executor__child_8c.html#abefb10379d855864eb97016dfdfd02c4":[1,0,18,0],
+"executor__child_8c.html#af6006c3abe2058e17ff690b45f1428d5":[1,0,18,4],
 "executor__cleanup2_8c.html":[1,0,20],
 "executor__cleanup2_8c.html#a2930d469dbd1bb8ee4d5a0f55776e59c":[1,0,20,2],
 "executor__cleanup2_8c.html#a8f060fe22fa774dd096b4394e2740d37":[1,0,20,1],
@@ -98,6 +99,7 @@ var NAVTREEINDEX0 =
 "executor__create__child_8c.html#a3b9d65cc664da5c1685bec0662467839":[1,0,21,3],
 "executor__create__child_8c.html#a838ea003e32bd3173c53e257924f40ab":[1,0,21,2],
 "executor__create__child_8c.html#aaed9d1128f64e514ff5e5bbd1d5dbd11":[1,0,21,0],
+"executor__create__child_8c.html#ac44e9851fe1acf9baaa7267bf7dabef5":[1,0,21,4],
 "executor__heredoc2_8c.html":[1,0,23],
 "executor__heredoc2_8c.html#a804e00f92ab2882b7aecddae9a86e50f":[1,0,23,0],
 "executor__heredoc_8c.html":[1,0,22],
@@ -148,8 +150,8 @@ var NAVTREEINDEX0 =
 "expand__utils_8c.html#aa5872a4ee3e0e577c31e074901456165":[1,0,32,2],
 "expand__utils_8c.html#aef23d275d3576325a15b4521e3b49660":[1,0,32,3],
 "files.html":[1,0],
-"globals.html":[1,1,0],
 "globals.html":[1,1,0,0],
+"globals.html":[1,1,0],
 "globals_enum.html":[1,1,3],
 "globals_eval.html":[1,1,4],
 "globals_f.html":[1,1,0,1],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a3cfe3eff41c31f8283d57f835269a958":[1,0,44,1,14],
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a3da755970fe3ecf3630c15029f5b0517":[1,0,44,1,17],
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a43f9e208f2ea10d501bd49791594abc7":[1,0,44,1,9],
-"minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a4488b85575df5d5fd846dc13029e64e4":[1,0,44,1,22],
-"minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a495247f86f2d33551142fd94a74eeae1":[1,0,44,1,11],
-"minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a5a0d2a6d70b1942e50b5cc6a083ca42d":[1,0,44,1,23]
+"minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a4488b85575df5d5fd846dc13029e64e4":[1,0,44,1,22]
 };

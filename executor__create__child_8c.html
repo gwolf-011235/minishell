@@ -103,6 +103,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aaed9d1128f64e514ff5e5bbd1d5dbd11"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__create__child_8c.html#aaed9d1128f64e514ff5e5bbd1d5dbd11">ft_create_child</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd, <a class="el" href="structs__data.html">t_data</a> *data, bool builtin)</td></tr>
 <tr class="memdesc:aaed9d1128f64e514ff5e5bbd1d5dbd11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distinguishes between the position of the command to be executed and creates the pertinent child.  <a href="executor__create__child_8c.html#aaed9d1128f64e514ff5e5bbd1d5dbd11">More...</a><br /></td></tr>
 <tr class="separator:aaed9d1128f64e514ff5e5bbd1d5dbd11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac44e9851fe1acf9baaa7267bf7dabef5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__create__child_8c.html#ac44e9851fe1acf9baaa7267bf7dabef5">ft_raise_single</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd, <a class="el" href="structs__data.html">t_data</a> *data)</td></tr>
+<tr class="memdesc:ac44e9851fe1acf9baaa7267bf7dabef5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a child by forking and calls the pertinent function which is to be executed by the only cmd of the pipe.  <a href="executor__create__child_8c.html#ac44e9851fe1acf9baaa7267bf7dabef5">More...</a><br /></td></tr>
+<tr class="separator:ac44e9851fe1acf9baaa7267bf7dabef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c2f492aec667c26bb71a1ec49148c97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__create__child_8c.html#a0c2f492aec667c26bb71a1ec49148c97">ft_raise_first</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd, <a class="el" href="structs__data.html">t_data</a> *data, bool builtin)</td></tr>
 <tr class="memdesc:a0c2f492aec667c26bb71a1ec49148c97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a child by forking and calls the pertinent function which is to be executed by the first cmd of the pipe.  <a href="executor__create__child_8c.html#a0c2f492aec667c26bb71a1ec49148c97">More...</a><br /></td></tr>
 <tr class="separator:a0c2f492aec667c26bb71a1ec49148c97"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -289,6 +292,44 @@ Functions</h2></td></tr>
     <tr><td class="paramname">cmd</td><td>Current cmd to be processed. </td></tr>
     <tr><td class="paramname">data</td><td>Data struct containing the env. </td></tr>
     <tr><td class="paramname">builtin</td><td>Bool indicating if cmd is a builtin. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>t_err ERR_FORK, SUCCESS </dd></dl>
+
+</div>
+</div>
+<a id="ac44e9851fe1acf9baaa7267bf7dabef5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac44e9851fe1acf9baaa7267bf7dabef5">&#9670;&nbsp;</a></span>ft_raise_single()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> ft_raise_single </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
+          <td class="paramname"><em>cmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structs__data.html">t_data</a> *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a child by forking and calls the pertinent function which is to be executed by the only cmd of the pipe. </p>
+<p>The parent closes the write end fd of the pipe (fd_pipe[1]). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>Current cmd to be processed. </td></tr>
+    <tr><td class="paramname">data</td><td>Data struct containing the env. </td></tr>
   </table>
   </dd>
 </dl>

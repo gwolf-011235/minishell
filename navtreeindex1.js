@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a495247f86f2d33551142fd94a74eeae1":[1,0,44,1,11],
+"minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a5a0d2a6d70b1942e50b5cc6a083ca42d":[1,0,44,1,23],
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a5bb280b3fe12d695d5a7c158f93eb603":[1,0,44,1,3],
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a608ba0888d34c9982f36dc341a35d615":[1,0,44,1,16],
 "minishell__error_8h.html#ad8acf3cd529715d9fa841ce2b860bad8a65c9bb71077f812c2b24f0e448929291":[1,0,44,1,26],

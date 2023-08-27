@@ -100,6 +100,9 @@ $(document).ready(function(){initNavTree('executor__child_8c.html',''); initResi
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:af6006c3abe2058e17ff690b45f1428d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__child_8c.html#af6006c3abe2058e17ff690b45f1428d5">ft_onlychild</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd, <a class="el" href="structs__data.html">t_data</a> *data)</td></tr>
+<tr class="memdesc:af6006c3abe2058e17ff690b45f1428d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Single cmd forked. Assign fds to stdin and stdout. If fd_out exists, assign stdout with fd_out, else 1. if fd_in exists, assign stdin with fd_in, else with 0. Close assigned fds. Execute cmd. If builtin, execute appropriate builtin, then exit to terminate child process.  <a href="executor__child_8c.html#af6006c3abe2058e17ff690b45f1428d5">More...</a><br /></td></tr>
+<tr class="separator:af6006c3abe2058e17ff690b45f1428d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc815b7a5ce64a976f77c0071189b24a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__child_8c.html#abc815b7a5ce64a976f77c0071189b24a">ft_firstborn</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd, <a class="el" href="structs__data.html">t_data</a> *data, bool builtin)</td></tr>
 <tr class="memdesc:abc815b7a5ce64a976f77c0071189b24a"><td class="mdescLeft">&#160;</td><td class="mdescRight">First cmd of pipe. fd_pipe[0] refers to the read end of the pipe. fd_pipe[1] refers to the write end of the pipe. Close all unrequired file descriptors. Assign fds to stdin and stdout. If fd_out exists, assign stdout with fd_out, else with fd_pipe[1] if fd_in exists, assign stdin with fd_in, else with 0 Close assigned fds. Execute cmd. If builtin, execute appropriate builtin, then exit to terminate child process.  <a href="executor__child_8c.html#abc815b7a5ce64a976f77c0071189b24a">More...</a><br /></td></tr>
 <tr class="separator:abc815b7a5ce64a976f77c0071189b24a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -263,6 +266,44 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Cmd in between the first and last of pipe. fd_pipe[0] refers to the read end of the pipe. fd_pipe[1] refers to the write end of the pipe. Close all unrequired file descriptors. The write end of the previous pipe is being closed as well as the read end of the current pipe. Assign fds to stdin and stdout. If fd_out exists, assign stdout with fd_out, else with fd_pipe[1]. if fd_in exists, assign stdin with fd_in, else with fd_prev_pipe[0] Close assigned fds. Execute cmd. If builtin, execute appropriate builtin, then exit to terminate child process. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>Current cmd being processed. </td></tr>
+    <tr><td class="paramname">data</td><td>Data struct containing the env. </td></tr>
+    <tr><td class="paramname">builtin</td><td>Bool indicating if cmd is a builtin. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af6006c3abe2058e17ff690b45f1428d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6006c3abe2058e17ff690b45f1428d5">&#9670;&nbsp;</a></span>ft_onlychild()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ft_onlychild </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structs__cmd.html">t_cmd</a> *&#160;</td>
+          <td class="paramname"><em>cmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structs__data.html">t_data</a> *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Single cmd forked. Assign fds to stdin and stdout. If fd_out exists, assign stdout with fd_out, else 1. if fd_in exists, assign stdin with fd_in, else with 0. Close assigned fds. Execute cmd. If builtin, execute appropriate builtin, then exit to terminate child process. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cmd</td><td>Current cmd being processed. </td></tr>
