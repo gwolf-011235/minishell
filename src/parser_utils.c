@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:15:09 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 20:48:03 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/27 11:23:46 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_count_str(t_tkn_list *lst, int *count_arg, int *count_delim,
 		}
 		else if (lst->type == PIPE)
 			return ;
-		else if (lst->type == INFILE)
+		else if (lst->type == INFILE || lst->type == AMBIGUOUS)
 			lst = lst->next;
 		else if (lst->type == OUTFILE || lst->type == APPEND)
 		{
