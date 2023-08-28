@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_config.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:46:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/25 14:46:15 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/28 09:58:26 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_CONFIG_H
 # define MINISHELL_CONFIG_H
 
-/* ====== DEFINITIONS ====== */
+/* ====== BASE SETTINGS ====== */
 
 # define HASHTABLE_SIZE 10
 # define MAX_SHLVL 10
 # define BUF_SIZE 2048
+
+/* ====== PROMPT ====== */
 
 # define PS1 "PS1=\\u@\\h$ "
 # define PS2 "PS2=tell me more> "
