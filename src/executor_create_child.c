@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:22:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/27 14:11:14 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/28 09:16:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ t_err	ft_raise_single(t_cmd *cmd, t_data *data)
 		ft_onlychild(cmd, data);
 	else
 	{
+		ft_signal_setup(SIGINT, SIG_IGNORE);
+		ft_signal_setup(SIGQUIT, SIG_IGNORE);
 		ft_close(&cmd->fd_out);
 		ft_close(&cmd->fd_in);
 	}
@@ -89,6 +91,8 @@ t_err	ft_raise_first(t_cmd *cmd, t_data *data, bool builtin)
 		ft_firstborn(cmd, data, builtin);
 	else
 	{
+		ft_signal_setup(SIGINT, SIG_IGNORE);
+		ft_signal_setup(SIGQUIT, SIG_IGNORE);
 		ft_close(&cmd->fd_pipe[1]);
 		ft_close(&cmd->fd_out);
 		ft_close(&cmd->fd_in);
@@ -116,7 +120,11 @@ t_err	ft_raise_last(t_cmd *cmd, t_data *data, bool builtin)
 	else if (cmd->pid == 0)
 		ft_lastborn(cmd, data, builtin);
 	else
+	{
+		ft_signal_setup(SIGINT, SIG_IGNORE);
+		ft_signal_setup(SIGQUIT, SIG_IGNORE);
 		ft_close_iopp(cmd);
+	}
 	return (SUCCESS);
 }
 
@@ -143,6 +151,8 @@ t_err	ft_raise_middle(t_cmd *cmd, t_data *data, bool builtin)
 		ft_middle_child(cmd, data, builtin);
 	else
 	{
+		ft_signal_setup(SIGINT, SIG_IGNORE);
+		ft_signal_setup(SIGQUIT, SIG_IGNORE);
 		ft_close(&cmd->fd_pipe[1]);
 		ft_close_iopp(cmd);
 	}

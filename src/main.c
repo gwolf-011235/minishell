@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:15:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 18:48:34 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/28 09:18:18 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ __sig_atomic_t	g_status;
  */
 void	ft_prep_new_loop(t_data *data, char **input)
 {
-	ft_signal_setup(SIGQUIT, SIG_IGNORE);
 	ft_envp_create(data->env_table, &data->envp);
 	ft_create_prompts(data);
 	*input = NULL;
