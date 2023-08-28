@@ -103,9 +103,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aaaa6e8896e8ae0448b9eb5c64b4acd91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup2_8c.html#aaaa6e8896e8ae0448b9eb5c64b4acd91">ft_cleanup_cmd_list</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd, char **paths)</td></tr>
 <tr class="memdesc:aaaa6e8896e8ae0448b9eb5c64b4acd91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterate through cmd list and cleanup each cmd.  <a href="executor__cleanup2_8c.html#aaaa6e8896e8ae0448b9eb5c64b4acd91">More...</a><br /></td></tr>
 <tr class="separator:aaaa6e8896e8ae0448b9eb5c64b4acd91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2930d469dbd1bb8ee4d5a0f55776e59c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup2_8c.html#a2930d469dbd1bb8ee4d5a0f55776e59c">ft_err_executor</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd_head, char **paths)</td></tr>
-<tr class="memdesc:a2930d469dbd1bb8ee4d5a0f55776e59c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean up and error output if executor encounters ERR_MALLOC or ERR_ABORT.  <a href="executor__cleanup2_8c.html#a2930d469dbd1bb8ee4d5a0f55776e59c">More...</a><br /></td></tr>
-<tr class="separator:a2930d469dbd1bb8ee4d5a0f55776e59c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a079fe85edc9e03e905e42b6addb77bac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup2_8c.html#a079fe85edc9e03e905e42b6addb77bac">ft_err_executor</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd_head, char **paths, <a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a> err)</td></tr>
+<tr class="memdesc:a079fe85edc9e03e905e42b6addb77bac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean up and error output if executor encounters ERR_MALLOC or ERR_ABORT.  <a href="executor__cleanup2_8c.html#a079fe85edc9e03e905e42b6addb77bac">More...</a><br /></td></tr>
+<tr class="separator:a079fe85edc9e03e905e42b6addb77bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f060fe22fa774dd096b4394e2740d37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="executor__cleanup2_8c.html#a8f060fe22fa774dd096b4394e2740d37">ft_close_iopp</a> (<a class="el" href="structs__cmd.html">t_cmd</a> *cmd)</td></tr>
 <tr class="memdesc:a8f060fe22fa774dd096b4394e2740d37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes fd_in, fd_out and previous pipe of cmd.  <a href="executor__cleanup2_8c.html#a8f060fe22fa774dd096b4394e2740d37">More...</a><br /></td></tr>
 <tr class="separator:a8f060fe22fa774dd096b4394e2740d37"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,8 +175,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2930d469dbd1bb8ee4d5a0f55776e59c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2930d469dbd1bb8ee4d5a0f55776e59c">&#9670;&nbsp;</a></span>ft_err_executor()</h2>
+<a id="a079fe85edc9e03e905e42b6addb77bac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a079fe85edc9e03e905e42b6addb77bac">&#9670;&nbsp;</a></span>ft_err_executor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -191,7 +191,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>paths</em>&#160;</td>
+          <td class="paramname"><em>paths</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="minishell__error_8h.html#ab40f6b0320b416162d7f6d5eed804232">t_err</a>&#160;</td>
+          <td class="paramname"><em>err</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
