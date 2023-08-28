@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
+#    By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 13:03:05 by gwolf             #+#    #+#              #
-#    Updated: 2023/08/27 18:32:25 by sqiu             ###   ########.fr        #
+#    Updated: 2023/08/28 10:08:15 by gwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,6 @@ SRC :=	utils_memory.c \
 		hashtable_generate.c \
 		hashtable_ops.c \
 		hashtable_utils.c \
-		exit_failure.c \
 		env_setup.c \
 		env_pwd.c \
 		env_shlvl.c \
