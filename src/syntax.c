@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:43:24 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 11:57:08 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/28 17:19:06 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_err	ft_quote_skipper(const char *quote_start, size_t *i, char target)
 	if (!quote_end)
 		return (ft_syntax_error(QUOTE, target));
 	*i += quote_end - quote_start;
+	(*i)++;
 	return (SUCCESS);
 }
 
@@ -73,24 +74,25 @@ t_err	ft_quote_skipper(const char *quote_start, size_t *i, char target)
  * @param pos Position of checked pipe in input.
  * @return t_err SUCCESS, ERR_SYNTAX.
  */
-t_err	ft_check_pipe(const char *input, size_t pos)
+t_err	ft_check_pipe(const char *input, size_t *pos)
 {
 	size_t	i;
 
 	i = 0;
 	while (ft_isspace(input[i]))
 		i++;
-	if (i == pos)
-		return (ft_syntax_error(TOKEN, input[pos]));
-	i = pos + 1;
+	if (i == *pos)
+		return (ft_syntax_error(TOKEN, input[*pos]));
+	i = *pos + 1;
 	if (input[i] == '|')
-		return (ft_syntax_error(TOKEN, input[pos]));
+		return (ft_syntax_error(TOKEN, input[*pos]));
 	while (ft_isspace(input[i]))
 		i++;
 	if (input[i] == '\0')
-		return (ft_syntax_error(TOKEN, input[pos]));
+		return (ft_syntax_error(TOKEN, input[*pos]));
 	else if (input[i] == '|')
 		return (ft_syntax_error(TOKEN, input[i]));
+	(*pos)++;
 	return (SUCCESS);
 }
 
@@ -106,11 +108,11 @@ t_err	ft_check_pipe(const char *input, size_t pos)
  * @param symbol Either '<' or '>'.
  * @return t_err SUCCESS, ERR_SYNTAX
  */
-t_err	ft_check_redirect(const char *input, size_t pos, char symbol)
+t_err	ft_check_redirect(const char *input, size_t *pos, char symbol)
 {
 	size_t	i;
 
-	i = pos + 1;
+	i = *pos + 1;
 	if (input[i] == symbol && input[i + 1] != symbol)
 		i++;
 	while (ft_isspace(input[i]))
@@ -119,6 +121,7 @@ t_err	ft_check_redirect(const char *input, size_t pos, char symbol)
 		return (ft_syntax_error(NEW_LINE, '\n'));
 	if (input[i] == '|' || input[i] == '<' || input[i] == '>')
 		return (ft_syntax_error(TOKEN, input[i]));
+	(*pos)++;
 	return (SUCCESS);
 }
 
@@ -141,17 +144,18 @@ t_err	ft_check_syntax(const char *input)
 	i = 0;
 	while (input[i])
 	{
-		while (ft_isspace(input[i]))
+		if (ft_isspace(input[i]))
 			i++;
-		if (input[i] == '"' || input[i] == '\'')
+		else if (input[i] == '"' || input[i] == '\'')
 			err = ft_quote_skipper(&input[i], &i, input[i]);
 		else if (input[i] == '|')
-			err = ft_check_pipe(input, i);
+			err = ft_check_pipe(input, &i);
 		else if (input[i] == '<' || input[i] == '>')
-			err = ft_check_redirect(input, i, input[i]);
+			err = ft_check_redirect(input, &i, input[i]);
+		else
+			i++;
 		if (err != SUCCESS)
 			return (err);
-		i++;
 	}
 	return (SUCCESS);
 }

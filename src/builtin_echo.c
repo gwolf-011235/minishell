@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:47:19 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/26 18:31:14 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/28 17:05:45 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,13 @@ void	ft_skip_n_flags(char **argv, size_t *i, bool *newline)
 			j++;
 		if (argv[*i][j] != '\0')
 			break ;
-		*newline = false;
-		(*i)++;
+		if (j > 1)
+		{
+			*newline = false;
+			(*i)++;
+		}
+		else
+			break ;
 	}
 }
 

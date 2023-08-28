@@ -22,6 +22,7 @@
 		"mod_signal.h": "c",
 		"mod_cleanup.h": "c",
 		"buffer.h": "c",
-		"mod_parser.h": "c"
+		"mod_parser.h": "c",
+		"mod_syntax.h": "c"
 	}
 }

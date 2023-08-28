@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mod_executor.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/28 10:50:32 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/28 17:46:41 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_err	ft_unlink_heredoc(char **name, t_err err);
 t_err	ft_close(int *fd);
 t_err	ft_plug_pipe(int *pipe_in, int *pipe_out);
 void	ft_plug_all_iopp(t_cmd *cmd);
-t_err	ft_err_executor(t_cmd *cmd_head, char **paths);
+t_err	ft_err_executor(t_cmd *cmd_head, char **paths, t_err err);
 void	ft_close_iopp(t_cmd *cmd);
 
 // utils
@@ -92,6 +92,7 @@ void	ft_loop_thru_outfiles(t_cmd *cmd);
 t_err	ft_check_dir(char **args);
 void	ft_set_exit_status(t_err err);
 t_err	ft_check_permission(char *rtrn, char **args);
+void	ft_check_exit_status(pid_t pid, bool *print);
 
 // builtins
 bool	ft_check_builtin(char *arg);

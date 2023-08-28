@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 22:45:56 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 20:36:30 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/28 17:30:08 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,17 @@ void	ft_cleanup_cmd_list(t_cmd *cmd, char **paths)
  * @param cmd_head		Head of cmd list.
  * @return t_err		ERR_EXECUTOR
  */
-t_err	ft_err_executor(t_cmd *cmd_head, char **paths)
+t_err	ft_err_executor(t_cmd *cmd_head, char **paths, t_err err)
 {
-	g_status = 1;
 	ft_cleanup_cmd_list(cmd_head, paths);
-	return (ft_print_error(ERR_EXECUTOR));
+	if (err == ERR_MALLOC || err == ERR_PIPE || err == ERR_STAT
+		|| err == ERR_FORK)
+	{
+		g_status = 1;
+		return (ft_print_error(ERR_EXECUTOR));
+	}
+	else
+		return (err);
 }
 
 /**

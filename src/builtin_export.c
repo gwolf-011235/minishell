@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 08:11:30 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 19:01:02 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/28 17:35:35 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	ft_export(char **argv, t_hashtable *env_tab)
 			err = ft_check_and_update_env(argv[i], env_tab, size);
 		else if (err == ERR_CONCAT)
 			err = ft_concatenate(argv[i], env_tab, size);
+		if (err != SUCCESS && err != ERR_INVALID_NAME)
+			return (ft_export_error(err, argv[i]));
 		else if (err == ERR_INVALID_NAME)
-			ft_export_error(err, argv[i]);
-		if (err != SUCCESS)
 			ft_export_error(err, argv[i]);
 		i++;
 	}
@@ -129,8 +129,7 @@ t_err	ft_pretty_print_envp(char **envp, size_t size)
  * Then update environment with ft_update_env_var().
  * @param str Env_str to check.
  * @param env_tab Environment.
- * @return t_err SUCCESS, ERR_INVALID_NAME, ERR_MALLOC, ERR_EMPTY,
- * ERR_HT_NO_INSERT, ERR_HT_NO_SWAP.
+ * @return t_err SUCCESS, ERR_MALLOC, ERR_HT_NO_INSERT, ERR_HT_NO_SWAP.
  */
 t_err	ft_check_and_update_env(char *str, t_hashtable *env_tab, size_t keylen)
 {

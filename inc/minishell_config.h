@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_config.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:46:31 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/28 09:58:26 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/28 18:13:51 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 /* ====== PROMPT ====== */
 
-# define PS1 "PS1=\\u@\\h$ "
-# define PS2 "PS2=tell me more> "
+# define PS1 "PS1=\\u@\\h mini🐚 $ "
+# define PS2 "PS2=tell me more 🤌 > "
 # define PS1_STD "$ "
 # define PS2_STD "> "
 # define UNKNOWN "UNKNOWN"

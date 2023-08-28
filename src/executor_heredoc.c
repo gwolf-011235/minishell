@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:05:42 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/26 14:42:31 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/28 17:21:19 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_err	ft_create_heredoc(t_cmd *cmd, int curr_delim,
 	if (err == ERR_ABORT || err == ERR_MALLOC)
 	{
 		ft_close(&heredoc.fd);
-		return (ft_unlink_heredoc(&heredoc.name, ERR_ABORT));
+		return (ft_unlink_heredoc(&heredoc.name, err));
 	}
 	err = ft_heredoc_fate(cmd, curr_delim, &heredoc);
 	return (err);

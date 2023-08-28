@@ -6,7 +6,7 @@
 /*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:03:04 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/27 19:33:16 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/28 17:46:11 by gwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ t_err	ft_prefix_path(char **args, char **cmd_paths)
 	char	*tmp;
 	char	*rtrn;
 
-	if (args[0][0] == '\0' || !strncmp(*args, ".", 2)
-		|| !strncmp(*args, "..", 3))
+	if (args[0][0] == '\0' || !ft_strncmp(*args, ".", 2)
+		|| !ft_strncmp(*args, "..", 3))
 		return (ft_print_warning(ERR_UNKNOWN_CMD, args[0]));
 	while (*cmd_paths)
 	{
@@ -173,27 +173,13 @@ t_err	ft_replace_fd(int input_fd, int output_fd)
  */
 void	ft_wait_for_babies(t_cmd *cmd)
 {
-	int	status;
+	bool	print;
 
+	print = true;
 	while (cmd)
 	{
 		if (cmd->pid > 0)
-		{
-			(void)waitpid(cmd->pid, &status, 0);
-			if (WIFEXITED(status))
-				g_status = WEXITSTATUS(status);
-			else
-			{
-				if (WIFSIGNALED(status))
-				{
-					g_status = 128 + WTERMSIG(status);
-					if (__WCOREDUMP(status))
-						ft_putendl_fd("Quit (core dumped)", 2);
-					else if (WTERMSIG(status) == 2)
-						ft_putchar_fd('\n', 2);
-				}
-			}
-		}
+			ft_check_exit_status(cmd->pid, &print);
 		else
 			g_status = 1;
 		cmd = cmd->next;
