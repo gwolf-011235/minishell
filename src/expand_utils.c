@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwolf <gwolf@student.42vienna.com>         +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 18:19:13 by gwolf             #+#    #+#             */
-/*   Updated: 2023/08/27 21:51:13 by gwolf            ###   ########.fr       */
+/*   Updated: 2023/08/28 09:59:56 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,3 @@ t_err	ft_trim_single_word(t_track *input)
 	}
 	return (ERR_NOSPLIT);
 }
-
