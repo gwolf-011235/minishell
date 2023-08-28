@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:04:32 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/27 16:47:41 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/28 10:50:32 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	ft_onlychild(t_cmd *cmd, t_data *data);
 void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin);
 void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin);
 void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin);
-void	ft_close_mid_child_fds(t_cmd *cmd);
 
 // heredoc
 t_err	ft_handle_heredoc(t_cmd *cmd, t_hashtable *symtab, char *prompt2);
@@ -75,7 +74,7 @@ void	ft_cleanup_cmd(t_cmd *cmd);
 t_err	ft_unlink_heredoc(char **name, t_err err);
 t_err	ft_close(int *fd);
 t_err	ft_plug_pipe(int *pipe_in, int *pipe_out);
-void	ft_plug_all_pipes(t_cmd *cmd);
+void	ft_plug_all_iopp(t_cmd *cmd);
 t_err	ft_err_executor(t_cmd *cmd_head, char **paths);
 void	ft_close_iopp(t_cmd *cmd);
 

@@ -6,7 +6,7 @@
 /*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:24:49 by sqiu              #+#    #+#             */
-/*   Updated: 2023/08/27 14:20:09 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/08/28 10:50:17 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,12 @@ void	ft_onlychild(t_cmd *cmd, t_data *data)
  */
 void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin)
 {
-	ft_close(&cmd->fd_pipe[0]);
 	if (cmd->fd_out >= 0)
 	{
 		if (cmd->fd_in >= 0)
 			ft_replace_fd(cmd->fd_in, cmd->fd_out);
 		else
 			ft_replace_fd(0, cmd->fd_out);
-		ft_close(&cmd->fd_out);
 	}
 	else
 	{
@@ -83,10 +81,8 @@ void	ft_firstborn(t_cmd *cmd, t_data *data, bool builtin)
 			ft_replace_fd(cmd->fd_in, cmd->fd_pipe[1]);
 		else
 			ft_replace_fd(0, cmd->fd_pipe[1]);
-		ft_close(&cmd->fd_pipe[1]);
 	}
-	ft_close(&cmd->fd_in);
-	ft_plug_all_pipes(cmd);
+	ft_plug_all_iopp(cmd);
 	if (builtin)
 		ft_choose_builtin(cmd, data);
 	else
@@ -120,7 +116,6 @@ void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin)
 			ft_replace_fd(cmd->fd_in, cmd->fd_out);
 		else
 			ft_replace_fd(cmd->fd_prev_pipe[0], cmd->fd_out);
-		ft_close(&cmd->fd_out);
 	}
 	else
 	{
@@ -130,7 +125,7 @@ void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin)
 			ft_replace_fd(cmd->fd_prev_pipe[0], 1);
 	}
 	ft_close(&cmd->fd_prev_pipe[0]);
-	ft_close(&cmd->fd_in);
+	ft_plug_all_iopp(cmd);
 	if (builtin)
 		ft_choose_builtin(cmd, data);
 	else
@@ -159,14 +154,12 @@ void	ft_lastborn(t_cmd *cmd, t_data *data, bool builtin)
 void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin)
 {
 	ft_close(&cmd->fd_prev_pipe[1]);
-	ft_close(&cmd->fd_pipe[0]);
 	if (cmd->fd_out >= 0)
 	{
 		if (cmd->fd_in >= 0)
 			ft_replace_fd(cmd->fd_in, cmd->fd_out);
 		else
 			ft_replace_fd(cmd->fd_prev_pipe[0], cmd->fd_out);
-		ft_close(&cmd->fd_out);
 	}
 	else
 	{
@@ -175,23 +168,11 @@ void	ft_middle_child(t_cmd *cmd, t_data *data, bool builtin)
 		else
 			ft_replace_fd(cmd->fd_prev_pipe[0], cmd->fd_pipe[1]);
 	}
-	ft_close_mid_child_fds(cmd);
+	ft_close(&cmd->fd_prev_pipe[0]);
+	ft_plug_all_iopp(cmd);
 	if (builtin)
 		ft_choose_builtin(cmd, data);
 	else
 		ft_err_execve(cmd->args[0], cmd->args, data->envp);
 	data->loop = false;
-}
-
-/**
- * @brief Close file descriptors after duplication.
- *
- * @param cmd Current cmd.
- */
-void	ft_close_mid_child_fds(t_cmd *cmd)
-{
-	ft_close(&cmd->fd_prev_pipe[0]);
-	ft_close(&cmd->fd_pipe[1]);
-	ft_close(&cmd->fd_in);
-	ft_plug_all_pipes(cmd);
 }
